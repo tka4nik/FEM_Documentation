@@ -1,0 +1,164 @@
+\hypertarget{class_f_t_glyph}{}\doxysection{FTGlyph Class Reference}
+\label{class_f_t_glyph}\index{FTGlyph@{FTGlyph}}
+
+
+{\ttfamily \#include $<$FTGlyph.\+h$>$}
+
+Inheritance diagram for FTGlyph\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.696970cm]{class_f_t_glyph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_glyph_a42e51f657865e0f575a0f9ec4481e0b6}{FTGlyph}} (\mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\+\_\+\+Glyph\+Slot}} glyph, bool \mbox{\hyperlink{class_f_t_glyph_aa4c23964322ff71bde93c4ea1594923e}{use\+Display\+List}}=true)
+\item 
+virtual \mbox{\hyperlink{class_f_t_glyph_ad93a5124ddd9fe408e07f5054ab92452}{$\sim$\+FTGlyph}} ()
+\item 
+virtual const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& \mbox{\hyperlink{class_f_t_glyph_a8dcae3f32fe8a4f56b71a48ebaa95bc4}{Render}} (const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&pen)=0
+\item 
+const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& \mbox{\hyperlink{class_f_t_glyph_a238281b645fa5eaacb0c09f78eb5984f}{Advance}} () const
+\item 
+const \mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \& \mbox{\hyperlink{class_f_t_glyph_a675dc57a9adf90ffe311b6c70d84ce64}{BBox}} () const
+\item 
+FT\+\_\+\+Error \mbox{\hyperlink{class_f_t_glyph_a6a9077a7ae0633c298401fd450d8555b}{Error}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_point}{FTPoint}} \mbox{\hyperlink{class_f_t_glyph_abe1adfd1ce4b168fed309910844d47a8}{advance}}
+\item 
+\mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \mbox{\hyperlink{class_f_t_glyph_a9f4a78d18398e5af3a4251e7e8935d15}{b\+Box}}
+\item 
+bool \mbox{\hyperlink{class_f_t_glyph_aa4c23964322ff71bde93c4ea1594923e}{use\+Display\+List}}
+\item 
+FT\+\_\+\+Error \mbox{\hyperlink{class_f_t_glyph_a975294cdaaac794fac7090461f2bc1ff}{err}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} is the base class for FTGL glyphs.
+
+It provides the interface between Freetype glyphs and their open\+GL renderable counterparts. This is an abstract class and derived classes must implement the {\ttfamily render} function.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_f_t_glyph_container}{FTGlyph\+Container}} 
+
+\mbox{\hyperlink{class_f_t_b_box}{FTBBox}} 
+
+\mbox{\hyperlink{class_f_t_point}{FTPoint}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_glyph_a42e51f657865e0f575a0f9ec4481e0b6}\label{class_f_t_glyph_a42e51f657865e0f575a0f9ec4481e0b6}} 
+\index{FTGlyph@{FTGlyph}!FTGlyph@{FTGlyph}}
+\index{FTGlyph@{FTGlyph}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{FTGlyph()}{FTGlyph()}}
+{\footnotesize\ttfamily FTGlyph\+::\+FTGlyph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\+\_\+\+Glyph\+Slot}}}]{glyph,  }\item[{bool}]{use\+Display\+List = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em glyph} & The Freetype glyph to be processed \\
+\hline
+{\em use\+Display\+List} & Enable or disable the use of Display Lists for this glyph {\ttfamily true} turns ON display lists. {\ttfamily false} turns OFF display lists. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_glyph_ad93a5124ddd9fe408e07f5054ab92452}\label{class_f_t_glyph_ad93a5124ddd9fe408e07f5054ab92452}} 
+\index{FTGlyph@{FTGlyph}!````~FTGlyph@{$\sim$FTGlyph}}
+\index{````~FTGlyph@{$\sim$FTGlyph}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTGlyph()}{~FTGlyph()}}
+{\footnotesize\ttfamily virtual FTGlyph\+::$\sim$\+FTGlyph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_glyph_a238281b645fa5eaacb0c09f78eb5984f}\label{class_f_t_glyph_a238281b645fa5eaacb0c09f78eb5984f}} 
+\index{FTGlyph@{FTGlyph}!Advance@{Advance}}
+\index{Advance@{Advance}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{Advance()}{Advance()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& FTGlyph\+::\+Advance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the advance width for this glyph.
+
+\begin{DoxyReturn}{Returns}
+advance width. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_glyph_a675dc57a9adf90ffe311b6c70d84ce64}\label{class_f_t_glyph_a675dc57a9adf90ffe311b6c70d84ce64}} 
+\index{FTGlyph@{FTGlyph}!BBox@{BBox}}
+\index{BBox@{BBox}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{BBox()}{BBox()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \& FTGlyph\+::\+BBox (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the bounding box for this glyph.
+
+\begin{DoxyReturn}{Returns}
+bounding box. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_glyph_a6a9077a7ae0633c298401fd450d8555b}\label{class_f_t_glyph_a6a9077a7ae0633c298401fd450d8555b}} 
+\index{FTGlyph@{FTGlyph}!Error@{Error}}
+\index{Error@{Error}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily FT\+\_\+\+Error FTGlyph\+::\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Queries for errors.
+
+\begin{DoxyReturn}{Returns}
+The current error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_glyph_a8dcae3f32fe8a4f56b71a48ebaa95bc4}\label{class_f_t_glyph_a8dcae3f32fe8a4f56b71a48ebaa95bc4}} 
+\index{FTGlyph@{FTGlyph}!Render@{Render}}
+\index{Render@{Render}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& FTGlyph\+::\+Render (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&}]{pen }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Renders this glyph at the current pen position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pen} & The current pen position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The advance distance for this glyph. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_f_t_bitmap_glyph_ab61d2f06d2627b3821556e0cef74b56f}{FTBitmap\+Glyph}}, \mbox{\hyperlink{class_f_t_extrd_glyph_a42dfb88156e912de8cffeb1c986723a9}{FTExtrd\+Glyph}}, \mbox{\hyperlink{class_f_t_outline_glyph_a0414f50a41c8e4366e60290b2d2177dd}{FTOutline\+Glyph}}, \mbox{\hyperlink{class_f_t_pixmap_glyph_a4717d130b7689cdfd554cb3b78b372a6}{FTPixmap\+Glyph}}, \mbox{\hyperlink{class_f_t_poly_glyph_a47aaa6a473b244ed23e921da9d029aa3}{FTPoly\+Glyph}}, and \mbox{\hyperlink{class_f_t_texture_glyph_a59294788e2e1f94c88bb5ea3b7d5bc61}{FTTexture\+Glyph}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_f_t_glyph_abe1adfd1ce4b168fed309910844d47a8}\label{class_f_t_glyph_abe1adfd1ce4b168fed309910844d47a8}} 
+\index{FTGlyph@{FTGlyph}!advance@{advance}}
+\index{advance@{advance}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{advance}{advance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_point}{FTPoint}} FTGlyph\+::advance\hspace{0.3cm}{\ttfamily [protected]}}
+
+The advance distance for this glyph \mbox{\Hypertarget{class_f_t_glyph_a9f4a78d18398e5af3a4251e7e8935d15}\label{class_f_t_glyph_a9f4a78d18398e5af3a4251e7e8935d15}} 
+\index{FTGlyph@{FTGlyph}!bBox@{bBox}}
+\index{bBox@{bBox}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{bBox}{bBox}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_b_box}{FTBBox}} FTGlyph\+::b\+Box\hspace{0.3cm}{\ttfamily [protected]}}
+
+The bounding box of this glyph. \mbox{\Hypertarget{class_f_t_glyph_a975294cdaaac794fac7090461f2bc1ff}\label{class_f_t_glyph_a975294cdaaac794fac7090461f2bc1ff}} 
+\index{FTGlyph@{FTGlyph}!err@{err}}
+\index{err@{err}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{err}{err}}
+{\footnotesize\ttfamily FT\+\_\+\+Error FTGlyph\+::err\hspace{0.3cm}{\ttfamily [protected]}}
+
+Current error code. Zero means no error. \mbox{\Hypertarget{class_f_t_glyph_aa4c23964322ff71bde93c4ea1594923e}\label{class_f_t_glyph_aa4c23964322ff71bde93c4ea1594923e}} 
+\index{FTGlyph@{FTGlyph}!useDisplayList@{useDisplayList}}
+\index{useDisplayList@{useDisplayList}!FTGlyph@{FTGlyph}}
+\doxysubsubsection{\texorpdfstring{useDisplayList}{useDisplayList}}
+{\footnotesize\ttfamily bool FTGlyph\+::use\+Display\+List\hspace{0.3cm}{\ttfamily [protected]}}
+
+Flag to enable or disable the use of Display Lists inside FTGL {\ttfamily true} turns ON display lists. {\ttfamily false} turns OFF display lists. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTGlyph.\+h\end{DoxyCompactItemize}

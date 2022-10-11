@@ -1,0 +1,161 @@
+\hypertarget{class_text_label}{}\doxysection{Text\+Label Class Reference}
+\label{class_text_label}\index{TextLabel@{TextLabel}}
+
+
+Класс для отображения текстовой информации в графическом окне  
+
+
+
+
+{\ttfamily \#include $<$Text\+Label.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_text_label_abcf633cc94e9db54179ae166201c88fa}\label{class_text_label_abcf633cc94e9db54179ae166201c88fa}} 
+void {\bfseries Set\+Font} (FTFont $\ast$font)
+\item 
+void \mbox{\hyperlink{class_text_label_a3d25fceaf1f29417349960f768f5d67e}{Set\+Data}} (size\+\_\+t step, double time, std\+::string render\+\_\+mode\+\_\+name, const glm\+::vec2 \&mouse\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Установка информации для отображения \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_text_label_a12cfb66edc32f8aab1213a5edfdfbb4c}{Set\+Data}} (float value, std\+::string field, float nodes\+\_\+val\mbox{[}3\mbox{]})
+\begin{DoxyCompactList}\small\item\em Установка информации для отображения \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_text_label_aef496e91b31536494d6ea33bf822d4c4}{Set\+Color}} (const glm\+::vec4 \&text\+\_\+color, const glm\+::vec4 \&backg\+\_\+color)
+\begin{DoxyCompactList}\small\item\em Устанавливает цвет элемента \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_text_label_ae6ffc8b6190f0d973d7822a18a0459aa}{Set\+Position}} (const glm\+::vec2 \&position)
+\begin{DoxyCompactList}\small\item\em Позиция элемента \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_text_label_a229aab1eeabb5d4c80b82adc9d89abd7}{Set\+Text\+Box\+Size}} (const glm\+::vec2 \&size)
+\begin{DoxyCompactList}\small\item\em Размер элемента \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_text_label_a3be3618a7966d67bb7029aecc8216867}\label{class_text_label_a3be3618a7966d67bb7029aecc8216867}} 
+void {\bfseries Render} ()
+\item 
+void \mbox{\hyperlink{class_text_label_aa920eb60c1948ef11c517f35bd55d1aa}{Reset}} (glm\+::vec2 win\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Вызывать каждый шаг. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_text_label_a3304f15417a0ed8a5816d25074b4552d}{Get\+Text\+Box\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Прямоугольник ограничивающий элемент \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс для отображения текстовой информации в графическом окне 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_text_label_a3304f15417a0ed8a5816d25074b4552d}\label{class_text_label_a3304f15417a0ed8a5816d25074b4552d}} 
+\index{TextLabel@{TextLabel}!GetTextBoxSize@{GetTextBoxSize}}
+\index{GetTextBoxSize@{GetTextBoxSize}!TextLabel@{TextLabel}}
+\doxysubsubsection{\texorpdfstring{GetTextBoxSize()}{GetTextBoxSize()}}
+{\footnotesize\ttfamily glm\+::vec2 Text\+Label\+::\+Get\+Text\+Box\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Прямоугольник ограничивающий элемент 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_text_label_aa920eb60c1948ef11c517f35bd55d1aa}\label{class_text_label_aa920eb60c1948ef11c517f35bd55d1aa}} 
+\index{TextLabel@{TextLabel}!Reset@{Reset}}
+\index{Reset@{Reset}!TextLabel@{TextLabel}}
+\doxysubsubsection{\texorpdfstring{Reset()}{Reset()}}
+{\footnotesize\ttfamily void Text\+Label\+::\+Reset (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{win\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Вызывать каждый шаг. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em win\+\_\+size} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_text_label_aef496e91b31536494d6ea33bf822d4c4}\label{class_text_label_aef496e91b31536494d6ea33bf822d4c4}} 
+\index{TextLabel@{TextLabel}!SetColor@{SetColor}}
+\index{SetColor@{SetColor}!TextLabel@{TextLabel}}
+\doxysubsubsection{\texorpdfstring{SetColor()}{SetColor()}}
+{\footnotesize\ttfamily void Text\+Label\+::\+Set\+Color (\begin{DoxyParamCaption}\item[{const glm\+::vec4 \&}]{text\+\_\+color,  }\item[{const glm\+::vec4 \&}]{backg\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+Устанавливает цвет элемента 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+\_\+color} & цвет текста \\
+\hline
+{\em backg\+\_\+color} & фоновый цвет текста \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_text_label_a12cfb66edc32f8aab1213a5edfdfbb4c}\label{class_text_label_a12cfb66edc32f8aab1213a5edfdfbb4c}} 
+\index{TextLabel@{TextLabel}!SetData@{SetData}}
+\index{SetData@{SetData}!TextLabel@{TextLabel}}
+\doxysubsubsection{\texorpdfstring{SetData()}{SetData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Text\+Label\+::\+Set\+Data (\begin{DoxyParamCaption}\item[{float}]{value,  }\item[{std\+::string}]{field,  }\item[{float}]{nodes\+\_\+val\mbox{[}3\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Установка информации для отображения 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & апроксимированное число для выбранного треугольника из меша \\
+\hline
+{\em field} & текушее отображаемое поле \\
+\hline
+{\em nodes\+\_\+val} & значения в узлах треугольника \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_text_label_a3d25fceaf1f29417349960f768f5d67e}\label{class_text_label_a3d25fceaf1f29417349960f768f5d67e}} 
+\index{TextLabel@{TextLabel}!SetData@{SetData}}
+\index{SetData@{SetData}!TextLabel@{TextLabel}}
+\doxysubsubsection{\texorpdfstring{SetData()}{SetData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Text\+Label\+::\+Set\+Data (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{step,  }\item[{double}]{time,  }\item[{std\+::string}]{render\+\_\+mode\+\_\+name,  }\item[{const glm\+::vec2 \&}]{mouse\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Установка информации для отображения 
+
+
+\begin{DoxyParams}{Parameters}
+{\em step} & текущий шаг моделирования \\
+\hline
+{\em time} & текущее время моделирования \\
+\hline
+{\em render\+\_\+mode\+\_\+name} & имя текущего режима отображения \\
+\hline
+{\em mouse\+\_\+pos} & текущая позиция мыши \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_text_label_ae6ffc8b6190f0d973d7822a18a0459aa}\label{class_text_label_ae6ffc8b6190f0d973d7822a18a0459aa}} 
+\index{TextLabel@{TextLabel}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!TextLabel@{TextLabel}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}}
+{\footnotesize\ttfamily void Text\+Label\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{const glm\+::vec2 \&}]{position }\end{DoxyParamCaption})}
+
+
+
+Позиция элемента 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_text_label_a229aab1eeabb5d4c80b82adc9d89abd7}\label{class_text_label_a229aab1eeabb5d4c80b82adc9d89abd7}} 
+\index{TextLabel@{TextLabel}!SetTextBoxSize@{SetTextBoxSize}}
+\index{SetTextBoxSize@{SetTextBoxSize}!TextLabel@{TextLabel}}
+\doxysubsubsection{\texorpdfstring{SetTextBoxSize()}{SetTextBoxSize()}}
+{\footnotesize\ttfamily void Text\+Label\+::\+Set\+Text\+Box\+Size (\begin{DoxyParamCaption}\item[{const glm\+::vec2 \&}]{size }\end{DoxyParamCaption})}
+
+
+
+Размер элемента 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Text\+Label.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Text\+Label.\+cpp\end{DoxyCompactItemize}

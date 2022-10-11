@@ -1,0 +1,66 @@
+\hypertarget{class_f_t_tesselation}{}\doxysection{FTTesselation Class Reference}
+\label{class_f_t_tesselation}\index{FTTesselation@{FTTesselation}}
+
+
+{\ttfamily \#include $<$FTVectoriser.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_tesselation_a8ae81852ffa0dfb1bc65e85dc6d35df2}{FTTesselation}} (GLenum m)
+\item 
+\mbox{\hyperlink{class_f_t_tesselation_a55bd008edbf969720fa3dc083bce1ac0}{$\sim$\+FTTesselation}} ()
+\item 
+void \mbox{\hyperlink{class_f_t_tesselation_a204a9e646cee25f374faad125d71d5e6}{Add\+Point}} (const FTGL\+\_\+\+DOUBLE x, const FTGL\+\_\+\+DOUBLE y, const FTGL\+\_\+\+DOUBLE z)
+\item 
+size\+\_\+t \mbox{\hyperlink{class_f_t_tesselation_af18f831be3085237e54ae699a5c987e5}{Point\+Count}} () const
+\item 
+\mbox{\Hypertarget{class_f_t_tesselation_a6ad4cb82241bc5b041ad0fc2427f8631}\label{class_f_t_tesselation_a6ad4cb82241bc5b041ad0fc2427f8631}} 
+const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& {\bfseries Point} (unsigned int index) const
+\item 
+GLenum \mbox{\hyperlink{class_f_t_tesselation_a9ffd7ba1d459dae14eb6fd11430057e1}{Polygon\+Type}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_tesselation}{FTTesselation}} captures points that are output by Open\+GL\textquotesingle{}s glu\+Tesselator. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_tesselation_a8ae81852ffa0dfb1bc65e85dc6d35df2}\label{class_f_t_tesselation_a8ae81852ffa0dfb1bc65e85dc6d35df2}} 
+\index{FTTesselation@{FTTesselation}!FTTesselation@{FTTesselation}}
+\index{FTTesselation@{FTTesselation}!FTTesselation@{FTTesselation}}
+\doxysubsubsection{\texorpdfstring{FTTesselation()}{FTTesselation()}}
+{\footnotesize\ttfamily FTTesselation\+::\+FTTesselation (\begin{DoxyParamCaption}\item[{GLenum}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor \mbox{\Hypertarget{class_f_t_tesselation_a55bd008edbf969720fa3dc083bce1ac0}\label{class_f_t_tesselation_a55bd008edbf969720fa3dc083bce1ac0}} 
+\index{FTTesselation@{FTTesselation}!````~FTTesselation@{$\sim$FTTesselation}}
+\index{````~FTTesselation@{$\sim$FTTesselation}!FTTesselation@{FTTesselation}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTTesselation()}{~FTTesselation()}}
+{\footnotesize\ttfamily FTTesselation\+::$\sim$\+FTTesselation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_tesselation_a204a9e646cee25f374faad125d71d5e6}\label{class_f_t_tesselation_a204a9e646cee25f374faad125d71d5e6}} 
+\index{FTTesselation@{FTTesselation}!AddPoint@{AddPoint}}
+\index{AddPoint@{AddPoint}!FTTesselation@{FTTesselation}}
+\doxysubsubsection{\texorpdfstring{AddPoint()}{AddPoint()}}
+{\footnotesize\ttfamily void FTTesselation\+::\+Add\+Point (\begin{DoxyParamCaption}\item[{const FTGL\+\_\+\+DOUBLE}]{x,  }\item[{const FTGL\+\_\+\+DOUBLE}]{y,  }\item[{const FTGL\+\_\+\+DOUBLE}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Add a point to the mesh. \mbox{\Hypertarget{class_f_t_tesselation_af18f831be3085237e54ae699a5c987e5}\label{class_f_t_tesselation_af18f831be3085237e54ae699a5c987e5}} 
+\index{FTTesselation@{FTTesselation}!PointCount@{PointCount}}
+\index{PointCount@{PointCount}!FTTesselation@{FTTesselation}}
+\doxysubsubsection{\texorpdfstring{PointCount()}{PointCount()}}
+{\footnotesize\ttfamily size\+\_\+t FTTesselation\+::\+Point\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The number of points in this mesh \mbox{\Hypertarget{class_f_t_tesselation_a9ffd7ba1d459dae14eb6fd11430057e1}\label{class_f_t_tesselation_a9ffd7ba1d459dae14eb6fd11430057e1}} 
+\index{FTTesselation@{FTTesselation}!PolygonType@{PolygonType}}
+\index{PolygonType@{PolygonType}!FTTesselation@{FTTesselation}}
+\doxysubsubsection{\texorpdfstring{PolygonType()}{PolygonType()}}
+{\footnotesize\ttfamily GLenum FTTesselation\+::\+Polygon\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the Open\+GL polygon type. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTVectoriser.\+h\end{DoxyCompactItemize}

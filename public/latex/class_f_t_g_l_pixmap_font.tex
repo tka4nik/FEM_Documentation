@@ -1,0 +1,115 @@
+\hypertarget{class_f_t_g_l_pixmap_font}{}\doxysection{FTGLPixmap\+Font Class Reference}
+\label{class_f_t_g_l_pixmap_font}\index{FTGLPixmapFont@{FTGLPixmapFont}}
+
+
+{\ttfamily \#include $<$FTGLPixmap\+Font.\+h$>$}
+
+Inheritance diagram for FTGLPixmap\+Font\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_t_g_l_pixmap_font}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_g_l_pixmap_font_a99da7f801bdd4b1db27e4dd3f1aa267d}{FTGLPixmap\+Font}} (const char $\ast$font\+File\+Path)
+\item 
+\mbox{\hyperlink{class_f_t_g_l_pixmap_font_ae93e8b229b4224db813f7870796bf99f}{FTGLPixmap\+Font}} (const unsigned char $\ast$p\+Buffer\+Bytes, size\+\_\+t buffer\+Size\+In\+Bytes)
+\item 
+\mbox{\hyperlink{class_f_t_g_l_pixmap_font_a2e3992d74ff7b55529162b148c2e85ac}{$\sim$\+FTGLPixmap\+Font}} ()
+\item 
+void \mbox{\hyperlink{class_f_t_g_l_pixmap_font_a98e190048751cc536daf182b9217d465}{Render}} (const char $\ast$string)
+\item 
+void \mbox{\hyperlink{class_f_t_g_l_pixmap_font_a647df06903133e7cdcef1ef3e4cc587b}{Render}} (const wchar\+\_\+t $\ast$string)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_g_l_pixmap_font}{FTGLPixmap\+Font}} is a specialisation of the \mbox{\hyperlink{class_f_t_font}{FTFont}} class for handling Pixmap (Grey Scale) fonts
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_f_t_font}{FTFont}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_g_l_pixmap_font_a99da7f801bdd4b1db27e4dd3f1aa267d}\label{class_f_t_g_l_pixmap_font_a99da7f801bdd4b1db27e4dd3f1aa267d}} 
+\index{FTGLPixmapFont@{FTGLPixmapFont}!FTGLPixmapFont@{FTGLPixmapFont}}
+\index{FTGLPixmapFont@{FTGLPixmapFont}!FTGLPixmapFont@{FTGLPixmapFont}}
+\doxysubsubsection{\texorpdfstring{FTGLPixmapFont()}{FTGLPixmapFont()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FTGLPixmap\+Font\+::\+FTGLPixmap\+Font (\begin{DoxyParamCaption}\item[{const char $\ast$}]{font\+File\+Path }\end{DoxyParamCaption})}
+
+Open and read a font file. Sets Error flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+File\+Path} & font file path. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_g_l_pixmap_font_ae93e8b229b4224db813f7870796bf99f}\label{class_f_t_g_l_pixmap_font_ae93e8b229b4224db813f7870796bf99f}} 
+\index{FTGLPixmapFont@{FTGLPixmapFont}!FTGLPixmapFont@{FTGLPixmapFont}}
+\index{FTGLPixmapFont@{FTGLPixmapFont}!FTGLPixmapFont@{FTGLPixmapFont}}
+\doxysubsubsection{\texorpdfstring{FTGLPixmapFont()}{FTGLPixmapFont()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily FTGLPixmap\+Font\+::\+FTGLPixmap\+Font (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{p\+Buffer\+Bytes,  }\item[{size\+\_\+t}]{buffer\+Size\+In\+Bytes }\end{DoxyParamCaption})}
+
+Open and read a font from a buffer in memory. Sets Error flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Buffer\+Bytes} & the in-\/memory buffer \\
+\hline
+{\em buffer\+Size\+In\+Bytes} & the length of the buffer in bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_g_l_pixmap_font_a2e3992d74ff7b55529162b148c2e85ac}\label{class_f_t_g_l_pixmap_font_a2e3992d74ff7b55529162b148c2e85ac}} 
+\index{FTGLPixmapFont@{FTGLPixmapFont}!````~FTGLPixmapFont@{$\sim$FTGLPixmapFont}}
+\index{````~FTGLPixmapFont@{$\sim$FTGLPixmapFont}!FTGLPixmapFont@{FTGLPixmapFont}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTGLPixmapFont()}{~FTGLPixmapFont()}}
+{\footnotesize\ttfamily FTGLPixmap\+Font\+::$\sim$\+FTGLPixmap\+Font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_g_l_pixmap_font_a98e190048751cc536daf182b9217d465}\label{class_f_t_g_l_pixmap_font_a98e190048751cc536daf182b9217d465}} 
+\index{FTGLPixmapFont@{FTGLPixmapFont}!Render@{Render}}
+\index{Render@{Render}!FTGLPixmapFont@{FTGLPixmapFont}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void FTGLPixmap\+Font\+::\+Render (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Renders a string of characters
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & \textquotesingle{}C\textquotesingle{} style string to be output. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_f_t_font_a93f5c144d5a0603508ff3d6c28aaf6ad}{FTFont}}.
+
+\mbox{\Hypertarget{class_f_t_g_l_pixmap_font_a647df06903133e7cdcef1ef3e4cc587b}\label{class_f_t_g_l_pixmap_font_a647df06903133e7cdcef1ef3e4cc587b}} 
+\index{FTGLPixmapFont@{FTGLPixmapFont}!Render@{Render}}
+\index{Render@{Render}!FTGLPixmapFont@{FTGLPixmapFont}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FTGLPixmap\+Font\+::\+Render (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Renders a string of characters
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & wchar\+\_\+t string to be output. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_f_t_font_af69d1b663afded110d91312831e3a2e3}{FTFont}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTGLPixmap\+Font.\+h\end{DoxyCompactItemize}

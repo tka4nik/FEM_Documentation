@@ -1,0 +1,451 @@
+\hypertarget{ftmemory_8h_source}{}\doxysection{ftmemory.\+h}
+\label{ftmemory_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftmemory.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftmemory.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftmemory.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType memory management macros (specification).               */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2004, 2005 by                               */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg                       */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTMEMORY\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTMEMORY\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_CONFIG\_CONFIG\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_TYPES\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{32   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{33   \textcolor{comment}{/* <Macro>                                                               */}}
+\DoxyCodeLine{34   \textcolor{comment}{/*    FT\_SET\_ERROR                                                       */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*    This macro is used to set an implicit `error' variable to a given  */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*    expression's value (usually a function call), and convert it to a  */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*    boolean which is set whenever the value is != 0.                   */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#undef  FT\_SET\_ERROR}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define FT\_SET\_ERROR( expression ) \(\backslash\)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{          ( ( error = (expression) ) != 0 )}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{48 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{49 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{50 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{51 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{52 \textcolor{comment}{  /****                           M E M O R Y                           ****/}}
+\DoxyCodeLine{53 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{54 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{55 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{56 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{57 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#ifdef FT\_DEBUG\_MEMORY}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{62   FT\_Alloc\_Debug( FT\_Memory    memory,}
+\DoxyCodeLine{63                   FT\_Long      size,}
+\DoxyCodeLine{64                   \textcolor{keywordtype}{void}*       *P,}
+\DoxyCodeLine{65                   \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  file\_name,}
+\DoxyCodeLine{66                   FT\_Long      line\_no );}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{69   FT\_QAlloc\_Debug( FT\_Memory    memory,}
+\DoxyCodeLine{70                    FT\_Long      size,}
+\DoxyCodeLine{71                    \textcolor{keywordtype}{void}*       *P,}
+\DoxyCodeLine{72                    \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  file\_name,}
+\DoxyCodeLine{73                    FT\_Long      line\_no );}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{76   FT\_Realloc\_Debug( FT\_Memory    memory,}
+\DoxyCodeLine{77                     FT\_Long      current,}
+\DoxyCodeLine{78                     FT\_Long      size,}
+\DoxyCodeLine{79                     \textcolor{keywordtype}{void}*       *P,}
+\DoxyCodeLine{80                     \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  file\_name,}
+\DoxyCodeLine{81                     FT\_Long      line\_no );}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{84   FT\_QRealloc\_Debug( FT\_Memory    memory,}
+\DoxyCodeLine{85                      FT\_Long      current,}
+\DoxyCodeLine{86                      FT\_Long      size,}
+\DoxyCodeLine{87                      \textcolor{keywordtype}{void}*       *P,}
+\DoxyCodeLine{88                      \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  file\_name,}
+\DoxyCodeLine{89                      FT\_Long      line\_no );}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{92   FT\_Free\_Debug( FT\_Memory    memory,}
+\DoxyCodeLine{93                  FT\_Pointer   block,}
+\DoxyCodeLine{94                  \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  file\_name,}
+\DoxyCodeLine{95                  FT\_Long      line\_no );}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{101   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{102   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*    FT\_Alloc                                                           */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{105   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*    Allocates a new block of memory.  The returned area is always      */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*    zero-\/filled; this is a strong convention in many FreeType parts.   */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{109   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*    memory :: A handle to a given `memory object' which handles        */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*              allocation.                                              */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*    size   :: The size in bytes of the block to allocate.              */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{115   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*    P      :: A pointer to the fresh new block.  It should be set to   */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*              NULL if `size' is 0, or in case of error.                */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{119   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{122   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{123   FT\_Alloc( FT\_Memory  memory,}
+\DoxyCodeLine{124             FT\_Long    size,}
+\DoxyCodeLine{125             \textcolor{keywordtype}{void}*     *P );}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{130   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*    FT\_QAlloc                                                          */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*    Allocates a new block of memory.  The returned area is *not*       */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*    zero-\/filled, making allocation quicker.                            */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{137   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*    memory :: A handle to a given `memory object' which handles        */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*              allocation.                                              */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*    size   :: The size in bytes of the block to allocate.              */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{143   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*    P      :: A pointer to the fresh new block.  It should be set to   */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*              NULL if `size' is 0, or in case of error.                */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{147   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{150   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{151   FT\_QAlloc( FT\_Memory  memory,}
+\DoxyCodeLine{152              FT\_Long    size,}
+\DoxyCodeLine{153              \textcolor{keywordtype}{void}*     *p );}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{157   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{158   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*    FT\_Realloc                                                         */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{161   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*    Reallocates a block of memory pointed to by `*P' to `Size' bytes   */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*    from the heap, possibly changing `*P'.  The returned area is       */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*    zero-\/filled.                                                       */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{166   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*    memory  :: A handle to a given `memory object' which handles       */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*               reallocation.                                           */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*    current :: The current block size in bytes.                        */}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*    size    :: The new block size in bytes.                            */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{174   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{175   \textcolor{comment}{/*    P       :: A pointer to the fresh new block.  It should be set to  */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*               NULL if `size' is 0, or in case of error.               */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{178   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{181   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*    All callers of FT\_Realloc() \_must\_ provide the current block size  */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*    as well as the new one.                                            */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{185   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{186   FT\_Realloc( FT\_Memory  memory,}
+\DoxyCodeLine{187               FT\_Long    current,}
+\DoxyCodeLine{188               FT\_Long    size,}
+\DoxyCodeLine{189               \textcolor{keywordtype}{void}*     *P );}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{193   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{194   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*    FT\_QRealloc                                                        */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{197   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*    Reallocates a block of memory pointed to by `*P' to `Size' bytes   */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*    from the heap, possibly changing `*P'.  The returned area is *not* */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*    zero-\/filled, making reallocation quicker.                          */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{202   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{203   \textcolor{comment}{/*    memory  :: A handle to a given `memory object' which handles       */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*               reallocation.                                           */}}
+\DoxyCodeLine{205   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{206   \textcolor{comment}{/*    current :: The current block size in bytes.                        */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{208   \textcolor{comment}{/*    size    :: The new block size in bytes.                            */}}
+\DoxyCodeLine{209   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{210   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{211   \textcolor{comment}{/*    P       :: A pointer to the fresh new block.  It should be set to  */}}
+\DoxyCodeLine{212   \textcolor{comment}{/*               NULL if `size' is 0, or in case of error.               */}}
+\DoxyCodeLine{213   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{214   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{215   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{216   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{217   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{218   \textcolor{comment}{/*    All callers of FT\_Realloc() \_must\_ provide the current block size  */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    as well as the new one.                                            */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{221   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{222   FT\_QRealloc( FT\_Memory  memory,}
+\DoxyCodeLine{223                FT\_Long    current,}
+\DoxyCodeLine{224                FT\_Long    size,}
+\DoxyCodeLine{225                \textcolor{keywordtype}{void}*     *p );}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{229   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{230   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{231   \textcolor{comment}{/*    FT\_Free                                                            */}}
+\DoxyCodeLine{232   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{233   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{234   \textcolor{comment}{/*    Releases a given block of memory allocated through FT\_Alloc().     */}}
+\DoxyCodeLine{235   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{236   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{237   \textcolor{comment}{/*    memory :: A handle to a given `memory object' which handles        */}}
+\DoxyCodeLine{238   \textcolor{comment}{/*              memory deallocation                                      */}}
+\DoxyCodeLine{239   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{240   \textcolor{comment}{/*    P      :: This is the \_address\_ of a \_pointer\_ which points to the */}}
+\DoxyCodeLine{241   \textcolor{comment}{/*              allocated block.  It is always set to NULL on exit.      */}}
+\DoxyCodeLine{242   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{243   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{244   \textcolor{comment}{/*    If P or *P is NULL, this function should return successfully.      */}}
+\DoxyCodeLine{245   \textcolor{comment}{/*    This is a strong convention within all of FreeType and its         */}}
+\DoxyCodeLine{246   \textcolor{comment}{/*    drivers.                                                           */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{248   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{249   FT\_Free( FT\_Memory  memory,}
+\DoxyCodeLine{250            \textcolor{keywordtype}{void}*     *P );}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253 \textcolor{preprocessor}{\#define FT\_MEM\_SET( dest, byte, count )     ft\_memset( dest, byte, count )}}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{255 \textcolor{preprocessor}{\#define FT\_MEM\_COPY( dest, source, count )  ft\_memcpy( dest, source, count )}}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#define FT\_MEM\_MOVE( dest, source, count )  ft\_memmove( dest, source, count )}}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#define FT\_MEM\_ZERO( dest, count )  FT\_MEM\_SET( dest, 0, count )}}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#define FT\_ZERO( p )                FT\_MEM\_ZERO( p, sizeof ( *(p) ) )}}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264 \textcolor{preprocessor}{\#define FT\_ARRAY\_ZERO( dest, count )                        \(\backslash\)}}
+\DoxyCodeLine{265 \textcolor{preprocessor}{          FT\_MEM\_ZERO( dest, (count) * sizeof ( *(dest) ) )}}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#define FT\_ARRAY\_COPY( dest, source, count )                        \(\backslash\)}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{          FT\_MEM\_COPY( dest, source, (count) * sizeof ( *(dest) ) )}}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#define FT\_ARRAY\_MOVE( dest, source, count )                        \(\backslash\)}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{          FT\_MEM\_MOVE( dest, source, (count) * sizeof ( *(dest) ) )}}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274   \textcolor{comment}{/*}}
+\DoxyCodeLine{275 \textcolor{comment}{   *  Return the maximum number of adressable elements in an array.}}
+\DoxyCodeLine{276 \textcolor{comment}{   *  We limit ourselves to INT\_MAX, rather than UINT\_MAX, to avoid}}
+\DoxyCodeLine{277 \textcolor{comment}{   *  any problems.}}
+\DoxyCodeLine{278 \textcolor{comment}{   */}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{\#define FT\_ARRAY\_MAX( ptr )           ( FT\_INT\_MAX / sizeof ( *(ptr) ) )}}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 \textcolor{preprocessor}{\#define FT\_ARRAY\_CHECK( ptr, count )  ( (count) <= FT\_ARRAY\_MAX( ptr ) )}}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{285   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{286   \textcolor{comment}{/* We first define FT\_MEM\_ALLOC, FT\_MEM\_REALLOC, and FT\_MEM\_FREE.  All   */}}
+\DoxyCodeLine{287   \textcolor{comment}{/* macros use an \_implicit\_ `memory' parameter to access the current     */}}
+\DoxyCodeLine{288   \textcolor{comment}{/* memory allocator.                                                     */}}
+\DoxyCodeLine{289   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{290 }
+\DoxyCodeLine{291 \textcolor{preprocessor}{\#ifdef FT\_DEBUG\_MEMORY}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define FT\_MEM\_ALLOC( \_pointer\_, \_size\_ )              \(\backslash\)}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{          FT\_Alloc\_Debug( memory, \_size\_,              \(\backslash\)}}
+\DoxyCodeLine{295 \textcolor{preprocessor}{                          (void**)(void*)\&(\_pointer\_), \(\backslash\)}}
+\DoxyCodeLine{296 \textcolor{preprocessor}{                          \_\_FILE\_\_, \_\_LINE\_\_ )}}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#define FT\_MEM\_REALLOC( \_pointer\_, \_current\_, \_size\_ )   \(\backslash\)}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{          FT\_Realloc\_Debug( memory, \_current\_, \_size\_,   \(\backslash\)}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{                            (void**)(void*)\&(\_pointer\_), \(\backslash\)}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{                            \_\_FILE\_\_, \_\_LINE\_\_ )}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define FT\_MEM\_QALLOC( \_pointer\_, \_size\_ )              \(\backslash\)}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{          FT\_QAlloc\_Debug( memory, \_size\_,              \(\backslash\)}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{                           (void**)(void*)\&(\_pointer\_), \(\backslash\)}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{                           \_\_FILE\_\_, \_\_LINE\_\_ )}}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#define FT\_MEM\_QREALLOC( \_pointer\_, \_current\_, \_size\_ )   \(\backslash\)}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{          FT\_QRealloc\_Debug( memory, \_current\_, \_size\_,   \(\backslash\)}}
+\DoxyCodeLine{310 \textcolor{preprocessor}{                             (void**)(void*)\&(\_pointer\_), \(\backslash\)}}
+\DoxyCodeLine{311 \textcolor{preprocessor}{                             \_\_FILE\_\_, \_\_LINE\_\_ )}}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#define FT\_MEM\_FREE( \_pointer\_ )                              \(\backslash\)}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{          FT\_Free\_Debug( memory, (void**)(void*)\&(\_pointer\_), \(\backslash\)}}
+\DoxyCodeLine{315 \textcolor{preprocessor}{                         \_\_FILE\_\_, \_\_LINE\_\_ )}}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#else  }\textcolor{comment}{/* !FT\_DEBUG\_MEMORY */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320 }
+\DoxyCodeLine{321 \textcolor{preprocessor}{\#define FT\_MEM\_ALLOC( \_pointer\_, \_size\_ )         \(\backslash\)}}
+\DoxyCodeLine{322 \textcolor{preprocessor}{          FT\_Alloc( memory, \_size\_,               \(\backslash\)}}
+\DoxyCodeLine{323 \textcolor{preprocessor}{                    (void**)(void*)\&(\_pointer\_) )}}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325 \textcolor{preprocessor}{\#define FT\_MEM\_FREE( \_pointer\_ )                 \(\backslash\)}}
+\DoxyCodeLine{326 \textcolor{preprocessor}{          FT\_Free( memory,                       \(\backslash\)}}
+\DoxyCodeLine{327 \textcolor{preprocessor}{                   (void**)(void*)\&(\_pointer\_) )}}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329 \textcolor{preprocessor}{\#define FT\_MEM\_REALLOC( \_pointer\_, \_current\_, \_size\_ ) \(\backslash\)}}
+\DoxyCodeLine{330 \textcolor{preprocessor}{          FT\_Realloc( memory, \_current\_, \_size\_,       \(\backslash\)}}
+\DoxyCodeLine{331 \textcolor{preprocessor}{                      (void**)(void*)\&(\_pointer\_) )}}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333 \textcolor{preprocessor}{\#define FT\_MEM\_QALLOC( \_pointer\_, \_size\_ )         \(\backslash\)}}
+\DoxyCodeLine{334 \textcolor{preprocessor}{          FT\_QAlloc( memory, \_size\_,               \(\backslash\)}}
+\DoxyCodeLine{335 \textcolor{preprocessor}{                     (void**)(void*)\&(\_pointer\_) )}}
+\DoxyCodeLine{336 }
+\DoxyCodeLine{337 \textcolor{preprocessor}{\#define FT\_MEM\_QREALLOC( \_pointer\_, \_current\_, \_size\_ ) \(\backslash\)}}
+\DoxyCodeLine{338 \textcolor{preprocessor}{          FT\_QRealloc( memory, \_current\_, \_size\_,       \(\backslash\)}}
+\DoxyCodeLine{339 \textcolor{preprocessor}{          (void**)(void*)\&(\_pointer\_) )}}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_DEBUG\_MEMORY */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{345   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{346   \textcolor{comment}{/* The following functions macros expect that their pointer argument is  */}}
+\DoxyCodeLine{347   \textcolor{comment}{/* \_typed\_ in order to automatically compute array element sizes.        */}}
+\DoxyCodeLine{348   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350 \textcolor{preprocessor}{\#define FT\_MEM\_NEW( \_pointer\_ )                              \(\backslash\)}}
+\DoxyCodeLine{351 \textcolor{preprocessor}{          FT\_MEM\_ALLOC( \_pointer\_, sizeof ( *(\_pointer\_) ) )}}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353 \textcolor{preprocessor}{\#define FT\_MEM\_NEW\_ARRAY( \_pointer\_, \_count\_ )                           \(\backslash\)}}
+\DoxyCodeLine{354 \textcolor{preprocessor}{          FT\_MEM\_ALLOC( \_pointer\_, (\_count\_) * sizeof ( *(\_pointer\_) ) )}}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356 \textcolor{preprocessor}{\#define FT\_MEM\_RENEW\_ARRAY( \_pointer\_, \_old\_, \_new\_ )                    \(\backslash\)}}
+\DoxyCodeLine{357 \textcolor{preprocessor}{          FT\_MEM\_REALLOC( \_pointer\_, (\_old\_) * sizeof ( *(\_pointer\_) ),  \(\backslash\)}}
+\DoxyCodeLine{358 \textcolor{preprocessor}{                                     (\_new\_) * sizeof ( *(\_pointer\_) ) )}}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#define FT\_MEM\_QNEW( \_pointer\_ )                              \(\backslash\)}}
+\DoxyCodeLine{361 \textcolor{preprocessor}{          FT\_MEM\_QALLOC( \_pointer\_, sizeof ( *(\_pointer\_) ) )}}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363 \textcolor{preprocessor}{\#define FT\_MEM\_QNEW\_ARRAY( \_pointer\_, \_count\_ )                           \(\backslash\)}}
+\DoxyCodeLine{364 \textcolor{preprocessor}{          FT\_MEM\_QALLOC( \_pointer\_, (\_count\_) * sizeof ( *(\_pointer\_) ) )}}
+\DoxyCodeLine{365 }
+\DoxyCodeLine{366 \textcolor{preprocessor}{\#define FT\_MEM\_QRENEW\_ARRAY( \_pointer\_, \_old\_, \_new\_ )                    \(\backslash\)}}
+\DoxyCodeLine{367 \textcolor{preprocessor}{          FT\_MEM\_QREALLOC( \_pointer\_, (\_old\_) * sizeof ( *(\_pointer\_) ),  \(\backslash\)}}
+\DoxyCodeLine{368 \textcolor{preprocessor}{                                      (\_new\_) * sizeof ( *(\_pointer\_) ) )}}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{370 }
+\DoxyCodeLine{371 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{372   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{373   \textcolor{comment}{/* the following macros are obsolete but kept for compatibility reasons  */}}
+\DoxyCodeLine{374   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376 \textcolor{preprocessor}{\#define FT\_MEM\_ALLOC\_ARRAY( \_pointer\_, \_count\_, \_type\_ )           \(\backslash\)}}
+\DoxyCodeLine{377 \textcolor{preprocessor}{          FT\_MEM\_ALLOC( \_pointer\_, (\_count\_) * sizeof ( \_type\_ ) )}}
+\DoxyCodeLine{378 }
+\DoxyCodeLine{379 \textcolor{preprocessor}{\#define FT\_MEM\_REALLOC\_ARRAY( \_pointer\_, \_old\_, \_new\_, \_type\_ )    \(\backslash\)}}
+\DoxyCodeLine{380 \textcolor{preprocessor}{          FT\_MEM\_REALLOC( \_pointer\_, (\_old\_) * sizeof ( \_type ),   \(\backslash\)}}
+\DoxyCodeLine{381 \textcolor{preprocessor}{                                     (\_new\_) * sizeof ( \_type\_ ) )}}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{385   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{386   \textcolor{comment}{/* The following macros are variants of their FT\_MEM\_XXXX equivalents;   */}}
+\DoxyCodeLine{387   \textcolor{comment}{/* they are used to set an \_implicit\_ `error' variable and return TRUE   */}}
+\DoxyCodeLine{388   \textcolor{comment}{/* if an error occured (i.e. if 'error != 0').                           */}}
+\DoxyCodeLine{389   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391 \textcolor{preprocessor}{\#define FT\_ALLOC( \_pointer\_, \_size\_ )                       \(\backslash\)}}
+\DoxyCodeLine{392 \textcolor{preprocessor}{          FT\_SET\_ERROR( FT\_MEM\_ALLOC( \_pointer\_, \_size\_ ) )}}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#define FT\_REALLOC( \_pointer\_, \_current\_, \_size\_ )                       \(\backslash\)}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{          FT\_SET\_ERROR( FT\_MEM\_REALLOC( \_pointer\_, \_current\_, \_size\_ ) )}}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#define FT\_QALLOC( \_pointer\_, \_size\_ )                       \(\backslash\)}}
+\DoxyCodeLine{398 \textcolor{preprocessor}{          FT\_SET\_ERROR( FT\_MEM\_QALLOC( \_pointer\_, \_size\_ ) )}}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400 \textcolor{preprocessor}{\#define FT\_QREALLOC( \_pointer\_, \_current\_, \_size\_ )                       \(\backslash\)}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{          FT\_SET\_ERROR( FT\_MEM\_QREALLOC( \_pointer\_, \_current\_, \_size\_ ) )}}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404 \textcolor{preprocessor}{\#define FT\_FREE( \_pointer\_ )       \(\backslash\)}}
+\DoxyCodeLine{405 \textcolor{preprocessor}{          FT\_MEM\_FREE( \_pointer\_ )}}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407 }
+\DoxyCodeLine{408 \textcolor{preprocessor}{\#define FT\_NEW( \_pointer\_ )                              \(\backslash\)}}
+\DoxyCodeLine{409 \textcolor{preprocessor}{          FT\_ALLOC( \_pointer\_, sizeof ( *(\_pointer\_) ) )}}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411 \textcolor{preprocessor}{\#define FT\_NEW\_ARRAY( \_pointer\_, \_count\_ )                           \(\backslash\)}}
+\DoxyCodeLine{412 \textcolor{preprocessor}{          FT\_ALLOC( \_pointer\_, sizeof ( *(\_pointer\_) ) * (\_count\_) )}}
+\DoxyCodeLine{413 }
+\DoxyCodeLine{414 \textcolor{preprocessor}{\#define FT\_RENEW\_ARRAY( \_pointer\_, \_old\_, \_new\_ )                    \(\backslash\)}}
+\DoxyCodeLine{415 \textcolor{preprocessor}{          FT\_REALLOC( \_pointer\_, sizeof ( *(\_pointer\_) ) * (\_old\_),  \(\backslash\)}}
+\DoxyCodeLine{416 \textcolor{preprocessor}{                                 sizeof ( *(\_pointer\_) ) * (\_new\_) )}}
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418 \textcolor{preprocessor}{\#define FT\_QNEW( \_pointer\_ )                              \(\backslash\)}}
+\DoxyCodeLine{419 \textcolor{preprocessor}{          FT\_QALLOC( \_pointer\_, sizeof ( *(\_pointer\_) ) )}}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421 \textcolor{preprocessor}{\#define FT\_QNEW\_ARRAY( \_pointer\_, \_count\_ )                           \(\backslash\)}}
+\DoxyCodeLine{422 \textcolor{preprocessor}{          FT\_QALLOC( \_pointer\_, sizeof ( *(\_pointer\_) ) * (\_count\_) )}}
+\DoxyCodeLine{423 }
+\DoxyCodeLine{424 \textcolor{preprocessor}{\#define FT\_QRENEW\_ARRAY( \_pointer\_, \_old\_, \_new\_ )                    \(\backslash\)}}
+\DoxyCodeLine{425 \textcolor{preprocessor}{          FT\_QREALLOC( \_pointer\_, sizeof ( *(\_pointer\_) ) * (\_old\_),  \(\backslash\)}}
+\DoxyCodeLine{426 \textcolor{preprocessor}{                                  sizeof ( *(\_pointer\_) ) * (\_new\_) )}}
+\DoxyCodeLine{427 }
+\DoxyCodeLine{428 }
+\DoxyCodeLine{429 \textcolor{preprocessor}{\#define FT\_ALLOC\_ARRAY( \_pointer\_, \_count\_, \_type\_ )           \(\backslash\)}}
+\DoxyCodeLine{430 \textcolor{preprocessor}{          FT\_ALLOC( \_pointer\_, (\_count\_) * sizeof ( \_type\_ ) )}}
+\DoxyCodeLine{431 }
+\DoxyCodeLine{432 \textcolor{preprocessor}{\#define FT\_REALLOC\_ARRAY( \_pointer\_, \_old\_, \_new\_, \_type\_ )   \(\backslash\)}}
+\DoxyCodeLine{433 \textcolor{preprocessor}{          FT\_REALLOC( \_pointer, (\_old\_) * sizeof ( \_type\_ ),  \(\backslash\)}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{                                (\_new\_) * sizeof ( \_type\_ ) )}}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436 }
+\DoxyCodeLine{437  \textcolor{comment}{/* */}}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 FT\_END\_HEADER}
+\DoxyCodeLine{441 }
+\DoxyCodeLine{442 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTMEMORY\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444 }
+\DoxyCodeLine{445 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

@@ -1,0 +1,83 @@
+\hypertarget{_view_wrapper_8h_source}{}\doxysection{View\+Wrapper.\+h}
+\label{_view_wrapper_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/ViewWrapper.h@{C:/Projects/FEM/prototype-\/prismatic/source/ViewWrapper.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#if !defined(AFX\_VIEWWRAPPER\_H\_\_C17A42A3\_68A7\_43D9\_B580\_F12AA57454DC\_\_INCLUDED\_)}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AFX\_VIEWWRAPPER\_H\_\_C17A42A3\_68A7\_43D9\_B580\_F12AA57454DC\_\_INCLUDED\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{7 \textcolor{comment}{// ViewWrapper.h : header file}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}ToolBoxWrapper.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}ScaleWnd.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <afxtempl.h>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{14 \textcolor{comment}{// CViewWrapper window}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_view_wrapper}{CViewWrapper}} : \textcolor{keyword}{public} CView}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18 \textcolor{keyword}{protected}: \textcolor{comment}{// create from serialization only}}
+\DoxyCodeLine{19     \mbox{\hyperlink{class_c_view_wrapper}{CViewWrapper}}();}
+\DoxyCodeLine{20     DECLARE\_DYNCREATE(\mbox{\hyperlink{class_c_view_wrapper}{CViewWrapper}})}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{comment}{// Attributes}}
+\DoxyCodeLine{23 \textcolor{keyword}{public}:}
+\DoxyCodeLine{24     CWnd    *m\_pView;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{// Operations}}
+\DoxyCodeLine{27 \textcolor{keyword}{public}:}
+\DoxyCodeLine{28     BOOL    CreateClientPane(CRuntimeClass* pViewClass, CCreateContext* pContext);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{// Overrides}}
+\DoxyCodeLine{31     \textcolor{comment}{// ClassWizard generated virtual function overrides}}
+\DoxyCodeLine{32     \textcolor{comment}{//\{\{AFX\_VIRTUAL(CViewWrapper)}}
+\DoxyCodeLine{33     \textcolor{keyword}{public}:}
+\DoxyCodeLine{34     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnDraw(CDC* pDC);  \textcolor{comment}{// overridden to draw this view}}
+\DoxyCodeLine{35     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{36     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);}
+\DoxyCodeLine{37     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);}
+\DoxyCodeLine{38     \textcolor{comment}{//\}\}AFX\_VIRTUAL}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{41 \textcolor{keyword}{public}:}
+\DoxyCodeLine{42     \textcolor{keywordtype}{void} ShowTb(\textcolor{keywordtype}{int} nNum, \textcolor{keywordtype}{bool} bVisible = \textcolor{keyword}{true});}
+\DoxyCodeLine{43     BOOL IsTbVisible(\textcolor{keywordtype}{int} nNum);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{46     \mbox{\hyperlink{class_c_scale_wnd}{CScaleWnd}}  *m\_pScaleWnd;}
+\DoxyCodeLine{47     CBrush  m\_brEmptyPane;}
+\DoxyCodeLine{48     \textcolor{keywordtype}{int}     m\_nLeftW;}
+\DoxyCodeLine{49     \textcolor{keywordtype}{int}     m\_nRightW;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     CTypedPtrArray< CPtrArray, CToolBoxWrapper *>   m\_ToolBoxes;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{54     \textcolor{keywordtype}{int} AddWrapper(\textcolor{keywordtype}{int} nCondition);}
+\DoxyCodeLine{55     \textcolor{keywordtype}{void} RecalcLayout();}
+\DoxyCodeLine{56     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_view_wrapper}{\string~CViewWrapper}}();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{59 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{60     \textcolor{comment}{//\{\{AFX\_MSG(CViewWrapper)}}
+\DoxyCodeLine{61     afx\_msg \textcolor{keywordtype}{void} OnSize(UINT nType, \textcolor{keywordtype}{int} cx, \textcolor{keywordtype}{int} cy);}
+\DoxyCodeLine{62     afx\_msg BOOL OnEraseBkgnd(CDC* pDC);}
+\DoxyCodeLine{63     afx\_msg \textcolor{keywordtype}{int} OnCreate(LPCREATESTRUCT lpCreateStruct);}
+\DoxyCodeLine{64     afx\_msg \textcolor{keywordtype}{void} OnDestroy();}
+\DoxyCodeLine{65     \textcolor{comment}{//\}\}AFX\_MSG}}
+\DoxyCodeLine{66     afx\_msg LRESULT OnTbPopup(WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{67     afx\_msg LRESULT OnTbChild(WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{68     afx\_msg LRESULT OnTbRecalc(WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{69     afx\_msg LRESULT OnTbDestroy(WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{70     afx\_msg LRESULT OnTbFocus(WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{71     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{72 \};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{comment}{//\{\{AFX\_INSERT\_LOCATION\}\}}}
+\DoxyCodeLine{77 \textcolor{comment}{// Microsoft Visual C++ will insert additional declarations immediately before the previous line.}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_VIEWWRAPPER\_H\_\_C17A42A3\_68A7\_43D9\_B580\_F12AA57454DC\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

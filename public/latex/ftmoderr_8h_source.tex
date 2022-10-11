@@ -1,0 +1,161 @@
+\hypertarget{ftmoderr_8h_source}{}\doxysection{ftmoderr.\+h}
+\label{ftmoderr_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftmoderr.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftmoderr.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftmoderr.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType module error offsets (specification).                       */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2001, 2002, 2003, 2004, 2005 by                              */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{20   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{21   \textcolor{comment}{/* This file is used to define the FreeType module error offsets.        */}}
+\DoxyCodeLine{22   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{23   \textcolor{comment}{/* The lower byte gives the error code, the higher byte gives the        */}}
+\DoxyCodeLine{24   \textcolor{comment}{/* module.  The base module has error offset 0.  For example, the error  */}}
+\DoxyCodeLine{25   \textcolor{comment}{/* `FT\_Err\_Invalid\_File\_Format' has value 0x003, the error               */}}
+\DoxyCodeLine{26   \textcolor{comment}{/* `TT\_Err\_Invalid\_File\_Format' has value 0x1103, the error              */}}
+\DoxyCodeLine{27   \textcolor{comment}{/* `T1\_Err\_Invalid\_File\_Format' has value 0x1203, etc.                   */}}
+\DoxyCodeLine{28   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{29   \textcolor{comment}{/* Undefine the macro FT\_CONFIG\_OPTION\_USE\_MODULE\_ERRORS in ftoption.h   */}}
+\DoxyCodeLine{30   \textcolor{comment}{/* to make the higher byte always zero (disabling the module error       */}}
+\DoxyCodeLine{31   \textcolor{comment}{/* mechanism).                                                           */}}
+\DoxyCodeLine{32   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{33   \textcolor{comment}{/* It can also be used to create a module error message table easily     */}}
+\DoxyCodeLine{34   \textcolor{comment}{/* with something like                                                   */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36   \textcolor{comment}{/*   \{                                                                   */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*     \#undef \_\_FTMODERR\_H\_\_                                             */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*     \#define FT\_MODERRDEF( e, v, s )  \{ FT\_Mod\_Err\_ \#\# e, s \},         */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*     \#define FT\_MODERR\_START\_LIST     \{                                */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*     \#define FT\_MODERR\_END\_LIST       \{ 0, 0 \} \};                      */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*     const struct                                                      */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*     \{                                                                 */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*       int          mod\_err\_offset;                                    */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*       const char*  mod\_err\_msg                                        */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*     \} ft\_mod\_errors[] =                                               */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*     \#include FT\_MODULE\_ERRORS\_H                                       */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*   \}                                                                   */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/* To use such a table, all errors must be ANDed with 0xFF00 to remove   */}}
+\DoxyCodeLine{52   \textcolor{comment}{/* the error code.                                                       */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{54 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#ifndef \_\_FTMODERR\_H\_\_}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define \_\_FTMODERR\_H\_\_}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{62 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{63 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{64 \textcolor{comment}{  /*****                       SETUP MACROS                      *****/}}
+\DoxyCodeLine{65 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{66 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{67 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#undef  FT\_NEED\_EXTERN\_C}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#ifndef FT\_MODERRDEF}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#ifdef FT\_CONFIG\_OPTION\_USE\_MODULE\_ERRORS}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define FT\_MODERRDEF( e, v, s )  FT\_Mod\_Err\_ \#\# e = v,}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define FT\_MODERRDEF( e, v, s )  FT\_Mod\_Err\_ \#\# e = 0,}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define FT\_MODERR\_START\_LIST  enum \{}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define FT\_MODERR\_END\_LIST    FT\_Mod\_Err\_Max \};}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define FT\_NEED\_EXTERN\_C}}
+\DoxyCodeLine{85   \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_MODERRDEF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{92 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{93 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{94 \textcolor{comment}{  /*****               LIST MODULE ERROR BASES                   *****/}}
+\DoxyCodeLine{95 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{96 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{97 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#ifdef FT\_MODERR\_START\_LIST}}
+\DoxyCodeLine{101   FT\_MODERR\_START\_LIST}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105   FT\_MODERRDEF( Base,      0x000, \textcolor{stringliteral}{"{}base module"{}} )}
+\DoxyCodeLine{106   FT\_MODERRDEF( Autofit,   0x100, "{}autofitter module"{} )}
+\DoxyCodeLine{107   FT\_MODERRDEF( BDF,       0x200, "{}BDF module"{} )}
+\DoxyCodeLine{108   FT\_MODERRDEF( Cache,     0x300, "{}cache module"{} )}
+\DoxyCodeLine{109   FT\_MODERRDEF( CFF,       0x400, "{}CFF module"{} )}
+\DoxyCodeLine{110   FT\_MODERRDEF( CID,       0x500, "{}CID module"{} )}
+\DoxyCodeLine{111   FT\_MODERRDEF( Gzip,      0x600, "{}Gzip module"{} )}
+\DoxyCodeLine{112   FT\_MODERRDEF( LZW,       0x700, "{}LZW module"{} )}
+\DoxyCodeLine{113   FT\_MODERRDEF( OTvalid,   0x800, "{}OpenType validation module"{} )}
+\DoxyCodeLine{114   FT\_MODERRDEF( PCF,       0x900, "{}PCF module"{} )}
+\DoxyCodeLine{115   FT\_MODERRDEF( PFR,       0xA00, "{}PFR module"{} )}
+\DoxyCodeLine{116   FT\_MODERRDEF( PSaux,     0xB00, "{}PS auxiliary module"{} )}
+\DoxyCodeLine{117   FT\_MODERRDEF( PShinter,  0xC00, "{}PS hinter module"{} )}
+\DoxyCodeLine{118   FT\_MODERRDEF( PSnames,   0xD00, "{}PS names module"{} )}
+\DoxyCodeLine{119   FT\_MODERRDEF( Raster,    0xE00, "{}raster module"{} )}
+\DoxyCodeLine{120   FT\_MODERRDEF( SFNT,      0xF00, "{}SFNT module"{} )}
+\DoxyCodeLine{121   FT\_MODERRDEF( Smooth,   0x1000, "{}smooth raster module"{} )}
+\DoxyCodeLine{122   FT\_MODERRDEF( TrueType, 0x1100, "{}TrueType module"{} )}
+\DoxyCodeLine{123   FT\_MODERRDEF( Type1,    0x1200, "{}Type 1 module"{} )}
+\DoxyCodeLine{124   FT\_MODERRDEF( Type42,   0x1300, "{}Type 42 module"{} )}
+\DoxyCodeLine{125   FT\_MODERRDEF( Winfonts, 0x1400, "{}Windows FON/FNT module"{} )}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#ifdef FT\_MODERR\_END\_LIST}}
+\DoxyCodeLine{129   FT\_MODERR\_END\_LIST}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{134 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{135 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{136 \textcolor{comment}{  /*****                      CLEANUP                            *****/}}
+\DoxyCodeLine{137 \textcolor{comment}{  /*****                                                         *****/}}
+\DoxyCodeLine{138 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{139 \textcolor{comment}{  /*******************************************************************/}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#ifdef FT\_NEED\_EXTERN\_C}}
+\DoxyCodeLine{143   \}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#undef FT\_MODERR\_START\_LIST}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#undef FT\_MODERR\_END\_LIST}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#undef FT\_MODERRDEF}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#undef FT\_NEED\_EXTERN\_C}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTMODERR\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

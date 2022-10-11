@@ -1,0 +1,65 @@
+\hypertarget{_dlg_kernel_8h_source}{}\doxysection{Dlg\+Kernel.\+h}
+\label{_dlg_kernel_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/DlgKernel.h@{C:/Projects/FEM/prototype-\/prismatic/source/DlgKernel.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#if !defined(AFX\_DLGKERNEL\_H\_\_BA74F556\_5F99\_4CEE\_B936\_9ECC23B1B06E\_\_INCLUDED\_)}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AFX\_DLGKERNEL\_H\_\_BA74F556\_5F99\_4CEE\_B936\_9ECC23B1B06E\_\_INCLUDED\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{7 \textcolor{comment}{// DlgKernel.h : header file}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}Fem.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}DlgKernel1.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}DlgKernel2.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}DlgKernel3.h"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{16 \textcolor{comment}{// CDlgKernel}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_dlg_kernel}{CDlgKernel}} : \textcolor{keyword}{public} CPropertySheet}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     DECLARE\_DYNAMIC(\mbox{\hyperlink{class_c_dlg_kernel}{CDlgKernel}})}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{comment}{// Construction}}
+\DoxyCodeLine{23 \textcolor{keyword}{public}:}
+\DoxyCodeLine{24     \mbox{\hyperlink{class_c_dlg_kernel}{CDlgKernel}}(\mbox{\hyperlink{struct_k_r_n___p_a_r_a_m}{KRN\_PARAM}} *pParam, UINT nIDCaption, CWnd* pParentWnd = NULL, UINT iSelectPage = 0);}
+\DoxyCodeLine{25     \mbox{\hyperlink{class_c_dlg_kernel}{CDlgKernel}}(\mbox{\hyperlink{struct_k_r_n___p_a_r_a_m}{KRN\_PARAM}} *pParam, LPCTSTR pszCaption, CWnd* pParentWnd = NULL, UINT iSelectPage = 0);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{// Attributes}}
+\DoxyCodeLine{28 \textcolor{keyword}{public}:}
+\DoxyCodeLine{29     \mbox{\hyperlink{struct_k_r_n___p_a_r_a_m}{KRN\_PARAM}} *m\_pParam;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \mbox{\hyperlink{class_c_dlg_kernel1}{CDlgKernel1}} m\_Dlg1;}
+\DoxyCodeLine{32     \mbox{\hyperlink{class_c_dlg_kernel2}{CDlgKernel2}} m\_Dlg2;}
+\DoxyCodeLine{33     \mbox{\hyperlink{class_c_dlg_kernel3}{CDlgKernel3}} m\_Dlg3;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{// Operations}}
+\DoxyCodeLine{36 \textcolor{keyword}{public}:}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{comment}{// Overrides}}
+\DoxyCodeLine{39     \textcolor{comment}{// ClassWizard generated virtual function overrides}}
+\DoxyCodeLine{40     \textcolor{comment}{//\{\{AFX\_VIRTUAL(CDlgKernel)}}
+\DoxyCodeLine{41     \textcolor{comment}{//\}\}AFX\_VIRTUAL}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{44 \textcolor{keyword}{public}:}
+\DoxyCodeLine{45     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_dlg_kernel}{\string~CDlgKernel}}();}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{48 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{49     \textcolor{comment}{//\{\{AFX\_MSG(CDlgKernel)}}
+\DoxyCodeLine{50         \textcolor{comment}{// NOTE -\/ the ClassWizard will add and remove member functions here.}}
+\DoxyCodeLine{51     \textcolor{comment}{//\}\}AFX\_MSG}}
+\DoxyCodeLine{52     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{53     \textcolor{keyword}{virtual} BOOL PreCreateWindow(CREATESTRUCT\& cs);}
+\DoxyCodeLine{54 \};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{comment}{//\{\{AFX\_INSERT\_LOCATION\}\}}}
+\DoxyCodeLine{59 \textcolor{comment}{// Microsoft Visual C++ will insert additional declarations immediately before the previous line.}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_DLGKERNEL\_H\_\_BA74F556\_5F99\_4CEE\_B936\_9ECC23B1B06E\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

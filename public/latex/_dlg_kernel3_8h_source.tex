@@ -1,0 +1,44 @@
+\hypertarget{_dlg_kernel3_8h_source}{}\doxysection{Dlg\+Kernel3.\+h}
+\label{_dlg_kernel3_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/DlgKernel3.h@{C:/Projects/FEM/prototype-\/prismatic/source/DlgKernel3.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{comment}{// CDlgKernel3 dialog}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}Fem.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_dlg_kernel3}{CDlgKernel3}} : \textcolor{keyword}{public} CPropertyPage}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9     DECLARE\_DYNAMIC(\mbox{\hyperlink{class_c_dlg_kernel3}{CDlgKernel3}})}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{public}:}
+\DoxyCodeLine{12     \mbox{\hyperlink{class_c_dlg_kernel3}{CDlgKernel3}}(\mbox{\hyperlink{struct_k_r_n___p_a_r_a_m}{KRN\_PARAM}} *pParam);   \textcolor{comment}{// standard constructor}}
+\DoxyCodeLine{13     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_dlg_kernel3}{\string~CDlgKernel3}}();}
+\DoxyCodeLine{14     \mbox{\hyperlink{struct_k_r_n___p_a_r_a_m}{KRN\_PARAM}} *m\_pParam;}
+\DoxyCodeLine{15 \textcolor{comment}{// Dialog Data}}
+\DoxyCodeLine{16     \textcolor{keyword}{enum} \{ IDD = IDD\_KERNEL3 \};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{19     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} DoDataExchange(CDataExchange* pDX);    \textcolor{comment}{// DDX/DDV support}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{22 \textcolor{keyword}{public}:}
+\DoxyCodeLine{23     \textcolor{keyword}{virtual} BOOL OnInitDialog();}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} UpdateData(\textcolor{keywordtype}{bool} bSaveAndValidate);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{public}:}
+\DoxyCodeLine{27     afx\_msg \textcolor{keywordtype}{void} OnEnKillfocusKernel3E();}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30     CString m\_strT0;}
+\DoxyCodeLine{31     CString m\_strTair;}
+\DoxyCodeLine{32     CString m\_strTroll;}
+\DoxyCodeLine{33     CString m\_strLambda;}
+\DoxyCodeLine{34     CString m\_strAlphaR;}
+\DoxyCodeLine{35     CString m\_strAlphaA;}
+\DoxyCodeLine{36     CString m\_strC;}
+\DoxyCodeLine{37     CString m\_strRo;}
+\DoxyCodeLine{38 \};}
+
+\end{DoxyCode}

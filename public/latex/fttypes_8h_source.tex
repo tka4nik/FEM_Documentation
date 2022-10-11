@@ -1,0 +1,588 @@
+\hypertarget{fttypes_8h_source}{}\doxysection{fttypes.\+h}
+\label{fttypes_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/fttypes.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/fttypes.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  fttypes.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType simple types definitions (specification only).              */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2004 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTTYPES\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTTYPES\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_CONFIG\_CONFIG\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_SYSTEM\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include FT\_IMAGE\_H}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <stddef.h>}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*    basic\_types                                                        */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*    Basic Data Types                                                   */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    The basic data types defined by the library.                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    This section contains the basic data types defined by FreeType 2,  */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    ranging from simple scalar types to bitmap descriptors.  More      */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    font-\/specific structures are defined in a different section.       */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{50   \textcolor{comment}{/* <Order>                                                               */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*    FT\_Byte                                                            */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*    FT\_Bytes                                                           */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*    FT\_Char                                                            */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*    FT\_Int                                                             */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*    FT\_UInt                                                            */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*    FT\_Short                                                           */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    FT\_UShort                                                          */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    FT\_Long                                                            */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    FT\_ULong                                                           */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*    FT\_Bool                                                            */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    FT\_Offset                                                          */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    FT\_PtrDist                                                         */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*    FT\_String                                                          */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*    FT\_Tag                                                             */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*    FT\_Error                                                           */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*    FT\_Fixed                                                           */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*    FT\_Pointer                                                         */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*    FT\_Pos                                                             */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*    FT\_Vector                                                          */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*    FT\_BBox                                                            */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*    FT\_Matrix                                                          */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*    FT\_FWord                                                           */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*    FT\_UFWord                                                          */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*    FT\_F2Dot14                                                         */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*    FT\_UnitVector                                                      */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*    FT\_F26Dot6                                                         */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*    FT\_Generic                                                         */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*    FT\_Generic\_Finalizer                                               */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*    FT\_Bitmap                                                          */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*    FT\_Pixel\_Mode                                                      */}}
+\DoxyCodeLine{84   \textcolor{comment}{/*    FT\_Palette\_Mode                                                    */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*    FT\_Glyph\_Format                                                    */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*    FT\_IMAGE\_TAG                                                       */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{88 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{92   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{93   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*    FT\_Bool                                                            */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{96   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*    A typedef of unsigned char, used for simple booleans.              */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{99   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}  FT\_Bool;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{104   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*    FT\_FWord                                                           */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{107   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*    A signed 16-\/bit integer used to store a distance in original font  */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*    units.                                                             */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{111   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{short}  FT\_FWord;   \textcolor{comment}{/* distance in FUnits */}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*    FT\_UFWord                                                          */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{119   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    An unsigned 16-\/bit integer used to store a distance in original    */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*    font units.                                                        */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{123   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}  FT\_UFWord;  \textcolor{comment}{/* unsigned distance */}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{127   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{128   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*    FT\_Char                                                            */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{131   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*    A simple typedef for the \_signed\_ char type.                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{134   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{char}  FT\_Char;}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{138   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{139   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    FT\_Byte                                                            */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{142   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*    A simple typedef for the \_unsigned\_ char type.                     */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{145   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}  FT\_Byte;}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{150   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*    FT\_Bytes                                                           */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{153   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{154   \textcolor{comment}{/*    A typedef for constant memory areas.                               */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{156   \textcolor{keyword}{typedef} \textcolor{keyword}{const} FT\_Byte*  FT\_Bytes;}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{160   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{161   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*    FT\_Tag                                                             */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{164   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*    A typedef for 32bit tags (as used in the SFNT format).             */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{167   \textcolor{keyword}{typedef} FT\_UInt32  FT\_Tag;}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*    FT\_String                                                          */}}
+\DoxyCodeLine{174   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{175   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*    A simple typedef for the char type, usually used for strings.      */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{178   \textcolor{keyword}{typedef} \textcolor{keywordtype}{char}  FT\_String;}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{182   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{183   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*    FT\_Short                                                           */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{186   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*    A typedef for signed short.                                        */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{189   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{short}  FT\_Short;}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{193   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{194   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*    FT\_UShort                                                          */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{197   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*    A typedef for unsigned short.                                      */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{200   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}  FT\_UShort;}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{204   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{205   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{206   \textcolor{comment}{/*    FT\_Int                                                             */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{208   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{209   \textcolor{comment}{/*    A typedef for the int type.                                        */}}
+\DoxyCodeLine{210   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{211   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int}  FT\_Int;}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{215   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{216   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{217   \textcolor{comment}{/*    FT\_UInt                                                            */}}
+\DoxyCodeLine{218   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{219   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*    A typedef for the unsigned int type.                               */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{222   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}  FT\_UInt;}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{226   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{227   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{228   \textcolor{comment}{/*    FT\_Long                                                            */}}
+\DoxyCodeLine{229   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{230   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{231   \textcolor{comment}{/*    A typedef for signed long.                                         */}}
+\DoxyCodeLine{232   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{233   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{long}  FT\_Long;}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{237   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{238   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{239   \textcolor{comment}{/*    FT\_ULong                                                           */}}
+\DoxyCodeLine{240   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{241   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{242   \textcolor{comment}{/*    A typedef for unsigned long.                                       */}}
+\DoxyCodeLine{243   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{244   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}  FT\_ULong;}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{248   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{249   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{250   \textcolor{comment}{/*    FT\_F2Dot14                                                         */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{252   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{253   \textcolor{comment}{/*    A signed 2.14 fixed float type used for unit vectors.              */}}
+\DoxyCodeLine{254   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{255   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{short}  FT\_F2Dot14;}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{259   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{260   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*    FT\_F26Dot6                                                         */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{263   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{264   \textcolor{comment}{/*    A signed 26.6 fixed float type used for vectorial pixel            */}}
+\DoxyCodeLine{265   \textcolor{comment}{/*    coordinates.                                                       */}}
+\DoxyCodeLine{266   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{267   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{long}  FT\_F26Dot6;}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{271   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{272   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{273   \textcolor{comment}{/*    FT\_Fixed                                                           */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{275   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{276   \textcolor{comment}{/*    This type is used to store 16.16 fixed float values, like scales   */}}
+\DoxyCodeLine{277   \textcolor{comment}{/*    or matrix coefficients.                                            */}}
+\DoxyCodeLine{278   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{279   \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{long}  FT\_Fixed;}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{283   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{284   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{285   \textcolor{comment}{/*    FT\_Error                                                           */}}
+\DoxyCodeLine{286   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{287   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{288   \textcolor{comment}{/*    The FreeType error code type.  A value of 0 is always interpreted  */}}
+\DoxyCodeLine{289   \textcolor{comment}{/*    as a successful operation.                                         */}}
+\DoxyCodeLine{290   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{291   \textcolor{keyword}{typedef} \textcolor{keywordtype}{int}  FT\_Error;}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{295   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{296   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*    FT\_Pointer                                                         */}}
+\DoxyCodeLine{298   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{299   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*    A simple typedef for a typeless pointer.                           */}}
+\DoxyCodeLine{301   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{302   \textcolor{keyword}{typedef} \textcolor{keywordtype}{void}*  FT\_Pointer;}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{306   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{307   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{308   \textcolor{comment}{/*    FT\_Offset                                                          */}}
+\DoxyCodeLine{309   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{310   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{311   \textcolor{comment}{/*    This is equivalent to the ANSI C `size\_t' type, i.e. the largest   */}}
+\DoxyCodeLine{312   \textcolor{comment}{/*    \_unsigned\_ integer type used to express a file size or position,   */}}
+\DoxyCodeLine{313   \textcolor{comment}{/*    or a memory block size.                                            */}}
+\DoxyCodeLine{314   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{315   \textcolor{keyword}{typedef} \textcolor{keywordtype}{size\_t}  FT\_Offset;}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{319   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{320   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{321   \textcolor{comment}{/*    FT\_PtrDist                                                         */}}
+\DoxyCodeLine{322   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{323   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{324   \textcolor{comment}{/*    This is equivalent to the ANSI C `ptrdiff\_t' type, i.e. the        */}}
+\DoxyCodeLine{325   \textcolor{comment}{/*    largest \_signed\_ integer type used to express the distance         */}}
+\DoxyCodeLine{326   \textcolor{comment}{/*    between two pointers.                                              */}}
+\DoxyCodeLine{327   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{328   \textcolor{keyword}{typedef} ft\_ptrdiff\_t  FT\_PtrDist;}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{332   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{333   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{334   \textcolor{comment}{/*    FT\_UnitVector                                                      */}}
+\DoxyCodeLine{335   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{336   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{337   \textcolor{comment}{/*    A simple structure used to store a 2D vector unit vector.  Uses    */}}
+\DoxyCodeLine{338   \textcolor{comment}{/*    FT\_F2Dot14 types.                                                  */}}
+\DoxyCodeLine{339   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{340   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{341   \textcolor{comment}{/*    x :: Horizontal coordinate.                                        */}}
+\DoxyCodeLine{342   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{343   \textcolor{comment}{/*    y :: Vertical coordinate.                                          */}}
+\DoxyCodeLine{344   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{345   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___unit_vector__}{FT\_UnitVector\_}}}
+\DoxyCodeLine{346   \{}
+\DoxyCodeLine{347     FT\_F2Dot14  x;}
+\DoxyCodeLine{348     FT\_F2Dot14  y;}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350   \} \mbox{\hyperlink{struct_f_t___unit_vector__}{FT\_UnitVector}};}
+\DoxyCodeLine{351 }
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{354   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{355   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{356   \textcolor{comment}{/*    FT\_Matrix                                                          */}}
+\DoxyCodeLine{357   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{358   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*    A simple structure used to store a 2x2 matrix.  Coefficients are   */}}
+\DoxyCodeLine{360   \textcolor{comment}{/*    in 16.16 fixed float format.  The computation performed is:        */}}
+\DoxyCodeLine{361   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{362   \textcolor{comment}{/*       \{                                                               */}}
+\DoxyCodeLine{363   \textcolor{comment}{/*          x' = x*xx + y*xy                                             */}}
+\DoxyCodeLine{364   \textcolor{comment}{/*          y' = x*yx + y*yy                                             */}}
+\DoxyCodeLine{365   \textcolor{comment}{/*       \}                                                               */}}
+\DoxyCodeLine{366   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{367   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{368   \textcolor{comment}{/*    xx :: Matrix coefficient.                                          */}}
+\DoxyCodeLine{369   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{370   \textcolor{comment}{/*    xy :: Matrix coefficient.                                          */}}
+\DoxyCodeLine{371   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{372   \textcolor{comment}{/*    yx :: Matrix coefficient.                                          */}}
+\DoxyCodeLine{373   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{374   \textcolor{comment}{/*    yy :: Matrix coefficient.                                          */}}
+\DoxyCodeLine{375   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{376   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix\_}}}
+\DoxyCodeLine{377   \{}
+\DoxyCodeLine{378     FT\_Fixed  xx, xy;}
+\DoxyCodeLine{379     FT\_Fixed  yx, yy;}
+\DoxyCodeLine{380 }
+\DoxyCodeLine{381   \} \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}};}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{385   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{386   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{387   \textcolor{comment}{/*    FT\_Data                                                            */}}
+\DoxyCodeLine{388   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{389   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{390   \textcolor{comment}{/*    Read-\/only binary data represented as a pointer and a length.       */}}
+\DoxyCodeLine{391   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{392   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{393   \textcolor{comment}{/*    pointer :: The data.                                               */}}
+\DoxyCodeLine{394   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{395   \textcolor{comment}{/*    length  :: The length of the data in bytes.                        */}}
+\DoxyCodeLine{396   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{397   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___data__}{FT\_Data\_}}}
+\DoxyCodeLine{398   \{}
+\DoxyCodeLine{399     \textcolor{keyword}{const} FT\_Byte*  pointer;}
+\DoxyCodeLine{400     FT\_Int          length;}
+\DoxyCodeLine{401 }
+\DoxyCodeLine{402   \} \mbox{\hyperlink{struct_f_t___data__}{FT\_Data}};}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{406   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{407   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{408   \textcolor{comment}{/*    FT\_Generic\_Finalizer                                               */}}
+\DoxyCodeLine{409   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{410   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{411   \textcolor{comment}{/*    Describes a function used to destroy the `client' data of any      */}}
+\DoxyCodeLine{412   \textcolor{comment}{/*    FreeType object.  See the description of the FT\_Generic type for   */}}
+\DoxyCodeLine{413   \textcolor{comment}{/*    details of usage.                                                  */}}
+\DoxyCodeLine{414   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{415   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{416   \textcolor{comment}{/*    The address of the FreeType object which is under finalization.    */}}
+\DoxyCodeLine{417   \textcolor{comment}{/*    Its client data is accessed through its `generic' field.           */}}
+\DoxyCodeLine{418   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{419   \textcolor{keyword}{typedef} void  (*FT\_Generic\_Finalizer)(\textcolor{keywordtype}{void}*  object);}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421 }
+\DoxyCodeLine{422 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{423   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{424   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{425   \textcolor{comment}{/*    FT\_Generic                                                         */}}
+\DoxyCodeLine{426   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{427   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{428   \textcolor{comment}{/*    Client applications often need to associate their own data to a    */}}
+\DoxyCodeLine{429   \textcolor{comment}{/*    variety of FreeType core objects.  For example, a text layout API  */}}
+\DoxyCodeLine{430   \textcolor{comment}{/*    might want to associate a glyph cache to a given size object.      */}}
+\DoxyCodeLine{431   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{432   \textcolor{comment}{/*    Most FreeType object contains a `generic' field, of type           */}}
+\DoxyCodeLine{433   \textcolor{comment}{/*    FT\_Generic, which usage is left to client applications and font    */}}
+\DoxyCodeLine{434   \textcolor{comment}{/*    servers.                                                           */}}
+\DoxyCodeLine{435   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{436   \textcolor{comment}{/*    It can be used to store a pointer to client-\/specific data, as well */}}
+\DoxyCodeLine{437   \textcolor{comment}{/*    as the address of a `finalizer' function, which will be called by  */}}
+\DoxyCodeLine{438   \textcolor{comment}{/*    FreeType when the object is destroyed (for example, the previous   */}}
+\DoxyCodeLine{439   \textcolor{comment}{/*    client example would put the address of the glyph cache destructor */}}
+\DoxyCodeLine{440   \textcolor{comment}{/*    in the `finalizer' field).                                         */}}
+\DoxyCodeLine{441   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{442   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{443   \textcolor{comment}{/*    data      :: A typeless pointer to any client-\/specified data. This */}}
+\DoxyCodeLine{444   \textcolor{comment}{/*                 field is completely ignored by the FreeType library.  */}}
+\DoxyCodeLine{445   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{446   \textcolor{comment}{/*    finalizer :: A pointer to a `generic finalizer' function, which    */}}
+\DoxyCodeLine{447   \textcolor{comment}{/*                 will be called when the object is destroyed.  If this */}}
+\DoxyCodeLine{448   \textcolor{comment}{/*                 field is set to NULL, no code will be called.         */}}
+\DoxyCodeLine{449   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{450   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___generic__}{FT\_Generic\_}}}
+\DoxyCodeLine{451   \{}
+\DoxyCodeLine{452     \textcolor{keywordtype}{void}*                 data;}
+\DoxyCodeLine{453     FT\_Generic\_Finalizer  finalizer;}
+\DoxyCodeLine{454 }
+\DoxyCodeLine{455   \} \mbox{\hyperlink{struct_f_t___generic__}{FT\_Generic}};}
+\DoxyCodeLine{456 }
+\DoxyCodeLine{457 }
+\DoxyCodeLine{458 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{459   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{460   \textcolor{comment}{/* <Macro>                                                               */}}
+\DoxyCodeLine{461   \textcolor{comment}{/*    FT\_MAKE\_TAG                                                        */}}
+\DoxyCodeLine{462   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{463   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{464   \textcolor{comment}{/*    This macro converts four letter tags which are used to label       */}}
+\DoxyCodeLine{465   \textcolor{comment}{/*    TrueType tables into an unsigned long to be used within FreeType.  */}}
+\DoxyCodeLine{466   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{467   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{468   \textcolor{comment}{/*    The produced values *must* be 32bit integers.  Don't redefine this */}}
+\DoxyCodeLine{469   \textcolor{comment}{/*    macro.                                                             */}}
+\DoxyCodeLine{470   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#define FT\_MAKE\_TAG( \_x1, \_x2, \_x3, \_x4 ) \(\backslash\)}}
+\DoxyCodeLine{472 \textcolor{preprocessor}{          ( ( (FT\_ULong)\_x1 << 24 ) |     \(\backslash\)}}
+\DoxyCodeLine{473 \textcolor{preprocessor}{            ( (FT\_ULong)\_x2 << 16 ) |     \(\backslash\)}}
+\DoxyCodeLine{474 \textcolor{preprocessor}{            ( (FT\_ULong)\_x3 <<  8 ) |     \(\backslash\)}}
+\DoxyCodeLine{475 \textcolor{preprocessor}{              (FT\_ULong)\_x4         )}}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{477 }
+\DoxyCodeLine{478 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{479 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{480   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{481   \textcolor{comment}{/*                    L I S T   M A N A G E M E N T                      */}}
+\DoxyCodeLine{482   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{483 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{484 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{488   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{489   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{490   \textcolor{comment}{/*    list\_processing                                                    */}}
+\DoxyCodeLine{491   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{492 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{493 }
+\DoxyCodeLine{494 }
+\DoxyCodeLine{495 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{496   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{497   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{498   \textcolor{comment}{/*    FT\_ListNode                                                        */}}
+\DoxyCodeLine{499   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{500   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{501   \textcolor{comment}{/*     Many elements and objects in FreeType are listed through a        */}}
+\DoxyCodeLine{502   \textcolor{comment}{/*     FT\_List record (see FT\_ListRec).  As its name suggests, a         */}}
+\DoxyCodeLine{503   \textcolor{comment}{/*     FT\_ListNode is a handle to a single list element.                 */}}
+\DoxyCodeLine{504   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{505   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___list_node_rec__}{FT\_ListNodeRec\_}}*  \mbox{\hyperlink{struct_f_t___list_node_rec__}{FT\_ListNode}};}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{507 }
+\DoxyCodeLine{508 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{509   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{510   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{511   \textcolor{comment}{/*    FT\_List                                                            */}}
+\DoxyCodeLine{512   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{513   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{514   \textcolor{comment}{/*    A handle to a list record (see FT\_ListRec).                        */}}
+\DoxyCodeLine{515   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{516   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___list_rec__}{FT\_ListRec\_}}*  \mbox{\hyperlink{struct_f_t___list_rec__}{FT\_List}};}
+\DoxyCodeLine{517 }
+\DoxyCodeLine{518 }
+\DoxyCodeLine{519 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{520   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{521   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{522   \textcolor{comment}{/*    FT\_ListNodeRec                                                     */}}
+\DoxyCodeLine{523   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{524   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{525   \textcolor{comment}{/*    A structure used to hold a single list element.                    */}}
+\DoxyCodeLine{526   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{527   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{528   \textcolor{comment}{/*    prev :: The previous element in the list.  NULL if first.          */}}
+\DoxyCodeLine{529   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{530   \textcolor{comment}{/*    next :: The next element in the list.  NULL if last.               */}}
+\DoxyCodeLine{531   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{532   \textcolor{comment}{/*    data :: A typeless pointer to the listed object.                   */}}
+\DoxyCodeLine{533   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{534   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___list_node_rec__}{FT\_ListNodeRec\_}}}
+\DoxyCodeLine{535   \{}
+\DoxyCodeLine{536     \mbox{\hyperlink{struct_f_t___list_node_rec__}{FT\_ListNode}}  prev;}
+\DoxyCodeLine{537     \mbox{\hyperlink{struct_f_t___list_node_rec__}{FT\_ListNode}}  next;}
+\DoxyCodeLine{538     \textcolor{keywordtype}{void}*        data;}
+\DoxyCodeLine{539 }
+\DoxyCodeLine{540   \} \mbox{\hyperlink{struct_f_t___list_node_rec__}{FT\_ListNodeRec}};}
+\DoxyCodeLine{541 }
+\DoxyCodeLine{542 }
+\DoxyCodeLine{543 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{544   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{545   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{546   \textcolor{comment}{/*    FT\_ListRec                                                         */}}
+\DoxyCodeLine{547   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{548   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{549   \textcolor{comment}{/*    A structure used to hold a simple doubly-\/linked list.  These are   */}}
+\DoxyCodeLine{550   \textcolor{comment}{/*    used in many parts of FreeType.                                    */}}
+\DoxyCodeLine{551   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{552   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{553   \textcolor{comment}{/*    head :: The head (first element) of doubly-\/linked list.            */}}
+\DoxyCodeLine{554   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{555   \textcolor{comment}{/*    tail :: The tail (last element) of doubly-\/linked list.             */}}
+\DoxyCodeLine{556   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{557   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___list_rec__}{FT\_ListRec\_}}}
+\DoxyCodeLine{558   \{}
+\DoxyCodeLine{559     \mbox{\hyperlink{struct_f_t___list_node_rec__}{FT\_ListNode}}  head;}
+\DoxyCodeLine{560     \mbox{\hyperlink{struct_f_t___list_node_rec__}{FT\_ListNode}}  tail;}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562   \} \mbox{\hyperlink{struct_f_t___list_rec__}{FT\_ListRec}};}
+\DoxyCodeLine{563 }
+\DoxyCodeLine{564 }
+\DoxyCodeLine{565   \textcolor{comment}{/* */}}
+\DoxyCodeLine{566 }
+\DoxyCodeLine{567 \textcolor{preprocessor}{\#define FT\_IS\_EMPTY( list )  ( (list).head == 0 )}}
+\DoxyCodeLine{568 }
+\DoxyCodeLine{569   \textcolor{comment}{/* return base error code (without module-\/specific prefix) */}}
+\DoxyCodeLine{570 \textcolor{preprocessor}{\#define FT\_ERROR\_BASE( x )    ( (x) \& 0xFF )}}
+\DoxyCodeLine{571 }
+\DoxyCodeLine{572   \textcolor{comment}{/* return module error code */}}
+\DoxyCodeLine{573 \textcolor{preprocessor}{\#define FT\_ERROR\_MODULE( x )  ( (x) \& 0xFF00U )}}
+\DoxyCodeLine{574 }
+\DoxyCodeLine{575 \textcolor{preprocessor}{\#define FT\_BOOL( x )  ( (FT\_Bool)( x ) )}}
+\DoxyCodeLine{576 }
+\DoxyCodeLine{577 FT\_END\_HEADER}
+\DoxyCodeLine{578 }
+\DoxyCodeLine{579 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTTYPES\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{581 }
+\DoxyCodeLine{582 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

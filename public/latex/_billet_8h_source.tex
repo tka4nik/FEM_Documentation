@@ -1,0 +1,166 @@
+\hypertarget{_billet_8h_source}{}\doxysection{Billet.\+h}
+\label{_billet_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/Billet.h@{C:/Projects/FEM/prototype-\/prismatic/source/Billet.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Billet.h: interface for the CBillet class.}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#if !defined(AFX\_BILLET\_H\_\_FFDDB467\_14F5\_401D\_90C2\_8247BDAF80F7\_\_INCLUDED\_)}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define AFX\_BILLET\_H\_\_FFDDB467\_14F5\_401D\_90C2\_8247BDAF80F7\_\_INCLUDED\_}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}Component.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}Mesh2d.h"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}Field.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}Layer.h"{}}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{18 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{19     \textcolor{keywordtype}{double} dLambda;}
+\DoxyCodeLine{20     \textcolor{keywordtype}{double} dAlphaAir;}
+\DoxyCodeLine{21     \textcolor{keywordtype}{double} dAlphaRll;}
+\DoxyCodeLine{22     \textcolor{keywordtype}{double} dC;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{double} dRo;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{double} dTair;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{double} dTrll;}
+\DoxyCodeLine{26     \textcolor{keywordtype}{double} dTblt;}
+\DoxyCodeLine{27 \}\mbox{\hyperlink{struct_t_e_r_m_o_p_a_r_a_m}{TERMOPARAM}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{30 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} m;}
+\DoxyCodeLine{32     \textcolor{keywordtype}{double} w;}
+\DoxyCodeLine{33     \textcolor{keywordtype}{double} dLen;}
+\DoxyCodeLine{34     CString strProp;}
+\DoxyCodeLine{35     CString strPropDir;}
+\DoxyCodeLine{36     \textcolor{keywordtype}{int} nReMesh;}
+\DoxyCodeLine{37     \textcolor{keywordtype}{double} dRadius;}
+\DoxyCodeLine{38     \mbox{\hyperlink{struct_t_e_r_m_o_p_a_r_a_m}{TERMOPARAM}} TermoParam;}
+\DoxyCodeLine{39     \textcolor{keywordtype}{double} dV0;}
+\DoxyCodeLine{40     \textcolor{keywordtype}{double} dF0;}
+\DoxyCodeLine{41     \textcolor{keywordtype}{double} dF1;}
+\DoxyCodeLine{42     \textcolor{keywordtype}{int} nPropType;}
+\DoxyCodeLine{43 \}\mbox{\hyperlink{struct_k_r_n___p_a_r_a_m}{KRN\_PARAM}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{46 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_fem}{CFem}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{49 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_billet}{CBillet}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_c_component}{CComponent}} }
+\DoxyCodeLine{50 \{}
+\DoxyCodeLine{51     \textcolor{keyword}{friend} \mbox{\hyperlink{class_c_fem}{CFem}};}
+\DoxyCodeLine{52     \textcolor{keyword}{friend} \mbox{\hyperlink{class_c_layer}{CLayer}};}
+\DoxyCodeLine{53 \textcolor{keyword}{public}:}
+\DoxyCodeLine{54     \mbox{\hyperlink{class_c_billet}{CBillet}}();}
+\DoxyCodeLine{55     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_billet}{\string~CBillet}}();}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     CString m\_strFolder;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keyword}{public}:}
+\DoxyCodeLine{60     \textcolor{keywordtype}{void} SetV0(); \textcolor{comment}{// КОСТЫЛЬ: Определение объёма рабочей зоны образца в начальный момент времени (вычисляется по начальным параметрам)}}
+\DoxyCodeLine{61     \textcolor{keywordtype}{double} GetV(); \textcolor{comment}{// Возвращает объём всего образца в текущий момент времени}}
+\DoxyCodeLine{62     \textcolor{keywordtype}{void} SetY(\textcolor{keywordtype}{double} y);}
+\DoxyCodeLine{63     \textcolor{keywordtype}{void} SetX(\textcolor{keywordtype}{double} x);}
+\DoxyCodeLine{64 \textcolor{comment}{//  int GetSizeEx();}}
+\DoxyCodeLine{65     \textcolor{keywordtype}{void} Load(CFile \&File);}
+\DoxyCodeLine{66     \textcolor{keywordtype}{void} Save(CFile \&File);}
+\DoxyCodeLine{67     \textcolor{keywordtype}{bool} SetPoint(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{int} nPoint);}
+\DoxyCodeLine{68     BOOL SetSpline(\textcolor{keywordtype}{double} R, \textcolor{keywordtype}{int} N);}
+\DoxyCodeLine{69     \textcolor{keywordtype}{bool} NewNode(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y);}
+\DoxyCodeLine{70     \textcolor{keywordtype}{void} glDraw(\textcolor{keywordtype}{int} nMode, \textcolor{keywordtype}{double} min\_x, \textcolor{keywordtype}{double} max\_x, \textcolor{keywordtype}{double} min\_y, \textcolor{keywordtype}{double} max\_y);}
+\DoxyCodeLine{71     \textcolor{keywordtype}{void} glDrawMesh(\textcolor{keywordtype}{double} minX, \textcolor{keywordtype}{double} maxX, \textcolor{keywordtype}{double} minY, \textcolor{keywordtype}{double} maxY);}
+\DoxyCodeLine{72     \textcolor{keywordtype}{void} KillMesh();}
+\DoxyCodeLine{73     \textcolor{keywordtype}{bool} Triangulate0(\textcolor{keyword}{const} CString \&strFolder, \textcolor{keywordtype}{double} *FrX, \textcolor{keywordtype}{double} *FrY, \textcolor{keywordtype}{double} *W, \textcolor{keywordtype}{int} nFrSize, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} **Elements, \textcolor{keywordtype}{double} **MeshX, \textcolor{keywordtype}{double} **MeshY, \textcolor{keywordtype}{int} *nPNum, \textcolor{keywordtype}{int} *nENum, \textcolor{keywordtype}{double} dParam);}
+\DoxyCodeLine{74     \textcolor{keywordtype}{void} Triangulate(BOOL bCreate = TRUE);}
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} InitLayers(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_fem}{CFem}} *pFem);}
+\DoxyCodeLine{76     \mbox{\hyperlink{class_c_layer}{CLayer}} *GetLayer(\textcolor{keywordtype}{int} nLayer = -\/1)\{}
+\DoxyCodeLine{77         \textcolor{keywordflow}{if}(nLayer == -\/1)nLayer = m\_nCurrLayer;}
+\DoxyCodeLine{78         \textcolor{keywordflow}{if}(nLayer < 0 || nLayer>=m\_Layers.GetSize())\textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{79         \textcolor{keywordflow}{return} \&m\_Layers[nLayer];}
+\DoxyCodeLine{80     \}}
+\DoxyCodeLine{81     \textcolor{keywordtype}{int}     GetCurrLayer()\{\textcolor{keywordflow}{return} m\_nCurrLayer;\}}
+\DoxyCodeLine{82     \textcolor{keywordtype}{int}     GetLayersNum()\{\textcolor{keywordflow}{return} m\_Layers.GetSize();\}}
+\DoxyCodeLine{83     \textcolor{keywordtype}{double} m\_dParam;}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{double} X(\textcolor{keywordtype}{int} e, \textcolor{keywordtype}{int} p)\{}
+\DoxyCodeLine{86         ASSERT(p>=0 \&\& p<3);}
+\DoxyCodeLine{87         ASSERT(e>=0 \&\& e <m\_nMEl);}
+\DoxyCodeLine{88         \textcolor{keywordflow}{return} m\_MeshX[m\_IJK[e][p]];}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90     \textcolor{keywordtype}{double} Y(\textcolor{keywordtype}{int} e, \textcolor{keywordtype}{int} p)\{}
+\DoxyCodeLine{91         ASSERT(p>=0 \&\& p<3);}
+\DoxyCodeLine{92         ASSERT(e>=0 \&\& e <m\_nMEl);}
+\DoxyCodeLine{93         \textcolor{keywordflow}{return} m\_MeshY[m\_IJK[e][p]];}
+\DoxyCodeLine{94     \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \textcolor{keywordtype}{double} GetZ(\textcolor{keywordtype}{int} e)\{}
+\DoxyCodeLine{97         \textcolor{keywordflow}{return} (m\_MeshZ[m\_IJK[e][0]]+m\_MeshZ[m\_IJK[e][1]]+m\_MeshZ[m\_IJK[e][2]])/3;}
+\DoxyCodeLine{98     \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{keywordtype}{void} SetCurrField(\textcolor{keywordtype}{int} nField)\{}
+\DoxyCodeLine{101         m\_nField = nField;}
+\DoxyCodeLine{102         m\_Layers[m\_nCurrLayer].SetCurrField(m\_nField);}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104     \textcolor{keywordtype}{void} SetCurrLayer(\textcolor{keywordtype}{int} nLayer)\{}
+\DoxyCodeLine{105         ASSERT(nLayer>=0 \&\& nLayer < m\_Layers.GetSize());}
+\DoxyCodeLine{106         m\_nCurrLayer = nLayer;}
+\DoxyCodeLine{107         m\_Layers[m\_nCurrLayer].SetCurrField(m\_nField);}
+\DoxyCodeLine{108     \}}
+\DoxyCodeLine{109     \textcolor{keywordtype}{void} LoadLayer(\textcolor{keywordtype}{int} nLayer, \textcolor{keyword}{const} \mbox{\hyperlink{class_c_fem}{CFem}} *pFem)\{}
+\DoxyCodeLine{110         ASSERT(nLayer>=0 \&\& nLayer<m\_Layers.GetSize());}
+\DoxyCodeLine{111         m\_Layers[nLayer].Load(pFem);}
+\DoxyCodeLine{112         SetCurrLayer(nLayer);}
+\DoxyCodeLine{113         \textcolor{comment}{//m\_Layers[nLayer].SetCurrField(m\_nField);}}
+\DoxyCodeLine{114     \}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116     \textcolor{keywordtype}{void} ReLoad(\textcolor{keywordtype}{int} nLayer);}
+\DoxyCodeLine{117 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{118     \textcolor{keywordtype}{int} m\_nMP;\textcolor{comment}{// Количество узлов сетки}}
+\DoxyCodeLine{119     \textcolor{keywordtype}{int} m\_nPFrNum;}
+\DoxyCodeLine{120     \textcolor{keywordtype}{int} m\_nEFrNum;}
+\DoxyCodeLine{121     \textcolor{keywordtype}{int} m\_nCntNum;}
+\DoxyCodeLine{122     \textcolor{keywordtype}{int} m\_nCurrLayer;}
+\DoxyCodeLine{123     \textcolor{keywordtype}{int} m\_nField;}
+\DoxyCodeLine{124     \textcolor{keywordtype}{int} m\_nMEl;\textcolor{comment}{// Количество элементов сетки}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     \textcolor{keywordtype}{double} *m\_MeshX; \textcolor{comment}{// Кооординаты узлов сетки. Размер -\/ m\_nMP}}
+\DoxyCodeLine{127     \textcolor{keywordtype}{double} *m\_MeshY; \textcolor{comment}{// -\/\(\backslash\)-\/}}
+\DoxyCodeLine{128     \textcolor{keywordtype}{double} *m\_MeshZ; \textcolor{comment}{// БЫЛО 11 ПОЛЕЙ: новая строчка}}
+\DoxyCodeLine{129     \textcolor{keywordtype}{double} m\_Z0\_Size;  \textcolor{comment}{// БЫЛО БЕЗ ВЫЧИСЛЕНИЙ: новая строчка}}
+\DoxyCodeLine{130     \textcolor{keywordtype}{double} m\_V0; \textcolor{comment}{// Объём рабочей зоны в начальный момент времени}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132     int (*m\_IJK)[3]; \textcolor{comment}{// Элементы. Размер -\/ [m\_nMEl][3]}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134     \textcolor{keywordtype}{int} *m\_EFr;         \textcolor{comment}{//размерность m\_nEFrNum/ номера граничныех элеметов}}
+\DoxyCodeLine{135     \textcolor{keywordtype}{int} *m\_PFr;         \textcolor{comment}{//размерность m\_nPFrNum/  номера граничных узлов}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137     \textcolor{keywordtype}{int}  *m\_PFrCnt;     \textcolor{comment}{//размерность m\_nPFrNum/ если узел контактный, его номер в массивах m\_PCnt,m\_RCnt,m\_RCntFlags, иначе -\/1}}
+\DoxyCodeLine{138     \textcolor{keywordtype}{int}  *m\_PCnt;       \textcolor{comment}{//размерность m\_nPFrNum/ номера контактных узлов}}
+\DoxyCodeLine{139     \textcolor{keywordtype}{int}  *m\_RCnt;       \textcolor{comment}{//размерность m\_nPFrNum/ номера линии штампа для контактных узлов}}
+\DoxyCodeLine{140     \textcolor{keywordtype}{char} *m\_RCntFlags;  \textcolor{comment}{//размерность m\_nPFrNum/ флаги контактных узлов}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{keyword}{public}:}
+\DoxyCodeLine{143     CArray<CLayer, CLayer> m\_Layers;}
+\DoxyCodeLine{144     \mbox{\hyperlink{class_c_layer}{CLayer}} *m\_pLayer0;}
+\DoxyCodeLine{145     }
+\DoxyCodeLine{146 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{147     BOOL OnFront(\textcolor{keyword}{const} \mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}} \&FI1, \textcolor{keyword}{const} \mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}} \&FI2, \textcolor{keywordtype}{int} vnum);}
+\DoxyCodeLine{148     \textcolor{keywordtype}{void} SetFront(\mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} *Elements, \textcolor{keywordtype}{int} nFrSize, \mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}} **Inf = NULL);}
+\DoxyCodeLine{149     \textcolor{keywordtype}{bool} OnChangeBillet();}
+\DoxyCodeLine{150 \textcolor{keyword}{public}:}
+\DoxyCodeLine{151     \textcolor{keywordtype}{int} GetFr(\textcolor{keywordtype}{double} *FrX, \textcolor{keywordtype}{double} *FrY, \textcolor{keywordtype}{double} *W, \textcolor{keywordtype}{int} *CntFlags=NULL, \textcolor{keywordtype}{int} *RCnt=NULL);}
+\DoxyCodeLine{152     \textcolor{keywordtype}{void} RecalcTermFields(\textcolor{keywordtype}{double} *MeshX, \textcolor{keywordtype}{double} *MeshY, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} *Elements, \textcolor{keywordtype}{int} nPNum, \textcolor{keywordtype}{int} nENum, \textcolor{keywordtype}{double} **Term, \textcolor{keywordtype}{double} **Fi);}
+\DoxyCodeLine{153     \textcolor{keywordtype}{void} RecalcMeshZFields(\textcolor{keywordtype}{double} *MeshX, \textcolor{keywordtype}{double} *MeshY, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} *Elements, \textcolor{keywordtype}{int} nPNum, \textcolor{keywordtype}{int} nENum, \textcolor{keywordtype}{double} **MeshZ); \textcolor{comment}{// БЫЛО 11 ПОЛЕЙ: новая строчка}}
+\DoxyCodeLine{154     \textcolor{keywordtype}{double}** RecalcFields(\textcolor{keywordtype}{double} *MeshX, \textcolor{keywordtype}{double} *MeshY, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} *Elements, \textcolor{keywordtype}{int} nPNum, \textcolor{keywordtype}{int} nENum, \textcolor{keywordtype}{double} *pFields[17], \textcolor{keywordtype}{int} nSize, \textcolor{keywordtype}{double} **Sqm);}
+\DoxyCodeLine{155     \textcolor{keywordtype}{void} Normalize\_MeshZ(\textcolor{keywordtype}{double} *MeshX, \textcolor{keywordtype}{double} *MeshY, \textcolor{keywordtype}{double} *MeshZ, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}}* Elements, \textcolor{keywordtype}{int} nPNum, \textcolor{keywordtype}{int} nENum);}
+\DoxyCodeLine{156     \textcolor{keywordtype}{void} Normalize\_Field(\textcolor{keywordtype}{double}* MeshX, \textcolor{keywordtype}{double}* MeshY, \textcolor{keywordtype}{double}* MeshZ, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}}* Elements, \textcolor{keywordtype}{int} nPNum, \textcolor{keywordtype}{int} nENum, \textcolor{keywordtype}{double}* NewFields[17], \textcolor{keywordtype}{double}* OldFields[17], \textcolor{keywordtype}{int} num\_Field);}
+\DoxyCodeLine{157     \textcolor{keywordtype}{double} **ReMesh(\textcolor{keywordtype}{double} *pFields[17], \textcolor{keywordtype}{int} nSize, \textcolor{keywordtype}{double} **Sqm, \textcolor{keywordtype}{double} **FrFields[4], \textcolor{keywordtype}{double} **Term, \textcolor{keywordtype}{double} **Fi, \textcolor{keywordtype}{bool} bFr); \textcolor{comment}{// БЫЛО 11 ПОЛЕЙ: double **ReMesh(double *pFields[11], int nSize, double **Sqm, double **FrFields[4], double **Term, double **Fi, bool bFr);}}
+\DoxyCodeLine{158     \textcolor{keywordtype}{void} InitFrontInf(\textcolor{keywordtype}{int} *CntFlags, \textcolor{keywordtype}{int} *RCnt, \textcolor{keywordtype}{int} nPFrNum, \mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}} *FrInf);}
+\DoxyCodeLine{159     \textcolor{keywordtype}{void} ExportBillet(CFile \&File, \textcolor{keywordtype}{bool} bTurn, \textcolor{keywordtype}{int} nSect);}
+\DoxyCodeLine{160     \textcolor{keywordtype}{void} ImportBillet(CFile \&File);}
+\DoxyCodeLine{161     \textcolor{keywordtype}{void} ExportCountur(CFile \&File, BOOL bTurn);}
+\DoxyCodeLine{162     \textcolor{keywordtype}{void} ImportCountur(CFile \&File);}
+\DoxyCodeLine{163 \};}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_BILLET\_H\_\_FFDDB467\_14F5\_401D\_90C2\_8247BDAF80F7\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

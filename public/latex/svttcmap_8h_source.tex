@@ -1,0 +1,83 @@
+\hypertarget{svttcmap_8h_source}{}\doxysection{svttcmap.\+h}
+\label{svttcmap_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svttcmap.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svttcmap.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  svsttcmap.h                                                            */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType TrueType/sfnt cmap extra information service.           */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003 by                                                      */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Masatake YAMATO, Redhat K.K.                                           */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  Copyright 2003 by                                                      */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{17 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{18 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{19 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{comment}{/* Development of this service is support of }}
+\DoxyCodeLine{22 \textcolor{comment}{   Information-\/technology Promotion Agency, Japan. */}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef \_\_SVTTCMAP\_H\_\_}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define \_\_SVTTCMAP\_H\_\_ }}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include FT\_INTERNAL\_SERVICE\_H}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include FT\_TRUETYPE\_TABLES\_H}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define FT\_SERVICE\_ID\_TT\_CMAP "{}tt-\/cmaps"{}}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*    TT\_CMapInfo                                                        */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    A structure used to store TrueType/sfnt specific cmap information  */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*    which is not covered by the generic @FT\_CharMap structure.  This   */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*    structure can be accessed with the @FT\_Get\_TT\_CMap\_Info function.  */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{47   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    language ::                                                        */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*      The language ID used in Mac fonts.  Definitions of values are in */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*      freetype/ttnameid.h.                                             */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{52   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t_t___c_map_info__}{TT\_CMapInfo\_}}}
+\DoxyCodeLine{53   \{}
+\DoxyCodeLine{54     FT\_ULong language;}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   \} \mbox{\hyperlink{struct_t_t___c_map_info__}{TT\_CMapInfo}};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{60   (*TT\_CMap\_Info\_GetFunc)( \mbox{\hyperlink{struct_f_t___char_map_rec__}{FT\_CharMap}}    charmap,}
+\DoxyCodeLine{61                            \mbox{\hyperlink{struct_t_t___c_map_info__}{TT\_CMapInfo}}  *cmap\_info );}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   FT\_DEFINE\_SERVICE( TTCMaps )}
+\DoxyCodeLine{65   \{}
+\DoxyCodeLine{66     TT\_CMap\_Info\_GetFunc  get\_cmap\_info;}
+\DoxyCodeLine{67   \}; }
+\DoxyCodeLine{68   }
+\DoxyCodeLine{69   \textcolor{comment}{/* */}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 FT\_END\_HEADER}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_SVTTCMAP\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

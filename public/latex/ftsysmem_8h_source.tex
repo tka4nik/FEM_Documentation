@@ -1,0 +1,208 @@
+\hypertarget{ftsysmem_8h_source}{}\doxysection{ftsysmem.\+h}
+\label{ftsysmem_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftsysmem.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftsysmem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_FT\_SYSTEM\_MEMORY\_H\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_FT\_SYSTEM\_MEMORY\_H\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{comment}{ /************************************************************************/}}
+\DoxyCodeLine{9 \textcolor{comment}{ /************************************************************************/}}
+\DoxyCodeLine{10 \textcolor{comment}{ /*****                                                              *****/}}
+\DoxyCodeLine{11 \textcolor{comment}{ /*****    NOTE: THE CONTENT OF THIS FILE IS NOT CURRENTLY USED      *****/}}
+\DoxyCodeLine{12 \textcolor{comment}{ /*****          IN NORMAL BUILDS.  CONSIDER IT EXPERIMENTAL.        *****/}}
+\DoxyCodeLine{13 \textcolor{comment}{ /*****                                                              *****/}}
+\DoxyCodeLine{14 \textcolor{comment}{ /************************************************************************/}}
+\DoxyCodeLine{15 \textcolor{comment}{ /************************************************************************/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{19 \textcolor{comment}{  *}}
+\DoxyCodeLine{20 \textcolor{comment}{  * @type: FT\_Memory}}
+\DoxyCodeLine{21 \textcolor{comment}{  *}}
+\DoxyCodeLine{22 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{23 \textcolor{comment}{  *   opaque handle to a memory manager handle. Note that since FreeType}}
+\DoxyCodeLine{24 \textcolor{comment}{  *   2.2, the memory manager structure FT\_MemoryRec is hidden to client}}
+\DoxyCodeLine{25 \textcolor{comment}{  *   applications.}}
+\DoxyCodeLine{26 \textcolor{comment}{  *}}
+\DoxyCodeLine{27 \textcolor{comment}{  *   however, you can still define custom allocators easily using the}}
+\DoxyCodeLine{28 \textcolor{comment}{  *   @ft\_memory\_new API}}
+\DoxyCodeLine{29 \textcolor{comment}{  */}}
+\DoxyCodeLine{30   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___memory_rec__}{FT\_MemoryRec\_}}*   FT\_Memory;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{34 \textcolor{comment}{  *}}
+\DoxyCodeLine{35 \textcolor{comment}{  * @functype: FT\_Memory\_AllocFunc}}
+\DoxyCodeLine{36 \textcolor{comment}{  *}}
+\DoxyCodeLine{37 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{38 \textcolor{comment}{  *   a function used to allocate a block of memory.}}
+\DoxyCodeLine{39 \textcolor{comment}{  *}}
+\DoxyCodeLine{40 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{41 \textcolor{comment}{  *   size     :: size of blocks in bytes. Always > 0 !!}}
+\DoxyCodeLine{42 \textcolor{comment}{  *   mem\_data :: memory-\/manager specific optional argument}}
+\DoxyCodeLine{43 \textcolor{comment}{  *               (see @ft\_memory\_new)}}
+\DoxyCodeLine{44 \textcolor{comment}{  *}}
+\DoxyCodeLine{45 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{46 \textcolor{comment}{  *   address of new block. NULL in case of memory exhaustion}}
+\DoxyCodeLine{47 \textcolor{comment}{  */}}
+\DoxyCodeLine{48   \textcolor{keyword}{typedef} FT\_Pointer  (*FT\_Memory\_AllocFunc)( FT\_ULong   size,}
+\DoxyCodeLine{49                                               FT\_Pointer mem\_data );}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{53 \textcolor{comment}{  *}}
+\DoxyCodeLine{54 \textcolor{comment}{  * @functype: FT\_Memory\_FreeFunc}}
+\DoxyCodeLine{55 \textcolor{comment}{  *}}
+\DoxyCodeLine{56 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{57 \textcolor{comment}{  *   a function used to release a block of memory created through}}
+\DoxyCodeLine{58 \textcolor{comment}{  *   @FT\_Memory\_AllocFunc or @FT\_Memory\_ReallocFunc}}
+\DoxyCodeLine{59 \textcolor{comment}{  *}}
+\DoxyCodeLine{60 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{61 \textcolor{comment}{  *   block    :: address of target memory block. cannot be NULL !!}}
+\DoxyCodeLine{62 \textcolor{comment}{  *   mem\_data :: memory-\/manager specific optional argument}}
+\DoxyCodeLine{63 \textcolor{comment}{  *               (see @ft\_memory\_new)}}
+\DoxyCodeLine{64 \textcolor{comment}{  */}}
+\DoxyCodeLine{65   \textcolor{keyword}{typedef} void        (*FT\_Memory\_FreeFunc) ( FT\_Pointer  block,}
+\DoxyCodeLine{66                                               FT\_Pointer  mem\_data );}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{70 \textcolor{comment}{  *}}
+\DoxyCodeLine{71 \textcolor{comment}{  * @functype: FT\_Memory\_ReallocFunc}}
+\DoxyCodeLine{72 \textcolor{comment}{  *}}
+\DoxyCodeLine{73 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{74 \textcolor{comment}{  *   a function used to reallocate a memory block.}}
+\DoxyCodeLine{75 \textcolor{comment}{  *}}
+\DoxyCodeLine{76 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{77 \textcolor{comment}{  *   block    :: address of target memory block. cannot be NULL !!}}
+\DoxyCodeLine{78 \textcolor{comment}{  *   new\_size :: new requested size in bytes}}
+\DoxyCodeLine{79 \textcolor{comment}{  *   cur\_size :: current block size in bytes}}
+\DoxyCodeLine{80 \textcolor{comment}{  *   mem\_data :: memory-\/manager specific optional argument}}
+\DoxyCodeLine{81 \textcolor{comment}{  *               (see @ft\_memory\_new)}}
+\DoxyCodeLine{82 \textcolor{comment}{  */}}
+\DoxyCodeLine{83   \textcolor{keyword}{typedef} FT\_Pointer  (*FT\_Memory\_ReallocFunc)( FT\_Pointer   block,}
+\DoxyCodeLine{84                                                 FT\_ULong     new\_size,}
+\DoxyCodeLine{85                                                 FT\_ULong     cur\_size,}
+\DoxyCodeLine{86                                                 FT\_Pointer   mem\_data );}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{90 \textcolor{comment}{  *}}
+\DoxyCodeLine{91 \textcolor{comment}{  * @functype: FT\_Memory\_CreateFunc}}
+\DoxyCodeLine{92 \textcolor{comment}{  *}}
+\DoxyCodeLine{93 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{94 \textcolor{comment}{  *   a function used to create a @FT\_Memory object to model a}}
+\DoxyCodeLine{95 \textcolor{comment}{  *   memory manager}}
+\DoxyCodeLine{96 \textcolor{comment}{  *}}
+\DoxyCodeLine{97 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{98 \textcolor{comment}{  *   size      :: size of memory manager structure in bytes}}
+\DoxyCodeLine{99 \textcolor{comment}{  *   init\_data :: optional initialisation argument}}
+\DoxyCodeLine{100 \textcolor{comment}{  *}}
+\DoxyCodeLine{101 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{102 \textcolor{comment}{  *   amem\_data :: memory-\/manager specific argument to block management}}
+\DoxyCodeLine{103 \textcolor{comment}{  *                routines.}}
+\DoxyCodeLine{104 \textcolor{comment}{  *}}
+\DoxyCodeLine{105 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{106 \textcolor{comment}{  *   handle to new memory manager object. NULL in case of failure}}
+\DoxyCodeLine{107 \textcolor{comment}{  */}}
+\DoxyCodeLine{108   \textcolor{keyword}{typedef} FT\_Pointer  (*FT\_Memory\_CreateFunc)( FT\_UInt     size,}
+\DoxyCodeLine{109                                                FT\_Pointer  init\_data,}
+\DoxyCodeLine{110                                                FT\_Pointer *amem\_data );}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{114 \textcolor{comment}{  *}}
+\DoxyCodeLine{115 \textcolor{comment}{  * @functype: FT\_Memory\_DestroyFunc}}
+\DoxyCodeLine{116 \textcolor{comment}{  *}}
+\DoxyCodeLine{117 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{118 \textcolor{comment}{  *   a function used to destroy a given @FT\_Memory manager}}
+\DoxyCodeLine{119 \textcolor{comment}{  *}}
+\DoxyCodeLine{120 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{121 \textcolor{comment}{  *   memory   :: target memory manager handle}}
+\DoxyCodeLine{122 \textcolor{comment}{  *   mem\_data :: option manager-\/specific argument}}
+\DoxyCodeLine{123 \textcolor{comment}{  */}}
+\DoxyCodeLine{124   \textcolor{keyword}{typedef} void        (*FT\_Memory\_DestroyFunc)( FT\_Memory  memory,}
+\DoxyCodeLine{125                                                 FT\_Pointer mem\_data );}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{129 \textcolor{comment}{  *}}
+\DoxyCodeLine{130 \textcolor{comment}{  * @struct: FT\_Memory\_FuncsRec}}
+\DoxyCodeLine{131 \textcolor{comment}{  *}}
+\DoxyCodeLine{132 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{133 \textcolor{comment}{  *   a function used to hold all methods of a given memory manager}}
+\DoxyCodeLine{134 \textcolor{comment}{  *   implementation.}}
+\DoxyCodeLine{135 \textcolor{comment}{  *}}
+\DoxyCodeLine{136 \textcolor{comment}{  * @fields:}}
+\DoxyCodeLine{137 \textcolor{comment}{  *   mem\_alloc   :: block allocation routine}}
+\DoxyCodeLine{138 \textcolor{comment}{  *   mem\_free    :: block release routine}}
+\DoxyCodeLine{139 \textcolor{comment}{  *   mem\_realloc :: block re-\/allocation routine}}
+\DoxyCodeLine{140 \textcolor{comment}{  *   mem\_create  :: manager creation routine}}
+\DoxyCodeLine{141 \textcolor{comment}{  *   mem\_destroy :: manager destruction routine}}
+\DoxyCodeLine{142 \textcolor{comment}{  */}}
+\DoxyCodeLine{143   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___memory___funcs_rec__}{FT\_Memory\_FuncsRec\_}}}
+\DoxyCodeLine{144   \{}
+\DoxyCodeLine{145     FT\_Memory\_AllocFunc     mem\_alloc;}
+\DoxyCodeLine{146     FT\_Memory\_FreeFunc      mem\_free;}
+\DoxyCodeLine{147     FT\_Memory\_ReallocFunc   mem\_realloc;}
+\DoxyCodeLine{148     FT\_Memory\_CreateFunc    mem\_create;}
+\DoxyCodeLine{149     FT\_Memory\_DestroyFunc   mem\_destroy;}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151   \} \mbox{\hyperlink{struct_f_t___memory___funcs_rec__}{FT\_Memory\_FuncsRec}}, *\mbox{\hyperlink{struct_f_t___memory___funcs_rec__}{FT\_Memory\_Funcs}};}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{155 \textcolor{comment}{  *}}
+\DoxyCodeLine{156 \textcolor{comment}{  * @type: FT\_Memory\_Funcs}}
+\DoxyCodeLine{157 \textcolor{comment}{  *}}
+\DoxyCodeLine{158 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{159 \textcolor{comment}{  *   a pointer to a constant @FT\_Memory\_FuncsRec structure used to}}
+\DoxyCodeLine{160 \textcolor{comment}{  *   describe a given memory manager implementation.}}
+\DoxyCodeLine{161 \textcolor{comment}{  */}}
+\DoxyCodeLine{162   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___memory___funcs_rec__}{FT\_Memory\_FuncsRec}}*  \mbox{\hyperlink{struct_f_t___memory___funcs_rec__}{FT\_Memory\_Funcs}};}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{166 \textcolor{comment}{  *}}
+\DoxyCodeLine{167 \textcolor{comment}{  * @function: ft\_memory\_new}}
+\DoxyCodeLine{168 \textcolor{comment}{  *}}
+\DoxyCodeLine{169 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{170 \textcolor{comment}{  *   create a new memory manager, given a set of memory methods}}
+\DoxyCodeLine{171 \textcolor{comment}{  *}}
+\DoxyCodeLine{172 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{173 \textcolor{comment}{  *   mem\_funcs     :: handle to memory manager implementation descriptor}}
+\DoxyCodeLine{174 \textcolor{comment}{  *   mem\_init\_data :: optional initialisation argument, passed to}}
+\DoxyCodeLine{175 \textcolor{comment}{  *                    @FT\_Memory\_CreateFunc}}
+\DoxyCodeLine{176 \textcolor{comment}{  *}}
+\DoxyCodeLine{177 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{178 \textcolor{comment}{  *   new memory manager handle. NULL in case of failure}}
+\DoxyCodeLine{179 \textcolor{comment}{  */}}
+\DoxyCodeLine{180   FT\_BASE( FT\_Memory )}
+\DoxyCodeLine{181   ft\_memory\_new( \mbox{\hyperlink{struct_f_t___memory___funcs_rec__}{FT\_Memory\_Funcs}}  mem\_funcs,}
+\DoxyCodeLine{182                  FT\_Pointer       mem\_init\_data );}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185  \textcolor{comment}{/*@**********************************************************************}}
+\DoxyCodeLine{186 \textcolor{comment}{  *}}
+\DoxyCodeLine{187 \textcolor{comment}{  * @function: ft\_memory\_destroy}}
+\DoxyCodeLine{188 \textcolor{comment}{  *}}
+\DoxyCodeLine{189 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{190 \textcolor{comment}{  *   destroy a given memory manager}}
+\DoxyCodeLine{191 \textcolor{comment}{  *}}
+\DoxyCodeLine{192 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{193 \textcolor{comment}{  *   memory :: handle to target memory manager}}
+\DoxyCodeLine{194 \textcolor{comment}{  */}}
+\DoxyCodeLine{195   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{196   ft\_memory\_destroy( FT\_Memory  memory );}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{comment}{/* */}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 FT\_END\_HEADER}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FT\_SYSTEM\_MEMORY\_H\_\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

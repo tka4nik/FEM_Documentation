@@ -1,0 +1,121 @@
+\hypertarget{_experiment_8h_source}{}\doxysection{Experiment.\+h}
+\label{_experiment_8h_source}\index{831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/Experiment.h@{831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/Experiment.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }Exp \{}
+\DoxyCodeLine{8     \textcolor{keyword}{class }Experiment;}
+\DoxyCodeLine{9     \textcolor{keyword}{class }ExperimentContainer;}
+\DoxyCodeLine{10 \}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}CoefK.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}../Project/Material.h"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{comment}{// C:\(\backslash\)Users\(\backslash\)artgu\(\backslash\)Documents\(\backslash\)an\_rev(pipe)}}
+\DoxyCodeLine{16 \textcolor{keyword}{namespace }Exp \{}
+\DoxyCodeLine{17     \textcolor{keyword}{enum class} constraints \{ min, max, start, end \};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{keyword}{class }\mbox{\hyperlink{class_exp_1_1_experiment}{Experiment}} \{}
+\DoxyCodeLine{20     \textcolor{keyword}{public}:}
+\DoxyCodeLine{21         \textcolor{keyword}{using }dataframe\_t = std::map<std::string, std::vector<double>>;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23         \textcolor{comment}{//переделал}}
+\DoxyCodeLine{24         \textcolor{comment}{/*Experiment(const Experiment\& experiment, const CoefK\& coef\_k): Experiment(experiment)\{}}
+\DoxyCodeLine{25 \textcolor{comment}{            if (m\_table["{}Stress"{}].size() != coef\_k.size()) throw std::runtime\_error("{}Sizes are not equal."{});}}
+\DoxyCodeLine{26 \textcolor{comment}{            auto it\_stress = m\_table["{}Stress"{}].begin();}}
+\DoxyCodeLine{27 \textcolor{comment}{            auto it\_coefk = coef\_k.begin();}}
+\DoxyCodeLine{28 \textcolor{comment}{            for (; it\_coefk != coef\_k.end(); ++it\_stress, ++it\_coefk)}}
+\DoxyCodeLine{29 \textcolor{comment}{                *it\_stress *= *it\_coefk;}}
+\DoxyCodeLine{30 \textcolor{comment}{        \}*/}}
+\DoxyCodeLine{31         \mbox{\hyperlink{class_exp_1_1_experiment}{Experiment}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_exp_1_1_experiment}{Experiment}}\& experiment, \textcolor{keyword}{const} \mbox{\hyperlink{class_iter_1_1_coef_k}{Iter::CoefK}}\& coef\_k);}
+\DoxyCodeLine{32         \mbox{\hyperlink{class_exp_1_1_experiment}{Experiment}}(\textcolor{keyword}{const} std::string\& file\_name);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34         std::vector<double>\& operator [](\textcolor{keyword}{const} std::string\& field\_name);}
+\DoxyCodeLine{35         \textcolor{keyword}{const} std::vector<double>\& operator [](\textcolor{keyword}{const} std::string\& field\_name) \textcolor{keyword}{const};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37         \textcolor{keywordtype}{size\_t} size()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_table.at(\textcolor{stringliteral}{"{}Time"{}}).size(); \} }
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39         std::vector<double> get\_values\_interp(\textcolor{keyword}{const} std::vector<double>\& strain\_steps, \textcolor{keyword}{const} std::string\& field\_name) \textcolor{keyword}{const};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41         \textcolor{keywordtype}{void} calculate\_strain\_rate\_changes(\textcolor{keyword}{const} std::string\& field\_name = \textcolor{stringliteral}{"{}Strain\_rate"{}}, \textcolor{keywordtype}{size\_t} drop\_start = 1, \textcolor{keywordtype}{size\_t} drop\_end = 0,}
+\DoxyCodeLine{42             \textcolor{keywordtype}{size\_t} step = 1, \textcolor{keywordtype}{double} proportion = 0.000001);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44         \textcolor{keywordtype}{bool} has\_jumps()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_strain\_rate\_changes.size() > 1; \};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46         \textcolor{keywordtype}{void} cut\_values(\textcolor{keyword}{const} std::string\& field\_name, constraints cons, \textcolor{keywordtype}{double} value);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48         \textcolor{keywordtype}{void} shift\_values(\textcolor{keyword}{const} std::string\& field\_name, \textcolor{keywordtype}{double} value);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50         \textcolor{keywordtype}{void} clear\_trash(\textcolor{keyword}{const} std::string\& field\_name = \textcolor{stringliteral}{"{}Stress"{}}, \textcolor{keywordtype}{size\_t} drop\_start = 1, \textcolor{keywordtype}{size\_t} drop\_end = 0,}
+\DoxyCodeLine{51             \textcolor{keywordtype}{double} proportion = 0.01, \textcolor{keywordtype}{size\_t} repeat = 1);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53         \textcolor{keywordtype}{double} get\_strain\_rate\_first() \textcolor{keyword}{const};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55         std::string get\_name()\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{56             \textcolor{keywordflow}{return} m\_name;}
+\DoxyCodeLine{57         \}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{keyword}{private}:}
+\DoxyCodeLine{60         std::vector<size\_t> find\_jumps\_ids(\textcolor{keyword}{const} std::string\& field\_name = \textcolor{stringliteral}{"{}Strain\_rate"{}}, \textcolor{keywordtype}{size\_t} drop\_start = 1,}
+\DoxyCodeLine{61             \textcolor{keywordtype}{size\_t} drop\_end = 0, \textcolor{keywordtype}{size\_t} step = 1, \textcolor{keywordtype}{double} proportion = 0.01) \textcolor{keyword}{const};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63         \textcolor{comment}{//считывание файла}}
+\DoxyCodeLine{64         \textcolor{keywordtype}{void} load\_exp(\textcolor{keyword}{const} std::string\& filename);}
+\DoxyCodeLine{65         \textcolor{comment}{//добавление подсчитанного времени на основе считанных файлов}}
+\DoxyCodeLine{66         \textcolor{keywordtype}{void} add\_real\_time();}
+\DoxyCodeLine{67         \textcolor{comment}{//удаление строк по индексам}}
+\DoxyCodeLine{68         \textcolor{keywordtype}{void} delete\_rows(\textcolor{keyword}{const} std::vector<size\_t>\& positions);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keyword}{private}:}
+\DoxyCodeLine{71         std::string m\_name;}
+\DoxyCodeLine{72         dataframe\_t m\_table;}
+\DoxyCodeLine{73         std::map<size\_t, double> m\_strain\_rate\_changes;}
+\DoxyCodeLine{74     \};}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{keyword}{class }\mbox{\hyperlink{class_exp_1_1_experiment_container}{ExperimentContainer}} \{}
+\DoxyCodeLine{77     \textcolor{keyword}{public}:}
+\DoxyCodeLine{78         \mbox{\hyperlink{class_exp_1_1_experiment_container}{ExperimentContainer}}(\textcolor{keyword}{const} std::string\& path);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80         \mbox{\hyperlink{class_exp_1_1_experiment_container}{ExperimentContainer}}(std::vector<Experiment>\&\& experiments);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82         \textcolor{comment}{/*ExperimentContainer(const ExperimentContainer\& experiments, const CoefKContainer\& coefk\_container) \{}}
+\DoxyCodeLine{83 \textcolor{comment}{            if (experiments.size() != coefk\_container.size()) throw std::runtime\_error("{}Sizes are not equal."{});}}
+\DoxyCodeLine{84 \textcolor{comment}{            auto it\_exp = experiments.begin();}}
+\DoxyCodeLine{85 \textcolor{comment}{            auto it\_coefk = coefk\_container.begin(); // TODO begin end}}
+\DoxyCodeLine{86 \textcolor{comment}{            for (; it\_exp != experiments.end(); ++it\_exp, ++it\_coefk) \{}}
+\DoxyCodeLine{87 \textcolor{comment}{                m\_container.push\_back(Experiment(*it\_exp, *it\_coefk));}}
+\DoxyCodeLine{88 \textcolor{comment}{            \}}}
+\DoxyCodeLine{89 \textcolor{comment}{        \}*/}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91         \mbox{\hyperlink{class_exp_1_1_experiment_container}{ExperimentContainer}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_exp_1_1_experiment_container}{ExperimentContainer}}\& experiments, \textcolor{keyword}{const} \mbox{\hyperlink{class_iter_1_1_coef_k_container}{Iter::CoefKContainer}}\& coefk\_container);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93         \textcolor{keywordtype}{void} cut\_values(\textcolor{keyword}{const} std::string\& field\_name, constraints cons, \textcolor{keywordtype}{double} value);}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95         \textcolor{keywordtype}{void} shift\_values(\textcolor{keyword}{const} std::string\& field\_name, \textcolor{keywordtype}{double} value);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97         \textcolor{keywordtype}{void} clear\_trash(\textcolor{keyword}{const} std::string\& field\_name = \textcolor{stringliteral}{"{}Stress"{}}, \textcolor{keywordtype}{size\_t} drop\_start = 1, \textcolor{keywordtype}{size\_t} drop\_end = 0,}
+\DoxyCodeLine{98             \textcolor{keywordtype}{double} proportion = 0.01, \textcolor{keywordtype}{size\_t} repeat = 1);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100         \textcolor{keywordtype}{double} find\_time\_of\_min\_last\_strain() \textcolor{keyword}{const};}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102         std::vector<Experiment>::iterator begin() \{ \textcolor{keywordflow}{return} m\_container.begin(); \}}
+\DoxyCodeLine{103         std::vector<Experiment>::const\_iterator begin()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_container.cbegin(); \}}
+\DoxyCodeLine{104         std::vector<Experiment>::iterator end() \{ \textcolor{keywordflow}{return} m\_container.end(); \}}
+\DoxyCodeLine{105         std::vector<Experiment>::const\_iterator end()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_container.cend(); \}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107         \textcolor{keywordtype}{size\_t} size()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_container.size(); \};}
+\DoxyCodeLine{108     \textcolor{keyword}{private}:}
+\DoxyCodeLine{109         std::vector<Experiment> m\_container;}
+\DoxyCodeLine{110     \};}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112     std::pair<ExperimentContainer, ExperimentContainer> const\_jumps\_experiments(\mbox{\hyperlink{class_exp_1_1_experiment_container}{ExperimentContainer}}\& container);}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114     \mbox{\hyperlink{class_proj_1_1_backofen}{Proj::Backofen}} backofen\_from\_experiment(\textcolor{keyword}{const} \mbox{\hyperlink{class_exp_1_1_experiment_container}{ExperimentContainer}}\& experiments);}
+\DoxyCodeLine{115 \}}
+
+\end{DoxyCode}

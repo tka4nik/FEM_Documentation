@@ -1,0 +1,456 @@
+\hypertarget{class_model}{}\doxysection{Model Class Reference}
+\label{class_model}\index{Model@{Model}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68}{Sample\+Fields}} \{ \newline
+\mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68a02129bb861061d1a052c592e2dc6b383}{X}}
+, \mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68a57cec4137b614c87cb4e24a3d003a3e0}{Y}}
+, \mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68a6575d9a58f0b41a108f2d6a565a0650d}{ORDER}}
+, \mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68a21c2e59531c8710156d34a3c30ac81d5}{Z}}
+, \newline
+\mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68a1e6fc34ee777e14f7e4269d622adeb9e}{EUM}}
+, \mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68ad1d1a12c39f739401fca735ec0e70aca}{ECP}}
+, {\bfseries EXX}
+, {\bfseries EYY}
+, \newline
+{\bfseries EXY}
+, {\bfseries EXZ}
+, {\bfseries EYZ}
+, \mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68a42e570a2d526465cf9e75eba5386089d}{EZZ}}
+, \newline
+\mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68a42b7cea9ef7af732002557834c6d6ef6}{DUM}}
+, \mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68ac90f363de8c9e315b68a63e7f1c224f6}{SOCT}}
+, {\bfseries DXX}
+, {\bfseries DYY}
+, \newline
+{\bfseries DXY}
+, {\bfseries DXZ}
+, {\bfseries DYZ}
+, \mbox{\hyperlink{class_model_abf72317335c4b45294951c9d424ede68a16c6d3233ca19495d2a50dd911d6e238}{DZZ}}
+ \}
+\item 
+enum class \mbox{\hyperlink{class_model_a826956d6fbe9cc9d3ce40e3977af0664}{Instrument\+Fields}} \{ \mbox{\hyperlink{class_model_a826956d6fbe9cc9d3ce40e3977af0664a1b8a8605d2ff5670a215e55c6645e0d9}{OFFSET}}
+, \mbox{\hyperlink{class_model_a826956d6fbe9cc9d3ce40e3977af0664a48359f9afd830d28b1152d071fb09147}{PROFILE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_model_a02d5e1b3c0845c9965df08be4c5828d3}\label{class_model_a02d5e1b3c0845c9965df08be4c5828d3}} 
+{\bfseries Model} (const \mbox{\hyperlink{class_model}{Model}} \&)=delete
+\item 
+\mbox{\Hypertarget{class_model_a430d39f2cefc2b4e23456728f9361b33}\label{class_model_a430d39f2cefc2b4e23456728f9361b33}} 
+\mbox{\hyperlink{class_model}{Model}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_model}{Model}} \&)=delete
+\item 
+\mbox{\Hypertarget{class_model_aa1e457d6313bdbb8a1a77c54d4721254}\label{class_model_aa1e457d6313bdbb8a1a77c54d4721254}} 
+bool {\bfseries set\+\_\+init\+\_\+data} (std\+::ifstream \&sample\+\_\+geom, std\+::ifstream \&instrument\+\_\+geom)
+\begin{DoxyCompactList}\small\item\em установка начальных условий из бинарных файлов \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_model_aef250ac1663bbe33306347e68e749e29}{set\+\_\+init\+\_\+data}} (const char $\ast$sample, size\+\_\+t sample\+\_\+size, const char $\ast$instrument, size\+\_\+t instrument\+\_\+size)
+\begin{DoxyCompactList}\small\item\em установка начальных условий по указателю \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_model_ae39d97578351a1b15de28847e6877386}{validation}} (const \mbox{\hyperlink{class_sample}{Sample}} \&sample, const \mbox{\hyperlink{class_instrument}{Instrument}} \&instrument)
+\begin{DoxyCompactList}\small\item\em проверяет корректность сочетания sample и instrument \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_afef7dddd9ec39ec0ca732d222f9e42cf}\label{class_model_afef7dddd9ec39ec0ca732d222f9e42cf}} 
+void {\bfseries preset} (double)
+\item 
+bool \mbox{\hyperlink{class_model_ac46eba535f7df9746d9317070d7db380}{run}} (bool($\ast$call\+\_\+back\+\_\+on\+\_\+step)())
+\begin{DoxyCompactList}\small\item\em Выполнить полностью моделирование \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_model_af367316585b7415e30b07003e1556c36}{compute\+\_\+step\+\_\+\+FEM}} ()
+\begin{DoxyCompactList}\small\item\em Запуск расчета МКЭ для одного шага по времени \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_ad2b039160b81c004e1ff3702c2d20c9c}\label{class_model_ad2b039160b81c004e1ff3702c2d20c9c}} 
+double {\bfseries Calc\+Fem} (bool b\+Adhesion)
+\begin{DoxyCompactList}\small\item\em реализация метода секущих модулей (для нахождения скорости перемещений узлов) формирование матрицы жесткости, решение кинематических уравнений с учетом постоянности скоростей деформации выполняется несколько раз, пока не будет достигнута достаточная точность \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_model_aeef061036def86fd14ae3e1bf59b9db4}{remesh}} (double mesh\+\_\+edge\+\_\+length\+\_\+param)
+\begin{DoxyCompactList}\small\item\em Перестроить сетку \end{DoxyCompactList}\item 
+Error \mbox{\hyperlink{class_model_ae1899d9a8894b5eebecd76f63428b6ea}{get\+\_\+error}} () const noexcept
+\begin{DoxyCompactList}\small\item\em возвращает текущий статус ошибки \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_a3b4c9535265e9232c90d15964d32eda6}\label{class_model_a3b4c9535265e9232c90d15964d32eda6}} 
+bool {\bfseries set\+\_\+task} (double offset, double dtime)
+\begin{DoxyCompactList}\small\item\em Установить параметры для конкретного шага моделирования \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_ab67fb711da8451a0fd1e2d51b7440480}\label{class_model_ab67fb711da8451a0fd1e2d51b7440480}} 
+void {\bfseries set\+\_\+material} (double m\+\_\+m, double m\+\_\+K)
+\begin{DoxyCompactList}\small\item\em Установить параметры материала \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_ad9233e8a27afd638bd52c94254702f3e}\label{class_model_ad9233e8a27afd638bd52c94254702f3e}} 
+const char $\ast$ {\bfseries get\+\_\+data} () const noexcept
+\begin{DoxyCompactList}\small\item\em Возвращает все поля модели в формате JSON. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_model_a46f1464c4fba49666fbebf4f37ac25ee}{get\+\_\+field\+\_\+sample}} (unsigned int id, void $\ast$\&ptr\+\_\+field, size\+\_\+t \&size)
+\begin{DoxyCompactList}\small\item\em поля образца \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_afc2221e1846c595b39112a7dc18d5bf5}\label{class_model_afc2221e1846c595b39112a7dc18d5bf5}} 
+void {\bfseries get\+\_\+field\+\_\+instrument} (unsigned int id, void $\ast$\&ptr\+\_\+field, size\+\_\+t \&size)
+\begin{DoxyCompactList}\small\item\em получить данные об инструменте в зависимости от поля id получить данные о соответствующих полях и положить их в void$\ast$\& ptr\+\_\+field а количество данных положить в size\+\_\+t\& size \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_ae04d89c41b2bce3d72df058267bff4f7}\label{class_model_ae04d89c41b2bce3d72df058267bff4f7}} 
+void {\bfseries Init\+Touch\+Check} ()
+\item 
+\mbox{\Hypertarget{class_model_a391bb7297922b5e297aa949e8954b7eb}\label{class_model_a391bb7297922b5e297aa949e8954b7eb}} 
+double {\bfseries GetS} (int e, double dT)
+\begin{DoxyCompactList}\small\item\em возвращает площадь одного элемента \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_model_aac8cab3caa5f6a155b3a7e54b4c3cf2a}{Re\+Load}} (int n\+Step)
+\begin{DoxyCompactList}\small\item\em загрузить данные об инструменте на шаге n\+Step \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_model_a87755afe60ae9575203fc73b8a4c0263}{GetF}} (double t, int n)
+\item 
+double \mbox{\hyperlink{class_model_af43baf42c66f9eeb17a9df710212822e}{PtoF}} (double P, double d\+Strain)
+\item 
+\mbox{\Hypertarget{class_model_ad297ec88155f3c7d549315b9b8b7bb9d}\label{class_model_ad297ec88155f3c7d549315b9b8b7bb9d}} 
+void {\bfseries Init\+Arrays} ()
+\begin{DoxyCompactList}\small\item\em инициализация массивов в начале каждого шага моделирования \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_a3cbc0fb70fa96697c2e8c0fab0454a1e}\label{class_model_a3cbc0fb70fa96697c2e8c0fab0454a1e}} 
+void {\bfseries Init\+ISL} ()
+\begin{DoxyCompactList}\small\item\em установка ширины ленты матрицы жесткости (вызывается внутри Init\+Arrays ) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_model_a69f117d62448925eea86af55a8848c5c}{Init\+T8}} ()
+\item 
+\mbox{\Hypertarget{class_model_a648af8ed0abd73deb0c58afd2364421d}\label{class_model_a648af8ed0abd73deb0c58afd2364421d}} 
+void {\bfseries Check\+Mu0} (double Max\+Mu)
+\begin{DoxyCompactList}\small\item\em расчет коэффициента объемного сжатия на основе коэффициента трения \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_a2a23bd13d603492b54fa8c1843e50a03}\label{class_model_a2a23bd13d603492b54fa8c1843e50a03}} 
+void {\bfseries SetdT} (double dT)
+\begin{DoxyCompactList}\small\item\em установка приращения времени за шаг моделирования \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_model_a0e858e81e5f6f82794a67d9dd2d9d6cc}{Is\+Cross\+Stamp}} ()
+\begin{DoxyCompactList}\small\item\em Функция использует решение и текущие координаты для проверки пересечения штампа \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_model_a78bd4c4d42adda153c4d92cc24f39fc8}{Free\+Point}} (int cnt)
+\begin{DoxyCompactList}\small\item\em меняет статус точки на неконтактный \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_aa2ef6017761c2e00d2238b836263eb33}\label{class_model_aa2ef6017761c2e00d2238b836263eb33}} 
+double {\bfseries Get\+KK} (int e)
+\begin{DoxyCompactList}\small\item\em расчет коэффициента объемного сжатия \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_model_aa06576f804a65bbceb529d55ed3a3a28}{Effective}} (double ex, double ey, double exy, double ez, double exz=0, double eyz=0)
+\begin{DoxyCompactList}\small\item\em вспомогательная функция \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_model_a2ef3821ae07f1dcbc82f01860909dab9}{Tlevan}} (double sn, double sint, double tkf)
+\item 
+double \mbox{\hyperlink{class_model_a05007aa5f23fa0543154e5d1821fb636}{Get\+DIJK}} (int n\+Fr)
+\item 
+\mbox{\Hypertarget{class_model_aedabd56147a1910598c4717612a35833}\label{class_model_aedabd56147a1910598c4717612a35833}} 
+void {\bfseries Struz\+\_\+p} (bool b\+Exp, bool b\+Adhesion)
+\begin{DoxyCompactList}\small\item\em расчет напряжения на границах \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_a69f2727cebfcbea2345d0f0cff51b8bc}\label{class_model_a69f2727cebfcbea2345d0f0cff51b8bc}} 
+void {\bfseries F\+\_\+forma} (int e, int ijk\mbox{[}$\,$\mbox{]}, double a\mbox{[}$\,$\mbox{]}, double b\mbox{[}$\,$\mbox{]}, double c\mbox{[}$\,$\mbox{]}, double $\ast$xc, double $\ast$yc, double $\ast$sm)
+\begin{DoxyCompactList}\small\item\em получить информацию об узлах треугольника, его центре и площади \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_a12ab055225dff7f5f9f0de8f28676796}\label{class_model_a12ab055225dff7f5f9f0de8f28676796}} 
+void {\bfseries Calc\+Fields} (int n\+Mode)
+\begin{DoxyCompactList}\small\item\em расчет полей \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_ab7cebeb7601f0c0d381af404e084fa9a}\label{class_model_ab7cebeb7601f0c0d381af404e084fa9a}} 
+void {\bfseries Avar\+\_\+\+Multi} (double $\ast$Field, int N)
+\begin{DoxyCompactList}\small\item\em сглаживание гидростатического давления \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_model_ac14ac34bc9a7cc490cbe1c2f8f2dea48}{trapeze}} (int glubina, \mbox{\hyperlink{class_p_a_r_a_m_e_t_r_s__33}{PARAMETRS\+\_\+33}} par12)
+\begin{DoxyCompactList}\small\item\em реализация метода трапеций \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_af16dca28f6450f0825f6343b6cb1fe39}\label{class_model_af16dca28f6450f0825f6343b6cb1fe39}} 
+void {\bfseries Set\+Adhesion} (int cnt)
+\begin{DoxyCompactList}\small\item\em расчет скорости в случае прилипания \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_aaa247be197a0abc3539b284d69bf6818}\label{class_model_aaa247be197a0abc3539b284d69bf6818}} 
+void {\bfseries Set\+Sliding} (int cnt, bool b\+Friktion)
+\begin{DoxyCompactList}\small\item\em расчет скорости в случае скольжения \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_a9e8d9eba0cbd9448ff45dee06a79005b}\label{class_model_a9e8d9eba0cbd9448ff45dee06a79005b}} 
+bool {\bfseries Fr\+Sym} (int p)
+\begin{DoxyCompactList}\small\item\em ?? \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_a76a24605fc85ff1c5f3db6cca9e54fd8}\label{class_model_a76a24605fc85ff1c5f3db6cca9e54fd8}} 
+void {\bfseries Friction} (bool b\+Adhesion=false)
+\begin{DoxyCompactList}\small\item\em Трение (+ поворот системы координат) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_model_a86308bb7d69fb49c7572a3711582d9ff}{Matr\+\_\+p}} ()
+\item 
+\mbox{\Hypertarget{class_model_a64029485bb48e7de893a4cad8886a2b6}\label{class_model_a64029485bb48e7de893a4cad8886a2b6}} 
+void {\bfseries Tesbor} ()
+\begin{DoxyCompactList}\small\item\em кинематика \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_a33a8a38aff5137fd6f4c5d9db9a06834}\label{class_model_a33a8a38aff5137fd6f4c5d9db9a06834}} 
+void {\bfseries Gauss} (int nxy3, int isl)
+\begin{DoxyCompactList}\small\item\em Решение\+: m\+\_\+\+Akg$\ast$m\+\_\+C=m\+\_\+\+Pr. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_a47125900d168ac873a56c007afafbf87}\label{class_model_a47125900d168ac873a56c007afafbf87}} 
+void {\bfseries Restore} ()
+\begin{DoxyCompactList}\small\item\em Восстановление решения (обратный поворот) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_model_ad8b4b099b873beb00a26accaf05ea18a}\label{class_model_ad8b4b099b873beb00a26accaf05ea18a}} 
+void {\bfseries Calc\+Mu} ()
+\begin{DoxyCompactList}\small\item\em Расчёт Mu для полученной скорости деформации \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_model_a80d2430bf4c2c74741e5936a2c8e0e4d}\label{class_model_a80d2430bf4c2c74741e5936a2c8e0e4d}} 
+static \mbox{\hyperlink{class_model}{Model}} \& {\bfseries Instance} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_model_a826956d6fbe9cc9d3ce40e3977af0664}\label{class_model_a826956d6fbe9cc9d3ce40e3977af0664}} 
+\index{Model@{Model}!InstrumentFields@{InstrumentFields}}
+\index{InstrumentFields@{InstrumentFields}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{InstrumentFields}{InstrumentFields}}
+{\footnotesize\ttfamily enum class Model\+::\+Instrument\+Fields\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OFFSET@{OFFSET}!Model@{Model}}\index{Model@{Model}!OFFSET@{OFFSET}}}\mbox{\Hypertarget{class_model_a826956d6fbe9cc9d3ce40e3977af0664a1b8a8605d2ff5670a215e55c6645e0d9}\label{class_model_a826956d6fbe9cc9d3ce40e3977af0664a1b8a8605d2ff5670a215e55c6645e0d9}} 
+OFFSET&смещение \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PROFILE@{PROFILE}!Model@{Model}}\index{Model@{Model}!PROFILE@{PROFILE}}}\mbox{\Hypertarget{class_model_a826956d6fbe9cc9d3ce40e3977af0664a48359f9afd830d28b1152d071fb09147}\label{class_model_a826956d6fbe9cc9d3ce40e3977af0664a48359f9afd830d28b1152d071fb09147}} 
+PROFILE&положение \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68}\label{class_model_abf72317335c4b45294951c9d424ede68}} 
+\index{Model@{Model}!SampleFields@{SampleFields}}
+\index{SampleFields@{SampleFields}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{SampleFields}{SampleFields}}
+{\footnotesize\ttfamily enum class Model\+::\+Sample\+Fields\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{X@{X}!Model@{Model}}\index{Model@{Model}!X@{X}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68a02129bb861061d1a052c592e2dc6b383}\label{class_model_abf72317335c4b45294951c9d424ede68a02129bb861061d1a052c592e2dc6b383}} 
+X&Х-\/координата \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Y@{Y}!Model@{Model}}\index{Model@{Model}!Y@{Y}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68a57cec4137b614c87cb4e24a3d003a3e0}\label{class_model_abf72317335c4b45294951c9d424ede68a57cec4137b614c87cb4e24a3d003a3e0}} 
+Y&У-\/координата \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ORDER@{ORDER}!Model@{Model}}\index{Model@{Model}!ORDER@{ORDER}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68a6575d9a58f0b41a108f2d6a565a0650d}\label{class_model_abf72317335c4b45294951c9d424ede68a6575d9a58f0b41a108f2d6a565a0650d}} 
+ORDER&порядок \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Z@{Z}!Model@{Model}}\index{Model@{Model}!Z@{Z}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68a21c2e59531c8710156d34a3c30ac81d5}\label{class_model_abf72317335c4b45294951c9d424ede68a21c2e59531c8710156d34a3c30ac81d5}} 
+Z&Z-\/координата \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EUM@{EUM}!Model@{Model}}\index{Model@{Model}!EUM@{EUM}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68a1e6fc34ee777e14f7e4269d622adeb9e}\label{class_model_abf72317335c4b45294951c9d424ede68a1e6fc34ee777e14f7e4269d622adeb9e}} 
+EUM&интенсивность скорости деформации \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ECP@{ECP}!Model@{Model}}\index{Model@{Model}!ECP@{ECP}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68ad1d1a12c39f739401fca735ec0e70aca}\label{class_model_abf72317335c4b45294951c9d424ede68ad1d1a12c39f739401fca735ec0e70aca}} 
+ECP&скорость относительного значения объема \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EZZ@{EZZ}!Model@{Model}}\index{Model@{Model}!EZZ@{EZZ}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68a42e570a2d526465cf9e75eba5386089d}\label{class_model_abf72317335c4b45294951c9d424ede68a42e570a2d526465cf9e75eba5386089d}} 
+EZZ&интенсивности скорости деформации по соответствующим полям \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DUM@{DUM}!Model@{Model}}\index{Model@{Model}!DUM@{DUM}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68a42b7cea9ef7af732002557834c6d6ef6}\label{class_model_abf72317335c4b45294951c9d424ede68a42b7cea9ef7af732002557834c6d6ef6}} 
+DUM&интенсивность деформации \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SOCT@{SOCT}!Model@{Model}}\index{Model@{Model}!SOCT@{SOCT}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68ac90f363de8c9e315b68a63e7f1c224f6}\label{class_model_abf72317335c4b45294951c9d424ede68ac90f363de8c9e315b68a63e7f1c224f6}} 
+SOCT&накопленное гидростатическое давление \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DZZ@{DZZ}!Model@{Model}}\index{Model@{Model}!DZZ@{DZZ}}}\mbox{\Hypertarget{class_model_abf72317335c4b45294951c9d424ede68a16c6d3233ca19495d2a50dd911d6e238}\label{class_model_abf72317335c4b45294951c9d424ede68a16c6d3233ca19495d2a50dd911d6e238}} 
+DZZ&интенсивность деформации по соответствующим полям \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_model_af367316585b7415e30b07003e1556c36}\label{class_model_af367316585b7415e30b07003e1556c36}} 
+\index{Model@{Model}!compute\_step\_FEM@{compute\_step\_FEM}}
+\index{compute\_step\_FEM@{compute\_step\_FEM}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{compute\_step\_FEM()}{compute\_step\_FEM()}}
+{\footnotesize\ttfamily bool Model\+::compute\+\_\+step\+\_\+\+FEM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Запуск расчета МКЭ для одного шага по времени 
+
+\begin{DoxyReturn}{Returns}
+удалось ли 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_model_aa06576f804a65bbceb529d55ed3a3a28}\label{class_model_aa06576f804a65bbceb529d55ed3a3a28}} 
+\index{Model@{Model}!Effective@{Effective}}
+\index{Effective@{Effective}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{Effective()}{Effective()}}
+{\footnotesize\ttfamily double Model\+::\+Effective (\begin{DoxyParamCaption}\item[{double}]{ex,  }\item[{double}]{ey,  }\item[{double}]{exy,  }\item[{double}]{ez,  }\item[{double}]{exz = {\ttfamily 0},  }\item[{double}]{eyz = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+вспомогательная функция 
+
+учавствует в вычислении интенсивности деформаций и интенсивности напряжений
+
+effective = $\frac{2}{3} \times M^2$
+
+где М -\/ модуль девиатора скорости деформации \mbox{\Hypertarget{class_model_a78bd4c4d42adda153c4d92cc24f39fc8}\label{class_model_a78bd4c4d42adda153c4d92cc24f39fc8}} 
+\index{Model@{Model}!FreePoint@{FreePoint}}
+\index{FreePoint@{FreePoint}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{FreePoint()}{FreePoint()}}
+{\footnotesize\ttfamily void Model\+::\+Free\+Point (\begin{DoxyParamCaption}\item[{int}]{cnt }\end{DoxyParamCaption})}
+
+
+
+меняет статус точки на неконтактный 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & cnt \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_model_ae1899d9a8894b5eebecd76f63428b6ea}\label{class_model_ae1899d9a8894b5eebecd76f63428b6ea}} 
+\index{Model@{Model}!get\_error@{get\_error}}
+\index{get\_error@{get\_error}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{get\_error()}{get\_error()}}
+{\footnotesize\ttfamily Error Model\+::get\+\_\+error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+возвращает текущий статус ошибки 
+
+\begin{DoxyReturn}{Returns}
+error m\+\_\+error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_model_a46f1464c4fba49666fbebf4f37ac25ee}\label{class_model_a46f1464c4fba49666fbebf4f37ac25ee}} 
+\index{Model@{Model}!get\_field\_sample@{get\_field\_sample}}
+\index{get\_field\_sample@{get\_field\_sample}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{get\_field\_sample()}{get\_field\_sample()}}
+{\footnotesize\ttfamily void Model\+::get\+\_\+field\+\_\+sample (\begin{DoxyParamCaption}\item[{unsigned int}]{id,  }\item[{void $\ast$\&}]{ptr\+\_\+field,  }\item[{size\+\_\+t \&}]{size }\end{DoxyParamCaption})}
+
+
+
+поля образца 
+
+получить данные об образце в зависимости от поля id получить данные о соответствующих полях и положить их в void$\ast$\& ptr\+\_\+field а количество данных положить в size\+\_\+t\& size \mbox{\Hypertarget{class_model_a05007aa5f23fa0543154e5d1821fb636}\label{class_model_a05007aa5f23fa0543154e5d1821fb636}} 
+\index{Model@{Model}!GetDIJK@{GetDIJK}}
+\index{GetDIJK@{GetDIJK}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{GetDIJK()}{GetDIJK()}}
+{\footnotesize\ttfamily double Model\+::\+Get\+DIJK (\begin{DoxyParamCaption}\item[{int}]{n\+Fr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+?? \mbox{\Hypertarget{class_model_a87755afe60ae9575203fc73b8a4c0263}\label{class_model_a87755afe60ae9575203fc73b8a4c0263}} 
+\index{Model@{Model}!GetF@{GetF}}
+\index{GetF@{GetF}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{GetF()}{GetF()}}
+{\footnotesize\ttfamily double Model\+::\+GetF (\begin{DoxyParamCaption}\item[{double}]{t,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+сила ?? \mbox{\Hypertarget{class_model_a69f117d62448925eea86af55a8848c5c}\label{class_model_a69f117d62448925eea86af55a8848c5c}} 
+\index{Model@{Model}!InitT8@{InitT8}}
+\index{InitT8@{InitT8}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{InitT8()}{InitT8()}}
+{\footnotesize\ttfamily void Model\+::\+Init\+T8 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+инициализация m\+\_\+\+T8 ?? \mbox{\Hypertarget{class_model_a0e858e81e5f6f82794a67d9dd2d9d6cc}\label{class_model_a0e858e81e5f6f82794a67d9dd2d9d6cc}} 
+\index{Model@{Model}!IsCrossStamp@{IsCrossStamp}}
+\index{IsCrossStamp@{IsCrossStamp}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{IsCrossStamp()}{IsCrossStamp()}}
+{\footnotesize\ttfamily bool Model\+::\+Is\+Cross\+Stamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Функция использует решение и текущие координаты для проверки пересечения штампа 
+
+\begin{DoxyReturn}{Returns}
+Возрващает 1 в случае пересечения иначе 0 Если пересечение осуществляется, то время пересечения записывается в m\+\_\+dT 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_model_a86308bb7d69fb49c7572a3711582d9ff}\label{class_model_a86308bb7d69fb49c7572a3711582d9ff}} 
+\index{Model@{Model}!Matr\_p@{Matr\_p}}
+\index{Matr\_p@{Matr\_p}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{Matr\_p()}{Matr\_p()}}
+{\footnotesize\ttfamily void Model\+::\+Matr\+\_\+p (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+формирование матрицы жесткости !!!!Используется m\+\_\+\+Dcp. (что это?)\mbox{\Hypertarget{class_model_af43baf42c66f9eeb17a9df710212822e}\label{class_model_af43baf42c66f9eeb17a9df710212822e}} 
+\index{Model@{Model}!PtoF@{PtoF}}
+\index{PtoF@{PtoF}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{PtoF()}{PtoF()}}
+{\footnotesize\ttfamily double Model\+::\+PtoF (\begin{DoxyParamCaption}\item[{double}]{P,  }\item[{double}]{d\+Strain }\end{DoxyParamCaption})}
+
+бэкофен ?? \mbox{\Hypertarget{class_model_aac8cab3caa5f6a155b3a7e54b4c3cf2a}\label{class_model_aac8cab3caa5f6a155b3a7e54b4c3cf2a}} 
+\index{Model@{Model}!ReLoad@{ReLoad}}
+\index{ReLoad@{ReLoad}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{ReLoad()}{ReLoad()}}
+{\footnotesize\ttfamily void Model\+::\+Re\+Load (\begin{DoxyParamCaption}\item[{int}]{n\+Step }\end{DoxyParamCaption})}
+
+
+
+загрузить данные об инструменте на шаге n\+Step 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & nstep номер шага \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_model_aeef061036def86fd14ae3e1bf59b9db4}\label{class_model_aeef061036def86fd14ae3e1bf59b9db4}} 
+\index{Model@{Model}!remesh@{remesh}}
+\index{remesh@{remesh}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{remesh()}{remesh()}}
+{\footnotesize\ttfamily bool Model\+::remesh (\begin{DoxyParamCaption}\item[{double}]{mesh\+\_\+edge\+\_\+length\+\_\+param }\end{DoxyParamCaption})}
+
+
+
+Перестроить сетку 
+
+\begin{DoxyReturn}{Returns}
+удалось ли 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_model_ac46eba535f7df9746d9317070d7db380}\label{class_model_ac46eba535f7df9746d9317070d7db380}} 
+\index{Model@{Model}!run@{run}}
+\index{run@{run}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily bool Model\+::run (\begin{DoxyParamCaption}\item[{bool($\ast$)()}]{call\+\_\+back\+\_\+on\+\_\+step }\end{DoxyParamCaption})}
+
+
+
+Выполнить полностью моделирование 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ($\ast$call\+\_\+back\+\_\+on\+\_\+step)()} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+удалось ли 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_model_aef250ac1663bbe33306347e68e749e29}\label{class_model_aef250ac1663bbe33306347e68e749e29}} 
+\index{Model@{Model}!set\_init\_data@{set\_init\_data}}
+\index{set\_init\_data@{set\_init\_data}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{set\_init\_data()}{set\_init\_data()}}
+{\footnotesize\ttfamily bool Model\+::set\+\_\+init\+\_\+data (\begin{DoxyParamCaption}\item[{const char $\ast$}]{sample\+\_\+data,  }\item[{size\+\_\+t}]{sample\+\_\+size,  }\item[{const char $\ast$}]{instrument\+\_\+data,  }\item[{size\+\_\+t}]{instrument\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+установка начальных условий по указателю 
+
+Устанавливает геометрию образца и инструмента
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & указатель на данные \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_model_a2ef3821ae07f1dcbc82f01860909dab9}\label{class_model_a2ef3821ae07f1dcbc82f01860909dab9}} 
+\index{Model@{Model}!Tlevan@{Tlevan}}
+\index{Tlevan@{Tlevan}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{Tlevan()}{Tlevan()}}
+{\footnotesize\ttfamily double Model\+::\+Tlevan (\begin{DoxyParamCaption}\item[{double}]{sn,  }\item[{double}]{sint,  }\item[{double}]{tkf }\end{DoxyParamCaption})}
+
+?? \mbox{\Hypertarget{class_model_ac14ac34bc9a7cc490cbe1c2f8f2dea48}\label{class_model_ac14ac34bc9a7cc490cbe1c2f8f2dea48}} 
+\index{Model@{Model}!trapeze@{trapeze}}
+\index{trapeze@{trapeze}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{trapeze()}{trapeze()}}
+{\footnotesize\ttfamily double Model\+::trapeze (\begin{DoxyParamCaption}\item[{int}]{glubina,  }\item[{\mbox{\hyperlink{class_p_a_r_a_m_e_t_r_s__33}{PARAMETRS\+\_\+33}}}]{par12 }\end{DoxyParamCaption})}
+
+
+
+реализация метода трапеций 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & glubina глубина разбиения \\
+\hline
+{\em \mbox{\hyperlink{class_p_a_r_a_m_e_t_r_s__33}{PARAMETRS\+\_\+33}}} & par12 ?? \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_model_ae39d97578351a1b15de28847e6877386}\label{class_model_ae39d97578351a1b15de28847e6877386}} 
+\index{Model@{Model}!validation@{validation}}
+\index{validation@{validation}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{validation()}{validation()}}
+{\footnotesize\ttfamily bool Model\+::validation (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_sample}{Sample}} \&}]{sample,  }\item[{const \mbox{\hyperlink{class_instrument}{Instrument}} \&}]{instrument }\end{DoxyParamCaption})}
+
+
+
+проверяет корректность сочетания sample и instrument 
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & \mbox{\hyperlink{class_sample}{Sample}}\& sample \\
+\hline
+{\em const} & \mbox{\hyperlink{class_instrument}{Instrument}}\& instrument \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+удалось ли 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+FEM/source/Model.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+FEM/source/Model.\+cpp\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+FEM/source/Model\+Helper.\+cpp\end{DoxyCompactItemize}

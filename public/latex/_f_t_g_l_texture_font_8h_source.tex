@@ -1,0 +1,67 @@
+\hypertarget{_f_t_g_l_texture_font_8h_source}{}\doxysection{FTGLTexture\+Font.\+h}
+\label{_f_t_g_l_texture_font_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGLTextureFont.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGLTextureFont.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTGLTextureFont\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTGLTextureFont\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}FTFont.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}FTVector.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_texture_glyph}{FTTextureGlyph}};}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 }
+\DoxyCodeLine{17 \textcolor{keyword}{class  }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_g_l_texture_font}{FTGLTextureFont}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_f_t_font}{FTFont}}}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{19     \textcolor{keyword}{public}:}
+\DoxyCodeLine{25         \mbox{\hyperlink{class_f_t_g_l_texture_font_aa2bb64578b54c41c08dbcb9d8120f481}{FTGLTextureFont}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* fontFilePath);}
+\DoxyCodeLine{26         }
+\DoxyCodeLine{33         \mbox{\hyperlink{class_f_t_g_l_texture_font_ae651fee4b36b49f2bd364edebcf2d064}{FTGLTextureFont}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pBufferBytes, \textcolor{keywordtype}{size\_t} bufferSizeInBytes);}
+\DoxyCodeLine{34         }
+\DoxyCodeLine{38         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_g_l_texture_font_aefdeccb3354206e2745b2c8c3eb38400}{\string~FTGLTextureFont}}();}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{47         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_g_l_texture_font_acf14d05d13c68cd82b85bd7472cd4331}{FaceSize}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} size, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} res = 72);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{54         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_g_l_texture_font_a54162dba80ce7fa7a9b4d944ccb6b436}{Render}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \textcolor{keywordtype}{string});}
+\DoxyCodeLine{55         }
+\DoxyCodeLine{61         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_g_l_texture_font_a71509ad87ad63824d0ad23a19ca9bdb7}{Render}}( \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t}* \textcolor{keywordtype}{string});}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63         }
+\DoxyCodeLine{64     \textcolor{keyword}{private}:}
+\DoxyCodeLine{71         \textcolor{keyword}{inline} \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}* \mbox{\hyperlink{class_f_t_font_a7a803a726808d612c804a430c93d2652}{MakeGlyph}}( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} glyphIndex);}
+\DoxyCodeLine{72                 }
+\DoxyCodeLine{79         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} CalculateTextureSize();}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{91         \textcolor{keyword}{inline} GLuint CreateTexture();}
+\DoxyCodeLine{92         }
+\DoxyCodeLine{96         GLsizei maximumGLTextureSize;}
+\DoxyCodeLine{97         }
+\DoxyCodeLine{101         GLsizei textureWidth;}
+\DoxyCodeLine{102         }
+\DoxyCodeLine{106         GLsizei textureHeight;}
+\DoxyCodeLine{107         }
+\DoxyCodeLine{111          \mbox{\hyperlink{class_f_t_vector}{FTVector<GLuint>}} textureIDList;}
+\DoxyCodeLine{112         }
+\DoxyCodeLine{116         \textcolor{keywordtype}{int} glyphHeight;}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{121         \textcolor{keywordtype}{int} glyphWidth;}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{127         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} padding;}
+\DoxyCodeLine{128         }
+\DoxyCodeLine{132          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} numGlyphs;}
+\DoxyCodeLine{133         }
+\DoxyCodeLine{136         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} remGlyphs;}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{140         \textcolor{keywordtype}{int} xOffset;}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{144         \textcolor{keywordtype}{int} yOffset;}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \};}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_\_FTGLTextureFont\_\_}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 }
+
+\end{DoxyCode}

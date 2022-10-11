@@ -1,0 +1,43 @@
+\hypertarget{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_math_2_interpolation_8h_source}{}\doxysection{Interpolation.\+h}
+\label{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_math_2_interpolation_8h_source}\index{831\_finite\_element\_modeling/GUI/source/Math/Interpolation.h@{831\_finite\_element\_modeling/GUI/source/Math/Interpolation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }Math \{}
+\DoxyCodeLine{6     std::vector<double> range(\textcolor{keywordtype}{double} min, \textcolor{keywordtype}{double} max, \textcolor{keywordtype}{size\_t} num = 200);}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8     \textcolor{keywordtype}{bool} \mbox{\hyperlink{group__core__func__vector__relational_gaf539cf490630ba648dfd6e36aef910a1}{equal}}(\textcolor{keywordtype}{double} left, \textcolor{keywordtype}{double} right);}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10     \textcolor{keywordtype}{double} mean(\textcolor{keyword}{const} std::vector<double>\& data);}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12     \textcolor{keyword}{class }LinearInterpolation \{}
+\DoxyCodeLine{13     \textcolor{keyword}{public}:}
+\DoxyCodeLine{14         \textcolor{keyword}{struct }Point2D \{ \textcolor{keywordtype}{double} x; \textcolor{keywordtype}{double} y; \};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16         LinearInterpolation(\textcolor{keyword}{const} std::vector<double>\& x\_array, \textcolor{keyword}{const} std::vector<double>\& y\_array);}
+\DoxyCodeLine{17         \textcolor{keywordtype}{double} get\_values(\textcolor{keywordtype}{double} x\_new) \textcolor{keyword}{const};}
+\DoxyCodeLine{18         std::vector<double> get\_values(\textcolor{keyword}{const} std::vector<double>\& x\_array\_new) \textcolor{keyword}{const};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \textcolor{keyword}{private}:}
+\DoxyCodeLine{21         std::vector<Point2D> m\_points;}
+\DoxyCodeLine{22     \};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keyword}{inline} \textcolor{keywordtype}{double} difference(\textcolor{keyword}{const} std::vector<double>\& X\_main, \textcolor{keyword}{const} std::vector<double>\& X1, \textcolor{keyword}{const} std::vector<double>\& Y1,}
+\DoxyCodeLine{25         \textcolor{keyword}{const} std::vector<double>\& X2, \textcolor{keyword}{const} std::vector<double>\& Y2) \{}
+\DoxyCodeLine{26         LinearInterpolation interp1(X1, Y1);}
+\DoxyCodeLine{27         std::vector<double> Y1\_main = interp1.get\_values(X\_main);}
+\DoxyCodeLine{28         LinearInterpolation interp2(X2, X2);}
+\DoxyCodeLine{29         std::vector<double> Y2\_main = interp2.get\_values(X\_main);}
+\DoxyCodeLine{30         \textcolor{keywordtype}{double} difference = 0;}
+\DoxyCodeLine{31         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} it\_y1 = Y1\_main.begin(), it\_y2 = Y2\_main.begin(); it\_y1 != Y1\_main.end(); ++it\_y1, ++it\_y2) \{}
+\DoxyCodeLine{32             difference += fabs(*it\_y2 -\/ *it\_y1);}
+\DoxyCodeLine{33         \}}
+\DoxyCodeLine{34         difference /= X\_main.size();}
+\DoxyCodeLine{35         \textcolor{keywordflow}{return} difference;}
+\DoxyCodeLine{36     \}}
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}

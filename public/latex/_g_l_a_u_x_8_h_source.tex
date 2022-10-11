@@ -1,0 +1,379 @@
+\hypertarget{_g_l_a_u_x_8_h_source}{}\doxysection{GLAUX.\+H}
+\label{_g_l_a_u_x_8_h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/GL/GLAUX.H@{C:/Projects/FEM/prototype-\/prismatic/source/GL/GLAUX.H}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*++ BUILD Version: 0004    // Increment this if a change has global effects}}
+\DoxyCodeLine{2 \textcolor{comment}{}}
+\DoxyCodeLine{3 \textcolor{comment}{Copyright (c) 1985-\/95, Microsoft Corporation}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{comment}{Module Name:}}
+\DoxyCodeLine{6 \textcolor{comment}{}}
+\DoxyCodeLine{7 \textcolor{comment}{    glaux.h}}
+\DoxyCodeLine{8 \textcolor{comment}{}}
+\DoxyCodeLine{9 \textcolor{comment}{Abstract:}}
+\DoxyCodeLine{10 \textcolor{comment}{}}
+\DoxyCodeLine{11 \textcolor{comment}{    Procedure declarations, constant definitions and macros for the OpenGL}}
+\DoxyCodeLine{12 \textcolor{comment}{    Auxiliary Library.}}
+\DoxyCodeLine{13 \textcolor{comment}{}}
+\DoxyCodeLine{14 \textcolor{comment}{-\/-\/*/}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef \_\_GLAUX\_H\_\_}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define \_\_GLAUX\_H\_\_}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{/*}}
+\DoxyCodeLine{20 \textcolor{comment}{ * (c) Copyright 1993, Silicon Graphics, Inc.}}
+\DoxyCodeLine{21 \textcolor{comment}{ * ALL RIGHTS RESERVED }}
+\DoxyCodeLine{22 \textcolor{comment}{ * Permission to use, copy, modify, and distribute this software for }}
+\DoxyCodeLine{23 \textcolor{comment}{ * any purpose and without fee is hereby granted, provided that the above}}
+\DoxyCodeLine{24 \textcolor{comment}{ * copyright notice appear in all copies and that both the copyright notice}}
+\DoxyCodeLine{25 \textcolor{comment}{ * and this permission notice appear in supporting documentation, and that }}
+\DoxyCodeLine{26 \textcolor{comment}{ * the name of Silicon Graphics, Inc. not be used in advertising}}
+\DoxyCodeLine{27 \textcolor{comment}{ * or publicity pertaining to distribution of the software without specific,}}
+\DoxyCodeLine{28 \textcolor{comment}{ * written prior permission. }}
+\DoxyCodeLine{29 \textcolor{comment}{ *}}
+\DoxyCodeLine{30 \textcolor{comment}{ * THE MATERIAL EMBODIED ON THIS SOFTWARE IS PROVIDED TO YOU "{}AS-\/IS"{}}}
+\DoxyCodeLine{31 \textcolor{comment}{ * AND WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR OTHERWISE,}}
+\DoxyCodeLine{32 \textcolor{comment}{ * INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY OR}}
+\DoxyCodeLine{33 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE.  IN NO EVENT SHALL SILICON}}
+\DoxyCodeLine{34 \textcolor{comment}{ * GRAPHICS, INC.  BE LIABLE TO YOU OR ANYONE ELSE FOR ANY DIRECT,}}
+\DoxyCodeLine{35 \textcolor{comment}{ * SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY}}
+\DoxyCodeLine{36 \textcolor{comment}{ * KIND, OR ANY DAMAGES WHATSOEVER, INCLUDING WITHOUT LIMITATION,}}
+\DoxyCodeLine{37 \textcolor{comment}{ * LOSS OF PROFIT, LOSS OF USE, SAVINGS OR REVENUE, OR THE CLAIMS OF}}
+\DoxyCodeLine{38 \textcolor{comment}{ * THIRD PARTIES, WHETHER OR NOT SILICON GRAPHICS, INC.  HAS BEEN}}
+\DoxyCodeLine{39 \textcolor{comment}{ * ADVISED OF THE POSSIBILITY OF SUCH LOSS, HOWEVER CAUSED AND ON}}
+\DoxyCodeLine{40 \textcolor{comment}{ * ANY THEORY OF LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE}}
+\DoxyCodeLine{41 \textcolor{comment}{ * POSSESSION, USE OR PERFORMANCE OF THIS SOFTWARE.}}
+\DoxyCodeLine{42 \textcolor{comment}{ * }}
+\DoxyCodeLine{43 \textcolor{comment}{ * US Government Users Restricted Rights }}
+\DoxyCodeLine{44 \textcolor{comment}{ * Use, duplication, or disclosure by the Government is subject to}}
+\DoxyCodeLine{45 \textcolor{comment}{ * restrictions set forth in FAR 52.227.19(c)(2) or subparagraph}}
+\DoxyCodeLine{46 \textcolor{comment}{ * (c)(1)(ii) of the Rights in Technical Data and Computer Software}}
+\DoxyCodeLine{47 \textcolor{comment}{ * clause at DFARS 252.227-\/7013 and/or in similar or successor}}
+\DoxyCodeLine{48 \textcolor{comment}{ * clauses in the FAR or the DOD or NASA FAR Supplement.}}
+\DoxyCodeLine{49 \textcolor{comment}{ * Unpublished-\/-\/ rights reserved under the copyright laws of the}}
+\DoxyCodeLine{50 \textcolor{comment}{ * United States.  Contractor/manufacturer is Silicon Graphics,}}
+\DoxyCodeLine{51 \textcolor{comment}{ * Inc., 2011 N.  Shoreline Blvd., Mountain View, CA 94039-\/7311.}}
+\DoxyCodeLine{52 \textcolor{comment}{ *}}
+\DoxyCodeLine{53 \textcolor{comment}{ * OpenGL(TM) is a trademark of Silicon Graphics, Inc.}}
+\DoxyCodeLine{54 \textcolor{comment}{ */}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#include <windows.h>}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#include <GL/gl.h>}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#include <GL/glu.h>}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{61 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{comment}{/*}}
+\DoxyCodeLine{65 \textcolor{comment}{** ToolKit Window Types}}
+\DoxyCodeLine{66 \textcolor{comment}{** In the future, AUX\_RGBA may be a combination of both RGB and ALPHA}}
+\DoxyCodeLine{67 \textcolor{comment}{*/}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define AUX\_RGB             0}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define AUX\_RGBA            AUX\_RGB}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define AUX\_INDEX           1}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define AUX\_SINGLE          0}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define AUX\_DOUBLE          2}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define AUX\_DIRECT          0}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define AUX\_INDIRECT        4}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define AUX\_ACCUM           8}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define AUX\_ALPHA           16}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define AUX\_DEPTH24         32      }\textcolor{comment}{/* 24-\/bit depth buffer */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define AUX\_STENCIL         64}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define AUX\_AUX             128}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define AUX\_DEPTH16         256     }\textcolor{comment}{/* 16-\/bit depth buffer */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define AUX\_FIXED\_332\_PAL   512}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define AUX\_DEPTH           AUX\_DEPTH16 }\textcolor{comment}{/* default is 16-\/bit depth buffer */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{/* }}
+\DoxyCodeLine{87 \textcolor{comment}{** Window Masks}}
+\DoxyCodeLine{88 \textcolor{comment}{*/}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define AUX\_WIND\_IS\_RGB(x)      (((x) \& AUX\_INDEX) == 0)}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define AUX\_WIND\_IS\_INDEX(x)    (((x) \& AUX\_INDEX) != 0)}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define AUX\_WIND\_IS\_SINGLE(x)   (((x) \& AUX\_DOUBLE) == 0)}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define AUX\_WIND\_IS\_DOUBLE(x)   (((x) \& AUX\_DOUBLE) != 0)}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#define AUX\_WIND\_IS\_INDIRECT(x) (((x) \& AUX\_INDIRECT) != 0)}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define AUX\_WIND\_IS\_DIRECT(x)   (((x) \& AUX\_INDIRECT) == 0)}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define AUX\_WIND\_HAS\_ACCUM(x)   (((x) \& AUX\_ACCUM) != 0)}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define AUX\_WIND\_HAS\_ALPHA(x)   (((x) \& AUX\_ALPHA) != 0)}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#define AUX\_WIND\_HAS\_DEPTH(x)   (((x) \& (AUX\_DEPTH24 | AUX\_DEPTH16)) != 0)}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define AUX\_WIND\_HAS\_STENCIL(x) (((x) \& AUX\_STENCIL) != 0)}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define AUX\_WIND\_USES\_FIXED\_332\_PAL(x)  (((x) \& AUX\_FIXED\_332\_PAL) != 0)}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{comment}{/*}}
+\DoxyCodeLine{103 \textcolor{comment}{** ToolKit Event Structure}}
+\DoxyCodeLine{104 \textcolor{comment}{*/}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct___a_u_x___e_v_e_n_t_r_e_c}{\_AUX\_EVENTREC}} \{}
+\DoxyCodeLine{107     GLint event;}
+\DoxyCodeLine{108     GLint data[4];}
+\DoxyCodeLine{109 \} \mbox{\hyperlink{struct___a_u_x___e_v_e_n_t_r_e_c}{AUX\_EVENTREC}};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{comment}{/* }}
+\DoxyCodeLine{112 \textcolor{comment}{** ToolKit Event Types}}
+\DoxyCodeLine{113 \textcolor{comment}{*/}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#define AUX\_EXPOSE      1}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define AUX\_CONFIG      2}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#define AUX\_DRAW        4}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#define AUX\_KEYEVENT    8}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define AUX\_MOUSEDOWN   16}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define AUX\_MOUSEUP     32}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#define AUX\_MOUSELOC    64}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{comment}{/*}}
+\DoxyCodeLine{123 \textcolor{comment}{** Toolkit Event Data Indices}}
+\DoxyCodeLine{124 \textcolor{comment}{*/}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define AUX\_WINDOWX             0}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#define AUX\_WINDOWY             1}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#define AUX\_MOUSEX              0}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define AUX\_MOUSEY              1}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#define AUX\_MOUSESTATUS         3}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#define AUX\_KEY                 0}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#define AUX\_KEYSTATUS           1}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{comment}{/*}}
+\DoxyCodeLine{134 \textcolor{comment}{** ToolKit Event Status Messages}}
+\DoxyCodeLine{135 \textcolor{comment}{*/}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#define AUX\_LEFTBUTTON          1}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#define AUX\_RIGHTBUTTON         2}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define AUX\_MIDDLEBUTTON        4}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#define AUX\_SHIFT               1}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#define AUX\_CONTROL             2}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{comment}{/* }}
+\DoxyCodeLine{143 \textcolor{comment}{** ToolKit Key Codes}}
+\DoxyCodeLine{144 \textcolor{comment}{*/}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define AUX\_RETURN              0x0D}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#define AUX\_ESCAPE              0x1B}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#define AUX\_SPACE               0x20}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#define AUX\_LEFT                0x25}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#define AUX\_UP                  0x26}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#define AUX\_RIGHT               0x27}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#define AUX\_DOWN                0x28}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#define AUX\_A                   'A'}}
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#define AUX\_B                   'B'}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define AUX\_C                   'C'}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#define AUX\_D                   'D'}}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define AUX\_E                   'E'}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define AUX\_F                   'F'}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#define AUX\_G                   'G'}}
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#define AUX\_H                   'H'}}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#define AUX\_I                   'I'}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define AUX\_J                   'J'}}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#define AUX\_K                   'K'}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define AUX\_L                   'L'}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define AUX\_M                   'M'}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#define AUX\_N                   'N'}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define AUX\_O                   'O'}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define AUX\_P                   'P'}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define AUX\_Q                   'Q'}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define AUX\_R                   'R'}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define AUX\_S                   'S'}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define AUX\_T                   'T'}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define AUX\_U                   'U'}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define AUX\_V                   'V'}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#define AUX\_W                   'W'}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define AUX\_X                   'X'}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{\#define AUX\_Y                   'Y'}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#define AUX\_Z                   'Z'}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#define AUX\_a                   'a'}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#define AUX\_b                   'b'}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#define AUX\_c                   'c'}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define AUX\_d                   'd'}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#define AUX\_e                   'e'}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#define AUX\_f                   'f'}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{\#define AUX\_g                   'g'}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define AUX\_h                   'h'}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#define AUX\_i                   'i'}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define AUX\_j                   'j'}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define AUX\_k                   'k'}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#define AUX\_l                   'l'}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#define AUX\_m                   'm'}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#define AUX\_n                   'n'}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#define AUX\_o                   'o'}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#define AUX\_p                   'p'}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#define AUX\_q                   'q'}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#define AUX\_r                   'r'}}
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#define AUX\_s                   's'}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#define AUX\_t                   't'}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define AUX\_u                   'u'}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define AUX\_v                   'v'}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#define AUX\_w                   'w'}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#define AUX\_x                   'x'}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#define AUX\_y                   'y'}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#define AUX\_z                   'z'}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{\#define AUX\_0                   '0'}}
+\DoxyCodeLine{205 \textcolor{preprocessor}{\#define AUX\_1                   '1'}}
+\DoxyCodeLine{206 \textcolor{preprocessor}{\#define AUX\_2                   '2'}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#define AUX\_3                   '3'}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#define AUX\_4                   '4'}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#define AUX\_5                   '5'}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{\#define AUX\_6                   '6'}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#define AUX\_7                   '7'}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#define AUX\_8                   '8'}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{\#define AUX\_9                   '9'}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 \textcolor{comment}{/*}}
+\DoxyCodeLine{216 \textcolor{comment}{** ToolKit Gets and Sets}}
+\DoxyCodeLine{217 \textcolor{comment}{*/}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#define AUX\_FD                  1  }\textcolor{comment}{/* return fd (long) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#define AUX\_COLORMAP            3  }\textcolor{comment}{/* pass buf of r, g and b (unsigned char) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#define AUX\_GREYSCALEMAP        4}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{\#define AUX\_FOGMAP              5  }\textcolor{comment}{/* pass fog and color bits (long) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{\#define AUX\_ONECOLOR            6  }\textcolor{comment}{/* pass index, r, g, and b (long) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224 \textcolor{comment}{/*}}
+\DoxyCodeLine{225 \textcolor{comment}{** Color Macros}}
+\DoxyCodeLine{226 \textcolor{comment}{*/}}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228 \textcolor{preprocessor}{\#define AUX\_BLACK               0}}
+\DoxyCodeLine{229 \textcolor{preprocessor}{\#define AUX\_RED                 13}}
+\DoxyCodeLine{230 \textcolor{preprocessor}{\#define AUX\_GREEN               14}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{\#define AUX\_YELLOW              15}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{\#define AUX\_BLUE                16}}
+\DoxyCodeLine{233 \textcolor{preprocessor}{\#define AUX\_MAGENTA             17}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{\#define AUX\_CYAN                18}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#define AUX\_WHITE               19}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 \textcolor{keyword}{extern} \textcolor{keywordtype}{float} auxRGBMap[20][3];}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#define AUX\_SETCOLOR(x, y) (AUX\_WIND\_IS\_RGB((x)) ? \(\backslash\)}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{                           glColor3fv(auxRGBMap[(y)]) : glIndexf((y)))}}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242 \textcolor{comment}{/*}}
+\DoxyCodeLine{243 \textcolor{comment}{** RGB Image Structure}}
+\DoxyCodeLine{244 \textcolor{comment}{*/}}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct___a_u_x___r_g_b_image_rec}{\_AUX\_RGBImageRec}} \{}
+\DoxyCodeLine{247     GLint sizeX, sizeY;}
+\DoxyCodeLine{248     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *data;}
+\DoxyCodeLine{249 \} \mbox{\hyperlink{struct___a_u_x___r_g_b_image_rec}{AUX\_RGBImageRec}};}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 \textcolor{comment}{/*}}
+\DoxyCodeLine{252 \textcolor{comment}{** Prototypes}}
+\DoxyCodeLine{253 \textcolor{comment}{*/}}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{255 \textcolor{keywordtype}{void} APIENTRY auxInitDisplayMode(GLenum);}
+\DoxyCodeLine{256 \textcolor{keywordtype}{void} APIENTRY auxInitPosition(\textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258 \textcolor{comment}{/* GLenum APIENTRY auxInitWindow(LPCTSTR); */}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#ifdef UNICODE}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#define auxInitWindow auxInitWindowW}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#define auxInitWindow auxInitWindowA}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{264 GLenum APIENTRY auxInitWindowA(LPCSTR);}
+\DoxyCodeLine{265 GLenum APIENTRY auxInitWindowW(LPCWSTR);}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267 \textcolor{keywordtype}{void} APIENTRY auxCloseWindow(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{268 \textcolor{keywordtype}{void} APIENTRY auxQuit(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{269 \textcolor{keywordtype}{void} APIENTRY auxSwapBuffers(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271 \textcolor{keyword}{typedef} void (CALLBACK* AUXMAINPROC)(void);}
+\DoxyCodeLine{272 \textcolor{keywordtype}{void} APIENTRY auxMainLoop(AUXMAINPROC);}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274 \textcolor{keyword}{typedef} void (CALLBACK* AUXEXPOSEPROC)(int, int);}
+\DoxyCodeLine{275 \textcolor{keywordtype}{void} APIENTRY auxExposeFunc(AUXEXPOSEPROC);}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277 \textcolor{keyword}{typedef} void (CALLBACK* AUXRESHAPEPROC)(GLsizei, GLsizei);}
+\DoxyCodeLine{278 \textcolor{keywordtype}{void} APIENTRY auxReshapeFunc(AUXRESHAPEPROC);}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 \textcolor{keyword}{typedef} void (CALLBACK* AUXIDLEPROC)(void);}
+\DoxyCodeLine{281 \textcolor{keywordtype}{void} APIENTRY auxIdleFunc(AUXIDLEPROC);}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 \textcolor{keyword}{typedef} void (CALLBACK* AUXKEYPROC)(void);}
+\DoxyCodeLine{284 \textcolor{keywordtype}{void} APIENTRY auxKeyFunc(\textcolor{keywordtype}{int}, AUXKEYPROC);}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286 \textcolor{keyword}{typedef} void (CALLBACK* AUXMOUSEPROC)(\mbox{\hyperlink{struct___a_u_x___e_v_e_n_t_r_e_c}{AUX\_EVENTREC}} *);}
+\DoxyCodeLine{287 \textcolor{keywordtype}{void} APIENTRY auxMouseFunc(\textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, AUXMOUSEPROC);}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{keywordtype}{int}  APIENTRY auxGetColorMapSize(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{290 \textcolor{keywordtype}{void} APIENTRY auxGetMouseLoc(\textcolor{keywordtype}{int} *, \textcolor{keywordtype}{int} *);}
+\DoxyCodeLine{291 \textcolor{keywordtype}{void} APIENTRY auxSetOneColor(\textcolor{keywordtype}{int}, \textcolor{keywordtype}{float}, \textcolor{keywordtype}{float}, \textcolor{keywordtype}{float});}
+\DoxyCodeLine{292 \textcolor{keywordtype}{void} APIENTRY auxSetFogRamp(\textcolor{keywordtype}{int}, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{293 \textcolor{keywordtype}{void} APIENTRY auxSetGreyRamp(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{294 \textcolor{keywordtype}{void} APIENTRY auxSetRGBMap(\textcolor{keywordtype}{int}, \textcolor{keywordtype}{float} *);}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296 \textcolor{comment}{/* AUX\_RGBImageRec * APIENTRY auxRGBImageLoad(LPCTSTR); */}}
+\DoxyCodeLine{297 \textcolor{preprocessor}{\#ifdef UNICODE}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#define auxRGBImageLoad auxRGBImageLoadW}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{\#define auxRGBImageLoad auxRGBImageLoadA}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{302 \mbox{\hyperlink{struct___a_u_x___r_g_b_image_rec}{AUX\_RGBImageRec}} * APIENTRY auxRGBImageLoadA(LPCSTR);}
+\DoxyCodeLine{303 \mbox{\hyperlink{struct___a_u_x___r_g_b_image_rec}{AUX\_RGBImageRec}} * APIENTRY auxRGBImageLoadW(LPCWSTR);}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305 \textcolor{preprocessor}{\#ifdef UNICODE}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{\#define auxDIBImageLoad auxDIBImageLoadW}}
+\DoxyCodeLine{307 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#define auxDIBImageLoad auxDIBImageLoadA}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{310 \mbox{\hyperlink{struct___a_u_x___r_g_b_image_rec}{AUX\_RGBImageRec}} * APIENTRY auxDIBImageLoadA(LPCSTR);}
+\DoxyCodeLine{311 \mbox{\hyperlink{struct___a_u_x___r_g_b_image_rec}{AUX\_RGBImageRec}} * APIENTRY auxDIBImageLoadW(LPCWSTR);}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 \textcolor{keywordtype}{void} APIENTRY auxCreateFont(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{314 \textcolor{comment}{/* void APIENTRY auxDrawStr(LPCTSTR); */}}
+\DoxyCodeLine{315 \textcolor{preprocessor}{\#ifdef UNICODE}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#define auxDrawStr auxDrawStrW}}
+\DoxyCodeLine{317 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#define auxDrawStr auxDrawStrA}}
+\DoxyCodeLine{319 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{320 \textcolor{keywordtype}{void} APIENTRY auxDrawStrA(LPCSTR);}
+\DoxyCodeLine{321 \textcolor{keywordtype}{void} APIENTRY auxDrawStrW(LPCWSTR);}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323 \textcolor{keywordtype}{void} APIENTRY auxWireSphere(GLdouble);}
+\DoxyCodeLine{324 \textcolor{keywordtype}{void} APIENTRY auxSolidSphere(GLdouble);}
+\DoxyCodeLine{325 \textcolor{keywordtype}{void} APIENTRY auxWireCube(GLdouble);}
+\DoxyCodeLine{326 \textcolor{keywordtype}{void} APIENTRY auxSolidCube(GLdouble);}
+\DoxyCodeLine{327 \textcolor{keywordtype}{void} APIENTRY auxWireBox(GLdouble, GLdouble, GLdouble);}
+\DoxyCodeLine{328 \textcolor{keywordtype}{void} APIENTRY auxSolidBox(GLdouble, GLdouble, GLdouble);}
+\DoxyCodeLine{329 \textcolor{keywordtype}{void} APIENTRY auxWireTorus(GLdouble, GLdouble);}
+\DoxyCodeLine{330 \textcolor{keywordtype}{void} APIENTRY auxSolidTorus(GLdouble, GLdouble);}
+\DoxyCodeLine{331 \textcolor{keywordtype}{void} APIENTRY auxWireCylinder(GLdouble, GLdouble);}
+\DoxyCodeLine{332 \textcolor{keywordtype}{void} APIENTRY auxSolidCylinder(GLdouble, GLdouble);}
+\DoxyCodeLine{333 \textcolor{keywordtype}{void} APIENTRY auxWireIcosahedron(GLdouble);}
+\DoxyCodeLine{334 \textcolor{keywordtype}{void} APIENTRY auxSolidIcosahedron(GLdouble);}
+\DoxyCodeLine{335 \textcolor{keywordtype}{void} APIENTRY auxWireOctahedron(GLdouble);}
+\DoxyCodeLine{336 \textcolor{keywordtype}{void} APIENTRY auxSolidOctahedron(GLdouble);}
+\DoxyCodeLine{337 \textcolor{keywordtype}{void} APIENTRY auxWireTetrahedron(GLdouble);}
+\DoxyCodeLine{338 \textcolor{keywordtype}{void} APIENTRY auxSolidTetrahedron(GLdouble);}
+\DoxyCodeLine{339 \textcolor{keywordtype}{void} APIENTRY auxWireDodecahedron(GLdouble);}
+\DoxyCodeLine{340 \textcolor{keywordtype}{void} APIENTRY auxSolidDodecahedron(GLdouble);}
+\DoxyCodeLine{341 \textcolor{keywordtype}{void} APIENTRY auxWireCone(GLdouble, GLdouble);}
+\DoxyCodeLine{342 \textcolor{keywordtype}{void} APIENTRY auxSolidCone(GLdouble, GLdouble);}
+\DoxyCodeLine{343 \textcolor{keywordtype}{void} APIENTRY auxWireTeapot(GLdouble);}
+\DoxyCodeLine{344 \textcolor{keywordtype}{void} APIENTRY auxSolidTeapot(GLdouble);}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{346 \textcolor{comment}{/*}}
+\DoxyCodeLine{347 \textcolor{comment}{** Window specific functions}}
+\DoxyCodeLine{348 \textcolor{comment}{** hwnd, hdc, and hglrc valid after auxInitWindow()}}
+\DoxyCodeLine{349 \textcolor{comment}{*/}}
+\DoxyCodeLine{350 HWND  APIENTRY auxGetHWND(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{351 HDC   APIENTRY auxGetHDC(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{352 HGLRC APIENTRY auxGetHGLRC(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354 \textcolor{comment}{/*}}
+\DoxyCodeLine{355 \textcolor{comment}{** Viewperf support functions and constants}}
+\DoxyCodeLine{356 \textcolor{comment}{*/}}
+\DoxyCodeLine{357 \textcolor{comment}{/* Display Mode Selection Criteria */}}
+\DoxyCodeLine{358 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{359     AUX\_USE\_ID = 1,}
+\DoxyCodeLine{360     AUX\_EXACT\_MATCH,}
+\DoxyCodeLine{361     AUX\_MINIMUM\_CRITERIA}
+\DoxyCodeLine{362 \};}
+\DoxyCodeLine{363 \textcolor{keywordtype}{void}   APIENTRY auxInitDisplayModePolicy(GLenum);}
+\DoxyCodeLine{364 GLenum APIENTRY auxInitDisplayModeID(GLint);}
+\DoxyCodeLine{365 GLenum APIENTRY auxGetDisplayModePolicy(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{366 GLint  APIENTRY auxGetDisplayModeID(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{367 GLenum APIENTRY auxGetDisplayMode(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{369 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{370 \}}
+\DoxyCodeLine{371 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{372 }
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_GLAUX\_H\_\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,24 @@
+\hypertarget{_iteration_checkers_8h_source}{}\doxysection{Iteration\+Checkers.\+h}
+\label{_iteration_checkers_8h_source}\index{831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/IterationCheckers.h@{831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/IterationCheckers.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }Iter \{}
+\DoxyCodeLine{6     \textcolor{keyword}{class }\mbox{\hyperlink{class_iter_1_1_stop_condition}{StopCondition}} \{}
+\DoxyCodeLine{7     \textcolor{keyword}{public}:}
+\DoxyCodeLine{8         \mbox{\hyperlink{class_iter_1_1_stop_condition}{StopCondition}}(\textcolor{keywordtype}{size\_t} iter\_num\_stop) : m\_iter\_num\_stop(iter\_num\_stop) \{\}}
+\DoxyCodeLine{9         \textcolor{keywordtype}{bool} is\_stop\_iter\_num(\textcolor{keywordtype}{size\_t} iter\_num)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{10             \textcolor{keywordflow}{return} m\_iter\_num\_stop == iter\_num;}
+\DoxyCodeLine{11         \}}
+\DoxyCodeLine{12         std::unique\_ptr<StopCondition> clone()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{13             \textcolor{keywordflow}{return} std::make\_unique<StopCondition>(*\textcolor{keyword}{this});}
+\DoxyCodeLine{14         \}}
+\DoxyCodeLine{15     \textcolor{keyword}{private}:}
+\DoxyCodeLine{16         \textcolor{keywordtype}{size\_t} m\_iter\_num\_stop;}
+\DoxyCodeLine{17     \};}
+\DoxyCodeLine{18 \}}
+
+\end{DoxyCode}

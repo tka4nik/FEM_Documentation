@@ -1,0 +1,36 @@
+\hypertarget{_f_t_outline_glyph_8h_source}{}\doxysection{FTOutline\+Glyph.\+h}
+\label{_f_t_outline_glyph_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTOutlineGlyph.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTOutlineGlyph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTOutlineGlyph\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTOutlineGlyph\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTGlyph.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_vectoriser}{FTVectoriser}};}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 }
+\DoxyCodeLine{21 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_outline_glyph}{FTOutlineGlyph}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23     \textcolor{keyword}{public}:}
+\DoxyCodeLine{32         \mbox{\hyperlink{class_f_t_outline_glyph_ad74853a748a79cd58d60ca24cbef8007}{FTOutlineGlyph}}( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}} glyph, \textcolor{keywordtype}{bool} useDisplayList);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_outline_glyph_aacf6d78d4335864d96e07142e540e150}{\string~FTOutlineGlyph}}();}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{45         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& \mbox{\hyperlink{class_f_t_outline_glyph_a0414f50a41c8e4366e60290b2d2177dd}{Render}}( \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& pen);}
+\DoxyCodeLine{46         }
+\DoxyCodeLine{47     \textcolor{keyword}{private}:        }
+\DoxyCodeLine{51         GLuint glList;}
+\DoxyCodeLine{52     }
+\DoxyCodeLine{53 \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTOutlineGlyph\_\_}}
+\DoxyCodeLine{57 }
+
+\end{DoxyCode}

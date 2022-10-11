@@ -1,0 +1,82 @@
+\hypertarget{class_res_file}{}\doxysection{Res\+File Class Reference}
+\label{class_res_file}\index{ResFile@{ResFile}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_res_file_aa6deedab9f036a1ab31e5ed9c70e7951}\label{class_res_file_aa6deedab9f036a1ab31e5ed9c70e7951}} 
+enum class {\bfseries Sample\+Fields} \{ \newline
+{\bfseries X}
+, {\bfseries Y}
+, {\bfseries Order}
+, {\bfseries Z}
+, \newline
+{\bfseries Eum}
+, {\bfseries Ecp}
+, {\bfseries Exx}
+, {\bfseries Eyy}
+, \newline
+{\bfseries Exy}
+, {\bfseries Exz}
+, {\bfseries Eyz}
+, {\bfseries Ezz}
+, \newline
+{\bfseries Dum}
+, {\bfseries Sost}
+, {\bfseries Dxx}
+, {\bfseries Dyy}
+, \newline
+{\bfseries Dxy}
+, {\bfseries Dxz}
+, {\bfseries Dyz}
+, {\bfseries Dzz}
+ \}
+\item 
+\mbox{\Hypertarget{class_res_file_a0c3a0236edfe2889a834a7562a308126}\label{class_res_file_a0c3a0236edfe2889a834a7562a308126}} 
+enum class {\bfseries Instrument\+Fields} \{ {\bfseries Offset}
+, {\bfseries Profile}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_res_file_a3309716da35e86998d3c10ddfec9af42}\label{class_res_file_a3309716da35e86998d3c10ddfec9af42}} 
+bool {\bfseries Target} (const char $\ast$file\+\_\+path, int mode)
+\item 
+\mbox{\Hypertarget{class_res_file_a174137d93482bc26ba90f078f4ea4e81}\label{class_res_file_a174137d93482bc26ba90f078f4ea4e81}} 
+{\bfseries Res\+File} (\mbox{\hyperlink{class_res_file}{Res\+File}} \&\&rf)
+\item 
+\mbox{\Hypertarget{class_res_file_a50b484c75629f7dcf962a49844d74776}\label{class_res_file_a50b484c75629f7dcf962a49844d74776}} 
+void {\bfseries Close} ()
+\item 
+\mbox{\Hypertarget{class_res_file_a535517f7bc7eaee3d546c4b20951f054}\label{class_res_file_a535517f7bc7eaee3d546c4b20951f054}} 
+void {\bfseries Save} (\mbox{\hyperlink{class_proj_1_1_project}{Proj\+::\+Project}} \&project)
+\item 
+\mbox{\Hypertarget{class_res_file_aca52cdc9d43839e036dcfee57791c966}\label{class_res_file_aca52cdc9d43839e036dcfee57791c966}} 
+double {\bfseries get\+\_\+total\+\_\+offset} ()
+\item 
+\mbox{\Hypertarget{class_res_file_a37292624af740e346ce5e6427177cbfb}\label{class_res_file_a37292624af740e346ce5e6427177cbfb}} 
+int {\bfseries get\+\_\+step} ()
+\item 
+\mbox{\Hypertarget{class_res_file_a444caba043e98cd187e52cd3d3626689}\label{class_res_file_a444caba043e98cd187e52cd3d3626689}} 
+double {\bfseries get\+\_\+total\+\_\+time} ()
+\item 
+\mbox{\Hypertarget{class_res_file_aea2bc60da17cda418dc03f00e4fa3894}\label{class_res_file_aea2bc60da17cda418dc03f00e4fa3894}} 
+void {\bfseries Save\+Profile} ()
+\item 
+\mbox{\Hypertarget{class_res_file_a7ec1e76086384ad297a8690d5113a26d}\label{class_res_file_a7ec1e76086384ad297a8690d5113a26d}} 
+void {\bfseries Load\+Profile} ()
+\item 
+\mbox{\Hypertarget{class_res_file_aca662227e0150f11c84194692c79a0ab}\label{class_res_file_aca662227e0150f11c84194692c79a0ab}} 
+bool {\bfseries Load} ()
+\item 
+\mbox{\Hypertarget{class_res_file_ac5b06fc6b5e526982d063efb4a83e178}\label{class_res_file_ac5b06fc6b5e526982d063efb4a83e178}} 
+void {\bfseries Get\+Sample\+Data} (int field\+\_\+, void $\ast$$\ast$field\+\_\+ptr\+\_\+ptr, size\+\_\+t $\ast$field\+\_\+info)
+\item 
+\mbox{\Hypertarget{class_res_file_abe3ff49384206cea7d056134d0044cd3}\label{class_res_file_abe3ff49384206cea7d056134d0044cd3}} 
+void {\bfseries Get\+Instrument\+Data} (int field\+\_\+, void $\ast$$\ast$field\+\_\+ptr, size\+\_\+t $\ast$field\+\_\+info)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Res\+File.\+h\end{DoxyCompactItemize}

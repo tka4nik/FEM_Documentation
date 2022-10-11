@@ -1,0 +1,58 @@
+\hypertarget{_f_t_glyph_container_8h_source}{}\doxysection{FTGlyph\+Container.\+h}
+\label{_f_t_glyph_container_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGlyphContainer.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGlyphContainer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTGlyphContainer\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTGlyphContainer\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTBBox.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}FTPoint.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}FTVector.h"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_face}{FTFace}};}
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_glyph}{FTGlyph}};}
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_charmap}{FTCharmap}};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{22 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_glyph_container}{FTGlyphContainer}}}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24         \textcolor{keyword}{typedef} \mbox{\hyperlink{class_f_t_vector}{FTVector<FTGlyph*>}} \mbox{\hyperlink{class_f_t_vector}{GlyphVector}};}
+\DoxyCodeLine{25     \textcolor{keyword}{public}:}
+\DoxyCodeLine{31         \mbox{\hyperlink{class_f_t_glyph_container_a277feb3b5aec44774f34957405f8bd33}{FTGlyphContainer}}( \mbox{\hyperlink{class_f_t_face}{FTFace}}* face);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{36         \mbox{\hyperlink{class_f_t_glyph_container_a37389dc7c5764dbeb97d0e89ca92337a}{\string~FTGlyphContainer}}();}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{45         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_glyph_container_af733b9a0df70930abc1091571287e820}{CharMap}}( FT\_Encoding encoding);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{54         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_glyph_container_a5bf13e5c6c6d2da3c62600d3a701fb71}{FontIndex}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} characterCode ) \textcolor{keyword}{const};}
+\DoxyCodeLine{55         }
+\DoxyCodeLine{62         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_glyph_container_ae8f085d829fce8d00479873058bc5ebe}{Add}}( \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}* glyph, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} characterCode);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{71         \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}* \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_glyph_container_a2b815a8eda0da9b8e0cee0e3200fff82}{Glyph}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} characterCode) \textcolor{keyword}{const};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{77         \mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \mbox{\hyperlink{class_f_t_glyph_container_a256b308518bb98ea622b9c77a9b36117}{BBox}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} characterCode) \textcolor{keyword}{const};}
+\DoxyCodeLine{78         }
+\DoxyCodeLine{86         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_glyph_container_ab57f99b48c5991558284bd85504291b1}{Advance}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} characterCode, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} nextCharacterCode);}
+\DoxyCodeLine{87         }
+\DoxyCodeLine{95         \mbox{\hyperlink{class_f_t_point}{FTPoint}} \mbox{\hyperlink{class_f_t_glyph_container_a07282bc462856a8cfd4a0f5882df0371}{Render}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} characterCode, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} nextCharacterCode, \mbox{\hyperlink{class_f_t_point}{FTPoint}} penPosition);}
+\DoxyCodeLine{96         }
+\DoxyCodeLine{102         FT\_Error \mbox{\hyperlink{class_f_t_glyph_container_ad2cc804c120cf4ead5d825725a21ca80}{Error}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} err;\}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{keyword}{private}:}
+\DoxyCodeLine{108         \mbox{\hyperlink{class_f_t_face}{FTFace}}* face;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{113         \mbox{\hyperlink{class_f_t_charmap}{FTCharmap}}* charMap;}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{118         GlyphVector glyphs;}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{123         FT\_Error err;}
+\DoxyCodeLine{124 \};}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTGlyphContainer\_\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,35 @@
+\hypertarget{_f_t_g_l_bitmap_font_8h_source}{}\doxysection{FTGLBitmap\+Font.\+h}
+\label{_f_t_g_l_bitmap_font_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGLBitmapFont.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGLBitmapFont.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_FTGLBitmapFont\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_FTGLBitmapFont\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}FTFont.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_glyph}{FTGlyph}};}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_g_l_bitmap_font}{FTGLBitmapFont}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_f_t_font}{FTFont}}}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18     \textcolor{keyword}{public}:}
+\DoxyCodeLine{24         \mbox{\hyperlink{class_f_t_g_l_bitmap_font_a066b02f28c8f34ac940552b7ac870f7d}{FTGLBitmapFont}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* fontFilePath);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{32         \mbox{\hyperlink{class_f_t_g_l_bitmap_font_a425baaace0d37db35c3ed9f3e9183a63}{FTGLBitmapFont}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pBufferBytes, \textcolor{keywordtype}{size\_t} bufferSizeInBytes);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37         \mbox{\hyperlink{class_f_t_g_l_bitmap_font_a25dae780206179c65213923455c6c506}{\string~FTGLBitmapFont}}();}
+\DoxyCodeLine{38         }
+\DoxyCodeLine{44         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_g_l_bitmap_font_ab88fa94fedf167268cd3cbb38329b589}{Render}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \textcolor{keywordtype}{string});}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{51         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_g_l_bitmap_font_adc6b4ebef06edfa05d3e6b38934d4b01}{Render}}( \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t}* \textcolor{keywordtype}{string});}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53         \textcolor{comment}{// attributes}}
+\DoxyCodeLine{54         }
+\DoxyCodeLine{55     \textcolor{keyword}{private}:}
+\DoxyCodeLine{62         \textcolor{keyword}{inline} \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}* \mbox{\hyperlink{class_f_t_font_a7a803a726808d612c804a430c93d2652}{MakeGlyph}}( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} g);}
+\DoxyCodeLine{63                 }
+\DoxyCodeLine{64 \};}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTGLBitmapFont\_\_}}
+
+\end{DoxyCode}

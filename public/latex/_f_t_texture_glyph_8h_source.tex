@@ -1,0 +1,46 @@
+\hypertarget{_f_t_texture_glyph_8h_source}{}\doxysection{FTTexture\+Glyph.\+h}
+\label{_f_t_texture_glyph_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTTextureGlyph.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTTextureGlyph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTTextureGlyph\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTTextureGlyph\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}FTGlyph.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{20 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_texture_glyph}{FTTextureGlyph}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22     \textcolor{keyword}{public}:}
+\DoxyCodeLine{36         \mbox{\hyperlink{class_f_t_texture_glyph_a59ada18c60ab788066fc14b3475dea32}{FTTextureGlyph}}( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}} glyph, \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keywordtype}{int} xOffset, \textcolor{keywordtype}{int} yOffset, GLsizei width, GLsizei height);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{41         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_texture_glyph_ab0467ed99fc200ba43f2b0fb30f99eb9}{\string~FTTextureGlyph}}();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{49         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& \mbox{\hyperlink{class_f_t_texture_glyph_a59294788e2e1f94c88bb5ea3b7d5bc61}{Render}}( \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& pen);}
+\DoxyCodeLine{50         }
+\DoxyCodeLine{55         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_texture_glyph_a21dbc7bdb83017e66045b2f5bce42e17}{FTTextureGlyph::ResetActiveTexture}}()\{ activeTextureID = 0;\}}
+\DoxyCodeLine{56         }
+\DoxyCodeLine{57     \textcolor{keyword}{private}:}
+\DoxyCodeLine{61         \textcolor{keywordtype}{int} destWidth;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{66         \textcolor{keywordtype}{int} destHeight;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{71         \mbox{\hyperlink{class_f_t_point}{FTPoint}} pos;}
+\DoxyCodeLine{72         }
+\DoxyCodeLine{76         \mbox{\hyperlink{class_f_t_point}{FTPoint}} uv[2];}
+\DoxyCodeLine{77         }
+\DoxyCodeLine{81         \textcolor{keywordtype}{int} glTextureID;}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{89         \textcolor{keyword}{static} GLint activeTextureID;}
+\DoxyCodeLine{90         }
+\DoxyCodeLine{91 \};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTTextureGlyph\_\_}}
+
+\end{DoxyCode}

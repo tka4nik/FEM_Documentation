@@ -1,0 +1,101 @@
+\hypertarget{_axes_8h_source}{}\doxysection{Axes.\+h}
+\label{_axes_8h_source}\index{831\_finite\_element\_modeling/GUI/source/GUI/Axes.h@{831\_finite\_element\_modeling/GUI/source/GUI/Axes.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}glm/vec2.hpp"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}glm/vec3.hpp"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}ftgl/FTFont.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}GL/freeglut.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{comment}{//\#define HORIZONTAL 1}}
+\DoxyCodeLine{11 \textcolor{comment}{//\#define VERTICAL 0}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define LEFT 1}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define RIGHT 2}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define TOP 3}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#define BOTTOM 4}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define NONE 0}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define XAXIS 0}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define YAXIS 1}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{comment}{//\#define DEBUG}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{31 \textcolor{keyword}{class }\mbox{\hyperlink{class_axes}{Axes}} \{}
+\DoxyCodeLine{32 \textcolor{keyword}{public}:}
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_axes_ad3386c64eadb13237ab3c4363e2a74db}{SetFont}}(FTFont* font);}
+\DoxyCodeLine{38     }
+\DoxyCodeLine{39 }
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_axes_a66fec7345407fab722c22c25d1ae75d3}{PostRender}}();}
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_axes_a11632cd3bf1a5dd53498a6f74ae14546}{Reset}}(glm::vec2 TL\_view\_point, glm::vec2 BR\_view\_point, GLfloat scale, GLfloat zoom);}
+\DoxyCodeLine{55     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_axes_a8698ced15a031f58be6b24160abc2a8f}{Render}}();}
+\DoxyCodeLine{56 \textcolor{keyword}{private}:}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{67     \textcolor{keywordtype}{void} RenderXValue(}
+\DoxyCodeLine{68         \textcolor{keywordtype}{int} stroke\_index,}
+\DoxyCodeLine{69         \textcolor{keywordtype}{int} first\_stroke,}
+\DoxyCodeLine{70         \textcolor{keywordtype}{int} last\_stroke,}
+\DoxyCodeLine{71         GLfloat start\_border,}
+\DoxyCodeLine{72         GLfloat end\_border,}
+\DoxyCodeLine{73         GLfloat axis\_offset = 0}
+\DoxyCodeLine{74     );}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{void} RenderYValue(}
+\DoxyCodeLine{86         \textcolor{keywordtype}{int} stroke\_index,}
+\DoxyCodeLine{87         \textcolor{keywordtype}{int} first\_stroke,}
+\DoxyCodeLine{88         \textcolor{keywordtype}{int} last\_stroke,}
+\DoxyCodeLine{89         GLfloat start\_border,}
+\DoxyCodeLine{90         GLfloat end\_border,}
+\DoxyCodeLine{91         GLfloat axis\_offset = 0}
+\DoxyCodeLine{92     );}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{keywordtype}{void} RenderValue(glm::vec2 pos, glm::vec2 box, GLfloat value);}
+\DoxyCodeLine{106     \textcolor{keywordtype}{void} RenderValue(glm::vec2 pos, glm::vec2 box, std::string str, glm::vec3 color, \textcolor{keywordtype}{int} axis);}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{115     glm::vec2 GetBoxAlignment(glm::vec2 bbox, glm::vec2 tbox, \textcolor{keywordtype}{int} axis);}
+\DoxyCodeLine{122     \textcolor{keywordtype}{void} GetTextBox(std::string str, glm::vec2\& origin\_offset, glm::vec2\& text\_box);}
+\DoxyCodeLine{129     glm::vec2 GetTextSize(std::string str, GLfloat k);}
+\DoxyCodeLine{130     \textcolor{comment}{//GLfloat GetScaleFactor(glm::vec2 bound\_box, glm::vec2 stretchable\_box);}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{139     \textcolor{keywordtype}{void} SetCommonScaleFactor(GLfloat x1, GLfloat x2, GLfloat y1, GLfloat y2);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{146     std::string ToString(GLfloat num);}
+\DoxyCodeLine{152     std::string ToMaxString(GLfloat num);}
+\DoxyCodeLine{158     glm::vec2 GetBoundBox(\textcolor{keywordtype}{int} axis);}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{166     GLfloat GetMaxScaleFactor(glm::vec2 bound\_box, glm::vec2 stretchable\_box);}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168     GLfloat m\_scale;}
+\DoxyCodeLine{169     GLfloat m\_zoom; }
+\DoxyCodeLine{170     glm::vec2 m\_TL; }
+\DoxyCodeLine{171     glm::vec2 m\_BR; }
+\DoxyCodeLine{172     \textcolor{keywordtype}{bool} m\_should\_render\_x; }
+\DoxyCodeLine{173     \textcolor{keywordtype}{bool} m\_should\_render\_y; }
+\DoxyCodeLine{174     \textcolor{keywordtype}{int} m\_sticking\_side\_x;  }
+\DoxyCodeLine{175     \textcolor{keywordtype}{int} m\_sticking\_side\_y;  }
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177     glm::vec3 m\_axis\_color = \{ 0.824f, 0.412f, 0.118f \}; }
+\DoxyCodeLine{178     glm::vec3 m\_back\_color = \{ 0.3f,0.3f,0.3f \};         }
+\DoxyCodeLine{179     glm::vec3 m\_figures\_color = \{ 1.0f , 1.0f, 1.0f \};   }
+\DoxyCodeLine{180     glm::vec3 m\_ghost\_figures\_color = \{ 0.5f , 0.5f, 0.5f \};}
+\DoxyCodeLine{181     glm::vec3 m\_grid\_color = \{ 0.5f, 0.5f, 0.5f \};          }
+\DoxyCodeLine{182     glm::vec3 m\_minor\_grid\_color = \{ 0.35f, 0.35f, 0.35f \}; }
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184     GLfloat m\_width = 1; }
+\DoxyCodeLine{185     GLfloat m\_stroke\_ratio = 0.3; }
+\DoxyCodeLine{186     GLfloat m\_minor\_stroke\_ratio = 0.10; }
+\DoxyCodeLine{187     GLfloat m\_tstroke\_indent = 0.05; }
+\DoxyCodeLine{188     GLfloat m\_tbstroke\_indent = 0.05;}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190     GLfloat m\_xbase\_line; }
+\DoxyCodeLine{191     GLfloat m\_font\_ratio; }
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193     FTFont* m\_font;}
+\DoxyCodeLine{194 \};}
+
+\end{DoxyCode}

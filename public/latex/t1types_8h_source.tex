@@ -1,0 +1,197 @@
+\hypertarget{t1types_8h_source}{}\doxysection{t1types.\+h}
+\label{t1types_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/t1types.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/t1types.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  t1types.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Basic Type1/Type2 type definitions and interface (specification      */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*    only).                                                               */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003, 2004 by                               */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{17 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef \_\_T1TYPES\_H\_\_}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define \_\_T1TYPES\_H\_\_}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_TYPE1\_TABLES\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include FT\_INTERNAL\_POSTSCRIPT\_HINTS\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include FT\_INTERNAL\_SERVICE\_H}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include FT\_SERVICE\_POSTSCRIPT\_CMAPS\_H}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{35 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{36 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{37 \textcolor{comment}{  /***                                                                   ***/}}
+\DoxyCodeLine{38 \textcolor{comment}{  /***                                                                   ***/}}
+\DoxyCodeLine{39 \textcolor{comment}{  /***              REQUIRED TYPE1/TYPE2 TABLES DEFINITIONS              ***/}}
+\DoxyCodeLine{40 \textcolor{comment}{  /***                                                                   ***/}}
+\DoxyCodeLine{41 \textcolor{comment}{  /***                                                                   ***/}}
+\DoxyCodeLine{42 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{43 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{44 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{48   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{49   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*    T1\_EncodingRec                                                     */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{52   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*    A structure modeling a custom encoding.                            */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{55   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*    num\_chars  :: The number of character codes in the encoding.       */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*                  Usually 256.                                         */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    code\_first :: The lowest valid character code in the encoding.     */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    code\_last  :: The highest valid character code in the encoding.    */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*    char\_index :: An array of corresponding glyph indices.             */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*    char\_name  :: An array of corresponding glyph names.               */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{67   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___encoding_rec_rec__}{T1\_EncodingRecRec\_}}}
+\DoxyCodeLine{68   \{}
+\DoxyCodeLine{69     FT\_Int       num\_chars;}
+\DoxyCodeLine{70     FT\_Int       code\_first;}
+\DoxyCodeLine{71     FT\_Int       code\_last;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     FT\_UShort*   char\_index;}
+\DoxyCodeLine{74     FT\_String**  char\_name;}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76   \} T1\_EncodingRec, *T1\_Encoding;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  T1\_EncodingType\_}
+\DoxyCodeLine{80   \{}
+\DoxyCodeLine{81     T1\_ENCODING\_TYPE\_NONE = 0,}
+\DoxyCodeLine{82     T1\_ENCODING\_TYPE\_ARRAY,}
+\DoxyCodeLine{83     T1\_ENCODING\_TYPE\_STANDARD,}
+\DoxyCodeLine{84     T1\_ENCODING\_TYPE\_ISOLATIN1,}
+\DoxyCodeLine{85     T1\_ENCODING\_TYPE\_EXPERT}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87   \} T1\_EncodingType;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___font_rec__}{T1\_FontRec\_}}}
+\DoxyCodeLine{91   \{}
+\DoxyCodeLine{92     \mbox{\hyperlink{struct_p_s___font_info_rec}{PS\_FontInfoRec}}   font\_info;         \textcolor{comment}{/* font info dictionary */}}
+\DoxyCodeLine{93     \mbox{\hyperlink{struct_p_s___private_rec__}{PS\_PrivateRec}}    private\_dict;      \textcolor{comment}{/* private dictionary   */}}
+\DoxyCodeLine{94     FT\_String*       font\_name;         \textcolor{comment}{/* top-\/level dictionary */}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     T1\_EncodingType  encoding\_type;}
+\DoxyCodeLine{97     T1\_EncodingRec   encoding;}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99     FT\_Byte*         subrs\_block;}
+\DoxyCodeLine{100     FT\_Byte*         charstrings\_block;}
+\DoxyCodeLine{101     FT\_Byte*         glyph\_names\_block;}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103     FT\_Int           num\_subrs;}
+\DoxyCodeLine{104     FT\_Byte**        subrs;}
+\DoxyCodeLine{105     FT\_PtrDist*      subrs\_len;}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107     FT\_Int           num\_glyphs;}
+\DoxyCodeLine{108     FT\_String**      glyph\_names;       \textcolor{comment}{/* array of glyph names       */}}
+\DoxyCodeLine{109     FT\_Byte**        charstrings;       \textcolor{comment}{/* array of glyph charstrings */}}
+\DoxyCodeLine{110     FT\_PtrDist*      charstrings\_len;}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112     FT\_Byte          paint\_type;}
+\DoxyCodeLine{113     FT\_Byte          font\_type;}
+\DoxyCodeLine{114     \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}        font\_matrix;}
+\DoxyCodeLine{115     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}        font\_offset;}
+\DoxyCodeLine{116     \mbox{\hyperlink{struct_f_t___b_box__}{FT\_BBox}}          font\_bbox;}
+\DoxyCodeLine{117     FT\_Long          font\_id;}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     FT\_Fixed         stroke\_width;}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121   \} \mbox{\hyperlink{struct_t1___font_rec__}{T1\_FontRec}}, *\mbox{\hyperlink{struct_t1___font_rec__}{T1\_Font}};}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_c_i_d___subrs_rec__}{CID\_SubrsRec\_}}}
+\DoxyCodeLine{125   \{}
+\DoxyCodeLine{126     FT\_UInt    num\_subrs;}
+\DoxyCodeLine{127     FT\_Byte**  code;}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129   \} \mbox{\hyperlink{struct_c_i_d___subrs_rec__}{CID\_SubrsRec}}, *\mbox{\hyperlink{struct_c_i_d___subrs_rec__}{CID\_Subrs}};}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{133 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{134 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{135 \textcolor{comment}{  /***                                                                   ***/}}
+\DoxyCodeLine{136 \textcolor{comment}{  /***                                                                   ***/}}
+\DoxyCodeLine{137 \textcolor{comment}{  /***                ORIGINAL T1\_FACE CLASS DEFINITION                  ***/}}
+\DoxyCodeLine{138 \textcolor{comment}{  /***                                                                   ***/}}
+\DoxyCodeLine{139 \textcolor{comment}{  /***                                                                   ***/}}
+\DoxyCodeLine{140 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{141 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{142 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___face_rec__}{T1\_FaceRec\_}}*   \mbox{\hyperlink{struct_t1___face_rec__}{T1\_Face}};}
+\DoxyCodeLine{146   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_c_i_d___face_rec__}{CID\_FaceRec\_}}*  \mbox{\hyperlink{struct_c_i_d___face_rec__}{CID\_Face}};}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___face_rec__}{T1\_FaceRec\_}}}
+\DoxyCodeLine{150   \{}
+\DoxyCodeLine{151     \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_FaceRec}}     root;}
+\DoxyCodeLine{152     \mbox{\hyperlink{struct_t1___font_rec__}{T1\_FontRec}}     type1;}
+\DoxyCodeLine{153     \textcolor{keyword}{const} \textcolor{keywordtype}{void}*    psnames;}
+\DoxyCodeLine{154     \textcolor{keyword}{const} \textcolor{keywordtype}{void}*    psaux;}
+\DoxyCodeLine{155     \textcolor{keyword}{const} \textcolor{keywordtype}{void}*    afm\_data;}
+\DoxyCodeLine{156     \mbox{\hyperlink{struct_f_t___char_map_rec__}{FT\_CharMapRec}}  charmaprecs[2];}
+\DoxyCodeLine{157     \mbox{\hyperlink{struct_f_t___char_map_rec__}{FT\_CharMap}}     charmaps[2];}
+\DoxyCodeLine{158     \mbox{\hyperlink{struct_p_s___unicodes__}{PS\_Unicodes}}    unicode\_map;}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160     \textcolor{comment}{/* support for Multiple Masters fonts */}}
+\DoxyCodeLine{161     \mbox{\hyperlink{struct_p_s___blend_rec__}{PS\_Blend}}       blend;}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{comment}{/* since FT 2.1 -\/ interface to PostScript hinter */}}
+\DoxyCodeLine{164     \textcolor{keyword}{const} \textcolor{keywordtype}{void}*    pshinter;}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166   \} \mbox{\hyperlink{struct_t1___face_rec__}{T1\_FaceRec}};}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_c_i_d___face_rec__}{CID\_FaceRec\_}}}
+\DoxyCodeLine{170   \{}
+\DoxyCodeLine{171     \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_FaceRec}}       root;}
+\DoxyCodeLine{172     \textcolor{keywordtype}{void}*            psnames;}
+\DoxyCodeLine{173     \textcolor{keywordtype}{void}*            psaux;}
+\DoxyCodeLine{174     \mbox{\hyperlink{struct_c_i_d___face_info_rec__}{CID\_FaceInfoRec}}  cid;}
+\DoxyCodeLine{175     \textcolor{keywordtype}{void}*            afm\_data;}
+\DoxyCodeLine{176     FT\_Byte*         binary\_data; \textcolor{comment}{/* used if hex data has been converted */}}
+\DoxyCodeLine{177     FT\_Stream        cid\_stream;}
+\DoxyCodeLine{178     \mbox{\hyperlink{struct_c_i_d___subrs_rec__}{CID\_Subrs}}        subrs;}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     \textcolor{comment}{/* since FT 2.1 -\/ interface to PostScript hinter */}}
+\DoxyCodeLine{181     \textcolor{keywordtype}{void}*            pshinter;}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183   \} \mbox{\hyperlink{struct_c_i_d___face_rec__}{CID\_FaceRec}};}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186 FT\_END\_HEADER}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_T1TYPES\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

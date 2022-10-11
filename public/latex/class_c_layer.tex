@@ -1,0 +1,158 @@
+\hypertarget{class_c_layer}{}\doxysection{CLayer Class Reference}
+\label{class_c_layer}\index{CLayer@{CLayer}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_layer_a8bcb34f09bcef463c7f690681919b7da}\label{class_c_layer_a8bcb34f09bcef463c7f690681919b7da}} 
+void {\bfseries Init0} ()
+\item 
+\mbox{\Hypertarget{class_c_layer_a0e64670de2c83a4654977aa6540a9773}\label{class_c_layer_a0e64670de2c83a4654977aa6540a9773}} 
+void {\bfseries Free\+All} ()
+\item 
+\mbox{\Hypertarget{class_c_layer_ab1e27bac085dfe4433e0fca7a7ce4345}\label{class_c_layer_ab1e27bac085dfe4433e0fca7a7ce4345}} 
+void {\bfseries Set\+Curr\+Field} (int n\+Cur\+Field, bool b\+Recalc=true)
+\item 
+\mbox{\Hypertarget{class_c_layer_a73c8a71768d83ba868a7cd5553a39444}\label{class_c_layer_a73c8a71768d83ba868a7cd5553a39444}} 
+void {\bfseries Load} (const \mbox{\hyperlink{class_c_fem}{CFem}} $\ast$p\+Fem)
+\item 
+\mbox{\Hypertarget{class_c_layer_a52f18e0acc66b50951c0ce47841c0c9c}\label{class_c_layer_a52f18e0acc66b50951c0ce47841c0c9c}} 
+void {\bfseries Load} (CFile \&file)
+\item 
+\mbox{\Hypertarget{class_c_layer_a1e6b052e689ca813412031cbb4eea8c5}\label{class_c_layer_a1e6b052e689ca813412031cbb4eea8c5}} 
+void {\bfseries Copy} (const \mbox{\hyperlink{class_c_layer}{CLayer}} \&Src)
+\item 
+\mbox{\Hypertarget{class_c_layer_a8f6f13be9cea498f9f436b3da4ddf662}\label{class_c_layer_a8f6f13be9cea498f9f436b3da4ddf662}} 
+void {\bfseries Save} (CFile \&file)
+\item 
+\mbox{\Hypertarget{class_c_layer_ab749eeb7aa67b9b8c89f4386142b80a6}\label{class_c_layer_ab749eeb7aa67b9b8c89f4386142b80a6}} 
+void {\bfseries gl\+Draw\+Mesh} (double minX, double maxX, double minY, double maxY, \mbox{\hyperlink{class_c_field}{CField}} $\ast$p\+Field\+Tmpl, BOOL b\+Smooth)
+\item 
+\mbox{\Hypertarget{class_c_layer_a04621728e890954e62c2371e1a97d529}\label{class_c_layer_a04621728e890954e62c2371e1a97d529}} 
+double {\bfseries X} (int e, int p)
+\item 
+\mbox{\Hypertarget{class_c_layer_addf35504697eaa36fb7537e975593911}\label{class_c_layer_addf35504697eaa36fb7537e975593911}} 
+double {\bfseries Y} (int e, int p)
+\item 
+\mbox{\Hypertarget{class_c_layer_a23322ca0040fbe602f87f95d9b8a194a}\label{class_c_layer_a23322ca0040fbe602f87f95d9b8a194a}} 
+void {\bfseries Import} (CFile \&File)
+\item 
+\mbox{\Hypertarget{class_c_layer_a154843a7b01a1f342b06af2d2b06f429}\label{class_c_layer_a154843a7b01a1f342b06af2d2b06f429}} 
+void {\bfseries Export} (CFile \&File, bool b\+Turn)
+\item 
+\mbox{\Hypertarget{class_c_layer_a8ab8956460b1791ab760684dc23cc0c6}\label{class_c_layer_a8ab8956460b1791ab760684dc23cc0c6}} 
+void {\bfseries Re\+Mesh\+Prep} (\mbox{\hyperlink{class_c_billet}{CBillet}} $\ast$p\+Billet)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_layer_a931bbefecec877d71d660fd8db759f7c}\label{class_c_layer_a931bbefecec877d71d660fd8db759f7c}} 
+int {\bfseries m\+\_\+n\+MP}
+\item 
+\mbox{\Hypertarget{class_c_layer_af208314d231b1c0f8c41081975a9707d}\label{class_c_layer_af208314d231b1c0f8c41081975a9707d}} 
+int {\bfseries m\+\_\+n\+PFr\+Num}
+\item 
+\mbox{\Hypertarget{class_c_layer_a82a117e891cdaabe8eb12d824d1b6ba7}\label{class_c_layer_a82a117e891cdaabe8eb12d824d1b6ba7}} 
+int {\bfseries m\+\_\+n\+EFr\+Num}
+\item 
+\mbox{\Hypertarget{class_c_layer_a7df900a578891ef5af705f636cd04374}\label{class_c_layer_a7df900a578891ef5af705f636cd04374}} 
+int {\bfseries m\+\_\+n\+Cnt\+Num}
+\item 
+\mbox{\Hypertarget{class_c_layer_a814c3c0c7c2043fe6a3afb962e73746a}\label{class_c_layer_a814c3c0c7c2043fe6a3afb962e73746a}} 
+int {\bfseries m\+\_\+n\+MEl}
+\item 
+\mbox{\Hypertarget{class_c_layer_aff2ecfffe06cf338308144d0ba293500}\label{class_c_layer_aff2ecfffe06cf338308144d0ba293500}} 
+int {\bfseries m\+\_\+n\+Cur\+Field}
+\item 
+\mbox{\Hypertarget{class_c_layer_aa5fa87229ffd4eed716174ec70b2c738}\label{class_c_layer_aa5fa87229ffd4eed716174ec70b2c738}} 
+double {\bfseries m\+\_\+d\+Min\+Field\+Val}
+\item 
+\mbox{\Hypertarget{class_c_layer_a28ba911d4271124e87135f35b1efafb2}\label{class_c_layer_a28ba911d4271124e87135f35b1efafb2}} 
+double {\bfseries m\+\_\+d\+Max\+Field\+Val}
+\item 
+\mbox{\Hypertarget{class_c_layer_a6e3189db92cff9a6fd7f16128b5766c7}\label{class_c_layer_a6e3189db92cff9a6fd7f16128b5766c7}} 
+double {\bfseries m\+\_\+d\+Min\+Field\+ValS}
+\item 
+\mbox{\Hypertarget{class_c_layer_a8fbf0ae6ea48376e08d3e34b9ebdc1b9}\label{class_c_layer_a8fbf0ae6ea48376e08d3e34b9ebdc1b9}} 
+double {\bfseries m\+\_\+d\+Max\+Field\+ValS}
+\item 
+\mbox{\Hypertarget{class_c_layer_a53961c254936be5a96ca62467300dcf6}\label{class_c_layer_a53961c254936be5a96ca62467300dcf6}} 
+BOOL {\bfseries m\+\_\+b\+Fi}
+\item 
+\mbox{\Hypertarget{class_c_layer_ae3b5a7551e61e67a172b017110c48e91}\label{class_c_layer_ae3b5a7551e61e67a172b017110c48e91}} 
+int {\bfseries m\+\_\+n\+Step}
+\item 
+\mbox{\Hypertarget{class_c_layer_a21065b26bce9e557a05925c566684aa1}\label{class_c_layer_a21065b26bce9e557a05925c566684aa1}} 
+double {\bfseries m\+\_\+d\+K0}
+\item 
+\mbox{\Hypertarget{class_c_layer_ac315afa93a4e20f3668a734939a9fe8c}\label{class_c_layer_ac315afa93a4e20f3668a734939a9fe8c}} 
+double {\bfseries m\+\_\+dK}
+\item 
+\mbox{\Hypertarget{class_c_layer_aa4315ab7cbdbeda00de3be122bdc4782}\label{class_c_layer_aa4315ab7cbdbeda00de3be122bdc4782}} 
+double {\bfseries m\+\_\+d\+Omega}
+\item 
+\mbox{\Hypertarget{class_c_layer_a8724ec070459964cc1970855e7c2158f}\label{class_c_layer_a8724ec070459964cc1970855e7c2158f}} 
+double {\bfseries m\+\_\+dZ}
+\item 
+\mbox{\Hypertarget{class_c_layer_a9e0293098728aa46179ddf9fa024f098}\label{class_c_layer_a9e0293098728aa46179ddf9fa024f098}} 
+int($\ast$ {\bfseries m\+\_\+\+IJK} )\mbox{[}3\mbox{]}
+\item 
+\mbox{\Hypertarget{class_c_layer_a2d4c529861817aba6c2ff1f3385f0d63}\label{class_c_layer_a2d4c529861817aba6c2ff1f3385f0d63}} 
+int $\ast$ {\bfseries m\+\_\+\+EFr}
+\item 
+\mbox{\Hypertarget{class_c_layer_aa33cec10c36c9fb045af854e2748ab7e}\label{class_c_layer_aa33cec10c36c9fb045af854e2748ab7e}} 
+int $\ast$ {\bfseries m\+\_\+\+PFr}
+\item 
+\mbox{\Hypertarget{class_c_layer_af5acbc3024a00cd11400174fad4ac54e}\label{class_c_layer_af5acbc3024a00cd11400174fad4ac54e}} 
+double $\ast$ {\bfseries m\+\_\+\+Sqm}
+\item 
+\mbox{\Hypertarget{class_c_layer_ac4a1e1c30abccdb6f21bdb3e4bf5f025}\label{class_c_layer_ac4a1e1c30abccdb6f21bdb3e4bf5f025}} 
+int $\ast$ {\bfseries m\+\_\+\+PFr\+Cnt}
+\item 
+\mbox{\Hypertarget{class_c_layer_af5f5cc69daa31bd9982acce4bd5a2b8b}\label{class_c_layer_af5f5cc69daa31bd9982acce4bd5a2b8b}} 
+int $\ast$ {\bfseries m\+\_\+\+PCnt}
+\item 
+\mbox{\Hypertarget{class_c_layer_aa3765f8d6006652c1a83fbb1eccccdfd}\label{class_c_layer_aa3765f8d6006652c1a83fbb1eccccdfd}} 
+int $\ast$ {\bfseries m\+\_\+\+RCnt}
+\item 
+\mbox{\Hypertarget{class_c_layer_af1a40699a5c23656cc1c5dbb0dccc796}\label{class_c_layer_af1a40699a5c23656cc1c5dbb0dccc796}} 
+char $\ast$ {\bfseries m\+\_\+\+RCnt\+Flags}
+\item 
+\mbox{\Hypertarget{class_c_layer_a5853d0f9480b6ff46d5a22e406c55787}\label{class_c_layer_a5853d0f9480b6ff46d5a22e406c55787}} 
+double $\ast$ {\bfseries m\+\_\+\+MeshX}
+\item 
+\mbox{\Hypertarget{class_c_layer_ab3575c9a4fa80933f6a70bed086b9187}\label{class_c_layer_ab3575c9a4fa80933f6a70bed086b9187}} 
+double $\ast$ {\bfseries m\+\_\+\+MeshY}
+\item 
+\mbox{\Hypertarget{class_c_layer_ad50f32082774ed1b6e3757545fd0299b}\label{class_c_layer_ad50f32082774ed1b6e3757545fd0299b}} 
+double $\ast$ {\bfseries m\+\_\+\+MeshZ}
+\item 
+\mbox{\Hypertarget{class_c_layer_a092afc4c1120306447a11d481b3470a9}\label{class_c_layer_a092afc4c1120306447a11d481b3470a9}} 
+double $\ast$ {\bfseries m\+\_\+\+Stl}
+\item 
+\mbox{\Hypertarget{class_c_layer_ab41dd070f2653fae0168575fa2288ff0}\label{class_c_layer_ab41dd070f2653fae0168575fa2288ff0}} 
+double $\ast$ {\bfseries m\+\_\+\+Snn}
+\item 
+\mbox{\Hypertarget{class_c_layer_a8e53b76f3d9f43ce7a636ee2c9a91933}\label{class_c_layer_a8e53b76f3d9f43ce7a636ee2c9a91933}} 
+double $\ast$ {\bfseries m\+\_\+\+Stt}
+\item 
+\mbox{\Hypertarget{class_c_layer_a29bb54ada595843ee1ef146a8b5cf073}\label{class_c_layer_a29bb54ada595843ee1ef146a8b5cf073}} 
+double $\ast$ {\bfseries m\+\_\+\+Len}
+\item 
+\mbox{\Hypertarget{class_c_layer_a51554a2f7d6afe9b6e554aa69467201c}\label{class_c_layer_a51554a2f7d6afe9b6e554aa69467201c}} 
+double $\ast$ {\bfseries m\+\_\+\+Term}
+\item 
+\mbox{\Hypertarget{class_c_layer_a8c541c6a0bf4007770bb643e3a5b3760}\label{class_c_layer_a8c541c6a0bf4007770bb643e3a5b3760}} 
+double $\ast$ {\bfseries m\+\_\+\+Fi}
+\item 
+\mbox{\Hypertarget{class_c_layer_af3ccc090587cd365d83cd7dd05bd42ac}\label{class_c_layer_af3ccc090587cd365d83cd7dd05bd42ac}} 
+double $\ast$$\ast$ {\bfseries m\+\_\+\+Fields}
+\item 
+\mbox{\Hypertarget{class_c_layer_a917626eaf0948a6ab63af75756a34dc9}\label{class_c_layer_a917626eaf0948a6ab63af75756a34dc9}} 
+double $\ast$ {\bfseries m\+\_\+\+Curr\+Field}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/prototype-\/prismatic/source/Layer.\+h\item 
+C\+:/\+Projects/\+FEM/prototype-\/prismatic/source/Layer.\+cpp\end{DoxyCompactItemize}

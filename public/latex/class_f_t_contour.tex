@@ -1,0 +1,90 @@
+\hypertarget{class_f_t_contour}{}\doxysection{FTContour Class Reference}
+\label{class_f_t_contour}\index{FTContour@{FTContour}}
+
+
+{\ttfamily \#include $<$FTContour.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_contour_a1a682c070617bf9023ea38c65b32ade3}{FTContour}} (\mbox{\hyperlink{struct_f_t___vector__}{FT\+\_\+\+Vector}} $\ast$contour, char $\ast$point\+Tags, unsigned int number\+Of\+Points)
+\item 
+\mbox{\hyperlink{class_f_t_contour_a89ac638fc2bbe641d730af84bf13b242}{$\sim$\+FTContour}} ()
+\item 
+const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& \mbox{\hyperlink{class_f_t_contour_a01e07d77575c056e29231fd247d24948}{Point}} (unsigned int index) const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_f_t_contour_aa9a55f688009eb2e08fd14ce895e4bf1}{Point\+Count}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_contour}{FTContour}} class is a container of points that describe a vector font outline. It is used as a container for the output of the bezier curve evaluator in \mbox{\hyperlink{class_f_t_vectoriser}{FTVectoriser}}.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_f_t_outline_glyph}{FTOutline\+Glyph}} 
+
+\mbox{\hyperlink{class_f_t_poly_glyph}{FTPoly\+Glyph}} 
+
+\mbox{\hyperlink{class_f_t_point}{FTPoint}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_contour_a1a682c070617bf9023ea38c65b32ade3}\label{class_f_t_contour_a1a682c070617bf9023ea38c65b32ade3}} 
+\index{FTContour@{FTContour}!FTContour@{FTContour}}
+\index{FTContour@{FTContour}!FTContour@{FTContour}}
+\doxysubsubsection{\texorpdfstring{FTContour()}{FTContour()}}
+{\footnotesize\ttfamily FTContour\+::\+FTContour (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t___vector__}{FT\+\_\+\+Vector}} $\ast$}]{contour,  }\item[{char $\ast$}]{point\+Tags,  }\item[{unsigned int}]{number\+Of\+Points }\end{DoxyParamCaption})}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em contour} & \\
+\hline
+{\em point\+Tags} & \\
+\hline
+{\em number\+Of\+Points} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_contour_a89ac638fc2bbe641d730af84bf13b242}\label{class_f_t_contour_a89ac638fc2bbe641d730af84bf13b242}} 
+\index{FTContour@{FTContour}!````~FTContour@{$\sim$FTContour}}
+\index{````~FTContour@{$\sim$FTContour}!FTContour@{FTContour}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTContour()}{~FTContour()}}
+{\footnotesize\ttfamily FTContour\+::$\sim$\+FTContour (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_contour_a01e07d77575c056e29231fd247d24948}\label{class_f_t_contour_a01e07d77575c056e29231fd247d24948}} 
+\index{FTContour@{FTContour}!Point@{Point}}
+\index{Point@{Point}!FTContour@{FTContour}}
+\doxysubsubsection{\texorpdfstring{Point()}{Point()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& FTContour\+::\+Point (\begin{DoxyParamCaption}\item[{unsigned int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return a point at index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & of the point in the curve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const point reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_contour_aa9a55f688009eb2e08fd14ce895e4bf1}\label{class_f_t_contour_aa9a55f688009eb2e08fd14ce895e4bf1}} 
+\index{FTContour@{FTContour}!PointCount@{PointCount}}
+\index{PointCount@{PointCount}!FTContour@{FTContour}}
+\doxysubsubsection{\texorpdfstring{PointCount()}{PointCount()}}
+{\footnotesize\ttfamily size\+\_\+t FTContour\+::\+Point\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+How many points define this contour
+
+\begin{DoxyReturn}{Returns}
+the number of points in this contour 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTContour.\+h\end{DoxyCompactItemize}

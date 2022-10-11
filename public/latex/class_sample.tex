@@ -1,0 +1,176 @@
+\hypertarget{class_sample}{}\doxysection{Sample Class Reference}
+\label{class_sample}\index{Sample@{Sample}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96}{Field\+Id}} \{ \newline
+\mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96a02129bb861061d1a052c592e2dc6b383}{X}}
+, \mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96a57cec4137b614c87cb4e24a3d003a3e0}{Y}}
+, \mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96a6575d9a58f0b41a108f2d6a565a0650d}{ORDER}}
+, \mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96a21c2e59531c8710156d34a3c30ac81d5}{Z}}
+, \newline
+\mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96a1e6fc34ee777e14f7e4269d622adeb9e}{EUM}}
+, \mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96ad1d1a12c39f739401fca735ec0e70aca}{ECP}}
+, {\bfseries EXX}
+, {\bfseries EYY}
+, \newline
+{\bfseries EXY}
+, {\bfseries EXZ}
+, {\bfseries EYZ}
+, \mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96a42e570a2d526465cf9e75eba5386089d}{EZZ}}
+, \newline
+\mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96a42b7cea9ef7af732002557834c6d6ef6}{DUM}}
+, \mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96ac90f363de8c9e315b68a63e7f1c224f6}{SOCT}}
+, {\bfseries DXX}
+, {\bfseries DYY}
+, \newline
+{\bfseries DXY}
+, {\bfseries DXZ}
+, {\bfseries DYZ}
+, \mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96a16c6d3233ca19495d2a50dd911d6e238}{DZZ}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sample_ad79be59ab0199c9c3d99d76d178cd2ae}\label{class_sample_ad79be59ab0199c9c3d99d76d178cd2ae}} 
+{\bfseries Sample} (const \mbox{\hyperlink{class_sample}{Sample}} \&)=default
+\item 
+\mbox{\Hypertarget{class_sample_a978e5f8f3dee20722b7ccf7d0d26e2c4}\label{class_sample_a978e5f8f3dee20722b7ccf7d0d26e2c4}} 
+\mbox{\hyperlink{class_sample}{Sample}} \& {\bfseries operator=} (\mbox{\hyperlink{class_sample}{Sample}} \&\&s)
+\item 
+\mbox{\Hypertarget{class_sample_ad758ae5f0a488d4d6e593efc169c423f}\label{class_sample_ad758ae5f0a488d4d6e593efc169c423f}} 
+void {\bfseries Load} (std\+::ifstream \&file)
+\item 
+\mbox{\Hypertarget{class_sample_a79326046f74616ef3e19dad6c3c5de92}\label{class_sample_a79326046f74616ef3e19dad6c3c5de92}} 
+void {\bfseries Load} (const char $\ast$data, size\+\_\+t n)
+\item 
+bool \mbox{\hyperlink{class_sample_ad11ff274dbcbb5231c82ce85b967022d}{set\+\_\+mesh\+\_\+from\+\_\+frame}} (std\+::ifstream \&file, HINSTANCE hlib, double mesh\+\_\+edge\+\_\+length\+\_\+param)
+\begin{DoxyCompactList}\small\item\em remeshing function \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sample_ae79e4270bededab04fdafe7c6c799310}\label{class_sample_ae79e4270bededab04fdafe7c6c799310}} 
+void {\bfseries load\+\_\+mesh} (std\+::ifstream \&file)
+\begin{DoxyCompactList}\small\item\em загрузить сетку \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sample_ac5f68c6945f858ca11dbdd96af7a9653}\label{class_sample_ac5f68c6945f858ca11dbdd96af7a9653}} 
+bool {\bfseries On\+Front} (const FRONTINF \&FI1, const FRONTINF \&FI2, int vnum)
+\item 
+void \mbox{\hyperlink{class_sample_a66c6ad498c795a0ea1c677032d2e983e}{Set\+Front}} (std\+::vector$<$ ELEMENT $>$ \&Elements, int n\+Fr\+Size, FRONTINF $\ast$$\ast$Inf=NULL)
+\item 
+\mbox{\Hypertarget{class_sample_aca9de3a00d5241bee48e870aeb5187ae}\label{class_sample_aca9de3a00d5241bee48e870aeb5187ae}} 
+void {\bfseries Init\+Front\+Inf} (int $\ast$Cnt\+Flags, int $\ast$RCnt, int n\+PFr\+Num, FRONTINF $\ast$Fr\+Inf)
+\item 
+\mbox{\Hypertarget{class_sample_a94afc2149e9b598f7da54eebf912ae25}\label{class_sample_a94afc2149e9b598f7da54eebf912ae25}} 
+double {\bfseries GetV} ()
+\item 
+\mbox{\Hypertarget{class_sample_accbb95ea893a6fc5d604a2a7d7ea66f7}\label{class_sample_accbb95ea893a6fc5d604a2a7d7ea66f7}} 
+void {\bfseries Normalize\+\_\+\+Field} (double $\ast$MeshX, double $\ast$MeshY, double $\ast$MeshZ, ELEMENT $\ast$Elements, int n\+PNum, int n\+ENum, double $\ast$New\+Fields\mbox{[}17\mbox{]}, double $\ast$Old\+Fields\mbox{[}17\mbox{]}, int num\+\_\+\+Field)
+\item 
+\mbox{\Hypertarget{class_sample_adf32371aa7cf29c18503e11bbaca9fb0}\label{class_sample_adf32371aa7cf29c18503e11bbaca9fb0}} 
+void {\bfseries Normalize\+\_\+\+MeshZ} (double $\ast$MeshX, double $\ast$MeshY, double $\ast$MeshZ, ELEMENT $\ast$Elements, int n\+PNum, int n\+ENum)
+\item 
+\mbox{\Hypertarget{class_sample_a66be3b95ad786901feb1ebc71059dc44}\label{class_sample_a66be3b95ad786901feb1ebc71059dc44}} 
+double $\ast$$\ast$ {\bfseries Recalc\+Fields} (double $\ast$MeshX, double $\ast$MeshY, ELEMENT $\ast$Elements, int n\+PNum, int n\+ENum, double $\ast$p\+Fields\mbox{[}17\mbox{]}, int n\+Size, double $\ast$$\ast$Sqm)
+\item 
+\mbox{\Hypertarget{class_sample_a9ec13401e1143a9d1e4d40610e780388}\label{class_sample_a9ec13401e1143a9d1e4d40610e780388}} 
+void {\bfseries Recalc\+Mesh\+ZFields} (double $\ast$MeshX, double $\ast$MeshY, ELEMENT $\ast$Elements, int n\+PNum, int n\+ENum, std\+::vector$<$ double $>$ $\ast$MeshZ)
+\item 
+\mbox{\Hypertarget{class_sample_ad11a71ac636906b4902da1492b72bc14}\label{class_sample_ad11a71ac636906b4902da1492b72bc14}} 
+void {\bfseries Get\+Fr} (std\+::vector$<$ double $>$ \&FrX, std\+::vector$<$ double $>$ \&FrY, std\+::vector$<$ double $>$ \&W, int $\ast$Cnt\+Flags, int $\ast$RCnt)
+\item 
+\mbox{\Hypertarget{class_sample_a1e88e59f3c9c308aeaeb2545344ac816}\label{class_sample_a1e88e59f3c9c308aeaeb2545344ac816}} 
+bool {\bfseries Triangulate0} (HINSTANCE hlib, std\+::vector$<$ double $>$ \&FrX, std\+::vector$<$ double $>$ \&FrY, std\+::vector$<$ double $>$ \&W, std\+::vector$<$ ELEMENT $>$ \&Elements, std\+::vector$<$ double $>$ \&MeshX, std\+::vector$<$ double $>$ \&MeshY, double mesh\+\_\+edge\+\_\+length\+\_\+param)
+\begin{DoxyCompactList}\small\item\em разбить образец на элементы \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sample_aa343c8515f2ac965375bc4a7d0513ec7}\label{class_sample_aa343c8515f2ac965375bc4a7d0513ec7}} 
+double $\ast$$\ast$ {\bfseries remesh} (HINSTANCE hlib, double $\ast$p\+Fields\mbox{[}17\mbox{]}, int n\+Size, double $\ast$$\ast$Sqm, double $\ast$$\ast$Fr\+Fields\mbox{[}4\mbox{]}, bool b\+Fr, double mesh\+\_\+edge\+\_\+length\+\_\+param)
+\begin{DoxyCompactList}\small\item\em перестроить сетку ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sample_ab5eae71f6fe19239d375e5ed4df525d4}\label{class_sample_ab5eae71f6fe19239d375e5ed4df525d4}} 
+double {\bfseries GetZ} (int e)
+\item 
+\mbox{\Hypertarget{class_sample_a53b4ef417cd90e2f40d7e7b3a26e9973}\label{class_sample_a53b4ef417cd90e2f40d7e7b3a26e9973}} 
+void {\bfseries Re\+Load} (int)
+\item 
+\mbox{\Hypertarget{class_sample_a9927bebfe65d100bd3e15c8aa873c063}\label{class_sample_a9927bebfe65d100bd3e15c8aa873c063}} 
+void {\bfseries get\+\_\+field} (unsigned int id, void $\ast$\&ptr\+\_\+field, size\+\_\+t \&size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sample_a0999af87762cc5ab0ee2f8e959676dc2}\label{class_sample_a0999af87762cc5ab0ee2f8e959676dc2}} 
+friend {\bfseries Model}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96}} 
+\index{Sample@{Sample}!FieldId@{FieldId}}
+\index{FieldId@{FieldId}!Sample@{Sample}}
+\doxysubsubsection{\texorpdfstring{FieldId}{FieldId}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{class_sample_a0196ede97d2db4922ef0cd4001c80c96}{Sample\+::\+Field\+Id}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{X@{X}!Sample@{Sample}}\index{Sample@{Sample}!X@{X}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96a02129bb861061d1a052c592e2dc6b383}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96a02129bb861061d1a052c592e2dc6b383}} 
+X&Х-\/координата \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Y@{Y}!Sample@{Sample}}\index{Sample@{Sample}!Y@{Y}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96a57cec4137b614c87cb4e24a3d003a3e0}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96a57cec4137b614c87cb4e24a3d003a3e0}} 
+Y&У-\/координата \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ORDER@{ORDER}!Sample@{Sample}}\index{Sample@{Sample}!ORDER@{ORDER}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96a6575d9a58f0b41a108f2d6a565a0650d}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96a6575d9a58f0b41a108f2d6a565a0650d}} 
+ORDER&порядок \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Z@{Z}!Sample@{Sample}}\index{Sample@{Sample}!Z@{Z}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96a21c2e59531c8710156d34a3c30ac81d5}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96a21c2e59531c8710156d34a3c30ac81d5}} 
+Z&Z-\/координата \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EUM@{EUM}!Sample@{Sample}}\index{Sample@{Sample}!EUM@{EUM}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96a1e6fc34ee777e14f7e4269d622adeb9e}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96a1e6fc34ee777e14f7e4269d622adeb9e}} 
+EUM&интенсивность скорости деформации \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ECP@{ECP}!Sample@{Sample}}\index{Sample@{Sample}!ECP@{ECP}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96ad1d1a12c39f739401fca735ec0e70aca}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96ad1d1a12c39f739401fca735ec0e70aca}} 
+ECP&скорость относительного значения объема \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EZZ@{EZZ}!Sample@{Sample}}\index{Sample@{Sample}!EZZ@{EZZ}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96a42e570a2d526465cf9e75eba5386089d}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96a42e570a2d526465cf9e75eba5386089d}} 
+EZZ&интенсивности скорости деформации по соответствующим полям \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DUM@{DUM}!Sample@{Sample}}\index{Sample@{Sample}!DUM@{DUM}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96a42b7cea9ef7af732002557834c6d6ef6}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96a42b7cea9ef7af732002557834c6d6ef6}} 
+DUM&интенсивность деформации \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SOCT@{SOCT}!Sample@{Sample}}\index{Sample@{Sample}!SOCT@{SOCT}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96ac90f363de8c9e315b68a63e7f1c224f6}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96ac90f363de8c9e315b68a63e7f1c224f6}} 
+SOCT&накопленное гидростатическое давление \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DZZ@{DZZ}!Sample@{Sample}}\index{Sample@{Sample}!DZZ@{DZZ}}}\mbox{\Hypertarget{class_sample_a0196ede97d2db4922ef0cd4001c80c96a16c6d3233ca19495d2a50dd911d6e238}\label{class_sample_a0196ede97d2db4922ef0cd4001c80c96a16c6d3233ca19495d2a50dd911d6e238}} 
+DZZ&интенсивность деформации по соответствующим полям \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sample_ad11ff274dbcbb5231c82ce85b967022d}\label{class_sample_ad11ff274dbcbb5231c82ce85b967022d}} 
+\index{Sample@{Sample}!set\_mesh\_from\_frame@{set\_mesh\_from\_frame}}
+\index{set\_mesh\_from\_frame@{set\_mesh\_from\_frame}!Sample@{Sample}}
+\doxysubsubsection{\texorpdfstring{set\_mesh\_from\_frame()}{set\_mesh\_from\_frame()}}
+{\footnotesize\ttfamily bool Sample\+::set\+\_\+mesh\+\_\+from\+\_\+frame (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{file,  }\item[{HINSTANCE}]{hlib,  }\item[{double}]{mesh\+\_\+edge\+\_\+length\+\_\+param }\end{DoxyParamCaption})}
+
+
+
+remeshing function 
+
+загрузить только контур и создать сетку \mbox{\Hypertarget{class_sample_a66c6ad498c795a0ea1c677032d2e983e}\label{class_sample_a66c6ad498c795a0ea1c677032d2e983e}} 
+\index{Sample@{Sample}!SetFront@{SetFront}}
+\index{SetFront@{SetFront}!Sample@{Sample}}
+\doxysubsubsection{\texorpdfstring{SetFront()}{SetFront()}}
+{\footnotesize\ttfamily void Sample\+::\+Set\+Front (\begin{DoxyParamCaption}\item[{std\+::vector$<$ ELEMENT $>$ \&}]{Elements,  }\item[{int}]{n\+Fr\+Size,  }\item[{FRONTINF $\ast$$\ast$}]{Inf = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+!!1
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+FEM/source/Sample.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+FEM/source/Sample.\+cpp\end{DoxyCompactItemize}

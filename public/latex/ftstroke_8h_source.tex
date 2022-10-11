@@ -1,0 +1,716 @@
+\hypertarget{ftstroke_8h_source}{}\doxysection{ftstroke.\+h}
+\label{ftstroke_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftstroke.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftstroke.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftstroke.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType path stroker (specification).                               */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2002, 2003, 2004 by                                          */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FT\_STROKE\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FT\_STROKE\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_OUTLINE\_H}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{ /************************************************************************}}
+\DoxyCodeLine{31 \textcolor{comment}{  *}}
+\DoxyCodeLine{32 \textcolor{comment}{  * <Section>}}
+\DoxyCodeLine{33 \textcolor{comment}{  *    glyph\_stroker}}
+\DoxyCodeLine{34 \textcolor{comment}{  *}}
+\DoxyCodeLine{35 \textcolor{comment}{  * <Title>}}
+\DoxyCodeLine{36 \textcolor{comment}{  *    Glyph Stroker}}
+\DoxyCodeLine{37 \textcolor{comment}{  *}}
+\DoxyCodeLine{38 \textcolor{comment}{  * <Abstract>}}
+\DoxyCodeLine{39 \textcolor{comment}{  *    Generating bordered and stroked glyphs.}}
+\DoxyCodeLine{40 \textcolor{comment}{  *}}
+\DoxyCodeLine{41 \textcolor{comment}{  * <Description>}}
+\DoxyCodeLine{42 \textcolor{comment}{  *    This component generates stroked outlines of a given vectorial}}
+\DoxyCodeLine{43 \textcolor{comment}{  *    glyph.  It also allows you to retrieve the `outside' and/or the}}
+\DoxyCodeLine{44 \textcolor{comment}{  *    `inside' borders of the stroke.}}
+\DoxyCodeLine{45 \textcolor{comment}{  *}}
+\DoxyCodeLine{46 \textcolor{comment}{  *    This can be useful to generate `bordered' glyph, i.e., glyphs}}
+\DoxyCodeLine{47 \textcolor{comment}{  *    displayed with a coloured (and anti-\/aliased) border around their}}
+\DoxyCodeLine{48 \textcolor{comment}{  *    shape.}}
+\DoxyCodeLine{49 \textcolor{comment}{  */}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{comment}{ /**************************************************************}}
+\DoxyCodeLine{53 \textcolor{comment}{  *}}
+\DoxyCodeLine{54 \textcolor{comment}{  * @type:}}
+\DoxyCodeLine{55 \textcolor{comment}{  *   FT\_Stroker}}
+\DoxyCodeLine{56 \textcolor{comment}{  *}}
+\DoxyCodeLine{57 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{58 \textcolor{comment}{  *   Opaque handler to a path stroker object.}}
+\DoxyCodeLine{59 \textcolor{comment}{  */}}
+\DoxyCodeLine{60   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }FT\_StrokerRec\_*  FT\_Stroker;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{64 \textcolor{comment}{   *}}
+\DoxyCodeLine{65 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{66 \textcolor{comment}{   *   FT\_Stroker\_LineJoin}}
+\DoxyCodeLine{67 \textcolor{comment}{   *}}
+\DoxyCodeLine{68 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{69 \textcolor{comment}{   *   These values determine how two joining lines are rendered}}
+\DoxyCodeLine{70 \textcolor{comment}{   *   in a stroker.}}
+\DoxyCodeLine{71 \textcolor{comment}{   *}}
+\DoxyCodeLine{72 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{73 \textcolor{comment}{   *   FT\_STROKER\_LINEJOIN\_ROUND ::}}
+\DoxyCodeLine{74 \textcolor{comment}{   *     Used to render rounded line joins.  Circular arcs are used}}
+\DoxyCodeLine{75 \textcolor{comment}{   *     to join two lines smoothly.}}
+\DoxyCodeLine{76 \textcolor{comment}{   *}}
+\DoxyCodeLine{77 \textcolor{comment}{   *   FT\_STROKER\_LINEJOIN\_BEVEL ::}}
+\DoxyCodeLine{78 \textcolor{comment}{   *     Used to render beveled line joins; i.e., the two joining lines}}
+\DoxyCodeLine{79 \textcolor{comment}{   *     are extended until they intersect.}}
+\DoxyCodeLine{80 \textcolor{comment}{   *}}
+\DoxyCodeLine{81 \textcolor{comment}{   *   FT\_STROKER\_LINEJOIN\_MITER ::}}
+\DoxyCodeLine{82 \textcolor{comment}{   *     Same as beveled rendering, except that an additional line}}
+\DoxyCodeLine{83 \textcolor{comment}{   *     break is added if the angle between the two joining lines}}
+\DoxyCodeLine{84 \textcolor{comment}{   *     is too closed (this is useful to avoid unpleasant spikes}}
+\DoxyCodeLine{85 \textcolor{comment}{   *     in beveled rendering).}}
+\DoxyCodeLine{86 \textcolor{comment}{   */}}
+\DoxyCodeLine{87   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}}
+\DoxyCodeLine{88   \{}
+\DoxyCodeLine{89     FT\_STROKER\_LINEJOIN\_ROUND = 0,}
+\DoxyCodeLine{90     FT\_STROKER\_LINEJOIN\_BEVEL,}
+\DoxyCodeLine{91     FT\_STROKER\_LINEJOIN\_MITER}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93   \} FT\_Stroker\_LineJoin;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{97 \textcolor{comment}{   *}}
+\DoxyCodeLine{98 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{99 \textcolor{comment}{   *   FT\_Stroker\_LineCap}}
+\DoxyCodeLine{100 \textcolor{comment}{   *}}
+\DoxyCodeLine{101 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{102 \textcolor{comment}{   *   These values determine how the end of opened sub-\/paths are}}
+\DoxyCodeLine{103 \textcolor{comment}{   *   rendered in a stroke.}}
+\DoxyCodeLine{104 \textcolor{comment}{   *}}
+\DoxyCodeLine{105 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{106 \textcolor{comment}{   *   FT\_STROKER\_LINECAP\_BUTT ::}}
+\DoxyCodeLine{107 \textcolor{comment}{   *     The end of lines is rendered as a full stop on the last}}
+\DoxyCodeLine{108 \textcolor{comment}{   *     point itself.}}
+\DoxyCodeLine{109 \textcolor{comment}{   *}}
+\DoxyCodeLine{110 \textcolor{comment}{   *   FT\_STROKER\_LINECAP\_ROUND ::}}
+\DoxyCodeLine{111 \textcolor{comment}{   *     The end of lines is rendered as a half-\/circle around the}}
+\DoxyCodeLine{112 \textcolor{comment}{   *     last point.}}
+\DoxyCodeLine{113 \textcolor{comment}{   *}}
+\DoxyCodeLine{114 \textcolor{comment}{   *   FT\_STROKER\_LINECAP\_SQUARE ::}}
+\DoxyCodeLine{115 \textcolor{comment}{   *     The end of lines is rendered as a square around the}}
+\DoxyCodeLine{116 \textcolor{comment}{   *     last point.}}
+\DoxyCodeLine{117 \textcolor{comment}{   */}}
+\DoxyCodeLine{118   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}}
+\DoxyCodeLine{119   \{}
+\DoxyCodeLine{120     FT\_STROKER\_LINECAP\_BUTT = 0,}
+\DoxyCodeLine{121     FT\_STROKER\_LINECAP\_ROUND,}
+\DoxyCodeLine{122     FT\_STROKER\_LINECAP\_SQUARE}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124   \} FT\_Stroker\_LineCap;}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{128 \textcolor{comment}{   *}}
+\DoxyCodeLine{129 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{130 \textcolor{comment}{   *   FT\_StrokerBorder}}
+\DoxyCodeLine{131 \textcolor{comment}{   *}}
+\DoxyCodeLine{132 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{133 \textcolor{comment}{   *   These values are used to select a given stroke border}}
+\DoxyCodeLine{134 \textcolor{comment}{   *   in @FT\_Stroker\_GetBorderCounts and @FT\_Stroker\_ExportBorder.}}
+\DoxyCodeLine{135 \textcolor{comment}{   *}}
+\DoxyCodeLine{136 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{137 \textcolor{comment}{   *   FT\_STROKER\_BORDER\_LEFT ::}}
+\DoxyCodeLine{138 \textcolor{comment}{   *     Select the left border, relative to the drawing direction.}}
+\DoxyCodeLine{139 \textcolor{comment}{   *}}
+\DoxyCodeLine{140 \textcolor{comment}{   *   FT\_STROKER\_BORDER\_RIGHT ::}}
+\DoxyCodeLine{141 \textcolor{comment}{   *     Select the right border, relative to the drawing direction.}}
+\DoxyCodeLine{142 \textcolor{comment}{   *}}
+\DoxyCodeLine{143 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{144 \textcolor{comment}{   *   Applications are generally interested in the `inside' and `outside'}}
+\DoxyCodeLine{145 \textcolor{comment}{   *   borders.  However, there is no direct mapping between these and}}
+\DoxyCodeLine{146 \textcolor{comment}{   *   the `left' / `right' ones, since this really depends on the glyph's}}
+\DoxyCodeLine{147 \textcolor{comment}{   *   drawing orientation, which varies between font formats.}}
+\DoxyCodeLine{148 \textcolor{comment}{   *}}
+\DoxyCodeLine{149 \textcolor{comment}{   *   You can however use @FT\_Outline\_GetInsideBorder and}}
+\DoxyCodeLine{150 \textcolor{comment}{   *   @FT\_Outline\_GetOutsideBorder to get these.}}
+\DoxyCodeLine{151 \textcolor{comment}{   */}}
+\DoxyCodeLine{152   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}}
+\DoxyCodeLine{153   \{}
+\DoxyCodeLine{154     FT\_STROKER\_BORDER\_LEFT = 0,}
+\DoxyCodeLine{155     FT\_STROKER\_BORDER\_RIGHT}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157   \} FT\_StrokerBorder;}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{161 \textcolor{comment}{   *}}
+\DoxyCodeLine{162 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{163 \textcolor{comment}{   *   FT\_Outline\_GetInsideBorder}}
+\DoxyCodeLine{164 \textcolor{comment}{   *}}
+\DoxyCodeLine{165 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{166 \textcolor{comment}{   *   Retrieve the @FT\_StrokerBorder value corresponding to the}}
+\DoxyCodeLine{167 \textcolor{comment}{   *   `inside' borders of a given outline.}}
+\DoxyCodeLine{168 \textcolor{comment}{   *}}
+\DoxyCodeLine{169 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{170 \textcolor{comment}{   *   outline ::}}
+\DoxyCodeLine{171 \textcolor{comment}{   *     The source outline handle.}}
+\DoxyCodeLine{172 \textcolor{comment}{   *}}
+\DoxyCodeLine{173 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{174 \textcolor{comment}{   *   The border index.  @FT\_STROKER\_BORDER\_LEFT for empty or invalid}}
+\DoxyCodeLine{175 \textcolor{comment}{   *   outlines.}}
+\DoxyCodeLine{176 \textcolor{comment}{   */}}
+\DoxyCodeLine{177   FT\_EXPORT( FT\_StrokerBorder )}
+\DoxyCodeLine{178   FT\_Outline\_GetInsideBorder( \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline );}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{182 \textcolor{comment}{   *}}
+\DoxyCodeLine{183 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{184 \textcolor{comment}{   *   FT\_Outline\_GetOutsideBorder}}
+\DoxyCodeLine{185 \textcolor{comment}{   *}}
+\DoxyCodeLine{186 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{187 \textcolor{comment}{   *   Retrieve the @FT\_StrokerBorder value corresponding to the}}
+\DoxyCodeLine{188 \textcolor{comment}{   *   `outside' borders of a given outline.}}
+\DoxyCodeLine{189 \textcolor{comment}{   *}}
+\DoxyCodeLine{190 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{191 \textcolor{comment}{   *   outline ::}}
+\DoxyCodeLine{192 \textcolor{comment}{   *     The source outline handle.}}
+\DoxyCodeLine{193 \textcolor{comment}{   *}}
+\DoxyCodeLine{194 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{195 \textcolor{comment}{   *   The border index.  @FT\_STROKER\_BORDER\_LEFT for empty or invalid}}
+\DoxyCodeLine{196 \textcolor{comment}{   *   outlines.}}
+\DoxyCodeLine{197 \textcolor{comment}{   */}}
+\DoxyCodeLine{198   FT\_EXPORT( FT\_StrokerBorder )}
+\DoxyCodeLine{199   FT\_Outline\_GetOutsideBorder( \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline );}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{203 \textcolor{comment}{   *}}
+\DoxyCodeLine{204 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{205 \textcolor{comment}{   *   FT\_Stroker\_New}}
+\DoxyCodeLine{206 \textcolor{comment}{   *}}
+\DoxyCodeLine{207 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{208 \textcolor{comment}{   *   Create a new stroker object.}}
+\DoxyCodeLine{209 \textcolor{comment}{   *}}
+\DoxyCodeLine{210 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{211 \textcolor{comment}{   *   memory ::}}
+\DoxyCodeLine{212 \textcolor{comment}{   *     The memory manager handle.}}
+\DoxyCodeLine{213 \textcolor{comment}{   *}}
+\DoxyCodeLine{214 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{215 \textcolor{comment}{   *   A new stroker object handle.  NULL in case of error.}}
+\DoxyCodeLine{216 \textcolor{comment}{   *}}
+\DoxyCodeLine{217 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{218 \textcolor{comment}{   *    FreeType error code.  0 means success.}}
+\DoxyCodeLine{219 \textcolor{comment}{   */}}
+\DoxyCodeLine{220   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{221   FT\_Stroker\_New( FT\_Memory    memory,}
+\DoxyCodeLine{222                   FT\_Stroker  *astroker );}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{226 \textcolor{comment}{   *}}
+\DoxyCodeLine{227 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{228 \textcolor{comment}{   *   FT\_Stroker\_Set}}
+\DoxyCodeLine{229 \textcolor{comment}{   *}}
+\DoxyCodeLine{230 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{231 \textcolor{comment}{   *   Reset a stroker object's attributes.}}
+\DoxyCodeLine{232 \textcolor{comment}{   *}}
+\DoxyCodeLine{233 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{234 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{235 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{236 \textcolor{comment}{   *}}
+\DoxyCodeLine{237 \textcolor{comment}{   *   radius ::}}
+\DoxyCodeLine{238 \textcolor{comment}{   *     The border radius.}}
+\DoxyCodeLine{239 \textcolor{comment}{   *}}
+\DoxyCodeLine{240 \textcolor{comment}{   *   line\_cap ::}}
+\DoxyCodeLine{241 \textcolor{comment}{   *     The line cap style.}}
+\DoxyCodeLine{242 \textcolor{comment}{   *}}
+\DoxyCodeLine{243 \textcolor{comment}{   *   line\_join ::}}
+\DoxyCodeLine{244 \textcolor{comment}{   *     The line join style.}}
+\DoxyCodeLine{245 \textcolor{comment}{   *}}
+\DoxyCodeLine{246 \textcolor{comment}{   *   miter\_limit ::}}
+\DoxyCodeLine{247 \textcolor{comment}{   *     The miter limit for the FT\_STROKER\_LINEJOIN\_MITER style,}}
+\DoxyCodeLine{248 \textcolor{comment}{   *     expressed as 16.16 fixed point value.}}
+\DoxyCodeLine{249 \textcolor{comment}{   *}}
+\DoxyCodeLine{250 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{251 \textcolor{comment}{   *   The radius is expressed in the same units that the outline}}
+\DoxyCodeLine{252 \textcolor{comment}{   *   coordinates.}}
+\DoxyCodeLine{253 \textcolor{comment}{   */}}
+\DoxyCodeLine{254   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{255   FT\_Stroker\_Set( FT\_Stroker           stroker,}
+\DoxyCodeLine{256                   FT\_Fixed             radius,}
+\DoxyCodeLine{257                   FT\_Stroker\_LineCap   line\_cap,}
+\DoxyCodeLine{258                   FT\_Stroker\_LineJoin  line\_join,}
+\DoxyCodeLine{259                   FT\_Fixed             miter\_limit );}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{263 \textcolor{comment}{   *}}
+\DoxyCodeLine{264 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{265 \textcolor{comment}{   *   FT\_Stroker\_Rewind}}
+\DoxyCodeLine{266 \textcolor{comment}{   *}}
+\DoxyCodeLine{267 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{268 \textcolor{comment}{   *   Reset a stroker object without changing its attributes.}}
+\DoxyCodeLine{269 \textcolor{comment}{   *   You should call this function before beginning a new}}
+\DoxyCodeLine{270 \textcolor{comment}{   *   series of calls to @FT\_Stroker\_BeginSubPath or}}
+\DoxyCodeLine{271 \textcolor{comment}{   *   @FT\_Stroker\_EndSubPath.}}
+\DoxyCodeLine{272 \textcolor{comment}{   *}}
+\DoxyCodeLine{273 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{274 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{275 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{276 \textcolor{comment}{   */}}
+\DoxyCodeLine{277   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{278   FT\_Stroker\_Rewind( FT\_Stroker  stroker );}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{282 \textcolor{comment}{   *}}
+\DoxyCodeLine{283 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{284 \textcolor{comment}{   *   FT\_Stroker\_ParseOutline}}
+\DoxyCodeLine{285 \textcolor{comment}{   *}}
+\DoxyCodeLine{286 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{287 \textcolor{comment}{   *   A convenience function used to parse a whole outline with}}
+\DoxyCodeLine{288 \textcolor{comment}{   *   the stroker.  The resulting outline(s) can be retrieved}}
+\DoxyCodeLine{289 \textcolor{comment}{   *   later by functions like @FT\_Stroker\_GetCounts and @FT\_Stroker\_Export.}}
+\DoxyCodeLine{290 \textcolor{comment}{   *}}
+\DoxyCodeLine{291 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{292 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{293 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{294 \textcolor{comment}{   *}}
+\DoxyCodeLine{295 \textcolor{comment}{   *   outline ::}}
+\DoxyCodeLine{296 \textcolor{comment}{   *     The source outline.}}
+\DoxyCodeLine{297 \textcolor{comment}{   *}}
+\DoxyCodeLine{298 \textcolor{comment}{   *   opened ::}}
+\DoxyCodeLine{299 \textcolor{comment}{   *     A boolean.  If TRUE, the outline is treated as an open path}}
+\DoxyCodeLine{300 \textcolor{comment}{   *     instead of a closed one.}}
+\DoxyCodeLine{301 \textcolor{comment}{   *}}
+\DoxyCodeLine{302 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{303 \textcolor{comment}{   *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{304 \textcolor{comment}{   *}}
+\DoxyCodeLine{305 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{306 \textcolor{comment}{   *   If `opened' is 0 (the default), the outline is treated as a closed}}
+\DoxyCodeLine{307 \textcolor{comment}{   *   path, and the stroker will generate two distinct `border' outlines.}}
+\DoxyCodeLine{308 \textcolor{comment}{   *}}
+\DoxyCodeLine{309 \textcolor{comment}{   *   If `opened' is 1, the outline is processed as an open path, and the}}
+\DoxyCodeLine{310 \textcolor{comment}{   *   stroker will generate a single `stroke' outline.}}
+\DoxyCodeLine{311 \textcolor{comment}{   *}}
+\DoxyCodeLine{312 \textcolor{comment}{   *   This function calls @FT\_Stroker\_Rewind automatically.}}
+\DoxyCodeLine{313 \textcolor{comment}{   */}}
+\DoxyCodeLine{314   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{315   FT\_Stroker\_ParseOutline( FT\_Stroker   stroker,}
+\DoxyCodeLine{316                            \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline,}
+\DoxyCodeLine{317                            FT\_Bool      opened );}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{321 \textcolor{comment}{   *}}
+\DoxyCodeLine{322 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{323 \textcolor{comment}{   *   FT\_Stroker\_BeginSubPath}}
+\DoxyCodeLine{324 \textcolor{comment}{   *}}
+\DoxyCodeLine{325 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{326 \textcolor{comment}{   *   Start a new sub-\/path in the stroker.}}
+\DoxyCodeLine{327 \textcolor{comment}{   *}}
+\DoxyCodeLine{328 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{329 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{330 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{331 \textcolor{comment}{   *}}
+\DoxyCodeLine{332 \textcolor{comment}{   *   to ::}}
+\DoxyCodeLine{333 \textcolor{comment}{   *     A pointer to the start vector.}}
+\DoxyCodeLine{334 \textcolor{comment}{   *}}
+\DoxyCodeLine{335 \textcolor{comment}{   *   open ::}}
+\DoxyCodeLine{336 \textcolor{comment}{   *     A boolean.  If TRUE, the sub-\/path is treated as an open one.}}
+\DoxyCodeLine{337 \textcolor{comment}{   *}}
+\DoxyCodeLine{338 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{339 \textcolor{comment}{   *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{340 \textcolor{comment}{   *}}
+\DoxyCodeLine{341 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{342 \textcolor{comment}{   *   This function is useful when you need to stroke a path that is}}
+\DoxyCodeLine{343 \textcolor{comment}{   *   not stored as a @FT\_Outline object.}}
+\DoxyCodeLine{344 \textcolor{comment}{   */}}
+\DoxyCodeLine{345   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{346   FT\_Stroker\_BeginSubPath( FT\_Stroker  stroker,}
+\DoxyCodeLine{347                            \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*  to,}
+\DoxyCodeLine{348                            FT\_Bool     open );}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{352 \textcolor{comment}{   *}}
+\DoxyCodeLine{353 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{354 \textcolor{comment}{   *   FT\_Stroker\_EndSubPath}}
+\DoxyCodeLine{355 \textcolor{comment}{   *}}
+\DoxyCodeLine{356 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{357 \textcolor{comment}{   *   Close the current sub-\/path in the stroker.}}
+\DoxyCodeLine{358 \textcolor{comment}{   *}}
+\DoxyCodeLine{359 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{360 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{361 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{362 \textcolor{comment}{   *}}
+\DoxyCodeLine{363 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{364 \textcolor{comment}{   *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{365 \textcolor{comment}{   *}}
+\DoxyCodeLine{366 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{367 \textcolor{comment}{   *   You should call this function after @FT\_Stroker\_BeginSubPath.}}
+\DoxyCodeLine{368 \textcolor{comment}{   *   If the subpath was not `opened', this function will `draw' a}}
+\DoxyCodeLine{369 \textcolor{comment}{   *   single line segment to the start position when needed.}}
+\DoxyCodeLine{370 \textcolor{comment}{   */}}
+\DoxyCodeLine{371   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{372   FT\_Stroker\_EndSubPath( FT\_Stroker  stroker );}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{376 \textcolor{comment}{   *}}
+\DoxyCodeLine{377 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{378 \textcolor{comment}{   *   FT\_Stroker\_LineTo}}
+\DoxyCodeLine{379 \textcolor{comment}{   *}}
+\DoxyCodeLine{380 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{381 \textcolor{comment}{   *   `Draw' a single line segment in the stroker's current sub-\/path,}}
+\DoxyCodeLine{382 \textcolor{comment}{   *   from the last position.}}
+\DoxyCodeLine{383 \textcolor{comment}{   *}}
+\DoxyCodeLine{384 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{385 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{386 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{387 \textcolor{comment}{   *}}
+\DoxyCodeLine{388 \textcolor{comment}{   *   to ::}}
+\DoxyCodeLine{389 \textcolor{comment}{   *     A pointer to the destination point.}}
+\DoxyCodeLine{390 \textcolor{comment}{   *}}
+\DoxyCodeLine{391 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{392 \textcolor{comment}{   *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{393 \textcolor{comment}{   *}}
+\DoxyCodeLine{394 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{395 \textcolor{comment}{   *   You should call this function between @FT\_Stroker\_BeginSubPath and}}
+\DoxyCodeLine{396 \textcolor{comment}{   *   @FT\_Stroker\_EndSubPath.}}
+\DoxyCodeLine{397 \textcolor{comment}{   */}}
+\DoxyCodeLine{398   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{399   FT\_Stroker\_LineTo( FT\_Stroker  stroker,}
+\DoxyCodeLine{400                      \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*  to );}
+\DoxyCodeLine{401 }
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{404 \textcolor{comment}{   *}}
+\DoxyCodeLine{405 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{406 \textcolor{comment}{   *   FT\_Stroker\_ConicTo}}
+\DoxyCodeLine{407 \textcolor{comment}{   *}}
+\DoxyCodeLine{408 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{409 \textcolor{comment}{   *   `Draw; a single quadratic bezier in the stroker's current sub-\/path,}}
+\DoxyCodeLine{410 \textcolor{comment}{   *   from the last position.}}
+\DoxyCodeLine{411 \textcolor{comment}{   *}}
+\DoxyCodeLine{412 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{413 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{414 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{415 \textcolor{comment}{   *}}
+\DoxyCodeLine{416 \textcolor{comment}{   *   control ::}}
+\DoxyCodeLine{417 \textcolor{comment}{   *     A pointer to a Bézier control point.}}
+\DoxyCodeLine{418 \textcolor{comment}{   *}}
+\DoxyCodeLine{419 \textcolor{comment}{   *   to ::}}
+\DoxyCodeLine{420 \textcolor{comment}{   *     A pointer to the destination point.}}
+\DoxyCodeLine{421 \textcolor{comment}{   *}}
+\DoxyCodeLine{422 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{423 \textcolor{comment}{   *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{424 \textcolor{comment}{   *}}
+\DoxyCodeLine{425 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{426 \textcolor{comment}{   *   You should call this function between @FT\_Stroker\_BeginSubPath and}}
+\DoxyCodeLine{427 \textcolor{comment}{   *   @FT\_Stroker\_EndSubPath.}}
+\DoxyCodeLine{428 \textcolor{comment}{   */}}
+\DoxyCodeLine{429   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{430   FT\_Stroker\_ConicTo( FT\_Stroker  stroker,}
+\DoxyCodeLine{431                       \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*  control,}
+\DoxyCodeLine{432                       \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*  to );}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434 }
+\DoxyCodeLine{435 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{436 \textcolor{comment}{   *}}
+\DoxyCodeLine{437 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{438 \textcolor{comment}{   *   FT\_Stroker\_CubicTo}}
+\DoxyCodeLine{439 \textcolor{comment}{   *}}
+\DoxyCodeLine{440 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{441 \textcolor{comment}{   *   `Draw' a single cubic Bézier in the stroker's current sub-\/path,}}
+\DoxyCodeLine{442 \textcolor{comment}{   *   from the last position.}}
+\DoxyCodeLine{443 \textcolor{comment}{   *}}
+\DoxyCodeLine{444 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{445 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{446 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{447 \textcolor{comment}{   *}}
+\DoxyCodeLine{448 \textcolor{comment}{   *   control1 ::}}
+\DoxyCodeLine{449 \textcolor{comment}{   *     A pointer to the first Bézier control point.}}
+\DoxyCodeLine{450 \textcolor{comment}{   *}}
+\DoxyCodeLine{451 \textcolor{comment}{   *   control2 ::}}
+\DoxyCodeLine{452 \textcolor{comment}{   *     A pointer to second Bézier control point.}}
+\DoxyCodeLine{453 \textcolor{comment}{   *}}
+\DoxyCodeLine{454 \textcolor{comment}{   *   to ::}}
+\DoxyCodeLine{455 \textcolor{comment}{   *     A pointer to the destination point.}}
+\DoxyCodeLine{456 \textcolor{comment}{   *}}
+\DoxyCodeLine{457 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{458 \textcolor{comment}{   *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{459 \textcolor{comment}{   *}}
+\DoxyCodeLine{460 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{461 \textcolor{comment}{   *   You should call this function between @FT\_Stroker\_BeginSubPath and}}
+\DoxyCodeLine{462 \textcolor{comment}{   *   @FT\_Stroker\_EndSubPath.}}
+\DoxyCodeLine{463 \textcolor{comment}{   */}}
+\DoxyCodeLine{464   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{465   FT\_Stroker\_CubicTo( FT\_Stroker  stroker,}
+\DoxyCodeLine{466                       \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*  control1,}
+\DoxyCodeLine{467                       \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*  control2,}
+\DoxyCodeLine{468                       \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*  to );}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{470 }
+\DoxyCodeLine{471 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{472 \textcolor{comment}{   *}}
+\DoxyCodeLine{473 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{474 \textcolor{comment}{   *   FT\_Stroker\_GetBorderCounts}}
+\DoxyCodeLine{475 \textcolor{comment}{   *}}
+\DoxyCodeLine{476 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{477 \textcolor{comment}{   *   Vall this function once you have finished parsing your paths}}
+\DoxyCodeLine{478 \textcolor{comment}{   *   with the stroker.  It will return the number of points and}}
+\DoxyCodeLine{479 \textcolor{comment}{   *   contours necessary to export one of the `border' or `stroke'}}
+\DoxyCodeLine{480 \textcolor{comment}{   *   outlines generated by the stroker.}}
+\DoxyCodeLine{481 \textcolor{comment}{   *}}
+\DoxyCodeLine{482 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{483 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{484 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{485 \textcolor{comment}{   *}}
+\DoxyCodeLine{486 \textcolor{comment}{   *   border ::}}
+\DoxyCodeLine{487 \textcolor{comment}{   *     The border index.}}
+\DoxyCodeLine{488 \textcolor{comment}{   *}}
+\DoxyCodeLine{489 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{490 \textcolor{comment}{   *   anum\_points ::}}
+\DoxyCodeLine{491 \textcolor{comment}{   *     The number of points.}}
+\DoxyCodeLine{492 \textcolor{comment}{   *}}
+\DoxyCodeLine{493 \textcolor{comment}{   *   anum\_contours ::}}
+\DoxyCodeLine{494 \textcolor{comment}{   *     The number of contours.}}
+\DoxyCodeLine{495 \textcolor{comment}{   *}}
+\DoxyCodeLine{496 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{497 \textcolor{comment}{   *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{498 \textcolor{comment}{   *}}
+\DoxyCodeLine{499 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{500 \textcolor{comment}{   *   When an outline, or a sub-\/path, is `closed', the stroker generates}}
+\DoxyCodeLine{501 \textcolor{comment}{   *   two independent `border' outlines, named `left' and `right'.}}
+\DoxyCodeLine{502 \textcolor{comment}{   *}}
+\DoxyCodeLine{503 \textcolor{comment}{   *   When the outline, or a sub-\/path, is `opened', the stroker merges}}
+\DoxyCodeLine{504 \textcolor{comment}{   *   the `border' outlines with caps.  The `left' border receives all}}
+\DoxyCodeLine{505 \textcolor{comment}{   *   points, while the `right' border becomes empty.}}
+\DoxyCodeLine{506 \textcolor{comment}{   *}}
+\DoxyCodeLine{507 \textcolor{comment}{   *   Use the function @FT\_Stroker\_GetCounts instead if you want to}}
+\DoxyCodeLine{508 \textcolor{comment}{   *   retrieve the counts associated to both borders.}}
+\DoxyCodeLine{509 \textcolor{comment}{   */}}
+\DoxyCodeLine{510   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{511   FT\_Stroker\_GetBorderCounts( FT\_Stroker        stroker,}
+\DoxyCodeLine{512                               FT\_StrokerBorder  border,}
+\DoxyCodeLine{513                               FT\_UInt          *anum\_points,}
+\DoxyCodeLine{514                               FT\_UInt          *anum\_contours );}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{516 }
+\DoxyCodeLine{517 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{518 \textcolor{comment}{   *}}
+\DoxyCodeLine{519 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{520 \textcolor{comment}{   *   FT\_Stroker\_ExportBorder}}
+\DoxyCodeLine{521 \textcolor{comment}{   *}}
+\DoxyCodeLine{522 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{523 \textcolor{comment}{   *   Call this function after @FT\_Stroker\_GetBorderCounts to}}
+\DoxyCodeLine{524 \textcolor{comment}{   *   export the corresponding border to your own @FT\_Outline}}
+\DoxyCodeLine{525 \textcolor{comment}{   *   structure.}}
+\DoxyCodeLine{526 \textcolor{comment}{   *}}
+\DoxyCodeLine{527 \textcolor{comment}{   *   Note that this function will append the border points and}}
+\DoxyCodeLine{528 \textcolor{comment}{   *   contours to your outline, but will not try to resize its}}
+\DoxyCodeLine{529 \textcolor{comment}{   *   arrays.}}
+\DoxyCodeLine{530 \textcolor{comment}{   *}}
+\DoxyCodeLine{531 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{532 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{533 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{534 \textcolor{comment}{   *}}
+\DoxyCodeLine{535 \textcolor{comment}{   *   border ::}}
+\DoxyCodeLine{536 \textcolor{comment}{   *     The border index.}}
+\DoxyCodeLine{537 \textcolor{comment}{   *}}
+\DoxyCodeLine{538 \textcolor{comment}{   *   outline ::}}
+\DoxyCodeLine{539 \textcolor{comment}{   *     The target outline handle.}}
+\DoxyCodeLine{540 \textcolor{comment}{   *}}
+\DoxyCodeLine{541 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{542 \textcolor{comment}{   *   Always call this function after @FT\_Stroker\_GetBorderCounts to}}
+\DoxyCodeLine{543 \textcolor{comment}{   *   get sure that there is enough room in your @FT\_Outline object to}}
+\DoxyCodeLine{544 \textcolor{comment}{   *   receive all new data.}}
+\DoxyCodeLine{545 \textcolor{comment}{   *}}
+\DoxyCodeLine{546 \textcolor{comment}{   *   When an outline, or a sub-\/path, is `closed', the stroker generates}}
+\DoxyCodeLine{547 \textcolor{comment}{   *   two independent `border' outlines, named `left' and `right'}}
+\DoxyCodeLine{548 \textcolor{comment}{   *}}
+\DoxyCodeLine{549 \textcolor{comment}{   *   When the outline, or a sub-\/path, is `opened', the stroker merges}}
+\DoxyCodeLine{550 \textcolor{comment}{   *   the `border' outlines with caps. The `left' border receives all}}
+\DoxyCodeLine{551 \textcolor{comment}{   *   points, while the `right' border becomes empty.}}
+\DoxyCodeLine{552 \textcolor{comment}{   *}}
+\DoxyCodeLine{553 \textcolor{comment}{   *   Use the function @FT\_Stroker\_Export instead if you want to}}
+\DoxyCodeLine{554 \textcolor{comment}{   *   retrieve all borders at once.}}
+\DoxyCodeLine{555 \textcolor{comment}{   */}}
+\DoxyCodeLine{556   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{557   FT\_Stroker\_ExportBorder( FT\_Stroker        stroker,}
+\DoxyCodeLine{558                            FT\_StrokerBorder  border,}
+\DoxyCodeLine{559                            \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*       outline );}
+\DoxyCodeLine{560 }
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{563 \textcolor{comment}{   *}}
+\DoxyCodeLine{564 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{565 \textcolor{comment}{   *   FT\_Stroker\_GetCounts}}
+\DoxyCodeLine{566 \textcolor{comment}{   *}}
+\DoxyCodeLine{567 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{568 \textcolor{comment}{   *   Call this function once you have finished parsing your paths}}
+\DoxyCodeLine{569 \textcolor{comment}{   *   with the stroker.  It returns the number of points and}}
+\DoxyCodeLine{570 \textcolor{comment}{   *   contours necessary to export all points/borders from the stroked}}
+\DoxyCodeLine{571 \textcolor{comment}{   *   outline/path.}}
+\DoxyCodeLine{572 \textcolor{comment}{   *}}
+\DoxyCodeLine{573 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{574 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{575 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{576 \textcolor{comment}{   *}}
+\DoxyCodeLine{577 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{578 \textcolor{comment}{   *   anum\_points ::}}
+\DoxyCodeLine{579 \textcolor{comment}{   *     The number of points.}}
+\DoxyCodeLine{580 \textcolor{comment}{   *}}
+\DoxyCodeLine{581 \textcolor{comment}{   *   anum\_contours ::}}
+\DoxyCodeLine{582 \textcolor{comment}{   *     The number of contours.}}
+\DoxyCodeLine{583 \textcolor{comment}{   *}}
+\DoxyCodeLine{584 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{585 \textcolor{comment}{   *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{586 \textcolor{comment}{   */}}
+\DoxyCodeLine{587   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{588   FT\_Stroker\_GetCounts( FT\_Stroker  stroker,}
+\DoxyCodeLine{589                         FT\_UInt    *anum\_points,}
+\DoxyCodeLine{590                         FT\_UInt    *anum\_contours );}
+\DoxyCodeLine{591 }
+\DoxyCodeLine{592 }
+\DoxyCodeLine{593 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{594 \textcolor{comment}{   *}}
+\DoxyCodeLine{595 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{596 \textcolor{comment}{   *   FT\_Stroker\_Export}}
+\DoxyCodeLine{597 \textcolor{comment}{   *}}
+\DoxyCodeLine{598 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{599 \textcolor{comment}{   *   Call this function after @FT\_Stroker\_GetBorderCounts to}}
+\DoxyCodeLine{600 \textcolor{comment}{   *   export the all borders to your own @FT\_Outline structure.}}
+\DoxyCodeLine{601 \textcolor{comment}{   *}}
+\DoxyCodeLine{602 \textcolor{comment}{   *   Note that this function will append the border points and}}
+\DoxyCodeLine{603 \textcolor{comment}{   *   contours to your outline, but will not try to resize its}}
+\DoxyCodeLine{604 \textcolor{comment}{   *   arrays.}}
+\DoxyCodeLine{605 \textcolor{comment}{   *}}
+\DoxyCodeLine{606 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{607 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{608 \textcolor{comment}{   *     The target stroker handle.}}
+\DoxyCodeLine{609 \textcolor{comment}{   *}}
+\DoxyCodeLine{610 \textcolor{comment}{   *   outline ::}}
+\DoxyCodeLine{611 \textcolor{comment}{   *     The target outline handle.}}
+\DoxyCodeLine{612 \textcolor{comment}{   */}}
+\DoxyCodeLine{613   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{614   FT\_Stroker\_Export( FT\_Stroker   stroker,}
+\DoxyCodeLine{615                      \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline );}
+\DoxyCodeLine{616 }
+\DoxyCodeLine{617 }
+\DoxyCodeLine{618 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{619 \textcolor{comment}{   *}}
+\DoxyCodeLine{620 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{621 \textcolor{comment}{   *   FT\_Stroker\_Done}}
+\DoxyCodeLine{622 \textcolor{comment}{   *}}
+\DoxyCodeLine{623 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{624 \textcolor{comment}{   *   Destroy a stroker object.}}
+\DoxyCodeLine{625 \textcolor{comment}{   *}}
+\DoxyCodeLine{626 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{627 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{628 \textcolor{comment}{   *     A stroker handle.  Can be NULL.}}
+\DoxyCodeLine{629 \textcolor{comment}{   */}}
+\DoxyCodeLine{630   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{631   FT\_Stroker\_Done( FT\_Stroker  stroker );}
+\DoxyCodeLine{632 }
+\DoxyCodeLine{633 }
+\DoxyCodeLine{634 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{635 \textcolor{comment}{   *}}
+\DoxyCodeLine{636 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{637 \textcolor{comment}{   *   FT\_Glyph\_Stroke}}
+\DoxyCodeLine{638 \textcolor{comment}{   *}}
+\DoxyCodeLine{639 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{640 \textcolor{comment}{   *   Stroke a given outline glyph object with a given stroker.}}
+\DoxyCodeLine{641 \textcolor{comment}{   *}}
+\DoxyCodeLine{642 \textcolor{comment}{   * @inout:}}
+\DoxyCodeLine{643 \textcolor{comment}{   *   pglyph :: Source glyph handle on input, new glyph handle}}
+\DoxyCodeLine{644 \textcolor{comment}{   *             on output.}}
+\DoxyCodeLine{645 \textcolor{comment}{   *}}
+\DoxyCodeLine{646 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{647 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{648 \textcolor{comment}{   *     A stroker handle.}}
+\DoxyCodeLine{649 \textcolor{comment}{   *}}
+\DoxyCodeLine{650 \textcolor{comment}{   *   destroy ::}}
+\DoxyCodeLine{651 \textcolor{comment}{   *     A Boolean.  If TRUE, the source glyph object is destroyed}}
+\DoxyCodeLine{652 \textcolor{comment}{   *     on success.}}
+\DoxyCodeLine{653 \textcolor{comment}{   *}}
+\DoxyCodeLine{654 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{655 \textcolor{comment}{   *    FreeType error code.  0 means success.}}
+\DoxyCodeLine{656 \textcolor{comment}{   *}}
+\DoxyCodeLine{657 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{658 \textcolor{comment}{   *   The source glyph is untouched in case of error.}}
+\DoxyCodeLine{659 \textcolor{comment}{   */}}
+\DoxyCodeLine{660   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{661   FT\_Glyph\_Stroke( \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}    *pglyph,}
+\DoxyCodeLine{662                    FT\_Stroker   stroker,}
+\DoxyCodeLine{663                    FT\_Bool      destroy );}
+\DoxyCodeLine{664 }
+\DoxyCodeLine{665 }
+\DoxyCodeLine{666 \textcolor{comment}{  /**************************************************************}}
+\DoxyCodeLine{667 \textcolor{comment}{   *}}
+\DoxyCodeLine{668 \textcolor{comment}{   * @function:}}
+\DoxyCodeLine{669 \textcolor{comment}{   *   FT\_Glyph\_StrokeBorder}}
+\DoxyCodeLine{670 \textcolor{comment}{   *}}
+\DoxyCodeLine{671 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{672 \textcolor{comment}{   *   Stroke a given outline glyph object with a given stroker, but}}
+\DoxyCodeLine{673 \textcolor{comment}{   *   only return either its inside or outside border.}}
+\DoxyCodeLine{674 \textcolor{comment}{   *}}
+\DoxyCodeLine{675 \textcolor{comment}{   * @inout:}}
+\DoxyCodeLine{676 \textcolor{comment}{   *   pglyph ::}}
+\DoxyCodeLine{677 \textcolor{comment}{   *     Source glyph handle on input, new glyph handle on output.}}
+\DoxyCodeLine{678 \textcolor{comment}{   *}}
+\DoxyCodeLine{679 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{680 \textcolor{comment}{   *   stroker ::}}
+\DoxyCodeLine{681 \textcolor{comment}{   *     A stroker handle.}}
+\DoxyCodeLine{682 \textcolor{comment}{   *}}
+\DoxyCodeLine{683 \textcolor{comment}{   *   inside ::}}
+\DoxyCodeLine{684 \textcolor{comment}{   *     A Boolean.  If TRUE, return the inside border, otherwise}}
+\DoxyCodeLine{685 \textcolor{comment}{   *     the outside border.}}
+\DoxyCodeLine{686 \textcolor{comment}{   *}}
+\DoxyCodeLine{687 \textcolor{comment}{   *   destroy ::}}
+\DoxyCodeLine{688 \textcolor{comment}{   *     A Boolean.  If TRUE, the source glyph object is destroyed}}
+\DoxyCodeLine{689 \textcolor{comment}{   *     on success.}}
+\DoxyCodeLine{690 \textcolor{comment}{   *}}
+\DoxyCodeLine{691 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{692 \textcolor{comment}{   *    FreeType error code.  0 means success.}}
+\DoxyCodeLine{693 \textcolor{comment}{   *}}
+\DoxyCodeLine{694 \textcolor{comment}{   * @note:}}
+\DoxyCodeLine{695 \textcolor{comment}{   *   The source glyph is untouched in case of error.}}
+\DoxyCodeLine{696 \textcolor{comment}{   */}}
+\DoxyCodeLine{697   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{698   FT\_Glyph\_StrokeBorder( \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}    *pglyph,}
+\DoxyCodeLine{699                          FT\_Stroker   stroker,}
+\DoxyCodeLine{700                          FT\_Bool      inside,}
+\DoxyCodeLine{701                          FT\_Bool      destroy );}
+\DoxyCodeLine{702 }
+\DoxyCodeLine{703  \textcolor{comment}{/* */}}
+\DoxyCodeLine{704 }
+\DoxyCodeLine{705 FT\_END\_HEADER}
+\DoxyCodeLine{706 }
+\DoxyCodeLine{707 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FT\_STROKE\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{708 }
+\DoxyCodeLine{709 }
+\DoxyCodeLine{710 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

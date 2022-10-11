@@ -1,0 +1,215 @@
+\hypertarget{class_c_billet}{}\doxysection{CBillet Class Reference}
+\label{class_c_billet}\index{CBillet@{CBillet}}
+Inheritance diagram for CBillet\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_billet}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_billet_ab3e0d2eaab13743231eda7751f55f617}\label{class_c_billet_ab3e0d2eaab13743231eda7751f55f617}} 
+void {\bfseries Set\+V0} ()
+\item 
+\mbox{\Hypertarget{class_c_billet_a642830ea2050f7c13a0191fc0fae48f8}\label{class_c_billet_a642830ea2050f7c13a0191fc0fae48f8}} 
+double {\bfseries GetV} ()
+\item 
+\mbox{\Hypertarget{class_c_billet_a0251973b4b8df8e6f9c168435034845d}\label{class_c_billet_a0251973b4b8df8e6f9c168435034845d}} 
+void {\bfseries SetY} (double y)
+\item 
+\mbox{\Hypertarget{class_c_billet_a6bf2437637494495436f2d37ecb37c23}\label{class_c_billet_a6bf2437637494495436f2d37ecb37c23}} 
+void {\bfseries SetX} (double x)
+\item 
+\mbox{\Hypertarget{class_c_billet_a745e27e461b1ed0b830d4382b461ad06}\label{class_c_billet_a745e27e461b1ed0b830d4382b461ad06}} 
+void {\bfseries Load} (CFile \&File)
+\item 
+\mbox{\Hypertarget{class_c_billet_a794d06a7e38e44a28141203295785fa5}\label{class_c_billet_a794d06a7e38e44a28141203295785fa5}} 
+void {\bfseries Save} (CFile \&File)
+\item 
+\mbox{\Hypertarget{class_c_billet_a71cb0b75212939ad3c815fc2b0d164d7}\label{class_c_billet_a71cb0b75212939ad3c815fc2b0d164d7}} 
+bool {\bfseries Set\+Point} (double x, double y, int n\+Point)
+\item 
+\mbox{\Hypertarget{class_c_billet_a3079ae4175b38c21141dec82417a5462}\label{class_c_billet_a3079ae4175b38c21141dec82417a5462}} 
+BOOL {\bfseries Set\+Spline} (double R, int N)
+\item 
+\mbox{\Hypertarget{class_c_billet_a3d0aa18a03cdf0db1a711246702d5ab2}\label{class_c_billet_a3d0aa18a03cdf0db1a711246702d5ab2}} 
+bool {\bfseries New\+Node} (double x, double y)
+\item 
+\mbox{\Hypertarget{class_c_billet_a63ae84360849bc648b7c48189df7fc3f}\label{class_c_billet_a63ae84360849bc648b7c48189df7fc3f}} 
+void {\bfseries gl\+Draw} (int n\+Mode, double min\+\_\+x, double max\+\_\+x, double min\+\_\+y, double max\+\_\+y)
+\item 
+\mbox{\Hypertarget{class_c_billet_a0e05500070918e2582f5b9f50a03f317}\label{class_c_billet_a0e05500070918e2582f5b9f50a03f317}} 
+void {\bfseries gl\+Draw\+Mesh} (double minX, double maxX, double minY, double maxY)
+\item 
+\mbox{\Hypertarget{class_c_billet_a348e5aa8ed9edc1023fa47c920c44684}\label{class_c_billet_a348e5aa8ed9edc1023fa47c920c44684}} 
+void {\bfseries Kill\+Mesh} ()
+\item 
+\mbox{\Hypertarget{class_c_billet_a47208e7873055cf98b3739577782f0e5}\label{class_c_billet_a47208e7873055cf98b3739577782f0e5}} 
+bool {\bfseries Triangulate0} (const CString \&str\+Folder, double $\ast$FrX, double $\ast$FrY, double $\ast$W, int n\+Fr\+Size, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} $\ast$$\ast$Elements, double $\ast$$\ast$MeshX, double $\ast$$\ast$MeshY, int $\ast$n\+PNum, int $\ast$n\+ENum, double d\+Param)
+\item 
+\mbox{\Hypertarget{class_c_billet_aae2ece2405192b4585c6043b2e9e76df}\label{class_c_billet_aae2ece2405192b4585c6043b2e9e76df}} 
+void {\bfseries Triangulate} (BOOL b\+Create=TRUE)
+\item 
+\mbox{\Hypertarget{class_c_billet_a3bd221ec9f469652ae2dbd8073da0f63}\label{class_c_billet_a3bd221ec9f469652ae2dbd8073da0f63}} 
+void {\bfseries Init\+Layers} (const \mbox{\hyperlink{class_c_fem}{CFem}} $\ast$p\+Fem)
+\item 
+\mbox{\Hypertarget{class_c_billet_aa6b544cc73d158232878af1308e85fd5}\label{class_c_billet_aa6b544cc73d158232878af1308e85fd5}} 
+\mbox{\hyperlink{class_c_layer}{CLayer}} $\ast$ {\bfseries Get\+Layer} (int n\+Layer=-\/1)
+\item 
+\mbox{\Hypertarget{class_c_billet_ac7e7da1a5381ee5a18ef90f54d1a7343}\label{class_c_billet_ac7e7da1a5381ee5a18ef90f54d1a7343}} 
+int {\bfseries Get\+Curr\+Layer} ()
+\item 
+\mbox{\Hypertarget{class_c_billet_a3c8fa1d912644f4ec7bfb074437291b2}\label{class_c_billet_a3c8fa1d912644f4ec7bfb074437291b2}} 
+int {\bfseries Get\+Layers\+Num} ()
+\item 
+\mbox{\Hypertarget{class_c_billet_aa8e4a456b9f3dcdb00b07085f7bb8ee0}\label{class_c_billet_aa8e4a456b9f3dcdb00b07085f7bb8ee0}} 
+double {\bfseries X} (int e, int p)
+\item 
+\mbox{\Hypertarget{class_c_billet_a0da15b2b7c8f9e088d80755f5067aa86}\label{class_c_billet_a0da15b2b7c8f9e088d80755f5067aa86}} 
+double {\bfseries Y} (int e, int p)
+\item 
+\mbox{\Hypertarget{class_c_billet_a91e38440dd6db3a62a98ef9fb4fc63f7}\label{class_c_billet_a91e38440dd6db3a62a98ef9fb4fc63f7}} 
+double {\bfseries GetZ} (int e)
+\item 
+\mbox{\Hypertarget{class_c_billet_a96e439ed7b849a69e1f5317e4ebf99d8}\label{class_c_billet_a96e439ed7b849a69e1f5317e4ebf99d8}} 
+void {\bfseries Set\+Curr\+Field} (int n\+Field)
+\item 
+\mbox{\Hypertarget{class_c_billet_ab13acf1aa000d1e7d2fef0dbd0c359bb}\label{class_c_billet_ab13acf1aa000d1e7d2fef0dbd0c359bb}} 
+void {\bfseries Set\+Curr\+Layer} (int n\+Layer)
+\item 
+\mbox{\Hypertarget{class_c_billet_ad81a12ccbcc1f8dc25ce786017feaa04}\label{class_c_billet_ad81a12ccbcc1f8dc25ce786017feaa04}} 
+void {\bfseries Load\+Layer} (int n\+Layer, const \mbox{\hyperlink{class_c_fem}{CFem}} $\ast$p\+Fem)
+\item 
+\mbox{\Hypertarget{class_c_billet_a8972c5c641701eb47a8bc6225d2df0b7}\label{class_c_billet_a8972c5c641701eb47a8bc6225d2df0b7}} 
+void {\bfseries Re\+Load} (int n\+Layer)
+\item 
+\mbox{\Hypertarget{class_c_billet_a3be20e566762ddb3520fff979086c77a}\label{class_c_billet_a3be20e566762ddb3520fff979086c77a}} 
+int {\bfseries Get\+Fr} (double $\ast$FrX, double $\ast$FrY, double $\ast$W, int $\ast$Cnt\+Flags=NULL, int $\ast$RCnt=NULL)
+\item 
+\mbox{\Hypertarget{class_c_billet_aecb4bc923ba6efcb4b1fb433f740fbcc}\label{class_c_billet_aecb4bc923ba6efcb4b1fb433f740fbcc}} 
+void {\bfseries Recalc\+Term\+Fields} (double $\ast$MeshX, double $\ast$MeshY, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} $\ast$Elements, int n\+PNum, int n\+ENum, double $\ast$$\ast$Term, double $\ast$$\ast$Fi)
+\item 
+\mbox{\Hypertarget{class_c_billet_afbb354f139802b83c929e83585854d0e}\label{class_c_billet_afbb354f139802b83c929e83585854d0e}} 
+void {\bfseries Recalc\+Mesh\+ZFields} (double $\ast$MeshX, double $\ast$MeshY, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} $\ast$Elements, int n\+PNum, int n\+ENum, double $\ast$$\ast$MeshZ)
+\item 
+\mbox{\Hypertarget{class_c_billet_ae66c194b1e7b9517f1f9931f382dd528}\label{class_c_billet_ae66c194b1e7b9517f1f9931f382dd528}} 
+double $\ast$$\ast$ {\bfseries Recalc\+Fields} (double $\ast$MeshX, double $\ast$MeshY, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} $\ast$Elements, int n\+PNum, int n\+ENum, double $\ast$p\+Fields\mbox{[}17\mbox{]}, int n\+Size, double $\ast$$\ast$Sqm)
+\item 
+\mbox{\Hypertarget{class_c_billet_a3d7f8926b7dc2cb13c36c25146bb4fc8}\label{class_c_billet_a3d7f8926b7dc2cb13c36c25146bb4fc8}} 
+void {\bfseries Normalize\+\_\+\+MeshZ} (double $\ast$MeshX, double $\ast$MeshY, double $\ast$MeshZ, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} $\ast$Elements, int n\+PNum, int n\+ENum)
+\item 
+\mbox{\Hypertarget{class_c_billet_a517cae5e62bfae5bde28bc835d25d0c3}\label{class_c_billet_a517cae5e62bfae5bde28bc835d25d0c3}} 
+void {\bfseries Normalize\+\_\+\+Field} (double $\ast$MeshX, double $\ast$MeshY, double $\ast$MeshZ, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} $\ast$Elements, int n\+PNum, int n\+ENum, double $\ast$New\+Fields\mbox{[}17\mbox{]}, double $\ast$Old\+Fields\mbox{[}17\mbox{]}, int num\+\_\+\+Field)
+\item 
+\mbox{\Hypertarget{class_c_billet_a124deccb51104c38355382323220cd65}\label{class_c_billet_a124deccb51104c38355382323220cd65}} 
+double $\ast$$\ast$ {\bfseries Re\+Mesh} (double $\ast$p\+Fields\mbox{[}17\mbox{]}, int n\+Size, double $\ast$$\ast$Sqm, double $\ast$$\ast$Fr\+Fields\mbox{[}4\mbox{]}, double $\ast$$\ast$Term, double $\ast$$\ast$Fi, bool b\+Fr)
+\item 
+\mbox{\Hypertarget{class_c_billet_a42d591ff1114719abb091143321c5ebc}\label{class_c_billet_a42d591ff1114719abb091143321c5ebc}} 
+void {\bfseries Init\+Front\+Inf} (int $\ast$Cnt\+Flags, int $\ast$RCnt, int n\+PFr\+Num, \mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}} $\ast$Fr\+Inf)
+\item 
+\mbox{\Hypertarget{class_c_billet_a60e59c8939ee7eed61f36921987a43a1}\label{class_c_billet_a60e59c8939ee7eed61f36921987a43a1}} 
+void {\bfseries Export\+Billet} (CFile \&File, bool b\+Turn, int n\+Sect)
+\item 
+\mbox{\Hypertarget{class_c_billet_a3e6a008e54f35b10373153265a7eaa97}\label{class_c_billet_a3e6a008e54f35b10373153265a7eaa97}} 
+void {\bfseries Import\+Billet} (CFile \&File)
+\item 
+\mbox{\Hypertarget{class_c_billet_ab8bb3010e50e4f8f6547cc4abe122b3c}\label{class_c_billet_ab8bb3010e50e4f8f6547cc4abe122b3c}} 
+void {\bfseries Export\+Countur} (CFile \&File, BOOL b\+Turn)
+\item 
+\mbox{\Hypertarget{class_c_billet_a7de0ddc73e7d991936cbf180cb61627d}\label{class_c_billet_a7de0ddc73e7d991936cbf180cb61627d}} 
+void {\bfseries Import\+Countur} (CFile \&File)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_billet_a6ba6a48d6e53f72e701bad8ae14eebdc}\label{class_c_billet_a6ba6a48d6e53f72e701bad8ae14eebdc}} 
+CString {\bfseries m\+\_\+str\+Folder}
+\item 
+\mbox{\Hypertarget{class_c_billet_aa332f71f81f22e4d387ec3a0a105bf8d}\label{class_c_billet_aa332f71f81f22e4d387ec3a0a105bf8d}} 
+double {\bfseries m\+\_\+d\+Param}
+\item 
+\mbox{\Hypertarget{class_c_billet_a8eb99be13b958a81ff6d89d3f7cfd26e}\label{class_c_billet_a8eb99be13b958a81ff6d89d3f7cfd26e}} 
+CArray$<$ \mbox{\hyperlink{class_c_layer}{CLayer}}, \mbox{\hyperlink{class_c_layer}{CLayer}} $>$ {\bfseries m\+\_\+\+Layers}
+\item 
+\mbox{\Hypertarget{class_c_billet_a4004522e225378e06ddc3df9fb27c239}\label{class_c_billet_a4004522e225378e06ddc3df9fb27c239}} 
+\mbox{\hyperlink{class_c_layer}{CLayer}} $\ast$ {\bfseries m\+\_\+p\+Layer0}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_billet_aa64a637686d3cce5289c1a5ef58fc4ea}\label{class_c_billet_aa64a637686d3cce5289c1a5ef58fc4ea}} 
+BOOL {\bfseries On\+Front} (const \mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}} \&FI1, const \mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}} \&FI2, int vnum)
+\item 
+\mbox{\Hypertarget{class_c_billet_aa48023f6c364914b48916ac75596f296}\label{class_c_billet_aa48023f6c364914b48916ac75596f296}} 
+void {\bfseries Set\+Front} (\mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} $\ast$Elements, int n\+Fr\+Size, \mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}} $\ast$$\ast$Inf=NULL)
+\item 
+\mbox{\Hypertarget{class_c_billet_ab0fad6939edd96dfcff7dcdd97cf7edd}\label{class_c_billet_ab0fad6939edd96dfcff7dcdd97cf7edd}} 
+bool {\bfseries On\+Change\+Billet} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_billet_a0c976d0aaebbf121ae3c1d926bb1c909}\label{class_c_billet_a0c976d0aaebbf121ae3c1d926bb1c909}} 
+int {\bfseries m\+\_\+n\+MP}
+\item 
+\mbox{\Hypertarget{class_c_billet_a51be7291fbc968b5c4917e0d6b70ea1b}\label{class_c_billet_a51be7291fbc968b5c4917e0d6b70ea1b}} 
+int {\bfseries m\+\_\+n\+PFr\+Num}
+\item 
+\mbox{\Hypertarget{class_c_billet_ab5636430718a63ef3bfb48423930679f}\label{class_c_billet_ab5636430718a63ef3bfb48423930679f}} 
+int {\bfseries m\+\_\+n\+EFr\+Num}
+\item 
+\mbox{\Hypertarget{class_c_billet_ac369f4a865f7a81d15bfabf7ce53aa59}\label{class_c_billet_ac369f4a865f7a81d15bfabf7ce53aa59}} 
+int {\bfseries m\+\_\+n\+Cnt\+Num}
+\item 
+\mbox{\Hypertarget{class_c_billet_a3a47f718426745be0709f87210436421}\label{class_c_billet_a3a47f718426745be0709f87210436421}} 
+int {\bfseries m\+\_\+n\+Curr\+Layer}
+\item 
+\mbox{\Hypertarget{class_c_billet_a65fc5063c55a85bdb653a1e7f677ccb6}\label{class_c_billet_a65fc5063c55a85bdb653a1e7f677ccb6}} 
+int {\bfseries m\+\_\+n\+Field}
+\item 
+\mbox{\Hypertarget{class_c_billet_a159581b91e507f817c14bf1e172930a0}\label{class_c_billet_a159581b91e507f817c14bf1e172930a0}} 
+int {\bfseries m\+\_\+n\+MEl}
+\item 
+\mbox{\Hypertarget{class_c_billet_ae42108af55c8149196abad4db2f61fc2}\label{class_c_billet_ae42108af55c8149196abad4db2f61fc2}} 
+double $\ast$ {\bfseries m\+\_\+\+MeshX}
+\item 
+\mbox{\Hypertarget{class_c_billet_a161b4fdd4505ec98b2bb5bde7b7324c2}\label{class_c_billet_a161b4fdd4505ec98b2bb5bde7b7324c2}} 
+double $\ast$ {\bfseries m\+\_\+\+MeshY}
+\item 
+\mbox{\Hypertarget{class_c_billet_a9c1d6836a95a27ec3dcecdc59e651efb}\label{class_c_billet_a9c1d6836a95a27ec3dcecdc59e651efb}} 
+double $\ast$ {\bfseries m\+\_\+\+MeshZ}
+\item 
+\mbox{\Hypertarget{class_c_billet_a5aee8d306ffc5ffecb1a75cebeef17e1}\label{class_c_billet_a5aee8d306ffc5ffecb1a75cebeef17e1}} 
+double {\bfseries m\+\_\+\+Z0\+\_\+\+Size}
+\item 
+\mbox{\Hypertarget{class_c_billet_a0fd747beb268aaad377bbcd087813217}\label{class_c_billet_a0fd747beb268aaad377bbcd087813217}} 
+double {\bfseries m\+\_\+\+V0}
+\item 
+\mbox{\Hypertarget{class_c_billet_a927e05f4e31fcb38f8d831f1841b1d8c}\label{class_c_billet_a927e05f4e31fcb38f8d831f1841b1d8c}} 
+int($\ast$ {\bfseries m\+\_\+\+IJK} )\mbox{[}3\mbox{]}
+\item 
+\mbox{\Hypertarget{class_c_billet_a3eb198e39bf2ab306160db1eab1d8bf4}\label{class_c_billet_a3eb198e39bf2ab306160db1eab1d8bf4}} 
+int $\ast$ {\bfseries m\+\_\+\+EFr}
+\item 
+\mbox{\Hypertarget{class_c_billet_a8788ecbc3d2761a19abd8fd8c61adfa3}\label{class_c_billet_a8788ecbc3d2761a19abd8fd8c61adfa3}} 
+int $\ast$ {\bfseries m\+\_\+\+PFr}
+\item 
+\mbox{\Hypertarget{class_c_billet_a0a3a8f89fa8c220c9a191385fc6206ff}\label{class_c_billet_a0a3a8f89fa8c220c9a191385fc6206ff}} 
+int $\ast$ {\bfseries m\+\_\+\+PFr\+Cnt}
+\item 
+\mbox{\Hypertarget{class_c_billet_a193923a2dbd81c46208b55a11cc980f6}\label{class_c_billet_a193923a2dbd81c46208b55a11cc980f6}} 
+int $\ast$ {\bfseries m\+\_\+\+PCnt}
+\item 
+\mbox{\Hypertarget{class_c_billet_abc0182c5c02209c2bb3920637f31dd92}\label{class_c_billet_abc0182c5c02209c2bb3920637f31dd92}} 
+int $\ast$ {\bfseries m\+\_\+\+RCnt}
+\item 
+\mbox{\Hypertarget{class_c_billet_a7f2cdfc1c7da6d70554e43b9c25954f2}\label{class_c_billet_a7f2cdfc1c7da6d70554e43b9c25954f2}} 
+char $\ast$ {\bfseries m\+\_\+\+RCnt\+Flags}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/prototype-\/prismatic/source/Billet.\+h\item 
+C\+:/\+Projects/\+FEM/prototype-\/prismatic/source/Billet.\+cpp\end{DoxyCompactItemize}

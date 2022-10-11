@@ -1,0 +1,67 @@
+\hypertarget{class_axes}{}\doxysection{Axes Class Reference}
+\label{class_axes}\index{Axes@{Axes}}
+
+
+{\ttfamily \#include $<$Axes.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_axes_ad3386c64eadb13237ab3c4363e2a74db}{Set\+Font}} (FTFont $\ast$font)
+\begin{DoxyCompactList}\small\item\em Функция для настройки шрифта чисел на осях \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_axes_a66fec7345407fab722c22c25d1ae75d3}\label{class_axes_a66fec7345407fab722c22c25d1ae75d3}} 
+void {\bfseries Post\+Render} ()
+\begin{DoxyCompactList}\small\item\em Рисует линейки \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_axes_a11632cd3bf1a5dd53498a6f74ae14546}{Reset}} (glm\+::vec2 TL\+\_\+view\+\_\+point, glm\+::vec2 BR\+\_\+view\+\_\+point, GLfloat scale, GLfloat zoom)
+\begin{DoxyCompactList}\small\item\em Актуализирует информацию о размене окна, смещении сцены и приближении камеры. Нужен для правильного расчета всех размеров. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_axes_a8698ced15a031f58be6b24160abc2a8f}\label{class_axes_a8698ced15a031f58be6b24160abc2a8f}} 
+void {\bfseries Render} ()
+\begin{DoxyCompactList}\small\item\em Рисует \char`\"{}тонкие оси\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс для рисования осей Оси рисуются в два этапа. Сначала рисуются \char`\"{}тонкие оси\char`\"{} (положение которых фиксированно) Если \char`\"{}тонкие оси\char`\"{} вышли из области видимости, то рисуются линейки(rulers), прилипающие к соответствующим сторонам экрана. Функция \mbox{\hyperlink{class_axes_a8698ced15a031f58be6b24160abc2a8f}{Render()}} -\/ рисует тонкие оси(если это необходимо). Функция \mbox{\hyperlink{class_axes_a66fec7345407fab722c22c25d1ae75d3}{Post\+Render()}} -\/ линейки (если это необходимо). Каждый frame должен дополнительно вызываться Reset для актуализации информации о размере окна, смещении сцены и приближения. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_axes_a11632cd3bf1a5dd53498a6f74ae14546}\label{class_axes_a11632cd3bf1a5dd53498a6f74ae14546}} 
+\index{Axes@{Axes}!Reset@{Reset}}
+\index{Reset@{Reset}!Axes@{Axes}}
+\doxysubsubsection{\texorpdfstring{Reset()}{Reset()}}
+{\footnotesize\ttfamily void Axes\+::\+Reset (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{TL\+\_\+view\+\_\+point,  }\item[{glm\+::vec2}]{BR\+\_\+view\+\_\+point,  }\item[{GLfloat}]{scale,  }\item[{GLfloat}]{zoom }\end{DoxyParamCaption})}
+
+
+
+Актуализирует информацию о размене окна, смещении сцены и приближении камеры. Нужен для правильного расчета всех размеров. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TL\+\_\+view\+\_\+point} & -\/ координаты верхней левой точки прямоугольника области видимости(того, что сейчас отображается на экране) в мировых координатах \\
+\hline
+{\em BR\+\_\+view\+\_\+point} & -\/ координаты нижней правой точки прямоугольника области видимости(того, что сейчас отображается на экране) в мировых координатах \\
+\hline
+{\em scale} & -\/ расстояние между штрихами на оси \\
+\hline
+{\em zoom} & -\/ приближение камеры.(отношение текущего размера области видимости к изначальной области видимости) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_axes_ad3386c64eadb13237ab3c4363e2a74db}\label{class_axes_ad3386c64eadb13237ab3c4363e2a74db}} 
+\index{Axes@{Axes}!SetFont@{SetFont}}
+\index{SetFont@{SetFont}!Axes@{Axes}}
+\doxysubsubsection{\texorpdfstring{SetFont()}{SetFont()}}
+{\footnotesize\ttfamily void Axes\+::\+Set\+Font (\begin{DoxyParamCaption}\item[{FTFont $\ast$}]{font }\end{DoxyParamCaption})}
+
+
+
+Функция для настройки шрифта чисел на осях 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & указатель на базовый объект шрифта. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Axes.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Axes.\+cpp\end{DoxyCompactItemize}

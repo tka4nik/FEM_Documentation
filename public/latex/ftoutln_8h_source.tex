@@ -1,0 +1,504 @@
+\hypertarget{ftoutln_8h_source}{}\doxysection{ftoutln.\+h}
+\label{ftoutln_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftoutln.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftoutln.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftoutln.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Support for the FT\_Outline type used to store glyph shapes of        */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*    most scalable font formats (specification).                          */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003, 2005 by                               */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{17 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef \_\_FTOUTLN\_H\_\_}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define \_\_FTOUTLN\_H\_\_}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*    outline\_processing                                                 */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    Outline Processing                                                 */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    Functions to create, transform, and render vectorial glyph images. */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    This section contains routines used to create and destroy scalable */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*    glyph images known as `outlines'.  These can also be measured,     */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*    transformed, and converted into bitmaps and pixmaps.               */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{53   \textcolor{comment}{/* <Order>                                                               */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*    FT\_Outline                                                         */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*    FT\_OUTLINE\_FLAGS                                                   */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*    FT\_Outline\_New                                                     */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    FT\_Outline\_Done                                                    */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    FT\_Outline\_Copy                                                    */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    FT\_Outline\_Translate                                               */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*    FT\_Outline\_Transform                                               */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    FT\_Outline\_Embolden                                                */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    FT\_Outline\_Reverse                                                 */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*    FT\_Outline\_Check                                                   */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*    FT\_Outline\_Get\_CBox                                                */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*    FT\_Outline\_Get\_BBox                                                */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*    FT\_Outline\_Get\_Bitmap                                              */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*    FT\_Outline\_Render                                                  */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*    FT\_Outline\_Decompose                                               */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*    FT\_Outline\_Funcs                                                   */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*    FT\_Outline\_MoveTo\_Func                                             */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*    FT\_Outline\_LineTo\_Func                                             */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*    FT\_Outline\_ConicTo\_Func                                            */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*    FT\_Outline\_CubicTo\_Func                                            */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{78 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{82   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{83   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{84   \textcolor{comment}{/*    FT\_Outline\_Decompose                                               */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{86   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*    Walks over an outline's structure to decompose it into individual  */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*    segments and Bezier arcs.  This function is also able to emit      */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*    `move to' and `close to' operations to indicate the start and end  */}}
+\DoxyCodeLine{90   \textcolor{comment}{/*    of new contours in the outline.                                    */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{92   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*    outline        :: A pointer to the source target.                  */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*    func\_interface :: A table of `emitters', i.e,. function pointers   */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*                      called during decomposition to indicate path     */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*                      operations.                                      */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{99   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*    user           :: A typeless pointer which is passed to each       */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*                      emitter during the decomposition.  It can be     */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*                      used to store the state during the               */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                      decomposition.                                   */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{105   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*    FreeType error code.  0 means sucess.                              */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{108   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{109   FT\_Outline\_Decompose( \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*              outline,}
+\DoxyCodeLine{110                         \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___outline___funcs__}{FT\_Outline\_Funcs}}*  func\_interface,}
+\DoxyCodeLine{111                         \textcolor{keywordtype}{void}*                    user );}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*    FT\_Outline\_New                                                     */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{119   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    Creates a new outline of a given size.                             */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{122   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*    library     :: A handle to the library object from where the       */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*                   outline is allocated.  Note however that the new    */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*                   outline will NOT necessarily be FREED, when         */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*                   destroying the library, by FT\_Done\_FreeType().      */}}
+\DoxyCodeLine{127   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*    numPoints   :: The maximal number of points within the outline.    */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*    numContours :: The maximal number of contours within the outline.  */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{132   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*    anoutline   :: A handle to the new outline.  NULL in case of       */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*                   error.                                              */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{136   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{139   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    The reason why this function takes a `library' parameter is simply */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*    to use the library's memory allocator.                             */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{143   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{144   FT\_Outline\_New( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}   library,}
+\DoxyCodeLine{145                   FT\_UInt      numPoints,}
+\DoxyCodeLine{146                   FT\_Int       numContours,}
+\DoxyCodeLine{147                   \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}  *anoutline );}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{151   FT\_Outline\_New\_Internal( FT\_Memory    memory,}
+\DoxyCodeLine{152                            FT\_UInt      numPoints,}
+\DoxyCodeLine{153                            FT\_Int       numContours,}
+\DoxyCodeLine{154                            \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}  *anoutline );}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{158   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{159   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*    FT\_Outline\_Done                                                    */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{162   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*    Destroys an outline created with FT\_Outline\_New().                 */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{165   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*    library :: A handle of the library object used to allocate the     */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*               outline.                                                */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*    outline :: A pointer to the outline object to be discarded.        */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{171   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{174   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{175   \textcolor{comment}{/*    If the outline's `owner' field is not set, only the outline        */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*    descriptor will be released.                                       */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{178   \textcolor{comment}{/*    The reason why this function takes an `library' parameter is       */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*    simply to use FT\_Free().                                           */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{181   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{182   FT\_Outline\_Done( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}   library,}
+\DoxyCodeLine{183                    \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline );}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{187   FT\_Outline\_Done\_Internal( FT\_Memory    memory,}
+\DoxyCodeLine{188                             \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline );}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{192   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{193   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*    FT\_Outline\_Check                                                   */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{196   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*    Check the contents of an outline descriptor.                       */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{199   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*    outline :: A handle to a source outline.                           */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{202   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{203   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{205   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{206   FT\_Outline\_Check( \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline );}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{210   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{211   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{212   \textcolor{comment}{/*    FT\_Outline\_Get\_CBox                                                */}}
+\DoxyCodeLine{213   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{214   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{215   \textcolor{comment}{/*    Returns an outline's `control box'.  The control box encloses all  */}}
+\DoxyCodeLine{216   \textcolor{comment}{/*    the outline's points, including Bezier control points.  Though it  */}}
+\DoxyCodeLine{217   \textcolor{comment}{/*    coincides with the exact bounding box for most glyphs, it can be   */}}
+\DoxyCodeLine{218   \textcolor{comment}{/*    slightly larger in some situations (like when rotating an outline  */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    which contains Bezier outside arcs).                               */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*    Computing the control box is very fast, while getting the bounding */}}
+\DoxyCodeLine{222   \textcolor{comment}{/*    box can take much more time as it needs to walk over all segments  */}}
+\DoxyCodeLine{223   \textcolor{comment}{/*    and arcs in the outline.  To get the latter, you can use the       */}}
+\DoxyCodeLine{224   \textcolor{comment}{/*    `ftbbox' component which is dedicated to this single task.         */}}
+\DoxyCodeLine{225   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{226   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{227   \textcolor{comment}{/*    outline :: A pointer to the source outline descriptor.             */}}
+\DoxyCodeLine{228   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{229   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{230   \textcolor{comment}{/*    acbox   :: The outline's control box.                              */}}
+\DoxyCodeLine{231   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{232   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{233   FT\_Outline\_Get\_CBox( \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline,}
+\DoxyCodeLine{234                        \mbox{\hyperlink{struct_f_t___b_box__}{FT\_BBox}}           *acbox );}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{238   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{239   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{240   \textcolor{comment}{/*    FT\_Outline\_Translate                                               */}}
+\DoxyCodeLine{241   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{242   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{243   \textcolor{comment}{/*    Applies a simple translation to the points of an outline.          */}}
+\DoxyCodeLine{244   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{245   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{246   \textcolor{comment}{/*    outline :: A pointer to the target outline descriptor.             */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{248   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{249   \textcolor{comment}{/*    xOffset :: The horizontal offset.                                  */}}
+\DoxyCodeLine{250   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*    yOffset :: The vertical offset.                                    */}}
+\DoxyCodeLine{252   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{253   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{254   FT\_Outline\_Translate( \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline,}
+\DoxyCodeLine{255                         FT\_Pos             xOffset,}
+\DoxyCodeLine{256                         FT\_Pos             yOffset );}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{260   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{261   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*    FT\_Outline\_Copy                                                    */}}
+\DoxyCodeLine{263   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{264   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{265   \textcolor{comment}{/*    Copies an outline into another one.  Both objects must have the    */}}
+\DoxyCodeLine{266   \textcolor{comment}{/*    same sizes (number of points \& number of contours) when this       */}}
+\DoxyCodeLine{267   \textcolor{comment}{/*    function is called.                                                */}}
+\DoxyCodeLine{268   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{269   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{270   \textcolor{comment}{/*    source :: A handle to the source outline.                          */}}
+\DoxyCodeLine{271   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{272   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{273   \textcolor{comment}{/*    target :: A handle to the target outline.                          */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{275   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{276   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{277   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{278   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{279   FT\_Outline\_Copy( \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  source,}
+\DoxyCodeLine{280                    \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}        *target );}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{284   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{285   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{286   \textcolor{comment}{/*    FT\_Outline\_Transform                                               */}}
+\DoxyCodeLine{287   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{288   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{289   \textcolor{comment}{/*    Applies a simple 2x2 matrix to all of an outline's points.  Useful */}}
+\DoxyCodeLine{290   \textcolor{comment}{/*    for applying rotations, slanting, flipping, etc.                   */}}
+\DoxyCodeLine{291   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{292   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{293   \textcolor{comment}{/*    outline :: A pointer to the target outline descriptor.             */}}
+\DoxyCodeLine{294   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{295   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{296   \textcolor{comment}{/*    matrix  :: A pointer to the transformation matrix.                 */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{298   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{299   \textcolor{comment}{/*    You can use FT\_Outline\_Translate() if you need to translate the    */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*    outline's points.                                                  */}}
+\DoxyCodeLine{301   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{302   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{303   FT\_Outline\_Transform( \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline,}
+\DoxyCodeLine{304                         \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}*   matrix );}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{308   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{309   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{310   \textcolor{comment}{/*    FT\_Outline\_Embolden                                                */}}
+\DoxyCodeLine{311   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{312   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{313   \textcolor{comment}{/*    Emboldens an outline.  The new outline will be at most 4 times     */}}
+\DoxyCodeLine{314   \textcolor{comment}{/*    `strength' pixels wider and higher.  You may think of the left and */}}
+\DoxyCodeLine{315   \textcolor{comment}{/*    bottom borders as unchanged.                                       */}}
+\DoxyCodeLine{316   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{317   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{318   \textcolor{comment}{/*    outline  :: A handle to the target outline.                        */}}
+\DoxyCodeLine{319   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{320   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{321   \textcolor{comment}{/*    strength :: How strong the glyph is emboldened.  Expressed in      */}}
+\DoxyCodeLine{322   \textcolor{comment}{/*                26.6 pixel format.                                     */}}
+\DoxyCodeLine{323   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{324   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{325   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{326   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{327   FT\_EXPORT\_DEF( FT\_Error )}
+\DoxyCodeLine{328   FT\_Outline\_Embolden( \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline,}
+\DoxyCodeLine{329                        FT\_Pos       strength );}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{333   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{334   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{335   \textcolor{comment}{/*    FT\_Outline\_Reverse                                                 */}}
+\DoxyCodeLine{336   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{337   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{338   \textcolor{comment}{/*    Reverses the drawing direction of an outline.  This is used to     */}}
+\DoxyCodeLine{339   \textcolor{comment}{/*    ensure consistent fill conventions for mirrored glyphs.            */}}
+\DoxyCodeLine{340   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{341   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{342   \textcolor{comment}{/*    outline :: A pointer to the target outline descriptor.             */}}
+\DoxyCodeLine{343   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{344   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{345   \textcolor{comment}{/*    This functions toggles the bit flag `FT\_OUTLINE\_REVERSE\_FILL' in   */}}
+\DoxyCodeLine{346   \textcolor{comment}{/*    the outline's `flags' field.                                       */}}
+\DoxyCodeLine{347   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{348   \textcolor{comment}{/*    It shouldn't be used by a normal client application, unless it     */}}
+\DoxyCodeLine{349   \textcolor{comment}{/*    knows what it is doing.                                            */}}
+\DoxyCodeLine{350   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{351   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{352   FT\_Outline\_Reverse( \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline );}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{356   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{357   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{358   \textcolor{comment}{/*    FT\_Outline\_Get\_Bitmap                                              */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{360   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{361   \textcolor{comment}{/*    Renders an outline within a bitmap.  The outline's image is simply */}}
+\DoxyCodeLine{362   \textcolor{comment}{/*    OR-\/ed to the target bitmap.                                        */}}
+\DoxyCodeLine{363   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{364   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{365   \textcolor{comment}{/*    library :: A handle to a FreeType library object.                  */}}
+\DoxyCodeLine{366   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{367   \textcolor{comment}{/*    outline :: A pointer to the source outline descriptor.             */}}
+\DoxyCodeLine{368   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{369   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{370   \textcolor{comment}{/*    abitmap :: A pointer to the target bitmap descriptor.              */}}
+\DoxyCodeLine{371   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{372   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{373   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{374   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{375   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{376   \textcolor{comment}{/*    This function does NOT CREATE the bitmap, it only renders an       */}}
+\DoxyCodeLine{377   \textcolor{comment}{/*    outline image within the one you pass to it!                       */}}
+\DoxyCodeLine{378   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{379   \textcolor{comment}{/*    It will use the raster correponding to the default glyph format.   */}}
+\DoxyCodeLine{380   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{381   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{382   FT\_Outline\_Get\_Bitmap( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}        library,}
+\DoxyCodeLine{383                          \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*       outline,}
+\DoxyCodeLine{384                          \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}  *abitmap );}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{386 }
+\DoxyCodeLine{387 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{388   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{389   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{390   \textcolor{comment}{/*    FT\_Outline\_Render                                                  */}}
+\DoxyCodeLine{391   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{392   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{393   \textcolor{comment}{/*    Renders an outline within a bitmap using the current scan-\/convert. */}}
+\DoxyCodeLine{394   \textcolor{comment}{/*    This functions uses an FT\_Raster\_Params structure as an argument,  */}}
+\DoxyCodeLine{395   \textcolor{comment}{/*    allowing advanced features like direct composition, translucency,  */}}
+\DoxyCodeLine{396   \textcolor{comment}{/*    etc.                                                               */}}
+\DoxyCodeLine{397   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{398   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{399   \textcolor{comment}{/*    library :: A handle to a FreeType library object.                  */}}
+\DoxyCodeLine{400   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{401   \textcolor{comment}{/*    outline :: A pointer to the source outline descriptor.             */}}
+\DoxyCodeLine{402   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{403   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{404   \textcolor{comment}{/*    params  :: A pointer to a FT\_Raster\_Params structure used to       */}}
+\DoxyCodeLine{405   \textcolor{comment}{/*               describe the rendering operation.                       */}}
+\DoxyCodeLine{406   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{407   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{408   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{409   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{410   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{411   \textcolor{comment}{/*    You should know what you are doing and how FT\_Raster\_Params works  */}}
+\DoxyCodeLine{412   \textcolor{comment}{/*    to use this function.                                              */}}
+\DoxyCodeLine{413   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{414   \textcolor{comment}{/*    The field `params.source' will be set to `outline' before the scan */}}
+\DoxyCodeLine{415   \textcolor{comment}{/*    converter is called, which means that the value you give to it is  */}}
+\DoxyCodeLine{416   \textcolor{comment}{/*    actually ignored.                                                  */}}
+\DoxyCodeLine{417   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{418   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{419   FT\_Outline\_Render( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}         library,}
+\DoxyCodeLine{420                      \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*        outline,}
+\DoxyCodeLine{421                      \mbox{\hyperlink{struct_f_t___raster___params__}{FT\_Raster\_Params}}*  params );}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423 }
+\DoxyCodeLine{424 \textcolor{comment}{ /**************************************************************************}}
+\DoxyCodeLine{425 \textcolor{comment}{  *}}
+\DoxyCodeLine{426 \textcolor{comment}{  * @enum:}}
+\DoxyCodeLine{427 \textcolor{comment}{  *   FT\_Orientation}}
+\DoxyCodeLine{428 \textcolor{comment}{  *  }}
+\DoxyCodeLine{429 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{430 \textcolor{comment}{  *   A list of values used to describe an outline's contour orientation.}}
+\DoxyCodeLine{431 \textcolor{comment}{  *}}
+\DoxyCodeLine{432 \textcolor{comment}{  *   The TrueType and Postscript specifications use different conventions}}
+\DoxyCodeLine{433 \textcolor{comment}{  *   to determine whether outline contours should be filled or unfilled.}}
+\DoxyCodeLine{434 \textcolor{comment}{  *   }}
+\DoxyCodeLine{435 \textcolor{comment}{  * @values:}}
+\DoxyCodeLine{436 \textcolor{comment}{  *   FT\_ORIENTATION\_TRUETYPE ::}}
+\DoxyCodeLine{437 \textcolor{comment}{  *     According to the TrueType specification, clockwise contours must}}
+\DoxyCodeLine{438 \textcolor{comment}{  *     be filled, and counter-\/clockwise ones must be unfilled.}}
+\DoxyCodeLine{439 \textcolor{comment}{  *}}
+\DoxyCodeLine{440 \textcolor{comment}{  *   FT\_ORIENTATION\_POSTSCRIPT ::}}
+\DoxyCodeLine{441 \textcolor{comment}{  *     According to the Postscript specification, counter-\/clockwise contours}}
+\DoxyCodeLine{442 \textcolor{comment}{  *     must be filled, and clockwise ones must be unfilled.}}
+\DoxyCodeLine{443 \textcolor{comment}{  *}}
+\DoxyCodeLine{444 \textcolor{comment}{  *   FT\_ORIENTATION\_FILL\_RIGHT ::}}
+\DoxyCodeLine{445 \textcolor{comment}{  *     This is identical to @FT\_ORIENTATION\_TRUETYPE, but is used to}}
+\DoxyCodeLine{446 \textcolor{comment}{  *     remember that in TrueType, everything that is to the right of}}
+\DoxyCodeLine{447 \textcolor{comment}{  *     the drawing direction of a contour must be filled.}}
+\DoxyCodeLine{448 \textcolor{comment}{  *}}
+\DoxyCodeLine{449 \textcolor{comment}{  *   FT\_ORIENTATION\_FILL\_LEFT ::}}
+\DoxyCodeLine{450 \textcolor{comment}{  *     This is identical to @FT\_ORIENTATION\_POSTSCRIPT, but is used to}}
+\DoxyCodeLine{451 \textcolor{comment}{  *     remember that in Postscript, everything that is to the left of}}
+\DoxyCodeLine{452 \textcolor{comment}{  *     the drawing direction of a contour must be filled.}}
+\DoxyCodeLine{453 \textcolor{comment}{  */}}
+\DoxyCodeLine{454   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}}
+\DoxyCodeLine{455   \{}
+\DoxyCodeLine{456     FT\_ORIENTATION\_TRUETYPE   = 0,}
+\DoxyCodeLine{457     FT\_ORIENTATION\_POSTSCRIPT = 1,}
+\DoxyCodeLine{458     FT\_ORIENTATION\_FILL\_RIGHT = FT\_ORIENTATION\_TRUETYPE,}
+\DoxyCodeLine{459     FT\_ORIENTATION\_FILL\_LEFT  = FT\_ORIENTATION\_POSTSCRIPT}
+\DoxyCodeLine{460   }
+\DoxyCodeLine{461   \} FT\_Orientation;}
+\DoxyCodeLine{462 }
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464 \textcolor{comment}{ /**************************************************************************}}
+\DoxyCodeLine{465 \textcolor{comment}{  *}}
+\DoxyCodeLine{466 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{467 \textcolor{comment}{  *   FT\_Outline\_Get\_Orientation}}
+\DoxyCodeLine{468 \textcolor{comment}{  *  }}
+\DoxyCodeLine{469 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{470 \textcolor{comment}{  *   This function analyzes a glyph outline and tries to compute its}}
+\DoxyCodeLine{471 \textcolor{comment}{  *   fill orientation (see @FT\_Orientation).  This is done by computing}}
+\DoxyCodeLine{472 \textcolor{comment}{  *   the direction of each global horizontal and/or vertical extrema}}
+\DoxyCodeLine{473 \textcolor{comment}{  *   within the outline.}}
+\DoxyCodeLine{474 \textcolor{comment}{  *}}
+\DoxyCodeLine{475 \textcolor{comment}{  *   Note that this will return @FT\_ORIENTATION\_TRUETYPE for empty}}
+\DoxyCodeLine{476 \textcolor{comment}{  *   outlines.}}
+\DoxyCodeLine{477 \textcolor{comment}{  *}}
+\DoxyCodeLine{478 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{479 \textcolor{comment}{  *   outline ::}}
+\DoxyCodeLine{480 \textcolor{comment}{  *     A handle to the source outline.}}
+\DoxyCodeLine{481 \textcolor{comment}{  *}}
+\DoxyCodeLine{482 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{483 \textcolor{comment}{  *   The orientation.}}
+\DoxyCodeLine{484 \textcolor{comment}{  *}}
+\DoxyCodeLine{485 \textcolor{comment}{  */}}
+\DoxyCodeLine{486   FT\_EXPORT( FT\_Orientation )}
+\DoxyCodeLine{487   FT\_Outline\_Get\_Orientation( \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*  outline );}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489 }
+\DoxyCodeLine{490   \textcolor{comment}{/* */}}
+\DoxyCodeLine{491 }
+\DoxyCodeLine{492 }
+\DoxyCodeLine{493 FT\_END\_HEADER}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{495 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTOUTLN\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{496 }
+\DoxyCodeLine{497 }
+\DoxyCodeLine{498 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

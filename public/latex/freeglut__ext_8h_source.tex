@@ -1,0 +1,277 @@
+\hypertarget{freeglut__ext_8h_source}{}\doxysection{freeglut\+\_\+ext.\+h}
+\label{freeglut__ext_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freeglut/include/GL/freeglut\_ext.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freeglut/include/GL/freeglut\_ext.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef  \_\_FREEGLUT\_EXT\_H\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define  \_\_FREEGLUT\_EXT\_H\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{comment}{/*}}
+\DoxyCodeLine{5 \textcolor{comment}{ * freeglut\_ext.h}}
+\DoxyCodeLine{6 \textcolor{comment}{ *}}
+\DoxyCodeLine{7 \textcolor{comment}{ * The non-\/GLUT-\/compatible extensions to the freeglut library include file}}
+\DoxyCodeLine{8 \textcolor{comment}{ *}}
+\DoxyCodeLine{9 \textcolor{comment}{ * Copyright (c) 1999-\/2000 Pawel W. Olszta. All Rights Reserved.}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Written by Pawel W. Olszta, <olszta@sourceforge.net>}}
+\DoxyCodeLine{11 \textcolor{comment}{ * Creation date: Thu Dec 2 1999}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a}}
+\DoxyCodeLine{14 \textcolor{comment}{ * copy of this software and associated documentation files (the "{}Software"{}),}}
+\DoxyCodeLine{15 \textcolor{comment}{ * to deal in the Software without restriction, including without limitation}}
+\DoxyCodeLine{16 \textcolor{comment}{ * the rights to use, copy, modify, merge, publish, distribute, sublicense,}}
+\DoxyCodeLine{17 \textcolor{comment}{ * and/or sell copies of the Software, and to permit persons to whom the}}
+\DoxyCodeLine{18 \textcolor{comment}{ * Software is furnished to do so, subject to the following conditions:}}
+\DoxyCodeLine{19 \textcolor{comment}{ *}}
+\DoxyCodeLine{20 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included}}
+\DoxyCodeLine{21 \textcolor{comment}{ * in all copies or substantial portions of the Software.}}
+\DoxyCodeLine{22 \textcolor{comment}{ *}}
+\DoxyCodeLine{23 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS}}
+\DoxyCodeLine{24 \textcolor{comment}{ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,}}
+\DoxyCodeLine{25 \textcolor{comment}{ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL}}
+\DoxyCodeLine{26 \textcolor{comment}{ * PAWEL W. OLSZTA BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER}}
+\DoxyCodeLine{27 \textcolor{comment}{ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN}}
+\DoxyCodeLine{28 \textcolor{comment}{ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{29 \textcolor{comment}{ */}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{32     \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{/*}}
+\DoxyCodeLine{36 \textcolor{comment}{ * Additional GLUT Key definitions for the Special key function}}
+\DoxyCodeLine{37 \textcolor{comment}{ */}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define GLUT\_KEY\_NUM\_LOCK           0x006D}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define GLUT\_KEY\_BEGIN              0x006E}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define GLUT\_KEY\_DELETE             0x006F}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define GLUT\_KEY\_SHIFT\_L            0x0070}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define GLUT\_KEY\_SHIFT\_R            0x0071}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define GLUT\_KEY\_CTRL\_L             0x0072}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define GLUT\_KEY\_CTRL\_R             0x0073}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define GLUT\_KEY\_ALT\_L              0x0074}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define GLUT\_KEY\_ALT\_R              0x0075}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{comment}{/*}}
+\DoxyCodeLine{49 \textcolor{comment}{ * GLUT API Extension macro definitions -\/-\/ behaviour when the user clicks on an "{}x"{} to close a window}}
+\DoxyCodeLine{50 \textcolor{comment}{ */}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define GLUT\_ACTION\_EXIT                         0}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define GLUT\_ACTION\_GLUTMAINLOOP\_RETURNS         1}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define GLUT\_ACTION\_CONTINUE\_EXECUTION           2}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{comment}{/*}}
+\DoxyCodeLine{56 \textcolor{comment}{ * Create a new rendering context when the user opens a new window?}}
+\DoxyCodeLine{57 \textcolor{comment}{ */}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define GLUT\_CREATE\_NEW\_CONTEXT                  0}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define GLUT\_USE\_CURRENT\_CONTEXT                 1}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{comment}{/*}}
+\DoxyCodeLine{62 \textcolor{comment}{ * Direct/Indirect rendering context options (has meaning only in Unix/X11)}}
+\DoxyCodeLine{63 \textcolor{comment}{ */}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define GLUT\_FORCE\_INDIRECT\_CONTEXT              0}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define GLUT\_ALLOW\_DIRECT\_CONTEXT                1}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define GLUT\_TRY\_DIRECT\_CONTEXT                  2}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define GLUT\_FORCE\_DIRECT\_CONTEXT                3}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{comment}{/*}}
+\DoxyCodeLine{70 \textcolor{comment}{ * GLUT API Extension macro definitions -\/-\/ the glutGet parameters}}
+\DoxyCodeLine{71 \textcolor{comment}{ */}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define  GLUT\_INIT\_STATE                    0x007C}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define  GLUT\_ACTION\_ON\_WINDOW\_CLOSE        0x01F9}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define  GLUT\_WINDOW\_BORDER\_WIDTH           0x01FA}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#define  GLUT\_WINDOW\_BORDER\_HEIGHT          0x01FB}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define  GLUT\_WINDOW\_HEADER\_HEIGHT          0x01FB  }\textcolor{comment}{/* Docs say it should always have been GLUT\_WINDOW\_BORDER\_HEIGHT, keep this for backward compatibility */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define  GLUT\_VERSION                       0x01FC}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define  GLUT\_RENDERING\_CONTEXT             0x01FD}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define  GLUT\_DIRECT\_RENDERING              0x01FE}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define  GLUT\_FULL\_SCREEN                   0x01FF}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define  GLUT\_SKIP\_STALE\_MOTION\_EVENTS      0x0204}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define  GLUT\_GEOMETRY\_VISUALIZE\_NORMALS    0x0205}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define  GLUT\_STROKE\_FONT\_DRAW\_JOIN\_DOTS    0x0206  }\textcolor{comment}{/* Draw dots between line segments of stroke fonts? */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{comment}{/*}}
+\DoxyCodeLine{94 \textcolor{comment}{ * New tokens for glutInitDisplayMode.}}
+\DoxyCodeLine{95 \textcolor{comment}{ * Only one GLUT\_AUXn bit may be used at a time.}}
+\DoxyCodeLine{96 \textcolor{comment}{ * Value 0x0400 is defined in OpenGLUT.}}
+\DoxyCodeLine{97 \textcolor{comment}{ */}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#define  GLUT\_AUX                           0x1000}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#define  GLUT\_AUX1                          0x1000}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define  GLUT\_AUX2                          0x2000}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#define  GLUT\_AUX3                          0x4000}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#define  GLUT\_AUX4                          0x8000}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{comment}{/*}}
+\DoxyCodeLine{106 \textcolor{comment}{ * Context-\/related flags, see fg\_state.c}}
+\DoxyCodeLine{107 \textcolor{comment}{ * Set the requested OpenGL version}}
+\DoxyCodeLine{108 \textcolor{comment}{ */}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define  GLUT\_INIT\_MAJOR\_VERSION            0x0200}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define  GLUT\_INIT\_MINOR\_VERSION            0x0201}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define  GLUT\_INIT\_FLAGS                    0x0202}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#define  GLUT\_INIT\_PROFILE                  0x0203}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{/*}}
+\DoxyCodeLine{115 \textcolor{comment}{ * Flags for glutInitContextFlags, see fg\_init.c}}
+\DoxyCodeLine{116 \textcolor{comment}{ */}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#define  GLUT\_DEBUG                         0x0001}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define  GLUT\_FORWARD\_COMPATIBLE            0x0002}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{comment}{/*}}
+\DoxyCodeLine{122 \textcolor{comment}{ * Flags for glutInitContextProfile, see fg\_init.c}}
+\DoxyCodeLine{123 \textcolor{comment}{ */}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#define GLUT\_CORE\_PROFILE                   0x0001}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define GLUT\_COMPATIBILITY\_PROFILE          0x0002}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{comment}{/*}}
+\DoxyCodeLine{128 \textcolor{comment}{ * Process loop function, see fg\_main.c}}
+\DoxyCodeLine{129 \textcolor{comment}{ */}}
+\DoxyCodeLine{130 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutMainLoopEvent( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{131 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutLeaveMainLoop( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{132 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutExit         ( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{comment}{/*}}
+\DoxyCodeLine{135 \textcolor{comment}{ * Window management functions, see fg\_window.c}}
+\DoxyCodeLine{136 \textcolor{comment}{ */}}
+\DoxyCodeLine{137 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutFullScreenToggle( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{138 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutLeaveFullScreen( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \textcolor{comment}{/*}}
+\DoxyCodeLine{141 \textcolor{comment}{ * Menu functions}}
+\DoxyCodeLine{142 \textcolor{comment}{ */}}
+\DoxyCodeLine{143 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSetMenuFont( \textcolor{keywordtype}{int} menuID, \textcolor{keywordtype}{void}* font );}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \textcolor{comment}{/*}}
+\DoxyCodeLine{146 \textcolor{comment}{ * Window-\/specific callback functions, see fg\_callbacks.c}}
+\DoxyCodeLine{147 \textcolor{comment}{ */}}
+\DoxyCodeLine{148 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutMouseWheelFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int} ) );}
+\DoxyCodeLine{149 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutPositionFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int} ) );}
+\DoxyCodeLine{150 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutCloseFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keywordtype}{void} ) );}
+\DoxyCodeLine{151 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutWMCloseFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keywordtype}{void} ) );}
+\DoxyCodeLine{152 \textcolor{comment}{/* And also a destruction callback for menus */}}
+\DoxyCodeLine{153 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutMenuDestroyFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keywordtype}{void} ) );}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{comment}{/*}}
+\DoxyCodeLine{156 \textcolor{comment}{ * State setting and retrieval functions, see fg\_state.c}}
+\DoxyCodeLine{157 \textcolor{comment}{ */}}
+\DoxyCodeLine{158 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSetOption ( GLenum option\_flag, \textcolor{keywordtype}{int} value );}
+\DoxyCodeLine{159 FGAPI \textcolor{keywordtype}{int} *   FGAPIENTRY glutGetModeValues(GLenum mode, \textcolor{keywordtype}{int} * size);}
+\DoxyCodeLine{160 \textcolor{comment}{/* A.Donev: User-\/data manipulation */}}
+\DoxyCodeLine{161 FGAPI \textcolor{keywordtype}{void}*   FGAPIENTRY glutGetWindowData( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{162 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSetWindowData(\textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{163 FGAPI \textcolor{keywordtype}{void}*   FGAPIENTRY glutGetMenuData( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{164 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSetMenuData(\textcolor{keywordtype}{void}* data);}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{comment}{/*}}
+\DoxyCodeLine{167 \textcolor{comment}{ * Font stuff, see fg\_font.c}}
+\DoxyCodeLine{168 \textcolor{comment}{ */}}
+\DoxyCodeLine{169 FGAPI \textcolor{keywordtype}{int}     FGAPIENTRY glutBitmapHeight( \textcolor{keywordtype}{void}* font );}
+\DoxyCodeLine{170 FGAPI GLfloat FGAPIENTRY glutStrokeHeight( \textcolor{keywordtype}{void}* font );}
+\DoxyCodeLine{171 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutBitmapString( \textcolor{keywordtype}{void}* font, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string} );}
+\DoxyCodeLine{172 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutStrokeString( \textcolor{keywordtype}{void}* font, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\textcolor{keywordtype}{string} );}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 \textcolor{comment}{/*}}
+\DoxyCodeLine{175 \textcolor{comment}{ * Geometry functions, see fg\_geometry.c}}
+\DoxyCodeLine{176 \textcolor{comment}{ */}}
+\DoxyCodeLine{177 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutWireRhombicDodecahedron( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{178 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSolidRhombicDodecahedron( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{179 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutWireSierpinskiSponge ( \textcolor{keywordtype}{int} num\_levels, \textcolor{keywordtype}{double} offset[3], \textcolor{keywordtype}{double} scale );}
+\DoxyCodeLine{180 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSolidSierpinskiSponge ( \textcolor{keywordtype}{int} num\_levels, \textcolor{keywordtype}{double} offset[3], \textcolor{keywordtype}{double} scale );}
+\DoxyCodeLine{181 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutWireCylinder( \textcolor{keywordtype}{double} radius, \textcolor{keywordtype}{double} height, GLint slices, GLint stacks);}
+\DoxyCodeLine{182 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSolidCylinder( \textcolor{keywordtype}{double} radius, \textcolor{keywordtype}{double} height, GLint slices, GLint stacks);}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{/*}}
+\DoxyCodeLine{185 \textcolor{comment}{ * Rest of functions for rendering Newell's teaset, found in fg\_teapot.c}}
+\DoxyCodeLine{186 \textcolor{comment}{ * NB: front facing polygons have clockwise winding, not counter clockwise}}
+\DoxyCodeLine{187 \textcolor{comment}{ */}}
+\DoxyCodeLine{188 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutWireTeacup( \textcolor{keywordtype}{double} size );}
+\DoxyCodeLine{189 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSolidTeacup( \textcolor{keywordtype}{double} size );}
+\DoxyCodeLine{190 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutWireTeaspoon( \textcolor{keywordtype}{double} size );}
+\DoxyCodeLine{191 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSolidTeaspoon( \textcolor{keywordtype}{double} size );}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193 \textcolor{comment}{/*}}
+\DoxyCodeLine{194 \textcolor{comment}{ * Extension functions, see fg\_ext.c}}
+\DoxyCodeLine{195 \textcolor{comment}{ */}}
+\DoxyCodeLine{196 \textcolor{keyword}{typedef} void (*GLUTproc)();}
+\DoxyCodeLine{197 FGAPI GLUTproc FGAPIENTRY glutGetProcAddress( \textcolor{keyword}{const} \textcolor{keywordtype}{char} *procName );}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 \textcolor{comment}{/*}}
+\DoxyCodeLine{200 \textcolor{comment}{ * Multi-\/touch/multi-\/pointer extensions}}
+\DoxyCodeLine{201 \textcolor{comment}{ */}}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#define GLUT\_HAS\_MULTI 1}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 \textcolor{comment}{/* TODO: add device\_id parameter,}}
+\DoxyCodeLine{206 \textcolor{comment}{   cf. http://sourceforge.net/mailarchive/forum.php?thread\_name=20120518071314.GA28061\%40perso.beuc.net\&forum\_name=freeglut-\/developer */}}
+\DoxyCodeLine{207 FGAPI \textcolor{keywordtype}{void} FGAPIENTRY glutMultiEntryFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int} ) );}
+\DoxyCodeLine{208 FGAPI \textcolor{keywordtype}{void} FGAPIENTRY glutMultiButtonFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int} ) );}
+\DoxyCodeLine{209 FGAPI \textcolor{keywordtype}{void} FGAPIENTRY glutMultiMotionFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int} ) );}
+\DoxyCodeLine{210 FGAPI \textcolor{keywordtype}{void} FGAPIENTRY glutMultiPassiveFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int} ) );}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 \textcolor{comment}{/*}}
+\DoxyCodeLine{213 \textcolor{comment}{ * Joystick functions, see fg\_joystick.c}}
+\DoxyCodeLine{214 \textcolor{comment}{ */}}
+\DoxyCodeLine{215 \textcolor{comment}{/* USE OF THESE FUNCTIONS IS DEPRECATED !!!!! */}}
+\DoxyCodeLine{216 \textcolor{comment}{/* If you have a serious need for these functions in your application, please either}}
+\DoxyCodeLine{217 \textcolor{comment}{ * contact the "{}freeglut"{} developer community at freeglut-\/developer@lists.sourceforge.net,}}
+\DoxyCodeLine{218 \textcolor{comment}{ * switch to the OpenGLUT library, or else port your joystick functionality over to PLIB's}}
+\DoxyCodeLine{219 \textcolor{comment}{ * "{}js"{} library.}}
+\DoxyCodeLine{220 \textcolor{comment}{ */}}
+\DoxyCodeLine{221 \textcolor{keywordtype}{int}     glutJoystickGetNumAxes( \textcolor{keywordtype}{int} ident );}
+\DoxyCodeLine{222 \textcolor{keywordtype}{int}     glutJoystickGetNumButtons( \textcolor{keywordtype}{int} ident );}
+\DoxyCodeLine{223 \textcolor{keywordtype}{int}     glutJoystickNotWorking( \textcolor{keywordtype}{int} ident );}
+\DoxyCodeLine{224 \textcolor{keywordtype}{float}   glutJoystickGetDeadBand( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{int} axis );}
+\DoxyCodeLine{225 \textcolor{keywordtype}{void}    glutJoystickSetDeadBand( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{int} axis, \textcolor{keywordtype}{float} db );}
+\DoxyCodeLine{226 \textcolor{keywordtype}{float}   glutJoystickGetSaturation( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{int} axis );}
+\DoxyCodeLine{227 \textcolor{keywordtype}{void}    glutJoystickSetSaturation( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{int} axis, \textcolor{keywordtype}{float} st );}
+\DoxyCodeLine{228 \textcolor{keywordtype}{void}    glutJoystickSetMinRange( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{float} *axes );}
+\DoxyCodeLine{229 \textcolor{keywordtype}{void}    glutJoystickSetMaxRange( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{float} *axes );}
+\DoxyCodeLine{230 \textcolor{keywordtype}{void}    glutJoystickSetCenter( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{float} *axes );}
+\DoxyCodeLine{231 \textcolor{keywordtype}{void}    glutJoystickGetMinRange( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{float} *axes );}
+\DoxyCodeLine{232 \textcolor{keywordtype}{void}    glutJoystickGetMaxRange( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{float} *axes );}
+\DoxyCodeLine{233 \textcolor{keywordtype}{void}    glutJoystickGetCenter( \textcolor{keywordtype}{int} ident, \textcolor{keywordtype}{float} *axes );}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235 \textcolor{comment}{/*}}
+\DoxyCodeLine{236 \textcolor{comment}{ * Initialization functions, see fg\_init.c}}
+\DoxyCodeLine{237 \textcolor{comment}{ */}}
+\DoxyCodeLine{238 \textcolor{comment}{/* to get the typedef for va\_list */}}
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#include <stdarg.h>}}
+\DoxyCodeLine{240 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutInitContextVersion( \textcolor{keywordtype}{int} majorVersion, \textcolor{keywordtype}{int} minorVersion );}
+\DoxyCodeLine{241 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutInitContextFlags( \textcolor{keywordtype}{int} flags );}
+\DoxyCodeLine{242 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutInitContextProfile( \textcolor{keywordtype}{int} profile );}
+\DoxyCodeLine{243 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutInitErrorFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keyword}{const} \textcolor{keywordtype}{char} *fmt, va\_list ap ) );}
+\DoxyCodeLine{244 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutInitWarningFunc( \textcolor{keywordtype}{void} (* callback)( \textcolor{keyword}{const} \textcolor{keywordtype}{char} *fmt, va\_list ap ) );}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246 \textcolor{comment}{/* OpenGL >= 2.0 support */}}
+\DoxyCodeLine{247 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSetVertexAttribCoord3(GLint attrib);}
+\DoxyCodeLine{248 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSetVertexAttribNormal(GLint attrib);}
+\DoxyCodeLine{249 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutSetVertexAttribTexCoord2(GLint attrib);}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 \textcolor{comment}{/* Mobile platforms lifecycle */}}
+\DoxyCodeLine{252 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutInitContextFunc(\textcolor{keywordtype}{void} (* callback)());}
+\DoxyCodeLine{253 FGAPI \textcolor{keywordtype}{void}    FGAPIENTRY glutAppStatusFunc(\textcolor{keywordtype}{void} (* callback)(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{254 \textcolor{comment}{/* state flags that can be passed to callback set by glutAppStatusFunc */}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{\#define GLUT\_APPSTATUS\_PAUSE                0x0001}}
+\DoxyCodeLine{256 \textcolor{preprocessor}{\#define GLUT\_APPSTATUS\_RESUME               0x0002}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258 \textcolor{comment}{/*}}
+\DoxyCodeLine{259 \textcolor{comment}{ * GLUT API macro definitions -\/-\/ the display mode definitions}}
+\DoxyCodeLine{260 \textcolor{comment}{ */}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{\#define  GLUT\_CAPTIONLESS                   0x0400}}
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#define  GLUT\_BORDERLESS                    0x0800}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#define  GLUT\_SRGB                          0x1000}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{266     \}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 \textcolor{comment}{/*** END OF FILE ***/}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FREEGLUT\_EXT\_H\_\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

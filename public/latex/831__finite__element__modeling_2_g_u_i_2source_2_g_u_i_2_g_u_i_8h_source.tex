@@ -1,0 +1,126 @@
+\hypertarget{831__finite__element__modeling_2_g_u_i_2source_2_g_u_i_2_g_u_i_8h_source}{}\doxysection{GUI.\+h}
+\label{831__finite__element__modeling_2_g_u_i_2source_2_g_u_i_2_g_u_i_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/GUI/GUI.h@{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/GUI/GUI.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Console.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}GUIHelper.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}ResFile.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}../Project/ProjectFile.h"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{using namespace }Proj;}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{comment}{//thread\_local std::thread::id m\_actual\_thread;}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{class_g_u_i}{GUI}} }
+\DoxyCodeLine{16 \{}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_g_u_i}{GUI}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_g_u_i}{GUI}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{19     \mbox{\hyperlink{class_g_u_i}{GUI}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_g_u_i}{GUI}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{20     \textcolor{keyword}{static} \mbox{\hyperlink{class_g_u_i}{GUI}}* Instance(); }
+\DoxyCodeLine{21     \textcolor{keyword}{static} \mbox{\hyperlink{class_g_u_i}{GUI}}* Instance(\textcolor{keywordtype}{int}\& argc, \textcolor{keywordtype}{char}** argv);}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} Launch(); }
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_g_u_i_afd211e1e1d5213a1717c5e0e01f70f3b}{Set}}(\textcolor{keyword}{const} std::vector<std::string>\& data); }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_g_u_i_afb998e349f069608c644f4ed5badcbeb}{Target}}(\textcolor{keyword}{const} std::vector<std::string>\& data); }
+\DoxyCodeLine{28     }
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_g_u_i_af508fe9bc133913431e426846ab7f4d7}{CurrentThreads}}(); }
+\DoxyCodeLine{30     }
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_g_u_i_af0cdf043de82c810f7f48c483215df29}{multi\_thread\_invoke}}(std::vector<Project>\&\& projects); }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_g_u_i_a456bc44cff80cf2de04b82261431e75d}{set\_and\_run}}(\mbox{\hyperlink{class_proj_1_1_project}{Project}}\& project); }
+\DoxyCodeLine{39     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_g_u_i_af9be5fd6513a4f9b2784e74205327411}{ReverseAnalysis}}(\textcolor{keyword}{const} std::vector<std::string>\& data); }
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} Run();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} ShowCompletedSimulation(\textcolor{keyword}{const} std::vector<std::string>\& data);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{keywordtype}{void} Pause();}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{keywordtype}{void} Continue();}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} Next();}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} Stop();}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} RenderMode(\textcolor{keyword}{const} std::vector<std::string>\& data);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keywordtype}{bool} OnStep();}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     \textcolor{keywordtype}{bool} PrepareData(\textcolor{keyword}{const} \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{comment}{//void CreateGeometry(const std::vector<std::string>\& data);}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{comment}{//std::thread::id GetCurrentThreadID();}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \mbox{\hyperlink{class_g_u_i}{\string~GUI}}();}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_g_u_i_1_1_thread_res}{ThreadRes}} \{}
+\DoxyCodeLine{68         \textcolor{keywordtype}{bool} m\_is\_render\_required = \textcolor{keyword}{false};}
+\DoxyCodeLine{69         \textcolor{keywordtype}{bool} m\_is\_paused = \textcolor{keyword}{false};}
+\DoxyCodeLine{70         \textcolor{keywordtype}{bool} m\_is\_next\_step = \textcolor{keyword}{false};}
+\DoxyCodeLine{71         \textcolor{keywordtype}{bool} m\_is\_stop = \textcolor{keyword}{false};}
+\DoxyCodeLine{72         \mbox{\hyperlink{class_res_file}{ResFile}} m\_res\_file;}
+\DoxyCodeLine{73         \mbox{\hyperlink{class_proj_1_1_project}{Project}} project;}
+\DoxyCodeLine{74     \};}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{keyword}{private}:}
+\DoxyCodeLine{77     }
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \mbox{\hyperlink{class_g_u_i}{GUI}}(\textcolor{keywordtype}{int}\& argc, \textcolor{keywordtype}{char}** argv);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     }
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     std::thread::id m\_current\_thread\_id;}
+\DoxyCodeLine{85     std::string m\_current\_thread\_name;}
+\DoxyCodeLine{86     std::thread::id m\_main\_thread\_id;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     }
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \textcolor{keywordtype}{bool} SetFlag(\textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_g_u_i_1_1_thread_res}{ThreadRes}}::*member, \textcolor{keywordtype}{bool} value);}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{comment}{//ResFile m\_res\_file;}}
+\DoxyCodeLine{96     \textcolor{comment}{//const char* const res\_file\_path = "{}materials/res/steps\_res.res"{};}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99     std::map<std::thread::id, ThreadRes> m\_thread\_res;}
+\DoxyCodeLine{100     std::map<std::string, std::thread::id> m\_thread\_id;}
+\DoxyCodeLine{101     \textcolor{comment}{//std::vector<Project> projects;}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{keywordtype}{bool} m\_animation\_mode = \textcolor{keyword}{false};}
+\DoxyCodeLine{105     \textcolor{keywordtype}{bool} m\_exit = \textcolor{keyword}{false};}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107     std::ofstream results;}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \textcolor{comment}{//const size\_t c\_remeshing\_step = 4;}}
+\DoxyCodeLine{110     \textcolor{comment}{//const double c\_time\_max = 1000;}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112     \textcolor{keywordtype}{int} g\_argc;}
+\DoxyCodeLine{113     \textcolor{keywordtype}{char}** g\_argv;}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     std::condition\_variable m\_interruptor;}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117     \mbox{\hyperlink{class_console}{Console}}* m\_console;}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     \textcolor{keyword}{static} \mbox{\hyperlink{class_g_u_i}{GUI}}* s\_instance;}
+\DoxyCodeLine{120     \textcolor{keyword}{static} std::once\_flag s\_instance\_flag;}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     std::ofstream log;}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \};}
+
+\end{DoxyCode}

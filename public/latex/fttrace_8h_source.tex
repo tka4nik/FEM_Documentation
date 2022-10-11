@@ -1,0 +1,124 @@
+\hypertarget{fttrace_8h_source}{}\doxysection{fttrace.\+h}
+\label{fttrace_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/fttrace.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/fttrace.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  fttrace.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Tracing handling (specification only).                               */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2002, 2004, 2005 by                                          */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19   \textcolor{comment}{/* definitions of trace levels for FreeType 2 */}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21   \textcolor{comment}{/* the first level must always be `trace\_any' */}}
+\DoxyCodeLine{22 FT\_TRACE\_DEF( any )}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24   \textcolor{comment}{/* base components */}}
+\DoxyCodeLine{25 FT\_TRACE\_DEF( calc )      \textcolor{comment}{/* calculations            (ftcalc.c)   */}}
+\DoxyCodeLine{26 FT\_TRACE\_DEF( memory )    \textcolor{comment}{/* memory manager          (ftobjs.c)   */}}
+\DoxyCodeLine{27 FT\_TRACE\_DEF( stream )    \textcolor{comment}{/* stream manager          (ftstream.c) */}}
+\DoxyCodeLine{28 FT\_TRACE\_DEF( io )        \textcolor{comment}{/* i/o interface           (ftsystem.c) */}}
+\DoxyCodeLine{29 FT\_TRACE\_DEF( list )      \textcolor{comment}{/* list management         (ftlist.c)   */}}
+\DoxyCodeLine{30 FT\_TRACE\_DEF( init )      \textcolor{comment}{/* initialization          (ftinit.c)   */}}
+\DoxyCodeLine{31 FT\_TRACE\_DEF( objs )      \textcolor{comment}{/* base objects            (ftobjs.c)   */}}
+\DoxyCodeLine{32 FT\_TRACE\_DEF( outline )   \textcolor{comment}{/* outline management      (ftoutln.c)  */}}
+\DoxyCodeLine{33 FT\_TRACE\_DEF( glyph )     \textcolor{comment}{/* glyph management        (ftglyph.c)  */}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 FT\_TRACE\_DEF( raster )    \textcolor{comment}{/* monochrome rasterizer   (ftraster.c) */}}
+\DoxyCodeLine{36 FT\_TRACE\_DEF( smooth )    \textcolor{comment}{/* anti-\/aliasing raster    (ftgrays.c)  */}}
+\DoxyCodeLine{37 FT\_TRACE\_DEF( mm )        \textcolor{comment}{/* MM interface            (ftmm.c)     */}}
+\DoxyCodeLine{38 FT\_TRACE\_DEF( raccess )   \textcolor{comment}{/* resource fork accessor  (ftrfork.c)  */}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   \textcolor{comment}{/* Cache sub-\/system */}}
+\DoxyCodeLine{41 FT\_TRACE\_DEF( cache )     \textcolor{comment}{/* cache sub-\/system        (ftcache.c, etc.) */}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43   \textcolor{comment}{/* SFNT driver components */}}
+\DoxyCodeLine{44 FT\_TRACE\_DEF( sfobjs )    \textcolor{comment}{/* SFNT object handler     (sfobjs.c)   */}}
+\DoxyCodeLine{45 FT\_TRACE\_DEF( ttcmap )    \textcolor{comment}{/* charmap handler         (ttcmap.c)   */}}
+\DoxyCodeLine{46 FT\_TRACE\_DEF( ttkern )    \textcolor{comment}{/* kerning handler         (ttkern.c)   */}}
+\DoxyCodeLine{47 FT\_TRACE\_DEF( ttload )    \textcolor{comment}{/* basic TrueType tables   (ttload.c)   */}}
+\DoxyCodeLine{48 FT\_TRACE\_DEF( ttpost )    \textcolor{comment}{/* PS table processing     (ttpost.c)   */}}
+\DoxyCodeLine{49 FT\_TRACE\_DEF( ttsbit )    \textcolor{comment}{/* TrueType sbit handling  (ttsbit.c)   */}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \textcolor{comment}{/* TrueType driver components */}}
+\DoxyCodeLine{52 FT\_TRACE\_DEF( ttdriver )  \textcolor{comment}{/* TT font driver          (ttdriver.c) */}}
+\DoxyCodeLine{53 FT\_TRACE\_DEF( ttgload )   \textcolor{comment}{/* TT glyph loader         (ttgload.c)  */}}
+\DoxyCodeLine{54 FT\_TRACE\_DEF( ttinterp )  \textcolor{comment}{/* bytecode interpreter    (ttinterp.c) */}}
+\DoxyCodeLine{55 FT\_TRACE\_DEF( ttobjs )    \textcolor{comment}{/* TT objects manager      (ttobjs.c)   */}}
+\DoxyCodeLine{56 FT\_TRACE\_DEF( ttpload )   \textcolor{comment}{/* TT data/program loader  (ttpload.c)  */}}
+\DoxyCodeLine{57 FT\_TRACE\_DEF( ttgxvar )   \textcolor{comment}{/* TrueType GX var handler (ttgxvar.c)  */}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59   \textcolor{comment}{/* Type 1 driver components */}}
+\DoxyCodeLine{60 FT\_TRACE\_DEF( t1driver )}
+\DoxyCodeLine{61 FT\_TRACE\_DEF( t1gload )}
+\DoxyCodeLine{62 FT\_TRACE\_DEF( t1hint )}
+\DoxyCodeLine{63 FT\_TRACE\_DEF( t1load )}
+\DoxyCodeLine{64 FT\_TRACE\_DEF( t1objs )}
+\DoxyCodeLine{65 FT\_TRACE\_DEF( t1parse )}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67   \textcolor{comment}{/* PostScript helper module `psaux' */}}
+\DoxyCodeLine{68 FT\_TRACE\_DEF( t1decode )}
+\DoxyCodeLine{69 FT\_TRACE\_DEF( psobjs )}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   \textcolor{comment}{/* PostScript hinting module `pshinter' */}}
+\DoxyCodeLine{72 FT\_TRACE\_DEF( pshrec )}
+\DoxyCodeLine{73 FT\_TRACE\_DEF( pshalgo1 )}
+\DoxyCodeLine{74 FT\_TRACE\_DEF( pshalgo2 )}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76   \textcolor{comment}{/* Type 2 driver components */}}
+\DoxyCodeLine{77 FT\_TRACE\_DEF( cffdriver )}
+\DoxyCodeLine{78 FT\_TRACE\_DEF( cffgload )}
+\DoxyCodeLine{79 FT\_TRACE\_DEF( cffload )}
+\DoxyCodeLine{80 FT\_TRACE\_DEF( cffobjs )}
+\DoxyCodeLine{81 FT\_TRACE\_DEF( cffparse )}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83   \textcolor{comment}{/* Type 42 driver component */}}
+\DoxyCodeLine{84 FT\_TRACE\_DEF( t42 )}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86   \textcolor{comment}{/* CID driver components */}}
+\DoxyCodeLine{87 FT\_TRACE\_DEF( cidafm )}
+\DoxyCodeLine{88 FT\_TRACE\_DEF( ciddriver )}
+\DoxyCodeLine{89 FT\_TRACE\_DEF( cidgload )}
+\DoxyCodeLine{90 FT\_TRACE\_DEF( cidload )}
+\DoxyCodeLine{91 FT\_TRACE\_DEF( cidobjs )}
+\DoxyCodeLine{92 FT\_TRACE\_DEF( cidparse )}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94   \textcolor{comment}{/* Windows font component */}}
+\DoxyCodeLine{95 FT\_TRACE\_DEF( winfnt )}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97   \textcolor{comment}{/* PCF font components */}}
+\DoxyCodeLine{98 FT\_TRACE\_DEF( pcfdriver )}
+\DoxyCodeLine{99 FT\_TRACE\_DEF( pcfread )}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101   \textcolor{comment}{/* BDF font components */}}
+\DoxyCodeLine{102 FT\_TRACE\_DEF( bdfdriver )}
+\DoxyCodeLine{103 FT\_TRACE\_DEF( bdflib )}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105   \textcolor{comment}{/* PFR font component */}}
+\DoxyCodeLine{106 FT\_TRACE\_DEF( pfr )}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108   \textcolor{comment}{/* OpenType validation components */}}
+\DoxyCodeLine{109 FT\_TRACE\_DEF( otvmodule )}
+\DoxyCodeLine{110 FT\_TRACE\_DEF( otvcommon )}
+\DoxyCodeLine{111 FT\_TRACE\_DEF( otvbase )}
+\DoxyCodeLine{112 FT\_TRACE\_DEF( otvgdef )}
+\DoxyCodeLine{113 FT\_TRACE\_DEF( otvgpos )}
+\DoxyCodeLine{114 FT\_TRACE\_DEF( otvgsub )}
+\DoxyCodeLine{115 FT\_TRACE\_DEF( otvjstf )}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

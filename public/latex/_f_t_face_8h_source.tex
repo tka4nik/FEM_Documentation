@@ -1,0 +1,62 @@
+\hypertarget{_f_t_face_8h_source}{}\doxysection{FTFace.\+h}
+\label{_f_t_face_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTFace.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTFace.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTFace\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTFace\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTPoint.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}FTSize.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_face}{FTFace}}}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{keyword}{public}:}
+\DoxyCodeLine{26         \mbox{\hyperlink{class_f_t_face_a278ac542c41d5aa7159522e626f703f4}{FTFace}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* fontFilePath);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{34         \mbox{\hyperlink{class_f_t_face_a441bd69a6ba7bc50b1fa121b1fd2e851}{FTFace}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pBufferBytes, \textcolor{keywordtype}{size\_t} bufferSizeInBytes );}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{41         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_face_a9b2e5ad2a78f902cf1659bdb98a6be37}{\string~FTFace}}();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{50         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_face_ac8521d2dc370555fea58a842bc4e8a65}{Attach}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* fontFilePath);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{60         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_face_a0ceddf4a66cb56457949307b613d0992}{Attach}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pBufferBytes, \textcolor{keywordtype}{size\_t} bufferSizeInBytes);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{67         \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}* \mbox{\hyperlink{class_f_t_face_a83c6ad0341050d00420a13f975981aad}{Face}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} ftFace;\}}
+\DoxyCodeLine{68         }
+\DoxyCodeLine{79         \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_size}{FTSize}}\& \mbox{\hyperlink{class_f_t_face_a9fb537b25a678a783aa07da8acf1280b}{Size}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} size, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} res);}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{86         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_face_a61129359b5a3b398309a26c43ad1c12d}{CharMapCount}}();}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{93         FT\_Encoding* \mbox{\hyperlink{class_f_t_face_ae937a2a2c94f933bddb2619d96cad74e}{CharMapList}}();}
+\DoxyCodeLine{94         }
+\DoxyCodeLine{98         \mbox{\hyperlink{class_f_t_point}{FTPoint}} \mbox{\hyperlink{class_f_t_face_af57bd3a3122e0e54acb04b348380ed7e}{KernAdvance}}( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} index1, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} index2);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{103         \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}} \mbox{\hyperlink{class_f_t_face_aad153f57e7eb55ff42755b0512b01854}{Glyph}}( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} index, FT\_Int load\_flags);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{108         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_face_a548bbd0487282733a00c62202a3af05b}{GlyphCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} numGlyphs;\}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{115         FT\_Error \mbox{\hyperlink{class_f_t_face_a3fae111390415fdcf0dfcb22caa50601}{Error}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} err; \}}
+\DoxyCodeLine{116         }
+\DoxyCodeLine{117     \textcolor{keyword}{private}:}
+\DoxyCodeLine{121         \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}* ftFace;}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{126         \mbox{\hyperlink{class_f_t_size}{FTSize}}  charSize;}
+\DoxyCodeLine{127         }
+\DoxyCodeLine{131         \textcolor{keywordtype}{int} numGlyphs;}
+\DoxyCodeLine{132         }
+\DoxyCodeLine{133         FT\_Encoding* fontEncodingList;}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{138          \textcolor{keywordtype}{bool} hasKerningTable;}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{143         FT\_Error err;}
+\DoxyCodeLine{144 \};}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTFace\_\_}}
+
+\end{DoxyCode}

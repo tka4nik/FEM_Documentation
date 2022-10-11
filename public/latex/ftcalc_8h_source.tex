@@ -1,0 +1,134 @@
+\hypertarget{ftcalc_8h_source}{}\doxysection{ftcalc.\+h}
+\label{ftcalc_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftcalc.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftcalc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftcalc.h                                                               */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Arithmetic computations (specification).                             */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003, 2004 by                               */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTCALC\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTCALC\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{31   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{32   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{33   \textcolor{comment}{/*    FT\_FixedSqrt                                                       */}}
+\DoxyCodeLine{34   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{35   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{36   \textcolor{comment}{/*    Computes the square root of a 16.16 fixed point value.             */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{38   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*    x :: The value to compute the root for.                            */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    The result of `sqrt(x)'.                                           */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*    This function is not very fast.                                    */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{47   FT\_EXPORT( FT\_Int32 )}
+\DoxyCodeLine{48   FT\_SqrtFixed( FT\_Int32  x );}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define SQRT\_32( x )  FT\_Sqrt32( x )}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{55   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{56   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    FT\_Sqrt32                                                          */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{59   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*    Computes the square root of an Int32 integer (which will be        */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    handled as an unsigned long value).                                */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{63   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*    x :: The value to compute the root for.                            */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{66   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*    The result of `sqrt(x)'.                                           */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{69   FT\_EXPORT( FT\_Int32 )}
+\DoxyCodeLine{70   FT\_Sqrt32( FT\_Int32  x );}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{74   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{75   \textcolor{comment}{/* FT\_MulDiv() and FT\_MulFix() are declared in freetype.h.               */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{77 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#ifdef TT\_CONFIG\_OPTION\_BYTECODE\_INTERPRETER}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{83   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{84   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*    FT\_MulDiv\_No\_Round                                                 */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{87   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*    A very simple function used to perform the computation `(a*b)/c'   */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*    (without rounding) with maximal accuracy (it uses a 64-\/bit         */}}
+\DoxyCodeLine{90   \textcolor{comment}{/*    intermediate integer whenever necessary).                          */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*    This function isn't necessarily as fast as some processor specific */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*    operations, but is at least completely portable.                   */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{95   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*    a :: The first multiplier.                                         */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*    b :: The second multiplier.                                        */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*    c :: The divisor.                                                  */}}
+\DoxyCodeLine{99   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{100   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*    The result of `(a*b)/c'.  This function never traps when trying to */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*    divide by zero; it simply returns `MaxInt' or `MinInt' depending   */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*    on the signs of `a' and `b'.                                       */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{105   FT\_BASE( FT\_Long )}
+\DoxyCodeLine{106   FT\_MulDiv\_No\_Round( FT\_Long  a,}
+\DoxyCodeLine{107                       FT\_Long  b,}
+\DoxyCodeLine{108                       FT\_Long  c );}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* TT\_CONFIG\_OPTION\_BYTECODE\_INTERPRETER */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define INT\_TO\_F26DOT6( x )    ( (FT\_Long)(x) << 6  )}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#define INT\_TO\_F2DOT14( x )    ( (FT\_Long)(x) << 14 )}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#define INT\_TO\_FIXED( x )      ( (FT\_Long)(x) << 16 )}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#define F2DOT14\_TO\_FIXED( x )  ( (FT\_Long)(x) << 2  )}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#define FLOAT\_TO\_FIXED( x )    ( (FT\_Long)( x * 65536.0 ) )}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define ROUND\_F26DOT6( x )     ( x >= 0 ? (    ( (x) + 32 ) \& -\/64 )     \(\backslash\)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{                                        : ( -\/( ( 32 -\/ (x) ) \& -\/64 ) ) )}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 FT\_END\_HEADER}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCALC\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

@@ -1,0 +1,298 @@
+\hypertarget{_fem_8h_source}{}\doxysection{Fem.\+h}
+\label{_fem_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/Fem.h@{C:/Projects/FEM/prototype-\/prismatic/source/Fem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 ﻿\textcolor{comment}{// Fem.h: interface for the CFem class.}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{comment}{//\#define FABS(x) abs(x)}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#if !defined(AFX\_FEM\_H\_\_1A094E11\_D094\_4BE9\_B47C\_FC4294F5D6BA\_\_INCLUDED\_)}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define AFX\_FEM\_H\_\_1A094E11\_D094\_4BE9\_B47C\_FC4294F5D6BA\_\_INCLUDED\_}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}Billet.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}Roller.h"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}Prep.h"{}}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include "{}Material.h"{}}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{21 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{22     \textcolor{keywordtype}{double} F1;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{double} F2;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{double} C1;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{double} C2;}
+\DoxyCodeLine{26     \textcolor{keywordtype}{int} nStep;}
+\DoxyCodeLine{27     \textcolor{keywordtype}{double} dC;}
+\DoxyCodeLine{28     \textcolor{keywordtype}{double} dF;}
+\DoxyCodeLine{29     \textcolor{keywordtype}{double} dCmin;}
+\DoxyCodeLine{30 \}\mbox{\hyperlink{struct_f___p_a_r_a_m}{F\_PARAM}};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33 \textcolor{keyword}{class }\mbox{\hyperlink{class_p_a_r_a_m_e_t_r_s__33}{PARAMETRS\_33}} \{}
+\DoxyCodeLine{34 \textcolor{keyword}{public}:}
+\DoxyCodeLine{35     \mbox{\hyperlink{class_p_a_r_a_m_e_t_r_s__33}{PARAMETRS\_33}}(\textcolor{keywordtype}{double} KK\_, \textcolor{keywordtype}{double} mu\_, \textcolor{keywordtype}{double} sm\_, \textcolor{keywordtype}{double} xi\_, \textcolor{keywordtype}{double} yi\_, \textcolor{keywordtype}{double} zi\_, \textcolor{keywordtype}{double} xj\_, \textcolor{keywordtype}{double} yj\_, \textcolor{keywordtype}{double} zj\_, \textcolor{keywordtype}{double} xm\_, \textcolor{keywordtype}{double} ym\_, \textcolor{keywordtype}{double} zm\_, \textcolor{keywordtype}{double} ai\_, \textcolor{keywordtype}{double} bi\_, \textcolor{keywordtype}{double} ci\_, \textcolor{keywordtype}{double} aj\_, \textcolor{keywordtype}{double} bj\_, \textcolor{keywordtype}{double} cj\_, \textcolor{keywordtype}{double} am\_, \textcolor{keywordtype}{double} bm\_, \textcolor{keywordtype}{double} cm\_, \textcolor{keywordtype}{double} a1\_, \textcolor{keywordtype}{double} b1\_, \textcolor{keywordtype}{double} c1\_, \textcolor{keywordtype}{double} a2\_, \textcolor{keywordtype}{double} b2\_, \textcolor{keywordtype}{double} c2\_)}
+\DoxyCodeLine{36     \{}
+\DoxyCodeLine{37         xi = xi\_; yi = yi\_; zi = zi\_;}
+\DoxyCodeLine{38         xj = xj\_; yj = yj\_; zj = zj\_;}
+\DoxyCodeLine{39         xm = xm\_; ym = ym\_; zm = zm\_;}
+\DoxyCodeLine{40         ai = ai\_; bi = bi\_; ci = ci\_;}
+\DoxyCodeLine{41         aj = aj\_; bj = bj\_; cj = cj\_;}
+\DoxyCodeLine{42         am = am\_; bm = bm\_; cm = cm\_;}
+\DoxyCodeLine{43         KK = KK\_;}
+\DoxyCodeLine{44         mu = mu\_;}
+\DoxyCodeLine{45         sm = sm\_;}
+\DoxyCodeLine{46         a1 = a1\_; b1 = b1\_; c1 = c1\_;}
+\DoxyCodeLine{47         a2 = a2\_; b2 = b2\_; c2 = c2\_;}
+\DoxyCodeLine{48     \}}
+\DoxyCodeLine{49 \textcolor{keyword}{public}:}
+\DoxyCodeLine{50     \textcolor{keywordtype}{double} xi, yi, zi, xj, yj, zj, xm, ym, zm;}
+\DoxyCodeLine{51     \textcolor{keywordtype}{double} ai, bi, ci, aj, bj, cj, am, bm, cm;}
+\DoxyCodeLine{52     \textcolor{keywordtype}{double} DET2, KK, mu, sm;}
+\DoxyCodeLine{53     \textcolor{keywordtype}{double} a1, b1, c1, a2, b2, c2;}
+\DoxyCodeLine{54 \};}
+\DoxyCodeLine{56 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_fem}{CFem}}  }
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58     \textcolor{keyword}{friend} \mbox{\hyperlink{class_c_layer}{CLayer}};}
+\DoxyCodeLine{59 \textcolor{keyword}{public}:}
+\DoxyCodeLine{60     \mbox{\hyperlink{class_c_fem}{CFem}}();}
+\DoxyCodeLine{61     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_fem}{\string~CFem}}();}
+\DoxyCodeLine{62     \textcolor{keywordtype}{double} m\_bTerm;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{public}:}
+\DoxyCodeLine{65     \textcolor{keywordtype}{void} FreeAll();}
+\DoxyCodeLine{66     \textcolor{comment}{//void SetZZ(int cnt);}}
+\DoxyCodeLine{67     \textcolor{keywordtype}{bool} LoadMaterial(\textcolor{keyword}{const} CString \&strFile, \textcolor{keyword}{const} CString \&strDir, \textcolor{keywordtype}{int} nType);}
+\DoxyCodeLine{68     \textcolor{keywordtype}{int} StartFem();}
+\DoxyCodeLine{69     \textcolor{keywordtype}{void} Header\_in\_log(\textcolor{keyword}{const} CString\& sep);}
+\DoxyCodeLine{70     \textcolor{keywordtype}{void} Report\_in\_log(\textcolor{keyword}{const} CString\& sep);}
+\DoxyCodeLine{71     \textcolor{keywordtype}{int} Check\_stop\_time(\textcolor{keywordtype}{double} time); \textcolor{comment}{// Проверка остановки эксперимента после времени time}}
+\DoxyCodeLine{72     \textcolor{keywordtype}{int} Check\_stop\_cord(\textcolor{keywordtype}{double} value); \textcolor{comment}{// Проверка остановки эксперимента}}
+\DoxyCodeLine{73     \textcolor{keywordtype}{int} Check\_pause\_time(\textcolor{keywordtype}{double} time, \textcolor{keywordtype}{double} delta); \textcolor{comment}{// Проверка остановки эксперимента в промежутке от [time -\/ delta, time + delta]}}
+\DoxyCodeLine{74     \textcolor{keywordtype}{void} Coords\_XZ(\textcolor{keywordtype}{double}\& X, \textcolor{keywordtype}{double}\& Y, \textcolor{keywordtype}{double}\& Z);}
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} Coords\_CAP(\textcolor{keywordtype}{double}\& X, \textcolor{keywordtype}{double}\& Y, \textcolor{keywordtype}{double}\& Z);}
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} Force\_S\_XZ(\textcolor{keywordtype}{double} \&Force\_XZ, \textcolor{keywordtype}{double} \&S\_XZ); \textcolor{comment}{// Сила, с которой образец взаимодействует с бойком}}
+\DoxyCodeLine{77     \textcolor{keywordtype}{void} Force\_S\_CAP(\textcolor{keywordtype}{double} \&Force\_CAP, \textcolor{keywordtype}{double} \&S\_CAP); \textcolor{comment}{// Сила, с которой образец взаимодействует с осью Y}}
+\DoxyCodeLine{78     \textcolor{keywordtype}{void} Force\_Volume\_W(\textcolor{keywordtype}{double} \&Force\_W, \textcolor{keywordtype}{double} \&Volume);\textcolor{comment}{// Сила исходя из внутренней работы всех элементы}}
+\DoxyCodeLine{79     \textcolor{keywordtype}{void} SR\_max\_Coords(\textcolor{keywordtype}{double}\& Strain\_Rate\_max, \textcolor{keywordtype}{double}\& X\_max\_SR, \textcolor{keywordtype}{double}\& Y\_max\_SR, \textcolor{keywordtype}{double}\& Z\_max\_SR); \textcolor{comment}{// Поиск точки с максимальной скоростью деформации}}
+\DoxyCodeLine{80     \textcolor{keywordtype}{void} SR\_max\_Y\_Coords(\textcolor{keywordtype}{double}\& Strain\_Rate\_max, \textcolor{keywordtype}{double}\& X\_max\_SR, \textcolor{keywordtype}{double}\& Y\_max\_SR, \textcolor{keywordtype}{double}\& Z\_max\_SR); \textcolor{comment}{// Поиск точки с максимальной скоростью деформации на оси Y}}
+\DoxyCodeLine{81     \textcolor{keywordtype}{void} S\_max\_Coords(\textcolor{keywordtype}{double}\& Strain\_max, \textcolor{keywordtype}{double}\& X\_max\_S, \textcolor{keywordtype}{double}\& Y\_max\_S, \textcolor{keywordtype}{double}\& Z\_max\_S); \textcolor{comment}{// Поиск точки с максимальной скоростью деформации}}
+\DoxyCodeLine{82     \textcolor{keywordtype}{void} S\_max\_Y\_Coords(\textcolor{keywordtype}{double}\& Strain\_max, \textcolor{keywordtype}{double}\& X\_max\_S, \textcolor{keywordtype}{double}\& Y\_max\_S, \textcolor{keywordtype}{double}\& Z\_max\_S); \textcolor{comment}{// Поиск точки с максимальной скоростью деформации на оси Y}}
+\DoxyCodeLine{83     \textcolor{keywordtype}{double} Snn\_Y0(\textcolor{keywordtype}{int} num\_y0); \textcolor{comment}{// Snn для узлов, которые лежат на оси X (т.е. при Y=0)}}
+\DoxyCodeLine{84     \textcolor{keywordtype}{void} glDraw(\textcolor{keywordtype}{double} min\_x, \textcolor{keywordtype}{double} max\_x, \textcolor{keywordtype}{double} min\_y, \textcolor{keywordtype}{double} max\_y, \mbox{\hyperlink{class_c_field}{CField}} *FieldTmpl, BOOL bSmooth);}
+\DoxyCodeLine{85     \textcolor{keywordtype}{bool} Load(CFile \&File, \textcolor{keyword}{const} CString \&strPropDir);}
+\DoxyCodeLine{86     \textcolor{keywordtype}{void} Save(CFile \&File);}
+\DoxyCodeLine{87     \textcolor{keywordtype}{bool} SetParam(\textcolor{keyword}{const} \mbox{\hyperlink{struct_k_r_n___p_a_r_a_m}{KRN\_PARAM}} \&Param);}
+\DoxyCodeLine{88     \textcolor{keywordtype}{void} GetParam(\mbox{\hyperlink{struct_k_r_n___p_a_r_a_m}{KRN\_PARAM}} \&Param);}
+\DoxyCodeLine{89     \textcolor{keywordtype}{void} Load(\mbox{\hyperlink{class_c_prep}{CPrep}} \&Prep, \textcolor{keywordtype}{bool} bRecalc = \textcolor{keyword}{true});}
+\DoxyCodeLine{90     \textcolor{keywordtype}{double} GetCurrZ()\textcolor{keyword}{ const}\{\textcolor{keywordflow}{return} m\_dMaxDef;\} }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \textcolor{keywordtype}{double} GetMinX()\{\textcolor{keywordflow}{return} m\_MinX;\}}
+\DoxyCodeLine{93     \textcolor{keywordtype}{double} GetMaxX()\{\textcolor{keywordflow}{return} m\_MaxX;\}}
+\DoxyCodeLine{94     \textcolor{keywordtype}{double} GetMinY()\{\textcolor{keywordflow}{return} m\_MinY;\}}
+\DoxyCodeLine{95     \textcolor{keywordtype}{double} GetMaxY()\{\textcolor{keywordflow}{return} m\_MaxY;\}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{keywordtype}{int} GetSectNum()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} m\_nSectNum;\}}
+\DoxyCodeLine{98     \textcolor{keywordtype}{int} GetCurSect()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} m\_pBillet-\/>GetCurrLayer();\}}
+\DoxyCodeLine{99     \textcolor{keywordtype}{int} GetActiveField()\{\textcolor{keywordflow}{return} m\_pBillet ? m\_pBillet-\/>m\_nField : -\/1;\}}
+\DoxyCodeLine{100     \textcolor{keywordtype}{void} SetActiveField(\textcolor{keywordtype}{int} nField)\{\textcolor{keywordflow}{return} m\_pBillet-\/>SetCurrField(nField);\}}
+\DoxyCodeLine{101     \textcolor{keywordtype}{void} ReLoad(\textcolor{keywordtype}{int} nStep);}
+\DoxyCodeLine{102     \textcolor{keywordtype}{void} SetdT(\textcolor{keywordtype}{double} dT)\{m\_dT = dT;\}}
+\DoxyCodeLine{103     \textcolor{keywordtype}{double} GetdT()\{\textcolor{keywordflow}{return} m\_dT;\}}
+\DoxyCodeLine{104     \textcolor{keywordtype}{double} GetCurrT()\{\textcolor{keywordflow}{return} m\_dCurT;\}}
+\DoxyCodeLine{105     \textcolor{keywordtype}{double} Kmu;}
+\DoxyCodeLine{106     \textcolor{keywordtype}{double} m\_dT0;}
+\DoxyCodeLine{107     \textcolor{keywordtype}{double} m\_MaxEum;}
+\DoxyCodeLine{108     \textcolor{keywordtype}{double} m\_MaxEum0;}
+\DoxyCodeLine{109     \textcolor{keywordtype}{double} m\_MinEum, m\_MinEum0;}
+\DoxyCodeLine{110     \textcolor{keywordtype}{void} CheckMu(\textcolor{keywordtype}{double} MaxMu)\{}
+\DoxyCodeLine{111 \textcolor{comment}{/*      m\_dK = 0.7*MaxMu/m\_dT;}}
+\DoxyCodeLine{112 \textcolor{comment}{/*/     if(m\_dK*m\_dT < 2*MaxMu/3)\{}}
+\DoxyCodeLine{113 \textcolor{comment}{            m\_dK = 2.1*MaxMu/(m\_dT*3);}}
+\DoxyCodeLine{114 \textcolor{comment}{            ASSERT(0);}}
+\DoxyCodeLine{115 \textcolor{comment}{        \}//*/}}
+\DoxyCodeLine{116     \}}
+\DoxyCodeLine{117     \textcolor{keywordtype}{void} CheckMu0(\textcolor{keywordtype}{double} MaxMu)\{}
+\DoxyCodeLine{118 \textcolor{comment}{/*      m\_dK = Kmu*MaxMu/m\_dT;}}
+\DoxyCodeLine{119 \textcolor{comment}{/*/     if(m\_dK < Kmu*MaxMu/m\_dT)\{}}
+\DoxyCodeLine{120 \textcolor{comment}{            m\_dK = Kmu*MaxMu/m\_dT;}}
+\DoxyCodeLine{121 \textcolor{comment}{            ASSERT(0);}}
+\DoxyCodeLine{122 \textcolor{comment}{        \}//*/}}
+\DoxyCodeLine{123     \}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     \textcolor{keywordtype}{double} GetDIJK(\textcolor{keywordtype}{int} nFr);}
+\DoxyCodeLine{127     \textcolor{keywordtype}{bool} IsSym(\textcolor{keywordtype}{int} nFr)\{}
+\DoxyCodeLine{128         \textcolor{keywordflow}{if}(m\_pBillet-\/>m\_MeshX[m\_pBillet-\/>m\_PFr[nFr]] <= 0.0)\textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{129         \textcolor{keywordflow}{if}(m\_pBillet-\/>m\_MeshY[m\_pBillet-\/>m\_PFr[nFr]] <= 0.0)\textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{130         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{131     \}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{135     \mbox{\hyperlink{class_c_billet}{CBillet}} *m\_pBillet;}
+\DoxyCodeLine{136     \mbox{\hyperlink{class_c_roller}{CRoller}} *m\_pTopRoller;}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     \textcolor{comment}{//\{\{}}
+\DoxyCodeLine{139 \textcolor{comment}{//  double  m\_dSeatLen; // Длина очага деформации}}
+\DoxyCodeLine{140     \textcolor{keywordtype}{double}  m\_dTem;     \textcolor{comment}{// Температура}}
+\DoxyCodeLine{141     \textcolor{keywordtype}{double}  m\_dW;       \textcolor{comment}{// Угловая скоррость рад/с}}
+\DoxyCodeLine{142     \textcolor{keywordtype}{double}  m\_dAlpha;\textcolor{comment}{//угол захвата}}
+\DoxyCodeLine{143     \textcolor{keywordtype}{double}  m\_dRad; \textcolor{comment}{//радиус точки захвата}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145     \textcolor{keywordtype}{double}  m\_dT;   \textcolor{comment}{//продолжительность одного шага}}
+\DoxyCodeLine{146     \textcolor{keywordtype}{double}  m\_dZ;}
+\DoxyCodeLine{147     \textcolor{keywordtype}{double}  m\_dMaxT;    \textcolor{comment}{//продолжительность процесса}}
+\DoxyCodeLine{148     \textcolor{keywordtype}{double}  m\_dCurT;    \textcolor{comment}{//текущее время от начала процесса}}
+\DoxyCodeLine{149     \textcolor{keywordtype}{int}     m\_nCurrSect;\textcolor{comment}{// Номер текущего шага/сечения}}
+\DoxyCodeLine{150     \textcolor{keywordtype}{int}     m\_nStep;\textcolor{comment}{// Номер текущего шага/сечения}}
+\DoxyCodeLine{151     \textcolor{keywordtype}{double}  m\_dMaxDef;  \textcolor{comment}{// Z-\/координата текущего сечения}}
+\DoxyCodeLine{152     \textcolor{keywordtype}{double}  m\_dNextZ;   \textcolor{comment}{// Z-\/координата следующего}}
+\DoxyCodeLine{153     }
+\DoxyCodeLine{154     \mbox{\hyperlink{struct_t_e_r_m_o_p_a_r_a_m}{TERMOPARAM}} m\_TermoParam;}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \mbox{\hyperlink{struct_f___p_a_r_a_m}{F\_PARAM}} m\_FPARAM;}
+\DoxyCodeLine{157     \textcolor{keywordtype}{double} m\_dK;}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159     \textcolor{keywordtype}{double} m\_Omega; \textcolor{comment}{// подбор предыдущих элементов}}
+\DoxyCodeLine{160     \textcolor{keywordtype}{double} m\_dZZ;   \textcolor{comment}{// нейтральное смещение}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162     \textcolor{keywordtype}{double}  m\_MinX;}
+\DoxyCodeLine{163     \textcolor{keywordtype}{double}  m\_MinY;}
+\DoxyCodeLine{164     \textcolor{keywordtype}{double}  m\_MaxX;}
+\DoxyCodeLine{165     \textcolor{keywordtype}{double}  m\_MaxY;}
+\DoxyCodeLine{166     \textcolor{keywordtype}{int} m\_isl;      \textcolor{comment}{// ширина ленты матрицы жесткости}}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168     \textcolor{comment}{// double m\_Ezz; // превратился в массив (а ещё появились m\_Exz и m\_Eyz)}}
+\DoxyCodeLine{169     \textcolor{comment}{// double m\_Dzz;  //  превратился в массив (а ещё появились m\_Dxz и m\_Dyz)}}
+\DoxyCodeLine{170     BOOL    m\_bFi;  \textcolor{comment}{// Если есть Fi с предыдущего шага}}
+\DoxyCodeLine{171     BOOL m\_First\_Step\_Flag;}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173     \textcolor{keywordtype}{int} m\_nReMesh;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     \textcolor{keywordtype}{double} m\_dRate;}
+\DoxyCodeLine{176     \textcolor{keywordtype}{double} m\_dF0; \textcolor{comment}{//Подпор}}
+\DoxyCodeLine{177     \textcolor{keywordtype}{double} m\_dF1; \textcolor{comment}{//Натяг}}
+\DoxyCodeLine{178     \textcolor{keywordtype}{int} m\_nMaterialType;}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     \textcolor{keywordtype}{int} m\_nSectNum;     \textcolor{comment}{//Количество сечений по Z}}
+\DoxyCodeLine{181     \textcolor{comment}{//\}\}}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183     \textcolor{keywordtype}{bool} bRecalcOmegaMax;}
+\DoxyCodeLine{184     \textcolor{keywordtype}{double} dOmegaFin0;}
+\DoxyCodeLine{185     \textcolor{keywordtype}{double} dKffOmega;}
+\DoxyCodeLine{186     \textcolor{keywordtype}{double} m\_dV00;}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188     CString m\_strProp;}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{keyword}{public}:}
+\DoxyCodeLine{191     \textcolor{keywordtype}{double} m\_dErr;}
+\DoxyCodeLine{192     \mbox{\hyperlink{class_c_material}{CMaterial}} m\_Material;}
+\DoxyCodeLine{193     \textcolor{keywordtype}{double} *m\_VBill;}
+\DoxyCodeLine{194     \textcolor{keywordtype}{double} *m\_SBill;}
+\DoxyCodeLine{195     \textcolor{keywordtype}{double} *m\_A;}
+\DoxyCodeLine{196     \textcolor{keywordtype}{double} *m\_Fn;}
+\DoxyCodeLine{197     \textcolor{keywordtype}{double} *m\_Ft;}
+\DoxyCodeLine{198     \textcolor{keywordtype}{double} *m\_A0;}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201     \textcolor{keywordtype}{double} **m\_Fields;}
+\DoxyCodeLine{202     \textcolor{keywordtype}{double} *m\_Eum;}
+\DoxyCodeLine{203     \textcolor{keywordtype}{double} *m\_Ecp;}
+\DoxyCodeLine{204     \textcolor{keywordtype}{double} *m\_Exx;}
+\DoxyCodeLine{205     \textcolor{keywordtype}{double} *m\_Eyy;}
+\DoxyCodeLine{206     \textcolor{keywordtype}{double} *m\_Exy;}
+\DoxyCodeLine{207     \textcolor{keywordtype}{double} *m\_Exz;}
+\DoxyCodeLine{208     \textcolor{keywordtype}{double} *m\_Eyz;}
+\DoxyCodeLine{209     \textcolor{keywordtype}{double} *m\_Ezz;}
+\DoxyCodeLine{210     \textcolor{keywordtype}{double} *m\_Dum;}
+\DoxyCodeLine{211     \textcolor{keywordtype}{double} *m\_Dxx;}
+\DoxyCodeLine{212     \textcolor{keywordtype}{double} *m\_Dyy;}
+\DoxyCodeLine{213     \textcolor{keywordtype}{double} *m\_Dxy;}
+\DoxyCodeLine{214     \textcolor{keywordtype}{double} *m\_Dxz;}
+\DoxyCodeLine{215     \textcolor{keywordtype}{double} *m\_Dyz;}
+\DoxyCodeLine{216     \textcolor{keywordtype}{double} *m\_Dzz;}
+\DoxyCodeLine{217 \textcolor{comment}{//  double *m\_Sost; // гидростат}}
+\DoxyCodeLine{218     \textcolor{keywordtype}{double} *m\_Dcp;  \textcolor{comment}{// гидростат}}
+\DoxyCodeLine{219     \textcolor{keywordtype}{double} *m\_Mu;}
+\DoxyCodeLine{220     \textcolor{keywordtype}{double} *m\_Sqm;}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222     \textcolor{keywordtype}{int} *m\_T8;}
+\DoxyCodeLine{223     \textcolor{keywordtype}{int} m\_it8Sym;}
+\DoxyCodeLine{224     \textcolor{keywordtype}{int} m\_it8Max;}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226     \textcolor{keywordtype}{double} **m\_Akg; \textcolor{comment}{// матрица жесткости (nxy2 * isl)}}
+\DoxyCodeLine{227     \textcolor{keywordtype}{double} *m\_Pr;   \textcolor{comment}{// правая часть (nxy2)}}
+\DoxyCodeLine{228     \textcolor{keywordtype}{double} *m\_C;    \textcolor{comment}{// решение (nxy2)}}
+\DoxyCodeLine{229     \textcolor{keywordtype}{double} *m\_Term; \textcolor{comment}{// nxy}}
+\DoxyCodeLine{230     \textcolor{keywordtype}{double} *m\_Fi;   \textcolor{comment}{// nxy}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232     \textcolor{keywordtype}{double} *m\_B11;  \textcolor{comment}{// временный массив}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234     \textcolor{keywordtype}{double} *m\_Stl;}
+\DoxyCodeLine{235     \textcolor{keywordtype}{double} *m\_Snn;}
+\DoxyCodeLine{236     \textcolor{keywordtype}{double} *m\_Stt;}
+\DoxyCodeLine{237     \textcolor{keywordtype}{double} *m\_Len;}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{241     \textcolor{keywordtype}{double} GetKK(\textcolor{keywordtype}{int} e)\{\textcolor{keywordflow}{return} 0.1*m\_dK*m\_dT + pow(0.9*m\_dK*m\_dT,2)/(3*m\_Mu[e]+2*0.9*m\_dK*m\_dT);\}}
+\DoxyCodeLine{242     \textcolor{comment}{//double GetKK(int e)\{return max(1, m\_dK*m\_dT-\/2./3.*m\_Mu[e]);\}}}
+\DoxyCodeLine{243     \textcolor{comment}{//double Functional();}}
+\DoxyCodeLine{244     \textcolor{comment}{//bool CheckZ();}}
+\DoxyCodeLine{245     \textcolor{keywordtype}{void} FreePoint(\textcolor{keywordtype}{int} cnt);}
+\DoxyCodeLine{246     \textcolor{keywordtype}{bool} IsCrossStamp();}
+\DoxyCodeLine{247     \textcolor{keywordtype}{void} Restore();\textcolor{comment}{// Восстановление решения}}
+\DoxyCodeLine{248     \textcolor{keywordtype}{double} Tlevan(\textcolor{keywordtype}{double} sn, \textcolor{keywordtype}{double} sint, \textcolor{keywordtype}{double} tkf);}
+\DoxyCodeLine{249     \textcolor{keywordtype}{void} Struz\_p(\textcolor{keywordtype}{bool} bExp, \textcolor{keywordtype}{bool} bAdhesion = \textcolor{keyword}{false});}
+\DoxyCodeLine{250     \textcolor{keywordtype}{void} CalcMu();}
+\DoxyCodeLine{251     \textcolor{keywordtype}{void} Avar\_Multi(\textcolor{keywordtype}{double} *Field, \textcolor{keywordtype}{int} N=5);}
+\DoxyCodeLine{252     \textcolor{keywordtype}{double} GetElT(\textcolor{keywordtype}{int} e);}
+\DoxyCodeLine{253     \textcolor{keywordtype}{void} CalcFields(\textcolor{keywordtype}{int} nMode);}
+\DoxyCodeLine{254     \textcolor{keywordtype}{void} Gauss(\textcolor{keywordtype}{int} nxy2, \textcolor{keywordtype}{int} isl);}
+\DoxyCodeLine{255     \textcolor{keywordtype}{void} Tesbor();}
+\DoxyCodeLine{256     \textcolor{keywordtype}{void} SetAdhesion(\textcolor{keywordtype}{int} cnt);}
+\DoxyCodeLine{257     \textcolor{keywordtype}{void} SetSliding(\textcolor{keywordtype}{int} cnt, \textcolor{keywordtype}{bool} bFriktion);}
+\DoxyCodeLine{258     \textcolor{keywordtype}{bool} FrSym(\textcolor{keywordtype}{int} p);}
+\DoxyCodeLine{259     \textcolor{keywordtype}{void} Friction(\textcolor{keywordtype}{bool} bAdhesion = \textcolor{keyword}{false});}
+\DoxyCodeLine{260     \textcolor{keywordtype}{void} InitISL();}
+\DoxyCodeLine{261     \textcolor{keywordtype}{void} F\_forma(\textcolor{keywordtype}{int} e, \textcolor{keywordtype}{int} ijk[], \textcolor{keywordtype}{double} a[], \textcolor{keywordtype}{double} b[], \textcolor{keywordtype}{double} c[], \textcolor{keywordtype}{double} *xc, \textcolor{keywordtype}{double} *yc, \textcolor{keywordtype}{double} *sm);}
+\DoxyCodeLine{262     \textcolor{keywordtype}{void} InitArrays();}
+\DoxyCodeLine{263     \textcolor{keywordtype}{void} Matr\_p();}
+\DoxyCodeLine{264     \textcolor{keywordtype}{double} CFem::trapeze(\textcolor{keywordtype}{int} glubina, \mbox{\hyperlink{class_p_a_r_a_m_e_t_r_s__33}{PARAMETRS\_33}} par12);\textcolor{comment}{// БЫЛО БЕЗ ВЫЧИСЛЕНИЯ: Метод трапеций для элемента (3.3)}}
+\DoxyCodeLine{265     \textcolor{keywordtype}{void} Matr\_T();}
+\DoxyCodeLine{266     \textcolor{keywordtype}{void} InitT8();}
+\DoxyCodeLine{267     \textcolor{keywordtype}{double} CalcFem(\textcolor{keywordtype}{bool} bAdhesion = \textcolor{keyword}{false});}
+\DoxyCodeLine{268     \textcolor{keywordtype}{void} RecalcMinMax();}
+\DoxyCodeLine{269     \textcolor{keywordtype}{void} InitTouchCheck(); \textcolor{comment}{// БЫЛО SEATLEN: void CalcSeatLen();}}
+\DoxyCodeLine{270     \textcolor{keywordtype}{void} CalcZParam(\textcolor{keywordtype}{int} nParam);}
+\DoxyCodeLine{271     BOOL RecalcEzz();}
+\DoxyCodeLine{272     \textcolor{comment}{// void CalcVel(int nZmid, bool bRight); // БЫЛО SEATLEN: Удалил из InitTouchCheck()}}
+\DoxyCodeLine{273     \textcolor{keywordtype}{double} Effective(\textcolor{keywordtype}{double} ex, \textcolor{keywordtype}{double} ey, \textcolor{keywordtype}{double} exy, \textcolor{keywordtype}{double} ez, \textcolor{keywordtype}{double} exz=0, \textcolor{keywordtype}{double} eyz=0)\{}
+\DoxyCodeLine{274         \textcolor{keywordflow}{return} ex*ex+ey*ey+ez*ez -\/ex*ey-\/ex*ez-\/ey*ez +3.*(exy*exy+exz*exz+eyz*eyz);}
+\DoxyCodeLine{275     \}}
+\DoxyCodeLine{276     \textcolor{comment}{//double Effective(double a, double b, double c, double d)\{return a*a+b*b+d*d-\/a*b-\/b*d-\/d*a+3.*c*c ;\}}}
+\DoxyCodeLine{277     \textcolor{keywordtype}{double} GetS(\textcolor{keywordtype}{int} nE, \textcolor{keywordtype}{double} dT);}
+\DoxyCodeLine{278     \textcolor{keywordtype}{double} GetS(\textcolor{keywordtype}{double} dT);}
+\DoxyCodeLine{279     \textcolor{comment}{//double GetZZkff(int cnt);}}
+\DoxyCodeLine{280 \textcolor{keyword}{public}:}
+\DoxyCodeLine{281     \textcolor{keywordtype}{void} ReMesh(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{282 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{283     \textcolor{keywordtype}{int} FemRoll(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{284     \textcolor{keywordtype}{int} FemTerm(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{285 \textcolor{keyword}{public}:}
+\DoxyCodeLine{286     \textcolor{keywordtype}{int} SetPropDir(CString \& strProp);}
+\DoxyCodeLine{287 \textcolor{keyword}{public}:}
+\DoxyCodeLine{288     \textcolor{keywordtype}{int} InitRolling(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{289     \textcolor{keywordtype}{void} WriteLog1();}
+\DoxyCodeLine{290 \};}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 \textcolor{preprocessor}{\#ifndef FREE\_NULL}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define FREE\_NULL(Ptr) if(Ptr)\{delete[] Ptr; Ptr = NULL;\}}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_FEM\_H\_\_1A094E11\_D094\_4BE9\_B47C\_FC4294F5D6BA\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

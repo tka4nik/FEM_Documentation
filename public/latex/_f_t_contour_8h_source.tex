@@ -1,0 +1,44 @@
+\hypertarget{_f_t_contour_8h_source}{}\doxysection{FTContour.\+h}
+\label{_f_t_contour_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTContour.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTContour.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTContour\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTContour\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}FTPoint.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}FTVector.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_contour}{FTContour}}}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{keyword}{public}:}
+\DoxyCodeLine{28         \mbox{\hyperlink{class_f_t_contour_a1a682c070617bf9023ea38c65b32ade3}{FTContour}}( \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}* contour, \textcolor{keywordtype}{char}* pointTags, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} numberOfPoints);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{33         \mbox{\hyperlink{class_f_t_contour_a89ac638fc2bbe641d730af84bf13b242}{\string~FTContour}}()}
+\DoxyCodeLine{34         \{}
+\DoxyCodeLine{35             pointList.clear();}
+\DoxyCodeLine{36         \}}
+\DoxyCodeLine{37         }
+\DoxyCodeLine{44         \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& \mbox{\hyperlink{class_f_t_contour_a01e07d77575c056e29231fd247d24948}{Point}}( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} pointList[index];\}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{51         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_f_t_contour_aa9a55f688009eb2e08fd14ce895e4bf1}{PointCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} pointList.size();\}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{keyword}{private}:}
+\DoxyCodeLine{60         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} AddPoint( \mbox{\hyperlink{class_f_t_point}{FTPoint}} point);}
+\DoxyCodeLine{61         }
+\DoxyCodeLine{62         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} AddPoint( \textcolor{keywordtype}{float} x, \textcolor{keywordtype}{float} y);}
+\DoxyCodeLine{63         }
+\DoxyCodeLine{68         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} evaluateQuadraticCurve();}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{74         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} evaluateCubicCurve();}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{79         \textcolor{keyword}{typedef} \mbox{\hyperlink{class_f_t_vector}{FTVector<FTPoint>}} PointVector;}
+\DoxyCodeLine{80         PointVector pointList;}
+\DoxyCodeLine{81         }
+\DoxyCodeLine{85         \textcolor{keywordtype}{float} controlPoints[4][2];}
+\DoxyCodeLine{86 \};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_\_FTContour\_\_}}
+
+\end{DoxyCode}

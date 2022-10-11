@@ -1,0 +1,42 @@
+\hypertarget{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_project_2_material_8h_source}{}\doxysection{Material.\+h}
+\label{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_project_2_material_8h_source}\index{831\_finite\_element\_modeling/GUI/source/Project/Material.h@{831\_finite\_element\_modeling/GUI/source/Project/Material.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }Proj \{}
+\DoxyCodeLine{6     \textcolor{keyword}{struct }Material \{}
+\DoxyCodeLine{7         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} save(\textcolor{keyword}{const} std::string\& filename) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{8         \textcolor{keyword}{virtual} std::unique\_ptr<Material> clone() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{9         \textcolor{keyword}{virtual} std::string get\_line() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{10     \};}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12     \textcolor{keyword}{class }Backofen : \textcolor{keyword}{public} Material \{}
+\DoxyCodeLine{13     \textcolor{keyword}{public}:}
+\DoxyCodeLine{14         Backofen(\textcolor{keywordtype}{double} m = 0, \textcolor{keywordtype}{double} k = 0);}
+\DoxyCodeLine{15         Backofen(\textcolor{keyword}{const} std::string\& filename);}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17         \textcolor{keywordtype}{bool} save(\textcolor{keyword}{const} std::string\& filename)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19         std::unique\_ptr<Material> clone()\textcolor{keyword}{ const override}\{}
+\DoxyCodeLine{20             \textcolor{keywordflow}{return} std::make\_unique<Backofen>(*\textcolor{keyword}{this});}
+\DoxyCodeLine{21         \}}
+\DoxyCodeLine{22         \textcolor{keywordtype}{double} GetK()}
+\DoxyCodeLine{23         \{}
+\DoxyCodeLine{24             \textcolor{keywordflow}{return} m\_K;}
+\DoxyCodeLine{25         \}}
+\DoxyCodeLine{26         \textcolor{keywordtype}{double} GetM()}
+\DoxyCodeLine{27         \{}
+\DoxyCodeLine{28             \textcolor{keywordflow}{return} m\_m;}
+\DoxyCodeLine{29         \}}
+\DoxyCodeLine{30         std::string get\_line() \textcolor{keyword}{const override};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{keyword}{private}:}
+\DoxyCodeLine{33         \textcolor{keywordtype}{double} m\_m; \textcolor{comment}{//св-\/ва для Бэкофена}}
+\DoxyCodeLine{34         \textcolor{keywordtype}{double} m\_K;}
+\DoxyCodeLine{35     \};}
+\DoxyCodeLine{36 \}}
+
+\end{DoxyCode}

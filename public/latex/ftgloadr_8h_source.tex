@@ -1,0 +1,153 @@
+\hypertarget{ftgloadr_8h_source}{}\doxysection{ftgloadr.\+h}
+\label{ftgloadr_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftgloadr.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftgloadr.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftgloadr.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType glyph loader (specification).                           */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2002, 2003 by                                                */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg                       */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTGLOADR\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTGLOADR\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{31   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{32   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{33   \textcolor{comment}{/*    FT\_GlyphLoader                                                     */}}
+\DoxyCodeLine{34   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{35   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{36   \textcolor{comment}{/*    The glyph loader is an internal object used to load several glyphs */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*    together (for example, in the case of composites).                 */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*    The glyph loader implementation is not part of the high-\/level API, */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*    hence the forward structure declaration.                           */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{43   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___glyph_loader_rec__}{FT\_GlyphLoaderRec\_}}*  FT\_GlyphLoader ;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#define FT\_SUBGLYPH\_FLAG\_ARGS\_ARE\_WORDS          1}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define FT\_SUBGLYPH\_FLAG\_ARGS\_ARE\_XY\_VALUES      2}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define FT\_SUBGLYPH\_FLAG\_ROUND\_XY\_TO\_GRID        4}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define FT\_SUBGLYPH\_FLAG\_SCALE                   8}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define FT\_SUBGLYPH\_FLAG\_XY\_SCALE             0x40}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define FT\_SUBGLYPH\_FLAG\_2X2                  0x80}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define FT\_SUBGLYPH\_FLAG\_USE\_MY\_METRICS      0x200}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___sub_glyph_rec__}{FT\_SubGlyphRec\_}}}
+\DoxyCodeLine{56   \{}
+\DoxyCodeLine{57     FT\_Int     index;}
+\DoxyCodeLine{58     FT\_UShort  flags;}
+\DoxyCodeLine{59     FT\_Int     arg1;}
+\DoxyCodeLine{60     FT\_Int     arg2;}
+\DoxyCodeLine{61     \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}  transform;}
+\DoxyCodeLine{62     }
+\DoxyCodeLine{63   \} \mbox{\hyperlink{struct_f_t___sub_glyph_rec__}{FT\_SubGlyphRec}};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___glyph_load_rec__}{FT\_GlyphLoadRec\_}}}
+\DoxyCodeLine{67   \{}
+\DoxyCodeLine{68     \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}   outline;       \textcolor{comment}{/* outline             */}}
+\DoxyCodeLine{69     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*   extra\_points;  \textcolor{comment}{/* extra points table  */}}
+\DoxyCodeLine{70     FT\_UInt      num\_subglyphs; \textcolor{comment}{/* number of subglyphs */}}
+\DoxyCodeLine{71     \mbox{\hyperlink{struct_f_t___sub_glyph_rec__}{FT\_SubGlyph}}  subglyphs;     \textcolor{comment}{/* subglyphs           */}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73   \} \mbox{\hyperlink{struct_f_t___glyph_load_rec__}{FT\_GlyphLoadRec}}, *\mbox{\hyperlink{struct_f_t___glyph_load_rec__}{FT\_GlyphLoad}};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___glyph_loader_rec__}{FT\_GlyphLoaderRec\_}}}
+\DoxyCodeLine{77   \{}
+\DoxyCodeLine{78     FT\_Memory        memory;}
+\DoxyCodeLine{79     FT\_UInt          max\_points;}
+\DoxyCodeLine{80     FT\_UInt          max\_contours;}
+\DoxyCodeLine{81     FT\_UInt          max\_subglyphs;}
+\DoxyCodeLine{82     FT\_Bool          use\_extra;}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     \mbox{\hyperlink{struct_f_t___glyph_load_rec__}{FT\_GlyphLoadRec}}  base;}
+\DoxyCodeLine{85     \mbox{\hyperlink{struct_f_t___glyph_load_rec__}{FT\_GlyphLoadRec}}  current;}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     \textcolor{keywordtype}{void}*            other;            \textcolor{comment}{/* for possible future extension? */}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \} \mbox{\hyperlink{struct_f_t___glyph_loader_rec__}{FT\_GlyphLoaderRec}};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92   \textcolor{comment}{/* create new empty glyph loader */}}
+\DoxyCodeLine{93   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{94   FT\_GlyphLoader\_New( FT\_Memory        memory,}
+\DoxyCodeLine{95                       FT\_GlyphLoader  *aloader );}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97   \textcolor{comment}{/* add an extra points table to a glyph loader */}}
+\DoxyCodeLine{98   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{99   FT\_GlyphLoader\_CreateExtra( FT\_GlyphLoader  loader );}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101   \textcolor{comment}{/* destroy a glyph loader */}}
+\DoxyCodeLine{102   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{103   FT\_GlyphLoader\_Done( FT\_GlyphLoader  loader );}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105   \textcolor{comment}{/* reset a glyph loader (frees everything int it) */}}
+\DoxyCodeLine{106   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{107   FT\_GlyphLoader\_Reset( FT\_GlyphLoader  loader );}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109   \textcolor{comment}{/* rewind a glyph loader */}}
+\DoxyCodeLine{110   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{111   FT\_GlyphLoader\_Rewind( FT\_GlyphLoader  loader );}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113   \textcolor{comment}{/* check that there is enough space to add `n\_points' and `n\_contours' */}}
+\DoxyCodeLine{114   \textcolor{comment}{/* to the glyph loader                                                 */}}
+\DoxyCodeLine{115   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{116   FT\_GlyphLoader\_CheckPoints( FT\_GlyphLoader  loader,}
+\DoxyCodeLine{117                               FT\_UInt         n\_points,}
+\DoxyCodeLine{118                               FT\_UInt         n\_contours );}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120   \textcolor{comment}{/* check that there is enough space to add `n\_subs' sub-\/glyphs to */}}
+\DoxyCodeLine{121   \textcolor{comment}{/* a glyph loader                                                 */}}
+\DoxyCodeLine{122   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{123   FT\_GlyphLoader\_CheckSubGlyphs( FT\_GlyphLoader  loader,}
+\DoxyCodeLine{124                                  FT\_UInt         n\_subs );}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126   \textcolor{comment}{/* prepare a glyph loader, i.e. empty the current glyph */}}
+\DoxyCodeLine{127   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{128   FT\_GlyphLoader\_Prepare( FT\_GlyphLoader  loader );}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130   \textcolor{comment}{/* add the current glyph to the base glyph */}}
+\DoxyCodeLine{131   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{132   FT\_GlyphLoader\_Add( FT\_GlyphLoader  loader );}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134   \textcolor{comment}{/* copy points from one glyph loader to another */}}
+\DoxyCodeLine{135   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{136   FT\_GlyphLoader\_CopyPoints( FT\_GlyphLoader  target,}
+\DoxyCodeLine{137                              FT\_GlyphLoader  source );}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139  \textcolor{comment}{/* */}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 FT\_END\_HEADER}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTGLOADR\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

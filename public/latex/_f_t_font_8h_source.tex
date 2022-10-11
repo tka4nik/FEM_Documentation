@@ -1,0 +1,89 @@
+\hypertarget{_f_t_font_8h_source}{}\doxysection{FTFont.\+h}
+\label{_f_t_font_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTFont.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTFont.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef    \_\_FTFont\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define    \_\_FTFont\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}FTFace.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_glyph_container}{FTGlyphContainer}};}
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_glyph}{FTGlyph}};}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 }
+\DoxyCodeLine{32 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_font}{FTFont}}}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34     \textcolor{keyword}{public}:}
+\DoxyCodeLine{40         \mbox{\hyperlink{class_f_t_font_ad27860812dc1baa7e619faed09fc43e3}{FTFont}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* fontFilePath);}
+\DoxyCodeLine{41         }
+\DoxyCodeLine{50         \mbox{\hyperlink{class_f_t_font_a8911254ec56e3b9c36891459b98beaf2}{FTFont}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pBufferBytes, \textcolor{keywordtype}{size\_t} bufferSizeInBytes);}
+\DoxyCodeLine{51         }
+\DoxyCodeLine{55         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_font_a9df9b873c582024867ff6b9dfff0face}{\string~FTFont}}();}
+\DoxyCodeLine{56         }
+\DoxyCodeLine{66         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_font_a6e3b1c6da5d63670efb92479f7bc892a}{Attach}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* fontFilePath);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{78         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_font_a066221513c767585a0128e94a1a404d2}{Attach}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pBufferBytes, \textcolor{keywordtype}{size\_t} bufferSizeInBytes);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{87         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_font_a72206a5ed619709c397fba2a7b0987ed}{CharMap}}( FT\_Encoding encoding );}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{94         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_font_a4932e65132d2e2200fe3d10b352a8dba}{CharMapCount}}();}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{101         FT\_Encoding* \mbox{\hyperlink{class_f_t_font_add15c511617de7ab8f52cec1fe543809}{CharMapList}}();}
+\DoxyCodeLine{102         }
+\DoxyCodeLine{110         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_font_aae95510a733d6755bbbaf92d67796ff9}{FaceSize}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} size, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} res = 72);}
+\DoxyCodeLine{111         }
+\DoxyCodeLine{117         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_font_aa6d19186887bba8a4286b4a8396e783e}{FaceSize}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{118         }
+\DoxyCodeLine{125         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_font_a7fc7825ca4089e12a679f788e0cb9d2c}{Depth}}( \textcolor{keywordtype}{float} depth)\{\}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{133         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_font_ac329128a66175e29ac4f9920726e1740}{UseDisplayList}}( \textcolor{keywordtype}{bool} useList);}
+\DoxyCodeLine{134         }
+\DoxyCodeLine{140         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_font_ac8be0dbfd7cc89d251d1feb0527a0531}{Ascender}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{141         }
+\DoxyCodeLine{147         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_font_a397ad7a506fe84901fbf6dda468e25f9}{Descender}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{148         }
+\DoxyCodeLine{154         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_font_a29b6558932641eff0c8187fe18592c92}{LineHeight}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{155         }
+\DoxyCodeLine{167         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_font_a45078d6f0b74334030558d10cfeab4b9}{BBox}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \textcolor{keywordtype}{string}, \textcolor{keywordtype}{float}\& llx, \textcolor{keywordtype}{float}\& lly, \textcolor{keywordtype}{float}\& llz, \textcolor{keywordtype}{float}\& urx, \textcolor{keywordtype}{float}\& ury, \textcolor{keywordtype}{float}\& urz);}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{180         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_font_af495e078c9f8bad2b6fb0b5d04416fe7}{BBox}}( \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t}* \textcolor{keywordtype}{string}, \textcolor{keywordtype}{float}\& llx, \textcolor{keywordtype}{float}\& lly, \textcolor{keywordtype}{float}\& llz, \textcolor{keywordtype}{float}\& urx, \textcolor{keywordtype}{float}\& ury, \textcolor{keywordtype}{float}\& urz);}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{188         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_font_ac9ea5e0f3e720dfcb8c4b15e08111a4c}{Advance}}( \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t}* \textcolor{keywordtype}{string});}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{196         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_font_a002da25744348d44b8d87b3b88ab5efa}{Advance}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \textcolor{keywordtype}{string});}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{203         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_font_a93f5c144d5a0603508ff3d6c28aaf6ad}{Render}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \textcolor{keywordtype}{string} );}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{210         \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_font_af69d1b663afded110d91312831e3a2e3}{Render}}( \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t}* \textcolor{keywordtype}{string} );}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{217         FT\_Error \mbox{\hyperlink{class_f_t_font_a581a621491803549419b0cb3e9ef917b}{Error}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} err;\}}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{229         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}* \mbox{\hyperlink{class_f_t_font_a7a803a726808d612c804a430c93d2652}{MakeGlyph}}( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} g) = 0;}
+\DoxyCodeLine{230         }
+\DoxyCodeLine{234         \mbox{\hyperlink{class_f_t_face}{FTFace}} \mbox{\hyperlink{class_f_t_font_aec048c2cebf62ae063feb45ade60868b}{face}};}
+\DoxyCodeLine{235         }
+\DoxyCodeLine{239         \mbox{\hyperlink{class_f_t_size}{FTSize}} \mbox{\hyperlink{class_f_t_font_ad781a66dd9274c6554a5dbd089789108}{charSize}};}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{246         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_font_a1f2b064e4a9f9259f317fae4f22f4400}{useDisplayLists}};}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{251         FT\_Error \mbox{\hyperlink{class_f_t_font_adf26fb4a4538fd3e957b526482c701a3}{err}};}
+\DoxyCodeLine{252         }
+\DoxyCodeLine{253     \textcolor{keyword}{private}:        }
+\DoxyCodeLine{260         \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} CheckGlyph( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} chr);}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{265         \mbox{\hyperlink{class_f_t_glyph_container}{FTGlyphContainer}}* glyphList;}
+\DoxyCodeLine{266         }
+\DoxyCodeLine{270         \mbox{\hyperlink{class_f_t_point}{FTPoint}} pen;}
+\DoxyCodeLine{271         }
+\DoxyCodeLine{272 \};}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTFont\_\_}}
+\DoxyCodeLine{276 }
+
+\end{DoxyCode}

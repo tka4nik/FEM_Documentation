@@ -1,0 +1,67 @@
+\hypertarget{831__finite__element__modeling_2_f_e_m_2include_2_a_p_i___f_e_m_8h_source}{}\doxysection{API\+\_\+\+FEM.\+h}
+\label{831__finite__element__modeling_2_f_e_m_2include_2_a_p_i___f_e_m_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/FEM/include/API\_FEM.h@{C:/Projects/FEM/831\_finite\_element\_modeling/FEM/include/API\_FEM.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{comment}{// Это API статической библиотеки т.е. Application Programming Interface}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{comment}{// Установка исохдных параметров моделирования}}
+\DoxyCodeLine{6 \textcolor{comment}{// Parameters: }}
+\DoxyCodeLine{7 \textcolor{comment}{//      json -\/ строка формата JSON с параметрами модели}}
+\DoxyCodeLine{8 \textcolor{comment}{// Return:}}
+\DoxyCodeLine{9 \textcolor{comment}{//      True -\/ инциализация модели прошла успешно (можно запускать моделирование)}}
+\DoxyCodeLine{10 \textcolor{comment}{//      False -\/ что-\/то пошло не так, требуется новая инициализация модели}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <fstream>} \textcolor{comment}{//idk}}
+\DoxyCodeLine{12 \textcolor{keywordtype}{bool} set\_init\_data(std::ifstream\& sample\_file, std::ifstream\& instrument\_file);}
+\DoxyCodeLine{13 \textcolor{comment}{// Это не С интерфейс => надо от него избавиться}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keywordtype}{bool} set\_init\_data(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* sample, \textcolor{keywordtype}{size\_t} sample\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* instrument, \textcolor{keywordtype}{size\_t} instrument\_size);}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{comment}{// Запуск моделирования}}
+\DoxyCodeLine{19 \textcolor{comment}{// Parameters: }}
+\DoxyCodeLine{20 \textcolor{comment}{//      call\_back\_on\_step -\/ функция обратного вызова (вызывается после каждого шага)}}
+\DoxyCodeLine{21 \textcolor{comment}{//          Возврат из функции: True -\/ продолжить моделирование}}
+\DoxyCodeLine{22 \textcolor{comment}{//                              False -\/ закончить моделирование}}
+\DoxyCodeLine{23 \textcolor{comment}{//          Внутри функции допускаются вызовы следующих методов:}}
+\DoxyCodeLine{24 \textcolor{comment}{//              remesh() и все get\_*()}}
+\DoxyCodeLine{25 \textcolor{comment}{// Return:}}
+\DoxyCodeLine{26 \textcolor{comment}{//      True -\/ успешно произведено моделирование (можно продолжить)}}
+\DoxyCodeLine{27 \textcolor{comment}{//      False -\/ что-\/то пошло не так, требуется новая инициализация модели}}
+\DoxyCodeLine{28 \textcolor{keywordtype}{bool} run(\textcolor{keywordtype}{bool} (*call\_back\_on\_step)());}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{// Перестроение сетки}}
+\DoxyCodeLine{31 \textcolor{comment}{// Return:}}
+\DoxyCodeLine{32 \textcolor{comment}{//      True -\/ успешно перестроена сетка}}
+\DoxyCodeLine{33 \textcolor{comment}{//      False -\/ сетка не перестроена, осталась старая (можно продолжать с ней)}}
+\DoxyCodeLine{34 \textcolor{keywordtype}{bool} remesh(\textcolor{keywordtype}{double} mesh\_edge\_length\_param);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{// Возвращает номер текущей ошибки}}
+\DoxyCodeLine{37 \textcolor{comment}{// Return:}}
+\DoxyCodeLine{38 \textcolor{comment}{//      0 -\/ ошибок нет}}
+\DoxyCodeLine{39 \textcolor{comment}{//      1,2,... -\/ номер ошибки}}
+\DoxyCodeLine{40 \textcolor{keywordtype}{int} get\_error();}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{keywordtype}{bool} set\_task(\textcolor{keywordtype}{double} offset, \textcolor{keywordtype}{double} dtime);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keywordtype}{void} set\_material(\textcolor{keywordtype}{double} m\_m, \textcolor{keywordtype}{double} m\_K);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keywordtype}{void} preset(\textcolor{keywordtype}{double} mesh\_edge\_length\_param);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{comment}{// Возвращает описание текущей ошибки}}
+\DoxyCodeLine{49 \textcolor{comment}{// Return:}}
+\DoxyCodeLine{50 \textcolor{comment}{//      Возвращает строку с описанием текущей ошибки}}
+\DoxyCodeLine{51 \textcolor{keyword}{const} \textcolor{keywordtype}{char}* get\_error\_description();}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{comment}{// Возвращает полное описание всех полей модели}}
+\DoxyCodeLine{54 \textcolor{comment}{// Return:}}
+\DoxyCodeLine{55 \textcolor{comment}{//      Возвращает строку в формате JSON с описанием всех полей модели}}
+\DoxyCodeLine{56 \textcolor{keyword}{const} \textcolor{keywordtype}{char}* get\_data();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{keywordtype}{void} get\_field\_instrument(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keywordtype}{void}** ptr\_ptr\_field, \textcolor{keywordtype}{size\_t} *ptr\_size);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{keywordtype}{void} get\_field\_sample(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keywordtype}{void}** ptr\_ptr\_field, \textcolor{keywordtype}{size\_t} *ptr\_size);}
+\DoxyCodeLine{61 }
+
+\end{DoxyCode}

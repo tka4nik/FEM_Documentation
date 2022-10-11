@@ -1,0 +1,30 @@
+\hypertarget{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_g_u_i_2_files_options_8h_source}{}\doxysection{Files\+Options.\+h}
+\label{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_g_u_i_2_files_options_8h_source}\index{831\_finite\_element\_modeling/GUI/source/GUI/FilesOptions.h@{831\_finite\_element\_modeling/GUI/source/GUI/FilesOptions.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{comment}{// fp -\/ file path}}
+\DoxyCodeLine{4 \textcolor{comment}{// dir -\/ directory.}}
+\DoxyCodeLine{5 \textcolor{comment}{// fs -\/ fragment shader}}
+\DoxyCodeLine{6 \textcolor{comment}{// vs -\/ vetricies shader}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define RES "{}res//"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define GEOM "{}geom//"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define SHADERS "{}shaders//"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define FONTS "{}fonts//"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define REVERSEANALYSIS "{}reverse analysis//"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{using }PathType = \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \textcolor{keyword}{const};}
+\DoxyCodeLine{16 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} PathType fp\_gui\_log = \textcolor{stringliteral}{"{}log.txt"{}};}
+\DoxyCodeLine{17 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} PathType fp\_static\_lib\_log = \textcolor{stringliteral}{"{}liblog.txt"{}};}
+\DoxyCodeLine{18 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} PathType fp\_results = RES \textcolor{stringliteral}{"{}results.res"{}};}
+\DoxyCodeLine{19 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} PathType fp\_steps\_results = RES \textcolor{stringliteral}{"{}steps\_res.res"{}};}
+\DoxyCodeLine{20 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} PathType dir\_reverse\_analysis = RES REVERSEANALYSIS;}
+\DoxyCodeLine{21 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} PathType dir\_geom = GEOM;}
+\DoxyCodeLine{22 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} PathType fp\_ini\_font = FONTS \textcolor{stringliteral}{"{}arial.ttf"{}};}
+\DoxyCodeLine{23 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} PathType fs\_gradient = SHADERS \textcolor{stringliteral}{"{}gradient.frag"{}};}
+\DoxyCodeLine{24 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} PathType vs\_gradient = SHADERS \textcolor{stringliteral}{"{}gradient.vert"{}};}
+
+\end{DoxyCode}

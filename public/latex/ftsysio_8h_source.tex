@@ -1,0 +1,201 @@
+\hypertarget{ftsysio_8h_source}{}\doxysection{ftsysio.\+h}
+\label{ftsysio_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftsysio.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftsysio.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_FT\_SYSTEM\_IO\_H\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_FT\_SYSTEM\_IO\_H\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{comment}{ /************************************************************************/}}
+\DoxyCodeLine{5 \textcolor{comment}{ /************************************************************************/}}
+\DoxyCodeLine{6 \textcolor{comment}{ /*****                                                              *****/}}
+\DoxyCodeLine{7 \textcolor{comment}{ /*****    NOTE: THE CONTENT OF THIS FILE IS NOT CURRENTLY USED      *****/}}
+\DoxyCodeLine{8 \textcolor{comment}{ /*****          IN NORMAL BUILDS.  CONSIDER IT EXPERIMENTAL.        *****/}}
+\DoxyCodeLine{9 \textcolor{comment}{ /*****                                                              *****/}}
+\DoxyCodeLine{10 \textcolor{comment}{ /************************************************************************/}}
+\DoxyCodeLine{11 \textcolor{comment}{ /************************************************************************/}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{comment}{ /********************************************************************}}
+\DoxyCodeLine{15 \textcolor{comment}{  *}}
+\DoxyCodeLine{16 \textcolor{comment}{  *  designing custom streams is a bit different now}}
+\DoxyCodeLine{17 \textcolor{comment}{  *}}
+\DoxyCodeLine{18 \textcolor{comment}{  *}}
+\DoxyCodeLine{19 \textcolor{comment}{  *}}
+\DoxyCodeLine{20 \textcolor{comment}{  *}}
+\DoxyCodeLine{21 \textcolor{comment}{  *}}
+\DoxyCodeLine{22 \textcolor{comment}{  *}}
+\DoxyCodeLine{23 \textcolor{comment}{  *}}
+\DoxyCodeLine{24 \textcolor{comment}{  *}}
+\DoxyCodeLine{25 \textcolor{comment}{  *}}
+\DoxyCodeLine{26 \textcolor{comment}{  *}}
+\DoxyCodeLine{27 \textcolor{comment}{  *}}
+\DoxyCodeLine{28 \textcolor{comment}{  *}}
+\DoxyCodeLine{29 \textcolor{comment}{  *}}
+\DoxyCodeLine{30 \textcolor{comment}{  *}}
+\DoxyCodeLine{31 \textcolor{comment}{  *}}
+\DoxyCodeLine{32 \textcolor{comment}{  *}}
+\DoxyCodeLine{33 \textcolor{comment}{  *}}
+\DoxyCodeLine{34 \textcolor{comment}{  *}}
+\DoxyCodeLine{35 \textcolor{comment}{  *}}
+\DoxyCodeLine{36 \textcolor{comment}{  *}}
+\DoxyCodeLine{37 \textcolor{comment}{  *}}
+\DoxyCodeLine{38 \textcolor{comment}{  *}}
+\DoxyCodeLine{39 \textcolor{comment}{  *}}
+\DoxyCodeLine{40 \textcolor{comment}{  *}}
+\DoxyCodeLine{41 \textcolor{comment}{  */}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#include FT\_INTERNAL\_OBJECT\_H}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48  \textcolor{comment}{/*@*******************************************************************}}
+\DoxyCodeLine{49 \textcolor{comment}{  *}}
+\DoxyCodeLine{50 \textcolor{comment}{  * @type: FT\_Stream}}
+\DoxyCodeLine{51 \textcolor{comment}{  *}}
+\DoxyCodeLine{52 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{53 \textcolor{comment}{  *   handle to an input stream object. These are also @FT\_Object handles}}
+\DoxyCodeLine{54 \textcolor{comment}{  */}}
+\DoxyCodeLine{55   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___stream_rec__}{FT\_StreamRec\_}}*    FT\_Stream;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58  \textcolor{comment}{/*@*******************************************************************}}
+\DoxyCodeLine{59 \textcolor{comment}{  *}}
+\DoxyCodeLine{60 \textcolor{comment}{  * @type: FT\_Stream\_Class}}
+\DoxyCodeLine{61 \textcolor{comment}{  *}}
+\DoxyCodeLine{62 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{63 \textcolor{comment}{  *   opaque handle to a @FT\_Stream\_ClassRec class structure describing}}
+\DoxyCodeLine{64 \textcolor{comment}{  *   the methods of input streams}}
+\DoxyCodeLine{65 \textcolor{comment}{  */}}
+\DoxyCodeLine{66   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___stream___class_rec__}{FT\_Stream\_ClassRec\_}}*   \mbox{\hyperlink{struct_f_t___stream___class_rec__}{FT\_Stream\_Class}};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69  \textcolor{comment}{/*@*******************************************************************}}
+\DoxyCodeLine{70 \textcolor{comment}{  *}}
+\DoxyCodeLine{71 \textcolor{comment}{  * @functype: FT\_Stream\_ReadFunc}}
+\DoxyCodeLine{72 \textcolor{comment}{  *}}
+\DoxyCodeLine{73 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{74 \textcolor{comment}{  *   a method used to read bytes from an input stream into memory}}
+\DoxyCodeLine{75 \textcolor{comment}{  *}}
+\DoxyCodeLine{76 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{77 \textcolor{comment}{  *   stream  :: target stream handle}}
+\DoxyCodeLine{78 \textcolor{comment}{  *   buffer  :: target buffer address}}
+\DoxyCodeLine{79 \textcolor{comment}{  *   size    :: number of bytes to read}}
+\DoxyCodeLine{80 \textcolor{comment}{  *}}
+\DoxyCodeLine{81 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{82 \textcolor{comment}{  *   number of bytes effectively read. Must be <= 'size'.}}
+\DoxyCodeLine{83 \textcolor{comment}{  */}}
+\DoxyCodeLine{84   \textcolor{keyword}{typedef} FT\_ULong  (*FT\_Stream\_ReadFunc)( FT\_Stream   stream,}
+\DoxyCodeLine{85                                            FT\_Byte*    buffer,}
+\DoxyCodeLine{86                                            FT\_ULong    size );}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89  \textcolor{comment}{/*@*******************************************************************}}
+\DoxyCodeLine{90 \textcolor{comment}{  *}}
+\DoxyCodeLine{91 \textcolor{comment}{  * @functype: FT\_Stream\_SeekFunc}}
+\DoxyCodeLine{92 \textcolor{comment}{  *}}
+\DoxyCodeLine{93 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{94 \textcolor{comment}{  *   a method used to seek to a new position within a stream}}
+\DoxyCodeLine{95 \textcolor{comment}{  *}}
+\DoxyCodeLine{96 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{97 \textcolor{comment}{  *   stream  :: target stream handle}}
+\DoxyCodeLine{98 \textcolor{comment}{  *   pos     :: new read position, from start of stream}}
+\DoxyCodeLine{99 \textcolor{comment}{  *}}
+\DoxyCodeLine{100 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{101 \textcolor{comment}{  *   error code. 0 means success}}
+\DoxyCodeLine{102 \textcolor{comment}{  */}}
+\DoxyCodeLine{103   \textcolor{keyword}{typedef} FT\_Error  (*FT\_Stream\_SeekFunc)( FT\_Stream   stream,}
+\DoxyCodeLine{104                                            FT\_ULong    pos );}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107  \textcolor{comment}{/*@*******************************************************************}}
+\DoxyCodeLine{108 \textcolor{comment}{  *}}
+\DoxyCodeLine{109 \textcolor{comment}{  * @struct: FT\_Stream\_ClassRec}}
+\DoxyCodeLine{110 \textcolor{comment}{  *}}
+\DoxyCodeLine{111 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{112 \textcolor{comment}{  *   a structure used to describe an input stream class}}
+\DoxyCodeLine{113 \textcolor{comment}{  *}}
+\DoxyCodeLine{114 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{115 \textcolor{comment}{  *   clazz       :: root @FT\_ClassRec fields}}
+\DoxyCodeLine{116 \textcolor{comment}{  *   stream\_read :: stream byte read method}}
+\DoxyCodeLine{117 \textcolor{comment}{  *   stream\_seek :: stream seek method}}
+\DoxyCodeLine{118 \textcolor{comment}{  */}}
+\DoxyCodeLine{119   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___stream___class_rec__}{FT\_Stream\_ClassRec\_}}}
+\DoxyCodeLine{120   \{}
+\DoxyCodeLine{121     FT\_ClassRec          clazz;}
+\DoxyCodeLine{122     FT\_Stream\_ReadFunc   stream\_read;}
+\DoxyCodeLine{123     FT\_Stream\_SeekFunc   stream\_seek;}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125   \} \mbox{\hyperlink{struct_f_t___stream___class_rec__}{FT\_Stream\_ClassRec}};}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127  \textcolor{comment}{/* */}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#define  FT\_STREAM\_CLASS(x)        ((FT\_Stream\_Class)(x))}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#define  FT\_STREAM\_CLASS\_\_READ(x)  FT\_STREAM\_CLASS(x)-\/>stream\_read}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#define  FT\_STREAM\_CLASS\_\_SEEK(x)  FT\_STREAM\_CLASS(x)-\/>stream\_seek;}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133  \textcolor{comment}{/*@*******************************************************************}}
+\DoxyCodeLine{134 \textcolor{comment}{  *}}
+\DoxyCodeLine{135 \textcolor{comment}{  * @struct: FT\_StreamRec}}
+\DoxyCodeLine{136 \textcolor{comment}{  *}}
+\DoxyCodeLine{137 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{138 \textcolor{comment}{  *   the input stream object structure. See @FT\_Stream\_ClassRec for}}
+\DoxyCodeLine{139 \textcolor{comment}{  *   its class descriptor}}
+\DoxyCodeLine{140 \textcolor{comment}{  *}}
+\DoxyCodeLine{141 \textcolor{comment}{  * @fields:}}
+\DoxyCodeLine{142 \textcolor{comment}{  *   object      :: root @FT\_ObjectRec fields}}
+\DoxyCodeLine{143 \textcolor{comment}{  *   size        :: size of stream in bytes (0 if unknown)}}
+\DoxyCodeLine{144 \textcolor{comment}{  *   pos         :: current position within stream}}
+\DoxyCodeLine{145 \textcolor{comment}{  *   base        :: for memory-\/based streams, the address of the stream's}}
+\DoxyCodeLine{146 \textcolor{comment}{  *                  first data byte in memory. NULL otherwise}}
+\DoxyCodeLine{147 \textcolor{comment}{  *}}
+\DoxyCodeLine{148 \textcolor{comment}{  *   cursor      :: the current cursor position within an input stream}}
+\DoxyCodeLine{149 \textcolor{comment}{  *                  frame. Only valid within a FT\_FRAME\_ENTER .. FT\_FRAME\_EXIT}}
+\DoxyCodeLine{150 \textcolor{comment}{  *                  block; NULL otherwise}}
+\DoxyCodeLine{151 \textcolor{comment}{  *}}
+\DoxyCodeLine{152 \textcolor{comment}{  *   limit       :: the current frame limit within a FT\_FRAME\_ENTER ..}}
+\DoxyCodeLine{153 \textcolor{comment}{  *                  FT\_FRAME\_EXIT block. NULL otherwise}}
+\DoxyCodeLine{154 \textcolor{comment}{  */}}
+\DoxyCodeLine{155   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___stream_rec__}{FT\_StreamRec\_}}}
+\DoxyCodeLine{156   \{}
+\DoxyCodeLine{157     FT\_ObjectRec        object;}
+\DoxyCodeLine{158     FT\_ULong            size;}
+\DoxyCodeLine{159     FT\_ULong            pos;}
+\DoxyCodeLine{160     \textcolor{keyword}{const} FT\_Byte*      base;}
+\DoxyCodeLine{161     \textcolor{keyword}{const} FT\_Byte*      cursor;}
+\DoxyCodeLine{162     \textcolor{keyword}{const} FT\_Byte*      limit;}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164   \} \mbox{\hyperlink{struct_f_t___stream_rec__}{FT\_StreamRec}};}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166  \textcolor{comment}{/* some useful macros */}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define  FT\_STREAM(x)    ((FT\_Stream)(x))}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define  FT\_STREAM\_P(x)  ((FT\_Stream*)(x))}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define  FT\_STREAM\_\_READ(x)  FT\_STREAM\_CLASS\_\_READ(FT\_OBJECT\_\_CLASS(x))}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define  FT\_STREAM\_\_SEEK(x)  FT\_STREAM\_CLASS\_\_SEEK(FT\_OBJECT\_\_CLASS(x))}}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define  FT\_STREAM\_IS\_BASED(x)  ( FT\_STREAM(x)-\/>base != NULL )}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175  \textcolor{comment}{/* */}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177  \textcolor{comment}{/* create new memory-\/based stream */}}
+\DoxyCodeLine{178   FT\_BASE( FT\_Error )   ft\_stream\_new\_memory( \textcolor{keyword}{const} FT\_Byte*  stream\_base,}
+\DoxyCodeLine{179                                               FT\_ULong        stream\_size,}
+\DoxyCodeLine{180                                               FT\_Memory       memory,}
+\DoxyCodeLine{181                                               FT\_Stream      *astream );}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183   FT\_BASE( FT\_Error )   ft\_stream\_new\_iso( \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  pathanme,}
+\DoxyCodeLine{184                                            FT\_Memory    memory,}
+\DoxyCodeLine{185                                            FT\_Stream   *astream );}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188  \textcolor{comment}{/* handle to default stream class implementation for a given build */}}
+\DoxyCodeLine{189  \textcolor{comment}{/* this is used by "{}FT\_New\_Face"{}                                   */}}
+\DoxyCodeLine{190  \textcolor{comment}{/*                                                                 */}}
+\DoxyCodeLine{191   FT\_APIVAR( FT\_Type )   ft\_stream\_default\_type;}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193 FT\_END\_HEADER}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FT\_SYSTEM\_STREAM\_H\_\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

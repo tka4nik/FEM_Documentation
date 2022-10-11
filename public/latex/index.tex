@@ -1,0 +1,45 @@
+\label{index_md_index}%
+\Hypertarget{index_md_index}%
+ \hypertarget{index_commands_sec}{}\doxysection{Примеры команд\+:}\label{index_commands_sec}
+\hypertarget{index_autotoc_md0}{}\doxysubsubsection{Запуск моделирования}\label{index_autotoc_md0}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{set geom/geom5.bin geom/profile5.bin}
+\DoxyCodeLine{run}
+\DoxyCodeLine{render\_mode grid}
+
+\end{DoxyCode}
+
+
+geom5.\+bin и profile5.\+bin соотвествуют Geometry/0-\/\+Mesh/5.\+0.\+spr из прототипа. В файле sample\+\_\+text.\+g геометрия корректна, но файлы инструмента для неё был утерян.\hypertarget{index_autotoc_md1}{}\doxysubsubsection{Запуск анимации из файла результатов.}\label{index_autotoc_md1}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{show\_complete\_simulation res/steps\_res.res}
+\DoxyCodeLine{pause}
+\DoxyCodeLine{continue}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md2}{}\doxysubsubsection{Настройка градиента в соотвествии с прототипом (gradient 9 colors)}\label{index_autotoc_md2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{render\_mode smooth false}
+\DoxyCodeLine{render\_mode gradient 9 3 120}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md3}{}\doxysubsubsection{Настройка градиента в соотвествии с прототипом (gradient 5 colors)}\label{index_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{render\_mode smooth false}
+\DoxyCodeLine{render\_mode gradient 5 2 120}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md4}{}\doxysubsubsection{Обратный анализ}\label{index_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{reverse\_analysis d}
+\DoxyCodeLine{pause}
+\DoxyCodeLine{target 2}
+\DoxyCodeLine{pause}
+
+\end{DoxyCode}
+ 

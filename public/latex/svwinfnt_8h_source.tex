@@ -1,0 +1,56 @@
+\hypertarget{svwinfnt_8h_source}{}\doxysection{svwinfnt.\+h}
+\label{svwinfnt_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svwinfnt.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svwinfnt.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  svwinfnt.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType Windows FNT/FONT service (specification).               */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003 by                                                      */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_SVWINFNT\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_SVWINFNT\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include FT\_INTERNAL\_SERVICE\_H}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_WINFONTS\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define FT\_SERVICE\_ID\_WINFNT  "{}winfonts"{}}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{32   (*FT\_WinFnt\_GetHeaderFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}               face,}
+\DoxyCodeLine{33                               \mbox{\hyperlink{struct_f_t___win_f_n_t___header_rec__}{FT\_WinFNT\_HeaderRec}}  *aheader );}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36   FT\_DEFINE\_SERVICE( WinFnt )}
+\DoxyCodeLine{37   \{}
+\DoxyCodeLine{38     FT\_WinFnt\_GetHeaderFunc  get\_header;}
+\DoxyCodeLine{39   \};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41   \textcolor{comment}{/* */}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 FT\_END\_HEADER}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_SVWINFNT\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

@@ -1,0 +1,44 @@
+\hypertarget{_dlg_explorer_8h_source}{}\doxysection{Dlg\+Explorer.\+h}
+\label{_dlg_explorer_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/DlgExplorer.h@{C:/Projects/FEM/prototype-\/prismatic/source/DlgExplorer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}afxwin.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}SprDoc.h"{}}}
+\DoxyCodeLine{4 \textcolor{comment}{// CDlgExplorer dialog}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_dlg_explorer}{CDlgExplorer}} : \textcolor{keyword}{public} CDialog}
+\DoxyCodeLine{7 \{}
+\DoxyCodeLine{8     DECLARE\_DYNAMIC(\mbox{\hyperlink{class_c_dlg_explorer}{CDlgExplorer}})}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11     \mbox{\hyperlink{class_c_dlg_explorer}{CDlgExplorer}}(CWnd* pParent = NULL);   \textcolor{comment}{// standard constructor}}
+\DoxyCodeLine{12     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_dlg_explorer}{\string~CDlgExplorer}}();}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{comment}{// Dialog Data}}
+\DoxyCodeLine{15     \textcolor{keyword}{enum} \{ IDD = IDD\_EXPLORER \};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_c_spr_doc}{CSprDoc}} *m\_pDoc;}
+\DoxyCodeLine{19 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{20     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} DoDataExchange(CDataExchange* pDX);    \textcolor{comment}{// DDX/DDV support}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     CListBox m\_List;}
+\DoxyCodeLine{23     CRect    m\_ListRect;}
+\DoxyCodeLine{24     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{25 \textcolor{keyword}{public}:}
+\DoxyCodeLine{26     \textcolor{keyword}{virtual} BOOL Create(CWnd* pParentWnd = NULL);}
+\DoxyCodeLine{27     \textcolor{keyword}{virtual} BOOL OnInitDialog();}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} FillList();}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} UpdateData();}
+\DoxyCodeLine{30 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} SetText();}
+\DoxyCodeLine{32 \textcolor{keyword}{public}:}
+\DoxyCodeLine{33     afx\_msg \textcolor{keywordtype}{void} OnLbnSelchangeExpL1();}
+\DoxyCodeLine{34     afx\_msg \textcolor{keywordtype}{void} OnSize(UINT nType, \textcolor{keywordtype}{int} cx, \textcolor{keywordtype}{int} cy);}
+\DoxyCodeLine{35 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{36     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnOK();}
+\DoxyCodeLine{37     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnCancel();}
+\DoxyCodeLine{38 \};}
+
+\end{DoxyCode}

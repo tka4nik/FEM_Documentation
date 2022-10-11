@@ -1,0 +1,97 @@
+\hypertarget{_f_t_g_l_2_f_t_g_l_2include_2ftgl_2ftlist_8h_source}{}\doxysection{FTList.\+h}
+\label{_f_t_g_l_2_f_t_g_l_2include_2ftgl_2ftlist_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTList.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTList.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef    \_\_FTList\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define    \_\_FTList\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{9 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FT\_LIST\_ITEM\_TYPE>}
+\DoxyCodeLine{10 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_list}{FTList}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \textcolor{keyword}{public}:}
+\DoxyCodeLine{13         \textcolor{keyword}{typedef} FT\_LIST\_ITEM\_TYPE value\_type;}
+\DoxyCodeLine{14         \textcolor{keyword}{typedef} value\_type\& reference;}
+\DoxyCodeLine{15         \textcolor{keyword}{typedef} \textcolor{keyword}{const} value\_type\& const\_reference;}
+\DoxyCodeLine{16         \textcolor{keyword}{typedef} \textcolor{keywordtype}{size\_t} size\_type;}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{21         \mbox{\hyperlink{class_f_t_list_a4de727811240b9d8568d1d47fd389502}{FTList}}()}
+\DoxyCodeLine{22         :   listSize(0),}
+\DoxyCodeLine{23             tail(0)}
+\DoxyCodeLine{24         \{}
+\DoxyCodeLine{25             tail = NULL;}
+\DoxyCodeLine{26             head = \textcolor{keyword}{new} Node;}
+\DoxyCodeLine{27         \}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32         \mbox{\hyperlink{class_f_t_list_aabfac3b136119f727611d490aef3eab4}{\string~FTList}}()}
+\DoxyCodeLine{33         \{}
+\DoxyCodeLine{34             Node* next;}
+\DoxyCodeLine{35             }
+\DoxyCodeLine{36             \textcolor{keywordflow}{for}( Node *walk = head; walk; walk = next)}
+\DoxyCodeLine{37             \{}
+\DoxyCodeLine{38                 next = walk-\/>next;}
+\DoxyCodeLine{39                 \textcolor{keyword}{delete} walk;}
+\DoxyCodeLine{40             \}}
+\DoxyCodeLine{41         \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{46         size\_type \mbox{\hyperlink{class_f_t_list_a802be0b9bb450cf0aea880176978a1ab}{size}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{47 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{48             \textcolor{keywordflow}{return} listSize;}
+\DoxyCodeLine{49         \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{54         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_list_acd30af5d1a32185842decac3e0c183ce}{push\_back}}( \textcolor{keyword}{const} value\_type\& item)}
+\DoxyCodeLine{55         \{}
+\DoxyCodeLine{56             Node* node = \textcolor{keyword}{new} Node( item);}
+\DoxyCodeLine{57             }
+\DoxyCodeLine{58             \textcolor{keywordflow}{if}( head-\/>next == NULL)}
+\DoxyCodeLine{59             \{}
+\DoxyCodeLine{60                 head-\/>next = node;}
+\DoxyCodeLine{61             \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63             \textcolor{keywordflow}{if}( tail)}
+\DoxyCodeLine{64             \{}
+\DoxyCodeLine{65                 tail-\/>next = node;}
+\DoxyCodeLine{66             \}}
+\DoxyCodeLine{67             tail = node;}
+\DoxyCodeLine{68             ++listSize;}
+\DoxyCodeLine{69         \}}
+\DoxyCodeLine{70         }
+\DoxyCodeLine{74         reference \mbox{\hyperlink{class_f_t_list_a6a0fc71b9b9189cf162116c89591455b}{front}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{75 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{76             \textcolor{keywordflow}{return} head-\/>next-\/>payload;}
+\DoxyCodeLine{77         \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{82         reference \mbox{\hyperlink{class_f_t_list_a26845905b699358f69d0b85f3890a777}{back}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{83 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{84             \textcolor{keywordflow}{return} tail-\/>payload;}
+\DoxyCodeLine{85         \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     \textcolor{keyword}{private}:}
+\DoxyCodeLine{88         \textcolor{keyword}{struct }Node}
+\DoxyCodeLine{89         \{}
+\DoxyCodeLine{90             Node()}
+\DoxyCodeLine{91             :   next(NULL)}
+\DoxyCodeLine{92             \{\}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94             Node( \textcolor{keyword}{const} value\_type\& item)}
+\DoxyCodeLine{95             :   next(NULL)}
+\DoxyCodeLine{96             \{}
+\DoxyCodeLine{97                 payload = item;}
+\DoxyCodeLine{98             \}}
+\DoxyCodeLine{99             }
+\DoxyCodeLine{100             Node* next;}
+\DoxyCodeLine{101             }
+\DoxyCodeLine{102             value\_type payload;}
+\DoxyCodeLine{103         \};}
+\DoxyCodeLine{104         }
+\DoxyCodeLine{105         size\_type listSize;}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107         Node* head;}
+\DoxyCodeLine{108         Node* tail;}
+\DoxyCodeLine{109 \};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_\_FTList\_\_}}
+\DoxyCodeLine{112 }
+
+\end{DoxyCode}

@@ -1,0 +1,176 @@
+\hypertarget{ftotval_8h_source}{}\doxysection{ftotval.\+h}
+\label{ftotval_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftotval.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftotval.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftotval.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType API for validating OpenType tables (specification).         */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2004, 2005 by                                                */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{20 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{21 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{22 \textcolor{comment}{/* Warning: This module might be moved to a different library in the       */}}
+\DoxyCodeLine{23 \textcolor{comment}{/*          future to avoid a tight dependency between FreeType and the    */}}
+\DoxyCodeLine{24 \textcolor{comment}{/*          OpenType specification.                                        */}}
+\DoxyCodeLine{25 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{26 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{27 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifndef \_\_FTOTVAL\_H\_\_}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define \_\_FTOTVAL\_H\_\_}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    ot\_validation                                                      */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*    OpenType Validation                                                */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{54   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*    An API to validate OpenType tables.                                */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{57   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    This section contains the declaration of functions to validate     */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    some OpenType tables (BASE, GDEF, GPOS, GSUB, JSTF).               */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{61 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{65 \textcolor{comment}{  *}}
+\DoxyCodeLine{66 \textcolor{comment}{  * @enum:}}
+\DoxyCodeLine{67 \textcolor{comment}{  *    FT\_VALIDATE\_XXX}}
+\DoxyCodeLine{68 \textcolor{comment}{  *}}
+\DoxyCodeLine{69 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{70 \textcolor{comment}{  *    A list of bit-\/field constants used with @FT\_OpenType\_Validate to}}
+\DoxyCodeLine{71 \textcolor{comment}{  *    indicate which OpenType tables should be validated.}}
+\DoxyCodeLine{72 \textcolor{comment}{  *}}
+\DoxyCodeLine{73 \textcolor{comment}{  * @values:}}
+\DoxyCodeLine{74 \textcolor{comment}{  *    FT\_VALIDATE\_BASE ::}}
+\DoxyCodeLine{75 \textcolor{comment}{  *      Validate BASE table.}}
+\DoxyCodeLine{76 \textcolor{comment}{  *}}
+\DoxyCodeLine{77 \textcolor{comment}{  *    FT\_VALIDATE\_GDEF ::}}
+\DoxyCodeLine{78 \textcolor{comment}{  *      Validate GDEF table.}}
+\DoxyCodeLine{79 \textcolor{comment}{  *}}
+\DoxyCodeLine{80 \textcolor{comment}{  *    FT\_VALIDATE\_GPOS ::}}
+\DoxyCodeLine{81 \textcolor{comment}{  *      Validate GPOS table.}}
+\DoxyCodeLine{82 \textcolor{comment}{  *}}
+\DoxyCodeLine{83 \textcolor{comment}{  *    FT\_VALIDATE\_GSUB ::}}
+\DoxyCodeLine{84 \textcolor{comment}{  *      Validate GSUB table.}}
+\DoxyCodeLine{85 \textcolor{comment}{  *}}
+\DoxyCodeLine{86 \textcolor{comment}{  *    FT\_VALIDATE\_JSTF ::}}
+\DoxyCodeLine{87 \textcolor{comment}{  *      Validate JSTF table.}}
+\DoxyCodeLine{88 \textcolor{comment}{  *}}
+\DoxyCodeLine{89 \textcolor{comment}{  *    FT\_VALIDATE\_OT ::}}
+\DoxyCodeLine{90 \textcolor{comment}{  *      Validate all OpenType tables (BASE, GDEF, GPOS, GSUB, JSTF).}}
+\DoxyCodeLine{91 \textcolor{comment}{  *}}
+\DoxyCodeLine{92 \textcolor{comment}{  */}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define FT\_VALIDATE\_BASE  0x0100}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#define FT\_VALIDATE\_GDEF  0x0200}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define FT\_VALIDATE\_GPOS  0x0400}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define FT\_VALIDATE\_GSUB  0x0800}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define FT\_VALIDATE\_JSTF  0x1000}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define FT\_VALIDATE\_OT  FT\_VALIDATE\_BASE | \(\backslash\)}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{                        FT\_VALIDATE\_GDEF | \(\backslash\)}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{                        FT\_VALIDATE\_GPOS | \(\backslash\)}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{                        FT\_VALIDATE\_GSUB | \(\backslash\)}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{                        FT\_VALIDATE\_JSTF}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105   \textcolor{comment}{/* */}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{108 \textcolor{comment}{  *}}
+\DoxyCodeLine{109 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{110 \textcolor{comment}{  *    FT\_OpenType\_Validate}}
+\DoxyCodeLine{111 \textcolor{comment}{  *}}
+\DoxyCodeLine{112 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{113 \textcolor{comment}{  *    Validate various OpenType tables to assure that all offsets and}}
+\DoxyCodeLine{114 \textcolor{comment}{  *    indices are valid.  The idea is that a higher-\/level library which}}
+\DoxyCodeLine{115 \textcolor{comment}{  *    actually does the text layout can access those tables without}}
+\DoxyCodeLine{116 \textcolor{comment}{  *    error checking (which can be quite time consuming).}}
+\DoxyCodeLine{117 \textcolor{comment}{  *}}
+\DoxyCodeLine{118 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{119 \textcolor{comment}{  *    face ::}}
+\DoxyCodeLine{120 \textcolor{comment}{  *       A handle to the input face.}}
+\DoxyCodeLine{121 \textcolor{comment}{  *}}
+\DoxyCodeLine{122 \textcolor{comment}{  *    validation\_flags ::}}
+\DoxyCodeLine{123 \textcolor{comment}{  *       A bit field which specifies the tables to be validated.  See}}
+\DoxyCodeLine{124 \textcolor{comment}{  *       @FT\_VALIDATE\_XXX for possible values.}}
+\DoxyCodeLine{125 \textcolor{comment}{  *}}
+\DoxyCodeLine{126 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{127 \textcolor{comment}{  *    BASE\_table ::}}
+\DoxyCodeLine{128 \textcolor{comment}{  *       A pointer to the BASE table.}}
+\DoxyCodeLine{129 \textcolor{comment}{  *}}
+\DoxyCodeLine{130 \textcolor{comment}{  *    GDEF\_table ::}}
+\DoxyCodeLine{131 \textcolor{comment}{  *       A pointer to the GDEF table.}}
+\DoxyCodeLine{132 \textcolor{comment}{  *}}
+\DoxyCodeLine{133 \textcolor{comment}{  *    GPOS\_table ::}}
+\DoxyCodeLine{134 \textcolor{comment}{  *       A pointer to the GPOS table.}}
+\DoxyCodeLine{135 \textcolor{comment}{  *}}
+\DoxyCodeLine{136 \textcolor{comment}{  *    GSUB\_table ::}}
+\DoxyCodeLine{137 \textcolor{comment}{  *       A pointer to the GSUB table.}}
+\DoxyCodeLine{138 \textcolor{comment}{  *}}
+\DoxyCodeLine{139 \textcolor{comment}{  *    JSTF\_table ::}}
+\DoxyCodeLine{140 \textcolor{comment}{  *       A pointer to the JSTF table.}}
+\DoxyCodeLine{141 \textcolor{comment}{  *}}
+\DoxyCodeLine{142 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{143 \textcolor{comment}{  *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{144 \textcolor{comment}{  *}}
+\DoxyCodeLine{145 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{146 \textcolor{comment}{  *   This function only works with OpenType fonts, returning an error}}
+\DoxyCodeLine{147 \textcolor{comment}{  *   otherwise.}}
+\DoxyCodeLine{148 \textcolor{comment}{  *}}
+\DoxyCodeLine{149 \textcolor{comment}{  *   After use, the application should deallocate the five tables with}}
+\DoxyCodeLine{150 \textcolor{comment}{  *   `free'.  A NULL value indicates that the table either doesn't exist}}
+\DoxyCodeLine{151 \textcolor{comment}{  *   in the font, or the application hasn't asked for validation.}}
+\DoxyCodeLine{152 \textcolor{comment}{  */}}
+\DoxyCodeLine{153   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{154   FT\_OpenType\_Validate( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}    face,}
+\DoxyCodeLine{155                         FT\_UInt    validation\_flags,}
+\DoxyCodeLine{156                         FT\_Bytes  *BASE\_table, }
+\DoxyCodeLine{157                         FT\_Bytes  *GDEF\_table, }
+\DoxyCodeLine{158                         FT\_Bytes  *GPOS\_table, }
+\DoxyCodeLine{159                         FT\_Bytes  *GSUB\_table, }
+\DoxyCodeLine{160                         FT\_Bytes  *JSTF\_table );}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162  \textcolor{comment}{/* */}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 FT\_END\_HEADER}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTOTVAL\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

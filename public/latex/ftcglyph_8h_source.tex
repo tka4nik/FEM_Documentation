@@ -1,0 +1,319 @@
+\hypertarget{ftcglyph_8h_source}{}\doxysection{ftcglyph.\+h}
+\label{ftcglyph_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftcglyph.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftcglyph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftcglyph.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType abstract glyph cache (specification).                       */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2000-\/2001, 2003, 2004 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19   \textcolor{comment}{/*}}
+\DoxyCodeLine{20 \textcolor{comment}{   *}}
+\DoxyCodeLine{21 \textcolor{comment}{   *  FTC\_GCache is an \_abstract\_ cache object optimized to store glyph}}
+\DoxyCodeLine{22 \textcolor{comment}{   *  data.  It works as follows:}}
+\DoxyCodeLine{23 \textcolor{comment}{   *}}
+\DoxyCodeLine{24 \textcolor{comment}{   *   -\/ It manages FTC\_GNode objects. Each one of them can hold one or more}}
+\DoxyCodeLine{25 \textcolor{comment}{   *     glyph `items'.  Item types are not specified in the FTC\_GCache but}}
+\DoxyCodeLine{26 \textcolor{comment}{   *     in classes that extend it.}}
+\DoxyCodeLine{27 \textcolor{comment}{   *}}
+\DoxyCodeLine{28 \textcolor{comment}{   *   -\/ Glyph attributes, like face ID, character size, render mode, etc.,}}
+\DoxyCodeLine{29 \textcolor{comment}{   *     can be grouped into abstract `glyph families'.  This avoids storing}}
+\DoxyCodeLine{30 \textcolor{comment}{   *     the attributes within the FTC\_GCache, since it is likely that many}}
+\DoxyCodeLine{31 \textcolor{comment}{   *     FTC\_GNodes will belong to the same family in typical uses.}}
+\DoxyCodeLine{32 \textcolor{comment}{   *}}
+\DoxyCodeLine{33 \textcolor{comment}{   *   -\/ Each FTC\_GNode is thus an FTC\_Node with two additional fields:}}
+\DoxyCodeLine{34 \textcolor{comment}{   *}}
+\DoxyCodeLine{35 \textcolor{comment}{   *       * gindex: A glyph index, or the first index in a glyph range.}}
+\DoxyCodeLine{36 \textcolor{comment}{   *       * family: A pointer to a glyph `family'.}}
+\DoxyCodeLine{37 \textcolor{comment}{   *}}
+\DoxyCodeLine{38 \textcolor{comment}{   *   -\/ Family types are not fully specific in the FTC\_Family type, but}}
+\DoxyCodeLine{39 \textcolor{comment}{   *     by classes that extend it.}}
+\DoxyCodeLine{40 \textcolor{comment}{   *}}
+\DoxyCodeLine{41 \textcolor{comment}{   *  Note that both FTC\_ImageCache and FTC\_SBitCache extend FTC\_GCache.}}
+\DoxyCodeLine{42 \textcolor{comment}{   *  They share an FTC\_Family sub-\/class called FTC\_BasicFamily which is}}
+\DoxyCodeLine{43 \textcolor{comment}{   *  used to store the following data: face ID, pixel/point sizes, load}}
+\DoxyCodeLine{44 \textcolor{comment}{   *  flags.  For more details see the file `src/cache/ftcbasic.c'.}}
+\DoxyCodeLine{45 \textcolor{comment}{   *}}
+\DoxyCodeLine{46 \textcolor{comment}{   *  Client applications can extend FTC\_GNode with their own FTC\_GNode}}
+\DoxyCodeLine{47 \textcolor{comment}{   *  and FTC\_Family sub-\/classes to implement more complex caches (e.g.,}}
+\DoxyCodeLine{48 \textcolor{comment}{   *  handling automatic synthesis, like obliquing \& emboldening, colored}}
+\DoxyCodeLine{49 \textcolor{comment}{   *  glyphs, etc.).}}
+\DoxyCodeLine{50 \textcolor{comment}{   *}}
+\DoxyCodeLine{51 \textcolor{comment}{   *  See also the FTC\_ICache \& FTC\_SCache classes in `ftcimage.h' and}}
+\DoxyCodeLine{52 \textcolor{comment}{   *  `ftcsbits.h', which both extend FTC\_GCache with additional}}
+\DoxyCodeLine{53 \textcolor{comment}{   *  optimizations.}}
+\DoxyCodeLine{54 \textcolor{comment}{   *}}
+\DoxyCodeLine{55 \textcolor{comment}{   *  A typical FTC\_GCache implementation must provide at least the}}
+\DoxyCodeLine{56 \textcolor{comment}{   *  following:}}
+\DoxyCodeLine{57 \textcolor{comment}{   *}}
+\DoxyCodeLine{58 \textcolor{comment}{   *  -\/ FTC\_GNode sub-\/class, e.g. MyNode, with relevant methods:}}
+\DoxyCodeLine{59 \textcolor{comment}{   *        my\_node\_new            (must call FTC\_GNode\_Init)}}
+\DoxyCodeLine{60 \textcolor{comment}{   *        my\_node\_free           (must call FTC\_GNode\_Done)}}
+\DoxyCodeLine{61 \textcolor{comment}{   *        my\_node\_compare        (must call FTC\_GNode\_Compare)}}
+\DoxyCodeLine{62 \textcolor{comment}{   *        my\_node\_remove\_faceid  (must call ftc\_gnode\_unselect in case}}
+\DoxyCodeLine{63 \textcolor{comment}{   *                                of match)}}
+\DoxyCodeLine{64 \textcolor{comment}{   *}}
+\DoxyCodeLine{65 \textcolor{comment}{   *  -\/ FTC\_Family sub-\/class, e.g. MyFamily, with relevant methods:}}
+\DoxyCodeLine{66 \textcolor{comment}{   *        my\_family\_compare}}
+\DoxyCodeLine{67 \textcolor{comment}{   *        my\_family\_init}}
+\DoxyCodeLine{68 \textcolor{comment}{   *        my\_family\_reset (optional)}}
+\DoxyCodeLine{69 \textcolor{comment}{   *        my\_family\_done}}
+\DoxyCodeLine{70 \textcolor{comment}{   *}}
+\DoxyCodeLine{71 \textcolor{comment}{   *  -\/ FTC\_GQuery sub-\/class, e.g. MyQuery, to hold cache-\/specific query}}
+\DoxyCodeLine{72 \textcolor{comment}{   *    data.}}
+\DoxyCodeLine{73 \textcolor{comment}{   *}}
+\DoxyCodeLine{74 \textcolor{comment}{   *  -\/ Constant structures for a FTC\_GNodeClass.}}
+\DoxyCodeLine{75 \textcolor{comment}{   *}}
+\DoxyCodeLine{76 \textcolor{comment}{   *  -\/ MyCacheNew() can be implemented easily as a call to the convenience}}
+\DoxyCodeLine{77 \textcolor{comment}{   *    function FTC\_GCache\_New.}}
+\DoxyCodeLine{78 \textcolor{comment}{   *}}
+\DoxyCodeLine{79 \textcolor{comment}{   *  -\/ MyCacheLookup with a call to FTC\_GCache\_Lookup.  This function will}}
+\DoxyCodeLine{80 \textcolor{comment}{   *    automatically:}}
+\DoxyCodeLine{81 \textcolor{comment}{   *}}
+\DoxyCodeLine{82 \textcolor{comment}{   *    -\/ Search for the corresponding family in the cache, or create}}
+\DoxyCodeLine{83 \textcolor{comment}{   *      a new one if necessary.  Put it in FTC\_GQUERY(myquery).family}}
+\DoxyCodeLine{84 \textcolor{comment}{   *}}
+\DoxyCodeLine{85 \textcolor{comment}{   *    -\/ Call FTC\_Cache\_Lookup.}}
+\DoxyCodeLine{86 \textcolor{comment}{   *}}
+\DoxyCodeLine{87 \textcolor{comment}{   *    If it returns NULL, you should create a new node, then call}}
+\DoxyCodeLine{88 \textcolor{comment}{   *    ftc\_cache\_add as usual.}}
+\DoxyCodeLine{89 \textcolor{comment}{   */}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{93   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{94   \textcolor{comment}{/* Important: The functions defined in this file are only used to        */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*            implement an abstract glyph cache class.  You need to      */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*            provide additional logic to implement a complete cache.    */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{98 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{102 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{103 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{104 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{105 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{106 \textcolor{comment}{  /*********                                                       *********/}}
+\DoxyCodeLine{107 \textcolor{comment}{  /*********             WARNING, THIS IS BETA CODE.               *********/}}
+\DoxyCodeLine{108 \textcolor{comment}{  /*********                                                       *********/}}
+\DoxyCodeLine{109 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{110 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{111 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{112 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{113 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#ifndef \_\_FTCGLYPH\_H\_\_}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#define \_\_FTCGLYPH\_H\_\_}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#include FT\_CACHE\_INTERNAL\_MANAGER\_H}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127  \textcolor{comment}{/*}}
+\DoxyCodeLine{128 \textcolor{comment}{  *  We can group glyphs into `families'.  Each family correspond to a}}
+\DoxyCodeLine{129 \textcolor{comment}{  *  given face ID, character size, transform, etc.}}
+\DoxyCodeLine{130 \textcolor{comment}{  *}}
+\DoxyCodeLine{131 \textcolor{comment}{  *  Families are implemented as MRU list nodes.  They are}}
+\DoxyCodeLine{132 \textcolor{comment}{  *  reference-\/counted.}}
+\DoxyCodeLine{133 \textcolor{comment}{  */}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___family_rec__}{FTC\_FamilyRec\_}}}
+\DoxyCodeLine{136   \{}
+\DoxyCodeLine{137     \mbox{\hyperlink{struct_f_t_c___mru_node_rec__}{FTC\_MruNodeRec}}    mrunode;}
+\DoxyCodeLine{138     FT\_UInt           num\_nodes; \textcolor{comment}{/* current number of nodes in this family */}}
+\DoxyCodeLine{139     FTC\_Cache         cache;}
+\DoxyCodeLine{140     FTC\_MruListClass  clazz;}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142   \} FTC\_FamilyRec, *FTC\_Family;}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#define  FTC\_FAMILY(x)    ( (FTC\_Family)(x) )}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define  FTC\_FAMILY\_P(x)  ( (FTC\_Family*)(x) )}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___g_node_rec__}{FTC\_GNodeRec\_}}}
+\DoxyCodeLine{149   \{}
+\DoxyCodeLine{150     \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_NodeRec}}      node;}
+\DoxyCodeLine{151     FTC\_Family       family;}
+\DoxyCodeLine{152     FT\_UInt          gindex;}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154   \} \mbox{\hyperlink{struct_f_t_c___g_node_rec__}{FTC\_GNodeRec}}, *\mbox{\hyperlink{struct_f_t_c___g_node_rec__}{FTC\_GNode}};}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define FTC\_GNODE( x )    ( (FTC\_GNode)(x) )}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define FTC\_GNODE\_P( x )  ( (FTC\_GNode*)(x) )}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___g_query_rec__}{FTC\_GQueryRec\_}}}
+\DoxyCodeLine{161   \{}
+\DoxyCodeLine{162     FT\_UInt      gindex;}
+\DoxyCodeLine{163     FTC\_Family   family;}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165   \} \mbox{\hyperlink{struct_f_t_c___g_query_rec__}{FTC\_GQueryRec}}, *\mbox{\hyperlink{struct_f_t_c___g_query_rec__}{FTC\_GQuery}};}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define FTC\_GQUERY( x )  ( (FTC\_GQuery)(x) )}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/* These functions are exported so that they can be called from          */}}
+\DoxyCodeLine{173   \textcolor{comment}{/* user-\/provided cache classes; otherwise, they are really part of the   */}}
+\DoxyCodeLine{174   \textcolor{comment}{/* cache sub-\/system internals.                                           */}}
+\DoxyCodeLine{175   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177   \textcolor{comment}{/* must be called by derived FTC\_Node\_InitFunc routines */}}
+\DoxyCodeLine{178   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{179   FTC\_GNode\_Init( \mbox{\hyperlink{struct_f_t_c___g_node_rec__}{FTC\_GNode}}   node,}
+\DoxyCodeLine{180                   FT\_UInt     gindex,  \textcolor{comment}{/* glyph index for node */}}
+\DoxyCodeLine{181                   FTC\_Family  family );}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183   \textcolor{comment}{/* returns TRUE iff the query's glyph index correspond to the node;  */}}
+\DoxyCodeLine{184   \textcolor{comment}{/* this assumes that the "{}family"{} and "{}hash"{} fields of the query are */}}
+\DoxyCodeLine{185   \textcolor{comment}{/* already correctly set                                             */}}
+\DoxyCodeLine{186   FT\_EXPORT( FT\_Bool )}
+\DoxyCodeLine{187   FTC\_GNode\_Compare( \mbox{\hyperlink{struct_f_t_c___g_node_rec__}{FTC\_GNode}}   gnode,}
+\DoxyCodeLine{188                      \mbox{\hyperlink{struct_f_t_c___g_query_rec__}{FTC\_GQuery}}  gquery );}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190   \textcolor{comment}{/* call this function to clear a node's family -\/-\/ this is necessary */}}
+\DoxyCodeLine{191   \textcolor{comment}{/* to implement the `node\_remove\_faceid' cache method correctly     */}}
+\DoxyCodeLine{192   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{193   FTC\_GNode\_UnselectFamily( \mbox{\hyperlink{struct_f_t_c___g_node_rec__}{FTC\_GNode}}  gnode,}
+\DoxyCodeLine{194                             FTC\_Cache  cache );}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196   \textcolor{comment}{/* must be called by derived FTC\_Node\_DoneFunc routines */}}
+\DoxyCodeLine{197   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{198   FTC\_GNode\_Done( \mbox{\hyperlink{struct_f_t_c___g_node_rec__}{FTC\_GNode}}  node,}
+\DoxyCodeLine{199                   FTC\_Cache  cache );}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{203   FTC\_Family\_Init( FTC\_Family  family,}
+\DoxyCodeLine{204                    FTC\_Cache   cache );}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___g_cache_rec__}{FTC\_GCacheRec\_}}}
+\DoxyCodeLine{207   \{}
+\DoxyCodeLine{208     \mbox{\hyperlink{struct_f_t_c___cache_rec__}{FTC\_CacheRec}}    cache;}
+\DoxyCodeLine{209     \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruListRec}}  families;}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211   \} \mbox{\hyperlink{struct_f_t_c___g_cache_rec__}{FTC\_GCacheRec}}, *\mbox{\hyperlink{struct_f_t_c___g_cache_rec__}{FTC\_GCache}};}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{preprocessor}{\#define FTC\_GCACHE( x )  ((FTC\_GCache)(x))}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216   \textcolor{comment}{/* can be used as @FTC\_Cache\_InitFunc */}}
+\DoxyCodeLine{217   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{218   FTC\_GCache\_Init( \mbox{\hyperlink{struct_f_t_c___g_cache_rec__}{FTC\_GCache}}  cache );}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221   \textcolor{comment}{/* can be used as @FTC\_Cache\_DoneFunc */}}
+\DoxyCodeLine{222   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{223   FTC\_GCache\_Done( \mbox{\hyperlink{struct_f_t_c___g_cache_rec__}{FTC\_GCache}}  cache );}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226   \textcolor{comment}{/* the glyph cache class adds fields for the family implementation */}}
+\DoxyCodeLine{227   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___g_cache_class_rec__}{FTC\_GCacheClassRec\_}}}
+\DoxyCodeLine{228   \{}
+\DoxyCodeLine{229     \mbox{\hyperlink{struct_f_t_c___cache_class_rec__}{FTC\_CacheClassRec}}  clazz;}
+\DoxyCodeLine{230     FTC\_MruListClass   family\_class;}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232   \} \mbox{\hyperlink{struct_f_t_c___g_cache_class_rec__}{FTC\_GCacheClassRec}};}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t_c___g_cache_class_rec__}{FTC\_GCacheClassRec}}*   \mbox{\hyperlink{struct_f_t_c___g_cache_class_rec__}{FTC\_GCacheClass}};}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 \textcolor{preprocessor}{\#define FTC\_GCACHE\_CLASS( x )  ((FTC\_GCacheClass)(x))}}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238 \textcolor{preprocessor}{\#define FTC\_CACHE\_\_GCACHE\_CLASS( x ) \(\backslash\)}}
+\DoxyCodeLine{239 \textcolor{preprocessor}{          FTC\_GCACHE\_CLASS( FTC\_CACHE(x)-\/>org\_class )}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#define FTC\_CACHE\_\_FAMILY\_CLASS( x ) \(\backslash\)}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{          ( (FTC\_MruListClass)FTC\_CACHE\_\_GCACHE\_CLASS( x )-\/>family\_class )}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244   \textcolor{comment}{/* convenience function; use it instead of FTC\_Manager\_Register\_Cache */}}
+\DoxyCodeLine{245   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{246   FTC\_GCache\_New( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}       manager,}
+\DoxyCodeLine{247                   \mbox{\hyperlink{struct_f_t_c___g_cache_class_rec__}{FTC\_GCacheClass}}   clazz,}
+\DoxyCodeLine{248                   \mbox{\hyperlink{struct_f_t_c___g_cache_rec__}{FTC\_GCache}}       *acache );}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{251   FTC\_GCache\_Lookup( \mbox{\hyperlink{struct_f_t_c___g_cache_rec__}{FTC\_GCache}}   cache,}
+\DoxyCodeLine{252                      FT\_UInt32    hash,}
+\DoxyCodeLine{253                      FT\_UInt      gindex,}
+\DoxyCodeLine{254                      \mbox{\hyperlink{struct_f_t_c___g_query_rec__}{FTC\_GQuery}}   query,}
+\DoxyCodeLine{255                      \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}    *anode );}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258   \textcolor{comment}{/* */}}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261 \textcolor{preprocessor}{\#define FTC\_FAMILY\_FREE( family, cache )                      \(\backslash\)}}
+\DoxyCodeLine{262 \textcolor{preprocessor}{          FTC\_MruList\_Remove( \&FTC\_GCACHE((cache))-\/>families, \(\backslash\)}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{                              (FTC\_MruNode)(family) )}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266 \textcolor{preprocessor}{\#ifdef FTC\_INLINE}}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268 \textcolor{preprocessor}{\#define FTC\_GCACHE\_LOOKUP\_CMP( cache, famcmp, nodecmp, hash,                \(\backslash\)}}
+\DoxyCodeLine{269 \textcolor{preprocessor}{                               gindex, query, node, error )                 \(\backslash\)}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                                            \(\backslash\)}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{    FTC\_GCache               \_gcache   = FTC\_GCACHE( cache );               \(\backslash\)}}
+\DoxyCodeLine{272 \textcolor{preprocessor}{    FTC\_GQuery               \_gquery   = (FTC\_GQuery)( query );             \(\backslash\)}}
+\DoxyCodeLine{273 \textcolor{preprocessor}{    FTC\_MruNode\_CompareFunc  \_fcompare = (FTC\_MruNode\_CompareFunc)(famcmp); \(\backslash\)}}
+\DoxyCodeLine{274 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{275 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{    \_gquery-\/>gindex = (gindex);                                             \(\backslash\)}}
+\DoxyCodeLine{277 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{278 \textcolor{preprocessor}{    FTC\_MRULIST\_LOOKUP\_CMP( \&\_gcache-\/>families, \_gquery, \_fcompare,         \(\backslash\)}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{                            \_gquery-\/>family, error );                       \(\backslash\)}}
+\DoxyCodeLine{280 \textcolor{preprocessor}{    if ( !error )                                                           \(\backslash\)}}
+\DoxyCodeLine{281 \textcolor{preprocessor}{    \{                                                                       \(\backslash\)}}
+\DoxyCodeLine{282 \textcolor{preprocessor}{      FTC\_Family  \_gqfamily = \_gquery-\/>family;                              \(\backslash\)}}
+\DoxyCodeLine{283 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{284 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{285 \textcolor{preprocessor}{      \_gqfamily-\/>num\_nodes++;                                               \(\backslash\)}}
+\DoxyCodeLine{286 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{287 \textcolor{preprocessor}{      FTC\_CACHE\_LOOKUP\_CMP( cache, nodecmp, hash, query, node, error );     \(\backslash\)}}
+\DoxyCodeLine{288 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{289 \textcolor{preprocessor}{      if ( -\/-\/\_gqfamily-\/>num\_nodes == 0 )                                    \(\backslash\)}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{        FTC\_FAMILY\_FREE( \_gqfamily, \_gcache );                              \(\backslash\)}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{    \}                                                                       \(\backslash\)}}
+\DoxyCodeLine{292 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{293   \textcolor{comment}{/* */}}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* !FTC\_INLINE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297 \textcolor{preprocessor}{\#define FTC\_GCACHE\_LOOKUP\_CMP( cache, famcmp, nodecmp, hash,               \(\backslash\)}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{                               gindex, query, node, error )                \(\backslash\)}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{   FT\_BEGIN\_STMNT                                                          \(\backslash\)}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{     error = FTC\_GCache\_Lookup( FTC\_GCACHE( cache ), hash, gindex,         \(\backslash\)}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{                                FTC\_GQUERY( query ), (FTC\_Node*)\&(node) ); \(\backslash\)}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{   FT\_END\_STMNT}}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FTC\_INLINE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307 FT\_END\_HEADER}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309 }
+\DoxyCodeLine{310 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCGLYPH\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

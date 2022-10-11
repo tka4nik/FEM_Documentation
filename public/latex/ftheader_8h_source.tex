@@ -1,0 +1,599 @@
+\hypertarget{ftheader_8h_source}{}\doxysection{ftheader.\+h}
+\label{ftheader_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/config/ftheader.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/config/ftheader.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftheader.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Build macros of the FreeType 2 library.                              */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003, 2004 by                               */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef \_\_FT\_HEADER\_H\_\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define \_\_FT\_HEADER\_H\_\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22   \textcolor{comment}{/*@***********************************************************************/}}
+\DoxyCodeLine{23   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{24   \textcolor{comment}{/* <Macro>                                                               */}}
+\DoxyCodeLine{25   \textcolor{comment}{/*    FT\_BEGIN\_HEADER                                                    */}}
+\DoxyCodeLine{26   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{27   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{28   \textcolor{comment}{/*    This macro is used in association with @FT\_END\_HEADER in header    */}}
+\DoxyCodeLine{29   \textcolor{comment}{/*    files to ensure that the declarations within are properly          */}}
+\DoxyCodeLine{30   \textcolor{comment}{/*    encapsulated in an `extern "{}C"{} \{ .. \}' block when included from a  */}}
+\DoxyCodeLine{31   \textcolor{comment}{/*    C++ compiler.                                                      */}}
+\DoxyCodeLine{32   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define FT\_BEGIN\_HEADER  extern "{}C"{}} \{}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define FT\_BEGIN\_HEADER  }\textcolor{comment}{/* nothing */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   \textcolor{comment}{/*@***********************************************************************/}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Macro>                                                               */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    FT\_END\_HEADER                                                      */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    This macro is used in association with @FT\_BEGIN\_HEADER in header  */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    files to ensure that the declarations within are properly          */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    encapsulated in an `extern "{}C"{} \{ .. \}' block when included from a  */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    C++ compiler.                                                      */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define FT\_END\_HEADER  \}}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define FT\_END\_HEADER  }\textcolor{comment}{/* nothing */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{59   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{60   \textcolor{comment}{/* Aliases for the FreeType 2 public and configuration files.            */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{62 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{65   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{66   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*    header\_file\_macros                                                 */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{69   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*    Header File Macros                                                 */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{72   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*    Macro definitions used to \#include specific header files.          */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{75   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*    The following macros are defined to the name of specific           */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*    FreeType 2 header files.  They can be used directly in \#include    */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*    statements as in:                                                  */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*    \{                                                                  */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*      \#include FT\_FREETYPE\_H                                           */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*      \#include FT\_MULTIPLE\_MASTERS\_H                                   */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*      \#include FT\_GLYPH\_H                                              */}}
+\DoxyCodeLine{84   \textcolor{comment}{/*    \}                                                                  */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*    There are several reasons why we are now using macros to name      */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*    public header files.  The first one is that such macros are not    */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*    limited to the infamous 8.3 naming rule required by DOS (and       */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*    `FT\_MULTIPLE\_MASTERS\_H' is a lot more meaningful than `ftmm.h').   */}}
+\DoxyCodeLine{90   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*    The second reason is that is allows for more flexibility in the    */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*    way FreeType 2 is installed on a given system.                     */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{94 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97   \textcolor{comment}{/* configuration files */}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{100   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{101   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*    FT\_CONFIG\_CONFIG\_H                                                 */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{104   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*    FreeType 2 configuration data.                                     */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#ifndef FT\_CONFIG\_CONFIG\_H}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define FT\_CONFIG\_CONFIG\_H  <freetype/config/ftconfig.h>}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{114   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{115   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*    FT\_CONFIG\_STANDARD\_LIBRARY\_H                                       */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{118   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    FreeType 2 configuration data.                                     */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#ifndef FT\_CONFIG\_STANDARD\_LIBRARY\_H}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define FT\_CONFIG\_STANDARD\_LIBRARY\_H  <freetype/config/ftstdlib.h>}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{128   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{129   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*    FT\_CONFIG\_OPTIONS\_H                                                */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{132   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*    FreeType 2 project-\/specific configuration options.                 */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#ifndef FT\_CONFIG\_OPTIONS\_H}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#define FT\_CONFIG\_OPTIONS\_H  <freetype/config/ftoption.h>}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{143   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*    FT\_CONFIG\_MODULES\_H                                                */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{146   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*    the list of FreeType 2 modules that are statically linked to new   */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*    library instances in @FT\_Init\_FreeType.                            */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#ifndef FT\_CONFIG\_MODULES\_H}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#define FT\_CONFIG\_MODULES\_H  <freetype/config/ftmodule.h>}}
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156   \textcolor{comment}{/* public headers */}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{159   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{160   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*    FT\_FREETYPE\_H                                                      */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{163   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*    the base FreeType 2 API.                                           */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define FT\_FREETYPE\_H  <freetype/freetype.h>}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*    FT\_ERRORS\_H                                                        */}}
+\DoxyCodeLine{174   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{175   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*    the list of FreeType 2 error codes (and messages).                 */}}
+\DoxyCodeLine{178   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*    It is included by @FT\_FREETYPE\_H.                                  */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define FT\_ERRORS\_H  <freetype/fterrors.h>}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{185   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{186   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*    FT\_MODULE\_ERRORS\_H                                                 */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{189   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{190   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{191   \textcolor{comment}{/*    the list of FreeType 2 module error offsets (and messages).        */}}
+\DoxyCodeLine{192   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#define FT\_MODULE\_ERRORS\_H  <freetype/ftmoderr.h>}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{197   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{198   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*    FT\_SYSTEM\_H                                                        */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{201   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{202   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{203   \textcolor{comment}{/*    the FreeType 2 interface to low-\/level operations (i.e. memory      */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*    management and stream i/o).                                        */}}
+\DoxyCodeLine{205   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{206   \textcolor{comment}{/*    It is included by @FT\_FREETYPE\_H.                                  */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#define FT\_SYSTEM\_H  <freetype/ftsystem.h>}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{212   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{213   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{214   \textcolor{comment}{/*    FT\_IMAGE\_H                                                         */}}
+\DoxyCodeLine{215   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{216   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{217   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{218   \textcolor{comment}{/*    types definitions related to glyph images (i.e. bitmaps, outlines, */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    scan-\/converter parameters).                                        */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*    It is included by @FT\_FREETYPE\_H.                                  */}}
+\DoxyCodeLine{222   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{\#define FT\_IMAGE\_H  <freetype/ftimage.h>}}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{227   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{228   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{229   \textcolor{comment}{/*    FT\_TYPES\_H                                                         */}}
+\DoxyCodeLine{230   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{231   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{232   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{233   \textcolor{comment}{/*    the basic data types defined by FreeType 2.                        */}}
+\DoxyCodeLine{234   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{235   \textcolor{comment}{/*    It is included by @FT\_FREETYPE\_H.                                  */}}
+\DoxyCodeLine{236   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{\#define FT\_TYPES\_H  <freetype/fttypes.h>}}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{241   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{242   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{243   \textcolor{comment}{/*    FT\_LIST\_H                                                          */}}
+\DoxyCodeLine{244   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{245   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{246   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*    the list management API of FreeType 2.                             */}}
+\DoxyCodeLine{248   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{249   \textcolor{comment}{/*    (Most applications will never need to include this file.)          */}}
+\DoxyCodeLine{250   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{\#define FT\_LIST\_H  <freetype/ftlist.h>}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{255   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{256   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{257   \textcolor{comment}{/*    FT\_OUTLINE\_H                                                       */}}
+\DoxyCodeLine{258   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{259   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{260   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*    the scalable outline management API of FreeType 2.                 */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#define FT\_OUTLINE\_H  <freetype/ftoutln.h>}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{267   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{268   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{269   \textcolor{comment}{/*    FT\_SIZES\_H                                                         */}}
+\DoxyCodeLine{270   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{271   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{272   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{273   \textcolor{comment}{/*    the API used to manage multiple @FT\_Size objects per face.         */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{275 \textcolor{preprocessor}{\#define FT\_SIZES\_H  <freetype/ftsizes.h>}}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{279   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{280   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{281   \textcolor{comment}{/*    FT\_MODULE\_H                                                        */}}
+\DoxyCodeLine{282   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{283   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{284   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{285   \textcolor{comment}{/*    the module management API of FreeType 2.                           */}}
+\DoxyCodeLine{286   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{287 \textcolor{preprocessor}{\#define FT\_MODULE\_H  <freetype/ftmodapi.h>}}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{291   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{292   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{293   \textcolor{comment}{/*    FT\_RENDER\_H                                                        */}}
+\DoxyCodeLine{294   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{295   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{296   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*    the renderer module management API of FreeType 2.                  */}}
+\DoxyCodeLine{298   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#define FT\_RENDER\_H  <freetype/ftrender.h>}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{303   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{304   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*    FT\_TYPE1\_TABLES\_H                                                  */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{307   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{308   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{309   \textcolor{comment}{/*    the types and API specific to the Type 1 format.                   */}}
+\DoxyCodeLine{310   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{311 \textcolor{preprocessor}{\#define FT\_TYPE1\_TABLES\_H  <freetype/t1tables.h>}}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{315   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{316   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{317   \textcolor{comment}{/*    FT\_TRUETYPE\_IDS\_H                                                  */}}
+\DoxyCodeLine{318   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{319   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{320   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{321   \textcolor{comment}{/*    the enumeration values used to identify name strings, languages,   */}}
+\DoxyCodeLine{322   \textcolor{comment}{/*    encodings, etc.  This file really contains a \_large\_ set of        */}}
+\DoxyCodeLine{323   \textcolor{comment}{/*    constant macro definitions, taken from the TrueType and OpenType   */}}
+\DoxyCodeLine{324   \textcolor{comment}{/*    specifications.                                                    */}}
+\DoxyCodeLine{325   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#define FT\_TRUETYPE\_IDS\_H  <freetype/ttnameid.h>}}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{330   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{331   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{332   \textcolor{comment}{/*    FT\_TRUETYPE\_TABLES\_H                                               */}}
+\DoxyCodeLine{333   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{334   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{335   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{336   \textcolor{comment}{/*    the types and API specific to the TrueType (as well as OpenType)   */}}
+\DoxyCodeLine{337   \textcolor{comment}{/*    format.                                                            */}}
+\DoxyCodeLine{338   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{339 \textcolor{preprocessor}{\#define FT\_TRUETYPE\_TABLES\_H  <freetype/tttables.h>}}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{343   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{344   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{345   \textcolor{comment}{/*    FT\_TRUETYPE\_TAGS\_H                                                 */}}
+\DoxyCodeLine{346   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{347   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{348   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{349   \textcolor{comment}{/*    the definitions of TrueType 4-\/byte `tags' used to identify blocks  */}}
+\DoxyCodeLine{350   \textcolor{comment}{/*    in SFNT-\/based font formats (i.e. TrueType and OpenType).           */}}
+\DoxyCodeLine{351   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{352 \textcolor{preprocessor}{\#define FT\_TRUETYPE\_TAGS\_H  <freetype/tttags.h>}}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{356   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{357   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{358   \textcolor{comment}{/*    FT\_BDF\_H                                                           */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{360   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{361   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{362   \textcolor{comment}{/*    the definitions of an API to access BDF-\/specific strings from a    */}}
+\DoxyCodeLine{363   \textcolor{comment}{/*    face.                                                              */}}
+\DoxyCodeLine{364   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{365 \textcolor{preprocessor}{\#define FT\_BDF\_H  <freetype/ftbdf.h>}}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367 }
+\DoxyCodeLine{368 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{369   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{370   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{371   \textcolor{comment}{/*    FT\_GZIP\_H                                                          */}}
+\DoxyCodeLine{372   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{373   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{374   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{375   \textcolor{comment}{/*    the definitions of an API to support for gzip-\/compressed files.    */}}
+\DoxyCodeLine{376   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{377 \textcolor{preprocessor}{\#define FT\_GZIP\_H  <freetype/ftgzip.h>}}
+\DoxyCodeLine{378 }
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{381   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{382   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{383   \textcolor{comment}{/*    FT\_LZW\_H                                                           */}}
+\DoxyCodeLine{384   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{385   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{386   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{387   \textcolor{comment}{/*    the definitions of an API to support for LZW-\/compressed files.     */}}
+\DoxyCodeLine{388   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#define FT\_LZW\_H  <freetype/ftlzw.h>}}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{393   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{394   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{395   \textcolor{comment}{/*    FT\_WINFONTS\_H                                                      */}}
+\DoxyCodeLine{396   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{397   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{398   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{399   \textcolor{comment}{/*    the definitions of an API to support Windows .FNT files            */}}
+\DoxyCodeLine{400   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#define FT\_WINFONTS\_H   <freetype/ftwinfnt.h>}}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{405   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{406   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{407   \textcolor{comment}{/*    FT\_GLYPH\_H                                                         */}}
+\DoxyCodeLine{408   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{409   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{410   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{411   \textcolor{comment}{/*    the API of the optional glyph management component.                */}}
+\DoxyCodeLine{412   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{413 \textcolor{preprocessor}{\#define FT\_GLYPH\_H  <freetype/ftglyph.h>}}
+\DoxyCodeLine{414 }
+\DoxyCodeLine{415 }
+\DoxyCodeLine{416 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{417   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{418   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{419   \textcolor{comment}{/*    FT\_BITMAP\_H                                                        */}}
+\DoxyCodeLine{420   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{421   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{422   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{423   \textcolor{comment}{/*    the API of the optional bitmap conversion component.               */}}
+\DoxyCodeLine{424   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{425 \textcolor{preprocessor}{\#define FT\_BITMAP\_H  <freetype/ftbitmap.h>}}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427 }
+\DoxyCodeLine{428 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{429   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{430   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{431   \textcolor{comment}{/*    FT\_BBOX\_H                                                          */}}
+\DoxyCodeLine{432   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{433   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{434   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{435   \textcolor{comment}{/*    the API of the optional exact bounding box computation routines.   */}}
+\DoxyCodeLine{436   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#define FT\_BBOX\_H  <freetype/ftbbox.h>}}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{441   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{442   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{443   \textcolor{comment}{/*    FT\_CACHE\_H                                                         */}}
+\DoxyCodeLine{444   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{445   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{446   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{447   \textcolor{comment}{/*    the API of the optional FreeType 2 cache sub-\/system.               */}}
+\DoxyCodeLine{448   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{449 \textcolor{preprocessor}{\#define FT\_CACHE\_H  <freetype/ftcache.h>}}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{451 }
+\DoxyCodeLine{452 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{453   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{454   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{455   \textcolor{comment}{/*    FT\_CACHE\_IMAGE\_H                                                   */}}
+\DoxyCodeLine{456   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{457   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{458   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{459   \textcolor{comment}{/*    the `glyph image' API of the FreeType 2 cache sub-\/system.          */}}
+\DoxyCodeLine{460   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{461   \textcolor{comment}{/*    It is used to define a cache for @FT\_Glyph elements.  You can also */}}
+\DoxyCodeLine{462   \textcolor{comment}{/*    see the API defined in @FT\_CACHE\_SMALL\_BITMAPS\_H if you only need  */}}
+\DoxyCodeLine{463   \textcolor{comment}{/*    to store small glyph bitmaps, as it will use less memory.          */}}
+\DoxyCodeLine{464   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{465   \textcolor{comment}{/*    This macro is deprecated.  Simply include @FT\_CACHE\_H to have all  */}}
+\DoxyCodeLine{466   \textcolor{comment}{/*    glyph image-\/related cache declarations.                            */}}
+\DoxyCodeLine{467   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{468 \textcolor{preprocessor}{\#define FT\_CACHE\_IMAGE\_H  FT\_CACHE\_H}}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{470 }
+\DoxyCodeLine{471 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{472   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{473   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{474   \textcolor{comment}{/*    FT\_CACHE\_SMALL\_BITMAPS\_H                                           */}}
+\DoxyCodeLine{475   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{476   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{477   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{478   \textcolor{comment}{/*    the `small bitmaps' API of the FreeType 2 cache sub-\/system.        */}}
+\DoxyCodeLine{479   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{480   \textcolor{comment}{/*    It is used to define a cache for small glyph bitmaps in a          */}}
+\DoxyCodeLine{481   \textcolor{comment}{/*    relatively memory-\/efficient way.  You can also use the API defined */}}
+\DoxyCodeLine{482   \textcolor{comment}{/*    in @FT\_CACHE\_IMAGE\_H if you want to cache arbitrary glyph images,  */}}
+\DoxyCodeLine{483   \textcolor{comment}{/*    including scalable outlines.                                       */}}
+\DoxyCodeLine{484   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{485   \textcolor{comment}{/*    This macro is deprecated.  Simply include @FT\_CACHE\_H to have all  */}}
+\DoxyCodeLine{486   \textcolor{comment}{/*    small bitmaps-\/related cache declarations.                          */}}
+\DoxyCodeLine{487   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{488 \textcolor{preprocessor}{\#define FT\_CACHE\_SMALL\_BITMAPS\_H  FT\_CACHE\_H}}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{490 }
+\DoxyCodeLine{491 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{492   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{493   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{494   \textcolor{comment}{/*    FT\_CACHE\_CHARMAP\_H                                                 */}}
+\DoxyCodeLine{495   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{496   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{497   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{498   \textcolor{comment}{/*    the `charmap' API of the FreeType 2 cache sub-\/system.              */}}
+\DoxyCodeLine{499   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{500   \textcolor{comment}{/*    This macro is deprecated.  Simply include @FT\_CACHE\_H to have all  */}}
+\DoxyCodeLine{501   \textcolor{comment}{/*    charmap-\/based cache declarations.                                  */}}
+\DoxyCodeLine{502   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{503 \textcolor{preprocessor}{\#define FT\_CACHE\_CHARMAP\_H     FT\_CACHE\_H}}
+\DoxyCodeLine{504 }
+\DoxyCodeLine{505 }
+\DoxyCodeLine{506 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{507   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{508   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{509   \textcolor{comment}{/*    FT\_MAC\_H                                                           */}}
+\DoxyCodeLine{510   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{511   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{512   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{513   \textcolor{comment}{/*    the Macintosh-\/specific FreeType 2 API. The latter is used to       */}}
+\DoxyCodeLine{514   \textcolor{comment}{/*    access fonts embedded in resource forks.                           */}}
+\DoxyCodeLine{515   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{516   \textcolor{comment}{/*    This header file must be explicitly included by client             */}}
+\DoxyCodeLine{517   \textcolor{comment}{/*    applications compiled on the Mac (note that the base API still     */}}
+\DoxyCodeLine{518   \textcolor{comment}{/*    works though).                                                     */}}
+\DoxyCodeLine{519   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{520 \textcolor{preprocessor}{\#define FT\_MAC\_H  <freetype/ftmac.h>}}
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522 }
+\DoxyCodeLine{523 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{524   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{525   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{526   \textcolor{comment}{/*    FT\_MULTIPLE\_MASTERS\_H                                              */}}
+\DoxyCodeLine{527   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{528   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{529   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{530   \textcolor{comment}{/*    the optional multiple-\/masters management API of FreeType 2.        */}}
+\DoxyCodeLine{531   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{532 \textcolor{preprocessor}{\#define FT\_MULTIPLE\_MASTERS\_H  <freetype/ftmm.h>}}
+\DoxyCodeLine{533 }
+\DoxyCodeLine{534 }
+\DoxyCodeLine{535 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{536   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{537   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{538   \textcolor{comment}{/*    FT\_SFNT\_NAMES\_H                                                    */}}
+\DoxyCodeLine{539   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{540   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{541   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{542   \textcolor{comment}{/*    the optional FreeType 2 API used to access embedded `name' strings */}}
+\DoxyCodeLine{543   \textcolor{comment}{/*    in SFNT-\/based font formats (i.e. TrueType and OpenType).           */}}
+\DoxyCodeLine{544   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{545 \textcolor{preprocessor}{\#define FT\_SFNT\_NAMES\_H  <freetype/ftsnames.h>}}
+\DoxyCodeLine{546 }
+\DoxyCodeLine{547 }
+\DoxyCodeLine{548 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{549   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{550   \textcolor{comment}{/* @macro:                                                               */}}
+\DoxyCodeLine{551   \textcolor{comment}{/*    FT\_OPENTYPE\_VALIDATE\_H                                             */}}
+\DoxyCodeLine{552   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{553   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{554   \textcolor{comment}{/*    A macro used in \#include statements to name the file containing    */}}
+\DoxyCodeLine{555   \textcolor{comment}{/*    the optional FreeType 2 API used to validate OpenType tables       */}}
+\DoxyCodeLine{556   \textcolor{comment}{/*    (BASE, GDEF, GPOS, GSUB, JSTF).                                    */}}
+\DoxyCodeLine{557   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{558 \textcolor{preprocessor}{\#define FT\_OPENTYPE\_VALIDATE\_H  <freetype/ftotval.h>}}
+\DoxyCodeLine{559 }
+\DoxyCodeLine{560 }
+\DoxyCodeLine{561   \textcolor{comment}{/* */}}
+\DoxyCodeLine{562 }
+\DoxyCodeLine{563 \textcolor{preprocessor}{\#define FT\_TRIGONOMETRY\_H       <freetype/fttrigon.h>}}
+\DoxyCodeLine{564 \textcolor{preprocessor}{\#define FT\_STROKER\_H            <freetype/ftstroke.h>}}
+\DoxyCodeLine{565 \textcolor{preprocessor}{\#define FT\_SYNTHESIS\_H          <freetype/ftsynth.h>}}
+\DoxyCodeLine{566 \textcolor{preprocessor}{\#define FT\_ERROR\_DEFINITIONS\_H  <freetype/fterrdef.h>}}
+\DoxyCodeLine{567 }
+\DoxyCodeLine{568 \textcolor{preprocessor}{\#define FT\_CACHE\_MANAGER\_H  <freetype/cache/ftcmanag.h>}}
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570 \textcolor{preprocessor}{\#define FT\_CACHE\_INTERNAL\_MRU\_H      <freetype/cache/ftcmru.h>}}
+\DoxyCodeLine{571 \textcolor{preprocessor}{\#define FT\_CACHE\_INTERNAL\_MANAGER\_H  <freetype/cache/ftcmanag.h>}}
+\DoxyCodeLine{572 \textcolor{preprocessor}{\#define FT\_CACHE\_INTERNAL\_CACHE\_H    <freetype/cache/ftccache.h>}}
+\DoxyCodeLine{573 \textcolor{preprocessor}{\#define FT\_CACHE\_INTERNAL\_GLYPH\_H    <freetype/cache/ftcglyph.h>}}
+\DoxyCodeLine{574 \textcolor{preprocessor}{\#define FT\_CACHE\_INTERNAL\_IMAGE\_H    <freetype/cache/ftcimage.h>}}
+\DoxyCodeLine{575 \textcolor{preprocessor}{\#define FT\_CACHE\_INTERNAL\_SBITS\_H    <freetype/cache/ftcsbits.h>}}
+\DoxyCodeLine{576 }
+\DoxyCodeLine{577 }
+\DoxyCodeLine{578 \textcolor{preprocessor}{\#define FT\_XFREE86\_H              <freetype/ftxf86.h>}}
+\DoxyCodeLine{579 }
+\DoxyCodeLine{580 \textcolor{preprocessor}{\#define FT\_INCREMENTAL\_H          <freetype/ftincrem.h>}}
+\DoxyCodeLine{581 }
+\DoxyCodeLine{582 \textcolor{preprocessor}{\#define FT\_TRUETYPE\_UNPATENTED\_H  <freetype/ttunpat.h>}}
+\DoxyCodeLine{583 }
+\DoxyCodeLine{584   \textcolor{comment}{/* now include internal headers definitions from <freetype/internal/...> */}}
+\DoxyCodeLine{585 }
+\DoxyCodeLine{586 \textcolor{preprocessor}{\#define  FT\_INTERNAL\_INTERNAL\_H  <freetype/internal/internal.h>}}
+\DoxyCodeLine{587 \textcolor{preprocessor}{\#include FT\_INTERNAL\_INTERNAL\_H}}
+\DoxyCodeLine{588 }
+\DoxyCodeLine{589 }
+\DoxyCodeLine{590 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FT2\_BUILD\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{591 }
+\DoxyCodeLine{592 }
+\DoxyCodeLine{593 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

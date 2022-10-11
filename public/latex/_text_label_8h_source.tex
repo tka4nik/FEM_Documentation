@@ -1,0 +1,57 @@
+\hypertarget{_text_label_8h_source}{}\doxysection{Text\+Label.\+h}
+\label{_text_label_8h_source}\index{831\_finite\_element\_modeling/GUI/source/GUI/TextLabel.h@{831\_finite\_element\_modeling/GUI/source/GUI/TextLabel.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <FTGL/FTGL.h>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <ftgl/FTFont.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ftgl/FTGLPolygonFont.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}glm/vec4.hpp"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}glm/vec2.hpp"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_text_label}{TextLabel}} \{}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     }
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} SetFont(FTFont* font);}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_text_label_a3d25fceaf1f29417349960f768f5d67e}{SetData}}(\textcolor{keywordtype}{size\_t} step, \textcolor{keywordtype}{double} time, std::string render\_mode\_name, \textcolor{keyword}{const} glm::vec2\& mouse\_pos);}
+\DoxyCodeLine{35     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_text_label_a3d25fceaf1f29417349960f768f5d67e}{SetData}}(\textcolor{keywordtype}{float} value, std::string field, \textcolor{keywordtype}{float} nodes\_val[3]);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{42     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_text_label_aef496e91b31536494d6ea33bf822d4c4}{SetColor}}(\textcolor{keyword}{const} glm::vec4\& text\_color, \textcolor{keyword}{const} glm::vec4\& backg\_color);}
+\DoxyCodeLine{47     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_text_label_ae6ffc8b6190f0d973d7822a18a0459aa}{SetPosition}}(\textcolor{keyword}{const} glm::vec2\& position);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_text_label_a229aab1eeabb5d4c80b82adc9d89abd7}{SetTextBoxSize}}(\textcolor{keyword}{const} glm::vec2\& size);}
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} Render();}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{60     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_text_label_aa920eb60c1948ef11c517f35bd55d1aa}{Reset}}(glm::vec2 win\_size);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     \textcolor{comment}{//void SetUIRender(bool ui\_render);}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{68     glm::vec2 \mbox{\hyperlink{class_text_label_a3304f15417a0ed8a5816d25074b4552d}{GetTextBoxSize}}();}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{keyword}{private}:}
+\DoxyCodeLine{71     \textcolor{keywordtype}{void} CalcTextMetrics();}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     FTFont* m\_font;}
+\DoxyCodeLine{74     glm::vec4 m\_text\_color;}
+\DoxyCodeLine{75     glm::vec4 m\_backg\_color;}
+\DoxyCodeLine{76     glm::vec2 m\_position;}
+\DoxyCodeLine{77     glm::vec2 m\_size;}
+\DoxyCodeLine{78     std::vector<std::string> m\_str\_data;}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \textcolor{comment}{//bool m\_is\_ui\_render = true;}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     glm::vec2 m\_win\_size;}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     glm::vec2 m\_text\_size;}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \textcolor{keywordtype}{float} m\_interlance\_indent = 5; \textcolor{comment}{//отступ между строками текста}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \};}
+
+\end{DoxyCode}

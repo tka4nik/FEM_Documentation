@@ -1,0 +1,112 @@
+\hypertarget{class_f_t_b_box}{}\doxysection{FTBBox Class Reference}
+\label{class_f_t_b_box}\index{FTBBox@{FTBBox}}
+
+
+{\ttfamily \#include $<$FTBBox.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_b_box_a1779a36f0f573c6215de9a1bcee61f15}{FTBBox}} ()
+\item 
+\mbox{\hyperlink{class_f_t_b_box_a13345139067cc08b799bf7082895bda0}{FTBBox}} (float lx, float ly, float lz, float ux, float uy, float uz)
+\item 
+\mbox{\hyperlink{class_f_t_b_box_a08a2bdc33037650e5f2d430c127e7d14}{FTBBox}} (\mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\+\_\+\+Glyph\+Slot}} glyph)
+\item 
+\mbox{\hyperlink{class_f_t_b_box_a377c940076f798b35450636d2cc58095}{$\sim$\+FTBBox}} ()
+\item 
+\mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \& \mbox{\hyperlink{class_f_t_b_box_ad8d3c74c60141b1b3b2a5731157717dc}{Move}} (\mbox{\hyperlink{class_f_t_point}{FTPoint}} distance)
+\item 
+\mbox{\Hypertarget{class_f_t_b_box_a21fd208565da38b31816d2c9faa12217}\label{class_f_t_b_box_a21fd208565da38b31816d2c9faa12217}} 
+\mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \& {\bfseries operator+=} (const \mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \&bbox)
+\item 
+\mbox{\Hypertarget{class_f_t_b_box_a40d501414c5eeaf4d35034c017cbc9ab}\label{class_f_t_b_box_a40d501414c5eeaf4d35034c017cbc9ab}} 
+void {\bfseries Set\+Depth} (float depth)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_f_t_b_box_aa8e91f22f5ecd53e7e1ab8cad0f94f36}{lowerX}}
+\item 
+\mbox{\Hypertarget{class_f_t_b_box_a884eaf161df7ce2eabfb8350508ba3c9}\label{class_f_t_b_box_a884eaf161df7ce2eabfb8350508ba3c9}} 
+float {\bfseries lowerY}
+\item 
+\mbox{\Hypertarget{class_f_t_b_box_a0597bfc3e90445c6776156c060e5a099}\label{class_f_t_b_box_a0597bfc3e90445c6776156c060e5a099}} 
+float {\bfseries lowerZ}
+\item 
+\mbox{\Hypertarget{class_f_t_b_box_a64fb0089268ba48ccd8f9ed828e646d3}\label{class_f_t_b_box_a64fb0089268ba48ccd8f9ed828e646d3}} 
+float {\bfseries upperX}
+\item 
+\mbox{\Hypertarget{class_f_t_b_box_ad6df10bc0be63752e90cba87bce276d3}\label{class_f_t_b_box_ad6df10bc0be63752e90cba87bce276d3}} 
+float {\bfseries upperY}
+\item 
+\mbox{\Hypertarget{class_f_t_b_box_a128a40a02be6515c8ff802917db0e312}\label{class_f_t_b_box_a128a40a02be6515c8ff802917db0e312}} 
+float {\bfseries upperZ}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_b_box}{FTBBox}} is a convenience class for handling bounding boxes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_b_box_a1779a36f0f573c6215de9a1bcee61f15}\label{class_f_t_b_box_a1779a36f0f573c6215de9a1bcee61f15}} 
+\index{FTBBox@{FTBBox}!FTBBox@{FTBBox}}
+\index{FTBBox@{FTBBox}!FTBBox@{FTBBox}}
+\doxysubsubsection{\texorpdfstring{FTBBox()}{FTBBox()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily FTBBox\+::\+FTBBox (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor. Bounding box is set to zero. \mbox{\Hypertarget{class_f_t_b_box_a13345139067cc08b799bf7082895bda0}\label{class_f_t_b_box_a13345139067cc08b799bf7082895bda0}} 
+\index{FTBBox@{FTBBox}!FTBBox@{FTBBox}}
+\index{FTBBox@{FTBBox}!FTBBox@{FTBBox}}
+\doxysubsubsection{\texorpdfstring{FTBBox()}{FTBBox()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily FTBBox\+::\+FTBBox (\begin{DoxyParamCaption}\item[{float}]{lx,  }\item[{float}]{ly,  }\item[{float}]{lz,  }\item[{float}]{ux,  }\item[{float}]{uy,  }\item[{float}]{uz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor. \mbox{\Hypertarget{class_f_t_b_box_a08a2bdc33037650e5f2d430c127e7d14}\label{class_f_t_b_box_a08a2bdc33037650e5f2d430c127e7d14}} 
+\index{FTBBox@{FTBBox}!FTBBox@{FTBBox}}
+\index{FTBBox@{FTBBox}!FTBBox@{FTBBox}}
+\doxysubsubsection{\texorpdfstring{FTBBox()}{FTBBox()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily FTBBox\+::\+FTBBox (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\+\_\+\+Glyph\+Slot}}}]{glyph }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor. Extracts a bounding box from a freetype glyph. Uses the control box for the glyph. {\ttfamily FT\+\_\+\+Glyph\+\_\+\+Get\+\_\+\+CBox()}
+
+
+\begin{DoxyParams}{Parameters}
+{\em glyph} & A freetype glyph \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_b_box_a377c940076f798b35450636d2cc58095}\label{class_f_t_b_box_a377c940076f798b35450636d2cc58095}} 
+\index{FTBBox@{FTBBox}!````~FTBBox@{$\sim$FTBBox}}
+\index{````~FTBBox@{$\sim$FTBBox}!FTBBox@{FTBBox}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTBBox()}{~FTBBox()}}
+{\footnotesize\ttfamily FTBBox\+::$\sim$\+FTBBox (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_b_box_ad8d3c74c60141b1b3b2a5731157717dc}\label{class_f_t_b_box_ad8d3c74c60141b1b3b2a5731157717dc}} 
+\index{FTBBox@{FTBBox}!Move@{Move}}
+\index{Move@{Move}!FTBBox@{FTBBox}}
+\doxysubsubsection{\texorpdfstring{Move()}{Move()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \& FTBBox\+::\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_f_t_point}{FTPoint}}}]{distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Move the Bounding Box by a vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em distance} & The distance to move the bbox in 3D space. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_f_t_b_box_aa8e91f22f5ecd53e7e1ab8cad0f94f36}\label{class_f_t_b_box_aa8e91f22f5ecd53e7e1ab8cad0f94f36}} 
+\index{FTBBox@{FTBBox}!lowerX@{lowerX}}
+\index{lowerX@{lowerX}!FTBBox@{FTBBox}}
+\doxysubsubsection{\texorpdfstring{lowerX}{lowerX}}
+{\footnotesize\ttfamily float FTBBox\+::lowerX}
+
+The bounds of the box 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTBBox.\+h\end{DoxyCompactItemize}

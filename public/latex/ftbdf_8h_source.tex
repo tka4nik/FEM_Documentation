@@ -1,0 +1,206 @@
+\hypertarget{ftbdf_8h_source}{}\doxysection{ftbdf.\+h}
+\label{ftbdf_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftbdf.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftbdf.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftbdf.h                                                                */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType API for accessing BDF-\/specific strings (specification).     */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2002, 2003, 2004 by                                          */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTBDF\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTBDF\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{36   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{37   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*    bdf\_fonts                                                          */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{40   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*    BDF Files                                                          */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{43   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*    BDF specific API.                                                  */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{46   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    This section contains the declaration of BDF specific functions.   */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{49 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{53 \textcolor{comment}{  *}}
+\DoxyCodeLine{54 \textcolor{comment}{  * @enum:}}
+\DoxyCodeLine{55 \textcolor{comment}{  *    FT\_PropertyType}}
+\DoxyCodeLine{56 \textcolor{comment}{  *}}
+\DoxyCodeLine{57 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{58 \textcolor{comment}{  *    A list of BDF property types.}}
+\DoxyCodeLine{59 \textcolor{comment}{  *}}
+\DoxyCodeLine{60 \textcolor{comment}{  * @values:}}
+\DoxyCodeLine{61 \textcolor{comment}{  *    BDF\_PROPERTY\_TYPE\_NONE ::}}
+\DoxyCodeLine{62 \textcolor{comment}{  *      Value 0 is used to indicate a missing property.}}
+\DoxyCodeLine{63 \textcolor{comment}{  *}}
+\DoxyCodeLine{64 \textcolor{comment}{  *    BDF\_PROPERTY\_TYPE\_ATOM ::}}
+\DoxyCodeLine{65 \textcolor{comment}{  *      Property is a string atom.}}
+\DoxyCodeLine{66 \textcolor{comment}{  *}}
+\DoxyCodeLine{67 \textcolor{comment}{  *    BDF\_PROPERTY\_TYPE\_INTEGER ::}}
+\DoxyCodeLine{68 \textcolor{comment}{  *      Property is a 32-\/bit signed integer.}}
+\DoxyCodeLine{69 \textcolor{comment}{  *}}
+\DoxyCodeLine{70 \textcolor{comment}{  *    BDF\_PROPERTY\_TYPE\_CARDINAL ::}}
+\DoxyCodeLine{71 \textcolor{comment}{  *      Property is a 32-\/bit unsigned integer.}}
+\DoxyCodeLine{72 \textcolor{comment}{  */}}
+\DoxyCodeLine{73   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  BDF\_PropertyType\_}
+\DoxyCodeLine{74   \{}
+\DoxyCodeLine{75     BDF\_PROPERTY\_TYPE\_NONE     = 0,}
+\DoxyCodeLine{76     BDF\_PROPERTY\_TYPE\_ATOM     = 1,}
+\DoxyCodeLine{77     BDF\_PROPERTY\_TYPE\_INTEGER  = 2,}
+\DoxyCodeLine{78     BDF\_PROPERTY\_TYPE\_CARDINAL = 3}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \} BDF\_PropertyType;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{84 \textcolor{comment}{  *}}
+\DoxyCodeLine{85 \textcolor{comment}{  * @type:}}
+\DoxyCodeLine{86 \textcolor{comment}{  *    BDF\_Property}}
+\DoxyCodeLine{87 \textcolor{comment}{  *}}
+\DoxyCodeLine{88 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{89 \textcolor{comment}{  *    A handle to a @BDF\_PropertyRec structure to model a given}}
+\DoxyCodeLine{90 \textcolor{comment}{  *    BDF/PCF property.}}
+\DoxyCodeLine{91 \textcolor{comment}{  */}}
+\DoxyCodeLine{92   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_b_d_f___property_rec__}{BDF\_PropertyRec\_}}*  \mbox{\hyperlink{struct_b_d_f___property_rec__}{BDF\_Property}};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{96 \textcolor{comment}{  *}}
+\DoxyCodeLine{97 \textcolor{comment}{  * @struct:}}
+\DoxyCodeLine{98 \textcolor{comment}{  *    BDF\_PropertyRec}}
+\DoxyCodeLine{99 \textcolor{comment}{  *}}
+\DoxyCodeLine{100 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{101 \textcolor{comment}{  *    This structure models a given BDF/PCF property.}}
+\DoxyCodeLine{102 \textcolor{comment}{  *}}
+\DoxyCodeLine{103 \textcolor{comment}{  * @fields:}}
+\DoxyCodeLine{104 \textcolor{comment}{  *    type ::}}
+\DoxyCodeLine{105 \textcolor{comment}{  *      The property type.}}
+\DoxyCodeLine{106 \textcolor{comment}{  *}}
+\DoxyCodeLine{107 \textcolor{comment}{  *    u.atom ::}}
+\DoxyCodeLine{108 \textcolor{comment}{  *      The atom string, if type is @BDF\_PROPERTY\_TYPE\_ATOM.}}
+\DoxyCodeLine{109 \textcolor{comment}{  *}}
+\DoxyCodeLine{110 \textcolor{comment}{  *    u.integer ::}}
+\DoxyCodeLine{111 \textcolor{comment}{  *      A signed integer, if type is @BDF\_PROPERTY\_TYPE\_INTEGER.}}
+\DoxyCodeLine{112 \textcolor{comment}{  *}}
+\DoxyCodeLine{113 \textcolor{comment}{  *    u.cardinal ::}}
+\DoxyCodeLine{114 \textcolor{comment}{  *      An unsigned integer, if type is @BDF\_PROPERTY\_TYPE\_CARDINAL.}}
+\DoxyCodeLine{115 \textcolor{comment}{  */}}
+\DoxyCodeLine{116   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_b_d_f___property_rec__}{BDF\_PropertyRec\_}}}
+\DoxyCodeLine{117   \{}
+\DoxyCodeLine{118     BDF\_PropertyType  type;}
+\DoxyCodeLine{119     \textcolor{keyword}{union }\{}
+\DoxyCodeLine{120       \textcolor{keyword}{const} \textcolor{keywordtype}{char}*     atom;}
+\DoxyCodeLine{121       FT\_Int32        integer;}
+\DoxyCodeLine{122       FT\_UInt32       cardinal;}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124     \} u;}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126   \} \mbox{\hyperlink{struct_b_d_f___property_rec__}{BDF\_PropertyRec}};}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{130 \textcolor{comment}{  *}}
+\DoxyCodeLine{131 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{132 \textcolor{comment}{  *    FT\_Get\_BDF\_Charset\_ID}}
+\DoxyCodeLine{133 \textcolor{comment}{  *}}
+\DoxyCodeLine{134 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{135 \textcolor{comment}{  *    Retrieves a BDF font character set identity, according to}}
+\DoxyCodeLine{136 \textcolor{comment}{  *    the BDF specification.}}
+\DoxyCodeLine{137 \textcolor{comment}{  *}}
+\DoxyCodeLine{138 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{139 \textcolor{comment}{  *    face ::}}
+\DoxyCodeLine{140 \textcolor{comment}{  *       A handle to the input face.}}
+\DoxyCodeLine{141 \textcolor{comment}{  *}}
+\DoxyCodeLine{142 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{143 \textcolor{comment}{  *    acharset\_encoding ::}}
+\DoxyCodeLine{144 \textcolor{comment}{  *       Charset encoding, as a C string, owned by the face.}}
+\DoxyCodeLine{145 \textcolor{comment}{  *}}
+\DoxyCodeLine{146 \textcolor{comment}{  *    acharset\_registry ::}}
+\DoxyCodeLine{147 \textcolor{comment}{  *       Charset registry, as a C string, owned by the face.}}
+\DoxyCodeLine{148 \textcolor{comment}{  *}}
+\DoxyCodeLine{149 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{150 \textcolor{comment}{  *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{151 \textcolor{comment}{  *}}
+\DoxyCodeLine{152 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{153 \textcolor{comment}{  *   This function only works with BDF faces, returning an error otherwise.}}
+\DoxyCodeLine{154 \textcolor{comment}{  */}}
+\DoxyCodeLine{155   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{156   FT\_Get\_BDF\_Charset\_ID( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}       face,}
+\DoxyCodeLine{157                          \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  *acharset\_encoding,}
+\DoxyCodeLine{158                          \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  *acharset\_registry );}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 \textcolor{comment}{ /**********************************************************************}}
+\DoxyCodeLine{162 \textcolor{comment}{  *}}
+\DoxyCodeLine{163 \textcolor{comment}{  * @function:}}
+\DoxyCodeLine{164 \textcolor{comment}{  *    FT\_Get\_BDF\_Property}}
+\DoxyCodeLine{165 \textcolor{comment}{  *}}
+\DoxyCodeLine{166 \textcolor{comment}{  * @description:}}
+\DoxyCodeLine{167 \textcolor{comment}{  *    Retrieves a BDF property from a BDF or PCF font file.}}
+\DoxyCodeLine{168 \textcolor{comment}{  *}}
+\DoxyCodeLine{169 \textcolor{comment}{  * @input:}}
+\DoxyCodeLine{170 \textcolor{comment}{  *    face :: A handle to the input face.}}
+\DoxyCodeLine{171 \textcolor{comment}{  *}}
+\DoxyCodeLine{172 \textcolor{comment}{  *    name :: The property name.}}
+\DoxyCodeLine{173 \textcolor{comment}{  *}}
+\DoxyCodeLine{174 \textcolor{comment}{  * @output:}}
+\DoxyCodeLine{175 \textcolor{comment}{  *    aproperty :: The property.}}
+\DoxyCodeLine{176 \textcolor{comment}{  *}}
+\DoxyCodeLine{177 \textcolor{comment}{  * @return:}}
+\DoxyCodeLine{178 \textcolor{comment}{  *   FreeType error code.  0 means success.}}
+\DoxyCodeLine{179 \textcolor{comment}{  *}}
+\DoxyCodeLine{180 \textcolor{comment}{  * @note:}}
+\DoxyCodeLine{181 \textcolor{comment}{  *   This function works with BDF \_and\_ PCF fonts.  It returns an error}}
+\DoxyCodeLine{182 \textcolor{comment}{  *   otherwise.  It also returns an error if the property is not in the}}
+\DoxyCodeLine{183 \textcolor{comment}{  *   font.}}
+\DoxyCodeLine{184 \textcolor{comment}{  *}}
+\DoxyCodeLine{185 \textcolor{comment}{  *   In case of error, "{}aproperty-\/>type"{} is always set to}}
+\DoxyCodeLine{186 \textcolor{comment}{  *   @BDF\_PROPERTY\_TYPE\_NONE.}}
+\DoxyCodeLine{187 \textcolor{comment}{  */}}
+\DoxyCodeLine{188   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{189   FT\_Get\_BDF\_Property( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}           face,}
+\DoxyCodeLine{190                        \textcolor{keyword}{const} \textcolor{keywordtype}{char}*       prop\_name,}
+\DoxyCodeLine{191                        \mbox{\hyperlink{struct_b_d_f___property_rec__}{BDF\_PropertyRec}}  *aproperty );}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193  \textcolor{comment}{/* */}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 FT\_END\_HEADER}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTBDF\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

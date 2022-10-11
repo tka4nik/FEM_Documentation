@@ -1,0 +1,76 @@
+\hypertarget{_prep_8h_source}{}\doxysection{Prep.\+h}
+\label{_prep_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/Prep.h@{C:/Projects/FEM/prototype-\/prismatic/source/Prep.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Prep.h: interface for the CPrep class.}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#if !defined(AFX\_PREP\_H\_\_D120B4CB\_09A3\_4014\_B04C\_71173178B186\_\_INCLUDED\_)}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define AFX\_PREP\_H\_\_D120B4CB\_09A3\_4014\_B04C\_71173178B186\_\_INCLUDED\_}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}Roller.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}Billet.h"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}RealPoint.h"{}}  \textcolor{comment}{// Added by ClassView}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_fem}{CFem}};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_prep}{CPrep}}  }
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{keyword}{friend} \mbox{\hyperlink{class_c_fem}{CFem}};}
+\DoxyCodeLine{21 \textcolor{keyword}{public}:}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_c_prep}{CPrep}}();}
+\DoxyCodeLine{23     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_prep}{\string~CPrep}}();}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{public}:}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} SetRSimmetry(BOOL bRSymmetry);}
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} SetDrawMode(\textcolor{keywordtype}{int} nMode);}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_c_prep}{CPrep}} *Load(CFile \&File);}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} Save(CFile \&File);}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} SetMeshParam(\textcolor{keywordtype}{double} dParam);}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} GetMeshParam(\textcolor{keywordtype}{double} \&dParam);}
+\DoxyCodeLine{32     \textcolor{keywordtype}{void} SetNewNode();}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} NewNode(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y);}
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} NextNode();}
+\DoxyCodeLine{35     \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} GetPoint(\textcolor{keywordtype}{int} nP = -\/1);}
+\DoxyCodeLine{36     \textcolor{keywordtype}{void} GetSplineParam(\mbox{\hyperlink{struct_s_p_l_i_n_e_p_a_r_a_m}{SPLINEPARAM}} \&Param);}
+\DoxyCodeLine{37     BOOL CanChangeY();}
+\DoxyCodeLine{38     BOOL CanChangeX();}
+\DoxyCodeLine{39     BOOL SetPoint(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{int} nP = -\/1);}
+\DoxyCodeLine{40     BOOL SetSpline(\textcolor{keywordtype}{double} R, \textcolor{keywordtype}{int} N);}
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} SetActiveNode();}
+\DoxyCodeLine{42     \textcolor{keywordtype}{int} FindElement(\mbox{\hyperlink{class_c_real_point}{CRealPoint}} \&RP, \textcolor{keywordtype}{double} dDistance);}
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} SetXSymmetry(BOOL bXSymmetry);}
+\DoxyCodeLine{44     \textcolor{keywordtype}{void} SetYSymmetry(BOOL bYSymmetry);}
+\DoxyCodeLine{45     BOOL IsXSymmetry();}
+\DoxyCodeLine{46     BOOL IsYSymmetry();}
+\DoxyCodeLine{47     \textcolor{keywordtype}{bool} SetRollParam(\textcolor{keywordtype}{double} dW, \textcolor{keywordtype}{double} dR);}
+\DoxyCodeLine{48     \textcolor{keywordtype}{bool} GetRollParam(\textcolor{keywordtype}{double} \&dW, \textcolor{keywordtype}{double} \&dR);}
+\DoxyCodeLine{49     \textcolor{keywordtype}{double} GetMaxX();}
+\DoxyCodeLine{50     \textcolor{keywordtype}{double} GetMinX();}
+\DoxyCodeLine{51     \textcolor{keywordtype}{double} GetMaxY();}
+\DoxyCodeLine{52     \textcolor{keywordtype}{double} GetMinY();}
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} glDraw(\textcolor{keywordtype}{double} min\_x, \textcolor{keywordtype}{double} max\_x, \textcolor{keywordtype}{double} min\_y, \textcolor{keywordtype}{double} max\_y);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keywordtype}{void} KillMesh()\{m\_Billet.KillMesh();\}}
+\DoxyCodeLine{56     \textcolor{keywordtype}{void} Triangulate(BOOL bCreate = TRUE)\{m\_Billet.Triangulate(bCreate);\}}
+\DoxyCodeLine{57     BOOL IsRSymmetry()\{\textcolor{keywordflow}{return} m\_bRSimmetric;\}}
+\DoxyCodeLine{58     \textcolor{keywordtype}{int}  GetDrawMode()\{\textcolor{keywordflow}{return} m\_nDrawMode;\}}
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} SetFolder(\textcolor{keyword}{const} CString \&str)\{m\_Billet.m\_strFolder = str;\}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{62     BOOL    m\_bRSimmetric;}
+\DoxyCodeLine{63     \textcolor{keywordtype}{int}     m\_nDrawMode;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \mbox{\hyperlink{class_c_roller}{CRoller}} m\_TopRoller;}
+\DoxyCodeLine{66     \mbox{\hyperlink{class_c_roller}{CRoller}} m\_BottomRoller;}
+\DoxyCodeLine{67 \textcolor{keyword}{public}:}
+\DoxyCodeLine{68     \mbox{\hyperlink{class_c_billet}{CBillet}} m\_Billet;}
+\DoxyCodeLine{69 \};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_PREP\_H\_\_D120B4CB\_09A3\_4014\_B04C\_71173178B186\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

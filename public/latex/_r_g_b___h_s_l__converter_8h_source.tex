@@ -1,0 +1,45 @@
+\hypertarget{_r_g_b___h_s_l__converter_8h_source}{}\doxysection{RGB\+\_\+\+HSL\+\_\+converter.\+h}
+\label{_r_g_b___h_s_l__converter_8h_source}\index{831\_finite\_element\_modeling/GUI/source/GUI/RGB\_HSL\_converter.h@{831\_finite\_element\_modeling/GUI/source/GUI/RGB\_HSL\_converter.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structrgb}{rgb}} \{}
+\DoxyCodeLine{4     \textcolor{keywordtype}{float} r, g, b;}
+\DoxyCodeLine{5 \} \mbox{\hyperlink{structrgb}{RGB}};}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structhsl}{hsl}} \{}
+\DoxyCodeLine{8     \textcolor{keywordtype}{float} h, s, l;}
+\DoxyCodeLine{9 \} \mbox{\hyperlink{structhsl}{HSL}};}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{comment}{// ref https://gist.github.com/ciembor/1494530}}
+\DoxyCodeLine{13 \textcolor{comment}{/*}}
+\DoxyCodeLine{14 \textcolor{comment}{ * Converts an RGB color value to HSL. Conversion formula}}
+\DoxyCodeLine{15 \textcolor{comment}{ * adapted from http://en.wikipedia.org/wiki/HSL\_color\_space.}}
+\DoxyCodeLine{16 \textcolor{comment}{ * Assumes r, g, and b are contained in the set [0, 1] and}}
+\DoxyCodeLine{17 \textcolor{comment}{ * returns HSL in the set [0, 1].}}
+\DoxyCodeLine{18 \textcolor{comment}{ */}}
+\DoxyCodeLine{19 \mbox{\hyperlink{structhsl}{HSL}} rgb2hsl(\textcolor{keywordtype}{float} r, \textcolor{keywordtype}{float} g, \textcolor{keywordtype}{float} b);}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{comment}{/*}}
+\DoxyCodeLine{24 \textcolor{comment}{ * Converts an HUE to r, g or b.}}
+\DoxyCodeLine{25 \textcolor{comment}{ * returns float in the set [0, 1].}}
+\DoxyCodeLine{26 \textcolor{comment}{ */}}
+\DoxyCodeLine{27 \textcolor{keywordtype}{float} hue2rgb(\textcolor{keywordtype}{float} p, \textcolor{keywordtype}{float} q, \textcolor{keywordtype}{float} t);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{/*}}
+\DoxyCodeLine{31 \textcolor{comment}{ * Converts an HSL color value to RGB. Conversion formula}}
+\DoxyCodeLine{32 \textcolor{comment}{ * adapted from http://en.wikipedia.org/wiki/HSL\_color\_space.}}
+\DoxyCodeLine{33 \textcolor{comment}{ * Assumes h, s, and l are contained in the set [0, 1] and}}
+\DoxyCodeLine{34 \textcolor{comment}{ * returns RGB in the set [0, 1].}}
+\DoxyCodeLine{35 \textcolor{comment}{ */}}
+\DoxyCodeLine{36 \mbox{\hyperlink{structrgb}{RGB}} hsl2rgb(\textcolor{keywordtype}{float} h, \textcolor{keywordtype}{float} s, \textcolor{keywordtype}{float} l);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \mbox{\hyperlink{structhsl}{HSL}} SqueezeHSL(\textcolor{keyword}{const} \mbox{\hyperlink{structhsl}{HSL}}\& \mbox{\hyperlink{structhsl}{hsl}});}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \mbox{\hyperlink{structhsl}{HSL}} ExpandHSL(\textcolor{keyword}{const} \mbox{\hyperlink{structhsl}{HSL}}\& \mbox{\hyperlink{structhsl}{hsl}});}
+\DoxyCodeLine{41 }
+
+\end{DoxyCode}

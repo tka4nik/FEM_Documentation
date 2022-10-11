@@ -1,0 +1,3 @@
+[submodule "831_finite_element_modeling"]
+	path = 831_finite_element_modeling
+	url = https://git.miem.hse.ru/831/831_finite_element_modeling.git

@@ -1,0 +1,115 @@
+\hypertarget{class_f_t_g_l_outline_font}{}\doxysection{FTGLOutline\+Font Class Reference}
+\label{class_f_t_g_l_outline_font}\index{FTGLOutlineFont@{FTGLOutlineFont}}
+
+
+{\ttfamily \#include $<$FTGLOutline\+Font.\+h$>$}
+
+Inheritance diagram for FTGLOutline\+Font\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_t_g_l_outline_font}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_g_l_outline_font_a0eb2141b53d49120ccd85d5e9883b9c8}{FTGLOutline\+Font}} (const char $\ast$font\+File\+Path)
+\item 
+\mbox{\hyperlink{class_f_t_g_l_outline_font_a4bf8cb025a49f5e2b94234a8128ffb14}{FTGLOutline\+Font}} (const unsigned char $\ast$p\+Buffer\+Bytes, size\+\_\+t buffer\+Size\+In\+Bytes)
+\item 
+\mbox{\hyperlink{class_f_t_g_l_outline_font_a30ec1c558fd2696add1e883338d65eae}{$\sim$\+FTGLOutline\+Font}} ()
+\item 
+void \mbox{\hyperlink{class_f_t_g_l_outline_font_a7f85d2219922d26032f27bda2e85f631}{Render}} (const char $\ast$string)
+\item 
+void \mbox{\hyperlink{class_f_t_g_l_outline_font_aa47744c894c89a5581cc6367106b2494}{Render}} (const wchar\+\_\+t $\ast$string)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_g_l_outline_font}{FTGLOutline\+Font}} is a specialisation of the \mbox{\hyperlink{class_f_t_font}{FTFont}} class for handling Vector Outline fonts
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_f_t_font}{FTFont}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_g_l_outline_font_a0eb2141b53d49120ccd85d5e9883b9c8}\label{class_f_t_g_l_outline_font_a0eb2141b53d49120ccd85d5e9883b9c8}} 
+\index{FTGLOutlineFont@{FTGLOutlineFont}!FTGLOutlineFont@{FTGLOutlineFont}}
+\index{FTGLOutlineFont@{FTGLOutlineFont}!FTGLOutlineFont@{FTGLOutlineFont}}
+\doxysubsubsection{\texorpdfstring{FTGLOutlineFont()}{FTGLOutlineFont()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FTGLOutline\+Font\+::\+FTGLOutline\+Font (\begin{DoxyParamCaption}\item[{const char $\ast$}]{font\+File\+Path }\end{DoxyParamCaption})}
+
+Open and read a font file. Sets Error flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+File\+Path} & font file path. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_g_l_outline_font_a4bf8cb025a49f5e2b94234a8128ffb14}\label{class_f_t_g_l_outline_font_a4bf8cb025a49f5e2b94234a8128ffb14}} 
+\index{FTGLOutlineFont@{FTGLOutlineFont}!FTGLOutlineFont@{FTGLOutlineFont}}
+\index{FTGLOutlineFont@{FTGLOutlineFont}!FTGLOutlineFont@{FTGLOutlineFont}}
+\doxysubsubsection{\texorpdfstring{FTGLOutlineFont()}{FTGLOutlineFont()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily FTGLOutline\+Font\+::\+FTGLOutline\+Font (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{p\+Buffer\+Bytes,  }\item[{size\+\_\+t}]{buffer\+Size\+In\+Bytes }\end{DoxyParamCaption})}
+
+Open and read a font from a buffer in memory. Sets Error flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Buffer\+Bytes} & the in-\/memory buffer \\
+\hline
+{\em buffer\+Size\+In\+Bytes} & the length of the buffer in bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_g_l_outline_font_a30ec1c558fd2696add1e883338d65eae}\label{class_f_t_g_l_outline_font_a30ec1c558fd2696add1e883338d65eae}} 
+\index{FTGLOutlineFont@{FTGLOutlineFont}!````~FTGLOutlineFont@{$\sim$FTGLOutlineFont}}
+\index{````~FTGLOutlineFont@{$\sim$FTGLOutlineFont}!FTGLOutlineFont@{FTGLOutlineFont}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTGLOutlineFont()}{~FTGLOutlineFont()}}
+{\footnotesize\ttfamily FTGLOutline\+Font\+::$\sim$\+FTGLOutline\+Font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_g_l_outline_font_a7f85d2219922d26032f27bda2e85f631}\label{class_f_t_g_l_outline_font_a7f85d2219922d26032f27bda2e85f631}} 
+\index{FTGLOutlineFont@{FTGLOutlineFont}!Render@{Render}}
+\index{Render@{Render}!FTGLOutlineFont@{FTGLOutlineFont}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void FTGLOutline\+Font\+::\+Render (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Renders a string of characters
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & \textquotesingle{}C\textquotesingle{} style string to be output. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_f_t_font_a93f5c144d5a0603508ff3d6c28aaf6ad}{FTFont}}.
+
+\mbox{\Hypertarget{class_f_t_g_l_outline_font_aa47744c894c89a5581cc6367106b2494}\label{class_f_t_g_l_outline_font_aa47744c894c89a5581cc6367106b2494}} 
+\index{FTGLOutlineFont@{FTGLOutlineFont}!Render@{Render}}
+\index{Render@{Render}!FTGLOutlineFont@{FTGLOutlineFont}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FTGLOutline\+Font\+::\+Render (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Renders a string of characters
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & wchar\+\_\+t string to be output. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_f_t_font_af69d1b663afded110d91312831e3a2e3}{FTFont}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTGLOutline\+Font.\+h\end{DoxyCompactItemize}

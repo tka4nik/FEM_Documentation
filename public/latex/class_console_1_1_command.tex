@@ -1,0 +1,89 @@
+\hypertarget{class_console_1_1_command}{}\doxysection{Console\+::Command Class Reference}
+\label{class_console_1_1_command}\index{Console::Command@{Console::Command}}
+
+
+Класс команды  
+
+
+
+
+{\ttfamily \#include $<$Console.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_console_1_1_command_a047d898e97c7aa4da5f1eceaa452e032}{Command}} (const std\+::function$<$ void(std\+::vector$<$ std\+::string $>$ \&)$>$ \&func, const std\+::function$<$ bool(std\+::vector$<$ std\+::string $>$ \&)$>$ \&argument\+\_\+check)
+\item 
+\mbox{\Hypertarget{class_console_1_1_command_aede9cf1212b08e777d9928e42034a3da}\label{class_console_1_1_command_aede9cf1212b08e777d9928e42034a3da}} 
+bool {\bfseries Set\+Tag} (int tag)
+\item 
+void \mbox{\hyperlink{class_console_1_1_command_a8ba5274617e52ed1fa17794c0c0f5c51}{Set\+Description}} (std\+::string brief\+\_\+description, std\+::string detailed\+\_\+description)
+\begin{DoxyCompactList}\small\item\em устанавливает описания, которые будут отображаться в команде help. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_console_1_1_command_a1dfb06b1cd421a19b6627cca01077f78}{Set\+Execution\+Type}} (Command\+Type type)
+\begin{DoxyCompactList}\small\item\em Определеяет поток выполнения \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_console_1_1_command_aaa98810874c67664127370c7d8dc2ece}\label{class_console_1_1_command_aaa98810874c67664127370c7d8dc2ece}} 
+class {\bfseries Console}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс команды 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_console_1_1_command_a047d898e97c7aa4da5f1eceaa452e032}\label{class_console_1_1_command_a047d898e97c7aa4da5f1eceaa452e032}} 
+\index{Console::Command@{Console::Command}!Command@{Command}}
+\index{Command@{Command}!Console::Command@{Console::Command}}
+\doxysubsubsection{\texorpdfstring{Command()}{Command()}}
+{\footnotesize\ttfamily Console\+::\+Command\+::\+Command (\begin{DoxyParamCaption}\item[{const std\+::function$<$ void(std\+::vector$<$ std\+::string $>$ \&)$>$ \&}]{func,  }\item[{const std\+::function$<$ bool(std\+::vector$<$ std\+::string $>$ \&)$>$ \&}]{argument\+\_\+check }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & -\/ указатель на функцию \mbox{\hyperlink{class_g_u_i}{GUI}}, которую нужно будет вызвать при вводе пользователем строки, соотвествующей console\+\_\+name в функции void \mbox{\hyperlink{class_console_aa888891efac952b86c20d33fc860e028}{Console\+::\+Add\+Command(std\+::string console\+\_\+name, Command command)}} \\
+\hline
+{\em argument\+\_\+check} & -\/ указатель на функцию, которая будет проверять корректность введенных пользователем аргументов для функции func. (Количество аргументов с учетом всех возможных перегрузок) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_console_1_1_command_a8ba5274617e52ed1fa17794c0c0f5c51}\label{class_console_1_1_command_a8ba5274617e52ed1fa17794c0c0f5c51}} 
+\index{Console::Command@{Console::Command}!SetDescription@{SetDescription}}
+\index{SetDescription@{SetDescription}!Console::Command@{Console::Command}}
+\doxysubsubsection{\texorpdfstring{SetDescription()}{SetDescription()}}
+{\footnotesize\ttfamily void Console\+::\+Command\+::\+Set\+Description (\begin{DoxyParamCaption}\item[{std\+::string}]{brief\+\_\+description,  }\item[{std\+::string}]{detailed\+\_\+description }\end{DoxyParamCaption})}
+
+
+
+устанавливает описания, которые будут отображаться в команде help. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em brief\+\_\+description} & -\/ сигнатура команды \\
+\hline
+{\em detailed\+\_\+description} & -\/ подробное описание \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_console_1_1_command_a1dfb06b1cd421a19b6627cca01077f78}\label{class_console_1_1_command_a1dfb06b1cd421a19b6627cca01077f78}} 
+\index{Console::Command@{Console::Command}!SetExecutionType@{SetExecutionType}}
+\index{SetExecutionType@{SetExecutionType}!Console::Command@{Console::Command}}
+\doxysubsubsection{\texorpdfstring{SetExecutionType()}{SetExecutionType()}}
+{\footnotesize\ttfamily void Console\+::\+Command\+::\+Set\+Execution\+Type (\begin{DoxyParamCaption}\item[{Command\+Type}]{type }\end{DoxyParamCaption})}
+
+
+
+Определеяет поток выполнения 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & -\/ immediate или deferred\\
+\hline
+\end{DoxyParams}
+Команду можно выполнить сразу же в потоке Input, если ее выполнение не занимает много времени, или можно положить в очередь команд m\+\_\+queue. Второй поток m\+\_\+execution\+\_\+thread (который сам запускается после создания \mbox{\hyperlink{class_console}{Console}}) будет доставать команды из m\+\_\+queue и выполнять их. На данный момент сделано так, что в m\+\_\+execution\+\_\+thread выполняется только Run. Все остальные команды выполняются сразу после ввода. Получается, что m\+\_\+execution\+\_\+thread полностью занят выполнением Run и в очередь вообще не смотрит. Для правильного поведения нужно, чтобы каждая команда, помеченная как deferred(или как-\/то по другому можно это назвать) создавала под себя отдельный поток (это не реализовано). 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Console.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Console.\+cpp\end{DoxyCompactItemize}

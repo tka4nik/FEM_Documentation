@@ -1,0 +1,165 @@
+\hypertarget{class_f_t_size}{}\doxysection{FTSize Class Reference}
+\label{class_f_t_size}\index{FTSize@{FTSize}}
+
+
+{\ttfamily \#include $<$FTSize.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_size_ae1b459031c2ab7fe6ef98530c0251700}{FTSize}} ()
+\item 
+virtual \mbox{\hyperlink{class_f_t_size_acb66a0c1e996bafc30bee1b26cee510e}{$\sim$\+FTSize}} ()
+\item 
+bool \mbox{\hyperlink{class_f_t_size_a15c6c82655544d1edb101e00e42ffad9}{Char\+Size}} (\mbox{\hyperlink{struct_f_t___face_rec__}{FT\+\_\+\+Face}} $\ast$face, unsigned int point\+\_\+size, unsigned int x\+\_\+resolution, unsigned int y\+\_\+resolution)
+\item 
+unsigned int \mbox{\hyperlink{class_f_t_size_a306e891048efd1e71430371c1028cd41}{Char\+Size}} () const
+\item 
+float \mbox{\hyperlink{class_f_t_size_a41594be7bbc78f19dec735b8b933cb67}{Ascender}} () const
+\item 
+float \mbox{\hyperlink{class_f_t_size_af34df311f98b66c73005f4b2f543206a}{Descender}} () const
+\item 
+float \mbox{\hyperlink{class_f_t_size_acc2b7287387fe26fc788a9caf2540b10}{Height}} () const
+\item 
+float \mbox{\hyperlink{class_f_t_size_a5c7f4ec54694033f01f4c1d5a472e5c3}{Width}} () const
+\item 
+float \mbox{\hyperlink{class_f_t_size_af556456e4c36dea5dd76748ff7659f02}{Underline}} () const
+\item 
+FT\+\_\+\+Error \mbox{\hyperlink{class_f_t_size_a562e1857cec5dacf9dcb680fa1dfef32}{Error}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_size}{FTSize}} class provides an abstraction layer for the Freetype Size.
+
+\begin{DoxySeeAlso}{See also}
+\char`\"{}\+Freetype 2 Documentation\char`\"{} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_size_ae1b459031c2ab7fe6ef98530c0251700}\label{class_f_t_size_ae1b459031c2ab7fe6ef98530c0251700}} 
+\index{FTSize@{FTSize}!FTSize@{FTSize}}
+\index{FTSize@{FTSize}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{FTSize()}{FTSize()}}
+{\footnotesize\ttfamily FTSize\+::\+FTSize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default Constructor \mbox{\Hypertarget{class_f_t_size_acb66a0c1e996bafc30bee1b26cee510e}\label{class_f_t_size_acb66a0c1e996bafc30bee1b26cee510e}} 
+\index{FTSize@{FTSize}!````~FTSize@{$\sim$FTSize}}
+\index{````~FTSize@{$\sim$FTSize}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTSize()}{~FTSize()}}
+{\footnotesize\ttfamily virtual FTSize\+::$\sim$\+FTSize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_size_a41594be7bbc78f19dec735b8b933cb67}\label{class_f_t_size_a41594be7bbc78f19dec735b8b933cb67}} 
+\index{FTSize@{FTSize}!Ascender@{Ascender}}
+\index{Ascender@{Ascender}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{Ascender()}{Ascender()}}
+{\footnotesize\ttfamily float FTSize\+::\+Ascender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the global ascender height for the face in pixels.
+
+\begin{DoxyReturn}{Returns}
+Ascender height 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_size_a306e891048efd1e71430371c1028cd41}\label{class_f_t_size_a306e891048efd1e71430371c1028cd41}} 
+\index{FTSize@{FTSize}!CharSize@{CharSize}}
+\index{CharSize@{CharSize}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{CharSize()}{CharSize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily unsigned int FTSize\+::\+Char\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+get the char size for the current face.
+
+\begin{DoxyReturn}{Returns}
+The char size in points 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_size_a15c6c82655544d1edb101e00e42ffad9}\label{class_f_t_size_a15c6c82655544d1edb101e00e42ffad9}} 
+\index{FTSize@{FTSize}!CharSize@{CharSize}}
+\index{CharSize@{CharSize}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{CharSize()}{CharSize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool FTSize\+::\+Char\+Size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t___face_rec__}{FT\+\_\+\+Face}} $\ast$}]{face,  }\item[{unsigned int}]{point\+\_\+size,  }\item[{unsigned int}]{x\+\_\+resolution,  }\item[{unsigned int}]{y\+\_\+resolution }\end{DoxyParamCaption})}
+
+Sets the char size for the current face.
+
+This doesn\textquotesingle{}t guarantee that the size was set correctly. Clients should check errors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em face} & Parent face for this size object \\
+\hline
+{\em point\+\_\+size} & the face size in points (1/72 inch) \\
+\hline
+{\em x\+\_\+resolution} & the horizontal resolution of the target device. \\
+\hline
+{\em y\+\_\+resolution} & the vertical resolution of the target device. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the size has been set. Clients should check Error() for more information if this function returns false() 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_size_af34df311f98b66c73005f4b2f543206a}\label{class_f_t_size_af34df311f98b66c73005f4b2f543206a}} 
+\index{FTSize@{FTSize}!Descender@{Descender}}
+\index{Descender@{Descender}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{Descender()}{Descender()}}
+{\footnotesize\ttfamily float FTSize\+::\+Descender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the global descender height for the face in pixels.
+
+\begin{DoxyReturn}{Returns}
+Ascender height 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_size_a562e1857cec5dacf9dcb680fa1dfef32}\label{class_f_t_size_a562e1857cec5dacf9dcb680fa1dfef32}} 
+\index{FTSize@{FTSize}!Error@{Error}}
+\index{Error@{Error}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily FT\+\_\+\+Error FTSize\+::\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Queries for errors.
+
+\begin{DoxyReturn}{Returns}
+The current error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_size_acc2b7287387fe26fc788a9caf2540b10}\label{class_f_t_size_acc2b7287387fe26fc788a9caf2540b10}} 
+\index{FTSize@{FTSize}!Height@{Height}}
+\index{Height@{Height}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{Height()}{Height()}}
+{\footnotesize\ttfamily float FTSize\+::\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the global face height for the face.
+
+If the face is scalable this returns the height of the global bounding box which ensures that any glyph will be less than or equal to this height. If the font isn\textquotesingle{}t scalable there is no guarantee that glyphs will not be taller than this value.
+
+\begin{DoxyReturn}{Returns}
+height in pixels. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_size_af556456e4c36dea5dd76748ff7659f02}\label{class_f_t_size_af556456e4c36dea5dd76748ff7659f02}} 
+\index{FTSize@{FTSize}!Underline@{Underline}}
+\index{Underline@{Underline}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{Underline()}{Underline()}}
+{\footnotesize\ttfamily float FTSize\+::\+Underline (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the underline position for the face.
+
+\begin{DoxyReturn}{Returns}
+underline position in pixels 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_size_a5c7f4ec54694033f01f4c1d5a472e5c3}\label{class_f_t_size_a5c7f4ec54694033f01f4c1d5a472e5c3}} 
+\index{FTSize@{FTSize}!Width@{Width}}
+\index{Width@{Width}!FTSize@{FTSize}}
+\doxysubsubsection{\texorpdfstring{Width()}{Width()}}
+{\footnotesize\ttfamily float FTSize\+::\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the global face width for the face.
+
+If the face is scalable this returns the width of the global bounding box which ensures that any glyph will be less than or equal to this width. If the font isn\textquotesingle{}t scalable this value is the max\+\_\+advance for the face.
+
+\begin{DoxyReturn}{Returns}
+width in pixels. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTSize.\+h\end{DoxyCompactItemize}

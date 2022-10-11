@@ -1,0 +1,193 @@
+\hypertarget{_f_t_vector_8h_source}{}\doxysection{FTVector.\+h}
+\label{_f_t_vector_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTVector.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTVector.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef    \_\_FTVector\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define    \_\_FTVector\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{9 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FT\_VECTOR\_ITEM\_TYPE>}
+\DoxyCodeLine{10 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_vector}{FTVector}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \textcolor{keyword}{public}:}
+\DoxyCodeLine{13         \textcolor{keyword}{typedef} FT\_VECTOR\_ITEM\_TYPE value\_type;}
+\DoxyCodeLine{14         \textcolor{keyword}{typedef} value\_type\& reference;}
+\DoxyCodeLine{15         \textcolor{keyword}{typedef} \textcolor{keyword}{const} value\_type\& const\_reference;}
+\DoxyCodeLine{16         \textcolor{keyword}{typedef} value\_type* iterator;}
+\DoxyCodeLine{17         \textcolor{keyword}{typedef} \textcolor{keyword}{const} value\_type* const\_iterator;}
+\DoxyCodeLine{18         \textcolor{keyword}{typedef} \textcolor{keywordtype}{size\_t} size\_type;}
+\DoxyCodeLine{19         }
+\DoxyCodeLine{20         \mbox{\hyperlink{class_f_t_vector}{FTVector}}()}
+\DoxyCodeLine{21         \{}
+\DoxyCodeLine{22             Capacity = Size = 0;}
+\DoxyCodeLine{23             Items = 0;}
+\DoxyCodeLine{24         \}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26         }
+\DoxyCodeLine{27         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_vector}{\string~FTVector}}()}
+\DoxyCodeLine{28         \{}
+\DoxyCodeLine{29             clear();}
+\DoxyCodeLine{30         \}}
+\DoxyCodeLine{31         }
+\DoxyCodeLine{32         \mbox{\hyperlink{class_f_t_vector}{FTVector}}\& operator =(\textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_vector}{FTVector}}\& v)}
+\DoxyCodeLine{33         \{}
+\DoxyCodeLine{34             reserve(v.capacity());}
+\DoxyCodeLine{35             }
+\DoxyCodeLine{36             iterator ptr = begin();}
+\DoxyCodeLine{37             const\_iterator vbegin = v.begin();}
+\DoxyCodeLine{38             const\_iterator vend = v.end();}
+\DoxyCodeLine{39             }
+\DoxyCodeLine{40             \textcolor{keywordflow}{while}( vbegin != vend)}
+\DoxyCodeLine{41             \{}
+\DoxyCodeLine{42                 *ptr++ = *vbegin++;}
+\DoxyCodeLine{43             \}}
+\DoxyCodeLine{44             }
+\DoxyCodeLine{45             Size = v.size();}
+\DoxyCodeLine{46             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{47         \}}
+\DoxyCodeLine{48         }
+\DoxyCodeLine{49         size\_type size()\textcolor{keyword}{ const}}
+\DoxyCodeLine{50 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{51             \textcolor{keywordflow}{return} Size;}
+\DoxyCodeLine{52         \}}
+\DoxyCodeLine{53         }
+\DoxyCodeLine{54         size\_type capacity()\textcolor{keyword}{ const}}
+\DoxyCodeLine{55 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{56             \textcolor{keywordflow}{return} Capacity;}
+\DoxyCodeLine{57         \}}
+\DoxyCodeLine{58         }
+\DoxyCodeLine{59         iterator begin()}
+\DoxyCodeLine{60         \{}
+\DoxyCodeLine{61             \textcolor{keywordflow}{return} Items;}
+\DoxyCodeLine{62         \}}
+\DoxyCodeLine{63         }
+\DoxyCodeLine{64         const\_iterator begin()\textcolor{keyword}{ const}}
+\DoxyCodeLine{65 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{66             \textcolor{keywordflow}{return} Items;}
+\DoxyCodeLine{67         \}}
+\DoxyCodeLine{68         }
+\DoxyCodeLine{69         iterator end()}
+\DoxyCodeLine{70         \{}
+\DoxyCodeLine{71             \textcolor{keywordflow}{return} begin() + size(); }
+\DoxyCodeLine{72         \}}
+\DoxyCodeLine{73         }
+\DoxyCodeLine{74         const\_iterator end()\textcolor{keyword}{ const}}
+\DoxyCodeLine{75 \textcolor{keyword}{        }\{}
+\DoxyCodeLine{76             \textcolor{keywordflow}{return} begin() + size(); }
+\DoxyCodeLine{77         \}}
+\DoxyCodeLine{78         }
+\DoxyCodeLine{79         \textcolor{keywordtype}{bool} empty()\textcolor{keyword}{ const }}
+\DoxyCodeLine{80 \textcolor{keyword}{        }\{ }
+\DoxyCodeLine{81             \textcolor{keywordflow}{return} size() == 0; }
+\DoxyCodeLine{82         \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84         reference operator [](size\_type pos) }
+\DoxyCodeLine{85         \{ }
+\DoxyCodeLine{86             \textcolor{keywordflow}{return}( *(begin() + pos)); }
+\DoxyCodeLine{87         \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89         const\_reference operator []( size\_type pos)\textcolor{keyword}{ const }}
+\DoxyCodeLine{90 \textcolor{keyword}{        }\{ }
+\DoxyCodeLine{91             \textcolor{keywordflow}{return}( *(begin() + pos)); }
+\DoxyCodeLine{92         \}}
+\DoxyCodeLine{93         }
+\DoxyCodeLine{94         \textcolor{keywordtype}{void} clear()}
+\DoxyCodeLine{95         \{}
+\DoxyCodeLine{96             \textcolor{keywordflow}{if}( Capacity)}
+\DoxyCodeLine{97             \{}
+\DoxyCodeLine{98                 \textcolor{keyword}{delete} [] Items;}
+\DoxyCodeLine{99                 Capacity = Size = 0;}
+\DoxyCodeLine{100                 Items = 0;}
+\DoxyCodeLine{101             \}}
+\DoxyCodeLine{102         \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104         \textcolor{keywordtype}{void} reserve( size\_type n)}
+\DoxyCodeLine{105         \{}
+\DoxyCodeLine{106             \textcolor{keywordflow}{if}( capacity() < n)}
+\DoxyCodeLine{107             \{}
+\DoxyCodeLine{108                 expand(n);}
+\DoxyCodeLine{109             \}}
+\DoxyCodeLine{110         \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112         \textcolor{keywordtype}{void} push\_back(\textcolor{keyword}{const} value\_type\& x)}
+\DoxyCodeLine{113         \{}
+\DoxyCodeLine{114             \textcolor{keywordflow}{if}( size() == capacity())}
+\DoxyCodeLine{115             \{}
+\DoxyCodeLine{116                 expand();}
+\DoxyCodeLine{117             \}}
+\DoxyCodeLine{118            }
+\DoxyCodeLine{119            ( *this)[size()] = x;}
+\DoxyCodeLine{120             ++Size;}
+\DoxyCodeLine{121         \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123         \textcolor{keywordtype}{void} resize(size\_type n, value\_type x)}
+\DoxyCodeLine{124         \{}
+\DoxyCodeLine{125             \textcolor{keywordflow}{if}( n == size())}
+\DoxyCodeLine{126             \{}
+\DoxyCodeLine{127                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{128             \}}
+\DoxyCodeLine{129             }
+\DoxyCodeLine{130             reserve(n);}
+\DoxyCodeLine{131             iterator begin, end;}
+\DoxyCodeLine{132             }
+\DoxyCodeLine{133             \textcolor{keywordflow}{if}( n >= Size)}
+\DoxyCodeLine{134             \{}
+\DoxyCodeLine{135                 begin = this-\/>end();}
+\DoxyCodeLine{136                 end = this-\/>begin() + n;}
+\DoxyCodeLine{137             \}}
+\DoxyCodeLine{138             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{139             \{}
+\DoxyCodeLine{140                 begin = this-\/>begin() + n;}
+\DoxyCodeLine{141                 end = this-\/>end();}
+\DoxyCodeLine{142             \}}
+\DoxyCodeLine{143         }
+\DoxyCodeLine{144             \textcolor{keywordflow}{while}( begin != end)}
+\DoxyCodeLine{145             \{}
+\DoxyCodeLine{146                 *begin++ = x;}
+\DoxyCodeLine{147             \}}
+\DoxyCodeLine{148         }
+\DoxyCodeLine{149             Size = n;}
+\DoxyCodeLine{150         \}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152         }
+\DoxyCodeLine{153     \textcolor{keyword}{private}:}
+\DoxyCodeLine{154         \textcolor{keywordtype}{void} expand(size\_type capacity\_hint = 0)}
+\DoxyCodeLine{155         \{}
+\DoxyCodeLine{156             size\_type new\_capacity =( capacity() == 0) ? 256 : capacity()* 2;}
+\DoxyCodeLine{157             \textcolor{keywordflow}{if}( capacity\_hint)}
+\DoxyCodeLine{158             \{}
+\DoxyCodeLine{159                 \textcolor{keywordflow}{while}( new\_capacity < capacity\_hint)}
+\DoxyCodeLine{160                 \{}
+\DoxyCodeLine{161                     new\_capacity *= 2;}
+\DoxyCodeLine{162                 \}}
+\DoxyCodeLine{163             \}}
+\DoxyCodeLine{164             }
+\DoxyCodeLine{165             value\_type *new\_items = \textcolor{keyword}{new} value\_type[new\_capacity];}
+\DoxyCodeLine{166             }
+\DoxyCodeLine{167             iterator begin = this-\/>begin();}
+\DoxyCodeLine{168             iterator end = this-\/>end();}
+\DoxyCodeLine{169             value\_type *ptr = new\_items;}
+\DoxyCodeLine{170             }
+\DoxyCodeLine{171             \textcolor{keywordflow}{while}( begin != end)}
+\DoxyCodeLine{172             \{}
+\DoxyCodeLine{173                 *ptr++ = *begin++;}
+\DoxyCodeLine{174             \}}
+\DoxyCodeLine{175             }
+\DoxyCodeLine{176             \textcolor{keywordflow}{if}( Capacity)}
+\DoxyCodeLine{177             \{}
+\DoxyCodeLine{178                 \textcolor{keyword}{delete} [] Items;}
+\DoxyCodeLine{179             \}}
+\DoxyCodeLine{180         }
+\DoxyCodeLine{181             Items = new\_items;}
+\DoxyCodeLine{182             Capacity = new\_capacity;}
+\DoxyCodeLine{183         \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185         size\_type Capacity;}
+\DoxyCodeLine{186         size\_type Size;}
+\DoxyCodeLine{187         value\_type* Items;}
+\DoxyCodeLine{188 \};}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTVector\_\_}}
+
+\end{DoxyCode}

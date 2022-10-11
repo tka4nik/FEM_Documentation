@@ -1,0 +1,86 @@
+\hypertarget{svsfnt_8h_source}{}\doxysection{svsfnt.\+h}
+\label{svsfnt_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svsfnt.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svsfnt.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  svsfnt.h                                                               */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType SFNT table loading service (specification).             */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003, 2004 by                                                */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_SVSFNT\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_SVSFNT\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include FT\_INTERNAL\_SERVICE\_H}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_TRUETYPE\_TABLES\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29   \textcolor{comment}{/*}}
+\DoxyCodeLine{30 \textcolor{comment}{   *  SFNT table loading service.}}
+\DoxyCodeLine{31 \textcolor{comment}{   */}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define FT\_SERVICE\_ID\_SFNT\_TABLE  "{}sfnt-\/table"{}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36   \textcolor{comment}{/*}}
+\DoxyCodeLine{37 \textcolor{comment}{   * Used to implement FT\_Load\_Sfnt\_Table().}}
+\DoxyCodeLine{38 \textcolor{comment}{   */}}
+\DoxyCodeLine{39   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{40   (*FT\_SFNT\_TableLoadFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}    face,}
+\DoxyCodeLine{41                             FT\_ULong   tag,}
+\DoxyCodeLine{42                             FT\_Long    offset,}
+\DoxyCodeLine{43                             FT\_Byte*   buffer,}
+\DoxyCodeLine{44                             FT\_ULong*  length );}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46   \textcolor{comment}{/*}}
+\DoxyCodeLine{47 \textcolor{comment}{   * Used to implement FT\_Get\_Sfnt\_Table().}}
+\DoxyCodeLine{48 \textcolor{comment}{   */}}
+\DoxyCodeLine{49   \textcolor{keyword}{typedef} \textcolor{keywordtype}{void}*}
+\DoxyCodeLine{50   (*FT\_SFNT\_TableGetFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}      face,}
+\DoxyCodeLine{51                            FT\_Sfnt\_Tag  tag );}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54   \textcolor{comment}{/*}}
+\DoxyCodeLine{55 \textcolor{comment}{   * Used to implement FT\_Sfnt\_Table\_Info().}}
+\DoxyCodeLine{56 \textcolor{comment}{   */}}
+\DoxyCodeLine{57   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{58   (*FT\_SFNT\_TableInfoFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}    face,}
+\DoxyCodeLine{59                             FT\_UInt    idx,}
+\DoxyCodeLine{60                             FT\_ULong  *tag,}
+\DoxyCodeLine{61                             FT\_ULong  *length );}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   FT\_DEFINE\_SERVICE( SFNT\_Table )}
+\DoxyCodeLine{65   \{}
+\DoxyCodeLine{66     FT\_SFNT\_TableLoadFunc  load\_table;}
+\DoxyCodeLine{67     FT\_SFNT\_TableGetFunc   get\_table;}
+\DoxyCodeLine{68     FT\_SFNT\_TableInfoFunc  table\_info;}
+\DoxyCodeLine{69   \};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   \textcolor{comment}{/* */}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73  }
+\DoxyCodeLine{74 FT\_END\_HEADER}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_SVSFNT\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

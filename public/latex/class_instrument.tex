@@ -1,0 +1,115 @@
+\hypertarget{class_instrument}{}\doxysection{Instrument Class Reference}
+\label{class_instrument}\index{Instrument@{Instrument}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_instrument_1_1_profile}{Profile}}
+\begin{DoxyCompactList}\small\item\em класс для хранения точек интструмента \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{class_instrument_adc3f664282423050cf087c62fe26d0bc}{Field\+Id}} \{ \mbox{\hyperlink{class_instrument_adc3f664282423050cf087c62fe26d0bca1b8a8605d2ff5670a215e55c6645e0d9}{OFFSET}}
+, \mbox{\hyperlink{class_instrument_adc3f664282423050cf087c62fe26d0bca48359f9afd830d28b1152d071fb09147}{PROFILE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_instrument_a10b52639f4a49c586ecd8cb1c637943a}\label{class_instrument_a10b52639f4a49c586ecd8cb1c637943a}} 
+void {\bfseries Load} (std\+::ifstream \&file)
+\begin{DoxyCompactList}\small\item\em загрузить данные об инструменте из файла \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_instrument_afe51f5abdddf7147efa02f25ed4eb3d0}\label{class_instrument_afe51f5abdddf7147efa02f25ed4eb3d0}} 
+void {\bfseries Load} (const char $\ast$data, size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em загрузить данные об инструменте по указателю \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_instrument_a79f05cf854a6faa4eecbd0f83b4b7eae}{move}} ()
+\begin{DoxyCompactList}\small\item\em переместить инструмент \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_instrument_aa3285a88d49fbd365aa3e1b40e271273}\label{class_instrument_aa3285a88d49fbd365aa3e1b40e271273}} 
+{\bfseries Instrument} (const \mbox{\hyperlink{class_instrument}{Instrument}} \&)=default
+\item 
+\mbox{\Hypertarget{class_instrument_a19ed32458040ede0cbab390488bfcfa8}\label{class_instrument_a19ed32458040ede0cbab390488bfcfa8}} 
+\mbox{\hyperlink{class_instrument}{Instrument}} \& {\bfseries operator=} (\mbox{\hyperlink{class_instrument}{Instrument}} \&\&)
+\item 
+\mbox{\Hypertarget{class_instrument_a61e4ebdcf79a980005787b3d88b85112}\label{class_instrument_a61e4ebdcf79a980005787b3d88b85112}} 
+\mbox{\hyperlink{struct_r___p_o_i_n_t}{R\+\_\+\+POINT}} {\bfseries Get\+Pr\+Point} (int n)
+\begin{DoxyCompactList}\small\item\em возвращает n-\/ую точку m\+\_\+\+Profile0 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_instrument_a8e00e34b9fcf17863ed677779c6d3eb1}\label{class_instrument_a8e00e34b9fcf17863ed677779c6d3eb1}} 
+double {\bfseries Get\+PointY} (int n\+Point)
+\begin{DoxyCompactList}\small\item\em возвращает у координату n\+Point-\/ую точку m\+\_\+\+Profile0 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_instrument_a4e66996e9f863c5a13c7507d41650e5d}\label{class_instrument_a4e66996e9f863c5a13c7507d41650e5d}} 
+double {\bfseries Get\+TCross} (double x, double y, double vx, double vy, int RCnt)
+\item 
+\mbox{\Hypertarget{class_instrument_afb442a9e6dbad63a928266fc49869827}\label{class_instrument_afb442a9e6dbad63a928266fc49869827}} 
+\mbox{\hyperlink{struct_c_r_o_s_s_p_a_r_a_m}{CROSSPARAM}} {\bfseries Get\+TCross\+Param} (double x, double y, double vx, double vy, double dT)
+\item 
+\mbox{\Hypertarget{class_instrument_a174ff848b02f9cc18302cc46fb046dab}\label{class_instrument_a174ff848b02f9cc18302cc46fb046dab}} 
+\mbox{\hyperlink{struct_c_r_o_s_s_p_a_r_a_m}{CROSSPARAM}} {\bfseries Cross\+ParamT} (double x, double y, double dT)
+\item 
+\mbox{\Hypertarget{class_instrument_ad1bd0c83b6b203986e1d350ea7feecaa}\label{class_instrument_ad1bd0c83b6b203986e1d350ea7feecaa}} 
+int {\bfseries Pt\+Inside} (double x, double y, double vx, double vy, double dT)
+\item 
+\mbox{\Hypertarget{class_instrument_a0938756ba403b1227e6a285a8aebff55}\label{class_instrument_a0938756ba403b1227e6a285a8aebff55}} 
+double {\bfseries Get\+VelY} (double x, double y, int n\+PFr\+Val)
+\begin{DoxyCompactList}\small\item\em возвращает скорость точки инструмента \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_instrument_a6e1d595274e346c892d25adb151115a7}\label{class_instrument_a6e1d595274e346c892d25adb151115a7}} 
+\mbox{\hyperlink{struct_c_r_o_s_s_p_a_r_a_m}{CROSSPARAM}} {\bfseries Check\+RCnt} (int RCnt, double x, double y, double vx, double vy)
+\item 
+\mbox{\Hypertarget{class_instrument_a6a14b36e0e6a7692be934019a99197fe}\label{class_instrument_a6a14b36e0e6a7692be934019a99197fe}} 
+void {\bfseries Get\+Param} (int n, double $\ast$psin, double $\ast$pcos, double $\ast$tkf)
+\item 
+\mbox{\Hypertarget{class_instrument_ae52daa77967c03fa7f7b298c4eca17be}\label{class_instrument_ae52daa77967c03fa7f7b298c4eca17be}} 
+\mbox{\hyperlink{struct_c_r_o_s_s_p_a_r_a_m}{CROSSPARAM}} {\bfseries Cross\+Param0} (double x, double y, double Eps)
+\item 
+\mbox{\Hypertarget{class_instrument_a0cd832ee31499a5da80fb81b1a172e12}\label{class_instrument_a0cd832ee31499a5da80fb81b1a172e12}} 
+void {\bfseries get\+\_\+field} (unsigned int id, void $\ast$\&ptr\+\_\+field, size\+\_\+t \&size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_instrument_a2e4624b286dc3835403c2ccc313717d3}\label{class_instrument_a2e4624b286dc3835403c2ccc313717d3}} 
+friend {\bfseries Model}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_instrument_adc3f664282423050cf087c62fe26d0bc}\label{class_instrument_adc3f664282423050cf087c62fe26d0bc}} 
+\index{Instrument@{Instrument}!FieldId@{FieldId}}
+\index{FieldId@{FieldId}!Instrument@{Instrument}}
+\doxysubsubsection{\texorpdfstring{FieldId}{FieldId}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{class_instrument_adc3f664282423050cf087c62fe26d0bc}{Instrument\+::\+Field\+Id}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OFFSET@{OFFSET}!Instrument@{Instrument}}\index{Instrument@{Instrument}!OFFSET@{OFFSET}}}\mbox{\Hypertarget{class_instrument_adc3f664282423050cf087c62fe26d0bca1b8a8605d2ff5670a215e55c6645e0d9}\label{class_instrument_adc3f664282423050cf087c62fe26d0bca1b8a8605d2ff5670a215e55c6645e0d9}} 
+OFFSET&смещение \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PROFILE@{PROFILE}!Instrument@{Instrument}}\index{Instrument@{Instrument}!PROFILE@{PROFILE}}}\mbox{\Hypertarget{class_instrument_adc3f664282423050cf087c62fe26d0bca48359f9afd830d28b1152d071fb09147}\label{class_instrument_adc3f664282423050cf087c62fe26d0bca48359f9afd830d28b1152d071fb09147}} 
+PROFILE&положение \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_instrument_a79f05cf854a6faa4eecbd0f83b4b7eae}\label{class_instrument_a79f05cf854a6faa4eecbd0f83b4b7eae}} 
+\index{Instrument@{Instrument}!move@{move}}
+\index{move@{move}!Instrument@{Instrument}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void Instrument\+::move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+переместить инструмент 
+
+
+\begin{DoxyParams}{Parameters}
+{\em double} & time время \\
+\hline
+{\em double} & rate скорость инструмента \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+FEM/source/Instrument.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+FEM/source/Instrument.\+cpp\end{DoxyCompactItemize}

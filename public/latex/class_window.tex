@@ -1,0 +1,177 @@
+\hypertarget{class_window}{}\doxysection{Window Class Reference}
+\label{class_window}\index{Window@{Window}}
+Inheritance diagram for Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_window}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_window_a87b902697d9b23178d1bf4d0e1fae978}{Set\+Offset}} (glm\+::vec2 camera\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Устанавличает смещение камеры \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_window_ab9dc84bac40c574fbd5cad0ddc961e9c}{Get\+Offset}} () const
+\begin{DoxyCompactList}\small\item\em Возвращает смещение камеры \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_ae410ef861ec649b6b8ae08b1c31cbedf}\label{class_window_ae410ef861ec649b6b8ae08b1c31cbedf}} 
+void {\bfseries Reset\+Model\+View} ()
+\begin{DoxyCompactList}\small\item\em Перемещает камеру в текущую позицию, которая была выставленна в Set\+Offset. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_a291941e9197e4d74f0f3765c689a35de}\label{class_window_a291941e9197e4d74f0f3765c689a35de}} 
+void {\bfseries Display} ()
+\begin{DoxyCompactList}\small\item\em Отрисовка сцены \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_affa9347470520049cf9e32e67fdfe488}\label{class_window_affa9347470520049cf9e32e67fdfe488}} 
+void {\bfseries Reshape} (int w, int h)
+\begin{DoxyCompactList}\small\item\em Функция, обрабатывающая изменение размеров окна (см. Open\+GL) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_a676d03577ab91fad8a3c808dc71dbf05}\label{class_window_a676d03577ab91fad8a3c808dc71dbf05}} 
+void {\bfseries Motion\+Func} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Вызывается при движении мыши с зажатой кнопкой (см. Open\+GL) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_a1fd6fe920ef61e85904460f93dc52574}\label{class_window_a1fd6fe920ef61e85904460f93dc52574}} 
+void {\bfseries Mouse} (int button, int state, int x, int y)
+\begin{DoxyCompactList}\small\item\em Вызывается при щелчке мыши (см. Open\+GL) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_af8a19591bc86a5aac27cc9adbf38b9f9}\label{class_window_af8a19591bc86a5aac27cc9adbf38b9f9}} 
+void {\bfseries Mouse\+Wheel} (int button, int dir, int x, int y)
+\begin{DoxyCompactList}\small\item\em Вызывается при кручении колёсива мыши (см. Open\+GL) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_aeab471a300076b772032ae9110d5424e}\label{class_window_aeab471a300076b772032ae9110d5424e}} 
+void {\bfseries Passive\+Motion\+Func} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Вызывается при передвежении мыши (см. Open\+GL) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_abf99605eefa6e9cd704e5786eac88b1e}\label{class_window_abf99605eefa6e9cd704e5786eac88b1e}} 
+void {\bfseries Set\+Camera\+Bounds} (glm\+::vec2 min\+\_\+view, glm\+::vec2 max\+\_\+view)
+\begin{DoxyCompactList}\small\item\em Задает минимальную и максимальную области видимости камеры \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_window_a4474a9bc612b122f14cd080629ee3f3d}{Gen\+Tool\+List}} (std\+::vector$<$ GLdouble $>$ \&\&vertices)
+\begin{DoxyCompactList}\small\item\em Переделывает vertices в список отображения для инструмента. \end{DoxyCompactList}\item 
+std\+::condition\+\_\+variable \& \mbox{\hyperlink{class_window_af3600bd76ffc530db6a93ca6eab3ca01}{Get\+Creation\+Condition}} ()
+\begin{DoxyCompactList}\small\item\em Возвращает condition\+\_\+variable переменную, которая notify\+\_\+all при окончательном создании window(контекста opengl,...) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_a8799cfb1cb41813efe2d75c522553482}\label{class_window_a8799cfb1cb41813efe2d75c522553482}} 
+bool {\bfseries Is\+Created} ()
+\begin{DoxyCompactList}\small\item\em Завершено ли создание окна \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_window_a39d1bc47d2fe16aa368ab49562c33503}\label{class_window_a39d1bc47d2fe16aa368ab49562c33503}} 
+void {\bfseries Idle} ()
+\begin{DoxyCompactList}\small\item\em Вызывается каждый Frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_window}{Window}} $\ast$ \mbox{\hyperlink{class_window_a3d88ccfd9c67c5b1cf558970d9005997}{Instance}} ()
+\begin{DoxyCompactList}\small\item\em Возвращает указатель на singleton \mbox{\hyperlink{class_window}{Window}} если он создан и nullptr в противном случае \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_window}{Window}} $\ast$ \mbox{\hyperlink{class_window_a9506e0ee4ccf976f4abf541c507cbed3}{Instance}} (int argc, char $\ast$$\ast$argv, glm\+::vec2 win\+\_\+size, glm\+::vec2 win\+\_\+offset, glm\+::vec2 proj\+\_\+rect, const char $\ast$title)
+\begin{DoxyCompactList}\small\item\em Если \mbox{\hyperlink{class_window}{Window}} не создан, создает его и возвращает указатель. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_window_aa4d325f0e8c119798e130131536505dd}\label{class_window_aa4d325f0e8c119798e130131536505dd}} 
+void {\bfseries Forwarding\+Motion\+Func} (int x, int y)
+\item 
+\mbox{\Hypertarget{class_window_a25711d19118d09c50a20b232b57bd49c}\label{class_window_a25711d19118d09c50a20b232b57bd49c}} 
+void {\bfseries Forwarding\+Mouse} (int button, int state, int width, int height)
+\item 
+\mbox{\Hypertarget{class_window_a8893a46950e56b1dca863e0fe4402c08}\label{class_window_a8893a46950e56b1dca863e0fe4402c08}} 
+void CALLBACK {\bfseries details\+::\+Error\+Callback} (GLenum error\+\_\+code)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_window_a4474a9bc612b122f14cd080629ee3f3d}\label{class_window_a4474a9bc612b122f14cd080629ee3f3d}} 
+\index{Window@{Window}!GenToolList@{GenToolList}}
+\index{GenToolList@{GenToolList}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{GenToolList()}{GenToolList()}}
+{\footnotesize\ttfamily int Window\+::\+Gen\+Tool\+List (\begin{DoxyParamCaption}\item[{std\+::vector$<$ GLdouble $>$ \&\&}]{vertices }\end{DoxyParamCaption})}
+
+
+
+Переделывает vertices в список отображения для инструмента. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & -\/ точки контура инструмента \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+id списка отображения. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_window_af3600bd76ffc530db6a93ca6eab3ca01}\label{class_window_af3600bd76ffc530db6a93ca6eab3ca01}} 
+\index{Window@{Window}!GetCreationCondition@{GetCreationCondition}}
+\index{GetCreationCondition@{GetCreationCondition}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{GetCreationCondition()}{GetCreationCondition()}}
+{\footnotesize\ttfamily std\+::condition\+\_\+variable \& Window\+::\+Get\+Creation\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Возвращает condition\+\_\+variable переменную, которая notify\+\_\+all при окончательном создании window(контекста opengl,...) 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_window_ab9dc84bac40c574fbd5cad0ddc961e9c}\label{class_window_ab9dc84bac40c574fbd5cad0ddc961e9c}} 
+\index{Window@{Window}!GetOffset@{GetOffset}}
+\index{GetOffset@{GetOffset}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{GetOffset()}{GetOffset()}}
+{\footnotesize\ttfamily glm\+::vec2 Window\+::\+Get\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Возвращает смещение камеры 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_window_a3d88ccfd9c67c5b1cf558970d9005997}\label{class_window_a3d88ccfd9c67c5b1cf558970d9005997}} 
+\index{Window@{Window}!Instance@{Instance}}
+\index{Instance@{Instance}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{Instance()}{Instance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_window}{Window}} $\ast$ Window\+::\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Возвращает указатель на singleton \mbox{\hyperlink{class_window}{Window}} если он создан и nullptr в противном случае 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_window_a9506e0ee4ccf976f4abf541c507cbed3}\label{class_window_a9506e0ee4ccf976f4abf541c507cbed3}} 
+\index{Window@{Window}!Instance@{Instance}}
+\index{Instance@{Instance}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{Instance()}{Instance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_window}{Window}} $\ast$ Window\+::\+Instance (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{glm\+::vec2}]{win\+\_\+size,  }\item[{glm\+::vec2}]{win\+\_\+offset,  }\item[{glm\+::vec2}]{proj\+\_\+rect,  }\item[{const char $\ast$}]{title }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Если \mbox{\hyperlink{class_window}{Window}} не создан, создает его и возвращает указатель. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & -\/ аргумент из main \\
+\hline
+{\em argv} & -\/ аргумент из main \\
+\hline
+{\em win\+\_\+size} & -\/ размеры окна \\
+\hline
+{\em win\+\_\+offset} & -\/ смещение окна \\
+\hline
+{\em proj\+\_\+rect} & -\/ область, которая обязана попасть в область видимости \\
+\hline
+{\em title} & -\/ название окна \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+указатель на созданный класс 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_window_a87b902697d9b23178d1bf4d0e1fae978}\label{class_window_a87b902697d9b23178d1bf4d0e1fae978}} 
+\index{Window@{Window}!SetOffset@{SetOffset}}
+\index{SetOffset@{SetOffset}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{SetOffset()}{SetOffset()}}
+{\footnotesize\ttfamily void Window\+::\+Set\+Offset (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{camera\+\_\+offset }\end{DoxyParamCaption})}
+
+
+
+Устанавличает смещение камеры 
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera\+\_\+offset} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Window.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Window.\+cpp\end{DoxyCompactItemize}

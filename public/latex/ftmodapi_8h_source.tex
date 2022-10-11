@@ -1,0 +1,325 @@
+\hypertarget{ftmodapi_8h_source}{}\doxysection{ftmodapi.\+h}
+\label{ftmodapi_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftmodapi.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftmodapi.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftmodapi.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType modules public interface (specification).                   */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTMODAPI\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTMODAPI\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{37   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{38   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*    module\_management                                                  */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    Module Management                                                  */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*    How to add, upgrade, and remove modules from FreeType.             */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{47   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    The definitions below are used to manage modules within FreeType.  */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    Modules can be added, upgraded, and removed at runtime.            */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54   \textcolor{comment}{/* module bit flags */}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define FT\_MODULE\_FONT\_DRIVER         1  }\textcolor{comment}{/* this module is a font driver  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define FT\_MODULE\_RENDERER            2  }\textcolor{comment}{/* this module is a renderer     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define FT\_MODULE\_HINTER              4  }\textcolor{comment}{/* this module is a glyph hinter */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define FT\_MODULE\_STYLER              8  }\textcolor{comment}{/* this module is a styler       */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define FT\_MODULE\_DRIVER\_SCALABLE     0x100   }\textcolor{comment}{/* the driver supports      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{61                                               \textcolor{comment}{/* scalable fonts           */}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define FT\_MODULE\_DRIVER\_NO\_OUTLINES  0x200   }\textcolor{comment}{/* the driver does not      */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{63                                               \textcolor{comment}{/* support vector outlines  */}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define FT\_MODULE\_DRIVER\_HAS\_HINTER   0x400   }\textcolor{comment}{/* the driver provides its  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{65                                               \textcolor{comment}{/* own hinter               */}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   \textcolor{comment}{/* deprecated values */}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define ft\_module\_font\_driver         FT\_MODULE\_FONT\_DRIVER}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define ft\_module\_renderer            FT\_MODULE\_RENDERER}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define ft\_module\_hinter              FT\_MODULE\_HINTER}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define ft\_module\_styler              FT\_MODULE\_STYLER}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define ft\_module\_driver\_scalable     FT\_MODULE\_DRIVER\_SCALABLE}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define ft\_module\_driver\_no\_outlines  FT\_MODULE\_DRIVER\_NO\_OUTLINES}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define ft\_module\_driver\_has\_hinter   FT\_MODULE\_DRIVER\_HAS\_HINTER}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79   \textcolor{keyword}{typedef} FT\_Pointer  FT\_Module\_Interface;}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{82   (*FT\_Module\_Constructor)( \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}  module );}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{85   (*FT\_Module\_Destructor)( \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}  module );}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87   \textcolor{keyword}{typedef} FT\_Module\_Interface }
+\DoxyCodeLine{88   (*FT\_Module\_Requester)( \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}    module,}
+\DoxyCodeLine{89                           \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  name );}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{93   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{94   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*    FT\_Module\_Class                                                    */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{97   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*    The module class descriptor.                                       */}}
+\DoxyCodeLine{99   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{100   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*    module\_flags      :: Bit flags describing the module.              */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*    module\_size       :: The size of one module object/instance in     */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*                         bytes.                                        */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*    module\_name       :: The name of the module.                       */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*    module\_version    :: The version, as a 16.16 fixed number          */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*                         (major.minor).                                */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*    module\_requires   :: The version of FreeType this module requires  */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*                         (starts at version 2.0, i.e 0x20000)          */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*    module\_init       :: A function used to initialize (not create) a  */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                         new module object.                            */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*    module\_done       :: A function used to finalize (not destroy) a   */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*                         given module object                           */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    get\_interface     :: Queries a given module for a specific         */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                         interface by name.                            */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{123   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___module___class__}{FT\_Module\_Class\_}}}
+\DoxyCodeLine{124   \{}
+\DoxyCodeLine{125     FT\_ULong               module\_flags;}
+\DoxyCodeLine{126     FT\_Long                module\_size;}
+\DoxyCodeLine{127     \textcolor{keyword}{const} FT\_String*       module\_name;}
+\DoxyCodeLine{128     FT\_Fixed               module\_version;}
+\DoxyCodeLine{129     FT\_Fixed               module\_requires;}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \textcolor{keyword}{const} \textcolor{keywordtype}{void}*            module\_interface;}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133     FT\_Module\_Constructor  module\_init;}
+\DoxyCodeLine{134     FT\_Module\_Destructor   module\_done;}
+\DoxyCodeLine{135     FT\_Module\_Requester    get\_interface;}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137   \} \mbox{\hyperlink{struct_f_t___module___class__}{FT\_Module\_Class}};}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{141   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{142   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*    FT\_Add\_Module                                                      */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{145   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*    Adds a new module to a given library instance.                     */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{148   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*    library :: A handle to the library object.                         */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*    clazz   :: A pointer to class descriptor for the module.           */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{154   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{157   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*    An error will be returned if a module already exists by that name, */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*    or if the module requires a version of FreeType that is too great. */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{161   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{162   FT\_Add\_Module( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}              library,}
+\DoxyCodeLine{163                  \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___module___class__}{FT\_Module\_Class}}*  clazz );}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{167   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{168   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*    FT\_Get\_Module                                                      */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{171   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*    Finds a module by its name.                                        */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{174   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{175   \textcolor{comment}{/*    library     :: A handle to the library object.                     */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*    module\_name :: The module's name (as an ASCII string).             */}}
+\DoxyCodeLine{178   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{179   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*    A module handle.  0 if none was found.                             */}}
+\DoxyCodeLine{181   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{182   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*    You should better be familiar with FreeType internals to know      */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*    which module to look for :-\/)                                       */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{186   FT\_EXPORT( \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}} )}
+\DoxyCodeLine{187   FT\_Get\_Module( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}   library,}
+\DoxyCodeLine{188                  \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  module\_name );}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{192   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{193   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*    FT\_Remove\_Module                                                   */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{196   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*    Removes a given module from a library instance.                    */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{199   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*    library :: A handle to a library object.                           */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{202   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{203   \textcolor{comment}{/*    module  :: A handle to a module object.                            */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{205   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{206   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{208   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{209   \textcolor{comment}{/*    The module object is destroyed by the function in case of success. */}}
+\DoxyCodeLine{210   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{211   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{212   FT\_Remove\_Module( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library,}
+\DoxyCodeLine{213                     \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}   module );}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{217   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{218   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    FT\_New\_Library                                                     */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{221   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{222   \textcolor{comment}{/*    This function is used to create a new FreeType library instance    */}}
+\DoxyCodeLine{223   \textcolor{comment}{/*    from a given memory object.  It is thus possible to use libraries  */}}
+\DoxyCodeLine{224   \textcolor{comment}{/*    with distinct memory allocators within the same program.           */}}
+\DoxyCodeLine{225   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{226   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{227   \textcolor{comment}{/*    memory   :: A handle to the original memory object.                */}}
+\DoxyCodeLine{228   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{229   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{230   \textcolor{comment}{/*    alibrary :: A pointer to handle of a new library object.           */}}
+\DoxyCodeLine{231   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{232   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{233   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{234   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{235   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{236   FT\_New\_Library( FT\_Memory    memory,}
+\DoxyCodeLine{237                   \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  *alibrary );}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{241   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{242   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{243   \textcolor{comment}{/*    FT\_Done\_Library                                                    */}}
+\DoxyCodeLine{244   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{245   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{246   \textcolor{comment}{/*    Discards a given library object.  This closes all drivers and      */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*    discards all resource objects.                                     */}}
+\DoxyCodeLine{248   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{249   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{250   \textcolor{comment}{/*    library :: A handle to the target library.                         */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{252   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{253   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{254   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{255   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{256   FT\_Done\_Library( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library );}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{261   (*FT\_DebugHook\_Func)( \textcolor{keywordtype}{void}*  arg );}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{265   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{266   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{267   \textcolor{comment}{/*    FT\_Set\_Debug\_Hook                                                  */}}
+\DoxyCodeLine{268   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{269   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{270   \textcolor{comment}{/*    Sets a debug hook function for debugging the interpreter of a font */}}
+\DoxyCodeLine{271   \textcolor{comment}{/*    format.                                                            */}}
+\DoxyCodeLine{272   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{273   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*    library    :: A handle to the library object.                      */}}
+\DoxyCodeLine{275   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{276   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{277   \textcolor{comment}{/*    hook\_index :: The index of the debug hook.  You should use the     */}}
+\DoxyCodeLine{278   \textcolor{comment}{/*                  values defined in ftobjs.h, e.g.                     */}}
+\DoxyCodeLine{279   \textcolor{comment}{/*                  FT\_DEBUG\_HOOK\_TRUETYPE.                              */}}
+\DoxyCodeLine{280   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{281   \textcolor{comment}{/*    debug\_hook :: The function used to debug the interpreter.          */}}
+\DoxyCodeLine{282   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{283   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{284   \textcolor{comment}{/*    Currently, four debug hook slots are available, but only two (for  */}}
+\DoxyCodeLine{285   \textcolor{comment}{/*    the TrueType and the Type 1 interpreter) are defined.              */}}
+\DoxyCodeLine{286   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{287   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{288   FT\_Set\_Debug\_Hook( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}         library,}
+\DoxyCodeLine{289                      FT\_UInt            hook\_index,}
+\DoxyCodeLine{290                      FT\_DebugHook\_Func  debug\_hook );}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{295   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{296   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*    FT\_Add\_Default\_Modules                                             */}}
+\DoxyCodeLine{298   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{299   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*    Adds the set of default drivers to a given library object.         */}}
+\DoxyCodeLine{301   \textcolor{comment}{/*    This is only useful when you create a library object with          */}}
+\DoxyCodeLine{302   \textcolor{comment}{/*    FT\_New\_Library() (usually to plug a custom memory manager).        */}}
+\DoxyCodeLine{303   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{304   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*    library :: A handle to a new library object.                       */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{307   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{308   FT\_Add\_Default\_Modules( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library );}
+\DoxyCodeLine{309 }
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311   \textcolor{comment}{/* */}}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314 FT\_END\_HEADER}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTMODAPI\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

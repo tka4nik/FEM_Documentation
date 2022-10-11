@@ -1,0 +1,185 @@
+\hypertarget{831__finite__element__modeling_2_g_u_i_2source_2_g_u_i_2_render_data_8h_source}{}\doxysection{Render\+Data.\+h}
+\label{831__finite__element__modeling_2_g_u_i_2source_2_g_u_i_2_render_data_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/GUI/RenderData.h@{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/GUI/RenderData.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}GL/freeglut.h"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <condition\_variable>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{enum class} RenderDataType \{}
+\DoxyCodeLine{12     Mesh,}
+\DoxyCodeLine{13     Vertices,}
+\DoxyCodeLine{14     Elements}
+\DoxyCodeLine{15 \};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{enum class} SampleFields \{}
+\DoxyCodeLine{18     X,}
+\DoxyCodeLine{19     Y,}
+\DoxyCodeLine{20     Order,}
+\DoxyCodeLine{21     Z,}
+\DoxyCodeLine{22     Eum,}
+\DoxyCodeLine{23     Ecp,}
+\DoxyCodeLine{24     Exx, Eyy, Exy, Exz, Eyz, Ezz,}
+\DoxyCodeLine{25     Dum,}
+\DoxyCodeLine{26     Sost,}
+\DoxyCodeLine{27     Dxx, Dyy, Dxy, Dxz, Dyz, Dzz,}
+\DoxyCodeLine{28     Undefined}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{comment}{//Все режимы отображения <текстовое имя(использовать для ввода), <enum(использовать, чтобы запросить это поле у библиотеки), тип данных(хранится в узлах/для треугольников)>>}}
+\DoxyCodeLine{33 \textcolor{keyword}{static} \textcolor{keyword}{const} std::map<std::string, std::pair<SampleFields, RenderDataType>> FieldInfo = }
+\DoxyCodeLine{34 \{}
+\DoxyCodeLine{35     \{\textcolor{stringliteral}{"{}Mesh"{}}, \{SampleFields::Undefined, RenderDataType::Mesh\}\},}
+\DoxyCodeLine{36     \{\textcolor{stringliteral}{"{}Height"{}}, \{SampleFields::Z, RenderDataType::Vertices\}\},}
+\DoxyCodeLine{37     \{\textcolor{stringliteral}{"{}Eum"{}}, \{SampleFields::Eum, RenderDataType::Elements\}\},}
+\DoxyCodeLine{38     \{\textcolor{stringliteral}{"{}Ecp"{}}, \{SampleFields::Ecp, RenderDataType::Elements\}\},}
+\DoxyCodeLine{39     \{\textcolor{stringliteral}{"{}Exx"{}}, \{SampleFields::Exx, RenderDataType::Elements\}\},}
+\DoxyCodeLine{40     \{\textcolor{stringliteral}{"{}Eyy"{}}, \{SampleFields::Eyy, RenderDataType::Elements\}\},}
+\DoxyCodeLine{41     \{\textcolor{stringliteral}{"{}Exy"{}}, \{SampleFields::Exy, RenderDataType::Elements\}\},}
+\DoxyCodeLine{42     \{\textcolor{stringliteral}{"{}Exz"{}}, \{SampleFields::Exz, RenderDataType::Elements\}\},}
+\DoxyCodeLine{43     \{\textcolor{stringliteral}{"{}Eyz"{}}, \{SampleFields::Eyz, RenderDataType::Elements\}\},}
+\DoxyCodeLine{44     \{\textcolor{stringliteral}{"{}Ezz"{}}, \{SampleFields::Ezz, RenderDataType::Elements\}\},}
+\DoxyCodeLine{45     \{\textcolor{stringliteral}{"{}Dum"{}}, \{SampleFields::Dum, RenderDataType::Elements\}\},}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \{\textcolor{stringliteral}{"{}Sost"{}}, \{SampleFields::Sost, RenderDataType::Elements\}\},}
+\DoxyCodeLine{48     \{\textcolor{stringliteral}{"{}Dxx"{}}, \{SampleFields::Dxx, RenderDataType::Elements\}\},}
+\DoxyCodeLine{49     \{\textcolor{stringliteral}{"{}Dyy"{}}, \{SampleFields::Dyy, RenderDataType::Elements\}\},}
+\DoxyCodeLine{50     \{\textcolor{stringliteral}{"{}Dxy"{}}, \{SampleFields::Dxy, RenderDataType::Elements\}\},}
+\DoxyCodeLine{51     \{\textcolor{stringliteral}{"{}Dxz"{}}, \{SampleFields::Dxz, RenderDataType::Elements\}\},}
+\DoxyCodeLine{52     \{\textcolor{stringliteral}{"{}Dyz"{}}, \{SampleFields::Dyz, RenderDataType::Elements\}\},}
+\DoxyCodeLine{53     \{\textcolor{stringliteral}{"{}Dzz"{}}, \{SampleFields::Dzz, RenderDataType::Elements\}\},}
+\DoxyCodeLine{54 \};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{60 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_render_data}{RenderData}} \{}
+\DoxyCodeLine{64     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_render_data_1_1_render_mode}{RenderMode}} \{}
+\DoxyCodeLine{65         \textcolor{keyword}{struct }\mbox{\hyperlink{struct_render_data_1_1_render_mode_1_1_field_info}{FieldInfo}} \{ \textcolor{comment}{//информауия ою отображаемом поле}}
+\DoxyCodeLine{66             std::string m\_field\_name; \textcolor{comment}{//имя режима отображения}}
+\DoxyCodeLine{67             GLdouble m\_min\_value; \textcolor{comment}{//минимальное значение в отображаемых данных}}
+\DoxyCodeLine{68             GLdouble m\_max\_value; \textcolor{comment}{//максимальное значение в отображаемых данных}}
+\DoxyCodeLine{69         \};}
+\DoxyCodeLine{70         \mbox{\hyperlink{struct_render_data_1_1_render_mode_1_1_field_info}{FieldInfo}} m\_field\_info = \{ \textcolor{stringliteral}{"{}Height"{}}, 0.0 , 1.0 \};}
+\DoxyCodeLine{71         \textcolor{keywordtype}{bool} m\_gradient\_smooth = \textcolor{keyword}{true}; \textcolor{comment}{//сглаживать ли градиент?}}
+\DoxyCodeLine{72         \textcolor{keywordtype}{bool} m\_is\_sample\_grid\_displayed = \textcolor{keyword}{false}; \textcolor{comment}{//отображать ли сетку для sample?}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74         \textcolor{keywordtype}{double} m\_hue\_min = 0.0;\textcolor{comment}{//начальное(нижнее) значение оттенка для шкалы градиента. Используется цветовое пространство (HSL)}}
+\DoxyCodeLine{75         \textcolor{keywordtype}{double} m\_hue\_max = (360 -\/ 360 / 6.0) / 360.0; \textcolor{comment}{//конечное(верхнее) значения оттенка для шкалы градиента...}}
+\DoxyCodeLine{76         \textcolor{keywordtype}{int} m\_primaries = 6; \textcolor{comment}{//количество  m\_palette-\/ичных цветов в палире градиента.}}
+\DoxyCodeLine{77         \textcolor{comment}{/*}}
+\DoxyCodeLine{78 \textcolor{comment}{        Первичные цвета -\/ Red, Green, Blue,}}
+\DoxyCodeLine{79 \textcolor{comment}{        Вторичные цвета -\/ Red, Yellow, Green, CYAN, BLUE, MAGENTA}}
+\DoxyCodeLine{80 \textcolor{comment}{        и так далее. Делим цветовой круг на 3 * 2\string^m\_palette цветов}}
+\DoxyCodeLine{81 \textcolor{comment}{        */}}
+\DoxyCodeLine{82         \textcolor{keywordtype}{int} m\_palette = 2; \textcolor{comment}{//вторичные цвета}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84         \textcolor{keywordtype}{double} m\_lightness = 0.5; \textcolor{comment}{//яркость граниента}}
+\DoxyCodeLine{85         \textcolor{keywordtype}{double} m\_saturation = 1.0; \textcolor{comment}{//насыщенность градиента}}
+\DoxyCodeLine{86         \textcolor{keywordtype}{bool} m\_CCW = \textcolor{keyword}{true}; \textcolor{comment}{//определяет обход цветового круга. true -\/ против часовой стрелки.}}
+\DoxyCodeLine{87     \};}
+\DoxyCodeLine{88 \textcolor{keyword}{public}: }
+\DoxyCodeLine{89     \textcolor{keyword}{static} \mbox{\hyperlink{struct_render_data}{RenderData}}* Instance();}
+\DoxyCodeLine{90     \textcolor{comment}{//=====================================================}}
+\DoxyCodeLine{91     \textcolor{comment}{//Sample}}
+\DoxyCodeLine{92     \textcolor{comment}{//=====================================================}}
+\DoxyCodeLine{93     }
+\DoxyCodeLine{94     \textcolor{comment}{//кол-\/во элементов в массиве vertices.}}
+\DoxyCodeLine{95     \textcolor{comment}{// nV * 3}}
+\DoxyCodeLine{96     \textcolor{keywordtype}{size\_t} GetSampleVerticesCount();}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98     \textcolor{comment}{//кол-\/во элементов в массиве order.}}
+\DoxyCodeLine{99     \textcolor{comment}{// nT * 3}}
+\DoxyCodeLine{100     \textcolor{keywordtype}{size\_t} GetSampleIndexCount();}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102     \textcolor{comment}{//заполнение вершинных массивов}}
+\DoxyCodeLine{103     \textcolor{keywordtype}{void} FillSampleVertexArrays(}
+\DoxyCodeLine{104         std::vector<GLfloat>\&\& vertices,}
+\DoxyCodeLine{105         std::vector<GLuint>\&\& indices}
+\DoxyCodeLine{106     );}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \textcolor{comment}{//запишет max\_z и min\_z}}
+\DoxyCodeLine{110     \textcolor{keywordtype}{void} ExtractMinMaxZValue(\textcolor{keyword}{const} std::vector<GLdouble>\& z\_value);}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112     \textcolor{comment}{//запишент z координату}}
+\DoxyCodeLine{113     \textcolor{keywordtype}{void} FillZValue(std::vector<GLdouble>\&\& z\_value);}
+\DoxyCodeLine{114     GLfloat GetMaxZValue();}
+\DoxyCodeLine{115     GLfloat GetMinZValue();}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117     GLfloat* GetSampleVertexPointer();}
+\DoxyCodeLine{118     \textcolor{keyword}{const} std::vector<GLfloat>\& GetSampleVertices();}
+\DoxyCodeLine{119     GLuint* GetSampleIndexPointer();}
+\DoxyCodeLine{120     \textcolor{keyword}{const} std::vector<GLuint>\& GetSampleIndicies();}
+\DoxyCodeLine{121     \textcolor{comment}{//=====================================================}}
+\DoxyCodeLine{122     \textcolor{comment}{//Tool}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124     \textcolor{comment}{//Возвращает ID списка отображения для инструмента.}}
+\DoxyCodeLine{125     \textcolor{keywordtype}{int} GetToolDisplayList();}
+\DoxyCodeLine{126     \textcolor{keywordtype}{void} SetToolProfile(std::vector<GLdouble>\&\& vertices);}
+\DoxyCodeLine{127     \textcolor{keywordtype}{void} SetToolOffset(GLdouble offset);}
+\DoxyCodeLine{128     GLdouble GetToolOffset();}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130     \textcolor{comment}{//=======================================================}}
+\DoxyCodeLine{131     \textcolor{comment}{//RenderMode}}
+\DoxyCodeLine{132     \textcolor{comment}{//установка нового Поля для отображения.}}
+\DoxyCodeLine{133     \textcolor{keywordtype}{void} SetRenderField(std::string mode, std::vector<GLdouble>\&\& z\_values);}
+\DoxyCodeLine{134     std::string GetRenderField();}
+\DoxyCodeLine{135     \textcolor{comment}{/*RenderDataType GetRenderDataType();}}
+\DoxyCodeLine{136 \textcolor{comment}{    static RenderDataType GetRenderDataType(const std::string field\_name);}}
+\DoxyCodeLine{137 \textcolor{comment}{    }}
+\DoxyCodeLine{138 \textcolor{comment}{    SampleFields GetSampleFieldId();}}
+\DoxyCodeLine{139 \textcolor{comment}{    static SampleFields GetSampleFieldId(const std::string field\_name);*/}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142     \textcolor{comment}{//Кол-\/во palette-\/ичных(первычных, вторичных, третичных ) цветов для градиента. (см. "{}Круг Иттена"{} для HSL)}}
+\DoxyCodeLine{143     \textcolor{comment}{//primaries -\/ число цветов в итоговом градиенте.}}
+\DoxyCodeLine{144     \textcolor{comment}{//min\_hue [0, 360] начальное значение оттенка}}
+\DoxyCodeLine{145     \textcolor{comment}{//CCW обход оттенков против часовой стрелки.}}
+\DoxyCodeLine{146     \textcolor{keywordtype}{void} SetNColors(\textcolor{keywordtype}{size\_t} primaries, \textcolor{keywordtype}{size\_t} palette, \textcolor{keywordtype}{float} min\_hue = 0.0, \textcolor{keywordtype}{bool} CCW = \textcolor{keyword}{true});}
+\DoxyCodeLine{147     \textcolor{comment}{//вернет true, в случае успеха. Не меняет массивы}}
+\DoxyCodeLine{148     \textcolor{keywordtype}{bool} SetRenderModeDefer(std::string mode);}
+\DoxyCodeLine{149     \textcolor{keywordtype}{void} SetGradientSmooth(\textcolor{keywordtype}{bool} gs);}
+\DoxyCodeLine{150     \textcolor{keywordtype}{void} SetSampleGridDisplay(\textcolor{keywordtype}{bool} sgd);}
+\DoxyCodeLine{151     \textcolor{keyword}{const} \textcolor{keyword}{inline} RenderMode\& GetRenderMode() \{ \textcolor{keywordflow}{return} m\_render\_mode; \}}
+\DoxyCodeLine{152     \textcolor{comment}{//=======================================================}}
+\DoxyCodeLine{153     \textcolor{comment}{//Другое}}
+\DoxyCodeLine{154     \textcolor{keywordtype}{void} SetStep(\textcolor{keywordtype}{size\_t} step);}
+\DoxyCodeLine{155     \textcolor{keywordtype}{void} SetTime(\textcolor{keywordtype}{double} time);}
+\DoxyCodeLine{156     std::mutex\& GetRenderDataMutex();}
+\DoxyCodeLine{157     }
+\DoxyCodeLine{158     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_window}{Window}};}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160     \mbox{\hyperlink{struct_render_data}{\string~RenderData}}();}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{keyword}{private}:}
+\DoxyCodeLine{163     \mbox{\hyperlink{struct_render_data}{RenderData}}();}
+\DoxyCodeLine{164     \mbox{\hyperlink{struct_render_data}{RenderData}}(\textcolor{keyword}{const} \mbox{\hyperlink{struct_render_data}{RenderData}}\&);}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     std::mutex m\_render\_data\_mutex;}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168     \textcolor{keyword}{static} \mbox{\hyperlink{struct_render_data}{RenderData}}* s\_instance;}
+\DoxyCodeLine{169     \textcolor{keyword}{static} std::once\_flag s\_instance\_flag;}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     std::vector<GLfloat> m\_vertices;}
+\DoxyCodeLine{172     std::vector<GLdouble> m\_tool\_vertices; }
+\DoxyCodeLine{173     \textcolor{comment}{//заполнен только на первом шаге. При первой же возможности преобразуется в список отображения m\_tool\_display\_list.}}
+\DoxyCodeLine{174     std::vector<GLuint> m\_indices;}
+\DoxyCodeLine{175     \textcolor{comment}{//номер списка отображения для инструмента.}}
+\DoxyCodeLine{176     \textcolor{keywordtype}{int} m\_tool\_display\_list = 0;}
+\DoxyCodeLine{177     GLdouble m\_tool\_offset = 0.0;}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179     \mbox{\hyperlink{struct_render_data_1_1_render_mode}{RenderData::RenderMode}} m\_render\_mode;}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181     \textcolor{keywordtype}{size\_t} m\_cur\_step = 1;}
+\DoxyCodeLine{182     \textcolor{keywordtype}{double} m\_cur\_time = 0.0;}
+\DoxyCodeLine{183 \};}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 }
+
+\end{DoxyCode}

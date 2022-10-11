@@ -1,0 +1,316 @@
+\hypertarget{prototype-prismatic_2source_2_material_8h_source}{}\doxysection{Material.\+h}
+\label{prototype-prismatic_2source_2_material_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/Material.h@{C:/Projects/FEM/prototype-\/prismatic/source/Material.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 ﻿\textcolor{comment}{// Material.h: interface for the Material class.}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#if !defined(AFX\_MATERIAL\_H\_\_14692552\_B200\_4B8C\_ABCE\_1C64FA1BEAC2\_\_INCLUDED\_)}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define AFX\_MATERIAL\_H\_\_14692552\_B200\_4B8C\_ABCE\_1C64FA1BEAC2\_\_INCLUDED\_}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}RealPoint.h"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_optimizer}{Optimizer}}\{}
+\DoxyCodeLine{15 \textcolor{keyword}{public}:}
+\DoxyCodeLine{16     \mbox{\hyperlink{class_optimizer}{Optimizer}}()\{}
+\DoxyCodeLine{17         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<15; i++)\{}
+\DoxyCodeLine{18             Param.Add(1);}
+\DoxyCodeLine{19         \}}
+\DoxyCodeLine{20         Param.Add(0);   \textcolor{comment}{// Пустышка тут будут временные значения функции}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22         \textcolor{comment}{//Заполнение многогранника}}
+\DoxyCodeLine{23         Npoints = Param.GetSize();}
+\DoxyCodeLine{24         Poly.SetSize(Npoints);}
+\DoxyCodeLine{25         XF2.SetSize(Npoints);}
+\DoxyCodeLine{26         XF3.SetSize(Npoints);}
+\DoxyCodeLine{27         XF4.SetSize(Npoints);}
+\DoxyCodeLine{28         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<Npoints; i++)\{}
+\DoxyCodeLine{29             XF2[i] = XF3[i] = XF4[i] = 0;}
+\DoxyCodeLine{30             Poly[i].Copy(Param);}
+\DoxyCodeLine{31             \textcolor{keywordflow}{if}(i>0)Poly[i][i-\/1] = Poly[i][i-\/1]*1.1;}
+\DoxyCodeLine{32         \}}
+\DoxyCodeLine{33         Alpha = 1.;  \textcolor{comment}{// Кфф отражения}}
+\DoxyCodeLine{34         Betta = 0.5; \textcolor{comment}{// Кфф сжатия}}
+\DoxyCodeLine{35         Gamma = 2;   \textcolor{comment}{// Кфф растяжения}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37         nF = 0;}
+\DoxyCodeLine{38         nStep = 0;}
+\DoxyCodeLine{39         min\_p = max\_p = max2\_p = 0;}
+\DoxyCodeLine{40     \}}
+\DoxyCodeLine{41     \mbox{\hyperlink{class_optimizer}{\string~Optimizer}}()\{\}}
+\DoxyCodeLine{42 \textcolor{keyword}{public}:}
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} RecalcParam(\textcolor{keywordtype}{double} dFunc)\{\textcolor{comment}{// Метод многогранника}}
+\DoxyCodeLine{44         \textcolor{comment}{//1. Вычисление целевой ф-\/ии во всех точках многогранника}}
+\DoxyCodeLine{45         \textcolor{keywordflow}{if}(nStep < Npoints-\/1)\{}
+\DoxyCodeLine{46             min\_p = nStep;}
+\DoxyCodeLine{47             F(nStep) = dFunc;}
+\DoxyCodeLine{48             Param.Copy(Poly[++nStep]);}
+\DoxyCodeLine{49         \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(nF == 0)\{}
+\DoxyCodeLine{50             \textcolor{keywordflow}{if}(nStep == Npoints-\/1)\{}
+\DoxyCodeLine{51                 F(nStep) = dFunc;}
+\DoxyCodeLine{52             \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{53                 F(max\_p) = dFunc;}
+\DoxyCodeLine{54             \}}
+\DoxyCodeLine{55             nStep++;}
+\DoxyCodeLine{56             \textcolor{comment}{//2. Поиск min\_i (лучшей), max\_i (худшей) и max2\_i (второй после худшей) точек многогранника}}
+\DoxyCodeLine{57             min\_p = max\_p = max2\_p = 0;}
+\DoxyCodeLine{58             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} p=1; p<Npoints; p++)\{}
+\DoxyCodeLine{59                 \textcolor{keywordflow}{if}(F(p) >= F(max\_p))\{}
+\DoxyCodeLine{60                     max2\_p = max\_p;}
+\DoxyCodeLine{61                     max\_p = p;}
+\DoxyCodeLine{62                 \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(F(p) >= F(max2\_p))\{}
+\DoxyCodeLine{63                     max2\_p = p;}
+\DoxyCodeLine{64                 \}}
+\DoxyCodeLine{65                 \textcolor{keywordflow}{if}(F(p) < F(min\_p)) min\_p = p;}
+\DoxyCodeLine{66             \}}
+\DoxyCodeLine{67             \textcolor{comment}{//3. Поиск центра тяжести многогранника за исключением max\_p  -\/ XF2}}
+\DoxyCodeLine{68             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<Npoints-\/1; i++)\{}
+\DoxyCodeLine{69                 XF2[i] = 0;}
+\DoxyCodeLine{70                 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} p=0; p<Npoints; p++)\{}
+\DoxyCodeLine{71                     \textcolor{keywordflow}{if}(p != max\_p) XF2[i] += Poly[p][i]/(Npoints-\/1);}
+\DoxyCodeLine{72                 \}}
+\DoxyCodeLine{73             \}}
+\DoxyCodeLine{74             \textcolor{comment}{//4. Отражение XF2 в XF3}}
+\DoxyCodeLine{75             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<Npoints-\/1; i++)\{}
+\DoxyCodeLine{76                 XF3[i] = XF2[i] + Alpha*(XF2[i] -\/ Poly[max\_p][i]);}
+\DoxyCodeLine{77             \}}
+\DoxyCodeLine{78             \textcolor{comment}{//5. Вычисление F3}}
+\DoxyCodeLine{79             Param.Copy(XF3);}
+\DoxyCodeLine{80             nF = 3;}
+\DoxyCodeLine{81         \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(nF == 3)\{}
+\DoxyCodeLine{82             \textcolor{comment}{//6. Вычислено значение функции в XF3, оно лежит в dFunc, установим его}}
+\DoxyCodeLine{83             XF3[Npoints-\/1] = dFunc;}
+\DoxyCodeLine{84             \textcolor{keywordflow}{if}(XF3[Npoints-\/1] <= F(min\_p))\{}
+\DoxyCodeLine{85                 \textcolor{comment}{//6.a Растяжение XF3 в XF4}}
+\DoxyCodeLine{86                 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<Npoints-\/1; i++)\{}
+\DoxyCodeLine{87                     XF4[i] = XF2[i] + Gamma*(XF3[i] -\/ XF2[i]);}
+\DoxyCodeLine{88                 \}}
+\DoxyCodeLine{89                 Param.Copy(XF4);}
+\DoxyCodeLine{90                 nF = 4;}
+\DoxyCodeLine{91             \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(XF3[Npoints-\/1] <= F(max2\_p))\{}
+\DoxyCodeLine{92                 \textcolor{comment}{//6.c Переформировываем многогранник и возвращаемся на 2.}}
+\DoxyCodeLine{93                 Poly[max\_p].Copy(XF3);}
+\DoxyCodeLine{94                 nF = 0;}
+\DoxyCodeLine{95             \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(XF3[Npoints-\/1] <= F(max\_p))\{}
+\DoxyCodeLine{96                 \textcolor{comment}{//6.b Сжатие XF3 в Param}}
+\DoxyCodeLine{97                 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<Npoints-\/1; i++)\{}
+\DoxyCodeLine{98                     Param[i] = XF2[i] + Betta*(Poly[max\_p][i] -\/ XF2[i]);}
+\DoxyCodeLine{99                 \}}
+\DoxyCodeLine{100                 \textcolor{comment}{// Переформировываем многогранник и возвращаемся на 2.}}
+\DoxyCodeLine{101                 Poly[max\_p].Copy(Param);}
+\DoxyCodeLine{102                 nF = 0;}
+\DoxyCodeLine{103             \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{104                 \textcolor{comment}{//6.d Рекурсия}}
+\DoxyCodeLine{105                 \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} p=0; p<Npoints; p++)\{}
+\DoxyCodeLine{106                     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<Npoints-\/1; i++)\{}
+\DoxyCodeLine{107                         Poly[p][i] = 0.5*(Poly[p][i] + Poly[min\_p][i]);}
+\DoxyCodeLine{108                     \}}
+\DoxyCodeLine{109                 \}}
+\DoxyCodeLine{110                 Param.Copy(Poly[0]);}
+\DoxyCodeLine{111                 nF=0;}
+\DoxyCodeLine{112                 nStep = 0;}
+\DoxyCodeLine{113             \}}
+\DoxyCodeLine{114         \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(nF == 4)\{}
+\DoxyCodeLine{115             \textcolor{comment}{//7. Вычислено значение функции в XF4, оно лежит в dFunc, установим его}}
+\DoxyCodeLine{116             XF4[Npoints-\/1] = dFunc;}
+\DoxyCodeLine{117             CArray<double> xf34;}
+\DoxyCodeLine{118             \textcolor{keywordflow}{if}(XF4[Npoints-\/1] < F(min\_p))\{}
+\DoxyCodeLine{119                 xf34.Copy(XF4);}
+\DoxyCodeLine{120             \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{121                 xf34.Copy(XF3);}
+\DoxyCodeLine{122             \}}
+\DoxyCodeLine{123             \textcolor{comment}{// Переформировываем многогранник и возвращаемся на 2.}}
+\DoxyCodeLine{124             Poly[max\_p].Copy(xf34);}
+\DoxyCodeLine{125             Param.Copy(xf34);}
+\DoxyCodeLine{126             nF = 0;}
+\DoxyCodeLine{127         \}}
+\DoxyCodeLine{128     \}}
+\DoxyCodeLine{129     \textcolor{keyword}{const} CArray<double> \&MinPoint()\{\textcolor{keywordflow}{return} Poly[min\_p];\}}
+\DoxyCodeLine{130     \textcolor{keywordtype}{double} GetFMin()\{\textcolor{keywordflow}{return} Poly[min\_p][Npoints-\/1];\}}
+\DoxyCodeLine{131     \textcolor{keywordtype}{double} \&F(\textcolor{keywordtype}{int} n) \{\textcolor{keywordflow}{return} Poly[n][Npoints-\/1];\}}
+\DoxyCodeLine{132     \textcolor{keywordtype}{double} GetParam(\textcolor{keywordtype}{int} i)\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} Param[i];\}}
+\DoxyCodeLine{133 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{134     \textcolor{keywordtype}{int} nStep;}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136     CArray<CArray<R\_POINT, R\_POINT>> TinPoint;}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     CArray<R\_POINT, R\_POINT> AimMax;}
+\DoxyCodeLine{139     CArray<R\_POINT, R\_POINT> AimMin;}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{comment}{//Для метода многогранника}}
+\DoxyCodeLine{142     CArray<double> Param;}
+\DoxyCodeLine{143     CArray<CArray<double>> Poly;}
+\DoxyCodeLine{144     \textcolor{keywordtype}{int} Npoints;}
+\DoxyCodeLine{145     \textcolor{keywordtype}{int} min\_p;}
+\DoxyCodeLine{146     \textcolor{keywordtype}{int} max\_p;}
+\DoxyCodeLine{147     \textcolor{keywordtype}{int} max2\_p;}
+\DoxyCodeLine{148     CArray<double> XF2;}
+\DoxyCodeLine{149     CArray<double> XF3;}
+\DoxyCodeLine{150     CArray<double> XF4;}
+\DoxyCodeLine{151     \textcolor{keywordtype}{double} Alpha;}
+\DoxyCodeLine{152     \textcolor{keywordtype}{double} Betta;}
+\DoxyCodeLine{153     \textcolor{keywordtype}{double} Gamma;}
+\DoxyCodeLine{154     \textcolor{keywordtype}{int} nF;}
+\DoxyCodeLine{155 \};}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{160     \textcolor{keywordtype}{double} R;}
+\DoxyCodeLine{161     \textcolor{keywordtype}{double} a\_drv;}
+\DoxyCodeLine{162     \textcolor{keywordtype}{double} n\_drv;}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     \textcolor{keywordtype}{double} a\_drx;}
+\DoxyCodeLine{165     \textcolor{keywordtype}{double} n\_drx;}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{keywordtype}{double} A\_rv;}
+\DoxyCodeLine{168     \textcolor{keywordtype}{double} B\_rv;}
+\DoxyCodeLine{169     \textcolor{keywordtype}{double} Q\_rv;}
+\DoxyCodeLine{170     \textcolor{keywordtype}{double} m\_rv;}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172     \textcolor{keywordtype}{double} A\_rx;}
+\DoxyCodeLine{173     \textcolor{keywordtype}{double} B\_rx;}
+\DoxyCodeLine{174     \textcolor{keywordtype}{double} Q\_rx;}
+\DoxyCodeLine{175     \textcolor{keywordtype}{double} m\_rx;}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177     \textcolor{keywordtype}{double} A\_e;}
+\DoxyCodeLine{178     \textcolor{keywordtype}{double} m\_ed;}
+\DoxyCodeLine{179     \textcolor{keywordtype}{double} Q\_e;}
+\DoxyCodeLine{180     \textcolor{keywordtype}{double} m\_ee;}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182     \textcolor{keywordtype}{double} A\_drx;}
+\DoxyCodeLine{183     \textcolor{keywordtype}{double} m\_drx;}
+\DoxyCodeLine{184     \textcolor{keywordtype}{double} Q\_dd;}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186 \textcolor{comment}{//SRX}}
+\DoxyCodeLine{187     \textcolor{keywordtype}{double} n\_srx;}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \textcolor{keywordtype}{double} A\_s;}
+\DoxyCodeLine{190     \textcolor{keywordtype}{double} p1;}
+\DoxyCodeLine{191     \textcolor{keywordtype}{double} p2;}
+\DoxyCodeLine{192     \textcolor{keywordtype}{double} p3;}
+\DoxyCodeLine{193     \textcolor{keywordtype}{double} Q\_srx;}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     \textcolor{keywordtype}{double} C0;}
+\DoxyCodeLine{196     \textcolor{keywordtype}{double} C1;}
+\DoxyCodeLine{197     \textcolor{keywordtype}{double} q1;}
+\DoxyCodeLine{198     \textcolor{keywordtype}{double} q2;}
+\DoxyCodeLine{199     \textcolor{keywordtype}{double} q3;}
+\DoxyCodeLine{200     \textcolor{keywordtype}{double} Q\_ds;}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{comment}{//MRX}}
+\DoxyCodeLine{203     \textcolor{keywordtype}{double} n\_mrx;}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205     \textcolor{keywordtype}{double} A\_m;}
+\DoxyCodeLine{206     \textcolor{keywordtype}{double} Q\_mz;}
+\DoxyCodeLine{207     \textcolor{keywordtype}{double} p\_m;}
+\DoxyCodeLine{208     \textcolor{keywordtype}{double} Q\_mrx;}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210     \textcolor{keywordtype}{double} C\_m;}
+\DoxyCodeLine{211     \textcolor{keywordtype}{double} m\_mrx;}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{comment}{//GRAING ROWTH}}
+\DoxyCodeLine{214     \textcolor{keywordtype}{double} t\_gg1;}
+\DoxyCodeLine{215     \textcolor{keywordtype}{double} A1;}
+\DoxyCodeLine{216     \textcolor{keywordtype}{double} B1;}
+\DoxyCodeLine{217     \textcolor{keywordtype}{double} A2;}
+\DoxyCodeLine{218     \textcolor{keywordtype}{double} B2;}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220 \}\mbox{\hyperlink{struct_r_x___m_o_d_e_l}{RX\_MODEL}};}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222 BOOL FindString(CFile \&File, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str);}
+\DoxyCodeLine{223 BOOL read\_dtoch(CFile \&File, \textcolor{keywordtype}{double} *d, \textcolor{keywordtype}{char} ch);}
+\DoxyCodeLine{224 \textcolor{keywordtype}{double} read\_d(CFile *pFile, WORD *pLastSymb);}
+\DoxyCodeLine{225 \textcolor{keywordtype}{double} APPR(\textcolor{keywordtype}{double} z1, \textcolor{keywordtype}{double} w1, \textcolor{keywordtype}{double} z2, \textcolor{keywordtype}{double} w2, \textcolor{keywordtype}{double} zn);}
+\DoxyCodeLine{226 \textcolor{keywordtype}{double} APPR\_ex(CArray<R\_POINT, R\_POINT> \&XY, \textcolor{keywordtype}{double} x);}
+\DoxyCodeLine{227 \textcolor{keywordtype}{bool} ReadValue(CFile \&file, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name, \textcolor{keywordtype}{double} *pVal);}
+\DoxyCodeLine{228 \textcolor{keywordtype}{bool} ReadRX(CFile \&File, \mbox{\hyperlink{struct_r_x___m_o_d_e_l}{RX\_MODEL}} \&rx);}
+\DoxyCodeLine{229 \textcolor{keywordtype}{double} arcsinh(\textcolor{keywordtype}{double} arg);}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_material}{CMaterial}} }
+\DoxyCodeLine{232 \{}
+\DoxyCodeLine{233 \textcolor{keyword}{public}:}
+\DoxyCodeLine{234     \textcolor{keywordtype}{int} Load(\textcolor{keyword}{const} CString \&strFile);}
+\DoxyCodeLine{235     \mbox{\hyperlink{class_c_material}{CMaterial}}();}
+\DoxyCodeLine{236     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_material}{\string~CMaterial}}();}
+\DoxyCodeLine{237     \textcolor{keyword}{const} \mbox{\hyperlink{class_c_material}{CMaterial}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_material}{CMaterial}} \&Src);}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239     \textcolor{keywordtype}{double} Si(\textcolor{keywordtype}{double} e, \textcolor{keywordtype}{double} v, \textcolor{keywordtype}{double} T, \textcolor{keywordtype}{double} Xd=-\/1, \textcolor{keywordtype}{double} X0 = 0);}
+\DoxyCodeLine{240     \textcolor{keywordtype}{double} Mu(\textcolor{keywordtype}{double} e, \textcolor{keywordtype}{double} v, \textcolor{keywordtype}{double} T, \textcolor{keywordtype}{double} Xd=-\/1, \textcolor{keywordtype}{double} X0 = 0)\{\textcolor{keywordflow}{return} Si(e, v, T, Xd, X0)/(3*v);\}}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242     \textcolor{keywordtype}{double} Lambda(\textcolor{keywordtype}{double} T);}
+\DoxyCodeLine{243     \textcolor{keywordtype}{double} MD(\textcolor{keywordtype}{double} T);}
+\DoxyCodeLine{244     \textcolor{keywordtype}{double} SH(\textcolor{keywordtype}{double} T);}
+\DoxyCodeLine{245     \textcolor{keywordtype}{double} Emiss(\textcolor{keywordtype}{double} T);}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247     \textcolor{keywordtype}{int} *iptr;}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249     \textcolor{keywordtype}{double} m\_Kff[15];}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251     \textcolor{keywordtype}{void} Recalculate(\textcolor{keywordtype}{double} dF)\{}
+\DoxyCodeLine{252         m\_opt.RecalcParam(dF);}
+\DoxyCodeLine{253         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0; i<15; i++)m\_Kff[i] = m\_opt.GetParam(i);}
+\DoxyCodeLine{254     \}}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{259     CString m\_strFName;}
+\DoxyCodeLine{260     \textcolor{keywordtype}{int} m\_nType;}
+\DoxyCodeLine{261     \textcolor{keywordtype}{int} n\_e, n\_v, n\_t;}
+\DoxyCodeLine{262     \textcolor{keywordtype}{double} *M\_t, *M\_e, **M\_v, ***Mat;}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264     \textcolor{keywordtype}{double} m\_A;}
+\DoxyCodeLine{265     \textcolor{keywordtype}{double} m\_m1, m\_m2, m\_m3, m\_m4;}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267     CArray<R\_POINT, R\_POINT> m\_Lambda;  \textcolor{comment}{//Conductivity  (теплопроводность)}}
+\DoxyCodeLine{268     CArray<R\_POINT, R\_POINT> m\_MD;  \textcolor{comment}{//Mass Dencity  (плотность)}}
+\DoxyCodeLine{269     CArray<R\_POINT, R\_POINT> m\_C;   \textcolor{comment}{//Specific Heat (удельная теплоемкость)}}
+\DoxyCodeLine{270     CArray<R\_POINT, R\_POINT> m\_Emiss;   \textcolor{comment}{//Emission  (Коэффициент черноты)}}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272     \mbox{\hyperlink{struct_r_x___m_o_d_e_l}{RX\_MODEL}} m\_RX;}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{275     \textcolor{keywordtype}{double} Si\_t1(\textcolor{keywordtype}{double} e, \textcolor{keywordtype}{double} v, \textcolor{keywordtype}{double} T);}
+\DoxyCodeLine{276     \textcolor{keywordtype}{double} Si\_t2(\textcolor{keywordtype}{double} e, \textcolor{keywordtype}{double} v, \textcolor{keywordtype}{double} T);}
+\DoxyCodeLine{277     \textcolor{keywordtype}{double} Si\_t34(\textcolor{keywordtype}{double} e, \textcolor{keywordtype}{double} v, \textcolor{keywordtype}{double} T, \textcolor{keywordtype}{double} Xd, \textcolor{keywordtype}{double} X0);}
+\DoxyCodeLine{278     \textcolor{keywordtype}{int} Load\_t1(CFile \&File);}
+\DoxyCodeLine{279     \textcolor{keywordtype}{int} Load\_t2(CFile \&File);}
+\DoxyCodeLine{280     \textcolor{keywordtype}{int} Load\_t34(CFile \&File);}
+\DoxyCodeLine{281     \textcolor{keywordtype}{int} LoadThermo(CFile \&File);}
+\DoxyCodeLine{282     \textcolor{keywordtype}{void} DeleteArrays();}
+\DoxyCodeLine{283 \textcolor{keyword}{public}:}
+\DoxyCodeLine{284     \mbox{\hyperlink{class_optimizer}{Optimizer}} m\_opt;}
+\DoxyCodeLine{285     CString GetName(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{286     BOOL LoadMaterial(\textcolor{keyword}{const} CString \&strDir, \textcolor{keyword}{const} CString \&strFile);}
+\DoxyCodeLine{287     \textcolor{keywordtype}{void} UnLoad();}
+\DoxyCodeLine{288     BOOL IsLoaded()\textcolor{keyword}{const}\{\textcolor{keywordflow}{return} m\_nType!=0;\}}
+\DoxyCodeLine{289     \textcolor{keywordtype}{void} GetDrxParameters(\textcolor{keywordtype}{double} e, \textcolor{keywordtype}{double} t, \textcolor{keywordtype}{double} T, \textcolor{keywordtype}{double} ee, \textcolor{keywordtype}{double} dt, \textcolor{keywordtype}{double} D0, \textcolor{keywordtype}{double} \&Xd, \textcolor{keywordtype}{double} \&Z, \textcolor{keywordtype}{double} \&D);}
+\DoxyCodeLine{290     \textcolor{keywordtype}{void} GetSrxParameters(\textcolor{keywordtype}{double} e, \textcolor{keywordtype}{double} ee, \textcolor{keywordtype}{double} T, \textcolor{keywordtype}{double} Tdef, \textcolor{keywordtype}{double} Z, \textcolor{keywordtype}{double} D0, \textcolor{keywordtype}{double} Xd, \textcolor{keywordtype}{double} t, \textcolor{keywordtype}{double} td, \textcolor{keywordtype}{double} \&Xm, \textcolor{keywordtype}{double} \&dXs, \textcolor{keywordtype}{double} \&D, \textcolor{keywordtype}{double} \&e0);}
+\DoxyCodeLine{291 \};}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define m\_KArx m\_Kff[0]}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{\#define m\_KBrx m\_Kff[1]}}
+\DoxyCodeLine{295 \textcolor{preprocessor}{\#define m\_KQrx m\_Kff[2]}}
+\DoxyCodeLine{296 \textcolor{preprocessor}{\#define m\_Kmrx m\_Kff[3]}}
+\DoxyCodeLine{297 \textcolor{preprocessor}{\#define m\_KArv m\_Kff[4]}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{\#define m\_KBrv m\_Kff[5]}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#define m\_KQrv m\_Kff[6]}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{\#define m\_Kmrv m\_Kff[7]}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#define m\_Kadrv m\_Kff[8]}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{\#define m\_Kndrv m\_Kff[9]}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define m\_Kadrx m\_Kff[10]}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#define m\_Kndrx m\_Kff[11]}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{\#define m\_KAe m\_Kff[12]}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{\#define m\_Kmee m\_Kff[13]}}
+\DoxyCodeLine{307 \textcolor{preprocessor}{\#define m\_KQe m\_Kff[14]}}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309 }
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_MATERIAL\_H\_\_14692552\_B200\_4B8C\_ABCE\_1C64FA1BEAC2\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

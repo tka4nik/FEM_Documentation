@@ -1,0 +1,590 @@
+\hypertarget{_g_l_u_8_h_source}{}\doxysection{GLU.\+H}
+\label{_g_l_u_8_h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/GL/GLU.H@{C:/Projects/FEM/prototype-\/prismatic/source/GL/GLU.H}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*++ BUILD Version: 0004    // Increment this if a change has global effects}}
+\DoxyCodeLine{2 \textcolor{comment}{}}
+\DoxyCodeLine{3 \textcolor{comment}{Copyright (c) 1985-\/95, Microsoft Corporation}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{comment}{Module Name:}}
+\DoxyCodeLine{6 \textcolor{comment}{}}
+\DoxyCodeLine{7 \textcolor{comment}{    glu.h}}
+\DoxyCodeLine{8 \textcolor{comment}{}}
+\DoxyCodeLine{9 \textcolor{comment}{Abstract:}}
+\DoxyCodeLine{10 \textcolor{comment}{}}
+\DoxyCodeLine{11 \textcolor{comment}{    Procedure declarations, constant definitions and macros for the OpenGL}}
+\DoxyCodeLine{12 \textcolor{comment}{    Utility Library.}}
+\DoxyCodeLine{13 \textcolor{comment}{}}
+\DoxyCodeLine{14 \textcolor{comment}{-\/-\/*/}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef \_\_glu\_h\_\_}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#ifndef \_\_GLU\_H\_\_}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define \_\_glu\_h\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_GLU\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <GL/gl.h>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{25 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{comment}{/*}}
+\DoxyCodeLine{29 \textcolor{comment}{** Copyright 1991-\/1993, Silicon Graphics, Inc.}}
+\DoxyCodeLine{30 \textcolor{comment}{** All Rights Reserved.}}
+\DoxyCodeLine{31 \textcolor{comment}{** }}
+\DoxyCodeLine{32 \textcolor{comment}{** This is UNPUBLISHED PROPRIETARY SOURCE CODE of Silicon Graphics, Inc.;}}
+\DoxyCodeLine{33 \textcolor{comment}{** the contents of this file may not be disclosed to third parties, copied or}}
+\DoxyCodeLine{34 \textcolor{comment}{** duplicated in any form, in whole or in part, without the prior written}}
+\DoxyCodeLine{35 \textcolor{comment}{** permission of Silicon Graphics, Inc.}}
+\DoxyCodeLine{36 \textcolor{comment}{** }}
+\DoxyCodeLine{37 \textcolor{comment}{** RESTRICTED RIGHTS LEGEND:}}
+\DoxyCodeLine{38 \textcolor{comment}{** Use, duplication or disclosure by the Government is subject to restrictions}}
+\DoxyCodeLine{39 \textcolor{comment}{** as set forth in subdivision (c)(1)(ii) of the Rights in Technical Data}}
+\DoxyCodeLine{40 \textcolor{comment}{** and Computer Software clause at DFARS 252.227-\/7013, and/or in similar or}}
+\DoxyCodeLine{41 \textcolor{comment}{** successor clauses in the FAR, DOD or NASA FAR Supplement. Unpublished -\/}}
+\DoxyCodeLine{42 \textcolor{comment}{** rights reserved under the Copyright Laws of the United States.}}
+\DoxyCodeLine{43 \textcolor{comment}{*/}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{/*}}
+\DoxyCodeLine{46 \textcolor{comment}{** Return the error string associated with a particular error code.}}
+\DoxyCodeLine{47 \textcolor{comment}{** This will return 0 for an invalid error code.}}
+\DoxyCodeLine{48 \textcolor{comment}{**}}
+\DoxyCodeLine{49 \textcolor{comment}{** The generic function prototype that can be compiled for ANSI or Unicode}}
+\DoxyCodeLine{50 \textcolor{comment}{** is defined as follows:}}
+\DoxyCodeLine{51 \textcolor{comment}{**}}
+\DoxyCodeLine{52 \textcolor{comment}{** LPCTSTR APIENTRY gluErrorStringWIN (GLenum errCode);}}
+\DoxyCodeLine{53 \textcolor{comment}{*/}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#ifdef UNICODE}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define gluErrorStringWIN(errCode) ((LPCSTR)  gluErrorUnicodeStringEXT(errCode))}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define gluErrorStringWIN(errCode) ((LPCWSTR) gluErrorString(errCode))}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{keyword}{const} GLubyte* APIENTRY gluErrorString (}
+\DoxyCodeLine{61     GLenum   errCode);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{const} \textcolor{keywordtype}{wchar\_t}* APIENTRY gluErrorUnicodeStringEXT (}
+\DoxyCodeLine{64     GLenum   errCode);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{keyword}{const} GLubyte* APIENTRY gluGetString (}
+\DoxyCodeLine{67     GLenum   name);}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{keywordtype}{void} APIENTRY gluOrtho2D (}
+\DoxyCodeLine{70     GLdouble left, }
+\DoxyCodeLine{71     GLdouble right, }
+\DoxyCodeLine{72     GLdouble bottom, }
+\DoxyCodeLine{73     GLdouble top);}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{keywordtype}{void} APIENTRY gluPerspective (}
+\DoxyCodeLine{76     GLdouble fovy, }
+\DoxyCodeLine{77     GLdouble aspect, }
+\DoxyCodeLine{78     GLdouble zNear, }
+\DoxyCodeLine{79     GLdouble zFar);}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{keywordtype}{void} APIENTRY gluPickMatrix (}
+\DoxyCodeLine{82     GLdouble x, }
+\DoxyCodeLine{83     GLdouble y, }
+\DoxyCodeLine{84     GLdouble width, }
+\DoxyCodeLine{85     GLdouble height, }
+\DoxyCodeLine{86     GLint    viewport[4]);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{keywordtype}{void} APIENTRY gluLookAt (}
+\DoxyCodeLine{89     GLdouble eyex, }
+\DoxyCodeLine{90     GLdouble eyey, }
+\DoxyCodeLine{91     GLdouble eyez, }
+\DoxyCodeLine{92     GLdouble centerx, }
+\DoxyCodeLine{93     GLdouble centery, }
+\DoxyCodeLine{94     GLdouble centerz, }
+\DoxyCodeLine{95     GLdouble upx, }
+\DoxyCodeLine{96     GLdouble upy, }
+\DoxyCodeLine{97     GLdouble upz);}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{keywordtype}{int} APIENTRY gluProject (}
+\DoxyCodeLine{100     GLdouble        objx, }
+\DoxyCodeLine{101     GLdouble        objy, }
+\DoxyCodeLine{102     GLdouble        objz,  }
+\DoxyCodeLine{103     \textcolor{keyword}{const} GLdouble  modelMatrix[16], }
+\DoxyCodeLine{104     \textcolor{keyword}{const} GLdouble  projMatrix[16], }
+\DoxyCodeLine{105     \textcolor{keyword}{const} GLint     viewport[4], }
+\DoxyCodeLine{106     GLdouble        *winx, }
+\DoxyCodeLine{107     GLdouble        *winy, }
+\DoxyCodeLine{108     GLdouble        *winz);}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{keywordtype}{int} APIENTRY gluUnProject (}
+\DoxyCodeLine{111     GLdouble       winx, }
+\DoxyCodeLine{112     GLdouble       winy, }
+\DoxyCodeLine{113     GLdouble       winz, }
+\DoxyCodeLine{114     \textcolor{keyword}{const} GLdouble modelMatrix[16], }
+\DoxyCodeLine{115     \textcolor{keyword}{const} GLdouble projMatrix[16], }
+\DoxyCodeLine{116     \textcolor{keyword}{const} GLint    viewport[4], }
+\DoxyCodeLine{117     GLdouble       *objx, }
+\DoxyCodeLine{118     GLdouble       *objy, }
+\DoxyCodeLine{119     GLdouble       *objz);}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{keywordtype}{int} APIENTRY gluScaleImage (}
+\DoxyCodeLine{123     GLenum      format, }
+\DoxyCodeLine{124     GLint       widthin, }
+\DoxyCodeLine{125     GLint       heightin, }
+\DoxyCodeLine{126     GLenum      typein, }
+\DoxyCodeLine{127     \textcolor{keyword}{const} \textcolor{keywordtype}{void}  *datain, }
+\DoxyCodeLine{128     GLint       widthout, }
+\DoxyCodeLine{129     GLint       heightout, }
+\DoxyCodeLine{130     GLenum      typeout, }
+\DoxyCodeLine{131     \textcolor{keywordtype}{void}        *dataout);}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{keywordtype}{int} APIENTRY gluBuild1DMipmaps (}
+\DoxyCodeLine{135     GLenum      target, }
+\DoxyCodeLine{136     GLint       components, }
+\DoxyCodeLine{137     GLint       width, }
+\DoxyCodeLine{138     GLenum      format, }
+\DoxyCodeLine{139     GLenum      type, }
+\DoxyCodeLine{140     \textcolor{keyword}{const} \textcolor{keywordtype}{void}  *data);}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{keywordtype}{int} APIENTRY gluBuild2DMipmaps (}
+\DoxyCodeLine{143     GLenum      target, }
+\DoxyCodeLine{144     GLint       components, }
+\DoxyCodeLine{145     GLint       width, }
+\DoxyCodeLine{146     GLint       height, }
+\DoxyCodeLine{147     GLenum      format, }
+\DoxyCodeLine{148     GLenum      type, }
+\DoxyCodeLine{149     \textcolor{keyword}{const} \textcolor{keywordtype}{void}  *data);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{keyword}{class }GLUnurbs;}
+\DoxyCodeLine{154 \textcolor{keyword}{class }GLUquadric;}
+\DoxyCodeLine{155 \textcolor{keyword}{class }GLUtesselator;}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{comment}{/* backwards compatibility: */}}
+\DoxyCodeLine{158 \textcolor{keyword}{typedef} \textcolor{keyword}{class }GLUnurbs GLUnurbsObj;}
+\DoxyCodeLine{159 \textcolor{keyword}{typedef} \textcolor{keyword}{class }GLUquadric GLUquadricObj;}
+\DoxyCodeLine{160 \textcolor{keyword}{typedef} \textcolor{keyword}{class }GLUtesselator GLUtesselatorObj;}
+\DoxyCodeLine{161 \textcolor{keyword}{typedef} \textcolor{keyword}{class }GLUtesselator GLUtriangulatorObj;}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }GLUnurbs GLUnurbs;}
+\DoxyCodeLine{166 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }GLUquadric GLUquadric;}
+\DoxyCodeLine{167 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }GLUtesselator GLUtesselator;}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{comment}{/* backwards compatibility: */}}
+\DoxyCodeLine{170 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }GLUnurbs GLUnurbsObj;}
+\DoxyCodeLine{171 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }GLUquadric GLUquadricObj;}
+\DoxyCodeLine{172 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }GLUtesselator GLUtesselatorObj;}
+\DoxyCodeLine{173 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }GLUtesselator GLUtriangulatorObj;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 GLUquadric* APIENTRY gluNewQuadric (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{179 \textcolor{keywordtype}{void} APIENTRY gluDeleteQuadric (}
+\DoxyCodeLine{180     GLUquadric          *state);}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 \textcolor{keywordtype}{void} APIENTRY gluQuadricNormals (}
+\DoxyCodeLine{183     GLUquadric          *quadObject, }
+\DoxyCodeLine{184     GLenum              normals);}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186 \textcolor{keywordtype}{void} APIENTRY gluQuadricTexture (}
+\DoxyCodeLine{187     GLUquadric          *quadObject, }
+\DoxyCodeLine{188     GLboolean           textureCoords);}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{keywordtype}{void} APIENTRY gluQuadricOrientation (}
+\DoxyCodeLine{191     GLUquadric          *quadObject, }
+\DoxyCodeLine{192     GLenum              orientation);}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 \textcolor{keywordtype}{void} APIENTRY gluQuadricDrawStyle (}
+\DoxyCodeLine{195     GLUquadric          *quadObject, }
+\DoxyCodeLine{196     GLenum              drawStyle);}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{keywordtype}{void} APIENTRY gluCylinder (}
+\DoxyCodeLine{199     GLUquadric          *qobj, }
+\DoxyCodeLine{200     GLdouble            baseRadius, }
+\DoxyCodeLine{201     GLdouble            topRadius, }
+\DoxyCodeLine{202     GLdouble            height, }
+\DoxyCodeLine{203     GLint               slices, }
+\DoxyCodeLine{204     GLint               stacks);}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{keywordtype}{void} APIENTRY gluDisk (}
+\DoxyCodeLine{207     GLUquadric          *qobj, }
+\DoxyCodeLine{208     GLdouble            innerRadius, }
+\DoxyCodeLine{209     GLdouble            outerRadius, }
+\DoxyCodeLine{210     GLint               slices, }
+\DoxyCodeLine{211     GLint               loops);}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{keywordtype}{void} APIENTRY gluPartialDisk (}
+\DoxyCodeLine{214     GLUquadric          *qobj, }
+\DoxyCodeLine{215     GLdouble            innerRadius, }
+\DoxyCodeLine{216     GLdouble            outerRadius, }
+\DoxyCodeLine{217     GLint               slices, }
+\DoxyCodeLine{218     GLint               loops, }
+\DoxyCodeLine{219     GLdouble            startAngle, }
+\DoxyCodeLine{220     GLdouble            sweepAngle);}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222 \textcolor{keywordtype}{void} APIENTRY gluSphere (}
+\DoxyCodeLine{223     GLUquadric          *qobj, }
+\DoxyCodeLine{224     GLdouble            radius, }
+\DoxyCodeLine{225     GLint               slices, }
+\DoxyCodeLine{226     GLint               stacks);}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228 \textcolor{keywordtype}{void} APIENTRY gluQuadricCallback (}
+\DoxyCodeLine{229     GLUquadric          *qobj, }
+\DoxyCodeLine{230     GLenum              which, }
+\DoxyCodeLine{231     \textcolor{keywordtype}{void}                (CALLBACK* fn)());}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233 GLUtesselator* APIENTRY  gluNewTess(          }
+\DoxyCodeLine{234     \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 \textcolor{keywordtype}{void} APIENTRY  gluDeleteTess(       }
+\DoxyCodeLine{237     GLUtesselator       *tess );}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 \textcolor{keywordtype}{void} APIENTRY  gluTessBeginPolygon( }
+\DoxyCodeLine{240     GLUtesselator       *tess,}
+\DoxyCodeLine{241     \textcolor{keywordtype}{void}                *polygon\_data );}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 \textcolor{keywordtype}{void} APIENTRY  gluTessBeginContour( }
+\DoxyCodeLine{244     GLUtesselator       *tess );}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246 \textcolor{keywordtype}{void} APIENTRY  gluTessVertex(       }
+\DoxyCodeLine{247     GLUtesselator       *tess,}
+\DoxyCodeLine{248     GLdouble            coords[3], }
+\DoxyCodeLine{249     \textcolor{keywordtype}{void}                *data );}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 \textcolor{keywordtype}{void} APIENTRY  gluTessEndContour(   }
+\DoxyCodeLine{252     GLUtesselator       *tess );}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254 \textcolor{keywordtype}{void} APIENTRY  gluTessEndPolygon(   }
+\DoxyCodeLine{255     GLUtesselator       *tess );}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 \textcolor{keywordtype}{void} APIENTRY  gluTessProperty(     }
+\DoxyCodeLine{258     GLUtesselator       *tess,}
+\DoxyCodeLine{259     GLenum              which, }
+\DoxyCodeLine{260     GLdouble            value );}
+\DoxyCodeLine{261  }
+\DoxyCodeLine{262 \textcolor{keywordtype}{void} APIENTRY  gluTessNormal(       }
+\DoxyCodeLine{263     GLUtesselator       *tess, }
+\DoxyCodeLine{264     GLdouble            x,}
+\DoxyCodeLine{265     GLdouble            y, }
+\DoxyCodeLine{266     GLdouble            z );}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268 \textcolor{keywordtype}{void} APIENTRY  gluTessCallback(     }
+\DoxyCodeLine{269     GLUtesselator       *tess,}
+\DoxyCodeLine{270     GLenum              which, }
+\DoxyCodeLine{271     \textcolor{keywordtype}{void}                (CALLBACK *fn)());}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273 \textcolor{keywordtype}{void} APIENTRY  gluGetTessProperty(  }
+\DoxyCodeLine{274     GLUtesselator       *tess,}
+\DoxyCodeLine{275     GLenum              which, }
+\DoxyCodeLine{276     GLdouble            *value );}
+\DoxyCodeLine{277  }
+\DoxyCodeLine{278 GLUnurbs* APIENTRY gluNewNurbsRenderer (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 \textcolor{keywordtype}{void} APIENTRY gluDeleteNurbsRenderer (}
+\DoxyCodeLine{281     GLUnurbs            *nobj);}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 \textcolor{keywordtype}{void} APIENTRY gluBeginSurface (}
+\DoxyCodeLine{284     GLUnurbs            *nobj);}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286 \textcolor{keywordtype}{void} APIENTRY gluBeginCurve (}
+\DoxyCodeLine{287     GLUnurbs            *nobj);}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{keywordtype}{void} APIENTRY gluEndCurve (}
+\DoxyCodeLine{290     GLUnurbs            *nobj);}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 \textcolor{keywordtype}{void} APIENTRY gluEndSurface (}
+\DoxyCodeLine{293     GLUnurbs            *nobj);}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295 \textcolor{keywordtype}{void} APIENTRY gluBeginTrim (}
+\DoxyCodeLine{296     GLUnurbs            *nobj);}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{298 \textcolor{keywordtype}{void} APIENTRY gluEndTrim (}
+\DoxyCodeLine{299     GLUnurbs            *nobj);}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301 \textcolor{keywordtype}{void} APIENTRY gluPwlCurve (}
+\DoxyCodeLine{302     GLUnurbs            *nobj, }
+\DoxyCodeLine{303     GLint               count, }
+\DoxyCodeLine{304     GLfloat             *array, }
+\DoxyCodeLine{305     GLint               stride, }
+\DoxyCodeLine{306     GLenum              type);}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308 \textcolor{keywordtype}{void} APIENTRY gluNurbsCurve (}
+\DoxyCodeLine{309     GLUnurbs            *nobj, }
+\DoxyCodeLine{310     GLint               nknots, }
+\DoxyCodeLine{311     GLfloat             *knot, }
+\DoxyCodeLine{312     GLint               stride, }
+\DoxyCodeLine{313     GLfloat             *ctlarray, }
+\DoxyCodeLine{314     GLint               order, }
+\DoxyCodeLine{315     GLenum              type);}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317 \textcolor{keywordtype}{void} APIENTRY }
+\DoxyCodeLine{318 gluNurbsSurface(     }
+\DoxyCodeLine{319     GLUnurbs            *nobj, }
+\DoxyCodeLine{320     GLint               sknot\_count, }
+\DoxyCodeLine{321     \textcolor{keywordtype}{float}               *sknot, }
+\DoxyCodeLine{322     GLint               tknot\_count, }
+\DoxyCodeLine{323     GLfloat             *tknot, }
+\DoxyCodeLine{324     GLint               s\_stride, }
+\DoxyCodeLine{325     GLint               t\_stride, }
+\DoxyCodeLine{326     GLfloat             *ctlarray, }
+\DoxyCodeLine{327     GLint               sorder, }
+\DoxyCodeLine{328     GLint               torder, }
+\DoxyCodeLine{329     GLenum              type);}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331 \textcolor{keywordtype}{void} APIENTRY }
+\DoxyCodeLine{332 gluLoadSamplingMatrices (}
+\DoxyCodeLine{333     GLUnurbs            *nobj, }
+\DoxyCodeLine{334     \textcolor{keyword}{const} GLfloat       modelMatrix[16], }
+\DoxyCodeLine{335     \textcolor{keyword}{const} GLfloat       projMatrix[16], }
+\DoxyCodeLine{336     \textcolor{keyword}{const} GLint         viewport[4] );}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338 \textcolor{keywordtype}{void} APIENTRY }
+\DoxyCodeLine{339 gluNurbsProperty (}
+\DoxyCodeLine{340     GLUnurbs            *nobj, }
+\DoxyCodeLine{341     GLenum              property, }
+\DoxyCodeLine{342     GLfloat             value );}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344 \textcolor{keywordtype}{void} APIENTRY }
+\DoxyCodeLine{345 gluGetNurbsProperty (}
+\DoxyCodeLine{346     GLUnurbs            *nobj, }
+\DoxyCodeLine{347     GLenum              property, }
+\DoxyCodeLine{348     GLfloat             *value );}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350 \textcolor{keywordtype}{void} APIENTRY }
+\DoxyCodeLine{351 gluNurbsCallback (}
+\DoxyCodeLine{352     GLUnurbs            *nobj, }
+\DoxyCodeLine{353     GLenum              which, }
+\DoxyCodeLine{354     \textcolor{keywordtype}{void}                (CALLBACK* fn)() );}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357 \textcolor{comment}{/****           Callback function prototypes    ****/}}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359 \textcolor{comment}{/* gluQuadricCallback */}}
+\DoxyCodeLine{360 \textcolor{keyword}{typedef} void (CALLBACK* GLUquadricErrorProc) (GLenum);}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362 \textcolor{comment}{/* gluTessCallback */}}
+\DoxyCodeLine{363 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessBeginProc)        (GLenum);}
+\DoxyCodeLine{364 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessEdgeFlagProc)     (GLboolean);}
+\DoxyCodeLine{365 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessVertexProc)       (\textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{366 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessEndProc)          (void);}
+\DoxyCodeLine{367 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessErrorProc)        (GLenum);}
+\DoxyCodeLine{368 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessCombineProc)      (GLdouble[3],}
+\DoxyCodeLine{369                                                   \textcolor{keywordtype}{void}*[4], }
+\DoxyCodeLine{370                                                   GLfloat[4],}
+\DoxyCodeLine{371                                                   \textcolor{keywordtype}{void}** );}
+\DoxyCodeLine{372 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessBeginDataProc)    (GLenum, \textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{373 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessEdgeFlagDataProc) (GLboolean, \textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{374 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessVertexDataProc)   (\textcolor{keywordtype}{void} *, \textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{375 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessEndDataProc)      (\textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{376 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessErrorDataProc)    (GLenum, \textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{377 \textcolor{keyword}{typedef} void (CALLBACK* GLUtessCombineDataProc)  (GLdouble[3],}
+\DoxyCodeLine{378                                                   \textcolor{keywordtype}{void}*[4], }
+\DoxyCodeLine{379                                                   GLfloat[4],}
+\DoxyCodeLine{380                                                   \textcolor{keywordtype}{void}**,}
+\DoxyCodeLine{381                                                   \textcolor{keywordtype}{void}* );}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{383 \textcolor{comment}{/* gluNurbsCallback */}}
+\DoxyCodeLine{384 \textcolor{keyword}{typedef} void (CALLBACK* GLUnurbsErrorProc)   (GLenum);}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{386 }
+\DoxyCodeLine{387 \textcolor{comment}{/****           Generic constants               ****/}}
+\DoxyCodeLine{388 }
+\DoxyCodeLine{389 \textcolor{comment}{/* Version */}}
+\DoxyCodeLine{390 \textcolor{preprocessor}{\#define GLU\_VERSION\_1\_1                 1}}
+\DoxyCodeLine{391 \textcolor{preprocessor}{\#define GLU\_VERSION\_1\_2                 1}}
+\DoxyCodeLine{392 }
+\DoxyCodeLine{393 \textcolor{comment}{/* Errors: (return value 0 = no error) */}}
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#define GLU\_INVALID\_ENUM        100900}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{\#define GLU\_INVALID\_VALUE       100901}}
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#define GLU\_OUT\_OF\_MEMORY       100902}}
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#define GLU\_INCOMPATIBLE\_GL\_VERSION     100903}}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399 \textcolor{comment}{/* StringName */}}
+\DoxyCodeLine{400 \textcolor{preprocessor}{\#define GLU\_VERSION             100800}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#define GLU\_EXTENSIONS          100801}}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403 \textcolor{comment}{/* Boolean */}}
+\DoxyCodeLine{404 \textcolor{preprocessor}{\#define GLU\_TRUE                GL\_TRUE}}
+\DoxyCodeLine{405 \textcolor{preprocessor}{\#define GLU\_FALSE               GL\_FALSE}}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407 }
+\DoxyCodeLine{408 \textcolor{comment}{/****           Quadric constants               ****/}}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410 \textcolor{comment}{/* QuadricNormal */}}
+\DoxyCodeLine{411 \textcolor{preprocessor}{\#define GLU\_SMOOTH              100000}}
+\DoxyCodeLine{412 \textcolor{preprocessor}{\#define GLU\_FLAT                100001}}
+\DoxyCodeLine{413 \textcolor{preprocessor}{\#define GLU\_NONE                100002}}
+\DoxyCodeLine{414 }
+\DoxyCodeLine{415 \textcolor{comment}{/* QuadricDrawStyle */}}
+\DoxyCodeLine{416 \textcolor{preprocessor}{\#define GLU\_POINT               100010}}
+\DoxyCodeLine{417 \textcolor{preprocessor}{\#define GLU\_LINE                100011}}
+\DoxyCodeLine{418 \textcolor{preprocessor}{\#define GLU\_FILL                100012}}
+\DoxyCodeLine{419 \textcolor{preprocessor}{\#define GLU\_SILHOUETTE          100013}}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421 \textcolor{comment}{/* QuadricOrientation */}}
+\DoxyCodeLine{422 \textcolor{preprocessor}{\#define GLU\_OUTSIDE             100020}}
+\DoxyCodeLine{423 \textcolor{preprocessor}{\#define GLU\_INSIDE              100021}}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425 \textcolor{comment}{/* Callback types: */}}
+\DoxyCodeLine{426 \textcolor{comment}{/*      GLU\_ERROR               100103 */}}
+\DoxyCodeLine{427 }
+\DoxyCodeLine{428 }
+\DoxyCodeLine{429 \textcolor{comment}{/****           Tesselation constants           ****/}}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{431 \textcolor{preprocessor}{\#define GLU\_TESS\_MAX\_COORD              1.0e150}}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433 \textcolor{comment}{/* TessProperty */}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{\#define GLU\_TESS\_WINDING\_RULE           100140}}
+\DoxyCodeLine{435 \textcolor{preprocessor}{\#define GLU\_TESS\_BOUNDARY\_ONLY          100141}}
+\DoxyCodeLine{436 \textcolor{preprocessor}{\#define GLU\_TESS\_TOLERANCE              100142}}
+\DoxyCodeLine{437 }
+\DoxyCodeLine{438 \textcolor{comment}{/* TessWinding */}}
+\DoxyCodeLine{439 \textcolor{preprocessor}{\#define GLU\_TESS\_WINDING\_ODD            100130}}
+\DoxyCodeLine{440 \textcolor{preprocessor}{\#define GLU\_TESS\_WINDING\_NONZERO        100131}}
+\DoxyCodeLine{441 \textcolor{preprocessor}{\#define GLU\_TESS\_WINDING\_POSITIVE       100132}}
+\DoxyCodeLine{442 \textcolor{preprocessor}{\#define GLU\_TESS\_WINDING\_NEGATIVE       100133}}
+\DoxyCodeLine{443 \textcolor{preprocessor}{\#define GLU\_TESS\_WINDING\_ABS\_GEQ\_TWO    100134}}
+\DoxyCodeLine{444 }
+\DoxyCodeLine{445 \textcolor{comment}{/* TessCallback */}}
+\DoxyCodeLine{446 \textcolor{preprocessor}{\#define GLU\_TESS\_BEGIN          100100  }\textcolor{comment}{/* void (CALLBACK*)(GLenum    type)  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{447 \textcolor{preprocessor}{\#define GLU\_TESS\_VERTEX         100101  }\textcolor{comment}{/* void (CALLBACK*)(void      *data) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{448 \textcolor{preprocessor}{\#define GLU\_TESS\_END            100102  }\textcolor{comment}{/* void (CALLBACK*)(void)            */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{449 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR          100103  }\textcolor{comment}{/* void (CALLBACK*)(GLenum    errno) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{450 \textcolor{preprocessor}{\#define GLU\_TESS\_EDGE\_FLAG      100104  }\textcolor{comment}{/* void (CALLBACK*)(GLboolean boundaryEdge)  */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{451 \textcolor{preprocessor}{\#define GLU\_TESS\_COMBINE        100105  }\textcolor{comment}{/* void (CALLBACK*)(GLdouble  coords[3],}}
+\DoxyCodeLine{452 \textcolor{comment}{                                                            void      *data[4],}}
+\DoxyCodeLine{453 \textcolor{comment}{                                                            GLfloat   weight[4],}}
+\DoxyCodeLine{454 \textcolor{comment}{                                                            void      **dataOut)     */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{455 \textcolor{preprocessor}{\#define GLU\_TESS\_BEGIN\_DATA     100106  }\textcolor{comment}{/* void (CALLBACK*)(GLenum    type,  }}
+\DoxyCodeLine{456 \textcolor{comment}{                                                            void      *polygon\_data) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{457 \textcolor{preprocessor}{\#define GLU\_TESS\_VERTEX\_DATA    100107  }\textcolor{comment}{/* void (CALLBACK*)(void      *data, }}
+\DoxyCodeLine{458 \textcolor{comment}{                                                            void      *polygon\_data) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{459 \textcolor{preprocessor}{\#define GLU\_TESS\_END\_DATA       100108  }\textcolor{comment}{/* void (CALLBACK*)(void      *polygon\_data) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{460 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR\_DATA     100109  }\textcolor{comment}{/* void (CALLBACK*)(GLenum    errno, }}
+\DoxyCodeLine{461 \textcolor{comment}{                                                            void      *polygon\_data) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{462 \textcolor{preprocessor}{\#define GLU\_TESS\_EDGE\_FLAG\_DATA 100110  }\textcolor{comment}{/* void (CALLBACK*)(GLboolean boundaryEdge,}}
+\DoxyCodeLine{463 \textcolor{comment}{                                                            void      *polygon\_data) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{464 \textcolor{preprocessor}{\#define GLU\_TESS\_COMBINE\_DATA   100111  }\textcolor{comment}{/* void (CALLBACK*)(GLdouble  coords[3],}}
+\DoxyCodeLine{465 \textcolor{comment}{                                                            void      *data[4],}}
+\DoxyCodeLine{466 \textcolor{comment}{                                                            GLfloat   weight[4],}}
+\DoxyCodeLine{467 \textcolor{comment}{                                                            void      **dataOut,}}
+\DoxyCodeLine{468 \textcolor{comment}{                                                            void      *polygon\_data) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{470 \textcolor{comment}{/* TessError */}}
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR1     100151}}
+\DoxyCodeLine{472 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR2     100152}}
+\DoxyCodeLine{473 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR3     100153}}
+\DoxyCodeLine{474 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR4     100154}}
+\DoxyCodeLine{475 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR5     100155}}
+\DoxyCodeLine{476 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR6     100156}}
+\DoxyCodeLine{477 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR7     100157}}
+\DoxyCodeLine{478 \textcolor{preprocessor}{\#define GLU\_TESS\_ERROR8     100158}}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480 \textcolor{preprocessor}{\#define GLU\_TESS\_MISSING\_BEGIN\_POLYGON  GLU\_TESS\_ERROR1}}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#define GLU\_TESS\_MISSING\_BEGIN\_CONTOUR  GLU\_TESS\_ERROR2}}
+\DoxyCodeLine{482 \textcolor{preprocessor}{\#define GLU\_TESS\_MISSING\_END\_POLYGON    GLU\_TESS\_ERROR3}}
+\DoxyCodeLine{483 \textcolor{preprocessor}{\#define GLU\_TESS\_MISSING\_END\_CONTOUR    GLU\_TESS\_ERROR4}}
+\DoxyCodeLine{484 \textcolor{preprocessor}{\#define GLU\_TESS\_COORD\_TOO\_LARGE        GLU\_TESS\_ERROR5}}
+\DoxyCodeLine{485 \textcolor{preprocessor}{\#define GLU\_TESS\_NEED\_COMBINE\_CALLBACK  GLU\_TESS\_ERROR6}}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487 \textcolor{comment}{/****           NURBS constants                 ****/}}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489 \textcolor{comment}{/* NurbsProperty */}}
+\DoxyCodeLine{490 \textcolor{preprocessor}{\#define GLU\_AUTO\_LOAD\_MATRIX    100200}}
+\DoxyCodeLine{491 \textcolor{preprocessor}{\#define GLU\_CULLING             100201}}
+\DoxyCodeLine{492 \textcolor{preprocessor}{\#define GLU\_SAMPLING\_TOLERANCE  100203}}
+\DoxyCodeLine{493 \textcolor{preprocessor}{\#define GLU\_DISPLAY\_MODE        100204}}
+\DoxyCodeLine{494 \textcolor{preprocessor}{\#define GLU\_PARAMETRIC\_TOLERANCE        100202}}
+\DoxyCodeLine{495 \textcolor{preprocessor}{\#define GLU\_SAMPLING\_METHOD             100205}}
+\DoxyCodeLine{496 \textcolor{preprocessor}{\#define GLU\_U\_STEP                      100206}}
+\DoxyCodeLine{497 \textcolor{preprocessor}{\#define GLU\_V\_STEP                      100207}}
+\DoxyCodeLine{498 }
+\DoxyCodeLine{499 \textcolor{comment}{/* NurbsSampling */}}
+\DoxyCodeLine{500 \textcolor{preprocessor}{\#define GLU\_PATH\_LENGTH                 100215}}
+\DoxyCodeLine{501 \textcolor{preprocessor}{\#define GLU\_PARAMETRIC\_ERROR            100216}}
+\DoxyCodeLine{502 \textcolor{preprocessor}{\#define GLU\_DOMAIN\_DISTANCE             100217}}
+\DoxyCodeLine{503 }
+\DoxyCodeLine{504 }
+\DoxyCodeLine{505 \textcolor{comment}{/* NurbsTrim */}}
+\DoxyCodeLine{506 \textcolor{preprocessor}{\#define GLU\_MAP1\_TRIM\_2         100210}}
+\DoxyCodeLine{507 \textcolor{preprocessor}{\#define GLU\_MAP1\_TRIM\_3         100211}}
+\DoxyCodeLine{508 }
+\DoxyCodeLine{509 \textcolor{comment}{/* NurbsDisplay */}}
+\DoxyCodeLine{510 \textcolor{comment}{/*      GLU\_FILL                100012 */}}
+\DoxyCodeLine{511 \textcolor{preprocessor}{\#define GLU\_OUTLINE\_POLYGON     100240}}
+\DoxyCodeLine{512 \textcolor{preprocessor}{\#define GLU\_OUTLINE\_PATCH       100241}}
+\DoxyCodeLine{513 }
+\DoxyCodeLine{514 \textcolor{comment}{/* NurbsCallback */}}
+\DoxyCodeLine{515 \textcolor{comment}{/*      GLU\_ERROR               100103 */}}
+\DoxyCodeLine{516 }
+\DoxyCodeLine{517 \textcolor{comment}{/* NurbsErrors */}}
+\DoxyCodeLine{518 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR1        100251}}
+\DoxyCodeLine{519 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR2        100252}}
+\DoxyCodeLine{520 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR3        100253}}
+\DoxyCodeLine{521 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR4        100254}}
+\DoxyCodeLine{522 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR5        100255}}
+\DoxyCodeLine{523 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR6        100256}}
+\DoxyCodeLine{524 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR7        100257}}
+\DoxyCodeLine{525 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR8        100258}}
+\DoxyCodeLine{526 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR9        100259}}
+\DoxyCodeLine{527 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR10       100260}}
+\DoxyCodeLine{528 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR11       100261}}
+\DoxyCodeLine{529 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR12       100262}}
+\DoxyCodeLine{530 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR13       100263}}
+\DoxyCodeLine{531 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR14       100264}}
+\DoxyCodeLine{532 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR15       100265}}
+\DoxyCodeLine{533 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR16       100266}}
+\DoxyCodeLine{534 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR17       100267}}
+\DoxyCodeLine{535 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR18       100268}}
+\DoxyCodeLine{536 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR19       100269}}
+\DoxyCodeLine{537 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR20       100270}}
+\DoxyCodeLine{538 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR21       100271}}
+\DoxyCodeLine{539 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR22       100272}}
+\DoxyCodeLine{540 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR23       100273}}
+\DoxyCodeLine{541 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR24       100274}}
+\DoxyCodeLine{542 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR25       100275}}
+\DoxyCodeLine{543 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR26       100276}}
+\DoxyCodeLine{544 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR27       100277}}
+\DoxyCodeLine{545 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR28       100278}}
+\DoxyCodeLine{546 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR29       100279}}
+\DoxyCodeLine{547 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR30       100280}}
+\DoxyCodeLine{548 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR31       100281}}
+\DoxyCodeLine{549 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR32       100282}}
+\DoxyCodeLine{550 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR33       100283}}
+\DoxyCodeLine{551 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR34       100284}}
+\DoxyCodeLine{552 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR35       100285}}
+\DoxyCodeLine{553 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR36       100286}}
+\DoxyCodeLine{554 \textcolor{preprocessor}{\#define GLU\_NURBS\_ERROR37       100287}}
+\DoxyCodeLine{555 }
+\DoxyCodeLine{556 \textcolor{comment}{/****           Backwards compatibility for old tesselator           ****/}}
+\DoxyCodeLine{557 }
+\DoxyCodeLine{558 \textcolor{keywordtype}{void} APIENTRY   gluBeginPolygon( GLUtesselator *tess );}
+\DoxyCodeLine{559 }
+\DoxyCodeLine{560 \textcolor{keywordtype}{void} APIENTRY   gluNextContour(  GLUtesselator *tess, }
+\DoxyCodeLine{561                                  GLenum        type );}
+\DoxyCodeLine{562 }
+\DoxyCodeLine{563 \textcolor{keywordtype}{void} APIENTRY   gluEndPolygon(   GLUtesselator *tess );}
+\DoxyCodeLine{564 }
+\DoxyCodeLine{565 \textcolor{comment}{/* Contours types -\/-\/ obsolete! */}}
+\DoxyCodeLine{566 \textcolor{preprocessor}{\#define GLU\_CW          100120}}
+\DoxyCodeLine{567 \textcolor{preprocessor}{\#define GLU\_CCW         100121}}
+\DoxyCodeLine{568 \textcolor{preprocessor}{\#define GLU\_INTERIOR    100122}}
+\DoxyCodeLine{569 \textcolor{preprocessor}{\#define GLU\_EXTERIOR    100123}}
+\DoxyCodeLine{570 \textcolor{preprocessor}{\#define GLU\_UNKNOWN     100124}}
+\DoxyCodeLine{571 }
+\DoxyCodeLine{572 \textcolor{comment}{/* Names without "{}TESS\_"{} prefix */}}
+\DoxyCodeLine{573 \textcolor{preprocessor}{\#define GLU\_BEGIN       GLU\_TESS\_BEGIN}}
+\DoxyCodeLine{574 \textcolor{preprocessor}{\#define GLU\_VERTEX      GLU\_TESS\_VERTEX}}
+\DoxyCodeLine{575 \textcolor{preprocessor}{\#define GLU\_END         GLU\_TESS\_END}}
+\DoxyCodeLine{576 \textcolor{preprocessor}{\#define GLU\_ERROR       GLU\_TESS\_ERROR}}
+\DoxyCodeLine{577 \textcolor{preprocessor}{\#define GLU\_EDGE\_FLAG   GLU\_TESS\_EDGE\_FLAG}}
+\DoxyCodeLine{578 }
+\DoxyCodeLine{579 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{580 \}}
+\DoxyCodeLine{581 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{582 }
+\DoxyCodeLine{583 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_GLU\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{584 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_glu\_h\_\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

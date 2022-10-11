@@ -1,0 +1,221 @@
+\hypertarget{class_f_t_point}{}\doxysection{FTPoint Class Reference}
+\label{class_f_t_point}\index{FTPoint@{FTPoint}}
+
+
+{\ttfamily \#include $<$FTPoint.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_point_a6c00bdf61c452b16980169c61dcf4514}{FTPoint}} ()
+\item 
+\mbox{\hyperlink{class_f_t_point_a7181140dc8750e5cd95b92fd5aa1cc16}{FTPoint}} (const FTGL\+\_\+\+DOUBLE x, const FTGL\+\_\+\+DOUBLE y, const FTGL\+\_\+\+DOUBLE z)
+\item 
+\mbox{\hyperlink{class_f_t_point_acdd9d671667825e31bc5008890abbac1}{FTPoint}} (const \mbox{\hyperlink{struct_f_t___vector__}{FT\+\_\+\+Vector}} \&ft\+\_\+vector)
+\item 
+\mbox{\hyperlink{class_f_t_point}{FTPoint}} \& \mbox{\hyperlink{class_f_t_point_aec7ae9384869ec1eb6f2a75e8e9ade17}{operator+=}} (const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&point)
+\item 
+\mbox{\hyperlink{class_f_t_point}{FTPoint}} \mbox{\hyperlink{class_f_t_point_aac5de182e46f5a7df5a07a947011e976}{operator+}} (const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&point)
+\item 
+\mbox{\hyperlink{class_f_t_point}{FTPoint}} \mbox{\hyperlink{class_f_t_point_a9230c2ec1eab2b2f4c001704502e0db6}{operator$\ast$}} (double multiplier)
+\item 
+\mbox{\hyperlink{class_f_t_point_a15bc38776f7d5dfceaa25ee7d23204f9}{operator const FTGL\+\_\+\+DOUBLE $\ast$}} () const
+\item 
+void \mbox{\hyperlink{class_f_t_point_af027f8076fcdfe488aea94fddf6bf7a3}{X}} (FTGL\+\_\+\+DOUBLE x)
+\item 
+\mbox{\Hypertarget{class_f_t_point_a050f6a715fe7934cb899cb13c0bca20f}\label{class_f_t_point_a050f6a715fe7934cb899cb13c0bca20f}} 
+void {\bfseries Y} (FTGL\+\_\+\+DOUBLE y)
+\item 
+\mbox{\Hypertarget{class_f_t_point_a1119a7cda143b4ac4ae970519a8a53ce}\label{class_f_t_point_a1119a7cda143b4ac4ae970519a8a53ce}} 
+void {\bfseries Z} (FTGL\+\_\+\+DOUBLE z)
+\item 
+FTGL\+\_\+\+DOUBLE \mbox{\hyperlink{class_f_t_point_a7d0f37cfbbcc6a5ac6c3e1c27ae3b49d}{X}} () const
+\item 
+\mbox{\Hypertarget{class_f_t_point_aad5e281d55f09a331544676e3bd75575}\label{class_f_t_point_aad5e281d55f09a331544676e3bd75575}} 
+FTGL\+\_\+\+DOUBLE {\bfseries Y} () const
+\item 
+\mbox{\Hypertarget{class_f_t_point_ae0c765a983ffb21243f930b0de90ce99}\label{class_f_t_point_ae0c765a983ffb21243f930b0de90ce99}} 
+FTGL\+\_\+\+DOUBLE {\bfseries Z} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_point}{FTPoint}} \mbox{\hyperlink{class_f_t_point_a7903e518fd65dda8330101cd39e09bb1}{operator$\ast$}} (double multiplier, \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&point)
+\item 
+bool \mbox{\hyperlink{class_f_t_point_a1016185e21378b2e0663d39f5015e46c}{operator==}} (const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&a, const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&b)
+\item 
+bool \mbox{\hyperlink{class_f_t_point_a223901a6d036c1bcf01a3ab0e3cb80da}{operator!=}} (const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&a, const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&b)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_point}{FTPoint}} class is a basic 3 dimensional point or vector. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_point_a6c00bdf61c452b16980169c61dcf4514}\label{class_f_t_point_a6c00bdf61c452b16980169c61dcf4514}} 
+\index{FTPoint@{FTPoint}!FTPoint@{FTPoint}}
+\index{FTPoint@{FTPoint}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{FTPoint()}{FTPoint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily FTPoint\+::\+FTPoint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor. Point is set to zero. \mbox{\Hypertarget{class_f_t_point_a7181140dc8750e5cd95b92fd5aa1cc16}\label{class_f_t_point_a7181140dc8750e5cd95b92fd5aa1cc16}} 
+\index{FTPoint@{FTPoint}!FTPoint@{FTPoint}}
+\index{FTPoint@{FTPoint}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{FTPoint()}{FTPoint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily FTPoint\+::\+FTPoint (\begin{DoxyParamCaption}\item[{const FTGL\+\_\+\+DOUBLE}]{x,  }\item[{const FTGL\+\_\+\+DOUBLE}]{y,  }\item[{const FTGL\+\_\+\+DOUBLE}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & First component \\
+\hline
+{\em y} & Second component \\
+\hline
+{\em z} & Third component \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_point_acdd9d671667825e31bc5008890abbac1}\label{class_f_t_point_acdd9d671667825e31bc5008890abbac1}} 
+\index{FTPoint@{FTPoint}!FTPoint@{FTPoint}}
+\index{FTPoint@{FTPoint}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{FTPoint()}{FTPoint()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily FTPoint\+::\+FTPoint (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_t___vector__}{FT\+\_\+\+Vector}} \&}]{ft\+\_\+vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor. This converts an FT\+\_\+\+Vector to an FT\+\_\+\+Point
+
+
+\begin{DoxyParams}{Parameters}
+{\em ft\+\_\+vector} & A freetype vector \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_point_a15bc38776f7d5dfceaa25ee7d23204f9}\label{class_f_t_point_a15bc38776f7d5dfceaa25ee7d23204f9}} 
+\index{FTPoint@{FTPoint}!operator const FTGL\_DOUBLE $\ast$@{operator const FTGL\_DOUBLE $\ast$}}
+\index{operator const FTGL\_DOUBLE $\ast$@{operator const FTGL\_DOUBLE $\ast$}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{operator const FTGL\_DOUBLE $\ast$()}{operator const FTGL\_DOUBLE *()}}
+{\footnotesize\ttfamily FTPoint\+::operator const FTGL\+\_\+\+DOUBLE $\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Cast to FTGL\+\_\+\+DOUBLE$\ast$ \mbox{\Hypertarget{class_f_t_point_a9230c2ec1eab2b2f4c001704502e0db6}\label{class_f_t_point_a9230c2ec1eab2b2f4c001704502e0db6}} 
+\index{FTPoint@{FTPoint}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_point}{FTPoint}} FTPoint\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{double}]{multiplier }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Operator $\ast$
+
+
+\begin{DoxyParams}{Parameters}
+{\em multiplier} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily this} multiplied by {\ttfamily multiplier}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_point_aac5de182e46f5a7df5a07a947011e976}\label{class_f_t_point_aac5de182e46f5a7df5a07a947011e976}} 
+\index{FTPoint@{FTPoint}!operator+@{operator+}}
+\index{operator+@{operator+}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_point}{FTPoint}} FTPoint\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&}]{point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Operator +
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this plus point. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_point_aec7ae9384869ec1eb6f2a75e8e9ade17}\label{class_f_t_point_aec7ae9384869ec1eb6f2a75e8e9ade17}} 
+\index{FTPoint@{FTPoint}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& FTPoint\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&}]{point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Operator += In Place Addition.
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this plus point. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_point_a7d0f37cfbbcc6a5ac6c3e1c27ae3b49d}\label{class_f_t_point_a7d0f37cfbbcc6a5ac6c3e1c27ae3b49d}} 
+\index{FTPoint@{FTPoint}!X@{X}}
+\index{X@{X}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{X()}{X()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FTGL\+\_\+\+DOUBLE FTPoint\+::X (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getters \mbox{\Hypertarget{class_f_t_point_af027f8076fcdfe488aea94fddf6bf7a3}\label{class_f_t_point_af027f8076fcdfe488aea94fddf6bf7a3}} 
+\index{FTPoint@{FTPoint}!X@{X}}
+\index{X@{X}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{X()}{X()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FTPoint\+::X (\begin{DoxyParamCaption}\item[{FTGL\+\_\+\+DOUBLE}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Setters 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_f_t_point_a223901a6d036c1bcf01a3ab0e3cb80da}\label{class_f_t_point_a223901a6d036c1bcf01a3ab0e3cb80da}} 
+\index{FTPoint@{FTPoint}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{operator"!=}{operator!=}}
+{\footnotesize\ttfamily bool operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&}]{a,  }\item[{const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Operator != Tests for non equality
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a \& b are not equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_point_a7903e518fd65dda8330101cd39e09bb1}\label{class_f_t_point_a7903e518fd65dda8330101cd39e09bb1}} 
+\index{FTPoint@{FTPoint}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$}{operator*}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_point}{FTPoint}} operator$\ast$ (\begin{DoxyParamCaption}\item[{double}]{multiplier,  }\item[{\mbox{\hyperlink{class_f_t_point}{FTPoint}} \&}]{point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Operator $\ast$
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & \\
+\hline
+{\em multiplier} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily multiplier} multiplied by {\ttfamily point}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_point_a1016185e21378b2e0663d39f5015e46c}\label{class_f_t_point_a1016185e21378b2e0663d39f5015e46c}} 
+\index{FTPoint@{FTPoint}!operator==@{operator==}}
+\index{operator==@{operator==}!FTPoint@{FTPoint}}
+\doxysubsubsection{\texorpdfstring{operator==}{operator==}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&}]{a,  }\item[{const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Operator == Tests for eqaulity
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a \& b are equal 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTPoint.\+h\end{DoxyCompactItemize}

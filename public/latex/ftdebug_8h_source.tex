@@ -1,0 +1,250 @@
+\hypertarget{ftdebug_8h_source}{}\doxysection{ftdebug.\+h}
+\label{ftdebug_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftdebug.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftdebug.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftdebug.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Debugging and logging component (specification).                     */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2004 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{17 \textcolor{comment}{/*  IMPORTANT: A description of FreeType's debugging support can be        */}}
+\DoxyCodeLine{18 \textcolor{comment}{/*             found in "{}docs/DEBUG.TXT"{}.  Read it if you need to use or   */}}
+\DoxyCodeLine{19 \textcolor{comment}{/*             understand this code.                                       */}}
+\DoxyCodeLine{20 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{21 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef \_\_FTDEBUG\_H\_\_}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define \_\_FTDEBUG\_H\_\_}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include FT\_CONFIG\_CONFIG\_H}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36   \textcolor{comment}{/* force the definition of FT\_DEBUG\_LEVEL\_ERROR if FT\_DEBUG\_LEVEL\_TRACE */}}
+\DoxyCodeLine{37   \textcolor{comment}{/* is already defined; this simplifies the following \#ifdefs            */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                      */}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifdef FT\_DEBUG\_LEVEL\_TRACE}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#undef  FT\_DEBUG\_LEVEL\_ERROR}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define FT\_DEBUG\_LEVEL\_ERROR}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{47   \textcolor{comment}{/* Define the trace enums as well as the trace levels array when they    */}}
+\DoxyCodeLine{48   \textcolor{comment}{/* are needed.                                                           */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{50 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#ifdef FT\_DEBUG\_LEVEL\_TRACE}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define FT\_TRACE\_DEF( x )  trace\_ \#\# x ,}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   \textcolor{comment}{/* defining the enumeration */}}
+\DoxyCodeLine{57   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}}
+\DoxyCodeLine{58   \{}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#include FT\_INTERNAL\_TRACE\_H}}
+\DoxyCodeLine{60     trace\_count}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62   \} FT\_Trace;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65   \textcolor{comment}{/* defining the array of trace levels, provided by `src/base/ftdebug.c' */}}
+\DoxyCodeLine{66   \textcolor{keyword}{extern} \textcolor{keywordtype}{int}  ft\_trace\_levels[trace\_count];}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#undef FT\_TRACE\_DEF}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* FT\_DEBUG\_LEVEL\_TRACE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{74   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{75   \textcolor{comment}{/* Define the FT\_TRACE macro                                             */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{77   \textcolor{comment}{/* IMPORTANT!                                                            */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{79   \textcolor{comment}{/* Each component must define the macro FT\_COMPONENT to a valid FT\_Trace */}}
+\DoxyCodeLine{80   \textcolor{comment}{/* value before using any TRACE macro.                                   */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{82 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#ifdef FT\_DEBUG\_LEVEL\_TRACE}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define FT\_TRACE( level, varformat )                      \(\backslash\)}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{          do                                              \(\backslash\)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{          \{                                               \(\backslash\)}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{            if ( ft\_trace\_levels[FT\_COMPONENT] >= level ) \(\backslash\)}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{              FT\_Message varformat;                       \(\backslash\)}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{          \} while ( 0 )}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* !FT\_DEBUG\_LEVEL\_TRACE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define FT\_TRACE( level, varformat )  do ; while ( 0 )      }\textcolor{comment}{/* nothing */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_DEBUG\_LEVEL\_TRACE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{101   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{102   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*    FT\_Trace\_Get\_Count                                                 */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{105   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*    Return the number of available trace components.                   */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{108   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*    The number of trace components.  0 if FreeType 2 is not built with */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*    FT\_DEBUG\_LEVEL\_TRACE definition.                                   */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{112   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*    This function may be useful if you want to access elements of      */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*    the internal `ft\_trace\_levels' array by an index.                  */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   FT\_EXPORT( FT\_Int )}
+\DoxyCodeLine{117   FT\_Trace\_Get\_Count( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{122   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*    FT\_Trace\_Get\_Name                                                  */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{125   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*    Return the name of a trace component.                              */}}
+\DoxyCodeLine{127   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{128   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*    The index of the trace component.                                  */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{131   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*    The name of the trace component.  This is a statically allocated   */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*    C string, so do not free it after use.  NULL if FreeType 2 is not  */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*    built with FT\_DEBUG\_LEVEL\_TRACE definition.                        */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{136   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*    Use @FT\_Trace\_Get\_Count to get the number of available trace       */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*    components.                                                        */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    This function may be useful if you want to control FreeType 2's    */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*    debug level in your appliaciton.                                   */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{143   FT\_EXPORT( \textcolor{keyword}{const} \textcolor{keywordtype}{char} * )}
+\DoxyCodeLine{144   FT\_Trace\_Get\_Name( FT\_Int  idx );}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{148   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{149   \textcolor{comment}{/* You need two opening resp. closing parentheses!                       */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151   \textcolor{comment}{/* Example: FT\_TRACE0(( "{}Value is \%i"{}, foo ))                            */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{153 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#define FT\_TRACE0( varformat )  FT\_TRACE( 0, varformat )}}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define FT\_TRACE1( varformat )  FT\_TRACE( 1, varformat )}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define FT\_TRACE2( varformat )  FT\_TRACE( 2, varformat )}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#define FT\_TRACE3( varformat )  FT\_TRACE( 3, varformat )}}
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#define FT\_TRACE4( varformat )  FT\_TRACE( 4, varformat )}}
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#define FT\_TRACE5( varformat )  FT\_TRACE( 5, varformat )}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define FT\_TRACE6( varformat )  FT\_TRACE( 6, varformat )}}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#define FT\_TRACE7( varformat )  FT\_TRACE( 7, varformat )}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{166   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*  Define the FT\_ERROR macro                                            */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{169 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#ifdef FT\_DEBUG\_LEVEL\_ERROR}}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define FT\_ERROR( varformat )  FT\_Message  varformat}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#else  }\textcolor{comment}{/* !FT\_DEBUG\_LEVEL\_ERROR */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#define FT\_ERROR( varformat )  do ; while ( 0 )      }\textcolor{comment}{/* nothing */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_DEBUG\_LEVEL\_ERROR */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{comment}{/* Define the FT\_ASSERT macro                                            */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{186 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#ifdef FT\_DEBUG\_LEVEL\_ERROR}}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#define FT\_ASSERT( condition )                                      \(\backslash\)}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{          do                                                        \(\backslash\)}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{          \{                                                         \(\backslash\)}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{            if ( !( condition ) )                                   \(\backslash\)}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{              FT\_Panic( "{}assertion failed on line \%d of file \%s\(\backslash\)n"{}}, \(\backslash\)}
+\DoxyCodeLine{195                         \_\_LINE\_\_, \_\_FILE\_\_ );                       \(\backslash\)}
+\DoxyCodeLine{196           \} while ( 0 )}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* !FT\_DEBUG\_LEVEL\_ERROR */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#define FT\_ASSERT( condition )  do ; while ( 0 )}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_DEBUG\_LEVEL\_ERROR */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{206   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*  Define 'FT\_Message' and 'FT\_Panic' when needed                       */}}
+\DoxyCodeLine{208   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{209 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#ifdef FT\_DEBUG\_LEVEL\_ERROR}}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{preprocessor}{\#include "{}stdio.h"{}}  \textcolor{comment}{/* for vprintf() */}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215   \textcolor{comment}{/* print a message */}}
+\DoxyCodeLine{216   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{217   FT\_Message( \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  fmt, ... );}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219   \textcolor{comment}{/* print a message and exit */}}
+\DoxyCodeLine{220   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{221   FT\_Panic( \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  fmt, ... );}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* FT\_DEBUG\_LEVEL\_ERROR */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{227   ft\_debug\_init( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{preprocessor}{\#if defined( \_MSC\_VER )      }\textcolor{comment}{/* Visual C++ (and Intel C++) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232   \textcolor{comment}{/* we disable the warning `conditional expression is constant' here */}}
+\DoxyCodeLine{233   \textcolor{comment}{/* in order to compile cleanly with the maximum level of warnings   */}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{\#pragma warning( disable : 4127 )}}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_MSC\_VER */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 FT\_END\_HEADER}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTDEBUG\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

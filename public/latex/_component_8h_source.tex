@@ -1,0 +1,104 @@
+\hypertarget{_component_8h_source}{}\doxysection{Component.\+h}
+\label{_component_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/Component.h@{C:/Projects/FEM/prototype-\/prismatic/source/Component.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Component.h: interface for the CComponent class.}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#if !defined(AFX\_COMPONENT\_H\_\_931FE91F\_9625\_4C57\_AD7F\_04E2DCED1EEF\_\_INCLUDED\_)}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define AFX\_COMPONENT\_H\_\_931FE91F\_9625\_4C57\_AD7F\_04E2DCED1EEF\_\_INCLUDED\_}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}RealPoint.h"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{15 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{16     \textcolor{keywordtype}{int} N;}
+\DoxyCodeLine{17     \textcolor{keywordtype}{double} R;}
+\DoxyCodeLine{18 \}\mbox{\hyperlink{struct_s_p_l_i_n_e}{SPLINE}};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{21 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{22     \textcolor{keywordtype}{bool} bP2;}
+\DoxyCodeLine{23     \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} P1;}
+\DoxyCodeLine{24     \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} P2;}
+\DoxyCodeLine{25     \mbox{\hyperlink{struct_s_p_l_i_n_e}{SPLINE}} Spl;}
+\DoxyCodeLine{26 \}\mbox{\hyperlink{struct_s_p_l_i_n_e_p_a_r_a_m}{SPLINEPARAM}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{29 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_component}{CComponent}}  }
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31 \textcolor{keyword}{public}:}
+\DoxyCodeLine{32     \mbox{\hyperlink{class_c_component}{CComponent}}();}
+\DoxyCodeLine{33     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_component}{\string~CComponent}}();}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{public}:}
+\DoxyCodeLine{36     \textcolor{keywordtype}{void} glDrawAxis(\textcolor{keywordtype}{double} min\_x, \textcolor{keywordtype}{double} max\_x, \textcolor{keywordtype}{double} min\_y, \textcolor{keywordtype}{double} max\_y);}
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} Load(CFile \&File);}
+\DoxyCodeLine{38     \textcolor{keywordtype}{void} Save(CFile \&File);}
+\DoxyCodeLine{39     \textcolor{keywordtype}{void} SetNewNode();}
+\DoxyCodeLine{40     \textcolor{keywordtype}{void} NewNode(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y);}
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} RecalcMinMax();}
+\DoxyCodeLine{42     \textcolor{keywordtype}{double} GetMaxY();}
+\DoxyCodeLine{43     \textcolor{keywordtype}{double} GetMinY();}
+\DoxyCodeLine{44     \textcolor{keywordtype}{double} GetMaxX();}
+\DoxyCodeLine{45     \textcolor{keywordtype}{double} GetMinX();}
+\DoxyCodeLine{46     BOOL CanChangeY(\textcolor{keywordtype}{int} nP = -\/1);}
+\DoxyCodeLine{47     BOOL CanChangeX(\textcolor{keywordtype}{int} nP = -\/1);}
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} NextNode();}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} SetActiveNode();}
+\DoxyCodeLine{50     \textcolor{keywordtype}{int} FindElement(\mbox{\hyperlink{class_c_real_point}{CRealPoint}} \&RP, \textcolor{keywordtype}{double} dDistance);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} SetXSymmetry(BOOL bSymmetric);}
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} SetYSymmetry(BOOL bSymmetric);}
+\DoxyCodeLine{54     BOOL IsXSymmetric()\{\textcolor{keywordflow}{return} m\_bXSimmetric;\}}
+\DoxyCodeLine{55     BOOL IsYSymmetric()\{\textcolor{keywordflow}{return} m\_bYSimmetric;\}}
+\DoxyCodeLine{56     \textcolor{keywordtype}{int} GetSize()\{\textcolor{keywordflow}{return} m\_Points.GetSize();\}}
+\DoxyCodeLine{57     \textcolor{keywordtype}{int} GetActiveNode()\{\textcolor{keywordflow}{return} m\_nActiveNode;\}}
+\DoxyCodeLine{58     \textcolor{keywordtype}{void} glDraw(\textcolor{keywordtype}{int} nMode, \textcolor{keywordtype}{double} min\_x, \textcolor{keywordtype}{double} max\_x, \textcolor{keywordtype}{double} min\_y, \textcolor{keywordtype}{double} max\_y);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     \textcolor{keywordtype}{bool} SetPoint(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{int} nPoint = -\/1);}
+\DoxyCodeLine{61     BOOL SetSpline(\textcolor{keywordtype}{double} R, \textcolor{keywordtype}{int} N, \textcolor{keywordtype}{int} nSpline = -\/1);}
+\DoxyCodeLine{62     \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} GetPoint(\textcolor{keywordtype}{int} nP=-\/1);}
+\DoxyCodeLine{63     \mbox{\hyperlink{struct_s_p_l_i_n_e}{SPLINE}} GetSpline(\textcolor{keywordtype}{int} nS=-\/1);}
+\DoxyCodeLine{64     \textcolor{keywordtype}{void} GetSplineParam(\mbox{\hyperlink{struct_s_p_l_i_n_e_p_a_r_a_m}{SPLINEPARAM}} \&Param);}
+\DoxyCodeLine{65     \textcolor{keywordtype}{int} GetSplinePoints(\mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} *Points, \textcolor{keywordtype}{int} nSpline);}
+\DoxyCodeLine{66     \textcolor{keywordtype}{int} GetSplinePoints(\mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} *Points, \mbox{\hyperlink{struct_s_p_l_i_n_e_p_a_r_a_m}{SPLINEPARAM}} \&Param);}
+\DoxyCodeLine{67     BOOL GetXYr(\textcolor{keywordtype}{int} nSpline, \textcolor{keywordtype}{double} *Xr, \textcolor{keywordtype}{double} *Yr);}
+\DoxyCodeLine{68     BOOL GetXYr(\mbox{\hyperlink{struct_s_p_l_i_n_e_p_a_r_a_m}{SPLINEPARAM}} \&Param, \textcolor{keywordtype}{double} *Xr, \textcolor{keywordtype}{double} *Yr);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{double} GetX()\{\textcolor{keywordflow}{return} m\_x;\}}
+\DoxyCodeLine{71     \textcolor{keywordtype}{double} GetY()\{\textcolor{keywordflow}{return} m\_y;\}}
+\DoxyCodeLine{72     \textcolor{keywordtype}{void} SetX(\textcolor{keywordtype}{double} x)\{m\_x = x;\}}
+\DoxyCodeLine{73     \textcolor{keywordtype}{void} SetY(\textcolor{keywordtype}{double} y)\{m\_y = y;\}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{76     \textcolor{keywordtype}{double} m\_x;}
+\DoxyCodeLine{77     \textcolor{keywordtype}{double} m\_y;}
+\DoxyCodeLine{78     BOOL    m\_bXSimmetric;}
+\DoxyCodeLine{79     BOOL    m\_bYSimmetric;}
+\DoxyCodeLine{80     \textcolor{keywordtype}{int}     m\_nActiveNode;}
+\DoxyCodeLine{81     \textcolor{keywordtype}{int}     m\_nActiveSpline;}
+\DoxyCodeLine{82     \textcolor{keywordtype}{int}     m\_nActiveNode0;}
+\DoxyCodeLine{83     \textcolor{keywordtype}{int}     m\_nNewNode;}
+\DoxyCodeLine{84     \textcolor{keywordtype}{bool}    m\_bNewNode;}
+\DoxyCodeLine{85     \mbox{\hyperlink{class_c_real_point}{CRealPoint}} m\_RPNewNode;}
+\DoxyCodeLine{86     \textcolor{keywordtype}{int} m\_nMinX, m\_nMaxX, m\_nMinY, m\_nMaxY;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{keywordtype}{bool}    m\_bLoop;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{91     CArray<CRealPoint, CRealPoint> m\_Points;}
+\DoxyCodeLine{92     CArray<SPLINE, SPLINE> m\_Splines;}
+\DoxyCodeLine{93     \mbox{\hyperlink{struct_s_p_l_i_n_e}{SPLINE}} m\_Spline0;}
+\DoxyCodeLine{94     \textcolor{keywordtype}{void} Add(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{int} N=10, \textcolor{keywordtype}{double} R=0);}
+\DoxyCodeLine{95     \textcolor{keywordtype}{void} DrawSpline(\mbox{\hyperlink{struct_s_p_l_i_n_e_p_a_r_a_m}{SPLINEPARAM}} \&Param, \textcolor{keywordtype}{int} nMode = 0);}
+\DoxyCodeLine{96     \textcolor{keywordtype}{void} DrawSpline(\textcolor{keywordtype}{int} nSpline, \textcolor{keywordtype}{int} nMode = 0);}
+\DoxyCodeLine{97     \textcolor{keywordtype}{bool} IfCross(\mbox{\hyperlink{class_c_real_point}{CRealPoint}} \&RP1, \mbox{\hyperlink{class_c_real_point}{CRealPoint}} \&RP2, \textcolor{keywordtype}{int} nS, \textcolor{keywordtype}{bool} bBeg, \textcolor{keywordtype}{bool} bEnd);}
+\DoxyCodeLine{98     \textcolor{keywordtype}{bool} IfCross(\textcolor{keywordtype}{int} nPoint);}
+\DoxyCodeLine{99     \textcolor{keywordtype}{bool} IfCross(\mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} *Points, \textcolor{keywordtype}{int} nPoint, \mbox{\hyperlink{struct_s_p_l_i_n_e_p_a_r_a_m}{SPLINEPARAM}} *pParam = NULL);}
+\DoxyCodeLine{100 \};}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_COMPONENT\_H\_\_931FE91F\_9625\_4C57\_AD7F\_04E2DCED1EEF\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

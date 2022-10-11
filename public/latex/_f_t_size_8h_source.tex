@@ -1,0 +1,57 @@
+\hypertarget{_f_t_size_8h_source}{}\doxysection{FTSize.\+h}
+\label{_f_t_size_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTSize.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTSize.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTSize\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTSize\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_size}{FTSize}}}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{keyword}{public}:}
+\DoxyCodeLine{24          \mbox{\hyperlink{class_f_t_size_ae1b459031c2ab7fe6ef98530c0251700}{FTSize}}();}
+\DoxyCodeLine{25         }
+\DoxyCodeLine{29         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_size_acb66a0c1e996bafc30bee1b26cee510e}{\string~FTSize}}();}
+\DoxyCodeLine{30         }
+\DoxyCodeLine{43         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_size_a15c6c82655544d1edb101e00e42ffad9}{CharSize}}( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}* face, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} point\_size, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} x\_resolution, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} y\_resolution);}
+\DoxyCodeLine{44         }
+\DoxyCodeLine{50         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_size_a306e891048efd1e71430371c1028cd41}{CharSize}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{51         }
+\DoxyCodeLine{57         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_size_a41594be7bbc78f19dec735b8b933cb67}{Ascender}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{58         }
+\DoxyCodeLine{64         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_size_af34df311f98b66c73005f4b2f543206a}{Descender}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{65         }
+\DoxyCodeLine{76         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_size_acc2b7287387fe26fc788a9caf2540b10}{Height}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{77         }
+\DoxyCodeLine{88         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_size_a5c7f4ec54694033f01f4c1d5a472e5c3}{Width}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{89         }
+\DoxyCodeLine{95         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_size_af556456e4c36dea5dd76748ff7659f02}{Underline}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{102         FT\_Error \mbox{\hyperlink{class_f_t_size_a562e1857cec5dacf9dcb680fa1dfef32}{Error}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} err; \}}
+\DoxyCodeLine{103         }
+\DoxyCodeLine{104     \textcolor{keyword}{private}:}
+\DoxyCodeLine{108         \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}* ftFace;}
+\DoxyCodeLine{109         }
+\DoxyCodeLine{113         \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}} ftSize;}
+\DoxyCodeLine{114         }
+\DoxyCodeLine{118         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} size;}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{123         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} xResolution;}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{128         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} yResolution;}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{133         FT\_Error err;}
+\DoxyCodeLine{134         }
+\DoxyCodeLine{135 \};}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTSize\_\_}}
+\DoxyCodeLine{138 }
+
+\end{DoxyCode}

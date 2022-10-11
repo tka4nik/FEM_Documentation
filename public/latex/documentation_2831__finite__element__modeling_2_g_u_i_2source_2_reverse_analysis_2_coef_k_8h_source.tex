@@ -1,0 +1,61 @@
+\hypertarget{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_reverse_analysis_2_coef_k_8h_source}{}\doxysection{Coef\+K.\+h}
+\label{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_reverse_analysis_2_coef_k_8h_source}\index{831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/CoefK.h@{831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/CoefK.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{keyword}{namespace }Iter \{}
+\DoxyCodeLine{4     \textcolor{keyword}{class }CoefK;}
+\DoxyCodeLine{5     \textcolor{keyword}{class }CoefKContainer;}
+\DoxyCodeLine{6 \}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}Experiment.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }Iter \{}
+\DoxyCodeLine{11     \textcolor{keyword}{enum class} constraints \{ \mbox{\hyperlink{group__core__func__common_ga6cf8098827054a270ee36b18e30d471d}{min}}, \mbox{\hyperlink{group__core__func__common_gae02d42887fc5570451f880e3c624b9ac}{max}}, start, end \};}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13     \textcolor{keyword}{class }CoefK \{}
+\DoxyCodeLine{14     \textcolor{keyword}{public}:}
+\DoxyCodeLine{15         CoefK(\textcolor{keyword}{const} std::vector<double>\& strain\_main, \textcolor{keyword}{const} std::vector<double>\& stress\_main,}
+\DoxyCodeLine{16             \textcolor{keyword}{const} std::vector<double>\& stress\_init, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& alpha = 0.5);}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18         std::vector<double>::iterator begin() \{ \textcolor{keywordflow}{return} m\_k.begin(); \}}
+\DoxyCodeLine{19         std::vector<double>::const\_iterator begin()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_k.cbegin(); \}}
+\DoxyCodeLine{20         std::vector<double>::iterator end() \{ \textcolor{keywordflow}{return} m\_k.end(); \}}
+\DoxyCodeLine{21         std::vector<double>::const\_iterator end()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_k.cend(); \}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keyword}{private}:}
+\DoxyCodeLine{24         \textcolor{keywordtype}{void} del\_elements(\textcolor{keyword}{const} std::vector<size\_t>\& positions);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keyword}{public}:}
+\DoxyCodeLine{27         \textcolor{keywordtype}{void} cut\_values(Iter::constraints cons, \textcolor{keywordtype}{double} value);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29         \textcolor{keywordtype}{void} inf\_k\_cor();}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31         \textcolor{keywordtype}{size\_t} size()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_k.size(); \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33         std::vector<double> get\_k()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_k; \};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{keyword}{private}:}
+\DoxyCodeLine{36         std::vector<double> m\_k;}
+\DoxyCodeLine{37     \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keyword}{class }CoefKContainer \{}
+\DoxyCodeLine{40     \textcolor{keyword}{public}:}
+\DoxyCodeLine{41         CoefKContainer(\textcolor{keyword}{const} \mbox{\hyperlink{class_exp_1_1_experiment_container}{Exp::ExperimentContainer}}\& main, \textcolor{keyword}{const} \mbox{\hyperlink{class_exp_1_1_experiment_container}{Exp::ExperimentContainer}}\& init, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& alpha = 0.5);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43         std::vector<CoefK>::iterator begin() \{ \textcolor{keywordflow}{return} m\_container.begin(); \}}
+\DoxyCodeLine{44         std::vector<CoefK>::const\_iterator begin()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_container.cbegin(); \}}
+\DoxyCodeLine{45         std::vector<CoefK>::iterator end() \{ \textcolor{keywordflow}{return} m\_container.end(); \}}
+\DoxyCodeLine{46         std::vector<CoefK>::const\_iterator end()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_container.cend(); \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48         \textcolor{keywordtype}{size\_t} size()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_container.size(); \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50         std::vector<std::vector<double>> get\_container\_double() \textcolor{keyword}{const}; \textcolor{comment}{//добавил}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keyword}{private}:}
+\DoxyCodeLine{53         std::vector<CoefK> m\_container;}
+\DoxyCodeLine{54     \};}
+\DoxyCodeLine{55 \}}
+
+\end{DoxyCode}

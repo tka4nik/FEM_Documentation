@@ -1,0 +1,76 @@
+\hypertarget{_field_8h_source}{}\doxysection{Field.\+h}
+\label{_field_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/Field.h@{C:/Projects/FEM/prototype-\/prismatic/source/Field.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Field.h: interface for the CField class.}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#if !defined(AFX\_FIELD\_H\_\_8C18C127\_F7EB\_4BE8\_BDEC\_98710CA4402C\_\_INCLUDED\_)}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define AFX\_FIELD\_H\_\_8C18C127\_F7EB\_4BE8\_BDEC\_98710CA4402C\_\_INCLUDED\_}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct__gl_c_o_l_o_r}{\_glCOLOR}}\{}
+\DoxyCodeLine{13     \textcolor{keywordtype}{double} r;}
+\DoxyCodeLine{14     \textcolor{keywordtype}{double} g;}
+\DoxyCodeLine{15     \textcolor{keywordtype}{double} b;}
+\DoxyCodeLine{16 \}\mbox{\hyperlink{struct__gl_c_o_l_o_r}{glCOLOR}};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \mbox{\hyperlink{struct__gl_c_o_l_o_r}{glCOLOR}} MixGLClr(\textcolor{keyword}{const} \mbox{\hyperlink{struct__gl_c_o_l_o_r}{glCOLOR}} \&c1, \textcolor{keyword}{const} \mbox{\hyperlink{struct__gl_c_o_l_o_r}{glCOLOR}} \&c2, \textcolor{keywordtype}{double} alpha);}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct___f_z_o_n_e}{\_FZONE}}\{}
+\DoxyCodeLine{21     \textcolor{keywordtype}{double} X[5];}
+\DoxyCodeLine{22     \textcolor{keywordtype}{double} Y[5];}
+\DoxyCodeLine{23     \textcolor{keywordtype}{int} nPNum;}
+\DoxyCodeLine{24     \mbox{\hyperlink{struct__gl_c_o_l_o_r}{glCOLOR}} Clr[5];}
+\DoxyCodeLine{25 \}\mbox{\hyperlink{struct___f_z_o_n_e}{FZONE}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_field}{CField}}  }
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30     \mbox{\hyperlink{class_c_field}{CField}}();}
+\DoxyCodeLine{31     \mbox{\hyperlink{class_c_field}{CField}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_field}{CField}} \&F):m\_dMinVal(F.m\_dMinVal),m\_dMaxVal(F.m\_dMaxVal),}
+\DoxyCodeLine{32                             m\_dStep(F.m\_dStep), m\_nClrNum(F.m\_nClrNum), m\_nType(F.m\_nType), m\_strName(F.m\_strName)}
+\DoxyCodeLine{33                             \{m\_Colors.Copy(F.m\_Colors);\}}
+\DoxyCodeLine{34     \textcolor{keyword}{const} \mbox{\hyperlink{class_c_field}{CField}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_field}{CField}} \&F)\{}
+\DoxyCodeLine{35         m\_dMinVal = F.m\_dMinVal;    m\_dMaxVal = F.m\_dMaxVal; m\_strName = F.m\_strName;}
+\DoxyCodeLine{36         m\_dStep = F.m\_dStep;    m\_nClrNum = F.m\_nClrNum; m\_nType = F.m\_nType;}
+\DoxyCodeLine{37         m\_Colors.Copy(F.m\_Colors);}
+\DoxyCodeLine{38         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{39     \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_field}{\string~CField}}();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \textcolor{keywordtype}{void} SetBounds(\textcolor{keywordtype}{double} dMin, \textcolor{keywordtype}{double} dMax);}
+\DoxyCodeLine{44     \textcolor{keywordtype}{int} GetZone(\textcolor{keywordtype}{int} n, \textcolor{keywordtype}{double} *X, \textcolor{keywordtype}{double} *Y, \textcolor{keywordtype}{double} *Val, \mbox{\hyperlink{struct___f_z_o_n_e}{FZONE}} *pZone);}
+\DoxyCodeLine{45     }
+\DoxyCodeLine{46 \textcolor{keyword}{public}:}
+\DoxyCodeLine{47     \textcolor{keywordtype}{int} GetColorNum()\{\textcolor{keywordflow}{return} m\_nType != 2 ? m\_nClrNum : 4;\}}
+\DoxyCodeLine{48 \textcolor{keyword}{public}:}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} Clear();}
+\DoxyCodeLine{50     \textcolor{keywordtype}{double} GetVal(\textcolor{keywordtype}{int} nIndex);}
+\DoxyCodeLine{51     \textcolor{keywordtype}{int} AddColor(\textcolor{keywordtype}{double} r, \textcolor{keywordtype}{double} g, \textcolor{keywordtype}{double} b);}
+\DoxyCodeLine{52     COLORREF GetColor(\textcolor{keywordtype}{int} n); \textcolor{comment}{// номер деления => цвет деления}}
+\DoxyCodeLine{53     COLORREF GetColord(\textcolor{keywordtype}{double} alpha); \textcolor{comment}{// непрерывная шкала => каждому значению сопоставлен цвет}}
+\DoxyCodeLine{54     }
+\DoxyCodeLine{55     \textcolor{keywordtype}{int} m\_nType;}
+\DoxyCodeLine{56     CString m\_strName;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{keywordtype}{double} m\_dMinX; }
+\DoxyCodeLine{59     \textcolor{keywordtype}{double} m\_dMaxX;}
+\DoxyCodeLine{60     \textcolor{keywordtype}{double} m\_dMinY; }
+\DoxyCodeLine{61     \textcolor{keywordtype}{double} m\_dMaxY;}
+\DoxyCodeLine{62     \textcolor{keywordtype}{double} m\_dCorrekce;}
+\DoxyCodeLine{63 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{64     CArray<glCOLOR, glCOLOR> m\_Colors; \textcolor{comment}{// цветовая шкала}}
+\DoxyCodeLine{65     \textcolor{keywordtype}{double} m\_dMinVal;}
+\DoxyCodeLine{66     \textcolor{keywordtype}{double} m\_dMaxVal;}
+\DoxyCodeLine{67     \textcolor{keywordtype}{double} m\_dStep; \textcolor{comment}{// размер шага по шкале значений}}
+\DoxyCodeLine{68     \textcolor{keywordtype}{int} m\_nClrNum; \textcolor{comment}{// кол-\/во цветов}}
+\DoxyCodeLine{69 \};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_FIELD\_H\_\_8C18C127\_F7EB\_4BE8\_BDEC\_98710CA4402C\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

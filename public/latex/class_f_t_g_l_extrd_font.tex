@@ -1,0 +1,96 @@
+\hypertarget{class_f_t_g_l_extrd_font}{}\doxysection{FTGLExtrd\+Font Class Reference}
+\label{class_f_t_g_l_extrd_font}\index{FTGLExtrdFont@{FTGLExtrdFont}}
+
+
+{\ttfamily \#include $<$FTGLExtrd\+Font.\+h$>$}
+
+Inheritance diagram for FTGLExtrd\+Font\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_t_g_l_extrd_font}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_g_l_extrd_font_a6bdf18ee111a011b01b9a29cdd693ce7}{FTGLExtrd\+Font}} (const char $\ast$font\+File\+Path)
+\item 
+\mbox{\hyperlink{class_f_t_g_l_extrd_font_a965dda1073290e857f774e8d55f24603}{FTGLExtrd\+Font}} (const unsigned char $\ast$p\+Buffer\+Bytes, size\+\_\+t buffer\+Size\+In\+Bytes)
+\item 
+\mbox{\hyperlink{class_f_t_g_l_extrd_font_a2c3cd7b54818e844901c6fbe2eba768d}{$\sim$\+FTGLExtrd\+Font}} ()
+\item 
+void \mbox{\hyperlink{class_f_t_g_l_extrd_font_aa45bae6acbc1d9ec034e80930372f000}{Depth}} (float d)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_g_l_extrd_font}{FTGLExtrd\+Font}} is a specialisation of the \mbox{\hyperlink{class_f_t_font}{FTFont}} class for handling extruded Polygon fonts
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_f_t_font}{FTFont}} 
+
+\mbox{\hyperlink{class_f_t_g_l_polygon_font}{FTGLPolygon\+Font}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_g_l_extrd_font_a6bdf18ee111a011b01b9a29cdd693ce7}\label{class_f_t_g_l_extrd_font_a6bdf18ee111a011b01b9a29cdd693ce7}} 
+\index{FTGLExtrdFont@{FTGLExtrdFont}!FTGLExtrdFont@{FTGLExtrdFont}}
+\index{FTGLExtrdFont@{FTGLExtrdFont}!FTGLExtrdFont@{FTGLExtrdFont}}
+\doxysubsubsection{\texorpdfstring{FTGLExtrdFont()}{FTGLExtrdFont()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FTGLExtrd\+Font\+::\+FTGLExtrd\+Font (\begin{DoxyParamCaption}\item[{const char $\ast$}]{font\+File\+Path }\end{DoxyParamCaption})}
+
+Open and read a font file. Sets Error flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+File\+Path} & font file path. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_g_l_extrd_font_a965dda1073290e857f774e8d55f24603}\label{class_f_t_g_l_extrd_font_a965dda1073290e857f774e8d55f24603}} 
+\index{FTGLExtrdFont@{FTGLExtrdFont}!FTGLExtrdFont@{FTGLExtrdFont}}
+\index{FTGLExtrdFont@{FTGLExtrdFont}!FTGLExtrdFont@{FTGLExtrdFont}}
+\doxysubsubsection{\texorpdfstring{FTGLExtrdFont()}{FTGLExtrdFont()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily FTGLExtrd\+Font\+::\+FTGLExtrd\+Font (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{p\+Buffer\+Bytes,  }\item[{size\+\_\+t}]{buffer\+Size\+In\+Bytes }\end{DoxyParamCaption})}
+
+Open and read a font from a buffer in memory. Sets Error flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Buffer\+Bytes} & the in-\/memory buffer \\
+\hline
+{\em buffer\+Size\+In\+Bytes} & the length of the buffer in bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_g_l_extrd_font_a2c3cd7b54818e844901c6fbe2eba768d}\label{class_f_t_g_l_extrd_font_a2c3cd7b54818e844901c6fbe2eba768d}} 
+\index{FTGLExtrdFont@{FTGLExtrdFont}!````~FTGLExtrdFont@{$\sim$FTGLExtrdFont}}
+\index{````~FTGLExtrdFont@{$\sim$FTGLExtrdFont}!FTGLExtrdFont@{FTGLExtrdFont}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTGLExtrdFont()}{~FTGLExtrdFont()}}
+{\footnotesize\ttfamily FTGLExtrd\+Font\+::$\sim$\+FTGLExtrd\+Font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_g_l_extrd_font_aa45bae6acbc1d9ec034e80930372f000}\label{class_f_t_g_l_extrd_font_aa45bae6acbc1d9ec034e80930372f000}} 
+\index{FTGLExtrdFont@{FTGLExtrdFont}!Depth@{Depth}}
+\index{Depth@{Depth}!FTGLExtrdFont@{FTGLExtrdFont}}
+\doxysubsubsection{\texorpdfstring{Depth()}{Depth()}}
+{\footnotesize\ttfamily void FTGLExtrd\+Font\+::\+Depth (\begin{DoxyParamCaption}\item[{float}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the extrusion distance for the font.
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The extrusion distance. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_f_t_font_a7fc7825ca4089e12a679f788e0cb9d2c}{FTFont}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTGLExtrd\+Font.\+h\end{DoxyCompactItemize}

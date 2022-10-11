@@ -1,0 +1,103 @@
+\hypertarget{831__finite__element__modeling_2_f_e_m_2source_2_real_point_8h_source}{}\doxysection{Real\+Point.\+h}
+\label{831__finite__element__modeling_2_f_e_m_2source_2_real_point_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/FEM/source/RealPoint.h@{C:/Projects/FEM/831\_finite\_element\_modeling/FEM/source/RealPoint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{comment}{/*}}
+\DoxyCodeLine{5 \textcolor{comment}{* free\_abs(A) -\/ обычный модуль.}}
+\DoxyCodeLine{6 \textcolor{comment}{* between(A, B, C) -\/  (B <= A <= C) (B и C можно менять местами по идее)}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{* struct R\_POINT -\/  точка \{double, double\}}}
+\DoxyCodeLine{9 \textcolor{comment}{* class CRealPoint -\/  точка \{double, double\}}}
+\DoxyCodeLine{10 \textcolor{comment}{*/}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define free\_abs(A)  ( ((A)>=0 )? (A) : -\/(A) )}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define between(A, B, C)  ( (A) >= min(B,C) \&\& (A) <= max(B,C) )}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{17     \textcolor{keywordtype}{double} x;}
+\DoxyCodeLine{18     \textcolor{keywordtype}{double} y;}
+\DoxyCodeLine{19 \}\mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_real_point}{CRealPoint}}}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24 \textcolor{keyword}{public}:}
+\DoxyCodeLine{25     \textcolor{keywordtype}{double} m\_x;}
+\DoxyCodeLine{26     \textcolor{keywordtype}{double} m\_y;}
+\DoxyCodeLine{27 \textcolor{keyword}{public}:}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_c_real_point}{CRealPoint}}(\textcolor{keywordtype}{double} X = 0, \textcolor{keywordtype}{double} Y = 0) :m\_x(X), m\_y(Y) \{\}}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_c_real_point}{CRealPoint}}(\textcolor{keyword}{const} \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}}\& pt) :m\_x(pt.x), m\_y(pt.y) \{\}}
+\DoxyCodeLine{30     \mbox{\hyperlink{class_c_real_point}{CRealPoint}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP) :m\_x(RP.m\_x), m\_y(RP.m\_y) \{\}}
+\DoxyCodeLine{31     \textcolor{comment}{//  virtual \string~CRealPoint();}}
+\DoxyCodeLine{32     \mbox{\hyperlink{class_c_real_point}{\string~CRealPoint}}();}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{48     \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& \mbox{\hyperlink{class_c_real_point_a56018d6b7bc3e491dc468d2d40593152}{Projection}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& Vect, \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& Axle);}
+\DoxyCodeLine{52     \textcolor{keywordtype}{double}  \mbox{\hyperlink{class_c_real_point_a9f06984a4b418af8316dc87548dc4c78}{Norm}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_x * m\_x + m\_y * m\_y; \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{comment}{//Расстояние от точки до отрезка}}
+\DoxyCodeLine{55     \textcolor{comment}{//pRPRes -\/ возможно ближайшая точка отрезка.}}
+\DoxyCodeLine{56     \textcolor{keywordtype}{double} GetDistanceEx(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP1, \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP2, \mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRPRes = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{comment}{//Расстояние от точки до прямой}}
+\DoxyCodeLine{60     \textcolor{comment}{//pRPRes -\/ проекция точки на прямую}}
+\DoxyCodeLine{61     \textcolor{keywordtype}{double} GetDistance(\mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRP1, \mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRP2, \mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRPRes = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{double} Len(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \textcolor{comment}{//точка пересечения прямых}}
+\DoxyCodeLine{66     \textcolor{keywordtype}{bool} Cross0(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RPa1, \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RPa2, \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RPb1, \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}} RPb2, \textcolor{keywordtype}{double}* alpha = 0, \textcolor{keywordtype}{double}* betta = 0);}
+\DoxyCodeLine{67     \textcolor{comment}{//точка пересечения отрезков}}
+\DoxyCodeLine{68     \textcolor{keywordtype}{bool} Cross(\mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRPa1, \mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRPa2, \mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRPb1, \mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRPb2);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{comment}{//Приводит вектор к длинне len }}
+\DoxyCodeLine{71     \textcolor{keywordtype}{bool} Rad(\mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRP1, \mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRP2, \textcolor{keywordtype}{double} len);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     \textcolor{comment}{//???}}
+\DoxyCodeLine{74     \textcolor{keywordtype}{bool} Third(\mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRP1, \mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRP2);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{keywordtype}{bool} Copy(\mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRP);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{comment}{//??}}
+\DoxyCodeLine{79     \textcolor{keywordtype}{bool} Right(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP1, \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP2);}
+\DoxyCodeLine{80     \textcolor{keywordtype}{bool} IfTooClose(\mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRP1, \mbox{\hyperlink{class_c_real_point}{CRealPoint}}* pRP2);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{comment}{//???}}
+\DoxyCodeLine{83     \textcolor{keywordtype}{double} Splitting(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP1, \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP2);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{comment}{//конвертер в R\_POINT}}
+\DoxyCodeLine{86     \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} RP() \{}
+\DoxyCodeLine{87         \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} rp = \{ m\_x, m\_y \};}
+\DoxyCodeLine{88         \textcolor{keywordflow}{return} rp;}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \mbox{\hyperlink{class_c_real_point}{CRealPoint}} operator+(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{92         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}(m\_x + RP.m\_x, m\_y + RP.m\_y);}
+\DoxyCodeLine{93     \}}
+\DoxyCodeLine{94     \mbox{\hyperlink{class_c_real_point}{CRealPoint}} operator-\/(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{95         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}(m\_x -\/ RP.m\_x, m\_y -\/ RP.m\_y);}
+\DoxyCodeLine{96     \}}
+\DoxyCodeLine{97     \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& operator+=(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP) \{}
+\DoxyCodeLine{98         m\_x += RP.m\_x;  m\_y += RP.m\_y;  \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{99     \}}
+\DoxyCodeLine{100     \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& operator-\/=(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP) \{}
+\DoxyCodeLine{101         m\_x -\/= RP.m\_x;  m\_y -\/= RP.m\_y;  \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103     \mbox{\hyperlink{class_c_real_point}{CRealPoint}} operator*(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& Mult)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{104         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}(m\_x * Mult, m\_y * Mult);}
+\DoxyCodeLine{105     \}}
+\DoxyCodeLine{106     \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{107         \textcolor{keywordflow}{return} (m\_x == RP.m\_x \&\& m\_y == RP.m\_y) ? true : \textcolor{keyword}{false};}
+\DoxyCodeLine{108     \}}
+\DoxyCodeLine{109     \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{110         \textcolor{keywordflow}{return} (m\_x == RP.m\_x \&\& m\_y == RP.m\_y) ? false : \textcolor{keyword}{true};}
+\DoxyCodeLine{111     \}}
+\DoxyCodeLine{112     \textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_real_point}{CRealPoint}}\& RP) \{}
+\DoxyCodeLine{113         m\_x = RP.m\_x;   m\_y = RP.m\_y;   \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{114     \}}
+\DoxyCodeLine{115 \};}
+
+\end{DoxyCode}

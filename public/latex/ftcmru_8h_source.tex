@@ -1,0 +1,253 @@
+\hypertarget{ftcmru_8h_source}{}\doxysection{ftcmru.\+h}
+\label{ftcmru_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftcmru.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftcmru.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftcmru.h                                                               */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Simple MRU list-\/cache (specification).                               */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2000-\/2001, 2003, 2004, 2005 by                               */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{20   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{21   \textcolor{comment}{/* An MRU is a list that cannot hold more than a certain number of       */}}
+\DoxyCodeLine{22   \textcolor{comment}{/* elements (`max\_elements').  All elements in the list are sorted in    */}}
+\DoxyCodeLine{23   \textcolor{comment}{/* least-\/recently-\/used order, i.e., the `oldest' element is at the tail  */}}
+\DoxyCodeLine{24   \textcolor{comment}{/* of the list.                                                          */}}
+\DoxyCodeLine{25   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{26   \textcolor{comment}{/* When doing a lookup (either through `Lookup()' or `Lookup\_Node()'),   */}}
+\DoxyCodeLine{27   \textcolor{comment}{/* the list is searched for an element with the corresponding key.  If   */}}
+\DoxyCodeLine{28   \textcolor{comment}{/* it is found, the element is moved to the head of the list and is      */}}
+\DoxyCodeLine{29   \textcolor{comment}{/* returned.                                                             */}}
+\DoxyCodeLine{30   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{31   \textcolor{comment}{/* If no corresponding element is found, the lookup routine will try to  */}}
+\DoxyCodeLine{32   \textcolor{comment}{/* obtain a new element with the relevant key.  If the list is already   */}}
+\DoxyCodeLine{33   \textcolor{comment}{/* full, the oldest element from the list is discarded and replaced by a */}}
+\DoxyCodeLine{34   \textcolor{comment}{/* new one; a new element is added to the list otherwise.                */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36   \textcolor{comment}{/* Note that it is possible to pre-\/allocate the element list nodes.      */}}
+\DoxyCodeLine{37   \textcolor{comment}{/* This is handy if `max\_elements' is sufficiently small, as it saves    */}}
+\DoxyCodeLine{38   \textcolor{comment}{/* allocations/releases during the lookup process.                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{40 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#ifndef \_\_FTCMRU\_H\_\_}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define \_\_FTCMRU\_H\_\_}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define  xxFT\_DEBUG\_ERROR}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define  FTC\_INLINE}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___mru_node_rec__}{FTC\_MruNodeRec\_}}*  FTC\_MruNode;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___mru_node_rec__}{FTC\_MruNodeRec\_}}}
+\DoxyCodeLine{64   \{}
+\DoxyCodeLine{65     FTC\_MruNode  next;}
+\DoxyCodeLine{66     FTC\_MruNode  prev;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   \} \mbox{\hyperlink{struct_f_t_c___mru_node_rec__}{FTC\_MruNodeRec}};}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{72   FTC\_MruNode\_Prepend( FTC\_MruNode  *plist,}
+\DoxyCodeLine{73                        FTC\_MruNode   node );}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{76   FTC\_MruNode\_Up( FTC\_MruNode  *plist,}
+\DoxyCodeLine{77                   FTC\_MruNode   node );}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{80   FTC\_MruNode\_Remove( FTC\_MruNode  *plist,}
+\DoxyCodeLine{81                       FTC\_MruNode   node );}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruListRec\_}}*              \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruList}};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___mru_list_class_rec__}{FTC\_MruListClassRec\_}} const *  FTC\_MruListClass;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \textcolor{keyword}{typedef} FT\_Bool}
+\DoxyCodeLine{90   (*FTC\_MruNode\_CompareFunc)( FTC\_MruNode  node,}
+\DoxyCodeLine{91                               FT\_Pointer   key );}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{94   (*FTC\_MruNode\_InitFunc)( FTC\_MruNode  node,}
+\DoxyCodeLine{95                            FT\_Pointer   key,}
+\DoxyCodeLine{96                            FT\_Pointer   data );}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{99   (*FTC\_MruNode\_ResetFunc)( FTC\_MruNode  node,}
+\DoxyCodeLine{100                             FT\_Pointer   key,}
+\DoxyCodeLine{101                             FT\_Pointer   data );}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{104   (*FTC\_MruNode\_DoneFunc)( FTC\_MruNode  node,}
+\DoxyCodeLine{105                            FT\_Pointer   data );}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___mru_list_class_rec__}{FTC\_MruListClassRec\_}}}
+\DoxyCodeLine{109   \{}
+\DoxyCodeLine{110     FT\_UInt                  node\_size;}
+\DoxyCodeLine{111     FTC\_MruNode\_CompareFunc  node\_compare;}
+\DoxyCodeLine{112     FTC\_MruNode\_InitFunc     node\_init;}
+\DoxyCodeLine{113     FTC\_MruNode\_ResetFunc    node\_reset;}
+\DoxyCodeLine{114     FTC\_MruNode\_DoneFunc     node\_done;}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116   \} \mbox{\hyperlink{struct_f_t_c___mru_list_class_rec__}{FTC\_MruListClassRec}};}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruListRec\_}}}
+\DoxyCodeLine{119   \{}
+\DoxyCodeLine{120     FT\_UInt              num\_nodes;}
+\DoxyCodeLine{121     FT\_UInt              max\_nodes;}
+\DoxyCodeLine{122     FTC\_MruNode          nodes;}
+\DoxyCodeLine{123     FT\_Pointer           data;}
+\DoxyCodeLine{124     \mbox{\hyperlink{struct_f_t_c___mru_list_class_rec__}{FTC\_MruListClassRec}}  clazz;}
+\DoxyCodeLine{125     FT\_Memory            memory;}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127   \} \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruListRec}};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{131   FTC\_MruList\_Init( \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruList}}       list,}
+\DoxyCodeLine{132                     FTC\_MruListClass  clazz,}
+\DoxyCodeLine{133                     FT\_UInt           max\_nodes,}
+\DoxyCodeLine{134                     FT\_Pointer        data,}
+\DoxyCodeLine{135                     FT\_Memory         memory );}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{138   FTC\_MruList\_Reset( \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruList}}  list );}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{142   FTC\_MruList\_Done( \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruList}}  list );}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144   FT\_EXPORT( FTC\_MruNode )}
+\DoxyCodeLine{145   FTC\_MruList\_Find( \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruList}}  list,}
+\DoxyCodeLine{146                     FT\_Pointer   key );}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{149   FTC\_MruList\_New( \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruList}}   list,}
+\DoxyCodeLine{150                    FT\_Pointer    key,}
+\DoxyCodeLine{151                    FTC\_MruNode  *anode );}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{154   FTC\_MruList\_Lookup( \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruList}}   list,}
+\DoxyCodeLine{155                       FT\_Pointer    key,}
+\DoxyCodeLine{156                       FTC\_MruNode  *pnode );}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{160   FTC\_MruList\_Remove( \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruList}}  list,}
+\DoxyCodeLine{161                       FTC\_MruNode  node );}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{164   FTC\_MruList\_RemoveSelection( \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruList}}              list,}
+\DoxyCodeLine{165                                FTC\_MruNode\_CompareFunc  selection,}
+\DoxyCodeLine{166                                FT\_Pointer               key );}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#ifdef FTC\_INLINE}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define FTC\_MRULIST\_LOOKUP\_CMP( list, key, compare, node, error )           \(\backslash\)}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                                            \(\backslash\)}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{    FTC\_MruNode*             \_pfirst  = \&(list)-\/>nodes;                     \(\backslash\)}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{    FTC\_MruNode\_CompareFunc  \_compare = (FTC\_MruNode\_CompareFunc)(compare); \(\backslash\)}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{    FTC\_MruNode              \_first, \_node, *\_pnode;                        \(\backslash\)}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{    error  = 0;                                                             \(\backslash\)}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{    \_first = *(\_pfirst);                                                    \(\backslash\)}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{    \_node  = NULL;                                                          \(\backslash\)}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{    if ( \_first )                                                           \(\backslash\)}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{    \{                                                                       \(\backslash\)}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{      \_node = \_first;                                                       \(\backslash\)}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{      do                                                                    \(\backslash\)}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{      \{                                                                     \(\backslash\)}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{        if ( \_compare( \_node, (key) ) )                                     \(\backslash\)}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{        \{                                                                   \(\backslash\)}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{          if ( \_node != \_first )                                            \(\backslash\)}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{            FTC\_MruNode\_Up( \_pfirst, \_node );                               \(\backslash\)}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{          \_pnode = (FTC\_MruNode*)(void*)\&(node);                            \(\backslash\)}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{          *\_pnode = \_node;                                                  \(\backslash\)}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{          goto \_MruOk;                                                      \(\backslash\)}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{        \}                                                                   \(\backslash\)}}
+\DoxyCodeLine{196 \textcolor{preprocessor}{        \_node = \_node-\/>next;                                                \(\backslash\)}}
+\DoxyCodeLine{197 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{      \} while ( \_node != \_first) ;                                          \(\backslash\)}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{    \}                                                                       \(\backslash\)}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{    error = FTC\_MruList\_New( (list), (key), (FTC\_MruNode*)(void*)\&(node) ); \(\backslash\)}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{  \_MruOk:                                                                   \(\backslash\)}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{    ;                                                                       \(\backslash\)}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{preprocessor}{\#define FTC\_MRULIST\_LOOKUP( list, key, node, error ) \(\backslash\)}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{  FTC\_MRULIST\_LOOKUP\_CMP( list, key, (list)-\/>clazz.node\_compare, node, error )}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#else  }\textcolor{comment}{/* !FTC\_INLINE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211 \textcolor{preprocessor}{\#define FTC\_MRULIST\_LOOKUP( list, key, node, error ) \(\backslash\)}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{  error = FTC\_MruList\_Lookup( (list), (key), (FTC\_MruNode*)\&(node) )}}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FTC\_INLINE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#define FTC\_MRULIST\_LOOP( list, node )        \(\backslash\)}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                              \(\backslash\)}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{    FTC\_MruNode  \_first = (list)-\/>nodes;      \(\backslash\)}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{                                              \(\backslash\)}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{                                              \(\backslash\)}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{    if ( \_first )                             \(\backslash\)}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{    \{                                         \(\backslash\)}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{      FTC\_MruNode  \_node = \_first;            \(\backslash\)}}
+\DoxyCodeLine{225 \textcolor{preprocessor}{                                              \(\backslash\)}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{                                              \(\backslash\)}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{      do                                      \(\backslash\)}}
+\DoxyCodeLine{228 \textcolor{preprocessor}{      \{                                       \(\backslash\)}}
+\DoxyCodeLine{229 \textcolor{preprocessor}{        *(FTC\_MruNode*)\&(node) = \_node;}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232 \textcolor{preprocessor}{\#define FTC\_MRULIST\_LOOP\_END()               \(\backslash\)}}
+\DoxyCodeLine{233 \textcolor{preprocessor}{        \_node = \_node-\/>next;                 \(\backslash\)}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{                                             \(\backslash\)}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{      \} while ( \_node != \_first );           \(\backslash\)}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{    \}                                        \(\backslash\)}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239  \textcolor{comment}{/* */}}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241 FT\_END\_HEADER}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCMRU\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

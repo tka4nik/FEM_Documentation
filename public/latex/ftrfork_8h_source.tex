@@ -1,0 +1,190 @@
+\hypertarget{ftrfork_8h_source}{}\doxysection{ftrfork.\+h}
+\label{ftrfork_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftrfork.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftrfork.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftrfork.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Embedded resource forks accessor (specification).                    */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2004 by                                                      */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Masatake YAMATO and Redhat K.K.                                        */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{19 \textcolor{comment}{/* Development of the code in this file is support of                      */}}
+\DoxyCodeLine{20 \textcolor{comment}{/* Information-\/technology Promotion Agency, Japan.                         */}}
+\DoxyCodeLine{21 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef \_\_FTRFORK\_H\_\_}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define \_\_FTRFORK\_H\_\_}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include FT\_INTERNAL\_OBJECTS\_H}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35   \textcolor{comment}{/* Number of guessing rules supported in `FT\_Raccess\_Guess'.            */}}
+\DoxyCodeLine{36   \textcolor{comment}{/* Don't forget to increment the number if you add a new guessing rule. */}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define FT\_RACCESS\_N\_RULES  8}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    FT\_Raccess\_Guess                                                   */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    Guess a file name and offset where the actual resource fork is     */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    stored.  The macro FT\_RACCESS\_N\_RULES holds the number of          */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    guessing rules;  the guessed result for the Nth rule is            */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    represented as a triplet: a new file name (new\_names[N]), a file   */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*    offset (offsets[N]), and an error code (errors[N]).                */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{52   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*    library ::                                                         */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*      A FreeType library instance.                                     */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*    stream ::                                                          */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*      A file stream containing the resource fork.                      */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    base\_name ::                                                       */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*      The (base) file name of the resource fork used for some          */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*      guessing rules.                                                  */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{63   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*    new\_names ::                                                       */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*      An array of guessed file names in which the resource forks may   */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*      exist.  If `new\_names[N]' is NULL, the guessed file name is      */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*      equal to `base\_name'.                                            */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*    offsets ::                                                         */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*      An array of guessed file offsets.  `offsets[N]' holds the file   */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*      offset of the possible start of the resource fork in file        */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*      `new\_names[N]'.                                                  */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*    errors ::                                                          */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*      An array of FreeType error codes.  `errors[N]' is the error      */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*      code of Nth guessing rule function.  If `errors[N]' is not       */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*      FT\_Err\_Ok, `new\_names[N]' and `offsets[N]' are meaningless.      */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{79   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{80   FT\_Raccess\_Guess( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library,}
+\DoxyCodeLine{81                     FT\_Stream   stream,}
+\DoxyCodeLine{82                     \textcolor{keywordtype}{char}*       base\_name,}
+\DoxyCodeLine{83                     \textcolor{keywordtype}{char}**      new\_names,}
+\DoxyCodeLine{84                     FT\_Long*    offsets,}
+\DoxyCodeLine{85                     FT\_Error*   errors );}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{89   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{90   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*    FT\_Raccess\_Get\_HeaderInfo                                          */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{93   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*    Get the information from the header of resource fork.  The         */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*    information includes the file offset where the resource map        */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*    starts, and the file offset where the resource data starts.        */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*    `FT\_Raccess\_Get\_DataOffsets' requires these two data.              */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{99   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*    library ::                                                         */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*      A FreeType library instance.                                     */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*    stream ::                                                          */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*      A file stream containing the resource fork.                      */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*    rfork\_offset ::                                                    */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*      The file offset where the resource fork starts.                  */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{109   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*    map\_offset ::                                                      */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*      The file offset where the resource map starts.                   */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*    rdata\_pos ::                                                       */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*      The file offset where the resource data starts.                  */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*    FreeType error code.  FT\_Err\_Ok means success.                     */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{119   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{120   FT\_Raccess\_Get\_HeaderInfo( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library,}
+\DoxyCodeLine{121                              FT\_Stream   stream,}
+\DoxyCodeLine{122                              FT\_Long     rfork\_offset,}
+\DoxyCodeLine{123                              FT\_Long    *map\_offset,}
+\DoxyCodeLine{124                              FT\_Long    *rdata\_pos );}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{128   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{129   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*    FT\_Raccess\_Get\_DataOffsets                                         */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{132   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*    Get the data offsets for a tag in a resource fork.  Offsets are    */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*    stored in an array because, in some cases, resources in a resource */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*    fork have the same tag.                                            */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{137   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*    library ::                                                         */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*      A FreeType library instance.                                     */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*    stream ::                                                          */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*      A file stream containing the resource fork.                      */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*    map\_offset ::                                                      */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*      The file offset where the resource map starts.                   */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*    rdata\_pos ::                                                       */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*      The file offset where the resource data starts.                  */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*    tag ::                                                             */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*      The resource tag.                                                */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{153   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{154   \textcolor{comment}{/*    offsets ::                                                         */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*      The stream offsets for the resource data specified by `tag'.     */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*      This array is allocated by the function, so you have to call     */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*      @FT\_Free after use.                                              */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*    count ::                                                           */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*      The length of offsets array.                                     */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{162   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*    FreeType error code.  FT\_Err\_Ok means success.                     */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{165   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*    Normally you should use `FT\_Raccess\_Get\_HeaderInfo' to get the     */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*    value for `map\_offset' and `rdata\_pos'.                            */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{169   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{170   FT\_Raccess\_Get\_DataOffsets( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library,}
+\DoxyCodeLine{171                               FT\_Stream   stream,}
+\DoxyCodeLine{172                               FT\_Long     map\_offset,}
+\DoxyCodeLine{173                               FT\_Long     rdata\_pos,}
+\DoxyCodeLine{174                               FT\_Long     tag,}
+\DoxyCodeLine{175                               FT\_Long   **offsets,}
+\DoxyCodeLine{176                               FT\_Long    *count );}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179 FT\_END\_HEADER}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTRFORK\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

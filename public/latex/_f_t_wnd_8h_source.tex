@@ -1,0 +1,61 @@
+\hypertarget{_f_t_wnd_8h_source}{}\doxysection{FTWnd.\+h}
+\label{_f_t_wnd_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/FTWnd.h@{C:/Projects/FEM/prototype-\/prismatic/source/FTWnd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#if !defined(AFX\_FTWND\_H\_\_E6662CA3\_3B86\_4481\_859B\_5C24626F5C03\_\_INCLUDED\_)}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AFX\_FTWND\_H\_\_E6662CA3\_3B86\_4481\_859B\_5C24626F5C03\_\_INCLUDED\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{7 \textcolor{comment}{// FTWnd.h : header file}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}Field.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{12 \textcolor{comment}{// CFTWnd window}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_f_t_wnd}{CFTWnd}} : \textcolor{keyword}{public} CWnd}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16 \textcolor{comment}{// Construction}}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_c_f_t_wnd}{CFTWnd}}();}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{comment}{// Attributes}}
+\DoxyCodeLine{21 \textcolor{keyword}{public}:}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_c_field}{CField}}    *m\_pFT;}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     CStatic **m\_pStatic;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} m\_nStaticNum;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     CFont   m\_Font;}
+\DoxyCodeLine{28     DWORD   m\_dwStyle;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{comment}{// Operations}}
+\DoxyCodeLine{32 \textcolor{keyword}{public}:}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{// Overrides}}
+\DoxyCodeLine{35     \textcolor{comment}{// ClassWizard generated virtual function overrides}}
+\DoxyCodeLine{36     \textcolor{comment}{//\{\{AFX\_VIRTUAL(CFTWnd)}}
+\DoxyCodeLine{37     \textcolor{comment}{//\}\}AFX\_VIRTUAL}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{40 \textcolor{keyword}{public}:}
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} DrawText();}
+\DoxyCodeLine{42     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_f_t_wnd}{\string~CFTWnd}}();}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{45 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{46     \textcolor{comment}{//\{\{AFX\_MSG(CFTWnd)}}
+\DoxyCodeLine{47     afx\_msg \textcolor{keywordtype}{void} OnPaint();}
+\DoxyCodeLine{48     \textcolor{comment}{//\}\}AFX\_MSG}}
+\DoxyCodeLine{49     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{50 \};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{comment}{//\{\{AFX\_INSERT\_LOCATION\}\}}}
+\DoxyCodeLine{55 \textcolor{comment}{// Microsoft Visual C++ will insert additional declarations immediately before the previous line.}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_FTWND\_H\_\_E6662CA3\_3B86\_4481\_859B\_5C24626F5C03\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

@@ -1,0 +1,329 @@
+\hypertarget{ftserv_8h_source}{}\doxysection{ftserv.\+h}
+\label{ftserv_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftserv.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftserv.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftserv.h                                                               */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType services (specification only).                          */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003, 2004, 2005 by                                          */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{19   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{20   \textcolor{comment}{/*  Each module can export one or more `services'.  Each service is      */}}
+\DoxyCodeLine{21   \textcolor{comment}{/*  identified by a constant string and modeled by a pointer; the latter */}}
+\DoxyCodeLine{22   \textcolor{comment}{/*  generally corresponds to a structure containing function pointers.   */}}
+\DoxyCodeLine{23   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{24   \textcolor{comment}{/*  Note that a service's data cannot be a mere function pointer because */}}
+\DoxyCodeLine{25   \textcolor{comment}{/*  in C it is possible that function pointers might be implemented      */}}
+\DoxyCodeLine{26   \textcolor{comment}{/*  differently than data pointers (e.g. 48 bits instead of 32).         */}}
+\DoxyCodeLine{27   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{28 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#ifndef \_\_FTSERV\_H\_\_}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define \_\_FTSERV\_H\_\_}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#if defined( \_MSC\_VER )      }\textcolor{comment}{/* Visual C++ (and Intel C++) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39   \textcolor{comment}{/* we disable the warning `conditional expression is constant' here */}}
+\DoxyCodeLine{40   \textcolor{comment}{/* in order to compile cleanly with the maximum level of warnings   */}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#pragma warning( disable : 4127 )}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_MSC\_VER */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45   \textcolor{comment}{/*}}
+\DoxyCodeLine{46 \textcolor{comment}{   * @macro:}}
+\DoxyCodeLine{47 \textcolor{comment}{   *   FT\_FACE\_FIND\_SERVICE}}
+\DoxyCodeLine{48 \textcolor{comment}{   *}}
+\DoxyCodeLine{49 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{50 \textcolor{comment}{   *   This macro is used to look up a service from a face's driver module.}}
+\DoxyCodeLine{51 \textcolor{comment}{   *}}
+\DoxyCodeLine{52 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{53 \textcolor{comment}{   *   face ::}}
+\DoxyCodeLine{54 \textcolor{comment}{   *     The source face handle.}}
+\DoxyCodeLine{55 \textcolor{comment}{   *}}
+\DoxyCodeLine{56 \textcolor{comment}{   *   id ::}}
+\DoxyCodeLine{57 \textcolor{comment}{   *     A string describing the service as defined in the service's}}
+\DoxyCodeLine{58 \textcolor{comment}{   *     header files (e.g. FT\_SERVICE\_ID\_MULTI\_MASTERS which expands to}}
+\DoxyCodeLine{59 \textcolor{comment}{   *     `multi-\/masters').  It is automatically prefixed with}}
+\DoxyCodeLine{60 \textcolor{comment}{   *     `FT\_SERVICE\_ID\_'.}}
+\DoxyCodeLine{61 \textcolor{comment}{   *}}
+\DoxyCodeLine{62 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{63 \textcolor{comment}{   *   ptr ::}}
+\DoxyCodeLine{64 \textcolor{comment}{   *     A variable that receives the service pointer.  Will be NULL}}
+\DoxyCodeLine{65 \textcolor{comment}{   *     if not found.}}
+\DoxyCodeLine{66 \textcolor{comment}{   */}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define FT\_FACE\_FIND\_SERVICE( face, ptr, id )                               \(\backslash\)}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                                            \(\backslash\)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{    FT\_Module    module = FT\_MODULE( FT\_FACE( face )-\/>driver );             \(\backslash\)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{    FT\_Pointer   \_tmp\_  = NULL;                                             \(\backslash\)}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{    FT\_Pointer*  \_pptr\_ = (FT\_Pointer*)\&(ptr);                              \(\backslash\)}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{    if ( module-\/>clazz-\/>get\_interface )                                     \(\backslash\)}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{      \_tmp\_ = module-\/>clazz-\/>get\_interface( module, FT\_SERVICE\_ID\_ \#\# id ); \(\backslash\)}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{    *\_pptr\_ = \_tmp\_;                                                        \(\backslash\)}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* !C++ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define FT\_FACE\_FIND\_SERVICE( face, ptr, id )                               \(\backslash\)}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                                            \(\backslash\)}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{    FT\_Module   module = FT\_MODULE( FT\_FACE( face )-\/>driver );              \(\backslash\)}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{    FT\_Pointer  \_tmp\_  = NULL;                                              \(\backslash\)}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{                                                                            \(\backslash\)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{    if ( module-\/>clazz-\/>get\_interface )                                     \(\backslash\)}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{      \_tmp\_ = module-\/>clazz-\/>get\_interface( module, FT\_SERVICE\_ID\_ \#\# id ); \(\backslash\)}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{    ptr = \_tmp\_;                                                            \(\backslash\)}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !C++ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95   \textcolor{comment}{/*}}
+\DoxyCodeLine{96 \textcolor{comment}{   * @macro:}}
+\DoxyCodeLine{97 \textcolor{comment}{   *   FT\_FACE\_FIND\_GLOBAL\_SERVICE}}
+\DoxyCodeLine{98 \textcolor{comment}{   *}}
+\DoxyCodeLine{99 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{100 \textcolor{comment}{   *   This macro is used to look up a service from all modules.}}
+\DoxyCodeLine{101 \textcolor{comment}{   *}}
+\DoxyCodeLine{102 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{103 \textcolor{comment}{   *   face ::}}
+\DoxyCodeLine{104 \textcolor{comment}{   *     The source face handle.}}
+\DoxyCodeLine{105 \textcolor{comment}{   *}}
+\DoxyCodeLine{106 \textcolor{comment}{   *   id ::}}
+\DoxyCodeLine{107 \textcolor{comment}{   *     A string describing the service as defined in the service's}}
+\DoxyCodeLine{108 \textcolor{comment}{   *     header files (e.g. FT\_SERVICE\_ID\_MULTI\_MASTERS which expands to}}
+\DoxyCodeLine{109 \textcolor{comment}{   *     `multi-\/masters').  It is automatically prefixed with}}
+\DoxyCodeLine{110 \textcolor{comment}{   *     `FT\_SERVICE\_ID\_'.}}
+\DoxyCodeLine{111 \textcolor{comment}{   *}}
+\DoxyCodeLine{112 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{113 \textcolor{comment}{   *   ptr ::}}
+\DoxyCodeLine{114 \textcolor{comment}{   *     A variable that receives the service pointer.  Will be NULL}}
+\DoxyCodeLine{115 \textcolor{comment}{   *     if not found.}}
+\DoxyCodeLine{116 \textcolor{comment}{   */}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define FT\_FACE\_FIND\_GLOBAL\_SERVICE( face, ptr, id )               \(\backslash\)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                                   \(\backslash\)}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{    FT\_Module    module = FT\_MODULE( FT\_FACE( face )-\/>driver );    \(\backslash\)}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{    FT\_Pointer   \_tmp\_;                                            \(\backslash\)}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{    FT\_Pointer*  \_pptr\_ = (FT\_Pointer*)\&(ptr);                     \(\backslash\)}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{                                                                   \(\backslash\)}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{                                                                   \(\backslash\)}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{    \_tmp\_ = ft\_module\_get\_service( module, FT\_SERVICE\_ID\_ \#\# id ); \(\backslash\)}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{    *\_pptr\_ = \_tmp\_;                                               \(\backslash\)}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* !C++ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#define FT\_FACE\_FIND\_GLOBAL\_SERVICE( face, ptr, id )               \(\backslash\)}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                                   \(\backslash\)}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{    FT\_Module   module = FT\_MODULE( FT\_FACE( face )-\/>driver );     \(\backslash\)}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{    FT\_Pointer  \_tmp\_;                                             \(\backslash\)}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{                                                                   \(\backslash\)}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{                                                                   \(\backslash\)}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{    \_tmp\_ = ft\_module\_get\_service( module, FT\_SERVICE\_ID\_ \#\# id ); \(\backslash\)}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{    ptr   = \_tmp\_;                                                 \(\backslash\)}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !C++ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{146 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{147 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{148 \textcolor{comment}{  /*****         S E R V I C E   D E S C R I P T O R S                 *****/}}
+\DoxyCodeLine{149 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{150 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{151 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153   \textcolor{comment}{/*}}
+\DoxyCodeLine{154 \textcolor{comment}{   *  The following structure is used to \_describe\_ a given service}}
+\DoxyCodeLine{155 \textcolor{comment}{   *  to the library.  This is useful to build simple static service lists.}}
+\DoxyCodeLine{156 \textcolor{comment}{   */}}
+\DoxyCodeLine{157   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___service_desc_rec__}{FT\_ServiceDescRec\_}}}
+\DoxyCodeLine{158   \{}
+\DoxyCodeLine{159     \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  serv\_id;     \textcolor{comment}{/* service name         */}}
+\DoxyCodeLine{160     \textcolor{keyword}{const} \textcolor{keywordtype}{void}*  serv\_data;   \textcolor{comment}{/* service pointer/data */}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162   \} \mbox{\hyperlink{struct_f_t___service_desc_rec__}{FT\_ServiceDescRec}};}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___service_desc_rec__}{FT\_ServiceDescRec}}*  \mbox{\hyperlink{struct_f_t___service_desc_rec__}{FT\_ServiceDesc}};}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167   \textcolor{comment}{/*}}
+\DoxyCodeLine{168 \textcolor{comment}{   *  Parse a list of FT\_ServiceDescRec descriptors and look for}}
+\DoxyCodeLine{169 \textcolor{comment}{   *  a specific service by ID.  Note that the last element in the}}
+\DoxyCodeLine{170 \textcolor{comment}{   *  array must be \{ NULL, NULL \}, and that the function should}}
+\DoxyCodeLine{171 \textcolor{comment}{   *  return NULL if the service isn't available.}}
+\DoxyCodeLine{172 \textcolor{comment}{   *}}
+\DoxyCodeLine{173 \textcolor{comment}{   *  This function can be used by modules to implement their}}
+\DoxyCodeLine{174 \textcolor{comment}{   *  `get\_service' method.}}
+\DoxyCodeLine{175 \textcolor{comment}{   */}}
+\DoxyCodeLine{176   FT\_BASE( FT\_Pointer )}
+\DoxyCodeLine{177   ft\_service\_list\_lookup( \mbox{\hyperlink{struct_f_t___service_desc_rec__}{FT\_ServiceDesc}}  service\_descriptors,}
+\DoxyCodeLine{178                           \textcolor{keyword}{const} \textcolor{keywordtype}{char}*     service\_id );}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{182 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{183 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{184 \textcolor{comment}{  /*****             S E R V I C E S   C A C H E                       *****/}}
+\DoxyCodeLine{185 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{186 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{187 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189   \textcolor{comment}{/*}}
+\DoxyCodeLine{190 \textcolor{comment}{   *  This structure is used to store a cache for several frequently used}}
+\DoxyCodeLine{191 \textcolor{comment}{   *  services.  It is the type of `face-\/>internal-\/>services'.  You}}
+\DoxyCodeLine{192 \textcolor{comment}{   *  should only use FT\_FACE\_LOOKUP\_SERVICE to access it.}}
+\DoxyCodeLine{193 \textcolor{comment}{   *}}
+\DoxyCodeLine{194 \textcolor{comment}{   *  All fields should have the type FT\_Pointer to relax compilation}}
+\DoxyCodeLine{195 \textcolor{comment}{   *  dependencies.  We assume the developer isn't completely stupid.}}
+\DoxyCodeLine{196 \textcolor{comment}{   *}}
+\DoxyCodeLine{197 \textcolor{comment}{   *  Each field must be named `service\_XXXX' where `XXX' corresponds to}}
+\DoxyCodeLine{198 \textcolor{comment}{   *  the correct FT\_SERVICE\_ID\_XXXX macro.  See the definition of}}
+\DoxyCodeLine{199 \textcolor{comment}{   *  FT\_FACE\_LOOKUP\_SERVICE below how this is implemented.}}
+\DoxyCodeLine{200 \textcolor{comment}{   *}}
+\DoxyCodeLine{201 \textcolor{comment}{   */}}
+\DoxyCodeLine{202   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___service_cache_rec__}{FT\_ServiceCacheRec\_}}}
+\DoxyCodeLine{203   \{}
+\DoxyCodeLine{204     FT\_Pointer  service\_POSTSCRIPT\_FONT\_NAME;}
+\DoxyCodeLine{205     FT\_Pointer  service\_MULTI\_MASTERS;}
+\DoxyCodeLine{206     FT\_Pointer  service\_GLYPH\_DICT;}
+\DoxyCodeLine{207     FT\_Pointer  service\_PFR\_METRICS;}
+\DoxyCodeLine{208     FT\_Pointer  service\_WINFNT;}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210   \} \mbox{\hyperlink{struct_f_t___service_cache_rec__}{FT\_ServiceCacheRec}}, *\mbox{\hyperlink{struct_f_t___service_cache_rec__}{FT\_ServiceCache}};}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213   \textcolor{comment}{/*}}
+\DoxyCodeLine{214 \textcolor{comment}{   *  A magic number used within the services cache.}}
+\DoxyCodeLine{215 \textcolor{comment}{   */}}
+\DoxyCodeLine{216 \textcolor{preprocessor}{\#define FT\_SERVICE\_UNAVAILABLE  ((FT\_Pointer)-\/2)  }\textcolor{comment}{/* magic number */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219   \textcolor{comment}{/*}}
+\DoxyCodeLine{220 \textcolor{comment}{   * @macro:}}
+\DoxyCodeLine{221 \textcolor{comment}{   *   FT\_FACE\_LOOKUP\_SERVICE}}
+\DoxyCodeLine{222 \textcolor{comment}{   *}}
+\DoxyCodeLine{223 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{224 \textcolor{comment}{   *   This macro is used to lookup a service from a face's driver module}}
+\DoxyCodeLine{225 \textcolor{comment}{   *   using its cache.}}
+\DoxyCodeLine{226 \textcolor{comment}{   *}}
+\DoxyCodeLine{227 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{228 \textcolor{comment}{   *   face::}}
+\DoxyCodeLine{229 \textcolor{comment}{   *     The source face handle containing the cache.}}
+\DoxyCodeLine{230 \textcolor{comment}{   *}}
+\DoxyCodeLine{231 \textcolor{comment}{   *   field ::}}
+\DoxyCodeLine{232 \textcolor{comment}{   *     The field name in the cache.}}
+\DoxyCodeLine{233 \textcolor{comment}{   *}}
+\DoxyCodeLine{234 \textcolor{comment}{   *   id ::}}
+\DoxyCodeLine{235 \textcolor{comment}{   *     The service ID.}}
+\DoxyCodeLine{236 \textcolor{comment}{   *}}
+\DoxyCodeLine{237 \textcolor{comment}{   * @output:}}
+\DoxyCodeLine{238 \textcolor{comment}{   *   ptr ::}}
+\DoxyCodeLine{239 \textcolor{comment}{   *     A variable receiving the service data.  NULL if not available.}}
+\DoxyCodeLine{240 \textcolor{comment}{   */}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#define FT\_FACE\_LOOKUP\_SERVICE( face, ptr, id )                \(\backslash\)}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                               \(\backslash\)}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{    FT\_Pointer   svc;                                          \(\backslash\)}}
+\DoxyCodeLine{246 \textcolor{preprocessor}{    FT\_Pointer*  Pptr = (FT\_Pointer*)\&(ptr);                   \(\backslash\)}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{                                                               \(\backslash\)}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{                                                               \(\backslash\)}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{    svc = FT\_FACE( face )-\/>internal-\/>services. service\_ \#\# id; \(\backslash\)}}
+\DoxyCodeLine{250 \textcolor{preprocessor}{    if ( svc == FT\_SERVICE\_UNAVAILABLE )                       \(\backslash\)}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{      svc = NULL;                                              \(\backslash\)}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{    else if ( svc == NULL )                                    \(\backslash\)}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{    \{                                                          \(\backslash\)}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{      FT\_FACE\_FIND\_SERVICE( face, svc, id );                   \(\backslash\)}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{                                                               \(\backslash\)}}
+\DoxyCodeLine{256 \textcolor{preprocessor}{      FT\_FACE( face )-\/>internal-\/>services. service\_ \#\# id =    \(\backslash\)}}
+\DoxyCodeLine{257 \textcolor{preprocessor}{        (FT\_Pointer)( svc != NULL ? svc                        \(\backslash\)}}
+\DoxyCodeLine{258 \textcolor{preprocessor}{                                  : FT\_SERVICE\_UNAVAILABLE );  \(\backslash\)}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{    \}                                                          \(\backslash\)}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{    *Pptr = svc;                                               \(\backslash\)}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* !C++ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#define FT\_FACE\_LOOKUP\_SERVICE( face, ptr, id )                \(\backslash\)}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                               \(\backslash\)}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{    FT\_Pointer  svc;                                           \(\backslash\)}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{                                                               \(\backslash\)}}
+\DoxyCodeLine{269 \textcolor{preprocessor}{                                                               \(\backslash\)}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{    svc = FT\_FACE( face )-\/>internal-\/>services. service\_ \#\# id; \(\backslash\)}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{    if ( svc == FT\_SERVICE\_UNAVAILABLE )                       \(\backslash\)}}
+\DoxyCodeLine{272 \textcolor{preprocessor}{      svc = NULL;                                              \(\backslash\)}}
+\DoxyCodeLine{273 \textcolor{preprocessor}{    else if ( svc == NULL )                                    \(\backslash\)}}
+\DoxyCodeLine{274 \textcolor{preprocessor}{    \{                                                          \(\backslash\)}}
+\DoxyCodeLine{275 \textcolor{preprocessor}{      FT\_FACE\_FIND\_SERVICE( face, svc, id );                   \(\backslash\)}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{                                                               \(\backslash\)}}
+\DoxyCodeLine{277 \textcolor{preprocessor}{      FT\_FACE( face )-\/>internal-\/>services. service\_ \#\# id =    \(\backslash\)}}
+\DoxyCodeLine{278 \textcolor{preprocessor}{        (FT\_Pointer)( svc != NULL ? svc                        \(\backslash\)}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{                                  : FT\_SERVICE\_UNAVAILABLE );  \(\backslash\)}}
+\DoxyCodeLine{280 \textcolor{preprocessor}{    \}                                                          \(\backslash\)}}
+\DoxyCodeLine{281 \textcolor{preprocessor}{    ptr = svc;                                                 \(\backslash\)}}
+\DoxyCodeLine{282 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !C++ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286   \textcolor{comment}{/*}}
+\DoxyCodeLine{287 \textcolor{comment}{   *  A macro used to define new service structure types.}}
+\DoxyCodeLine{288 \textcolor{comment}{   */}}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290 \textcolor{preprocessor}{\#define FT\_DEFINE\_SERVICE( name )            \(\backslash\)}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{  typedef struct FT\_Service\_ \#\# name \#\# Rec\_ \(\backslash\)}}
+\DoxyCodeLine{292 \textcolor{preprocessor}{    FT\_Service\_ \#\# name \#\# Rec ;             \(\backslash\)}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{  typedef struct FT\_Service\_ \#\# name \#\# Rec\_ \(\backslash\)}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{    const * FT\_Service\_ \#\# name ;            \(\backslash\)}}
+\DoxyCodeLine{295 \textcolor{preprocessor}{  struct FT\_Service\_ \#\# name \#\# Rec\_}}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297   \textcolor{comment}{/* */}}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299   \textcolor{comment}{/*}}
+\DoxyCodeLine{300 \textcolor{comment}{   *  The header files containing the services.}}
+\DoxyCodeLine{301 \textcolor{comment}{   */}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#define FT\_SERVICE\_BDF\_H                <freetype/internal/services/svbdf.h>}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#define FT\_SERVICE\_GLYPH\_DICT\_H         <freetype/internal/services/svgldict.h>}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{\#define FT\_SERVICE\_MULTIPLE\_MASTERS\_H   <freetype/internal/services/svmm.h>}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{\#define FT\_SERVICE\_OPENTYPE\_VALIDATE\_H  <freetype/internal/services/svotval.h>}}
+\DoxyCodeLine{307 \textcolor{preprocessor}{\#define FT\_SERVICE\_PFR\_H                <freetype/internal/services/svpfr.h>}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#define FT\_SERVICE\_POSTSCRIPT\_CMAPS\_H   <freetype/internal/services/svpscmap.h>}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#define FT\_SERVICE\_POSTSCRIPT\_INFO\_H    <freetype/internal/services/svpsinfo.h>}}
+\DoxyCodeLine{310 \textcolor{preprocessor}{\#define FT\_SERVICE\_POSTSCRIPT\_NAME\_H    <freetype/internal/services/svpostnm.h>}}
+\DoxyCodeLine{311 \textcolor{preprocessor}{\#define FT\_SERVICE\_SFNT\_H               <freetype/internal/services/svsfnt.h>}}
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#define FT\_SERVICE\_TT\_CMAP\_H            <freetype/internal/services/svttcmap.h>}}
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#define FT\_SERVICE\_WINFNT\_H             <freetype/internal/services/svwinfnt.h>}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{\#define FT\_SERVICE\_XFREE86\_NAME\_H       <freetype/internal/services/svxf86nm.h>}}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316  \textcolor{comment}{/* */}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 FT\_END\_HEADER}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTSERV\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

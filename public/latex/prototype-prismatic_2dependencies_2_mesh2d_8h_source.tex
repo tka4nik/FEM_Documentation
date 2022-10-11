@@ -1,0 +1,90 @@
+\hypertarget{prototype-prismatic_2dependencies_2_mesh2d_8h_source}{}\doxysection{Mesh2d.\+h}
+\label{prototype-prismatic_2dependencies_2_mesh2d_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/dependencies/Mesh2d.h@{C:/Projects/FEM/prototype-\/prismatic/dependencies/Mesh2d.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 ﻿\#pragma once}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#ifdef MESH2D\_EXPORTS}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define MESH2D\_API \_\_declspec(dllexport)}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define MESH2D\_API \_\_declspec(dllimport)}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{comment}{/*}}
+\DoxyCodeLine{12 \textcolor{comment}{Структура FRONTINF.}}
+\DoxyCodeLine{13 \textcolor{comment}{Содержит информацию о ребре, которому принадлежит узел сетки}}
+\DoxyCodeLine{14 \textcolor{comment}{Если узел не лежит на границе, её поля раны -\/1}}
+\DoxyCodeLine{15 \textcolor{comment}{*/}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{t\_FRONTINF}}\{}
+\DoxyCodeLine{18     \textcolor{keywordtype}{int} vertex;\textcolor{comment}{//точка грницы, к которой прилинла вершина. }}
+\DoxyCodeLine{19         \textcolor{comment}{//(-\/1 если таковая отсутствует)}}
+\DoxyCodeLine{20         }
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} nLoop;\textcolor{comment}{//номер контура к которому принадлежит вершина,}}
+\DoxyCodeLine{22         \textcolor{comment}{//имеет смысл ТОЛЬКО если vertex == -\/1}}
+\DoxyCodeLine{23         \textcolor{comment}{//(-\/1 если таковая отсутствует)}}
+\DoxyCodeLine{24     \textcolor{keywordtype}{int} rib;\textcolor{comment}{//номер рабра контура nLoop, которому принадлежит вершина,}}
+\DoxyCodeLine{25         \textcolor{comment}{//имеет смысл ТОЛЬКО если vertex == -\/1 и nLoop >= 0}}
+\DoxyCodeLine{26         \textcolor{comment}{//(-\/1 если таковая отсутствует)}}
+\DoxyCodeLine{27 \}\mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structt___e_l_e_m_e_n_t}{t\_ELEMENT}}\{}
+\DoxyCodeLine{30     \textcolor{keywordtype}{int} i; }
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} j;}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} k;}
+\DoxyCodeLine{33     \mbox{\hyperlink{structt___f_r_o_n_t_i_n_f}{FRONTINF}} inf[3];    }
+\DoxyCodeLine{34 \}\mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}};}
+\DoxyCodeLine{35 \textcolor{comment}{// i,j,k -\/ номера точек в массиве}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keywordtype}{bool} MESH2D\_API InitFrPoints(\textcolor{keywordtype}{double} *FrX, \textcolor{keywordtype}{double} *FrY, \textcolor{keywordtype}{double} *W, \textcolor{keywordtype}{int} nSize);}
+\DoxyCodeLine{38 \textcolor{comment}{// Задание опорных точек границы}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{keywordtype}{bool} MESH2D\_API InitCondensationPoints(\textcolor{keywordtype}{double} *FrX, \textcolor{keywordtype}{double} *FrY, \textcolor{keywordtype}{double} *W, \textcolor{keywordtype}{int} nSize);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{keywordtype}{bool} MESH2D\_API Add\_Loop(\textcolor{keywordtype}{int} *nPoints, \textcolor{keywordtype}{int} nSize, \textcolor{keywordtype}{bool} bLoop, \textcolor{keywordtype}{bool} bFr);}
+\DoxyCodeLine{43 \textcolor{comment}{/* Добавление контура, функцию можновызывать нсколько раз,}}
+\DoxyCodeLine{44 \textcolor{comment}{до первого вызова этой функции необходимо задать опорные точки границы(InitFrPoints).}}
+\DoxyCodeLine{45 \textcolor{comment}{nPoints -\/ Массив номеров опорных точек границы, через которые проходит контур.}}
+\DoxyCodeLine{46 \textcolor{comment}{nSize -\/ размер массива nPoints.}}
+\DoxyCodeLine{47 \textcolor{comment}{bLoop -\/ истина если контур замкнутый.}}
+\DoxyCodeLine{48 \textcolor{comment}{bFr   -\/ истина если контур граничный.}}
+\DoxyCodeLine{49 \textcolor{comment}{}}
+\DoxyCodeLine{50 \textcolor{comment}{Например для такой детали, где A-\/дырка, а B-\/подоблость}}
+\DoxyCodeLine{51 \textcolor{comment}{необходинотак задавать контуры:}}
+\DoxyCodeLine{52 \textcolor{comment}{}}
+\DoxyCodeLine{53 \textcolor{comment}{ AddLoop(\{0,1,2,5,4,3\}, 6, true, true);}}
+\DoxyCodeLine{54 \textcolor{comment}{ AddLoop(\{6,7,8,9\}, 4, true, true);}}
+\DoxyCodeLine{55 \textcolor{comment}{ AddLoop(\{10,11,12,13\}, 4, true, false);}}
+\DoxyCodeLine{56 \textcolor{comment}{ AddLoop(\{1,4\}, 2, false, false);}}
+\DoxyCodeLine{57 \textcolor{comment}{}}
+\DoxyCodeLine{58 \textcolor{comment}{}}
+\DoxyCodeLine{59 \textcolor{comment}{    0-\/-\/-\/-\/-\/-\/-\/-\/-\/1-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/2}}
+\DoxyCodeLine{60 \textcolor{comment}{    |.........|.....................................|           }}
+\DoxyCodeLine{61 \textcolor{comment}{    | 6-\/-\/-\/-\/-\/7 |  10-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/11               |           }}
+\DoxyCodeLine{62 \textcolor{comment}{    |.|     |.|..|..................|...............|           }}
+\DoxyCodeLine{63 \textcolor{comment}{    |.|     | |..|......B...........|...............|}}
+\DoxyCodeLine{64 \textcolor{comment}{    |.|  A  |.|..|..................|...............|}}
+\DoxyCodeLine{65 \textcolor{comment}{    |.|     |.|..12-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/13...............|}}
+\DoxyCodeLine{66 \textcolor{comment}{    |.|     |.|.....................................|}}
+\DoxyCodeLine{67 \textcolor{comment}{    |.|     |.|.....................................|}}
+\DoxyCodeLine{68 \textcolor{comment}{    |.9-\/-\/-\/-\/-\/8.|.....................................|}}
+\DoxyCodeLine{69 \textcolor{comment}{    3-\/-\/-\/-\/-\/-\/-\/-\/-\/4-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/5}}
+\DoxyCodeLine{70 \textcolor{comment}{*/}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{keywordtype}{bool} MESH2D\_API CreateMesh(\textcolor{keywordtype}{int} nType, \textcolor{keywordtype}{double} dRibLen, \textcolor{keywordtype}{int} *pnPNum, \textcolor{keywordtype}{int} *pnElNum, \textcolor{keywordtype}{double} dTgAng);}
+\DoxyCodeLine{73 \textcolor{comment}{/*Вызывается после задания границы.}}
+\DoxyCodeLine{74 \textcolor{comment}{dRibLen -\/ длина ребер элементов сетки.}}
+\DoxyCodeLine{75 \textcolor{comment}{по адресам pnPNum и pnElNum вернутся количество точек и}}
+\DoxyCodeLine{76 \textcolor{comment}{количество элементов сгенерированной сетки.}}
+\DoxyCodeLine{77 \textcolor{comment}{*/}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{keywordtype}{bool} MESH2D\_API GetMesh(\textcolor{keywordtype}{double} *x, \textcolor{keywordtype}{double} *y, \mbox{\hyperlink{structt___e_l_e_m_e_n_t}{ELEMENT}} *Elements);}
+\DoxyCodeLine{80 \textcolor{comment}{/* Вызывается после CreateMesh.}}
+\DoxyCodeLine{81 \textcolor{comment}{Функцыя заполняет массивы x, y и Elements на которые должна быть заранее выделена память}}
+\DoxyCodeLine{82 \textcolor{comment}{размерность массивов x и y -\/ *pnPNum;}}
+\DoxyCodeLine{83 \textcolor{comment}{размерность массивa Elements -\/ *pnElNum;}}
+\DoxyCodeLine{84 \textcolor{comment}{*/}}
+
+\end{DoxyCode}

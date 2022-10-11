@@ -1,0 +1,181 @@
+\hypertarget{ftcmanag_8h_source}{}\doxysection{ftcmanag.\+h}
+\label{ftcmanag_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftcmanag.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftcmanag.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftcmanag.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType Cache Manager (specification).                              */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2000-\/2001, 2003, 2004 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{20   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{21   \textcolor{comment}{/* A cache manager is in charge of the following:                        */}}
+\DoxyCodeLine{22   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{23   \textcolor{comment}{/*  -\/ Maintain a mapping between generic FTC\_FaceIDs and live FT\_Face    */}}
+\DoxyCodeLine{24   \textcolor{comment}{/*    objects.  The mapping itself is performed through a user-\/provided  */}}
+\DoxyCodeLine{25   \textcolor{comment}{/*    callback.  However, the manager maintains a small cache of FT\_Face */}}
+\DoxyCodeLine{26   \textcolor{comment}{/*    and FT\_Size objects in order to speed up things considerably.      */}}
+\DoxyCodeLine{27   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{28   \textcolor{comment}{/*  -\/ Manage one or more cache objects.  Each cache is in charge of      */}}
+\DoxyCodeLine{29   \textcolor{comment}{/*    holding a varying number of `cache nodes'.  Each cache node        */}}
+\DoxyCodeLine{30   \textcolor{comment}{/*    represents a minimal amount of individually accessible cached      */}}
+\DoxyCodeLine{31   \textcolor{comment}{/*    data.  For example, a cache node can be an FT\_Glyph image          */}}
+\DoxyCodeLine{32   \textcolor{comment}{/*    containing a vector outline, or some glyph metrics, or anything    */}}
+\DoxyCodeLine{33   \textcolor{comment}{/*    else.                                                              */}}
+\DoxyCodeLine{34   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*    Each cache node has a certain size in bytes that is added to the   */}}
+\DoxyCodeLine{36   \textcolor{comment}{/*    total amount of `cache memory' within the manager.                 */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*    All cache nodes are located in a global LRU list, where the oldest */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*    node is at the tail of the list.                                   */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*    Each node belongs to a single cache, and includes a reference      */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    count to avoid destroying it (due to caching).                     */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{44 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{48 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{49 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{50 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{51 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{52 \textcolor{comment}{  /*********                                                       *********/}}
+\DoxyCodeLine{53 \textcolor{comment}{  /*********             WARNING, THIS IS BETA CODE.               *********/}}
+\DoxyCodeLine{54 \textcolor{comment}{  /*********                                                       *********/}}
+\DoxyCodeLine{55 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{56 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{57 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{58 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{59 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#ifndef \_\_FTCMANAG\_H\_\_}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define \_\_FTCMANAG\_H\_\_}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#include FT\_CACHE\_H}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#include FT\_CACHE\_INTERNAL\_MRU\_H}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#include FT\_CACHE\_INTERNAL\_CACHE\_H}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{76   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{77   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*    cache\_subsystem                                                    */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{80 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define FTC\_MAX\_FACES\_DEFAULT  2}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define FTC\_MAX\_SIZES\_DEFAULT  4}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#define FTC\_MAX\_BYTES\_DEFAULT  200000L  }\textcolor{comment}{/* \string~200kByte by default */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87   \textcolor{comment}{/* maximum number of caches registered in a single manager */}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#define FTC\_MAX\_CACHES         16}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_ManagerRec\_}}}
+\DoxyCodeLine{92   \{}
+\DoxyCodeLine{93     \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}          library;}
+\DoxyCodeLine{94     FT\_Memory           memory;}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}            nodes\_list;}
+\DoxyCodeLine{97     FT\_ULong            max\_weight;}
+\DoxyCodeLine{98     FT\_ULong            cur\_weight;}
+\DoxyCodeLine{99     FT\_UInt             num\_nodes;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101     FTC\_Cache           caches[FTC\_MAX\_CACHES];}
+\DoxyCodeLine{102     FT\_UInt             num\_caches;}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruListRec}}      faces;}
+\DoxyCodeLine{105     \mbox{\hyperlink{struct_f_t_c___mru_list_rec__}{FTC\_MruListRec}}      sizes;}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107     FT\_Pointer          request\_data;}
+\DoxyCodeLine{108     FTC\_Face\_Requester  request\_face;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110   \} \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_ManagerRec}};}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{114   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{115   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*    FTC\_Manager\_Compress                                               */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{118   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*    This function is used to check the state of the cache manager if   */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    its `num\_bytes' field is greater than its `max\_bytes' field.  It   */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*    will flush as many old cache nodes as possible (ignoring cache     */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*    nodes with a non-\/zero reference count).                            */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{124   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*    manager :: A handle to the cache manager.                          */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{127   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*    Client applications should not call this function directly.  It is */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*    normally invoked by specific cache implementations.                */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*    The reason this function is exported is to allow client-\/specific   */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*    cache classes.                                                     */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{134   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{135   FTC\_Manager\_Compress( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager );}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138   \textcolor{comment}{/* try to flush `count' old nodes from the cache; return the number}}
+\DoxyCodeLine{139 \textcolor{comment}{   * of really flushed nodes}}
+\DoxyCodeLine{140 \textcolor{comment}{   */}}
+\DoxyCodeLine{141   FT\_EXPORT( FT\_UInt )}
+\DoxyCodeLine{142   FTC\_Manager\_FlushN( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager,}
+\DoxyCodeLine{143                       FT\_UInt      count );}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146   \textcolor{comment}{/* this must be used internally for the moment */}}
+\DoxyCodeLine{147   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{148   FTC\_Manager\_RegisterCache( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}      manager,}
+\DoxyCodeLine{149                              \mbox{\hyperlink{struct_f_t_c___cache_class_rec__}{FTC\_CacheClass}}   clazz,}
+\DoxyCodeLine{150                              FTC\_Cache       *acache );}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152  \textcolor{comment}{/* */}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#define FTC\_SCALER\_COMPARE( a, b )                \(\backslash\)}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{    ( (a)-\/>face\_id      == (b)-\/>face\_id      \&\&   \(\backslash\)}}
+\DoxyCodeLine{156 \textcolor{preprocessor}{      (a)-\/>width        == (b)-\/>width        \&\&   \(\backslash\)}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{      (a)-\/>height       == (b)-\/>height       \&\&   \(\backslash\)}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{      ((a)-\/>pixel != 0) == ((b)-\/>pixel != 0) \&\&   \(\backslash\)}}
+\DoxyCodeLine{159 \textcolor{preprocessor}{      ( (a)-\/>pixel ||                             \(\backslash\)}}
+\DoxyCodeLine{160 \textcolor{preprocessor}{        ( (a)-\/>x\_res == (b)-\/>x\_res \&\&             \(\backslash\)}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{          (a)-\/>y\_res == (b)-\/>y\_res ) ) )}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define FTC\_SCALER\_HASH( q )                                 \(\backslash\)}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{    ( FTC\_FACE\_ID\_HASH( (q)-\/>face\_id ) +                     \(\backslash\)}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{      (q)-\/>width + (q)-\/>height*7 +                           \(\backslash\)}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{      ( (q)-\/>pixel ? 0 : ( (q)-\/>x\_res*33 \string^ (q)-\/>y\_res*61 ) ) )}}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168  \textcolor{comment}{/* */}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 FT\_END\_HEADER}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCMANAG\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

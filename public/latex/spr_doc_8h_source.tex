@@ -1,0 +1,109 @@
+\hypertarget{spr_doc_8h_source}{}\doxysection{spr\+Doc.\+h}
+\label{spr_doc_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/sprDoc.h@{C:/Projects/FEM/prototype-\/prismatic/source/sprDoc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// sprDoc.h : interface of the CSprDoc class}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#if !defined(AFX\_SPRDOC\_H\_\_0F7C14CE\_B025\_4BE9\_8ABB\_E273808E2A9B\_\_INCLUDED\_)}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define AFX\_SPRDOC\_H\_\_0F7C14CE\_B025\_4BE9\_8ABB\_E273808E2A9B\_\_INCLUDED\_}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}Prep.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}Fem.h"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}Field.h"{}}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_spr_doc}{CSprDoc}} : \textcolor{keyword}{public} CDocument}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18 \textcolor{keyword}{protected}: \textcolor{comment}{// create from serialization only}}
+\DoxyCodeLine{19     \mbox{\hyperlink{class_c_spr_doc}{CSprDoc}}();}
+\DoxyCodeLine{20     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_spr_doc}{\string~CSprDoc}}();}
+\DoxyCodeLine{21     DECLARE\_DYNCREATE(\mbox{\hyperlink{class_c_spr_doc}{CSprDoc}})}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{comment}{// Attributes}}
+\DoxyCodeLine{24 \textcolor{keyword}{public}:}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} m\_nMode;}
+\DoxyCodeLine{26     CString m\_strAppFolder;}
+\DoxyCodeLine{27     \mbox{\hyperlink{class_c_prep}{CPrep}}  *m\_pPrep;}
+\DoxyCodeLine{28     \mbox{\hyperlink{class_c_fem}{CFem}}    *m\_pFem;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     CWinThread  *m\_pWorkThread; \textcolor{comment}{// potok rascheta}}
+\DoxyCodeLine{31     BOOL        m\_bCalc;        \textcolor{comment}{// Флаг продолжения расчета}}
+\DoxyCodeLine{32     CWnd        *m\_pThreadWnd;  \textcolor{comment}{// Окно, которое получит сообщение об окончании расчёта}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     CArray<CField,CField>   m\_Fields;}
+\DoxyCodeLine{35     \textcolor{keywordtype}{int} m\_nCurField;}
+\DoxyCodeLine{36     BOOL m\_bSmoothFields;}
+\DoxyCodeLine{37 \textcolor{keyword}{public}:}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{comment}{// Overrides}}
+\DoxyCodeLine{40     \textcolor{comment}{// ClassWizard generated virtual function overrides}}
+\DoxyCodeLine{41     \textcolor{comment}{//\{\{AFX\_VIRTUAL(CSprDoc)}}
+\DoxyCodeLine{42     \textcolor{keyword}{public}:}
+\DoxyCodeLine{43     \textcolor{keyword}{virtual} BOOL OnNewDocument();}
+\DoxyCodeLine{44     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Serialize(CArchive\& ar);}
+\DoxyCodeLine{45     \textcolor{comment}{//\}\}AFX\_VIRTUAL}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{48 \textcolor{keyword}{public}:}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} StopCalculation();}
+\DoxyCodeLine{50     \textcolor{keywordtype}{void} StartCalculation(CWnd *pWnd);}
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} glDraw(\textcolor{keywordtype}{double} min\_x, \textcolor{keywordtype}{double} max\_x, \textcolor{keywordtype}{double} min\_y, \textcolor{keywordtype}{double} max\_y);}
+\DoxyCodeLine{52     \textcolor{keywordtype}{double} GetMaxX();}
+\DoxyCodeLine{53     \textcolor{keywordtype}{double} GetMaxY();}
+\DoxyCodeLine{54     \textcolor{keywordtype}{double} GetMinX();}
+\DoxyCodeLine{55     \textcolor{keywordtype}{double} GetMinY();}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#ifdef \_DEBUG}}
+\DoxyCodeLine{58     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} AssertValid() \textcolor{keyword}{const};}
+\DoxyCodeLine{59     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Dump(CDumpContext\& dc) \textcolor{keyword}{const};}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{63 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{64     \textcolor{comment}{//\{\{AFX\_MSG(CSprDoc)}}
+\DoxyCodeLine{65     afx\_msg \textcolor{keywordtype}{void} OnKernel();}
+\DoxyCodeLine{66     afx\_msg \textcolor{keywordtype}{void} OnUpdateKernel(CCmdUI* pCmdUI);}
+\DoxyCodeLine{67     afx\_msg \textcolor{keywordtype}{void} OnPrep();}
+\DoxyCodeLine{68     \textcolor{comment}{//\}\}AFX\_MSG}}
+\DoxyCodeLine{69     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{70 \textcolor{keyword}{public}:}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{keyword}{public}:}
+\DoxyCodeLine{73     \textcolor{keywordtype}{void} InitFields(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{74 \textcolor{keyword}{public}:}
+\DoxyCodeLine{75 \textcolor{comment}{//  afx\_msg void OnFileImportbillet();}}
+\DoxyCodeLine{76     afx\_msg \textcolor{keywordtype}{void} OnFileExportbillet();}
+\DoxyCodeLine{77     afx\_msg \textcolor{keywordtype}{void} OnUpdateFileExportbillet(CCmdUI *pCmdUI);}
+\DoxyCodeLine{78     afx\_msg \textcolor{keywordtype}{void} OnFileImportbillet();}
+\DoxyCodeLine{79     afx\_msg \textcolor{keywordtype}{void} OnUpdateFileImportbillet(CCmdUI *pCmdUI);}
+\DoxyCodeLine{80     afx\_msg \textcolor{keywordtype}{void} OnFileExportbillet1();}
+\DoxyCodeLine{81     afx\_msg \textcolor{keywordtype}{void} OnUpdateFileExportbillet1(CCmdUI *pCmdUI);}
+\DoxyCodeLine{82 \textcolor{keyword}{public}:}
+\DoxyCodeLine{83     \textcolor{keywordtype}{int} InitRolling(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{84 \};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{87     Hint\_Redraw = 100,}
+\DoxyCodeLine{88     Hint\_Step   = 101,}
+\DoxyCodeLine{89     Hint\_Drawn  = 102,}
+\DoxyCodeLine{90     Hint\_Phase  = 111,}
+\DoxyCodeLine{91     Hint\_Roll   = 112,}
+\DoxyCodeLine{92     Hint\_Kff    = 113,}
+\DoxyCodeLine{93     Hint\_Projection = 114,}
+\DoxyCodeLine{94     Hint\_Node   = 115,}
+\DoxyCodeLine{95     Hint\_Billet = 116,}
+\DoxyCodeLine{96     Hint\_Prep   = 117,}
+\DoxyCodeLine{97     Hint\_Kern   = 118}
+\DoxyCodeLine{98 \};}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{comment}{//\{\{AFX\_INSERT\_LOCATION\}\}}}
+\DoxyCodeLine{103 \textcolor{comment}{// Microsoft Visual C++ will insert additional declarations immediately before the previous line.}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_SPRDOC\_H\_\_0F7C14CE\_B025\_4BE9\_8ABB\_E273808E2A9B\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

@@ -1,0 +1,315 @@
+\hypertarget{ftsystem_8h_source}{}\doxysection{ftsystem.\+h}
+\label{ftsystem_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftsystem.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftsystem.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftsystem.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType low-\/level system interface definition (specification).      */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002 by                                           */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTSYSTEM\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTSYSTEM\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{30   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{31   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{32   \textcolor{comment}{/*    system\_interface                                                   */}}
+\DoxyCodeLine{33   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{34   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*    System Interface                                                   */}}
+\DoxyCodeLine{36   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{37   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*    How FreeType manages memory and i/o.                               */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{40   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*    This section contains various definitions related to memory        */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    management and i/o access.  You need to understand this            */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    information if you want to use a custom memory manager or you own  */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*    input i/o streams.                                                 */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{46 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*                  M E M O R Y   M A N A G E M E N T                    */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{53 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{57   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{58   \textcolor{comment}{/* @type:                                                                */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    FT\_Memory                                                          */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{61   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    A handle to a given memory manager object, defined with a          */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*    @FT\_MemoryRec structure.                                           */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___memory_rec__}{FT\_MemoryRec\_}}*  FT\_Memory;}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{69   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{70   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*    FT\_Alloc\_Func                                                      */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{73   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*    A function used to allocate `size' bytes from `memory'.            */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{76   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*    memory :: A handle to the source memory manager.                   */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*    size   :: The size in bytes to allocate.                           */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{81   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*    Address of new memory block.  0 in case of failure.                */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{84   \textcolor{keyword}{typedef} \textcolor{keywordtype}{void}*}
+\DoxyCodeLine{85   (*FT\_Alloc\_Func)( FT\_Memory  memory,}
+\DoxyCodeLine{86                     \textcolor{keywordtype}{long}       size );}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{90   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{91   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*    FT\_Free\_Func                                                       */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{94   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*    A function used to release a given block of memory.                */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{97   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*    memory :: A handle to the source memory manager.                   */}}
+\DoxyCodeLine{99   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*    block  :: The address of the target memory block.                  */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{102   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{103   (*FT\_Free\_Func)( FT\_Memory  memory,}
+\DoxyCodeLine{104                    \textcolor{keywordtype}{void}*      block );}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{108   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{109   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*    FT\_Realloc\_Func                                                    */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{112   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*    a function used to re-\/allocate a given block of memory.            */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{115   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*    memory   :: A handle to the source memory manager.                 */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*    cur\_size :: The block's current size in bytes.                     */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    new\_size :: The block's requested new size.                        */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*    block    :: The block's current address.                           */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{124   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*    New block address.  0 in case of memory shortage.                  */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{127   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*   In case of error, the old block must still be available.            */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{130   \textcolor{keyword}{typedef} \textcolor{keywordtype}{void}*}
+\DoxyCodeLine{131   (*FT\_Realloc\_Func)( FT\_Memory  memory,}
+\DoxyCodeLine{132                       \textcolor{keywordtype}{long}       cur\_size,}
+\DoxyCodeLine{133                       \textcolor{keywordtype}{long}       new\_size,}
+\DoxyCodeLine{134                       \textcolor{keywordtype}{void}*      block );}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{138   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{139   \textcolor{comment}{/* @struct:                                                              */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    FT\_MemoryRec                                                       */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{142   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*    A structure used to describe a given memory manager to FreeType 2. */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{145   \textcolor{comment}{/* @fields:                                                              */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*    user    :: A generic typeless pointer for user data.               */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*    alloc   :: A pointer type to an allocation function.               */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*    free    :: A pointer type to an memory freeing function.           */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*    realloc :: A pointer type to a reallocation function.              */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{154   \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___memory_rec__}{FT\_MemoryRec\_}}}
+\DoxyCodeLine{155   \{}
+\DoxyCodeLine{156     \textcolor{keywordtype}{void}*            user;}
+\DoxyCodeLine{157     FT\_Alloc\_Func    alloc;}
+\DoxyCodeLine{158     FT\_Free\_Func     free;}
+\DoxyCodeLine{159     FT\_Realloc\_Func  realloc;}
+\DoxyCodeLine{160   \};}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{164   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*                       I / O   M A N A G E M E N T                     */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{167 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/* @type:                                                                */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*    FT\_Stream                                                          */}}
+\DoxyCodeLine{174   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{175   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*    A handle to an input stream.                                       */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{178   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___stream_rec__}{FT\_StreamRec\_}}*  FT\_Stream;}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{182   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{183   \textcolor{comment}{/* @struct:                                                              */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*    FT\_StreamDesc                                                      */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{186   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*    A union type used to store either a long or a pointer.  This is    */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*    used to store a file descriptor or a FILE* in an input stream.     */}}
+\DoxyCodeLine{189   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{190   \textcolor{keyword}{typedef} \textcolor{keyword}{union  }\mbox{\hyperlink{union_f_t___stream_desc__}{FT\_StreamDesc\_}}}
+\DoxyCodeLine{191   \{}
+\DoxyCodeLine{192     \textcolor{keywordtype}{long}   value;}
+\DoxyCodeLine{193     \textcolor{keywordtype}{void}*  pointer;}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195   \} \mbox{\hyperlink{union_f_t___stream_desc__}{FT\_StreamDesc}};}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{199   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{200   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*    FT\_Stream\_IoFunc                                                   */}}
+\DoxyCodeLine{202   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{203   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*    A function used to seek and read data from a given input stream.   */}}
+\DoxyCodeLine{205   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{206   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*    stream :: A handle to the source stream.                           */}}
+\DoxyCodeLine{208   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{209   \textcolor{comment}{/*    offset :: The offset of read in stream (always from start).        */}}
+\DoxyCodeLine{210   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{211   \textcolor{comment}{/*    buffer :: The address of the read buffer.                          */}}
+\DoxyCodeLine{212   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{213   \textcolor{comment}{/*    count  :: The number of bytes to read from the stream.             */}}
+\DoxyCodeLine{214   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{215   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{216   \textcolor{comment}{/*    The number of bytes effectively read by the stream.                */}}
+\DoxyCodeLine{217   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{218   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    This function might be called to perform a seek or skip operation  */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*    with a `count' of 0.                                               */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{222   \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} long}
+\DoxyCodeLine{223   (*FT\_Stream\_IoFunc)( FT\_Stream       stream,}
+\DoxyCodeLine{224                        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}   offset,}
+\DoxyCodeLine{225                        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*  buffer,}
+\DoxyCodeLine{226                        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}   count );}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{230   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{231   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{232   \textcolor{comment}{/*    FT\_Stream\_CloseFunc                                                */}}
+\DoxyCodeLine{233   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{234   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{235   \textcolor{comment}{/*    A function used to close a given input stream.                     */}}
+\DoxyCodeLine{236   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{237   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{238   \textcolor{comment}{/*   stream :: A handle to the target stream.                            */}}
+\DoxyCodeLine{239   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{240   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{241   (*FT\_Stream\_CloseFunc)( FT\_Stream  stream );}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{245   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{246   \textcolor{comment}{/* @struct:                                                              */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*    FT\_StreamRec                                                       */}}
+\DoxyCodeLine{248   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{249   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{250   \textcolor{comment}{/*   A structure used to describe an input stream.                       */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{252   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{253   \textcolor{comment}{/*   base       :: For memory-\/based streams, this is the address of the  */}}
+\DoxyCodeLine{254   \textcolor{comment}{/*                 first stream byte in memory.  This field should       */}}
+\DoxyCodeLine{255   \textcolor{comment}{/*                 always be set to NULL for disk-\/based streams.         */}}
+\DoxyCodeLine{256   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{257   \textcolor{comment}{/*   size       :: The stream size in bytes.                             */}}
+\DoxyCodeLine{258   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{259   \textcolor{comment}{/*   pos        :: The current position within the stream.               */}}
+\DoxyCodeLine{260   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*   descriptor :: This field is a union that can hold an integer or a   */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*                 pointer.  It is used by stream implementations to     */}}
+\DoxyCodeLine{263   \textcolor{comment}{/*                 store file descriptors or FILE* pointers.             */}}
+\DoxyCodeLine{264   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{265   \textcolor{comment}{/*   pathname   :: This field is completely ignored by FreeType.         */}}
+\DoxyCodeLine{266   \textcolor{comment}{/*                 However, it is often useful during debugging to use   */}}
+\DoxyCodeLine{267   \textcolor{comment}{/*                 it to store the stream's filename (where available).  */}}
+\DoxyCodeLine{268   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{269   \textcolor{comment}{/*   read       :: The stream's input function.                          */}}
+\DoxyCodeLine{270   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{271   \textcolor{comment}{/*   close      :: The stream;s close function.                          */}}
+\DoxyCodeLine{272   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{273   \textcolor{comment}{/*   memory     :: The memory manager to use to preload frames.  This is */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*                 set internally by FreeType and shouldn't be touched   */}}
+\DoxyCodeLine{275   \textcolor{comment}{/*                 by stream implementations.                            */}}
+\DoxyCodeLine{276   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{277   \textcolor{comment}{/*   cursor     :: This field is set and used internally by FreeType     */}}
+\DoxyCodeLine{278   \textcolor{comment}{/*                 when parsing frames.                                  */}}
+\DoxyCodeLine{279   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{280   \textcolor{comment}{/*   limit      :: This field is set and used internally by FreeType     */}}
+\DoxyCodeLine{281   \textcolor{comment}{/*                 when parsing frames.                                  */}}
+\DoxyCodeLine{282   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{283   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___stream_rec__}{FT\_StreamRec\_}}}
+\DoxyCodeLine{284   \{}
+\DoxyCodeLine{285     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*       base;}
+\DoxyCodeLine{286     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}        size;}
+\DoxyCodeLine{287     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}        pos;}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289     \mbox{\hyperlink{union_f_t___stream_desc__}{FT\_StreamDesc}}        descriptor;}
+\DoxyCodeLine{290     \mbox{\hyperlink{union_f_t___stream_desc__}{FT\_StreamDesc}}        pathname;}
+\DoxyCodeLine{291     FT\_Stream\_IoFunc     read;}
+\DoxyCodeLine{292     FT\_Stream\_CloseFunc  close;}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294     FT\_Memory            memory;}
+\DoxyCodeLine{295     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*       cursor;}
+\DoxyCodeLine{296     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*       limit;}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{298   \} \mbox{\hyperlink{struct_f_t___stream_rec__}{FT\_StreamRec}};}
+\DoxyCodeLine{299 }
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301   \textcolor{comment}{/* */}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 }
+\DoxyCodeLine{304 FT\_END\_HEADER}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTSYSTEM\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

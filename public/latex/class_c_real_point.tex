@@ -1,0 +1,112 @@
+\hypertarget{class_c_real_point}{}\doxysection{CReal\+Point Class Reference}
+\label{class_c_real_point}\index{CRealPoint@{CRealPoint}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_real_point_a6b6685d774243aca5deceb151e260fec}\label{class_c_real_point_a6b6685d774243aca5deceb151e260fec}} 
+{\bfseries CReal\+Point} (double X=0, double Y=0)
+\item 
+\mbox{\Hypertarget{class_c_real_point_aee4f2a8adda3b0bb1deee226fb9573aa}\label{class_c_real_point_aee4f2a8adda3b0bb1deee226fb9573aa}} 
+{\bfseries CReal\+Point} (const \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\+\_\+\+POINT}} \&pt)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a36356c4bd506620cc58e3de6d7049546}\label{class_c_real_point_a36356c4bd506620cc58e3de6d7049546}} 
+{\bfseries CReal\+Point} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP)
+\item 
+const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \& \mbox{\hyperlink{class_c_real_point_a56018d6b7bc3e491dc468d2d40593152}{Projection}} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&Vect, const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&Axle)
+\item 
+double \mbox{\hyperlink{class_c_real_point_a9f06984a4b418af8316dc87548dc4c78}{Norm}} () const
+\item 
+\mbox{\Hypertarget{class_c_real_point_aba5ef07e7b543b27fd31513942fe58bf}\label{class_c_real_point_aba5ef07e7b543b27fd31513942fe58bf}} 
+double {\bfseries Get\+Distance\+Ex} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP1, const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP2, \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RPRes=nullptr)
+\item 
+\mbox{\Hypertarget{class_c_real_point_aabf0a9c5dd0f36969e33fdb1874c2c24}\label{class_c_real_point_aabf0a9c5dd0f36969e33fdb1874c2c24}} 
+double {\bfseries Get\+Distance} (\mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RP1, \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RP2, \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RPRes=nullptr)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a8e2f76170219eb9bb7684bb3760761a3}\label{class_c_real_point_a8e2f76170219eb9bb7684bb3760761a3}} 
+double {\bfseries Len} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a595a0647c971228482f7d4cf65755897}\label{class_c_real_point_a595a0647c971228482f7d4cf65755897}} 
+bool {\bfseries Cross0} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RPa1, const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RPa2, const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RPb1, const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} RPb2, double $\ast$alpha=0, double $\ast$betta=0)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a64abaa4d0594158a678c76b42e3a6a3c}\label{class_c_real_point_a64abaa4d0594158a678c76b42e3a6a3c}} 
+bool {\bfseries Cross} (\mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RPa1, \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RPa2, \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RPb1, \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RPb2)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a967841e9289f2f7db06c7775b8f6fec4}\label{class_c_real_point_a967841e9289f2f7db06c7775b8f6fec4}} 
+bool {\bfseries Rad} (\mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RP1, \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RP2, double len)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a21164762c7d65dba61cd62034cab878e}\label{class_c_real_point_a21164762c7d65dba61cd62034cab878e}} 
+bool {\bfseries Third} (\mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RP1, \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RP2)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a25265dccf2be98dd74863fdfbc915447}\label{class_c_real_point_a25265dccf2be98dd74863fdfbc915447}} 
+bool {\bfseries Copy} (\mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RP)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a4410395c87ee1256bfe0c2ac0d9b0116}\label{class_c_real_point_a4410395c87ee1256bfe0c2ac0d9b0116}} 
+bool {\bfseries Right} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP1, const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP2)
+\item 
+\mbox{\Hypertarget{class_c_real_point_ac7c13aad5d5e5ebbf3e8a1643397f2b8}\label{class_c_real_point_ac7c13aad5d5e5ebbf3e8a1643397f2b8}} 
+bool {\bfseries If\+Too\+Close} (\mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RP1, \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} $\ast$p\+RP2)
+\item 
+\mbox{\Hypertarget{class_c_real_point_af6c64c875b01bb2822cbd006a9e4ea51}\label{class_c_real_point_af6c64c875b01bb2822cbd006a9e4ea51}} 
+double {\bfseries Splitting} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP1, const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP2)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a2966b6780cfc1a7187fe27f7da1c334e}\label{class_c_real_point_a2966b6780cfc1a7187fe27f7da1c334e}} 
+\mbox{\hyperlink{struct_r___p_o_i_n_t}{R\+\_\+\+POINT}} {\bfseries RP} ()
+\item 
+\mbox{\Hypertarget{class_c_real_point_a064134528e5da8de3d899383a0d81c76}\label{class_c_real_point_a064134528e5da8de3d899383a0d81c76}} 
+\mbox{\hyperlink{class_c_real_point}{CReal\+Point}} {\bfseries operator+} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP) const
+\item 
+\mbox{\Hypertarget{class_c_real_point_a563fedfd6e4bec02adfeea4064fa272b}\label{class_c_real_point_a563fedfd6e4bec02adfeea4064fa272b}} 
+\mbox{\hyperlink{class_c_real_point}{CReal\+Point}} {\bfseries operator-\/} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP) const
+\item 
+\mbox{\Hypertarget{class_c_real_point_a6e4dd58c9f020fd3ad93fb67e77b405e}\label{class_c_real_point_a6e4dd58c9f020fd3ad93fb67e77b405e}} 
+const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \& {\bfseries operator+=} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a6bf64f125a88d9d04e5d9c88ca504f3f}\label{class_c_real_point_a6bf64f125a88d9d04e5d9c88ca504f3f}} 
+const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \& {\bfseries operator-\/=} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP)
+\item 
+\mbox{\Hypertarget{class_c_real_point_a6270ac4e58327b9d0c8f95c219b8f736}\label{class_c_real_point_a6270ac4e58327b9d0c8f95c219b8f736}} 
+\mbox{\hyperlink{class_c_real_point}{CReal\+Point}} {\bfseries operator$\ast$} (const double \&Mult) const
+\item 
+\mbox{\Hypertarget{class_c_real_point_a7b3aa183e8639ba55af2404eb336b171}\label{class_c_real_point_a7b3aa183e8639ba55af2404eb336b171}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP) const
+\item 
+\mbox{\Hypertarget{class_c_real_point_a84b642478e6fca931ccc913eddeec790}\label{class_c_real_point_a84b642478e6fca931ccc913eddeec790}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP) const
+\item 
+\mbox{\Hypertarget{class_c_real_point_afffa169058ffd66bb9477f8d7143aff4}\label{class_c_real_point_afffa169058ffd66bb9477f8d7143aff4}} 
+const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&RP)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_real_point_ab7d53756d1e74487c0ec3bfd5b27f563}\label{class_c_real_point_ab7d53756d1e74487c0ec3bfd5b27f563}} 
+double {\bfseries m\+\_\+x}
+\item 
+\mbox{\Hypertarget{class_c_real_point_a538b13ceca3ac1bf99a3f18a48209b00}\label{class_c_real_point_a538b13ceca3ac1bf99a3f18a48209b00}} 
+double {\bfseries m\+\_\+y}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_real_point_a9f06984a4b418af8316dc87548dc4c78}\label{class_c_real_point_a9f06984a4b418af8316dc87548dc4c78}} 
+\index{CRealPoint@{CRealPoint}!Norm@{Norm}}
+\index{Norm@{Norm}!CRealPoint@{CRealPoint}}
+\doxysubsubsection{\texorpdfstring{Norm()}{Norm()}}
+{\footnotesize\ttfamily double CReal\+Point\+::\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Кварат модуля \mbox{\Hypertarget{class_c_real_point_a56018d6b7bc3e491dc468d2d40593152}\label{class_c_real_point_a56018d6b7bc3e491dc468d2d40593152}} 
+\index{CRealPoint@{CRealPoint}!Projection@{Projection}}
+\index{Projection@{Projection}!CRealPoint@{CRealPoint}}
+\doxysubsubsection{\texorpdfstring{Projection()}{Projection()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \& CReal\+Point\+::\+Projection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&}]{Vect,  }\item[{const \mbox{\hyperlink{class_c_real_point}{CReal\+Point}} \&}]{Axle }\end{DoxyParamCaption})}
+
+Рисует линию из точки this с точку p\+RP. p\+DC -\/ что-\/то вроде контекста рисования. Какой-\/то мфсишный класс. \href{https://docs.microsoft.com/ru-ru/cpp/mfc/reference/cdc-class?view=msvc-170}{\texttt{ https\+://docs.\+microsoft.\+com/ru-\/ru/cpp/mfc/reference/cdc-\/class?view=msvc-\/170}}
+
+Mult -\/ коэффициент растяжения (?)
+
+p\+RP -\/ вторая точка прямой. Проектирует Vect на ось Axle. Результат записывается в this и возвращается this. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+FEM/source/Real\+Point.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+FEM/source/Real\+Point.\+cpp\end{DoxyCompactItemize}

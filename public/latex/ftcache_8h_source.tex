@@ -1,0 +1,823 @@
+\hypertarget{ftcache_8h_source}{}\doxysection{ftcache.\+h}
+\label{ftcache_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftcache.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftcache.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftcache.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType Cache subsystem (specification).                            */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003, 2004 by                               */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{20 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{21 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{22 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{23 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{24 \textcolor{comment}{  /*********                                                       *********/}}
+\DoxyCodeLine{25 \textcolor{comment}{  /*********             WARNING, THIS IS BETA CODE.               *********/}}
+\DoxyCodeLine{26 \textcolor{comment}{  /*********                                                       *********/}}
+\DoxyCodeLine{27 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{28 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{29 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{30 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{31 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#ifndef \_\_FTCACHE\_H\_\_}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define \_\_FTCACHE\_H\_\_}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{47   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    cache\_subsystem                                                    */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{50   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*    Cache Sub-\/System                                                   */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{53   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*    How to cache face, size, and glyph data with FreeType 2.           */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{56   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*   This section describes the FreeType 2 cache sub-\/system which is     */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*   still in beta.                                                      */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{60   \textcolor{comment}{/* <Order>                                                               */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*   FTC\_Manager                                                         */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*   FTC\_FaceID                                                          */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*   FTC\_Face\_Requester                                                  */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*   FTC\_Manager\_New                                                     */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*   FTC\_Manager\_Reset                                                   */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*   FTC\_Manager\_Done                                                    */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*   FTC\_Manager\_LookupFace                                              */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*   FTC\_Manager\_LookupSize                                              */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*   FTC\_Manager\_RemoveFaceID                                            */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*   FTC\_Node                                                            */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*   FTC\_Node\_Unref                                                      */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*   FTC\_Font                                                            */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*   FTC\_ImageCache                                                      */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*   FTC\_ImageCache\_New                                                  */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*   FTC\_ImageCache\_Lookup                                               */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*   FTC\_SBit                                                            */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*   FTC\_SBitCache                                                       */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*   FTC\_SBitCache\_New                                                   */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*   FTC\_SBitCache\_Lookup                                                */}}
+\DoxyCodeLine{84   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*   FTC\_CMapCache                                                       */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*   FTC\_CMapCache\_New                                                   */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*   FTC\_CMapCache\_Lookup                                                */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{89 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{93 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{94 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{95 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{96 \textcolor{comment}{  /*****                    BASIC TYPE DEFINITIONS                     *****/}}
+\DoxyCodeLine{97 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{98 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{99 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{100 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{104   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{105   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*    FTC\_FaceID                                                         */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{108   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*    An opaque pointer type that is used to identity face objects.  The */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*    contents of such objects is application-\/dependent.                 */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{112   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }FTC\_FaceIDRec\_*  FTC\_FaceID;}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{116   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{117   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*    FTC\_Face\_Requester                                                 */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*    A callback function provided by client applications.  It is used   */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*    to translate a given @FTC\_FaceID into a new valid @FT\_Face object. */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{124   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*    face\_id :: The face ID to resolve.                                 */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{127   \textcolor{comment}{/*    library :: A handle to a FreeType library object.                  */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*    data    :: Application-\/provided request data.                      */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{131   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*    aface   :: A new @FT\_Face handle.                                  */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{134   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{137   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*    The face requester should not perform funny things on the returned */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*    face object, like creating a new @FT\_Size for it, or setting a     */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    transformation through @FT\_Set\_Transform!                          */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{142   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{143   (*FTC\_Face\_Requester)( FTC\_FaceID  face\_id,}
+\DoxyCodeLine{144                          \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library,}
+\DoxyCodeLine{145                          FT\_Pointer  request\_data,}
+\DoxyCodeLine{146                          \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}*    aface );}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*    FTC\_FontRec                                                        */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{154   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*    A simple structure used to describe a given `font' to the cache    */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*    manager.  Note that a `font' is the combination of a given face    */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*    with a given character size.                                       */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{159   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*    face\_id    :: The ID of the face to use.                           */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*    pix\_width  :: The character width in integer pixels.               */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*    pix\_height :: The character height in integer pixels.              */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{166   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___font_rec__}{FTC\_FontRec\_}}}
+\DoxyCodeLine{167   \{}
+\DoxyCodeLine{168     FTC\_FaceID  face\_id;}
+\DoxyCodeLine{169     FT\_UShort   pix\_width;}
+\DoxyCodeLine{170     FT\_UShort   pix\_height;}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172   \} \mbox{\hyperlink{struct_f_t_c___font_rec__}{FTC\_FontRec}};}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175   \textcolor{comment}{/* */}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#define FTC\_FONT\_COMPARE( f1, f2 )                  \(\backslash\)}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{          ( (f1)-\/>face\_id    == (f2)-\/>face\_id    \&\& \(\backslash\)}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{            (f1)-\/>pix\_width  == (f2)-\/>pix\_width  \&\& \(\backslash\)}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{            (f1)-\/>pix\_height == (f2)-\/>pix\_height )}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#define FT\_POINTER\_TO\_ULONG( p )  ((FT\_ULong)(FT\_Pointer)(p))}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define FTC\_FACE\_ID\_HASH( i )                              \(\backslash\)}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{          ((FT\_UInt32)(( FT\_POINTER\_TO\_ULONG( i ) >> 3 ) \string^ \(\backslash\)}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{                       ( FT\_POINTER\_TO\_ULONG( i ) << 7 ) ) )}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#define FTC\_FONT\_HASH( f )                              \(\backslash\)}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{          (FT\_UInt32)( FTC\_FACE\_ID\_HASH((f)-\/>face\_id) \string^ \(\backslash\)}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{                       ((f)-\/>pix\_width << 8)          \string^ \(\backslash\)}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{                       ((f)-\/>pix\_height)              )}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{196   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{197   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*    FTC\_Font                                                           */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{200   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*    A simple handle to an @FTC\_FontRec structure.                      */}}
+\DoxyCodeLine{202   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{203   \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_f_t_c___font_rec__}{FTC\_FontRec}}*  \mbox{\hyperlink{struct_f_t_c___font_rec__}{FTC\_Font}};}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{207 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{208 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{209 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{210 \textcolor{comment}{  /*****                      CACHE MANAGER OBJECT                     *****/}}
+\DoxyCodeLine{211 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{212 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{213 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{214 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{218   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{219   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*    FTC\_Manager                                                        */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{222   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{223   \textcolor{comment}{/*    This object is used to cache one or more @FT\_Face objects, along   */}}
+\DoxyCodeLine{224   \textcolor{comment}{/*    with corresponding @FT\_Size objects.                               */}}
+\DoxyCodeLine{225   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{226   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_ManagerRec\_}}*  \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}};}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{230   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{231   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{232   \textcolor{comment}{/*    FTC\_Node                                                           */}}
+\DoxyCodeLine{233   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{234   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{235   \textcolor{comment}{/*    An opaque handle to a cache node object.  Each cache node is       */}}
+\DoxyCodeLine{236   \textcolor{comment}{/*    reference-\/counted.  A node with a count of 0 might be flushed      */}}
+\DoxyCodeLine{237   \textcolor{comment}{/*    out of a full cache whenever a lookup request is performed.        */}}
+\DoxyCodeLine{238   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{239   \textcolor{comment}{/*    If you lookup nodes, you have the ability to "{}acquire"{} them, i.e., */}}
+\DoxyCodeLine{240   \textcolor{comment}{/*    to increment their reference count.  This will prevent the node    */}}
+\DoxyCodeLine{241   \textcolor{comment}{/*    from being flushed out of the cache until you explicitly "{}release"{} */}}
+\DoxyCodeLine{242   \textcolor{comment}{/*    it (see @FTC\_Node\_Unref).                                          */}}
+\DoxyCodeLine{243   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{244   \textcolor{comment}{/*    See also @FTC\_SBitCache\_Lookup and @FTC\_ImageCache\_Lookup.         */}}
+\DoxyCodeLine{245   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{246   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_NodeRec\_}}*  \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}};}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{250   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{251   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{252   \textcolor{comment}{/*    FTC\_Manager\_New                                                    */}}
+\DoxyCodeLine{253   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{254   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{255   \textcolor{comment}{/*    Creates a new cache manager.                                       */}}
+\DoxyCodeLine{256   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{257   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{258   \textcolor{comment}{/*    library     :: The parent FreeType library handle to use.          */}}
+\DoxyCodeLine{259   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{260   \textcolor{comment}{/*    max\_bytes   :: Maximum number of bytes to use for cached data.     */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*                   Use 0 for defaults.                                 */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{263   \textcolor{comment}{/*    requester   :: An application-\/provided callback used to translate  */}}
+\DoxyCodeLine{264   \textcolor{comment}{/*                   face IDs into real @FT\_Face objects.                */}}
+\DoxyCodeLine{265   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{266   \textcolor{comment}{/*    req\_data    :: A generic pointer that is passed to the requester   */}}
+\DoxyCodeLine{267   \textcolor{comment}{/*                   each time it is called (see @FTC\_Face\_Requester).   */}}
+\DoxyCodeLine{268   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{269   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{270   \textcolor{comment}{/*    amanager  :: A handle to a new manager object.  0 in case of       */}}
+\DoxyCodeLine{271   \textcolor{comment}{/*                 failure.                                              */}}
+\DoxyCodeLine{272   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{273   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{275   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{276   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{277   FTC\_Manager\_New( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}          library,}
+\DoxyCodeLine{278                    FT\_UInt             max\_faces,}
+\DoxyCodeLine{279                    FT\_UInt             max\_sizes,}
+\DoxyCodeLine{280                    FT\_ULong            max\_bytes,}
+\DoxyCodeLine{281                    FTC\_Face\_Requester  requester,}
+\DoxyCodeLine{282                    FT\_Pointer          req\_data,}
+\DoxyCodeLine{283                    \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}        *amanager );}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{287   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{288   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{289   \textcolor{comment}{/*    FTC\_Manager\_Reset                                                  */}}
+\DoxyCodeLine{290   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{291   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{292   \textcolor{comment}{/*    Empties a given cache manager.  This simply gets rid of all the    */}}
+\DoxyCodeLine{293   \textcolor{comment}{/*    currently cached @FT\_Face and @FT\_Size objects within the manager. */}}
+\DoxyCodeLine{294   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{295   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{296   \textcolor{comment}{/*    manager :: A handle to the manager.                                */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{298   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{299   FTC\_Manager\_Reset( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager );}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{303   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{304   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*    FTC\_Manager\_Done                                                   */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{307   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{308   \textcolor{comment}{/*    Destroys a given manager after emptying it.                        */}}
+\DoxyCodeLine{309   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{310   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{311   \textcolor{comment}{/*    manager :: A handle to the target cache manager object.            */}}
+\DoxyCodeLine{312   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{313   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{314   FTC\_Manager\_Done( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager );}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{318   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{319   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{320   \textcolor{comment}{/*    FTC\_Manager\_LookupFace                                             */}}
+\DoxyCodeLine{321   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{322   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{323   \textcolor{comment}{/*    Retrieves the @FT\_Face object that corresponds to a given face ID  */}}
+\DoxyCodeLine{324   \textcolor{comment}{/*    through a cache manager.                                           */}}
+\DoxyCodeLine{325   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{326   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{327   \textcolor{comment}{/*    manager :: A handle to the cache manager.                          */}}
+\DoxyCodeLine{328   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{329   \textcolor{comment}{/*    face\_id :: The ID of the face object.                              */}}
+\DoxyCodeLine{330   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{331   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{332   \textcolor{comment}{/*    aface   :: A handle to the face object.                            */}}
+\DoxyCodeLine{333   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{334   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{335   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{336   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{337   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{338   \textcolor{comment}{/*    The returned @FT\_Face object is always owned by the manager.  You  */}}
+\DoxyCodeLine{339   \textcolor{comment}{/*    should never try to discard it yourself.                           */}}
+\DoxyCodeLine{340   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{341   \textcolor{comment}{/*    The @FT\_Face object doesn't necessarily have a current size object */}}
+\DoxyCodeLine{342   \textcolor{comment}{/*    (i.e., face-\/>size can be 0).  If you need a specific `font size',  */}}
+\DoxyCodeLine{343   \textcolor{comment}{/*    use @FTC\_Manager\_LookupSize instead.                               */}}
+\DoxyCodeLine{344   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{345   \textcolor{comment}{/*    Never change the face's transformation matrix (i.e., never call    */}}
+\DoxyCodeLine{346   \textcolor{comment}{/*    the @FT\_Set\_Transform function) on a returned face!  If you need   */}}
+\DoxyCodeLine{347   \textcolor{comment}{/*    to transform glyphs, do it yourself after glyph loading.           */}}
+\DoxyCodeLine{348   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{349   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{350   FTC\_Manager\_LookupFace( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager,}
+\DoxyCodeLine{351                           FTC\_FaceID   face\_id,}
+\DoxyCodeLine{352                           \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}     *aface );}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{356   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{357   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{358   \textcolor{comment}{/*    FTC\_ScalerRec                                                      */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{360   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{361   \textcolor{comment}{/*    A structure used to describe a given character size in either      */}}
+\DoxyCodeLine{362   \textcolor{comment}{/*    pixels or points to the cache manager.  See                        */}}
+\DoxyCodeLine{363   \textcolor{comment}{/*    @FTC\_Manager\_LookupSize.                                           */}}
+\DoxyCodeLine{364   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{365   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{366   \textcolor{comment}{/*    face\_id :: The source face ID.                                     */}}
+\DoxyCodeLine{367   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{368   \textcolor{comment}{/*    width   :: The character width.                                    */}}
+\DoxyCodeLine{369   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{370   \textcolor{comment}{/*    height  :: The character height.                                   */}}
+\DoxyCodeLine{371   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{372   \textcolor{comment}{/*    pixel   :: A Boolean.  If TRUE, the `width' and `height' fields    */}}
+\DoxyCodeLine{373   \textcolor{comment}{/*               are interpreted as integer pixel character sizes.       */}}
+\DoxyCodeLine{374   \textcolor{comment}{/*               Otherwise, they are expressed as 1/64th of points.      */}}
+\DoxyCodeLine{375   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{376   \textcolor{comment}{/*    x\_res   :: Only used when `pixel' is FALSE to indicate the         */}}
+\DoxyCodeLine{377   \textcolor{comment}{/*               horizontal resolution in dpi.                           */}}
+\DoxyCodeLine{378   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{379   \textcolor{comment}{/*    y\_res   :: Only used when `pixel' is FALSE to indicate the         */}}
+\DoxyCodeLine{380   \textcolor{comment}{/*               vertical resolution in dpi.                             */}}
+\DoxyCodeLine{381   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{382   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{383   \textcolor{comment}{/*    This type is mainly used to retrieve @FT\_Size objects through the  */}}
+\DoxyCodeLine{384   \textcolor{comment}{/*    cache manager.                                                     */}}
+\DoxyCodeLine{385   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{386   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___scaler_rec__}{FTC\_ScalerRec\_}}}
+\DoxyCodeLine{387   \{}
+\DoxyCodeLine{388     FTC\_FaceID  face\_id;}
+\DoxyCodeLine{389     FT\_UInt     width;}
+\DoxyCodeLine{390     FT\_UInt     height;}
+\DoxyCodeLine{391     FT\_Int      pixel;}
+\DoxyCodeLine{392     FT\_UInt     x\_res;}
+\DoxyCodeLine{393     FT\_UInt     y\_res;}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395   \} \mbox{\hyperlink{struct_f_t_c___scaler_rec__}{FTC\_ScalerRec}}, *\mbox{\hyperlink{struct_f_t_c___scaler_rec__}{FTC\_Scaler}};}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397 }
+\DoxyCodeLine{398 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{399   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{400   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{401   \textcolor{comment}{/*    FTC\_Manager\_LookupSize                                             */}}
+\DoxyCodeLine{402   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{403   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{404   \textcolor{comment}{/*    Retrieve the @FT\_Size object that corresponds to a given           */}}
+\DoxyCodeLine{405   \textcolor{comment}{/*    @FTC\_Scaler through a cache manager.                               */}}
+\DoxyCodeLine{406   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{407   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{408   \textcolor{comment}{/*    manager :: A handle to the cache manager.                          */}}
+\DoxyCodeLine{409   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{410   \textcolor{comment}{/*    scaler  :: A scaler handle.                                        */}}
+\DoxyCodeLine{411   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{412   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{413   \textcolor{comment}{/*    asize   :: A handle to the size object.                            */}}
+\DoxyCodeLine{414   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{415   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{416   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{417   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{418   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{419   \textcolor{comment}{/*    The returned @FT\_Size object is always owned by the manager.  You  */}}
+\DoxyCodeLine{420   \textcolor{comment}{/*    should never try to discard it by yourself.                        */}}
+\DoxyCodeLine{421   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{422   \textcolor{comment}{/*    You can access the parent @FT\_Face object simply as `size-\/>face'   */}}
+\DoxyCodeLine{423   \textcolor{comment}{/*    if you need it.  Note that this object is also owned by the        */}}
+\DoxyCodeLine{424   \textcolor{comment}{/*    manager.                                                           */}}
+\DoxyCodeLine{425   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{426   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{427   FTC\_Manager\_LookupSize( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager,}
+\DoxyCodeLine{428                           \mbox{\hyperlink{struct_f_t_c___scaler_rec__}{FTC\_Scaler}}   scaler,}
+\DoxyCodeLine{429                           \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}}     *asize );}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{431 }
+\DoxyCodeLine{432 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{433   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{434   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{435   \textcolor{comment}{/*    FTC\_Node\_Unref                                                     */}}
+\DoxyCodeLine{436   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{437   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{438   \textcolor{comment}{/*    Decrement a cache node's internal reference count.  When the count */}}
+\DoxyCodeLine{439   \textcolor{comment}{/*    reaches 0, it is not destroyed but becomes eligible for subsequent */}}
+\DoxyCodeLine{440   \textcolor{comment}{/*    cache flushes.                                                     */}}
+\DoxyCodeLine{441   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{442   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{443   \textcolor{comment}{/*    node    :: The cache node handle.                                  */}}
+\DoxyCodeLine{444   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{445   \textcolor{comment}{/*    manager :: The cache manager handle.                               */}}
+\DoxyCodeLine{446   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{447   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{448   FTC\_Node\_Unref( \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}     node,}
+\DoxyCodeLine{449                   \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager );}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{451 }
+\DoxyCodeLine{452   \textcolor{comment}{/* remove all nodes belonging to a given face\_id */}}
+\DoxyCodeLine{453   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{454   FTC\_Manager\_RemoveFaceID( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager,}
+\DoxyCodeLine{455                             FTC\_FaceID   face\_id );}
+\DoxyCodeLine{456 }
+\DoxyCodeLine{457 }
+\DoxyCodeLine{458 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{459   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{460   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{461   \textcolor{comment}{/*    cache\_subsystem                                                    */}}
+\DoxyCodeLine{462   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{463 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{465 \textcolor{comment}{  /************************************************************************}}
+\DoxyCodeLine{466 \textcolor{comment}{   *}}
+\DoxyCodeLine{467 \textcolor{comment}{   * @type:}}
+\DoxyCodeLine{468 \textcolor{comment}{   *    FTC\_CMapCache}}
+\DoxyCodeLine{469 \textcolor{comment}{   *}}
+\DoxyCodeLine{470 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{471 \textcolor{comment}{   *    An opaque handle used to manager a charmap cache.  This cache is}}
+\DoxyCodeLine{472 \textcolor{comment}{   *    to hold character codes -\/> glyph indices mappings.}}
+\DoxyCodeLine{473 \textcolor{comment}{   */}}
+\DoxyCodeLine{474   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }FTC\_CMapCacheRec\_*  FTC\_CMapCache;}
+\DoxyCodeLine{475 }
+\DoxyCodeLine{476 }
+\DoxyCodeLine{477 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{478   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{479   \textcolor{comment}{/* @function:                                                            */}}
+\DoxyCodeLine{480   \textcolor{comment}{/*    FTC\_CMapCache\_New                                                  */}}
+\DoxyCodeLine{481   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{482   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{483   \textcolor{comment}{/*    Create a new charmap cache.                                        */}}
+\DoxyCodeLine{484   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{485   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{486   \textcolor{comment}{/*    manager :: A handle to the cache manager.                          */}}
+\DoxyCodeLine{487   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{488   \textcolor{comment}{/* @output:                                                              */}}
+\DoxyCodeLine{489   \textcolor{comment}{/*    acache  :: A new cache handle.  NULL in case of error.             */}}
+\DoxyCodeLine{490   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{491   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{492   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{493   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{494   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{495   \textcolor{comment}{/*    Like all other caches, this one will be destroyed with the cache   */}}
+\DoxyCodeLine{496   \textcolor{comment}{/*    manager.                                                           */}}
+\DoxyCodeLine{497   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{498   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{499   FTC\_CMapCache\_New( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}     manager,}
+\DoxyCodeLine{500                      FTC\_CMapCache  *acache );}
+\DoxyCodeLine{501 }
+\DoxyCodeLine{502 }
+\DoxyCodeLine{503 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{504   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{505   \textcolor{comment}{/* @function:                                                            */}}
+\DoxyCodeLine{506   \textcolor{comment}{/*    FTC\_CMapCache\_Lookup                                               */}}
+\DoxyCodeLine{507   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{508   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{509   \textcolor{comment}{/*    Translate a character code into a glyph index, using the charmap   */}}
+\DoxyCodeLine{510   \textcolor{comment}{/*    cache.                                                             */}}
+\DoxyCodeLine{511   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{512   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{513   \textcolor{comment}{/*    cache      :: A charmap cache handle.                              */}}
+\DoxyCodeLine{514   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{515   \textcolor{comment}{/*    face\_id    :: The source face ID.                                  */}}
+\DoxyCodeLine{516   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{517   \textcolor{comment}{/*    cmap\_index :: The index of the charmap in the source face.         */}}
+\DoxyCodeLine{518   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{519   \textcolor{comment}{/*    char\_code  :: The character code (in the corresponding charmap).   */}}
+\DoxyCodeLine{520   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{521   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{522   \textcolor{comment}{/*    Glyph index.  0 means `no glyph'.                                  */}}
+\DoxyCodeLine{523   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{524   FT\_EXPORT( FT\_UInt )}
+\DoxyCodeLine{525   FTC\_CMapCache\_Lookup( FTC\_CMapCache  cache,}
+\DoxyCodeLine{526                         FTC\_FaceID     face\_id,}
+\DoxyCodeLine{527                         FT\_Int         cmap\_index,}
+\DoxyCodeLine{528                         FT\_UInt32      char\_code );}
+\DoxyCodeLine{529 }
+\DoxyCodeLine{530 }
+\DoxyCodeLine{531 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{532   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{533   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{534   \textcolor{comment}{/*    cache\_subsystem                                                    */}}
+\DoxyCodeLine{535   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{536 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538 }
+\DoxyCodeLine{539 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{540 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{541 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{542 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{543 \textcolor{comment}{  /*****                       IMAGE CACHE OBJECT                      *****/}}
+\DoxyCodeLine{544 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{545 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{546 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{547 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{548 }
+\DoxyCodeLine{549   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___image_type_rec__}{FTC\_ImageTypeRec\_}}}
+\DoxyCodeLine{550   \{}
+\DoxyCodeLine{551     FTC\_FaceID   face\_id;}
+\DoxyCodeLine{552     FT\_Int       width;}
+\DoxyCodeLine{553     FT\_Int       height;}
+\DoxyCodeLine{554     FT\_Int32     flags;}
+\DoxyCodeLine{555 }
+\DoxyCodeLine{556   \} \mbox{\hyperlink{struct_f_t_c___image_type_rec__}{FTC\_ImageTypeRec}};}
+\DoxyCodeLine{557 }
+\DoxyCodeLine{558   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___image_type_rec__}{FTC\_ImageTypeRec\_}}*   \mbox{\hyperlink{struct_f_t_c___image_type_rec__}{FTC\_ImageType}};}
+\DoxyCodeLine{559 }
+\DoxyCodeLine{560  \textcolor{comment}{/* */}}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562 \textcolor{preprocessor}{\#define FTC\_IMAGE\_TYPE\_COMPARE( d1, d2 )                    \(\backslash\)}}
+\DoxyCodeLine{563 \textcolor{preprocessor}{          ( FTC\_FONT\_COMPARE( \&(d1)-\/>font, \&(d2)-\/>font ) \&\& \(\backslash\)}}
+\DoxyCodeLine{564 \textcolor{preprocessor}{            (d1)-\/>flags == (d2)-\/>flags                   )}}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566 \textcolor{preprocessor}{\#define FTC\_IMAGE\_TYPE\_HASH( d )                    \(\backslash\)}}
+\DoxyCodeLine{567 \textcolor{preprocessor}{          (FT\_UFast)( FTC\_FONT\_HASH( \&(d)-\/>font ) \string^ \(\backslash\)}}
+\DoxyCodeLine{568 \textcolor{preprocessor}{                      ( (d)-\/>flags << 4 )         )}}
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{572   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{573   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{574   \textcolor{comment}{/*    FTC\_ImageCache                                                     */}}
+\DoxyCodeLine{575   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{576   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{577   \textcolor{comment}{/*    A handle to an glyph image cache object.  They are designed to     */}}
+\DoxyCodeLine{578   \textcolor{comment}{/*    hold many distinct glyph images while not exceeding a certain      */}}
+\DoxyCodeLine{579   \textcolor{comment}{/*    memory threshold.                                                  */}}
+\DoxyCodeLine{580   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{581   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }FTC\_ImageCacheRec\_*  FTC\_ImageCache;}
+\DoxyCodeLine{582 }
+\DoxyCodeLine{583 }
+\DoxyCodeLine{584 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{585   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{586   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{587   \textcolor{comment}{/*    FTC\_ImageCache\_New                                                 */}}
+\DoxyCodeLine{588   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{589   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{590   \textcolor{comment}{/*    Creates a new glyph image cache.                                   */}}
+\DoxyCodeLine{591   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{592   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{593   \textcolor{comment}{/*    manager :: The parent manager for the image cache.                 */}}
+\DoxyCodeLine{594   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{595   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{596   \textcolor{comment}{/*    acache  :: A handle to the new glyph image cache object.           */}}
+\DoxyCodeLine{597   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{598   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{599   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{600   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{601   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{602   FTC\_ImageCache\_New( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}      manager,}
+\DoxyCodeLine{603                       FTC\_ImageCache  *acache );}
+\DoxyCodeLine{604 }
+\DoxyCodeLine{605 }
+\DoxyCodeLine{606 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{607   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{608   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{609   \textcolor{comment}{/*    FTC\_ImageCache\_Lookup                                              */}}
+\DoxyCodeLine{610   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{611   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{612   \textcolor{comment}{/*    Retrieves a given glyph image from a glyph image cache.            */}}
+\DoxyCodeLine{613   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{614   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{615   \textcolor{comment}{/*    cache  :: A handle to the source glyph image cache.                */}}
+\DoxyCodeLine{616   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{617   \textcolor{comment}{/*    type   :: A pointer to a glyph image type descriptor.              */}}
+\DoxyCodeLine{618   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{619   \textcolor{comment}{/*    gindex :: The glyph index to retrieve.                             */}}
+\DoxyCodeLine{620   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{621   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{622   \textcolor{comment}{/*    aglyph :: The corresponding @FT\_Glyph object.  0 in case of        */}}
+\DoxyCodeLine{623   \textcolor{comment}{/*              failure.                                                 */}}
+\DoxyCodeLine{624   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{625   \textcolor{comment}{/*    anode  :: Used to return the address of of the corresponding cache */}}
+\DoxyCodeLine{626   \textcolor{comment}{/*              node after incrementing its reference count (see note    */}}
+\DoxyCodeLine{627   \textcolor{comment}{/*              below).                                                  */}}
+\DoxyCodeLine{628   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{629   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{630   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{631   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{632   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{633   \textcolor{comment}{/*    The returned glyph is owned and managed by the glyph image cache.  */}}
+\DoxyCodeLine{634   \textcolor{comment}{/*    Never try to transform or discard it manually!  You can however    */}}
+\DoxyCodeLine{635   \textcolor{comment}{/*    create a copy with @FT\_Glyph\_Copy and modify the new one.          */}}
+\DoxyCodeLine{636   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{637   \textcolor{comment}{/*    If `anode' is \_not\_ NULL, it receives the address of the cache     */}}
+\DoxyCodeLine{638   \textcolor{comment}{/*    node containing the glyph image, after increasing its reference    */}}
+\DoxyCodeLine{639   \textcolor{comment}{/*    count.  This ensures that the node (as well as the FT\_Glyph) will  */}}
+\DoxyCodeLine{640   \textcolor{comment}{/*    always be kept in the cache until you call @FTC\_Node\_Unref to      */}}
+\DoxyCodeLine{641   \textcolor{comment}{/*    `release' it.                                                      */}}
+\DoxyCodeLine{642   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{643   \textcolor{comment}{/*    If `anode' is NULL, the cache node is left unchanged, which means  */}}
+\DoxyCodeLine{644   \textcolor{comment}{/*    that the FT\_Glyph could be flushed out of the cache on the next    */}}
+\DoxyCodeLine{645   \textcolor{comment}{/*    call to one of the caching sub-\/system APIs.  Don't assume that it  */}}
+\DoxyCodeLine{646   \textcolor{comment}{/*    is persistent!                                                     */}}
+\DoxyCodeLine{647   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{648   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{649   FTC\_ImageCache\_Lookup( FTC\_ImageCache  cache,}
+\DoxyCodeLine{650                          \mbox{\hyperlink{struct_f_t_c___image_type_rec__}{FTC\_ImageType}}   type,}
+\DoxyCodeLine{651                          FT\_UInt         gindex,}
+\DoxyCodeLine{652                          \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}       *aglyph,}
+\DoxyCodeLine{653                          \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}       *anode );}
+\DoxyCodeLine{654 }
+\DoxyCodeLine{655 }
+\DoxyCodeLine{656 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{657   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{658   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{659   \textcolor{comment}{/*    FTC\_SBit                                                           */}}
+\DoxyCodeLine{660   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{661   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{662   \textcolor{comment}{/*    A handle to a small bitmap descriptor.  See the @FTC\_SBitRec       */}}
+\DoxyCodeLine{663   \textcolor{comment}{/*    structure for details.                                             */}}
+\DoxyCodeLine{664   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{665   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___s_bit_rec__}{FTC\_SBitRec\_}}*  \mbox{\hyperlink{struct_f_t_c___s_bit_rec__}{FTC\_SBit}};}
+\DoxyCodeLine{666 }
+\DoxyCodeLine{667 }
+\DoxyCodeLine{668 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{669   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{670   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{671   \textcolor{comment}{/*    FTC\_SBitRec                                                        */}}
+\DoxyCodeLine{672   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{673   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{674   \textcolor{comment}{/*    A very compact structure used to describe a small glyph bitmap.    */}}
+\DoxyCodeLine{675   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{676   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{677   \textcolor{comment}{/*    width     :: The bitmap width in pixels.                           */}}
+\DoxyCodeLine{678   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{679   \textcolor{comment}{/*    height    :: The bitmap height in pixels.                          */}}
+\DoxyCodeLine{680   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{681   \textcolor{comment}{/*    left      :: The horizontal distance from the pen position to the  */}}
+\DoxyCodeLine{682   \textcolor{comment}{/*                 left bitmap border (a.k.a. `left side bearing', or    */}}
+\DoxyCodeLine{683   \textcolor{comment}{/*                 `lsb').                                               */}}
+\DoxyCodeLine{684   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{685   \textcolor{comment}{/*    top       :: The vertical distance from the pen position (on the   */}}
+\DoxyCodeLine{686   \textcolor{comment}{/*                 baseline) to the upper bitmap border (a.k.a. `top     */}}
+\DoxyCodeLine{687   \textcolor{comment}{/*                 side bearing').  The distance is positive for upwards */}}
+\DoxyCodeLine{688   \textcolor{comment}{/*                 Y coordinates.                                        */}}
+\DoxyCodeLine{689   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{690   \textcolor{comment}{/*    format    :: The format of the glyph bitmap (monochrome or gray).  */}}
+\DoxyCodeLine{691   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{692   \textcolor{comment}{/*    max\_grays :: Maximum gray level value (in the range 1 to 255).     */}}
+\DoxyCodeLine{693   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{694   \textcolor{comment}{/*    pitch     :: The number of bytes per bitmap line.  May be positive */}}
+\DoxyCodeLine{695   \textcolor{comment}{/*                 or negative.                                          */}}
+\DoxyCodeLine{696   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{697   \textcolor{comment}{/*    xadvance  :: The horizontal advance width in pixels.               */}}
+\DoxyCodeLine{698   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{699   \textcolor{comment}{/*    yadvance  :: The vertical advance height in pixels.                */}}
+\DoxyCodeLine{700   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{701   \textcolor{comment}{/*    buffer    :: A pointer to the bitmap pixels.                       */}}
+\DoxyCodeLine{702   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{703   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___s_bit_rec__}{FTC\_SBitRec\_}}}
+\DoxyCodeLine{704   \{}
+\DoxyCodeLine{705     FT\_Byte   width;}
+\DoxyCodeLine{706     FT\_Byte   height;}
+\DoxyCodeLine{707     FT\_Char   left;}
+\DoxyCodeLine{708     FT\_Char   top;}
+\DoxyCodeLine{709 }
+\DoxyCodeLine{710     FT\_Byte   format;}
+\DoxyCodeLine{711     FT\_Byte   max\_grays;}
+\DoxyCodeLine{712     FT\_Short  pitch;}
+\DoxyCodeLine{713     FT\_Char   xadvance;}
+\DoxyCodeLine{714     FT\_Char   yadvance;}
+\DoxyCodeLine{715 }
+\DoxyCodeLine{716     FT\_Byte*  buffer;}
+\DoxyCodeLine{717 }
+\DoxyCodeLine{718   \} \mbox{\hyperlink{struct_f_t_c___s_bit_rec__}{FTC\_SBitRec}};}
+\DoxyCodeLine{719 }
+\DoxyCodeLine{720 }
+\DoxyCodeLine{721 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{722   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{723   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{724   \textcolor{comment}{/*    FTC\_SBitCache                                                      */}}
+\DoxyCodeLine{725   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{726   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{727   \textcolor{comment}{/*    A handle to a small bitmap cache.  These are special cache objects */}}
+\DoxyCodeLine{728   \textcolor{comment}{/*    used to store small glyph bitmaps (and anti-\/aliased pixmaps) in a  */}}
+\DoxyCodeLine{729   \textcolor{comment}{/*    much more efficient way than the traditional glyph image cache     */}}
+\DoxyCodeLine{730   \textcolor{comment}{/*    implemented by @FTC\_ImageCache.                                    */}}
+\DoxyCodeLine{731   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{732   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }FTC\_SBitCacheRec\_*  FTC\_SBitCache;}
+\DoxyCodeLine{733 }
+\DoxyCodeLine{734 }
+\DoxyCodeLine{735 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{736   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{737   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{738   \textcolor{comment}{/*    FTC\_SBitCache\_New                                                  */}}
+\DoxyCodeLine{739   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{740   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{741   \textcolor{comment}{/*    Creates a new cache to store small glyph bitmaps.                  */}}
+\DoxyCodeLine{742   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{743   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{744   \textcolor{comment}{/*    manager :: A handle to the source cache manager.                   */}}
+\DoxyCodeLine{745   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{746   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{747   \textcolor{comment}{/*    acache  :: A handle to the new sbit cache.  NULL in case of error. */}}
+\DoxyCodeLine{748   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{749   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{750   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{751   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{752   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{753   FTC\_SBitCache\_New( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}     manager,}
+\DoxyCodeLine{754                      FTC\_SBitCache  *acache );}
+\DoxyCodeLine{755 }
+\DoxyCodeLine{756 }
+\DoxyCodeLine{757 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{758   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{759   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{760   \textcolor{comment}{/*    FTC\_SBitCache\_Lookup                                               */}}
+\DoxyCodeLine{761   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{762   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{763   \textcolor{comment}{/*    Looks up a given small glyph bitmap in a given sbit cache and      */}}
+\DoxyCodeLine{764   \textcolor{comment}{/*    `lock' it to prevent its flushing from the cache until needed.     */}}
+\DoxyCodeLine{765   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{766   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{767   \textcolor{comment}{/*    cache  :: A handle to the source sbit cache.                       */}}
+\DoxyCodeLine{768   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{769   \textcolor{comment}{/*    type   :: A pointer to the glyph image type descriptor.            */}}
+\DoxyCodeLine{770   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{771   \textcolor{comment}{/*    gindex :: The glyph index.                                         */}}
+\DoxyCodeLine{772   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{773   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{774   \textcolor{comment}{/*    sbit   :: A handle to a small bitmap descriptor.                   */}}
+\DoxyCodeLine{775   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{776   \textcolor{comment}{/*    anode  :: Used to return the address of of the corresponding cache */}}
+\DoxyCodeLine{777   \textcolor{comment}{/*              node after incrementing its reference count (see note    */}}
+\DoxyCodeLine{778   \textcolor{comment}{/*              below).                                                  */}}
+\DoxyCodeLine{779   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{780   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{781   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{782   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{783   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{784   \textcolor{comment}{/*    The small bitmap descriptor and its bit buffer are owned by the    */}}
+\DoxyCodeLine{785   \textcolor{comment}{/*    cache and should never be freed by the application.  They might    */}}
+\DoxyCodeLine{786   \textcolor{comment}{/*    as well disappear from memory on the next cache lookup, so don't   */}}
+\DoxyCodeLine{787   \textcolor{comment}{/*    treat them as persistent data.                                     */}}
+\DoxyCodeLine{788   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{789   \textcolor{comment}{/*    The descriptor's `buffer' field is set to 0 to indicate a missing  */}}
+\DoxyCodeLine{790   \textcolor{comment}{/*    glyph bitmap.                                                      */}}
+\DoxyCodeLine{791   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{792   \textcolor{comment}{/*    If `anode' is \_not\_ NULL, it receives the address of the cache     */}}
+\DoxyCodeLine{793   \textcolor{comment}{/*    node containing the bitmap, after increasing its reference count.  */}}
+\DoxyCodeLine{794   \textcolor{comment}{/*    This ensures that the node (as well as the image) will always be   */}}
+\DoxyCodeLine{795   \textcolor{comment}{/*    kept in the cache until you call @FTC\_Node\_Unref to `release' it.  */}}
+\DoxyCodeLine{796   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{797   \textcolor{comment}{/*    If `anode' is NULL, the cache node is left unchanged, which means  */}}
+\DoxyCodeLine{798   \textcolor{comment}{/*    that the bitmap could be flushed out of the cache on the next      */}}
+\DoxyCodeLine{799   \textcolor{comment}{/*    call to one of the caching sub-\/system APIs.  Don't assume that it  */}}
+\DoxyCodeLine{800   \textcolor{comment}{/*    is persistent!                                                     */}}
+\DoxyCodeLine{801   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{802   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{803   FTC\_SBitCache\_Lookup( FTC\_SBitCache    cache,}
+\DoxyCodeLine{804                         \mbox{\hyperlink{struct_f_t_c___image_type_rec__}{FTC\_ImageType}}    type,}
+\DoxyCodeLine{805                         FT\_UInt          gindex,}
+\DoxyCodeLine{806                         \mbox{\hyperlink{struct_f_t_c___s_bit_rec__}{FTC\_SBit}}        *sbit,}
+\DoxyCodeLine{807                         \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}        *anode );}
+\DoxyCodeLine{808 }
+\DoxyCodeLine{809 }
+\DoxyCodeLine{810  \textcolor{comment}{/* */}}
+\DoxyCodeLine{811 }
+\DoxyCodeLine{812 FT\_END\_HEADER}
+\DoxyCodeLine{813 }
+\DoxyCodeLine{814 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCACHE\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{815 }
+\DoxyCodeLine{816 }
+\DoxyCodeLine{817 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

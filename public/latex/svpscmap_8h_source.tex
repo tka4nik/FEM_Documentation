@@ -1,0 +1,119 @@
+\hypertarget{svpscmap_8h_source}{}\doxysection{svpscmap.\+h}
+\label{svpscmap_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svpscmap.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svpscmap.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  svpscmap.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType PostScript charmap service (specification).             */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003 by                                                      */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_SVPSCMAP\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_SVPSCMAP\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define FT\_SERVICE\_ID\_POSTSCRIPT\_CMAPS  "{}postscript-\/cmaps"{}}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29   \textcolor{comment}{/*}}
+\DoxyCodeLine{30 \textcolor{comment}{   *  Adobe glyph name to unicode value}}
+\DoxyCodeLine{31 \textcolor{comment}{   */}}
+\DoxyCodeLine{32   \textcolor{keyword}{typedef} FT\_UInt32}
+\DoxyCodeLine{33   (*PS\_Unicode\_ValueFunc)( \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  glyph\_name );}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35   \textcolor{comment}{/*}}
+\DoxyCodeLine{36 \textcolor{comment}{   *  Unicode value to Adobe glyph name index.  0xFFFF if not found.}}
+\DoxyCodeLine{37 \textcolor{comment}{   */}}
+\DoxyCodeLine{38   \textcolor{keyword}{typedef} FT\_UInt}
+\DoxyCodeLine{39   (*PS\_Unicode\_Index\_Func)( FT\_UInt       num\_glyphs,}
+\DoxyCodeLine{40                             \textcolor{keyword}{const} \textcolor{keywordtype}{char}**  glyph\_names,}
+\DoxyCodeLine{41                             FT\_ULong      unicode );}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43   \textcolor{comment}{/*}}
+\DoxyCodeLine{44 \textcolor{comment}{   *  Macintosh name id to glyph name.  NULL if invalid index.}}
+\DoxyCodeLine{45 \textcolor{comment}{   */}}
+\DoxyCodeLine{46   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char}*}
+\DoxyCodeLine{47   (*PS\_Macintosh\_Name\_Func)( FT\_UInt  name\_index );}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49   \textcolor{comment}{/*}}
+\DoxyCodeLine{50 \textcolor{comment}{   *  Adobe standard string ID to glyph name.  NULL if invalid index.}}
+\DoxyCodeLine{51 \textcolor{comment}{   */}}
+\DoxyCodeLine{52   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char}*}
+\DoxyCodeLine{53   (*PS\_Adobe\_Std\_Strings\_Func)( FT\_UInt  string\_index );}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \textcolor{comment}{/*}}
+\DoxyCodeLine{56 \textcolor{comment}{   *  Simple unicode -\/> glyph index charmap built from font glyph names}}
+\DoxyCodeLine{57 \textcolor{comment}{   *  table.}}
+\DoxyCodeLine{58 \textcolor{comment}{   */}}
+\DoxyCodeLine{59   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_p_s___uni_map__}{PS\_UniMap\_}}}
+\DoxyCodeLine{60   \{}
+\DoxyCodeLine{61     FT\_UInt  unicode;}
+\DoxyCodeLine{62     FT\_UInt  glyph\_index;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   \} \mbox{\hyperlink{struct_p_s___uni_map__}{PS\_UniMap}};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_p_s___unicodes__}{PS\_Unicodes\_}}}
+\DoxyCodeLine{68   \{}
+\DoxyCodeLine{69     FT\_UInt     num\_maps;}
+\DoxyCodeLine{70     \mbox{\hyperlink{struct_p_s___uni_map__}{PS\_UniMap}}*  maps;}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72   \} \mbox{\hyperlink{struct_p_s___unicodes__}{PS\_Unicodes}};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{76   (*PS\_Unicodes\_InitFunc)( FT\_Memory     memory,}
+\DoxyCodeLine{77                            FT\_UInt       num\_glyphs,}
+\DoxyCodeLine{78                            \textcolor{keyword}{const} \textcolor{keywordtype}{char}**  glyph\_names,}
+\DoxyCodeLine{79                            \mbox{\hyperlink{struct_p_s___unicodes__}{PS\_Unicodes}}*  unicodes );}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81   \textcolor{keyword}{typedef} FT\_UInt}
+\DoxyCodeLine{82   (*PS\_Unicodes\_CharIndexFunc)( \mbox{\hyperlink{struct_p_s___unicodes__}{PS\_Unicodes}}*  unicodes,}
+\DoxyCodeLine{83                                 FT\_UInt       unicode );}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85   \textcolor{keyword}{typedef} FT\_ULong}
+\DoxyCodeLine{86   (*PS\_Unicodes\_CharNextFunc)( \mbox{\hyperlink{struct_p_s___unicodes__}{PS\_Unicodes}}*  unicodes,}
+\DoxyCodeLine{87                                FT\_ULong      unicode );}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90   FT\_DEFINE\_SERVICE( PsCMaps )}
+\DoxyCodeLine{91   \{}
+\DoxyCodeLine{92     PS\_Unicode\_ValueFunc       unicode\_value;}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     PS\_Unicodes\_InitFunc       unicodes\_init;}
+\DoxyCodeLine{95     PS\_Unicodes\_CharIndexFunc  unicodes\_char\_index;}
+\DoxyCodeLine{96     PS\_Unicodes\_CharNextFunc   unicodes\_char\_next;}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98     PS\_Macintosh\_Name\_Func     macintosh\_name;}
+\DoxyCodeLine{99     PS\_Adobe\_Std\_Strings\_Func  adobe\_std\_strings;}
+\DoxyCodeLine{100     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}*      adobe\_std\_encoding;}
+\DoxyCodeLine{101     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short}*      adobe\_expert\_encoding;}
+\DoxyCodeLine{102   \};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104   \textcolor{comment}{/* */}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 FT\_END\_HEADER}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_SVPSCMAP\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

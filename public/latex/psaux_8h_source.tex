@@ -1,0 +1,747 @@
+\hypertarget{psaux_8h_source}{}\doxysection{psaux.\+h}
+\label{psaux_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/psaux.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/psaux.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  psaux.h                                                                */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Auxiliary functions and data structures related to PostScript fonts  */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*    (specification).                                                     */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003, 2004 by                               */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{17 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef \_\_PSAUX\_H\_\_}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define \_\_PSAUX\_H\_\_}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_INTERNAL\_OBJECTS\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include FT\_INTERNAL\_TYPE1\_TYPES\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include FT\_SERVICE\_POSTSCRIPT\_CMAPS\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{34 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{35 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{36 \textcolor{comment}{  /*****                             T1\_TABLE                          *****/}}
+\DoxyCodeLine{37 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{38 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{39 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_p_s___table_rec__}{PS\_TableRec\_}}*              PS\_Table;}
+\DoxyCodeLine{43   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_p_s___table___funcs_rec__}{PS\_Table\_FuncsRec\_}}*  \mbox{\hyperlink{struct_p_s___table___funcs_rec__}{PS\_Table\_Funcs}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    PS\_Table\_FuncsRec                                                  */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*    A set of function pointers to manage PS\_Table objects.             */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{54   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*    table\_init    :: Used to initialize a table.                       */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    table\_done    :: Finalizes resp. destroy a given table.            */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    table\_add     :: Adds a new object to a table.                     */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    table\_release :: Releases table data, then finalizes it.           */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{63   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_p_s___table___funcs_rec__}{PS\_Table\_FuncsRec\_}}}
+\DoxyCodeLine{64   \{}
+\DoxyCodeLine{65     FT\_Error}
+\DoxyCodeLine{66     (*init)( PS\_Table   table,}
+\DoxyCodeLine{67              FT\_Int     count,}
+\DoxyCodeLine{68              FT\_Memory  memory );}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     void}
+\DoxyCodeLine{71     (*done)( PS\_Table  table );}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     FT\_Error}
+\DoxyCodeLine{74     (*add)( PS\_Table    table,}
+\DoxyCodeLine{75             FT\_Int      idx,}
+\DoxyCodeLine{76             \textcolor{keywordtype}{void}*       object,}
+\DoxyCodeLine{77             FT\_PtrDist  length );}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     void}
+\DoxyCodeLine{80     (*release)( PS\_Table  table );}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82   \} \mbox{\hyperlink{struct_p_s___table___funcs_rec__}{PS\_Table\_FuncsRec}};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{86   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{87   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*    PS\_TableRec                                                        */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{90   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*    A PS\_Table is a simple object used to store an array of objects in */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*    a single memory block.                                             */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{94   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*    block     :: The address in memory of the growheap's block.  This  */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*                 can change between two object adds, due to            */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*                 reallocation.                                         */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{99   \textcolor{comment}{/*    cursor    :: The current top of the grow heap within its block.    */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*    capacity  :: The current size of the heap block.  Increments by    */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*                 1kByte chunks.                                        */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*    max\_elems :: The maximum number of elements in table.              */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*    num\_elems :: The current number of elements in table.              */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*    elements  :: A table of element addresses within the block.        */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*    lengths   :: A table of element sizes within the block.            */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*    memory    :: The object used for memory operations                 */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*                 (alloc/realloc).                                      */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*    funcs     :: A table of method pointers for this object.           */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{117   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_p_s___table_rec__}{PS\_TableRec\_}}}
+\DoxyCodeLine{118   \{}
+\DoxyCodeLine{119     FT\_Byte*           block;          \textcolor{comment}{/* current memory block           */}}
+\DoxyCodeLine{120     FT\_Offset          cursor;         \textcolor{comment}{/* current cursor in memory block */}}
+\DoxyCodeLine{121     FT\_Offset          capacity;       \textcolor{comment}{/* current size of memory block   */}}
+\DoxyCodeLine{122     FT\_Long            init;}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124     FT\_Int             max\_elems;}
+\DoxyCodeLine{125     FT\_Int             num\_elems;}
+\DoxyCodeLine{126     FT\_Byte**          elements;       \textcolor{comment}{/* addresses of table elements */}}
+\DoxyCodeLine{127     FT\_PtrDist*        lengths;        \textcolor{comment}{/* lengths of table elements   */}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129     FT\_Memory          memory;}
+\DoxyCodeLine{130     \mbox{\hyperlink{struct_p_s___table___funcs_rec__}{PS\_Table\_FuncsRec}}  funcs;}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132   \} \mbox{\hyperlink{struct_p_s___table_rec__}{PS\_TableRec}};}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{136 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{137 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{138 \textcolor{comment}{  /*****                       T1 FIELDS \& TOKENS                      *****/}}
+\DoxyCodeLine{139 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{140 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{141 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_ParserRec\_}}*  \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}};}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___token_rec__}{T1\_TokenRec\_}}*   \mbox{\hyperlink{struct_t1___token_rec__}{T1\_Token}};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___field_rec__}{T1\_FieldRec\_}}*   \mbox{\hyperlink{struct_t1___field_rec__}{T1\_Field}};}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150   \textcolor{comment}{/* simple enumeration type used to identify token types */}}
+\DoxyCodeLine{151   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  T1\_TokenType\_}
+\DoxyCodeLine{152   \{}
+\DoxyCodeLine{153     T1\_TOKEN\_TYPE\_NONE = 0,}
+\DoxyCodeLine{154     T1\_TOKEN\_TYPE\_ANY,}
+\DoxyCodeLine{155     T1\_TOKEN\_TYPE\_STRING,}
+\DoxyCodeLine{156     T1\_TOKEN\_TYPE\_ARRAY,}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158     \textcolor{comment}{/* do not remove */}}
+\DoxyCodeLine{159     T1\_TOKEN\_TYPE\_MAX}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161   \} T1\_TokenType;}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164   \textcolor{comment}{/* a simple structure used to identify tokens */}}
+\DoxyCodeLine{165   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___token_rec__}{T1\_TokenRec\_}}}
+\DoxyCodeLine{166   \{}
+\DoxyCodeLine{167     FT\_Byte*      start;   \textcolor{comment}{/* first character of token in input stream */}}
+\DoxyCodeLine{168     FT\_Byte*      limit;   \textcolor{comment}{/* first character after the token          */}}
+\DoxyCodeLine{169     T1\_TokenType  type;    \textcolor{comment}{/* type of token                            */}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171   \} \mbox{\hyperlink{struct_t1___token_rec__}{T1\_TokenRec}};}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174   \textcolor{comment}{/* enumeration type used to identify object fields */}}
+\DoxyCodeLine{175   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  T1\_FieldType\_}
+\DoxyCodeLine{176   \{}
+\DoxyCodeLine{177     T1\_FIELD\_TYPE\_NONE = 0,}
+\DoxyCodeLine{178     T1\_FIELD\_TYPE\_BOOL,}
+\DoxyCodeLine{179     T1\_FIELD\_TYPE\_INTEGER,}
+\DoxyCodeLine{180     T1\_FIELD\_TYPE\_FIXED,}
+\DoxyCodeLine{181     T1\_FIELD\_TYPE\_FIXED\_1000,}
+\DoxyCodeLine{182     T1\_FIELD\_TYPE\_STRING,}
+\DoxyCodeLine{183     T1\_FIELD\_TYPE\_KEY,}
+\DoxyCodeLine{184     T1\_FIELD\_TYPE\_BBOX,}
+\DoxyCodeLine{185     T1\_FIELD\_TYPE\_INTEGER\_ARRAY,}
+\DoxyCodeLine{186     T1\_FIELD\_TYPE\_FIXED\_ARRAY,}
+\DoxyCodeLine{187     T1\_FIELD\_TYPE\_CALLBACK,}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \textcolor{comment}{/* do not remove */}}
+\DoxyCodeLine{190     T1\_FIELD\_TYPE\_MAX}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192   \} T1\_FieldType;}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  T1\_FieldLocation\_}
+\DoxyCodeLine{196   \{}
+\DoxyCodeLine{197     T1\_FIELD\_LOCATION\_CID\_INFO,}
+\DoxyCodeLine{198     T1\_FIELD\_LOCATION\_FONT\_DICT,}
+\DoxyCodeLine{199     T1\_FIELD\_LOCATION\_FONT\_INFO,}
+\DoxyCodeLine{200     T1\_FIELD\_LOCATION\_PRIVATE,}
+\DoxyCodeLine{201     T1\_FIELD\_LOCATION\_BBOX,}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203     \textcolor{comment}{/* do not remove */}}
+\DoxyCodeLine{204     T1\_FIELD\_LOCATION\_MAX}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206   \} T1\_FieldLocation;}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{210   (*T1\_Field\_ParseFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}     face,}
+\DoxyCodeLine{211                          FT\_Pointer  parser );}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214   \textcolor{comment}{/* structure type used to model object fields */}}
+\DoxyCodeLine{215   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___field_rec__}{T1\_FieldRec\_}}}
+\DoxyCodeLine{216   \{}
+\DoxyCodeLine{217     \textcolor{keyword}{const} \textcolor{keywordtype}{char}*         ident;        \textcolor{comment}{/* field identifier               */}}
+\DoxyCodeLine{218     T1\_FieldLocation    location;}
+\DoxyCodeLine{219     T1\_FieldType        type;         \textcolor{comment}{/* type of field                  */}}
+\DoxyCodeLine{220     T1\_Field\_ParseFunc  reader;}
+\DoxyCodeLine{221     FT\_UInt             offset;       \textcolor{comment}{/* offset of field in object      */}}
+\DoxyCodeLine{222     FT\_Byte             size;         \textcolor{comment}{/* size of field in bytes         */}}
+\DoxyCodeLine{223     FT\_UInt             array\_max;    \textcolor{comment}{/* maximal number of elements for */}}
+\DoxyCodeLine{224                                       \textcolor{comment}{/* array                          */}}
+\DoxyCodeLine{225     FT\_UInt             count\_offset; \textcolor{comment}{/* offset of element count for    */}}
+\DoxyCodeLine{226                                       \textcolor{comment}{/* arrays                         */}}
+\DoxyCodeLine{227   \} \mbox{\hyperlink{struct_t1___field_rec__}{T1\_FieldRec}};}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 \textcolor{preprocessor}{\#define T1\_NEW\_SIMPLE\_FIELD( \_ident, \_type, \_fname ) \(\backslash\)}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{          \{                                          \(\backslash\)}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{            \_ident, T1CODE, \_type,                   \(\backslash\)}}
+\DoxyCodeLine{233 \textcolor{preprocessor}{            0,                                       \(\backslash\)}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{            FT\_FIELD\_OFFSET( \_fname ),               \(\backslash\)}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{            FT\_FIELD\_SIZE( \_fname ),                 \(\backslash\)}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{            0, 0                                     \(\backslash\)}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{          \},}}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 \textcolor{preprocessor}{\#define T1\_NEW\_CALLBACK\_FIELD( \_ident, \_reader )    \(\backslash\)}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{          \{                                         \(\backslash\)}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{            \_ident, T1CODE, T1\_FIELD\_TYPE\_CALLBACK, \(\backslash\)}}
+\DoxyCodeLine{242 \textcolor{preprocessor}{            (T1\_Field\_ParseFunc)\_reader,            \(\backslash\)}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{            0, 0,                                   \(\backslash\)}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{            0, 0                                    \(\backslash\)}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{          \},}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#define T1\_NEW\_TABLE\_FIELD( \_ident, \_type, \_fname, \_max ) \(\backslash\)}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{          \{                                               \(\backslash\)}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{            \_ident, T1CODE, \_type,                        \(\backslash\)}}
+\DoxyCodeLine{250 \textcolor{preprocessor}{            0,                                            \(\backslash\)}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{            FT\_FIELD\_OFFSET( \_fname ),                    \(\backslash\)}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{            FT\_FIELD\_SIZE\_DELTA( \_fname ),                \(\backslash\)}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{            \_max,                                         \(\backslash\)}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{            FT\_FIELD\_OFFSET( num\_ \#\# \_fname )             \(\backslash\)}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{          \},}}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#define T1\_NEW\_TABLE\_FIELD2( \_ident, \_type, \_fname, \_max ) \(\backslash\)}}
+\DoxyCodeLine{258 \textcolor{preprocessor}{          \{                                                \(\backslash\)}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{            \_ident, T1CODE, \_type,                         \(\backslash\)}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{            0,                                             \(\backslash\)}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{            FT\_FIELD\_OFFSET( \_fname ),                     \(\backslash\)}}
+\DoxyCodeLine{262 \textcolor{preprocessor}{            FT\_FIELD\_SIZE\_DELTA( \_fname ),                 \(\backslash\)}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{            \_max, 0                                        \(\backslash\)}}
+\DoxyCodeLine{264 \textcolor{preprocessor}{          \},}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#define T1\_FIELD\_BOOL( \_ident, \_fname )                             \(\backslash\)}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{          T1\_NEW\_SIMPLE\_FIELD( \_ident, T1\_FIELD\_TYPE\_BOOL, \_fname )}}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#define T1\_FIELD\_NUM( \_ident, \_fname )                                 \(\backslash\)}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{          T1\_NEW\_SIMPLE\_FIELD( \_ident, T1\_FIELD\_TYPE\_INTEGER, \_fname )}}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273 \textcolor{preprocessor}{\#define T1\_FIELD\_FIXED( \_ident, \_fname )                             \(\backslash\)}}
+\DoxyCodeLine{274 \textcolor{preprocessor}{          T1\_NEW\_SIMPLE\_FIELD( \_ident, T1\_FIELD\_TYPE\_FIXED, \_fname )}}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276 \textcolor{preprocessor}{\#define T1\_FIELD\_FIXED\_1000( \_ident, \_fname )                             \(\backslash\)}}
+\DoxyCodeLine{277 \textcolor{preprocessor}{          T1\_NEW\_SIMPLE\_FIELD( \_ident, T1\_FIELD\_TYPE\_FIXED\_1000, \_fname )}}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 \textcolor{preprocessor}{\#define T1\_FIELD\_STRING( \_ident, \_fname )                             \(\backslash\)}}
+\DoxyCodeLine{280 \textcolor{preprocessor}{          T1\_NEW\_SIMPLE\_FIELD( \_ident, T1\_FIELD\_TYPE\_STRING, \_fname )}}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 \textcolor{preprocessor}{\#define T1\_FIELD\_KEY( \_ident, \_fname )                             \(\backslash\)}}
+\DoxyCodeLine{283 \textcolor{preprocessor}{          T1\_NEW\_SIMPLE\_FIELD( \_ident, T1\_FIELD\_TYPE\_KEY, \_fname )}}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285 \textcolor{preprocessor}{\#define T1\_FIELD\_BBOX( \_ident, \_fname )                             \(\backslash\)}}
+\DoxyCodeLine{286 \textcolor{preprocessor}{          T1\_NEW\_SIMPLE\_FIELD( \_ident, T1\_FIELD\_TYPE\_BBOX, \_fname )}}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{preprocessor}{\#define T1\_FIELD\_NUM\_TABLE( \_ident, \_fname, \_fmax )                \(\backslash\)}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{          T1\_NEW\_TABLE\_FIELD( \_ident, T1\_FIELD\_TYPE\_INTEGER\_ARRAY, \(\backslash\)}}
+\DoxyCodeLine{291 \textcolor{preprocessor}{                              \_fname, \_fmax )}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define T1\_FIELD\_FIXED\_TABLE( \_ident, \_fname, \_fmax )            \(\backslash\)}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{          T1\_NEW\_TABLE\_FIELD( \_ident, T1\_FIELD\_TYPE\_FIXED\_ARRAY, \(\backslash\)}}
+\DoxyCodeLine{295 \textcolor{preprocessor}{                              \_fname, \_fmax )}}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297 \textcolor{preprocessor}{\#define T1\_FIELD\_NUM\_TABLE2( \_ident, \_fname, \_fmax )                \(\backslash\)}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{          T1\_NEW\_TABLE\_FIELD2( \_ident, T1\_FIELD\_TYPE\_INTEGER\_ARRAY, \(\backslash\)}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{                               \_fname, \_fmax )}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#define T1\_FIELD\_FIXED\_TABLE2( \_ident, \_fname, \_fmax )            \(\backslash\)}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{          T1\_NEW\_TABLE\_FIELD2( \_ident, T1\_FIELD\_TYPE\_FIXED\_ARRAY, \(\backslash\)}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{                               \_fname, \_fmax )}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305 \textcolor{preprocessor}{\#define T1\_FIELD\_CALLBACK( \_ident, \_name )       \(\backslash\)}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{          T1\_NEW\_CALLBACK\_FIELD( \_ident, \_name )}}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{310 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{311 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{312 \textcolor{comment}{  /*****                            T1 PARSER                          *****/}}
+\DoxyCodeLine{313 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{314 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{315 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_p_s___parser___funcs_rec__}{PS\_Parser\_FuncsRec\_}}*  \mbox{\hyperlink{struct_p_s___parser___funcs_rec__}{PS\_Parser\_Funcs}};}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_p_s___parser___funcs_rec__}{PS\_Parser\_FuncsRec\_}}}
+\DoxyCodeLine{320   \{}
+\DoxyCodeLine{321     void}
+\DoxyCodeLine{322     (*init)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser,}
+\DoxyCodeLine{323              FT\_Byte*   base,}
+\DoxyCodeLine{324              FT\_Byte*   limit,}
+\DoxyCodeLine{325              FT\_Memory  memory );}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327     void}
+\DoxyCodeLine{328     (*done)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser );}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330     void}
+\DoxyCodeLine{331     (*skip\_spaces)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser );}
+\DoxyCodeLine{332     void}
+\DoxyCodeLine{333     (*skip\_PS\_token)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser );}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335     FT\_Long}
+\DoxyCodeLine{336     (*to\_int)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser );}
+\DoxyCodeLine{337     FT\_Fixed}
+\DoxyCodeLine{338     (*to\_fixed)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser,}
+\DoxyCodeLine{339                  FT\_Int     power\_ten );}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341     FT\_Error}
+\DoxyCodeLine{342     (*to\_bytes)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser,}
+\DoxyCodeLine{343                  FT\_Byte*   bytes,}
+\DoxyCodeLine{344                  FT\_Long    max\_bytes,}
+\DoxyCodeLine{345                  FT\_Long*   pnum\_bytes,}
+\DoxyCodeLine{346                  FT\_Bool    delimiters );}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348     FT\_Int}
+\DoxyCodeLine{349     (*to\_coord\_array)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser,}
+\DoxyCodeLine{350                        FT\_Int     max\_coords,}
+\DoxyCodeLine{351                        FT\_Short*  coords );}
+\DoxyCodeLine{352     FT\_Int}
+\DoxyCodeLine{353     (*to\_fixed\_array)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser,}
+\DoxyCodeLine{354                        FT\_Int     max\_values,}
+\DoxyCodeLine{355                        FT\_Fixed*  values,}
+\DoxyCodeLine{356                        FT\_Int     power\_ten );}
+\DoxyCodeLine{357 }
+\DoxyCodeLine{358     void}
+\DoxyCodeLine{359     (*to\_token)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser,}
+\DoxyCodeLine{360                  \mbox{\hyperlink{struct_t1___token_rec__}{T1\_Token}}   token );}
+\DoxyCodeLine{361     void}
+\DoxyCodeLine{362     (*to\_token\_array)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}  parser,}
+\DoxyCodeLine{363                        \mbox{\hyperlink{struct_t1___token_rec__}{T1\_Token}}   tokens,}
+\DoxyCodeLine{364                        FT\_UInt    max\_tokens,}
+\DoxyCodeLine{365                        FT\_Int*    pnum\_tokens );}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367     FT\_Error}
+\DoxyCodeLine{368     (*load\_field)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}       parser,}
+\DoxyCodeLine{369                    \textcolor{keyword}{const} \mbox{\hyperlink{struct_t1___field_rec__}{T1\_Field}}  field,}
+\DoxyCodeLine{370                    \textcolor{keywordtype}{void}**          objects,}
+\DoxyCodeLine{371                    FT\_UInt         max\_objects,}
+\DoxyCodeLine{372                    FT\_ULong*       pflags );}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{374     FT\_Error}
+\DoxyCodeLine{375     (*load\_field\_table)( \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_Parser}}       parser,}
+\DoxyCodeLine{376                          \textcolor{keyword}{const} \mbox{\hyperlink{struct_t1___field_rec__}{T1\_Field}}  field,}
+\DoxyCodeLine{377                          \textcolor{keywordtype}{void}**          objects,}
+\DoxyCodeLine{378                          FT\_UInt         max\_objects,}
+\DoxyCodeLine{379                          FT\_ULong*       pflags );}
+\DoxyCodeLine{380 }
+\DoxyCodeLine{381   \} \mbox{\hyperlink{struct_p_s___parser___funcs_rec__}{PS\_Parser\_FuncsRec}};}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{385   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{386   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{387   \textcolor{comment}{/*    PS\_ParserRec                                                       */}}
+\DoxyCodeLine{388   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{389   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{390   \textcolor{comment}{/*    A PS\_Parser is an object used to parse a Type 1 font very quickly. */}}
+\DoxyCodeLine{391   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{392   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{393   \textcolor{comment}{/*    cursor :: The current position in the text.                        */}}
+\DoxyCodeLine{394   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{395   \textcolor{comment}{/*    base   :: Start of the processed text.                             */}}
+\DoxyCodeLine{396   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{397   \textcolor{comment}{/*    limit  :: End of the processed text.                               */}}
+\DoxyCodeLine{398   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{399   \textcolor{comment}{/*    error  :: The last error returned.                                 */}}
+\DoxyCodeLine{400   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{401   \textcolor{comment}{/*    memory :: The object used for memory operations (alloc/realloc).   */}}
+\DoxyCodeLine{402   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{403   \textcolor{comment}{/*    funcs  :: A table of functions for the parser.                     */}}
+\DoxyCodeLine{404   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{405   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_ParserRec\_}}}
+\DoxyCodeLine{406   \{}
+\DoxyCodeLine{407     FT\_Byte*   cursor;}
+\DoxyCodeLine{408     FT\_Byte*   base;}
+\DoxyCodeLine{409     FT\_Byte*   limit;}
+\DoxyCodeLine{410     FT\_Error   error;}
+\DoxyCodeLine{411     FT\_Memory  memory;}
+\DoxyCodeLine{412 }
+\DoxyCodeLine{413     \mbox{\hyperlink{struct_p_s___parser___funcs_rec__}{PS\_Parser\_FuncsRec}}  funcs;}
+\DoxyCodeLine{414 }
+\DoxyCodeLine{415   \} \mbox{\hyperlink{struct_p_s___parser_rec__}{PS\_ParserRec}};}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{419 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{420 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{421 \textcolor{comment}{  /*****                         T1 BUILDER                            *****/}}
+\DoxyCodeLine{422 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{423 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{424 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{425 }
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___builder_rec__}{T1\_BuilderRec\_}}*  \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_Builder}};}
+\DoxyCodeLine{428 }
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{431   (*T1\_Builder\_Check\_Points\_Func)( \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_Builder}}  builder,}
+\DoxyCodeLine{432                                    FT\_Int      count );}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{435   (*T1\_Builder\_Add\_Point\_Func)( \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_Builder}}  builder,}
+\DoxyCodeLine{436                                 FT\_Pos      x,}
+\DoxyCodeLine{437                                 FT\_Pos      y,}
+\DoxyCodeLine{438                                 FT\_Byte     flag );}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{441   (*T1\_Builder\_Add\_Point1\_Func)( \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_Builder}}  builder,}
+\DoxyCodeLine{442                                  FT\_Pos      x,}
+\DoxyCodeLine{443                                  FT\_Pos      y );}
+\DoxyCodeLine{444 }
+\DoxyCodeLine{445   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{446   (*T1\_Builder\_Add\_Contour\_Func)( \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_Builder}}  builder );}
+\DoxyCodeLine{447 }
+\DoxyCodeLine{448   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{449   (*T1\_Builder\_Start\_Point\_Func)( \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_Builder}}  builder,}
+\DoxyCodeLine{450                                   FT\_Pos      x,}
+\DoxyCodeLine{451                                   FT\_Pos      y );}
+\DoxyCodeLine{452 }
+\DoxyCodeLine{453   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{454   (*T1\_Builder\_Close\_Contour\_Func)( \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_Builder}}  builder );}
+\DoxyCodeLine{455 }
+\DoxyCodeLine{456 }
+\DoxyCodeLine{457   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___builder___funcs_rec__}{T1\_Builder\_FuncsRec\_}}*  \mbox{\hyperlink{struct_t1___builder___funcs_rec__}{T1\_Builder\_Funcs}};}
+\DoxyCodeLine{458 }
+\DoxyCodeLine{459   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___builder___funcs_rec__}{T1\_Builder\_FuncsRec\_}}}
+\DoxyCodeLine{460   \{}
+\DoxyCodeLine{461     void}
+\DoxyCodeLine{462     (*init)( \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_Builder}}    builder,}
+\DoxyCodeLine{463              \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}       face,}
+\DoxyCodeLine{464              \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}}       size,}
+\DoxyCodeLine{465              \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  slot,}
+\DoxyCodeLine{466              FT\_Bool       hinting );}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{468     void}
+\DoxyCodeLine{469     (*done)( \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_Builder}}   builder );}
+\DoxyCodeLine{470 }
+\DoxyCodeLine{471     T1\_Builder\_Check\_Points\_Func   check\_points;}
+\DoxyCodeLine{472     T1\_Builder\_Add\_Point\_Func      add\_point;}
+\DoxyCodeLine{473     T1\_Builder\_Add\_Point1\_Func     add\_point1;}
+\DoxyCodeLine{474     T1\_Builder\_Add\_Contour\_Func    add\_contour;}
+\DoxyCodeLine{475     T1\_Builder\_Start\_Point\_Func    start\_point;}
+\DoxyCodeLine{476     T1\_Builder\_Close\_Contour\_Func  close\_contour;}
+\DoxyCodeLine{477 }
+\DoxyCodeLine{478   \} \mbox{\hyperlink{struct_t1___builder___funcs_rec__}{T1\_Builder\_FuncsRec}};}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480 }
+\DoxyCodeLine{481   \textcolor{comment}{/* an enumeration type to handle charstring parsing states */}}
+\DoxyCodeLine{482   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  T1\_ParseState\_}
+\DoxyCodeLine{483   \{}
+\DoxyCodeLine{484     T1\_Parse\_Start,}
+\DoxyCodeLine{485     T1\_Parse\_Have\_Width,}
+\DoxyCodeLine{486     T1\_Parse\_Have\_Moveto,}
+\DoxyCodeLine{487     T1\_Parse\_Have\_Path}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489   \} T1\_ParseState;}
+\DoxyCodeLine{490 }
+\DoxyCodeLine{491 }
+\DoxyCodeLine{492 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{493   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{494   \textcolor{comment}{/* <Structure>                                                           */}}
+\DoxyCodeLine{495   \textcolor{comment}{/*    T1\_BuilderRec                                                      */}}
+\DoxyCodeLine{496   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{497   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{498   \textcolor{comment}{/*     A structure used during glyph loading to store its outline.       */}}
+\DoxyCodeLine{499   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{500   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{501   \textcolor{comment}{/*    memory       :: The current memory object.                         */}}
+\DoxyCodeLine{502   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{503   \textcolor{comment}{/*    face         :: The current face object.                           */}}
+\DoxyCodeLine{504   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{505   \textcolor{comment}{/*    glyph        :: The current glyph slot.                            */}}
+\DoxyCodeLine{506   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{507   \textcolor{comment}{/*    loader       :: XXX                                                */}}
+\DoxyCodeLine{508   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{509   \textcolor{comment}{/*    base         :: The base glyph outline.                            */}}
+\DoxyCodeLine{510   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{511   \textcolor{comment}{/*    current      :: The current glyph outline.                         */}}
+\DoxyCodeLine{512   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{513   \textcolor{comment}{/*    max\_points   :: maximum points in builder outline                  */}}
+\DoxyCodeLine{514   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{515   \textcolor{comment}{/*    max\_contours :: Maximal number of contours in builder outline.     */}}
+\DoxyCodeLine{516   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{517   \textcolor{comment}{/*    last         :: The last point position.                           */}}
+\DoxyCodeLine{518   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{519   \textcolor{comment}{/*    scale\_x      :: The horizontal scale (FUnits to sub-\/pixels).       */}}
+\DoxyCodeLine{520   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{521   \textcolor{comment}{/*    scale\_y      :: The vertical scale (FUnits to sub-\/pixels).         */}}
+\DoxyCodeLine{522   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{523   \textcolor{comment}{/*    pos\_x        :: The horizontal translation (if composite glyph).   */}}
+\DoxyCodeLine{524   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{525   \textcolor{comment}{/*    pos\_y        :: The vertical translation (if composite glyph).     */}}
+\DoxyCodeLine{526   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{527   \textcolor{comment}{/*    left\_bearing :: The left side bearing point.                       */}}
+\DoxyCodeLine{528   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{529   \textcolor{comment}{/*    advance      :: The horizontal advance vector.                     */}}
+\DoxyCodeLine{530   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{531   \textcolor{comment}{/*    bbox         :: Unused.                                            */}}
+\DoxyCodeLine{532   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{533   \textcolor{comment}{/*    parse\_state  :: An enumeration which controls the charstring       */}}
+\DoxyCodeLine{534   \textcolor{comment}{/*                    parsing state.                                     */}}
+\DoxyCodeLine{535   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{536   \textcolor{comment}{/*    load\_points  :: If this flag is not set, no points are loaded.     */}}
+\DoxyCodeLine{537   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{538   \textcolor{comment}{/*    no\_recurse   :: Set but not used.                                  */}}
+\DoxyCodeLine{539   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{540   \textcolor{comment}{/*    metrics\_only :: A boolean indicating that we only want to compute  */}}
+\DoxyCodeLine{541   \textcolor{comment}{/*                    the metrics of a given glyph, not load all of its  */}}
+\DoxyCodeLine{542   \textcolor{comment}{/*                    points.                                            */}}
+\DoxyCodeLine{543   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{544   \textcolor{comment}{/*    funcs        :: An array of function pointers for the builder.     */}}
+\DoxyCodeLine{545   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{546   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___builder_rec__}{T1\_BuilderRec\_}}}
+\DoxyCodeLine{547   \{}
+\DoxyCodeLine{548     FT\_Memory       memory;}
+\DoxyCodeLine{549     \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}         face;}
+\DoxyCodeLine{550     \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}    glyph;}
+\DoxyCodeLine{551     FT\_GlyphLoader  loader;}
+\DoxyCodeLine{552     \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*     base;}
+\DoxyCodeLine{553     \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*     current;}
+\DoxyCodeLine{554 }
+\DoxyCodeLine{555     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}       last;}
+\DoxyCodeLine{556 }
+\DoxyCodeLine{557     FT\_Fixed        scale\_x;}
+\DoxyCodeLine{558     FT\_Fixed        scale\_y;}
+\DoxyCodeLine{559 }
+\DoxyCodeLine{560     FT\_Pos          pos\_x;}
+\DoxyCodeLine{561     FT\_Pos          pos\_y;}
+\DoxyCodeLine{562 }
+\DoxyCodeLine{563     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}       left\_bearing;}
+\DoxyCodeLine{564     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}       advance;}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566     \mbox{\hyperlink{struct_f_t___b_box__}{FT\_BBox}}         bbox;          \textcolor{comment}{/* bounding box */}}
+\DoxyCodeLine{567     T1\_ParseState   parse\_state;}
+\DoxyCodeLine{568     FT\_Bool         load\_points;}
+\DoxyCodeLine{569     FT\_Bool         no\_recurse;}
+\DoxyCodeLine{570     FT\_Bool         shift;}
+\DoxyCodeLine{571 }
+\DoxyCodeLine{572     FT\_Bool         metrics\_only;}
+\DoxyCodeLine{573 }
+\DoxyCodeLine{574     \textcolor{keywordtype}{void}*           hints\_funcs;    \textcolor{comment}{/* hinter-\/specific */}}
+\DoxyCodeLine{575     \textcolor{keywordtype}{void}*           hints\_globals;  \textcolor{comment}{/* hinter-\/specific */}}
+\DoxyCodeLine{576 }
+\DoxyCodeLine{577     \mbox{\hyperlink{struct_t1___builder___funcs_rec__}{T1\_Builder\_FuncsRec}}  funcs;}
+\DoxyCodeLine{578 }
+\DoxyCodeLine{579   \} \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_BuilderRec}};}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{581 }
+\DoxyCodeLine{582 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{583 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{584 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{585 \textcolor{comment}{  /*****                         T1 DECODER                            *****/}}
+\DoxyCodeLine{586 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{587 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{588 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{589 }
+\DoxyCodeLine{590 \textcolor{preprocessor}{\#if 0}}
+\DoxyCodeLine{591 }
+\DoxyCodeLine{592 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{593   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{594   \textcolor{comment}{/* T1\_MAX\_SUBRS\_CALLS details the maximum number of nested sub-\/routine   */}}
+\DoxyCodeLine{595   \textcolor{comment}{/* calls during glyph loading.                                           */}}
+\DoxyCodeLine{596   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{597 \textcolor{preprocessor}{\#define T1\_MAX\_SUBRS\_CALLS  8}}
+\DoxyCodeLine{598 }
+\DoxyCodeLine{599 }
+\DoxyCodeLine{600 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{601   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{602   \textcolor{comment}{/* T1\_MAX\_CHARSTRING\_OPERANDS is the charstring stack's capacity.  A     */}}
+\DoxyCodeLine{603   \textcolor{comment}{/* minimum of 16 is required.                                            */}}
+\DoxyCodeLine{604   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{605 \textcolor{preprocessor}{\#define T1\_MAX\_CHARSTRINGS\_OPERANDS  32}}
+\DoxyCodeLine{606 }
+\DoxyCodeLine{607 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* 0 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{609 }
+\DoxyCodeLine{610   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___decoder___zone_rec__}{T1\_Decoder\_ZoneRec\_}}}
+\DoxyCodeLine{611   \{}
+\DoxyCodeLine{612     FT\_Byte*  cursor;}
+\DoxyCodeLine{613     FT\_Byte*  base;}
+\DoxyCodeLine{614     FT\_Byte*  limit;}
+\DoxyCodeLine{615 }
+\DoxyCodeLine{616   \} \mbox{\hyperlink{struct_t1___decoder___zone_rec__}{T1\_Decoder\_ZoneRec}}, *\mbox{\hyperlink{struct_t1___decoder___zone_rec__}{T1\_Decoder\_Zone}};}
+\DoxyCodeLine{617 }
+\DoxyCodeLine{618 }
+\DoxyCodeLine{619   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___decoder_rec__}{T1\_DecoderRec\_}}*              \mbox{\hyperlink{struct_t1___decoder_rec__}{T1\_Decoder}};}
+\DoxyCodeLine{620   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___decoder___funcs_rec__}{T1\_Decoder\_FuncsRec\_}}*  \mbox{\hyperlink{struct_t1___decoder___funcs_rec__}{T1\_Decoder\_Funcs}};}
+\DoxyCodeLine{621 }
+\DoxyCodeLine{622 }
+\DoxyCodeLine{623   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{624   (*T1\_Decoder\_Callback)( \mbox{\hyperlink{struct_t1___decoder_rec__}{T1\_Decoder}}  decoder,}
+\DoxyCodeLine{625                           FT\_UInt     glyph\_index );}
+\DoxyCodeLine{626 }
+\DoxyCodeLine{627 }
+\DoxyCodeLine{628   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___decoder___funcs_rec__}{T1\_Decoder\_FuncsRec\_}}}
+\DoxyCodeLine{629   \{}
+\DoxyCodeLine{630     FT\_Error}
+\DoxyCodeLine{631     (*init)( \mbox{\hyperlink{struct_t1___decoder_rec__}{T1\_Decoder}}           decoder,}
+\DoxyCodeLine{632              \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}              face,}
+\DoxyCodeLine{633              \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}}              size,}
+\DoxyCodeLine{634              \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}         slot,}
+\DoxyCodeLine{635              FT\_Byte**            glyph\_names,}
+\DoxyCodeLine{636              \mbox{\hyperlink{struct_p_s___blend_rec__}{PS\_Blend}}             blend,}
+\DoxyCodeLine{637              FT\_Bool              hinting,}
+\DoxyCodeLine{638              FT\_Render\_Mode       hint\_mode,}
+\DoxyCodeLine{639              T1\_Decoder\_Callback  callback );}
+\DoxyCodeLine{640 }
+\DoxyCodeLine{641     void}
+\DoxyCodeLine{642     (*done)( \mbox{\hyperlink{struct_t1___decoder_rec__}{T1\_Decoder}}  decoder );}
+\DoxyCodeLine{643 }
+\DoxyCodeLine{644     FT\_Error}
+\DoxyCodeLine{645     (*parse\_charstrings)( \mbox{\hyperlink{struct_t1___decoder_rec__}{T1\_Decoder}}  decoder,}
+\DoxyCodeLine{646                           FT\_Byte*    base,}
+\DoxyCodeLine{647                           FT\_UInt     len );}
+\DoxyCodeLine{648 }
+\DoxyCodeLine{649   \} \mbox{\hyperlink{struct_t1___decoder___funcs_rec__}{T1\_Decoder\_FuncsRec}};}
+\DoxyCodeLine{650 }
+\DoxyCodeLine{651 }
+\DoxyCodeLine{652   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___decoder_rec__}{T1\_DecoderRec\_}}}
+\DoxyCodeLine{653   \{}
+\DoxyCodeLine{654     \mbox{\hyperlink{struct_t1___builder_rec__}{T1\_BuilderRec}}        builder;}
+\DoxyCodeLine{655 }
+\DoxyCodeLine{656     FT\_Long              stack[T1\_MAX\_CHARSTRINGS\_OPERANDS];}
+\DoxyCodeLine{657     FT\_Long*             top;}
+\DoxyCodeLine{658 }
+\DoxyCodeLine{659     \mbox{\hyperlink{struct_t1___decoder___zone_rec__}{T1\_Decoder\_ZoneRec}}   zones[T1\_MAX\_SUBRS\_CALLS + 1];}
+\DoxyCodeLine{660     \mbox{\hyperlink{struct_t1___decoder___zone_rec__}{T1\_Decoder\_Zone}}      zone;}
+\DoxyCodeLine{661 }
+\DoxyCodeLine{662     FT\_Service\_PsCMaps   psnames;      \textcolor{comment}{/* for seac */}}
+\DoxyCodeLine{663     FT\_UInt              num\_glyphs;}
+\DoxyCodeLine{664     FT\_Byte**            glyph\_names;}
+\DoxyCodeLine{665 }
+\DoxyCodeLine{666     FT\_Int               lenIV;        \textcolor{comment}{/* internal for sub routine calls */}}
+\DoxyCodeLine{667     FT\_UInt              num\_subrs;}
+\DoxyCodeLine{668     FT\_Byte**            subrs;}
+\DoxyCodeLine{669     FT\_PtrDist*          subrs\_len;    \textcolor{comment}{/* array of subrs length (optional) */}}
+\DoxyCodeLine{670 }
+\DoxyCodeLine{671     \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}            font\_matrix;}
+\DoxyCodeLine{672     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}            font\_offset;}
+\DoxyCodeLine{673 }
+\DoxyCodeLine{674     FT\_Int               flex\_state;}
+\DoxyCodeLine{675     FT\_Int               num\_flex\_vectors;}
+\DoxyCodeLine{676     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}            flex\_vectors[7];}
+\DoxyCodeLine{677 }
+\DoxyCodeLine{678     \mbox{\hyperlink{struct_p_s___blend_rec__}{PS\_Blend}}             blend;       \textcolor{comment}{/* for multiple master support */}}
+\DoxyCodeLine{679 }
+\DoxyCodeLine{680     FT\_Render\_Mode       hint\_mode;}
+\DoxyCodeLine{681 }
+\DoxyCodeLine{682     T1\_Decoder\_Callback  parse\_callback;}
+\DoxyCodeLine{683     \mbox{\hyperlink{struct_t1___decoder___funcs_rec__}{T1\_Decoder\_FuncsRec}}  funcs;}
+\DoxyCodeLine{684 }
+\DoxyCodeLine{685   \} \mbox{\hyperlink{struct_t1___decoder_rec__}{T1\_DecoderRec}};}
+\DoxyCodeLine{686 }
+\DoxyCodeLine{687 }
+\DoxyCodeLine{688 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{689 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{690 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{691 \textcolor{comment}{  /*****                     TYPE1 CHARMAPS                            *****/}}
+\DoxyCodeLine{692 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{693 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{694 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{695 }
+\DoxyCodeLine{696   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___c_map___classes_rec__}{T1\_CMap\_ClassesRec\_}}*  \mbox{\hyperlink{struct_t1___c_map___classes_rec__}{T1\_CMap\_Classes}};}
+\DoxyCodeLine{697 }
+\DoxyCodeLine{698   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___c_map___classes_rec__}{T1\_CMap\_ClassesRec\_}}}
+\DoxyCodeLine{699   \{}
+\DoxyCodeLine{700     \mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_Class}}  standard;}
+\DoxyCodeLine{701     \mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_Class}}  expert;}
+\DoxyCodeLine{702     \mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_Class}}  custom;}
+\DoxyCodeLine{703     \mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_Class}}  unicode;}
+\DoxyCodeLine{704 }
+\DoxyCodeLine{705   \} \mbox{\hyperlink{struct_t1___c_map___classes_rec__}{T1\_CMap\_ClassesRec}};}
+\DoxyCodeLine{706 }
+\DoxyCodeLine{707 }
+\DoxyCodeLine{708 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{709 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{710 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{711 \textcolor{comment}{  /*****                        PSAux Module Interface                 *****/}}
+\DoxyCodeLine{712 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{713 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{714 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{715 }
+\DoxyCodeLine{716   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_p_s_aux___service_rec__}{PSAux\_ServiceRec\_}}}
+\DoxyCodeLine{717   \{}
+\DoxyCodeLine{718     \textcolor{comment}{/* don't use `PS\_Table\_Funcs' and friends to avoid compiler warnings */}}
+\DoxyCodeLine{719     \textcolor{keyword}{const} \mbox{\hyperlink{struct_p_s___table___funcs_rec__}{PS\_Table\_FuncsRec}}*    ps\_table\_funcs;}
+\DoxyCodeLine{720     \textcolor{keyword}{const} \mbox{\hyperlink{struct_p_s___parser___funcs_rec__}{PS\_Parser\_FuncsRec}}*   ps\_parser\_funcs;}
+\DoxyCodeLine{721     \textcolor{keyword}{const} \mbox{\hyperlink{struct_t1___builder___funcs_rec__}{T1\_Builder\_FuncsRec}}*  t1\_builder\_funcs;}
+\DoxyCodeLine{722     \textcolor{keyword}{const} \mbox{\hyperlink{struct_t1___decoder___funcs_rec__}{T1\_Decoder\_FuncsRec}}*  t1\_decoder\_funcs;}
+\DoxyCodeLine{723 }
+\DoxyCodeLine{724     void}
+\DoxyCodeLine{725     (*t1\_decrypt)( FT\_Byte*   buffer,}
+\DoxyCodeLine{726                    FT\_Offset  length,}
+\DoxyCodeLine{727                    FT\_UShort  seed );}
+\DoxyCodeLine{728 }
+\DoxyCodeLine{729     \mbox{\hyperlink{struct_t1___c_map___classes_rec__}{T1\_CMap\_Classes}}  t1\_cmap\_classes;}
+\DoxyCodeLine{730 }
+\DoxyCodeLine{731   \} \mbox{\hyperlink{struct_p_s_aux___service_rec__}{PSAux\_ServiceRec}}, *\mbox{\hyperlink{struct_p_s_aux___service_rec__}{PSAux\_Service}};}
+\DoxyCodeLine{732 }
+\DoxyCodeLine{733   \textcolor{comment}{/* backwards-\/compatible type definition */}}
+\DoxyCodeLine{734   \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_p_s_aux___service_rec__}{PSAux\_ServiceRec}}   \mbox{\hyperlink{struct_p_s_aux___service_rec__}{PSAux\_Interface}};}
+\DoxyCodeLine{735 }
+\DoxyCodeLine{736 FT\_END\_HEADER}
+\DoxyCodeLine{737 }
+\DoxyCodeLine{738 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_PSAUX\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{739 }
+\DoxyCodeLine{740 }
+\DoxyCodeLine{741 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

@@ -1,0 +1,65 @@
+\hypertarget{_gradient_scale_8h_source}{}\doxysection{Gradient\+Scale.\+h}
+\label{_gradient_scale_8h_source}\index{831\_finite\_element\_modeling/GUI/source/GUI/GradientScale.h@{831\_finite\_element\_modeling/GUI/source/GUI/GradientScale.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}RGB\_HSL\_converter.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}RenderData.h"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <FTGL/FTGL.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <ftgl/FTFont.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <ftgl/FTGLPolygonFont.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}glm/vec4.hpp"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}glm/vec2.hpp"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_gradient_scale}{GradientScale}} \{}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} SetFont(FTFont* font);}
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} SetPosition(\textcolor{keyword}{const} glm::vec2\& position);}
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} FitIn(\textcolor{keywordtype}{float} height);}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} SetLabelColor(\textcolor{keyword}{const} glm::vec4\& text\_color, \textcolor{keyword}{const} glm::vec4\& backg\_color);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} Render(GLuint GradientShaderProgramID);}
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} Reset(glm::vec2 win\_size);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{comment}{//=================================}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} SetRenderMode(\textcolor{keyword}{const} \mbox{\hyperlink{struct_render_data_1_1_render_mode}{RenderData::RenderMode}}\& rmode);}
+\DoxyCodeLine{30     \textcolor{comment}{//void SetHueGradient(size\_t n\_values, const glm::vec2\& hue\_min\_max, const glm::vec2\& values\_min\_max , float saturation, float lightness);}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     glm::vec2 GetBounds();}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{private}:}
+\DoxyCodeLine{35     \textcolor{keywordtype}{void} FillTextMarks();}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     FTFont* m\_font;}
+\DoxyCodeLine{38     glm::vec4 m\_text\_color;}
+\DoxyCodeLine{39     glm::vec4 m\_backg\_color;}
+\DoxyCodeLine{40     glm::vec2 m\_position;}
+\DoxyCodeLine{41     glm::vec2 m\_size;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     glm::vec2 m\_win\_size;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{keywordtype}{float} m\_k\_bounds = 0.4;      \textcolor{comment}{//отношение фактической ширины элемента к длине.}}
+\DoxyCodeLine{46     \textcolor{keywordtype}{float} m\_k\_splitting\_zone = 0.85; \textcolor{comment}{//ширина зоны для текста по отношению к зоне для шкалы}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     glm::vec2 m\_k\_y\_margins = \{ 0.1, 0.1 \}; \textcolor{comment}{//отступы от фактических границ сверху и снизу для шкалы и текста.}}
+\DoxyCodeLine{49     \textcolor{keywordtype}{float} m\_k\_x\_text\_margin = 0.1; \textcolor{comment}{//отступ от зоны шкалы до текста.}}
+\DoxyCodeLine{50     \textcolor{keywordtype}{float} m\_k\_x\_scale\_margin = 0.1; \textcolor{comment}{//отступ шкалы от правой границы фактического размера.}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     }
+\DoxyCodeLine{53     }
+\DoxyCodeLine{54     \textcolor{keywordtype}{float} m\_min\_hue, m\_max\_hue, m\_min\_value, m\_max\_value, m\_lightness, m\_saturation;}
+\DoxyCodeLine{55     \textcolor{keywordtype}{size\_t} m\_n\_colors;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     std::vector<GLfloat> m\_text\_marks; \textcolor{comment}{//метки на шкале, для которых нужно отобразить значение.}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \};}
+
+\end{DoxyCode}

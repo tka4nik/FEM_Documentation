@@ -1,0 +1,111 @@
+\hypertarget{class_f_t_mesh}{}\doxysection{FTMesh Class Reference}
+\label{class_f_t_mesh}\index{FTMesh@{FTMesh}}
+
+
+{\ttfamily \#include $<$FTVectoriser.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_mesh_aa78f98bec8f9cd15d0255c326b7cf62d}{FTMesh}} ()
+\item 
+\mbox{\hyperlink{class_f_t_mesh_a7282fec857e649bf91c91b2957f292ac}{$\sim$\+FTMesh}} ()
+\item 
+void \mbox{\hyperlink{class_f_t_mesh_a4a503faa60d78f67cd487611b0f44b68}{Add\+Point}} (const FTGL\+\_\+\+DOUBLE x, const FTGL\+\_\+\+DOUBLE y, const FTGL\+\_\+\+DOUBLE z)
+\item 
+const FTGL\+\_\+\+DOUBLE $\ast$ \mbox{\hyperlink{class_f_t_mesh_a41c229d00a0edd342fff2577c7024dae}{Combine}} (const FTGL\+\_\+\+DOUBLE x, const FTGL\+\_\+\+DOUBLE y, const FTGL\+\_\+\+DOUBLE z)
+\item 
+void \mbox{\hyperlink{class_f_t_mesh_a03ddbeb4313ce4353c477d0afcdc4a1e}{Begin}} (GLenum mesh\+Type)
+\item 
+void \mbox{\hyperlink{class_f_t_mesh_a1ead56fbe963c5976ea3c268b8b0544d}{End}} ()
+\item 
+void \mbox{\hyperlink{class_f_t_mesh_a2e07adc55441296e88b6886c153c50fd}{Error}} (GLenum e)
+\item 
+unsigned int \mbox{\hyperlink{class_f_t_mesh_a3f48cd855967c1d54f627764ed787079}{Tesselation\+Count}} () const
+\item 
+const \mbox{\hyperlink{class_f_t_tesselation}{FTTesselation}} $\ast$const \mbox{\hyperlink{class_f_t_mesh_a8c95813fc797786f665bffa809f6c28f}{Tesselation}} (unsigned int index) const
+\item 
+const \mbox{\hyperlink{class_f_t_list}{Point\+List}} \& \mbox{\hyperlink{class_f_t_mesh_ac59273d146deeb87c68c623b1c4f4055}{Temp\+Point\+List}} () const
+\item 
+GLenum \mbox{\hyperlink{class_f_t_mesh_aceeacc16be540b7442f4410758ffb183}{Error}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_mesh}{FTMesh}} is a container of \mbox{\hyperlink{class_f_t_tesselation}{FTTesselation}}\textquotesingle{}s that make up a polygon glyph 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_mesh_aa78f98bec8f9cd15d0255c326b7cf62d}\label{class_f_t_mesh_aa78f98bec8f9cd15d0255c326b7cf62d}} 
+\index{FTMesh@{FTMesh}!FTMesh@{FTMesh}}
+\index{FTMesh@{FTMesh}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{FTMesh()}{FTMesh()}}
+{\footnotesize\ttfamily FTMesh\+::\+FTMesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor \mbox{\Hypertarget{class_f_t_mesh_a7282fec857e649bf91c91b2957f292ac}\label{class_f_t_mesh_a7282fec857e649bf91c91b2957f292ac}} 
+\index{FTMesh@{FTMesh}!````~FTMesh@{$\sim$FTMesh}}
+\index{````~FTMesh@{$\sim$FTMesh}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTMesh()}{~FTMesh()}}
+{\footnotesize\ttfamily FTMesh\+::$\sim$\+FTMesh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_mesh_a4a503faa60d78f67cd487611b0f44b68}\label{class_f_t_mesh_a4a503faa60d78f67cd487611b0f44b68}} 
+\index{FTMesh@{FTMesh}!AddPoint@{AddPoint}}
+\index{AddPoint@{AddPoint}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{AddPoint()}{AddPoint()}}
+{\footnotesize\ttfamily void FTMesh\+::\+Add\+Point (\begin{DoxyParamCaption}\item[{const FTGL\+\_\+\+DOUBLE}]{x,  }\item[{const FTGL\+\_\+\+DOUBLE}]{y,  }\item[{const FTGL\+\_\+\+DOUBLE}]{z }\end{DoxyParamCaption})}
+
+Add a point to the mesh \mbox{\Hypertarget{class_f_t_mesh_a03ddbeb4313ce4353c477d0afcdc4a1e}\label{class_f_t_mesh_a03ddbeb4313ce4353c477d0afcdc4a1e}} 
+\index{FTMesh@{FTMesh}!Begin@{Begin}}
+\index{Begin@{Begin}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{Begin()}{Begin()}}
+{\footnotesize\ttfamily void FTMesh\+::\+Begin (\begin{DoxyParamCaption}\item[{GLenum}]{mesh\+Type }\end{DoxyParamCaption})}
+
+Begin a new polygon \mbox{\Hypertarget{class_f_t_mesh_a41c229d00a0edd342fff2577c7024dae}\label{class_f_t_mesh_a41c229d00a0edd342fff2577c7024dae}} 
+\index{FTMesh@{FTMesh}!Combine@{Combine}}
+\index{Combine@{Combine}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{Combine()}{Combine()}}
+{\footnotesize\ttfamily const FTGL\+\_\+\+DOUBLE $\ast$ FTMesh\+::\+Combine (\begin{DoxyParamCaption}\item[{const FTGL\+\_\+\+DOUBLE}]{x,  }\item[{const FTGL\+\_\+\+DOUBLE}]{y,  }\item[{const FTGL\+\_\+\+DOUBLE}]{z }\end{DoxyParamCaption})}
+
+Create a combine point for the glu\+Tesselator \mbox{\Hypertarget{class_f_t_mesh_a1ead56fbe963c5976ea3c268b8b0544d}\label{class_f_t_mesh_a1ead56fbe963c5976ea3c268b8b0544d}} 
+\index{FTMesh@{FTMesh}!End@{End}}
+\index{End@{End}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{End()}{End()}}
+{\footnotesize\ttfamily void FTMesh\+::\+End (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+End a polygon \mbox{\Hypertarget{class_f_t_mesh_aceeacc16be540b7442f4410758ffb183}\label{class_f_t_mesh_aceeacc16be540b7442f4410758ffb183}} 
+\index{FTMesh@{FTMesh}!Error@{Error}}
+\index{Error@{Error}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily GLenum FTMesh\+::\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the GL ERROR returned by the glu tesselator \mbox{\Hypertarget{class_f_t_mesh_a2e07adc55441296e88b6886c153c50fd}\label{class_f_t_mesh_a2e07adc55441296e88b6886c153c50fd}} 
+\index{FTMesh@{FTMesh}!Error@{Error}}
+\index{Error@{Error}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FTMesh\+::\+Error (\begin{DoxyParamCaption}\item[{GLenum}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Record a glu\+Tesselation error \mbox{\Hypertarget{class_f_t_mesh_ac59273d146deeb87c68c623b1c4f4055}\label{class_f_t_mesh_ac59273d146deeb87c68c623b1c4f4055}} 
+\index{FTMesh@{FTMesh}!TempPointList@{TempPointList}}
+\index{TempPointList@{TempPointList}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{TempPointList()}{TempPointList()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_f_t_list}{Point\+List}} \& FTMesh\+::\+Temp\+Point\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the temporary point list. For testing only. \mbox{\Hypertarget{class_f_t_mesh_a8c95813fc797786f665bffa809f6c28f}\label{class_f_t_mesh_a8c95813fc797786f665bffa809f6c28f}} 
+\index{FTMesh@{FTMesh}!Tesselation@{Tesselation}}
+\index{Tesselation@{Tesselation}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{Tesselation()}{Tesselation()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_f_t_tesselation}{FTTesselation}} $\ast$const FTMesh\+::\+Tesselation (\begin{DoxyParamCaption}\item[{unsigned int}]{index }\end{DoxyParamCaption}) const}
+
+Get a tesselation by index \mbox{\Hypertarget{class_f_t_mesh_a3f48cd855967c1d54f627764ed787079}\label{class_f_t_mesh_a3f48cd855967c1d54f627764ed787079}} 
+\index{FTMesh@{FTMesh}!TesselationCount@{TesselationCount}}
+\index{TesselationCount@{TesselationCount}!FTMesh@{FTMesh}}
+\doxysubsubsection{\texorpdfstring{TesselationCount()}{TesselationCount()}}
+{\footnotesize\ttfamily unsigned int FTMesh\+::\+Tesselation\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The number of tesselations in the mesh 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTVectoriser.\+h\end{DoxyCompactItemize}

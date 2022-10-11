@@ -1,0 +1,81 @@
+\hypertarget{_dlg_prp_node_8h_source}{}\doxysection{Dlg\+Prp\+Node.\+h}
+\label{_dlg_prp_node_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/DlgPrpNode.h@{C:/Projects/FEM/prototype-\/prismatic/source/DlgPrpNode.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#if !defined(AFX\_DLGPRPNODE\_H\_\_4441D2DA\_AFF0\_413B\_B772\_56D6CD165834\_\_INCLUDED\_)}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AFX\_DLGPRPNODE\_H\_\_4441D2DA\_AFF0\_413B\_B772\_56D6CD165834\_\_INCLUDED\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{7 \textcolor{comment}{// DlgPrpNode.h : header file}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{11 \textcolor{comment}{// CDlgPrpNode dialog}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}SprDoc.h"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_dlg_prp_node}{CDlgPrpNode}} : \textcolor{keyword}{public} CDialog}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16 \textcolor{comment}{// Construction}}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_c_dlg_prp_node}{CDlgPrpNode}}(CWnd* pParent = NULL);   \textcolor{comment}{// standard constructor}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{comment}{// Dialog Data}}
+\DoxyCodeLine{21     \textcolor{comment}{//\{\{AFX\_DATA(CDlgPrpNode)}}
+\DoxyCodeLine{22     \textcolor{keyword}{enum} \{ IDD = IDD\_PRPNODE \};}
+\DoxyCodeLine{23     CString m\_strX;}
+\DoxyCodeLine{24     CString m\_strY;}
+\DoxyCodeLine{25     \textcolor{comment}{//\}\}AFX\_DATA}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{comment}{// Overrides}}
+\DoxyCodeLine{29     \textcolor{comment}{// ClassWizard generated virtual function overrides}}
+\DoxyCodeLine{30     \textcolor{comment}{//\{\{AFX\_VIRTUAL(CDlgPrpNode)}}
+\DoxyCodeLine{31     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{32     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} DoDataExchange(CDataExchange* pDX);    \textcolor{comment}{// DDX/DDV support}}
+\DoxyCodeLine{33     \textcolor{comment}{//\}\}AFX\_VIRTUAL}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{public}:}
+\DoxyCodeLine{36     CString m\_strY1;}
+\DoxyCodeLine{37     CString m\_strX1;}
+\DoxyCodeLine{38     CString m\_strR;}
+\DoxyCodeLine{39     CString m\_strN;}
+\DoxyCodeLine{40     \textcolor{keywordtype}{bool}    m\_bN;}
+\DoxyCodeLine{41 \textcolor{keyword}{public}:}
+\DoxyCodeLine{42     \textcolor{keyword}{virtual} BOOL Create(CWnd* pParentWnd);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{public}:}
+\DoxyCodeLine{45     \textcolor{keywordtype}{void} UpdateData(BOOL bSAV);}
+\DoxyCodeLine{46     \mbox{\hyperlink{class_c_spr_doc}{CSprDoc}}  *m\_pDoc;}
+\DoxyCodeLine{47 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{48 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} EnableControl(\textcolor{keywordtype}{int} nID, BOOL bEnable);}
+\DoxyCodeLine{50 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{53     \textcolor{comment}{//\{\{AFX\_MSG(CDlgPrpNode)}}
+\DoxyCodeLine{54     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnOK();}
+\DoxyCodeLine{55     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnCancel();}
+\DoxyCodeLine{56     afx\_msg \textcolor{keywordtype}{void} OnPrpnodeB1();}
+\DoxyCodeLine{57     afx\_msg \textcolor{keywordtype}{void} OnKillfocusPrpnodeE1();}
+\DoxyCodeLine{58     afx\_msg \textcolor{keywordtype}{void} OnKillfocusPrpnodeE2();}
+\DoxyCodeLine{59     afx\_msg \textcolor{keywordtype}{void} OnEnKillfocusPrpnodeE5();}
+\DoxyCodeLine{60     afx\_msg \textcolor{keywordtype}{void} OnEnKillfocusPrpnodeE6();}
+\DoxyCodeLine{61     afx\_msg \textcolor{keywordtype}{void} OnDeltaposPrpnodeSp1(NMHDR *pNMHDR, LRESULT *pResult);}
+\DoxyCodeLine{62     \textcolor{comment}{//\}\}AFX\_MSG}}
+\DoxyCodeLine{63     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{keyword}{public}:}
+\DoxyCodeLine{66     afx\_msg \textcolor{keywordtype}{void} OnDeltaposPrpnodeSp2(NMHDR *pNMHDR, LRESULT *pResult);}
+\DoxyCodeLine{67 \textcolor{keyword}{public}:}
+\DoxyCodeLine{68     afx\_msg \textcolor{keywordtype}{void} OnDeltaposPrpnodeSp3(NMHDR *pNMHDR, LRESULT *pResult);}
+\DoxyCodeLine{69 \textcolor{keyword}{public}:}
+\DoxyCodeLine{70     afx\_msg \textcolor{keywordtype}{void} OnDeltaposPrpnodeSp4(NMHDR *pNMHDR, LRESULT *pResult);}
+\DoxyCodeLine{71 \};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{//\{\{AFX\_INSERT\_LOCATION\}\}}}
+\DoxyCodeLine{74 \textcolor{comment}{// Microsoft Visual C++ will insert additional declarations immediately before the previous line.}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_DLGPRPNODE\_H\_\_4441D2DA\_AFF0\_413B\_B772\_56D6CD165834\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

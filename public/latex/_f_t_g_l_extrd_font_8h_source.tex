@@ -1,0 +1,34 @@
+\hypertarget{_f_t_g_l_extrd_font_8h_source}{}\doxysection{FTGLExtrd\+Font.\+h}
+\label{_f_t_g_l_extrd_font_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGLExtrdFont.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGLExtrdFont.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_FTGLExtrdFont\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_FTGLExtrdFont\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}FTFont.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_glyph}{FTGlyph}};}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_g_l_extrd_font}{FTGLExtrdFont}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_f_t_font}{FTFont}}}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18     \textcolor{keyword}{public}:}
+\DoxyCodeLine{24         \mbox{\hyperlink{class_f_t_g_l_extrd_font_a6bdf18ee111a011b01b9a29cdd693ce7}{FTGLExtrdFont}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* fontFilePath);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{32         \mbox{\hyperlink{class_f_t_g_l_extrd_font_a965dda1073290e857f774e8d55f24603}{FTGLExtrdFont}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pBufferBytes, \textcolor{keywordtype}{size\_t} bufferSizeInBytes);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37         \mbox{\hyperlink{class_f_t_g_l_extrd_font_a2c3cd7b54818e844901c6fbe2eba768d}{\string~FTGLExtrdFont}}();}
+\DoxyCodeLine{38         }
+\DoxyCodeLine{44         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_g_l_extrd_font_aa45bae6acbc1d9ec034e80930372f000}{Depth}}( \textcolor{keywordtype}{float} d) \{ depth = d;\}}
+\DoxyCodeLine{45         }
+\DoxyCodeLine{46     \textcolor{keyword}{private}:}
+\DoxyCodeLine{53         \textcolor{keyword}{inline} \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}* \mbox{\hyperlink{class_f_t_font_a7a803a726808d612c804a430c93d2652}{MakeGlyph}}( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} glyphIndex);}
+\DoxyCodeLine{54         }
+\DoxyCodeLine{58         \textcolor{keywordtype}{float} depth;}
+\DoxyCodeLine{59 \};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTGLExtrdFont\_\_}}
+\DoxyCodeLine{63 }
+
+\end{DoxyCode}

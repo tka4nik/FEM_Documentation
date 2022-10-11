@@ -1,0 +1,66 @@
+\hypertarget{ftxf86_8h_source}{}\doxysection{ftxf86.\+h}
+\label{ftxf86_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftxf86.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftxf86.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftxf86.h                                                               */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Support functions for X11.                                           */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2002, 2003, 2004 by                                          */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTXF86\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTXF86\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   \textcolor{comment}{/* this comment is intentionally disabled for now, to prevent this       */}}
+\DoxyCodeLine{35   \textcolor{comment}{/* function from appearing in the API Reference.                         */}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37   \textcolor{comment}{/*@***********************************************************************/}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*    FT\_Get\_X11\_Font\_Format                                             */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    Return a string describing the format of a given face as an X11    */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*    FONT\_PROPERTY.  It should only be used by the FreeType 2 font      */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*    backend of the XFree86 font server.                                */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{47   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    face :: Input face handle.                                         */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{50   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*    Font format string.  NULL in case of error.                        */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{53   FT\_EXPORT( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* )}
+\DoxyCodeLine{54   FT\_Get\_X11\_Font\_Format( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}  face );}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56  \textcolor{comment}{/* */}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 FT\_END\_HEADER}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTXF86\_H\_\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

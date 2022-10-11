@@ -1,0 +1,139 @@
+\hypertarget{class_f_t_g_l_texture_font}{}\doxysection{FTGLTexture\+Font Class Reference}
+\label{class_f_t_g_l_texture_font}\index{FTGLTextureFont@{FTGLTextureFont}}
+
+
+{\ttfamily \#include $<$FTGLTexture\+Font.\+h$>$}
+
+Inheritance diagram for FTGLTexture\+Font\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_t_g_l_texture_font}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_g_l_texture_font_aa2bb64578b54c41c08dbcb9d8120f481}{FTGLTexture\+Font}} (const char $\ast$font\+File\+Path)
+\item 
+\mbox{\hyperlink{class_f_t_g_l_texture_font_ae651fee4b36b49f2bd364edebcf2d064}{FTGLTexture\+Font}} (const unsigned char $\ast$p\+Buffer\+Bytes, size\+\_\+t buffer\+Size\+In\+Bytes)
+\item 
+virtual \mbox{\hyperlink{class_f_t_g_l_texture_font_aefdeccb3354206e2745b2c8c3eb38400}{$\sim$\+FTGLTexture\+Font}} ()
+\item 
+virtual bool \mbox{\hyperlink{class_f_t_g_l_texture_font_acf14d05d13c68cd82b85bd7472cd4331}{Face\+Size}} (const unsigned int size, const unsigned int res=72)
+\item 
+virtual void \mbox{\hyperlink{class_f_t_g_l_texture_font_a54162dba80ce7fa7a9b4d944ccb6b436}{Render}} (const char $\ast$string)
+\item 
+virtual void \mbox{\hyperlink{class_f_t_g_l_texture_font_a71509ad87ad63824d0ad23a19ca9bdb7}{Render}} (const wchar\+\_\+t $\ast$string)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_g_l_texture_font}{FTGLTexture\+Font}} is a specialisation of the \mbox{\hyperlink{class_f_t_font}{FTFont}} class for handling Texture mapped fonts
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_f_t_font}{FTFont}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_g_l_texture_font_aa2bb64578b54c41c08dbcb9d8120f481}\label{class_f_t_g_l_texture_font_aa2bb64578b54c41c08dbcb9d8120f481}} 
+\index{FTGLTextureFont@{FTGLTextureFont}!FTGLTextureFont@{FTGLTextureFont}}
+\index{FTGLTextureFont@{FTGLTextureFont}!FTGLTextureFont@{FTGLTextureFont}}
+\doxysubsubsection{\texorpdfstring{FTGLTextureFont()}{FTGLTextureFont()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FTGLTexture\+Font\+::\+FTGLTexture\+Font (\begin{DoxyParamCaption}\item[{const char $\ast$}]{font\+File\+Path }\end{DoxyParamCaption})}
+
+Open and read a font file. Sets Error flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+File\+Path} & font file path. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_g_l_texture_font_ae651fee4b36b49f2bd364edebcf2d064}\label{class_f_t_g_l_texture_font_ae651fee4b36b49f2bd364edebcf2d064}} 
+\index{FTGLTextureFont@{FTGLTextureFont}!FTGLTextureFont@{FTGLTextureFont}}
+\index{FTGLTextureFont@{FTGLTextureFont}!FTGLTextureFont@{FTGLTextureFont}}
+\doxysubsubsection{\texorpdfstring{FTGLTextureFont()}{FTGLTextureFont()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily FTGLTexture\+Font\+::\+FTGLTexture\+Font (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{p\+Buffer\+Bytes,  }\item[{size\+\_\+t}]{buffer\+Size\+In\+Bytes }\end{DoxyParamCaption})}
+
+Open and read a font from a buffer in memory. Sets Error flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Buffer\+Bytes} & the in-\/memory buffer \\
+\hline
+{\em buffer\+Size\+In\+Bytes} & the length of the buffer in bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_g_l_texture_font_aefdeccb3354206e2745b2c8c3eb38400}\label{class_f_t_g_l_texture_font_aefdeccb3354206e2745b2c8c3eb38400}} 
+\index{FTGLTextureFont@{FTGLTextureFont}!````~FTGLTextureFont@{$\sim$FTGLTextureFont}}
+\index{````~FTGLTextureFont@{$\sim$FTGLTextureFont}!FTGLTextureFont@{FTGLTextureFont}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTGLTextureFont()}{~FTGLTextureFont()}}
+{\footnotesize\ttfamily virtual FTGLTexture\+Font\+::$\sim$\+FTGLTexture\+Font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_g_l_texture_font_acf14d05d13c68cd82b85bd7472cd4331}\label{class_f_t_g_l_texture_font_acf14d05d13c68cd82b85bd7472cd4331}} 
+\index{FTGLTextureFont@{FTGLTextureFont}!FaceSize@{FaceSize}}
+\index{FaceSize@{FaceSize}!FTGLTextureFont@{FTGLTextureFont}}
+\doxysubsubsection{\texorpdfstring{FaceSize()}{FaceSize()}}
+{\footnotesize\ttfamily virtual bool FTGLTexture\+Font\+::\+Face\+Size (\begin{DoxyParamCaption}\item[{const unsigned int}]{size,  }\item[{const unsigned int}]{res = {\ttfamily 72} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set the char size for the current face.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & the face size in points (1/72 inch) \\
+\hline
+{\em res} & the resolution of the target device. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if size was set correctly 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_f_t_font_aae95510a733d6755bbbaf92d67796ff9}{FTFont}}.
+
+\mbox{\Hypertarget{class_f_t_g_l_texture_font_a54162dba80ce7fa7a9b4d944ccb6b436}\label{class_f_t_g_l_texture_font_a54162dba80ce7fa7a9b4d944ccb6b436}} 
+\index{FTGLTextureFont@{FTGLTextureFont}!Render@{Render}}
+\index{Render@{Render}!FTGLTextureFont@{FTGLTextureFont}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void FTGLTexture\+Font\+::\+Render (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Renders a string of characters
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & \textquotesingle{}C\textquotesingle{} style string to be output. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_f_t_font_a93f5c144d5a0603508ff3d6c28aaf6ad}{FTFont}}.
+
+\mbox{\Hypertarget{class_f_t_g_l_texture_font_a71509ad87ad63824d0ad23a19ca9bdb7}\label{class_f_t_g_l_texture_font_a71509ad87ad63824d0ad23a19ca9bdb7}} 
+\index{FTGLTextureFont@{FTGLTextureFont}!Render@{Render}}
+\index{Render@{Render}!FTGLTextureFont@{FTGLTextureFont}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void FTGLTexture\+Font\+::\+Render (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Renders a string of characters
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & wchar\+\_\+t string to be output. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_f_t_font_af69d1b663afded110d91312831e3a2e3}{FTFont}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTGLTexture\+Font.\+h\end{DoxyCompactItemize}

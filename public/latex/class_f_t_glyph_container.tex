@@ -1,0 +1,190 @@
+\hypertarget{class_f_t_glyph_container}{}\doxysection{FTGlyph\+Container Class Reference}
+\label{class_f_t_glyph_container}\index{FTGlyphContainer@{FTGlyphContainer}}
+
+
+{\ttfamily \#include $<$FTGlyph\+Container.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_glyph_container_a277feb3b5aec44774f34957405f8bd33}{FTGlyph\+Container}} (\mbox{\hyperlink{class_f_t_face}{FTFace}} $\ast$face)
+\item 
+\mbox{\hyperlink{class_f_t_glyph_container_a37389dc7c5764dbeb97d0e89ca92337a}{$\sim$\+FTGlyph\+Container}} ()
+\item 
+bool \mbox{\hyperlink{class_f_t_glyph_container_af733b9a0df70930abc1091571287e820}{Char\+Map}} (FT\+\_\+\+Encoding encoding)
+\item 
+unsigned int \mbox{\hyperlink{class_f_t_glyph_container_a5bf13e5c6c6d2da3c62600d3a701fb71}{Font\+Index}} (const unsigned int character\+Code) const
+\item 
+void \mbox{\hyperlink{class_f_t_glyph_container_ae8f085d829fce8d00479873058bc5ebe}{Add}} (\mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} $\ast$glyph, const unsigned int character\+Code)
+\item 
+const \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} $\ast$const \mbox{\hyperlink{class_f_t_glyph_container_a2b815a8eda0da9b8e0cee0e3200fff82}{Glyph}} (const unsigned int character\+Code) const
+\item 
+\mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \mbox{\hyperlink{class_f_t_glyph_container_a256b308518bb98ea622b9c77a9b36117}{BBox}} (const unsigned int character\+Code) const
+\item 
+float \mbox{\hyperlink{class_f_t_glyph_container_ab57f99b48c5991558284bd85504291b1}{Advance}} (const unsigned int character\+Code, const unsigned int next\+Character\+Code)
+\item 
+\mbox{\hyperlink{class_f_t_point}{FTPoint}} \mbox{\hyperlink{class_f_t_glyph_container_a07282bc462856a8cfd4a0f5882df0371}{Render}} (const unsigned int character\+Code, const unsigned int next\+Character\+Code, \mbox{\hyperlink{class_f_t_point}{FTPoint}} pen\+Position)
+\item 
+FT\+\_\+\+Error \mbox{\hyperlink{class_f_t_glyph_container_ad2cc804c120cf4ead5d825725a21ca80}{Error}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_glyph_container}{FTGlyph\+Container}} holds the post processed \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} objects.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_glyph_container_a277feb3b5aec44774f34957405f8bd33}\label{class_f_t_glyph_container_a277feb3b5aec44774f34957405f8bd33}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!FTGlyphContainer@{FTGlyphContainer}}
+\index{FTGlyphContainer@{FTGlyphContainer}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{FTGlyphContainer()}{FTGlyphContainer()}}
+{\footnotesize\ttfamily FTGlyph\+Container\+::\+FTGlyph\+Container (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_f_t_face}{FTFace}} $\ast$}]{face }\end{DoxyParamCaption})}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em face} & The Freetype face \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_glyph_container_a37389dc7c5764dbeb97d0e89ca92337a}\label{class_f_t_glyph_container_a37389dc7c5764dbeb97d0e89ca92337a}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!````~FTGlyphContainer@{$\sim$FTGlyphContainer}}
+\index{````~FTGlyphContainer@{$\sim$FTGlyphContainer}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTGlyphContainer()}{~FTGlyphContainer()}}
+{\footnotesize\ttfamily FTGlyph\+Container\+::$\sim$\+FTGlyph\+Container (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_glyph_container_ae8f085d829fce8d00479873058bc5ebe}\label{class_f_t_glyph_container_ae8f085d829fce8d00479873058bc5ebe}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!Add@{Add}}
+\index{Add@{Add}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{Add()}{Add()}}
+{\footnotesize\ttfamily void FTGlyph\+Container\+::\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} $\ast$}]{glyph,  }\item[{const unsigned int}]{character\+Code }\end{DoxyParamCaption})}
+
+Adds a glyph to this glyph list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em glyph} & The \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} to be inserted into the container \\
+\hline
+{\em character\+Code} & The char code of the glyph NOT the glyph index. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_glyph_container_ab57f99b48c5991558284bd85504291b1}\label{class_f_t_glyph_container_ab57f99b48c5991558284bd85504291b1}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!Advance@{Advance}}
+\index{Advance@{Advance}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{Advance()}{Advance()}}
+{\footnotesize\ttfamily float FTGlyph\+Container\+::\+Advance (\begin{DoxyParamCaption}\item[{const unsigned int}]{character\+Code,  }\item[{const unsigned int}]{next\+Character\+Code }\end{DoxyParamCaption})}
+
+Returns the kerned advance width for a glyph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em character\+Code} & glyph index of the character \\
+\hline
+{\em next\+Character\+Code} & the next glyph in a string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+advance width 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_glyph_container_a256b308518bb98ea622b9c77a9b36117}\label{class_f_t_glyph_container_a256b308518bb98ea622b9c77a9b36117}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!BBox@{BBox}}
+\index{BBox@{BBox}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{BBox()}{BBox()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_b_box}{FTBBox}} FTGlyph\+Container\+::\+BBox (\begin{DoxyParamCaption}\item[{const unsigned int}]{character\+Code }\end{DoxyParamCaption}) const}
+
+Get the bounding box for a character. 
+\begin{DoxyParams}{Parameters}
+{\em character\+Code} & The char code of the glyph NOT the glyph index ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_glyph_container_af733b9a0df70930abc1091571287e820}\label{class_f_t_glyph_container_af733b9a0df70930abc1091571287e820}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!CharMap@{CharMap}}
+\index{CharMap@{CharMap}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{CharMap()}{CharMap()}}
+{\footnotesize\ttfamily bool FTGlyph\+Container\+::\+Char\+Map (\begin{DoxyParamCaption}\item[{FT\+\_\+\+Encoding}]{encoding }\end{DoxyParamCaption})}
+
+Sets the character map for the face.
+
+
+\begin{DoxyParams}{Parameters}
+{\em encoding} & the Freetype encoding symbol. See above. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if charmap was valid and set correctly 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_glyph_container_ad2cc804c120cf4ead5d825725a21ca80}\label{class_f_t_glyph_container_ad2cc804c120cf4ead5d825725a21ca80}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!Error@{Error}}
+\index{Error@{Error}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily FT\+\_\+\+Error FTGlyph\+Container\+::\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Queries the Font for errors.
+
+\begin{DoxyReturn}{Returns}
+The current error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_glyph_container_a5bf13e5c6c6d2da3c62600d3a701fb71}\label{class_f_t_glyph_container_a5bf13e5c6c6d2da3c62600d3a701fb71}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!FontIndex@{FontIndex}}
+\index{FontIndex@{FontIndex}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{FontIndex()}{FontIndex()}}
+{\footnotesize\ttfamily unsigned int FTGlyph\+Container\+::\+Font\+Index (\begin{DoxyParamCaption}\item[{const unsigned int}]{character\+Code }\end{DoxyParamCaption}) const}
+
+Get the font index of the input character.
+
+
+\begin{DoxyParams}{Parameters}
+{\em character\+Code} & The character code of the requested glyph in the current encoding eg apple roman. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The font index for the character. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_glyph_container_a2b815a8eda0da9b8e0cee0e3200fff82}\label{class_f_t_glyph_container_a2b815a8eda0da9b8e0cee0e3200fff82}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!Glyph@{Glyph}}
+\index{Glyph@{Glyph}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{Glyph()}{Glyph()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} $\ast$const FTGlyph\+Container\+::\+Glyph (\begin{DoxyParamCaption}\item[{const unsigned int}]{character\+Code }\end{DoxyParamCaption}) const}
+
+Get a glyph from the glyph list
+
+
+\begin{DoxyParams}{Parameters}
+{\em character\+Code} & The char code of the glyph NOT the glyph index ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} or {\ttfamily null} is it hasn\textquotesingle{}t been loaded. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_glyph_container_a07282bc462856a8cfd4a0f5882df0371}\label{class_f_t_glyph_container_a07282bc462856a8cfd4a0f5882df0371}} 
+\index{FTGlyphContainer@{FTGlyphContainer}!Render@{Render}}
+\index{Render@{Render}!FTGlyphContainer@{FTGlyphContainer}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_point}{FTPoint}} FTGlyph\+Container\+::\+Render (\begin{DoxyParamCaption}\item[{const unsigned int}]{character\+Code,  }\item[{const unsigned int}]{next\+Character\+Code,  }\item[{\mbox{\hyperlink{class_f_t_point}{FTPoint}}}]{pen\+Position }\end{DoxyParamCaption})}
+
+Renders a character 
+\begin{DoxyParams}{Parameters}
+{\em character\+Code} & the glyph to be Rendered \\
+\hline
+{\em next\+Character\+Code} & the next glyph in the string. Used for kerning. \\
+\hline
+{\em pen\+Position} & the position to Render the glyph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The distance to advance the pen position after Rendering 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTGlyph\+Container.\+h\end{DoxyCompactItemize}

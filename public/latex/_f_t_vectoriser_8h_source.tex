@@ -1,0 +1,134 @@
+\hypertarget{_f_t_vectoriser_8h_source}{}\doxysection{FTVectoriser.\+h}
+\label{_f_t_vectoriser_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTVectoriser.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTVectoriser.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTVectoriser\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTVectoriser\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}FTContour.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}FTList.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}FTPoint.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}FTVector.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#ifndef CALLBACK}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define CALLBACK}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 }
+\DoxyCodeLine{20 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_tesselation}{FTTesselation}}}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22     \textcolor{keyword}{public}:}
+\DoxyCodeLine{26         \mbox{\hyperlink{class_f_t_tesselation_a8ae81852ffa0dfb1bc65e85dc6d35df2}{FTTesselation}}( GLenum m)}
+\DoxyCodeLine{27         :   meshType(m)}
+\DoxyCodeLine{28         \{}
+\DoxyCodeLine{29             pointList.reserve( 128);}
+\DoxyCodeLine{30         \}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{35         \mbox{\hyperlink{class_f_t_tesselation_a55bd008edbf969720fa3dc083bce1ac0}{\string~FTTesselation}}()}
+\DoxyCodeLine{36         \{}
+\DoxyCodeLine{37             pointList.clear();}
+\DoxyCodeLine{38         \}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{43         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_tesselation_a204a9e646cee25f374faad125d71d5e6}{AddPoint}}( \textcolor{keyword}{const} FTGL\_DOUBLE x, \textcolor{keyword}{const} FTGL\_DOUBLE y, \textcolor{keyword}{const} FTGL\_DOUBLE z)}
+\DoxyCodeLine{44         \{   }
+\DoxyCodeLine{45             pointList.push\_back( \mbox{\hyperlink{class_f_t_point}{FTPoint}}( x, y, z));}
+\DoxyCodeLine{46         \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{51         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_f_t_tesselation_af18f831be3085237e54ae699a5c987e5}{PointCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} pointList.size();\}}
+\DoxyCodeLine{52         }
+\DoxyCodeLine{56         \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& Point( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} pointList[index];\}}
+\DoxyCodeLine{57         }
+\DoxyCodeLine{61         GLenum \mbox{\hyperlink{class_f_t_tesselation_a9ffd7ba1d459dae14eb6fd11430057e1}{PolygonType}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} meshType;\}}
+\DoxyCodeLine{62         }
+\DoxyCodeLine{63     \textcolor{keyword}{private}:}
+\DoxyCodeLine{67         \textcolor{keyword}{typedef} \mbox{\hyperlink{class_f_t_vector}{FTVector<FTPoint>}} PointVector;}
+\DoxyCodeLine{68         PointVector pointList;}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{73         GLenum meshType;}
+\DoxyCodeLine{74 \};}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 }
+\DoxyCodeLine{80 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_mesh}{FTMesh}}}
+\DoxyCodeLine{81 \{}
+\DoxyCodeLine{82     \textcolor{keyword}{typedef} \mbox{\hyperlink{class_f_t_vector}{FTVector<FTTesselation*>}} \mbox{\hyperlink{class_f_t_vector}{TesselationVector}};}
+\DoxyCodeLine{83     \textcolor{keyword}{typedef} \mbox{\hyperlink{class_f_t_list}{FTList<FTPoint>}} \mbox{\hyperlink{class_f_t_list}{PointList}};}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{keyword}{public}:}
+\DoxyCodeLine{89         \mbox{\hyperlink{class_f_t_mesh_aa78f98bec8f9cd15d0255c326b7cf62d}{FTMesh}}();}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{94         \mbox{\hyperlink{class_f_t_mesh_a7282fec857e649bf91c91b2957f292ac}{\string~FTMesh}}();}
+\DoxyCodeLine{95         }
+\DoxyCodeLine{99         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_mesh_a4a503faa60d78f67cd487611b0f44b68}{AddPoint}}( \textcolor{keyword}{const} FTGL\_DOUBLE x, \textcolor{keyword}{const} FTGL\_DOUBLE y, \textcolor{keyword}{const} FTGL\_DOUBLE z);}
+\DoxyCodeLine{100         }
+\DoxyCodeLine{104         \textcolor{keyword}{const} FTGL\_DOUBLE* \mbox{\hyperlink{class_f_t_mesh_a41c229d00a0edd342fff2577c7024dae}{Combine}}( \textcolor{keyword}{const} FTGL\_DOUBLE x, \textcolor{keyword}{const} FTGL\_DOUBLE y, \textcolor{keyword}{const} FTGL\_DOUBLE z);}
+\DoxyCodeLine{105         }
+\DoxyCodeLine{109         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_mesh_a03ddbeb4313ce4353c477d0afcdc4a1e}{Begin}}( GLenum meshType);}
+\DoxyCodeLine{110         }
+\DoxyCodeLine{114         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_mesh_a1ead56fbe963c5976ea3c268b8b0544d}{End}}();}
+\DoxyCodeLine{115         }
+\DoxyCodeLine{119         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_mesh_a2e07adc55441296e88b6886c153c50fd}{Error}}( GLenum e) \{ err = e;\}}
+\DoxyCodeLine{120         }
+\DoxyCodeLine{124         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_mesh_a3f48cd855967c1d54f627764ed787079}{TesselationCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} tesselationList.size();\}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{129         \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_tesselation}{FTTesselation}}* \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_mesh_a8c95813fc797786f665bffa809f6c28f}{Tesselation}}( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} index) \textcolor{keyword}{const};}
+\DoxyCodeLine{130         }
+\DoxyCodeLine{134         \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_list}{PointList}}\& \mbox{\hyperlink{class_f_t_mesh_ac59273d146deeb87c68c623b1c4f4055}{TempPointList}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} tempPointList;\}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{139         GLenum \mbox{\hyperlink{class_f_t_mesh_aceeacc16be540b7442f4410758ffb183}{Error}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} err;\}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{keyword}{private}:}
+\DoxyCodeLine{145         \mbox{\hyperlink{class_f_t_tesselation}{FTTesselation}}* currentTesselation;}
+\DoxyCodeLine{146         }
+\DoxyCodeLine{150         TesselationVector tesselationList;}
+\DoxyCodeLine{151         }
+\DoxyCodeLine{155         PointList tempPointList;}
+\DoxyCodeLine{156         }
+\DoxyCodeLine{160         GLenum err;}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \};}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{keyword}{const} FTGL\_DOUBLE FTGL\_FRONT\_FACING = 1.0;}
+\DoxyCodeLine{165 \textcolor{keyword}{const} FTGL\_DOUBLE FTGL\_BACK\_FACING = -\/1.0;}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{178 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_vectoriser}{FTVectoriser}}}
+\DoxyCodeLine{179 \{}
+\DoxyCodeLine{180     \textcolor{keyword}{public}:}
+\DoxyCodeLine{186         \mbox{\hyperlink{class_f_t_vectoriser_a32ca6ea1d5e99fa0337f4e2430a336cb}{FTVectoriser}}( \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}} glyph);}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{191         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_vectoriser_a093cf6d5eb2d3113d76cc9b293673d76}{\string~FTVectoriser}}();}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{199         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_vectoriser_a9245ebfaeaa522c87f7d3faaf75ab85f}{MakeMesh}}( FTGL\_DOUBLE zNormal = FTGL\_FRONT\_FACING);}
+\DoxyCodeLine{200         }
+\DoxyCodeLine{204         \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_mesh}{FTMesh}}* \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_vectoriser_a9ee76857b7065c5fbece0695c2a99861}{GetMesh}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} mesh;\}}
+\DoxyCodeLine{205         }
+\DoxyCodeLine{211         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_f_t_vectoriser_aff1d33b51ede40e45f80d143cd4b7680}{PointCount}}();}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{218         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_f_t_vectoriser_ad5cd117c019211403b8ff723911061c4}{ContourCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} ftContourCount;\}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{225          \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_contour}{FTContour}}* \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_vectoriser_ac592dc1698008c495ac8e4e85cc27f82}{Contour}}( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} index) \textcolor{keyword}{const};}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{233         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_f_t_vectoriser_a601d0107397eb34f4b6d6670cee3f9f3}{ContourSize}}( \textcolor{keywordtype}{int} c)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} contourList[c]-\/>PointCount();\}}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{240         \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_vectoriser_a27ba5b6e9382c9c60483ec484f317be2}{ContourFlag}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} contourFlag;\}}
+\DoxyCodeLine{241         }
+\DoxyCodeLine{242     \textcolor{keyword}{private}:}
+\DoxyCodeLine{246         \textcolor{keywordtype}{void} ProcessContours();}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{251         \mbox{\hyperlink{class_f_t_contour}{FTContour}}** contourList;}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{256         \mbox{\hyperlink{class_f_t_mesh}{FTMesh}}* mesh;}
+\DoxyCodeLine{257         }
+\DoxyCodeLine{261         \textcolor{keywordtype}{short} ftContourCount;}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{266         \textcolor{keywordtype}{int} contourFlag;}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{271         \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}} outline;}
+\DoxyCodeLine{272 \};}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTVectoriser\_\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,92 @@
+\hypertarget{_f_t_g_l_8h_source}{}\doxysection{FTGL.\+h}
+\label{_f_t_g_l_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGL.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGL.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTGL\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTGL\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{typedef} \textcolor{keywordtype}{double}   FTGL\_DOUBLE;}
+\DoxyCodeLine{6 \textcolor{keyword}{typedef} \textcolor{keywordtype}{float}    FTGL\_FLOAT;}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{comment}{// Fixes for deprecated identifiers in 2.1.5}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#ifndef FT\_OPEN\_MEMORY}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{    \#define FT\_OPEN\_MEMORY (FT\_Open\_Flags)1}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#ifndef FT\_RENDER\_MODE\_MONO}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{    \#define FT\_RENDER\_MODE\_MONO ft\_render\_mode\_mono}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#ifndef FT\_RENDER\_MODE\_NORMAL}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{    \#define FT\_RENDER\_MODE\_NORMAL ft\_render\_mode\_normal}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21   }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifdef WIN32}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{comment}{// Under windows avoid including <windows.h> is overrated. }}
+\DoxyCodeLine{25     \textcolor{comment}{// Sure, it can be avoided and "{}name space pollution"{} can be}}
+\DoxyCodeLine{26     \textcolor{comment}{// avoided, but why? It really doesn't make that much difference}}
+\DoxyCodeLine{27     \textcolor{comment}{// these days.}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{    \#define  WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{    \#include <windows.h>}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{    \#ifndef \_\_gl\_h\_}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{        \#include <GL/gl.h>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{        \#include <GL/glu.h>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{comment}{// Non windows platforms -\/ don't require nonsense as seen above :-\/)    }}
+\DoxyCodeLine{39 \textcolor{preprocessor}{    \#ifndef \_\_gl\_h\_}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{        \#ifdef \_\_APPLE\_CC\_\_}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{            \#include <OpenGL/gl.h>}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{            \#include <OpenGL/glu.h>}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{            \#include <GL/gl.h>}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{            \#include <GL/glu.h>}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{        \#endif                }}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{comment}{// Required for compatibility with glext.h style function definitions of }}
+\DoxyCodeLine{51     \textcolor{comment}{// OpenGL extensions, such as in src/osg/Point.cpp.}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{    \#ifndef APIENTRY}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{        \#define APIENTRY}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{comment}{// Compiler-\/specific conditional compilation}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#ifdef \_MSC\_VER }\textcolor{comment}{// MS Visual C++ }}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     \textcolor{comment}{// Disable various warning.}}
+\DoxyCodeLine{61     \textcolor{comment}{// 4786: template name too long}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{    \#pragma warning( disable : 4251 )}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{    \#pragma warning( disable : 4275 )}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{    \#pragma warning( disable : 4786 )}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{comment}{// The following definitions control how symbols are exported.}}
+\DoxyCodeLine{67     \textcolor{comment}{// If the target is a static library ensure that FTGL\_LIBRARY\_STATIC}}
+\DoxyCodeLine{68     \textcolor{comment}{// is defined. If building a dynamic library (ie DLL) ensure the}}
+\DoxyCodeLine{69     \textcolor{comment}{// FTGL\_LIBRARY macro is defined, as it will mark symbols for }}
+\DoxyCodeLine{70     \textcolor{comment}{// export. If compiling a project to \_use\_ the \_dynamic\_ library }}
+\DoxyCodeLine{71     \textcolor{comment}{// version of the library, no definition is required. }}
+\DoxyCodeLine{72 \textcolor{preprocessor}{    \#ifdef FTGL\_LIBRARY\_STATIC      }\textcolor{comment}{// static lib -\/ no special export required}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{    \#  define FTGL\_EXPORT}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{    \#elif FTGL\_LIBRARY              }\textcolor{comment}{// dynamic lib -\/ must export/import symbols appropriately.}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{    \#  define FTGL\_EXPORT   \_\_declspec(dllexport)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{    \#else}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{    \#  define FTGL\_EXPORT   \_\_declspec(dllimport)}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{    \#endif }}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{81     \textcolor{comment}{// Compiler that is not MS Visual C++.}}
+\DoxyCodeLine{82     \textcolor{comment}{// Ensure that the export symbol is defined (and blank)}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{    \#define FTGL\_EXPORT}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#endif  }}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTGL\_\_}}
+
+\end{DoxyCode}

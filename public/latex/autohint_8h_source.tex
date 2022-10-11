@@ -1,0 +1,211 @@
+\hypertarget{autohint_8h_source}{}\doxysection{autohint.\+h}
+\label{autohint_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/autohint.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/autohint.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  autohint.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    High-\/level `autohint' module-\/specific interface (specification).     */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002 by                                           */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{20   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{21   \textcolor{comment}{/* The auto-\/hinter is used to load and automatically hint glyphs if a    */}}
+\DoxyCodeLine{22   \textcolor{comment}{/* format-\/specific hinter isn't available.                               */}}
+\DoxyCodeLine{23   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{24 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifndef \_\_AUTOHINT\_H\_\_}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define \_\_AUTOHINT\_H\_\_}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{32   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{33   \textcolor{comment}{/* A small technical note regarding automatic hinting in order to        */}}
+\DoxyCodeLine{34   \textcolor{comment}{/* clarify this module interface.                                        */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36   \textcolor{comment}{/* An automatic hinter might compute two kinds of data for a given face: */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{38   \textcolor{comment}{/* -\/ global hints: Usually some metrics that describe global properties  */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*                 of the face.  It is computed by scanning more or less */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                 agressively the glyphs in the face, and thus can be   */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                 very slow to compute (even if the size of global      */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*                 hints is really small).                               */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/* -\/ glyph hints:  These describe some important features of the glyph   */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*                 outline, as well as how to align them.  They are      */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                 generally much faster to compute than global hints.   */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48   \textcolor{comment}{/* The current FreeType auto-\/hinter does a pretty good job while         */}}
+\DoxyCodeLine{49   \textcolor{comment}{/* performing fast computations for both global and glyph hints.         */}}
+\DoxyCodeLine{50   \textcolor{comment}{/* However, we might be interested in introducing more complex and       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/* powerful algorithms in the future, like the one described in the John */}}
+\DoxyCodeLine{52   \textcolor{comment}{/* D. Hobby paper, which unfortunately requires a lot more horsepower.   */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{54   \textcolor{comment}{/* Because a sufficiently sophisticated font management system would     */}}
+\DoxyCodeLine{55   \textcolor{comment}{/* typically implement an LRU cache of opened face objects to reduce     */}}
+\DoxyCodeLine{56   \textcolor{comment}{/* memory usage, it is a good idea to be able to avoid recomputing       */}}
+\DoxyCodeLine{57   \textcolor{comment}{/* global hints every time the same face is re-\/opened.                   */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{59   \textcolor{comment}{/* We thus provide the ability to cache global hints outside of the face */}}
+\DoxyCodeLine{60   \textcolor{comment}{/* object, in order to speed up font re-\/opening time.  Of course, this   */}}
+\DoxyCodeLine{61   \textcolor{comment}{/* feature is purely optional, so most client programs won't even notice */}}
+\DoxyCodeLine{62   \textcolor{comment}{/* it.                                                                   */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{64   \textcolor{comment}{/* I initially thought that it would be a good idea to cache the glyph   */}}
+\DoxyCodeLine{65   \textcolor{comment}{/* hints too.  However, my general idea now is that if you really need   */}}
+\DoxyCodeLine{66   \textcolor{comment}{/* to cache these too, you are simply in need of a new font format,      */}}
+\DoxyCodeLine{67   \textcolor{comment}{/* where all this information could be stored within the font file and   */}}
+\DoxyCodeLine{68   \textcolor{comment}{/* decoded on the fly.                                                   */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{70 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }FT\_AutoHinterRec\_  *FT\_AutoHinter;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{84   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{85   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*    FT\_AutoHinter\_GlobalGetFunc                                        */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{88   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*    Retrieves the global hints computed for a given face object the    */}}
+\DoxyCodeLine{90   \textcolor{comment}{/*    resulting data is dissociated from the face and will survive a     */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*    call to FT\_Done\_Face().  It must be discarded through the API      */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*    FT\_AutoHinter\_GlobalDoneFunc().                                    */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{94   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*    hinter        :: A handle to the source auto-\/hinter.               */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*    face          :: A handle to the source face object.               */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{99   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*    global\_hints  :: A typeless pointer to the global hints.           */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*    global\_len    :: The size in bytes of the global hints.            */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{104   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{105   (*FT\_AutoHinter\_GlobalGetFunc)( FT\_AutoHinter  hinter,}
+\DoxyCodeLine{106                                   \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}        face,}
+\DoxyCodeLine{107                                   \textcolor{keywordtype}{void}**         global\_hints,}
+\DoxyCodeLine{108                                   \textcolor{keywordtype}{long}*          global\_len );}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{112   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{113   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*    FT\_AutoHinter\_GlobalDoneFunc                                       */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*    Discards the global hints retrieved through                        */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*    FT\_AutoHinter\_GlobalGetFunc().  This is the only way these hints   */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*    are freed from memory.                                             */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{121   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*    hinter :: A handle to the auto-\/hinter module.                      */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*    global :: A pointer to retrieved global hints to discard.          */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{126   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{127   (*FT\_AutoHinter\_GlobalDoneFunc)( FT\_AutoHinter  hinter,}
+\DoxyCodeLine{128                                    \textcolor{keywordtype}{void}*          global );}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*    FT\_AutoHinter\_GlobalResetFunc                                      */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{136   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*    This function is used to recompute the global metrics in a given   */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*    font.  This is useful when global font data changes (e.g. Multiple */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*    Masters fonts where blend coordinates change).                     */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{141   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*    hinter :: A handle to the source auto-\/hinter.                      */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*    face   :: A handle to the face.                                    */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{146   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{147   (*FT\_AutoHinter\_GlobalResetFunc)( FT\_AutoHinter  hinter,}
+\DoxyCodeLine{148                                     \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}        face );}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{152   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{153   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{154   \textcolor{comment}{/*    FT\_AutoHinter\_GlyphLoadFunc                                        */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{156   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*    This function is used to load, scale, and automatically hint a     */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*    glyph from a given face.                                           */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{160   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*    face        :: A handle to the face.                               */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*    glyph\_index :: The glyph index.                                    */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*    load\_flags  :: The load flags.                                     */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{167   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*    This function is capable of loading composite glyphs by hinting    */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*    each sub-\/glyph independently (which improves quality).             */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{171   \textcolor{comment}{/*    It will call the font driver with FT\_Load\_Glyph(), with            */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*    FT\_LOAD\_NO\_SCALE set.                                              */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{174   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{175   (*FT\_AutoHinter\_GlyphLoadFunc)( FT\_AutoHinter  hinter,}
+\DoxyCodeLine{176                                   \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}   slot,}
+\DoxyCodeLine{177                                   \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}}        size,}
+\DoxyCodeLine{178                                   FT\_UInt        glyph\_index,}
+\DoxyCodeLine{179                                   FT\_Int32       load\_flags );}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*    FT\_AutoHinter\_ServiceRec                                           */}}
+\DoxyCodeLine{186   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{187   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*    The auto-\/hinter module's interface.                                */}}
+\DoxyCodeLine{189   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{190   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___auto_hinter___service_rec__}{FT\_AutoHinter\_ServiceRec\_}}}
+\DoxyCodeLine{191   \{}
+\DoxyCodeLine{192     FT\_AutoHinter\_GlobalResetFunc  reset\_face;}
+\DoxyCodeLine{193     FT\_AutoHinter\_GlobalGetFunc    get\_global\_hints;}
+\DoxyCodeLine{194     FT\_AutoHinter\_GlobalDoneFunc   done\_global\_hints;}
+\DoxyCodeLine{195     FT\_AutoHinter\_GlyphLoadFunc    load\_glyph;}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197   \} \mbox{\hyperlink{struct_f_t___auto_hinter___service_rec__}{FT\_AutoHinter\_ServiceRec}}, *\mbox{\hyperlink{struct_f_t___auto_hinter___service_rec__}{FT\_AutoHinter\_Service}};}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 FT\_END\_HEADER}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_AUTOHINT\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

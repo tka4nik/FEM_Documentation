@@ -1,0 +1,222 @@
+\hypertarget{ftccmap_8h_source}{}\doxysection{ftccmap.\+h}
+\label{ftccmap_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftccmap.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftccmap.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftccmap.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType charmap cache (specification).                              */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2000-\/2001, 2003 by                                           */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTCCMAP\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTCCMAP\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_CACHE\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{30   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{31   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{32   \textcolor{comment}{/*    cache\_subsystem                                                    */}}
+\DoxyCodeLine{33   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{34 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{37   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{38   \textcolor{comment}{/* @type:                                                                */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*    FTC\_CMapCache                                                      */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    An opaque handle used to manager a charmap cache.  This cache is   */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    to hold character codes -\/> glyph indices mappings.                 */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }FTC\_CMapCacheRec\_*  FTC\_CMapCache;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{49   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{50   \textcolor{comment}{/* @type:                                                                */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*    FTC\_CMapDesc                                                       */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{53   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*    A handle to an @FTC\_CMapDescRec structure used to describe a given */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*    charmap in a charmap cache.                                        */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    Each @FTC\_CMapDesc describes which charmap (of which @FTC\_FaceID)  */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    we want to use in @FTC\_CMapCache\_Lookup.                           */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{60   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___c_map_desc_rec__}{FTC\_CMapDescRec\_}}*  \mbox{\hyperlink{struct_f_t_c___c_map_desc_rec__}{FTC\_CMapDesc}};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65   \textcolor{comment}{/* @enum:                                                                */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*    FTC\_CMapType                                                       */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{68   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*    The list of valid @FTC\_CMapDesc types.  They indicate how we want  */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*    to address a charmap within an @FTC\_FaceID.                        */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{72   \textcolor{comment}{/* @values:                                                              */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*    FTC\_CMAP\_BY\_INDEX ::                                               */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*      Address a charmap by its index in the corresponding @FT\_Face.    */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*    FTC\_CMAP\_BY\_ENCODING ::                                            */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*      Use a @FT\_Face charmap that corresponds to a given encoding.     */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*    FTC\_CMAP\_BY\_ID ::                                                  */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*      Use an @FT\_Face charmap that corresponds to a given              */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*      (platform,encoding) ID.  See @FTC\_CMapIdRec.                     */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{83   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  FTC\_CMapType\_}
+\DoxyCodeLine{84   \{}
+\DoxyCodeLine{85     FTC\_CMAP\_BY\_INDEX    = 0,}
+\DoxyCodeLine{86     FTC\_CMAP\_BY\_ENCODING = 1,}
+\DoxyCodeLine{87     FTC\_CMAP\_BY\_ID       = 2}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \} FTC\_CMapType;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{93   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{94   \textcolor{comment}{/* @struct:                                                              */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*    FTC\_CMapIdRec                                                      */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{97   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*    A short structure to identify a charmap by a (platform,encoding)   */}}
+\DoxyCodeLine{99   \textcolor{comment}{/*    pair of values.                                                    */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{101   \textcolor{comment}{/* @fields:                                                              */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*    platform :: The platform ID.                                       */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*    encoding :: The encoding ID.                                       */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{106   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___c_map_id_rec__}{FTC\_CMapIdRec\_}}}
+\DoxyCodeLine{107   \{}
+\DoxyCodeLine{108     FT\_UInt  platform;}
+\DoxyCodeLine{109     FT\_UInt  encoding;}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111   \} \mbox{\hyperlink{struct_f_t_c___c_map_id_rec__}{FTC\_CMapIdRec}};}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   \textcolor{comment}{/* @struct:                                                              */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*    FTC\_CMapDescRec                                                    */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{119   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    A structure to describe a given charmap to @FTC\_CMapCache.         */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{122   \textcolor{comment}{/* @fields:                                                              */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*    face\_id    :: @FTC\_FaceID of the face this charmap belongs to.     */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*    type       :: The type of charmap, see @FTC\_CMapType.              */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{127   \textcolor{comment}{/*    u.index    :: For @FTC\_CMAP\_BY\_INDEX types, this is the charmap    */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*                  index (within a @FT\_Face) we want to use.            */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*    u.encoding :: For @FTC\_CMAP\_BY\_ENCODING types, this is the charmap */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*                  encoding we want to use. see @FT\_Encoding.           */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*    u.id       :: For @FTC\_CMAP\_BY\_ID types, this is the               */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*                  (platform,encoding) pair we want to use. see         */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                  @FTC\_CMapIdRec and @FT\_CharMapRec.                   */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{137   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___c_map_desc_rec__}{FTC\_CMapDescRec\_}}}
+\DoxyCodeLine{138   \{}
+\DoxyCodeLine{139     FTC\_FaceID    face\_id;}
+\DoxyCodeLine{140     FTC\_CMapType  type;}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142     \textcolor{keyword}{union}}
+\DoxyCodeLine{143     \{}
+\DoxyCodeLine{144       FT\_UInt        index;}
+\DoxyCodeLine{145       FT\_Encoding    encoding;}
+\DoxyCodeLine{146       \mbox{\hyperlink{struct_f_t_c___c_map_id_rec__}{FTC\_CMapIdRec}}  id;}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     \} u;}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150   \} \mbox{\hyperlink{struct_f_t_c___c_map_desc_rec__}{FTC\_CMapDescRec}};}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{154   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{155   \textcolor{comment}{/* @function:                                                            */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*    FTC\_CMapCache\_New                                                  */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{158   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*    Creates a new charmap cache.                                       */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{161   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*    manager :: A handle to the cache manager.                          */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{164   \textcolor{comment}{/* @output:                                                              */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*    acache  :: A new cache handle.  NULL in case of error.             */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{167   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{170   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{171   \textcolor{comment}{/*    Like all other caches, this one will be destroyed with the cache   */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*    manager.                                                           */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{174   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{175   FTC\_CMapCache\_New( \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}     manager,}
+\DoxyCodeLine{176                      FTC\_CMapCache  *acache );}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{180   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{181   \textcolor{comment}{/* @function:                                                            */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*    FTC\_CMapCache\_Lookup                                               */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*    Translates a character code into a glyph index, using the charmap  */}}
+\DoxyCodeLine{186   \textcolor{comment}{/*    cache.                                                             */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{188   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{189   \textcolor{comment}{/*    cache     :: A charmap cache handle.                               */}}
+\DoxyCodeLine{190   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{191   \textcolor{comment}{/*    cmap\_desc :: A charmap descriptor handle.                          */}}
+\DoxyCodeLine{192   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{193   \textcolor{comment}{/*    char\_code :: The character code (in the corresponding charmap).    */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{195   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*    Glyph index.  0 means "{}no glyph"{}.                                  */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{198   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*    This function doesn't return @FTC\_Node handles, since there is no  */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*    real use for them with typical uses of charmaps.                   */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{202   FT\_EXPORT( FT\_UInt )}
+\DoxyCodeLine{203   FTC\_CMapCache\_Lookup( FTC\_CMapCache  cache,}
+\DoxyCodeLine{204                         \mbox{\hyperlink{struct_f_t_c___c_map_desc_rec__}{FTC\_CMapDesc}}   cmap\_desc,}
+\DoxyCodeLine{205                         FT\_UInt32      char\_code );}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207   \textcolor{comment}{/* */}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 FT\_END\_HEADER}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCCMAP\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

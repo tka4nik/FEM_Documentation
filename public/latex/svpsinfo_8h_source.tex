@@ -1,0 +1,66 @@
+\hypertarget{svpsinfo_8h_source}{}\doxysection{svpsinfo.\+h}
+\label{svpsinfo_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svpsinfo.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svpsinfo.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  svpsinfo.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType PostScript info service (specification).                */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003, 2004 by                                                */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_SVPSINFO\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_SVPSINFO\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include FT\_INTERNAL\_SERVICE\_H}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_INTERNAL\_TYPE1\_TYPES\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define FT\_SERVICE\_ID\_POSTSCRIPT\_INFO  "{}postscript-\/info"{}}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{33   (*PS\_GetFontInfoFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}          face,}
+\DoxyCodeLine{34                          \mbox{\hyperlink{struct_p_s___font_info_rec}{PS\_FontInfoRec}}*  afont\_info );}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36   \textcolor{keyword}{typedef} FT\_Int}
+\DoxyCodeLine{37   (*PS\_HasGlyphNamesFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}   face );}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{40   (*PS\_GetFontPrivateFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}         face,}
+\DoxyCodeLine{41                             \mbox{\hyperlink{struct_p_s___private_rec__}{PS\_PrivateRec}}*  afont\_private );}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   FT\_DEFINE\_SERVICE( PsInfo )}
+\DoxyCodeLine{45   \{}
+\DoxyCodeLine{46     PS\_GetFontInfoFunc     ps\_get\_font\_info;}
+\DoxyCodeLine{47     PS\_HasGlyphNamesFunc   ps\_has\_glyph\_names;}
+\DoxyCodeLine{48     PS\_GetFontPrivateFunc  ps\_get\_font\_private;}
+\DoxyCodeLine{49   \};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \textcolor{comment}{/* */}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 FT\_END\_HEADER}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_SVPSINFO\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

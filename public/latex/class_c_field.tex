@@ -1,0 +1,83 @@
+\hypertarget{class_c_field}{}\doxysection{CField Class Reference}
+\label{class_c_field}\index{CField@{CField}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_field_a6aca3da259eeed15c70d87869680fa4c}\label{class_c_field_a6aca3da259eeed15c70d87869680fa4c}} 
+{\bfseries CField} (const \mbox{\hyperlink{class_c_field}{CField}} \&F)
+\item 
+\mbox{\Hypertarget{class_c_field_ad6582c6b3c2f0b1e67aab6f277cfa637}\label{class_c_field_ad6582c6b3c2f0b1e67aab6f277cfa637}} 
+const \mbox{\hyperlink{class_c_field}{CField}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_c_field}{CField}} \&F)
+\item 
+\mbox{\Hypertarget{class_c_field_a044beb97ec524e7a2d7b263730b367e8}\label{class_c_field_a044beb97ec524e7a2d7b263730b367e8}} 
+void {\bfseries Set\+Bounds} (double d\+Min, double d\+Max)
+\item 
+\mbox{\Hypertarget{class_c_field_ae2a18a70e3e1327f0270ae5fb81dab64}\label{class_c_field_ae2a18a70e3e1327f0270ae5fb81dab64}} 
+int {\bfseries Get\+Zone} (int n, double $\ast$X, double $\ast$Y, double $\ast$Val, \mbox{\hyperlink{struct___f_z_o_n_e}{FZONE}} $\ast$p\+Zone)
+\item 
+\mbox{\Hypertarget{class_c_field_acc7d82715bf77f8578e8e1e2cdc51023}\label{class_c_field_acc7d82715bf77f8578e8e1e2cdc51023}} 
+int {\bfseries Get\+Color\+Num} ()
+\item 
+\mbox{\Hypertarget{class_c_field_a5ff7e94f85bcc5e5a53afc32660b66b0}\label{class_c_field_a5ff7e94f85bcc5e5a53afc32660b66b0}} 
+void {\bfseries Clear} ()
+\item 
+\mbox{\Hypertarget{class_c_field_a459a2f6e0d0ea47e11af98dfccdc3d25}\label{class_c_field_a459a2f6e0d0ea47e11af98dfccdc3d25}} 
+double {\bfseries Get\+Val} (int n\+Index)
+\item 
+\mbox{\Hypertarget{class_c_field_aa69266e22cc72eba20b616d2294104c0}\label{class_c_field_aa69266e22cc72eba20b616d2294104c0}} 
+int {\bfseries Add\+Color} (double r, double g, double b)
+\item 
+\mbox{\Hypertarget{class_c_field_abeb7cbe469478740ce1273df062a955d}\label{class_c_field_abeb7cbe469478740ce1273df062a955d}} 
+COLORREF {\bfseries Get\+Color} (int n)
+\item 
+\mbox{\Hypertarget{class_c_field_a1e490307f79b25aa626a10a63d7b9c9f}\label{class_c_field_a1e490307f79b25aa626a10a63d7b9c9f}} 
+COLORREF {\bfseries Get\+Colord} (double alpha)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_field_a9d8a023fb40c50190038b9d94f099127}\label{class_c_field_a9d8a023fb40c50190038b9d94f099127}} 
+int {\bfseries m\+\_\+n\+Type}
+\item 
+\mbox{\Hypertarget{class_c_field_a6086a914d0f7969275a65b42d16a5ff7}\label{class_c_field_a6086a914d0f7969275a65b42d16a5ff7}} 
+CString {\bfseries m\+\_\+str\+Name}
+\item 
+\mbox{\Hypertarget{class_c_field_a45fa21b1c5d94822b893fddac87e91b2}\label{class_c_field_a45fa21b1c5d94822b893fddac87e91b2}} 
+double {\bfseries m\+\_\+d\+MinX}
+\item 
+\mbox{\Hypertarget{class_c_field_a232c98da7c6945d8459cce6517303498}\label{class_c_field_a232c98da7c6945d8459cce6517303498}} 
+double {\bfseries m\+\_\+d\+MaxX}
+\item 
+\mbox{\Hypertarget{class_c_field_a2458a22739d5481d535264005899f10e}\label{class_c_field_a2458a22739d5481d535264005899f10e}} 
+double {\bfseries m\+\_\+d\+MinY}
+\item 
+\mbox{\Hypertarget{class_c_field_afaff041a3ddf07a16c6794095a1d3306}\label{class_c_field_afaff041a3ddf07a16c6794095a1d3306}} 
+double {\bfseries m\+\_\+d\+MaxY}
+\item 
+\mbox{\Hypertarget{class_c_field_a4c74ad7e3a6f5b5da07e3f2bef76e869}\label{class_c_field_a4c74ad7e3a6f5b5da07e3f2bef76e869}} 
+double {\bfseries m\+\_\+d\+Correkce}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_field_a5f2ce3ac8d17c26b01057934fc04df6e}\label{class_c_field_a5f2ce3ac8d17c26b01057934fc04df6e}} 
+CArray$<$ \mbox{\hyperlink{struct__gl_c_o_l_o_r}{gl\+COLOR}}, \mbox{\hyperlink{struct__gl_c_o_l_o_r}{gl\+COLOR}} $>$ {\bfseries m\+\_\+\+Colors}
+\item 
+\mbox{\Hypertarget{class_c_field_aad7d975a981e904ac95bbc0b87d7d072}\label{class_c_field_aad7d975a981e904ac95bbc0b87d7d072}} 
+double {\bfseries m\+\_\+d\+Min\+Val}
+\item 
+\mbox{\Hypertarget{class_c_field_a6dacd5c98f0686a5e286c5162c4e6dd5}\label{class_c_field_a6dacd5c98f0686a5e286c5162c4e6dd5}} 
+double {\bfseries m\+\_\+d\+Max\+Val}
+\item 
+\mbox{\Hypertarget{class_c_field_a1c87b969601833b035a6763c7114638f}\label{class_c_field_a1c87b969601833b035a6763c7114638f}} 
+double {\bfseries m\+\_\+d\+Step}
+\item 
+\mbox{\Hypertarget{class_c_field_aafec30729e005ac7c93572d38772210c}\label{class_c_field_aafec30729e005ac7c93572d38772210c}} 
+int {\bfseries m\+\_\+n\+Clr\+Num}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/prototype-\/prismatic/source/Field.\+h\item 
+C\+:/\+Projects/\+FEM/prototype-\/prismatic/source/Field.\+cpp\end{DoxyCompactItemize}

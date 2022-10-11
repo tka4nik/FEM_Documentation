@@ -1,0 +1,43 @@
+\hypertarget{_f_t_bitmap_glyph_8h_source}{}\doxysection{FTBitmap\+Glyph.\+h}
+\label{_f_t_bitmap_glyph_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTBitmapGlyph.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTBitmapGlyph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTBitmapGlyph\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTBitmapGlyph\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}FTGlyph.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{23 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_bitmap_glyph}{FTBitmapGlyph}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25     \textcolor{keyword}{public}:}
+\DoxyCodeLine{31         \mbox{\hyperlink{class_f_t_bitmap_glyph_ade810e7077f5f5dd79ef9b2f62a6db56}{FTBitmapGlyph}}( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}} glyph);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{36         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_bitmap_glyph_ac5aa31a17033c4a04277a09159466b82}{\string~FTBitmapGlyph}}();}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{44         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& \mbox{\hyperlink{class_f_t_bitmap_glyph_ab61d2f06d2627b3821556e0cef74b56f}{Render}}( \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& pen);}
+\DoxyCodeLine{45         }
+\DoxyCodeLine{46     \textcolor{keyword}{private}:}
+\DoxyCodeLine{50         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} destWidth;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{55         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} destHeight;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{60         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} destPitch;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{65         \mbox{\hyperlink{class_f_t_point}{FTPoint}} pos;}
+\DoxyCodeLine{66         }
+\DoxyCodeLine{70         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* data;}
+\DoxyCodeLine{71         }
+\DoxyCodeLine{72 \};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTBitmapGlyph\_\_}}
+\DoxyCodeLine{76 }
+
+\end{DoxyCode}

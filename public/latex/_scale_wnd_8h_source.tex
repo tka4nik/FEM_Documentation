@@ -1,0 +1,113 @@
+\hypertarget{_scale_wnd_8h_source}{}\doxysection{Scale\+Wnd.\+h}
+\label{_scale_wnd_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/ScaleWnd.h@{C:/Projects/FEM/prototype-\/prismatic/source/ScaleWnd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#if !defined(AFX\_SCALEWND\_H\_\_F0FC0A11\_B5F1\_4D57\_9380\_53604DC197BB\_\_INCLUDED\_)}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AFX\_SCALEWND\_H\_\_F0FC0A11\_B5F1\_4D57\_9380\_53604DC197BB\_\_INCLUDED\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{7 \textcolor{comment}{// ScaleWnd.h : header file}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{keyword}{typedef} \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{10     \textcolor{keywordtype}{double}  x1;}
+\DoxyCodeLine{11     \textcolor{keywordtype}{double}  x2;}
+\DoxyCodeLine{12     \textcolor{keywordtype}{double}  y1;}
+\DoxyCodeLine{13     \textcolor{keywordtype}{double}  y2;}
+\DoxyCodeLine{14     \textcolor{keywordtype}{double}  xMin;}
+\DoxyCodeLine{15     \textcolor{keywordtype}{double}  xMax;}
+\DoxyCodeLine{16     \textcolor{keywordtype}{double}  yMin;}
+\DoxyCodeLine{17     \textcolor{keywordtype}{double}  yMax;}
+\DoxyCodeLine{18 \}\mbox{\hyperlink{struct_s_w_p_a_r_a_m}{SWPARAM}};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{21 \textcolor{comment}{// CScaleWnd view}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_scale_wnd}{CScaleWnd}} : \textcolor{keyword}{public} CWnd}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25 \textcolor{keyword}{public}:}
+\DoxyCodeLine{26     \mbox{\hyperlink{class_c_scale_wnd}{CScaleWnd}}();}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{comment}{// Attributes}}
+\DoxyCodeLine{29 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30     CWnd    *m\_pChildWnd;}
+\DoxyCodeLine{31     }
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} m\_nMinDeltaPcx;}
+\DoxyCodeLine{33     }
+\DoxyCodeLine{34     COLORREF m\_clrRule;}
+\DoxyCodeLine{35     COLORREF m\_clrRuleTxt;}
+\DoxyCodeLine{36     COLORREF m\_clrRulePoint;}
+\DoxyCodeLine{37     COLORREF m\_clrRule0;}
+\DoxyCodeLine{38     COLORREF m\_clrRuleTxt0;}
+\DoxyCodeLine{39     COLORREF m\_clrRulePoint0;}
+\DoxyCodeLine{40     }
+\DoxyCodeLine{41     LOGFONT m\_lfRule;}
+\DoxyCodeLine{42     \textcolor{keywordtype}{int} m\_nRuleLeading;}
+\DoxyCodeLine{43     \textcolor{keywordtype}{int} m\_nRuleLeading0;}
+\DoxyCodeLine{44     \textcolor{keywordtype}{int} m\_nRuleLeading1;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     USHORT  m\_nDivLen100;}
+\DoxyCodeLine{47     USHORT  m\_nDivLen10;}
+\DoxyCodeLine{48     USHORT  m\_nDivLen5;}
+\DoxyCodeLine{49     USHORT  m\_nDivLen1;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     CString m\_strX;}
+\DoxyCodeLine{52     CString m\_strY;}
+\DoxyCodeLine{53 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{54     \textcolor{keywordtype}{int} m\_nRlrW;}
+\DoxyCodeLine{55     UINT m\_nHPos, m\_nVPos;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     \textcolor{keywordtype}{double} m\_dPX1, m\_dPX2, m\_dPY1, m\_dPY2;}
+\DoxyCodeLine{58     \textcolor{keywordtype}{double} m\_dMinX, m\_dMaxX, m\_dMinY, m\_dMaxY;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     CDC     m\_VertDC;}
+\DoxyCodeLine{61     CBitmap m\_VertBmp;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     CDC     m\_HorzDC;}
+\DoxyCodeLine{64     CBitmap m\_HorzBmp;}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{double}  m\_dXDelta, m\_dYDelta;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{comment}{// Operations}}
+\DoxyCodeLine{70 \textcolor{keyword}{public}:}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{comment}{// Overrides}}
+\DoxyCodeLine{73     \textcolor{comment}{// ClassWizard generated virtual function overrides}}
+\DoxyCodeLine{74     \textcolor{comment}{//\{\{AFX\_VIRTUAL(CScaleWnd)}}
+\DoxyCodeLine{75     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{76     \textcolor{keyword}{virtual} BOOL PreCreateWindow(CREATESTRUCT\& cs);}
+\DoxyCodeLine{77     \textcolor{comment}{//\}\}AFX\_VIRTUAL}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{80 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{81     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_scale_wnd}{\string~CScaleWnd}}();}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#ifdef \_DEBUG}}
+\DoxyCodeLine{83     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} AssertValid() \textcolor{keyword}{const};}
+\DoxyCodeLine{84     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Dump(CDumpContext\& dc) \textcolor{keyword}{const};}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{88 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{89     \textcolor{keywordtype}{void} SetScrollInf(\textcolor{keywordtype}{int} nMode);}
+\DoxyCodeLine{90     \textcolor{keywordtype}{void} DefineDelta();}
+\DoxyCodeLine{91     \textcolor{keywordtype}{void} FillHorzBmp();}
+\DoxyCodeLine{92     \textcolor{keywordtype}{void} FillVertBmp();}
+\DoxyCodeLine{93     \textcolor{comment}{//\{\{AFX\_MSG(CScaleWnd)}}
+\DoxyCodeLine{94     afx\_msg \textcolor{keywordtype}{void} OnSize(UINT nType, \textcolor{keywordtype}{int} cx, \textcolor{keywordtype}{int} cy);}
+\DoxyCodeLine{95     afx\_msg \textcolor{keywordtype}{void} OnPaint();}
+\DoxyCodeLine{96     afx\_msg \textcolor{keywordtype}{int} OnCreate(LPCREATESTRUCT lpCreateStruct);}
+\DoxyCodeLine{97     afx\_msg \textcolor{keywordtype}{void} OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);}
+\DoxyCodeLine{98     afx\_msg \textcolor{keywordtype}{void} OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);}
+\DoxyCodeLine{99     \textcolor{comment}{//\}\}AFX\_MSG}}
+\DoxyCodeLine{100     afx\_msg LRESULT OnSWScroll(WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{101     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{102 \};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{comment}{//\{\{AFX\_INSERT\_LOCATION\}\}}}
+\DoxyCodeLine{107 \textcolor{comment}{// Microsoft Visual C++ will insert additional declarations immediately before the previous line.}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_SCALEWND\_H\_\_F0FC0A11\_B5F1\_4D57\_9380\_53604DC197BB\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

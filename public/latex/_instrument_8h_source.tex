@@ -1,0 +1,100 @@
+\hypertarget{_instrument_8h_source}{}\doxysection{Instrument.\+h}
+\label{_instrument_8h_source}\index{831\_finite\_element\_modeling/FEM/source/Instrument.h@{831\_finite\_element\_modeling/FEM/source/Instrument.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}RealPoint.h"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{comment}{// Класс инструмента (он НЕ деформируется)}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define FABS(x) (((x)<0)?-\/(x) :(x))}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{comment}{//вместо m\_YVel[] (в прототипе в этом масссиве скорости верхнего и нижнего бойка(возможно для каждой точки)) Нам это нужно?}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_model}{Model}};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_c_r_o_s_s_p_a_r_a_m}{CROSSPARAM}} \{}
+\DoxyCodeLine{16     \textcolor{keywordtype}{bool} bCross;}
+\DoxyCodeLine{17     \textcolor{keywordtype}{double} dT;}
+\DoxyCodeLine{18     \textcolor{keywordtype}{int} RCnt;}
+\DoxyCodeLine{19 \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{class }\mbox{\hyperlink{class_instrument}{Instrument}} \{}
+\DoxyCodeLine{22 \textcolor{keyword}{public}:}
+\DoxyCodeLine{23     \textcolor{keyword}{friend} \mbox{\hyperlink{class_model}{Model}};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{28     \textcolor{keyword}{class }\mbox{\hyperlink{class_instrument_1_1_profile}{Profile}} \{}
+\DoxyCodeLine{29     \textcolor{keyword}{public}:}
+\DoxyCodeLine{30         \textcolor{keywordtype}{void} AddPoint(\textcolor{keyword}{const} \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}}\& p); }
+\DoxyCodeLine{31         \textcolor{keywordtype}{void} Clear();}
+\DoxyCodeLine{32         std::vector<double>\& GetMeshXY();}
+\DoxyCodeLine{33         \textcolor{keywordtype}{size\_t} NPoints();}
+\DoxyCodeLine{34         \textcolor{keywordtype}{void} MoveY(\textcolor{keywordtype}{double} offset);}
+\DoxyCodeLine{35         \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} operator[](\textcolor{keywordtype}{size\_t} i);}
+\DoxyCodeLine{36         std::vector<double>\& GetData()\{}
+\DoxyCodeLine{37             \textcolor{keywordflow}{return} m\_meshXY;}
+\DoxyCodeLine{38         \}}
+\DoxyCodeLine{39         \mbox{\hyperlink{class_instrument_1_1_profile}{Profile}}\& operator=(\mbox{\hyperlink{class_instrument_1_1_profile}{Profile}}\&\&);}
+\DoxyCodeLine{40     \textcolor{keyword}{private}:}
+\DoxyCodeLine{41         std::vector<double> m\_meshXY;}
+\DoxyCodeLine{42     \};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \mbox{\hyperlink{class_instrument}{Instrument}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_instrument_a10b52639f4a49c586ecd8cb1c637943a}{Load}}(std::ifstream\& file); }
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_instrument_a10b52639f4a49c586ecd8cb1c637943a}{Load}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* data, \textcolor{keywordtype}{size\_t} n); }
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_instrument_a79f05cf854a6faa4eecbd0f83b4b7eae}{move}}();}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \mbox{\hyperlink{class_instrument}{Instrument}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_instrument}{Instrument}}\&) = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \mbox{\hyperlink{class_instrument}{Instrument}}\& operator=(\mbox{\hyperlink{class_instrument}{Instrument}}\&\&);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{comment}{/*}}
+\DoxyCodeLine{62 \textcolor{comment}{    Функции из прототипа}}
+\DoxyCodeLine{63 \textcolor{comment}{    */}}
+\DoxyCodeLine{67     \mbox{\hyperlink{struct_r___p_o_i_n_t}{R\_POINT}} \mbox{\hyperlink{class_instrument_a61e4ebdcf79a980005787b3d88b85112}{GetPrPoint}}(\textcolor{keywordtype}{int} n) \{}
+\DoxyCodeLine{68         n = fmax(0, fmin(m\_Profile0.NPoints() -\/ 1, n));}
+\DoxyCodeLine{69         \textcolor{keywordflow}{return} m\_Profile0[n];}
+\DoxyCodeLine{70     \}}
+\DoxyCodeLine{74     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_instrument_a8e00e34b9fcf17863ed677779c6d3eb1}{GetPointY}}(\textcolor{keywordtype}{int} nPoint) \{ \textcolor{keywordflow}{return} m\_Profile0[nPoint].y; \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{keywordtype}{double} GetTCross(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{double} vx, \textcolor{keywordtype}{double} vy, \textcolor{keywordtype}{int} RCnt);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \mbox{\hyperlink{struct_c_r_o_s_s_p_a_r_a_m}{CROSSPARAM}} GetTCrossParam(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{double} vx, \textcolor{keywordtype}{double} vy, \textcolor{keywordtype}{double} dT);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \mbox{\hyperlink{struct_c_r_o_s_s_p_a_r_a_m}{CROSSPARAM}} CrossParamT(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{double} dT);}
+\DoxyCodeLine{81     \textcolor{comment}{/*}}
+\DoxyCodeLine{82 \textcolor{comment}{        проверяет внутри ли бойка точка и возвращает соответствующмй флаг}}
+\DoxyCodeLine{83 \textcolor{comment}{    */}}
+\DoxyCodeLine{84     \textcolor{keywordtype}{int} PtInside(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{double} vx, \textcolor{keywordtype}{double} vy, \textcolor{keywordtype}{double} dT);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_instrument_a0938756ba403b1227e6a285a8aebff55}{GetVelY}}(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{int} nPFrVal);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \mbox{\hyperlink{struct_c_r_o_s_s_p_a_r_a_m}{CROSSPARAM}} CheckRCnt(\textcolor{keywordtype}{int} RCnt, \textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{double} vx, \textcolor{keywordtype}{double} vy);}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     \textcolor{keywordtype}{void} GetParam(\textcolor{keywordtype}{int} n, \textcolor{keywordtype}{double}* psin, \textcolor{keywordtype}{double}* pcos, \textcolor{keywordtype}{double}* tkf);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \mbox{\hyperlink{struct_c_r_o_s_s_p_a_r_a_m}{CROSSPARAM}} CrossParam0(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{double} Eps);}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     \textcolor{keywordtype}{void} get\_field(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keywordtype}{void}*\& ptr\_field, \textcolor{keywordtype}{size\_t}\& size);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \textcolor{keyword}{enum class} \mbox{\hyperlink{class_instrument_adc3f664282423050cf087c62fe26d0bc}{FieldId}} \{}
+\DoxyCodeLine{97         \mbox{\hyperlink{class_instrument_adc3f664282423050cf087c62fe26d0bca1b8a8605d2ff5670a215e55c6645e0d9}{OFFSET}},       }
+\DoxyCodeLine{98         \mbox{\hyperlink{class_instrument_adc3f664282423050cf087c62fe26d0bca48359f9afd830d28b1152d071fb09147}{PROFILE}}      }
+\DoxyCodeLine{99     \};}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{keyword}{private}:}
+\DoxyCodeLine{102     }
+\DoxyCodeLine{103     Profile m\_Profile0; }
+\DoxyCodeLine{107     \textcolor{keywordtype}{void} ExtractProfile0(std::vector<double>\&\& MeshX, std::vector<double>\&\& MeshY, std::vector<int>\&\& IJK);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \textcolor{keywordtype}{double} m\_offset; }
+\DoxyCodeLine{110     \textcolor{keywordtype}{double} m\_velocity\_Y;    }
+\DoxyCodeLine{111 \};}
+
+\end{DoxyCode}

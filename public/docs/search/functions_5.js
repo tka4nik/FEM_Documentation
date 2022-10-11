@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['gauss_0',['Gauss',['../class_model.html#a33a8a38aff5137fd6f4c5d9db9a06834',1,'Model']]],
+  ['gentoollist_1',['GenToolList',['../class_window.html#a4474a9bc612b122f14cd080629ee3f3d',1,'Window']]],
+  ['get_5fdata_2',['get_data',['../class_model.html#ad9233e8a27afd638bd52c94254702f3e',1,'Model']]],
+  ['get_5ferror_3',['get_error',['../class_model.html#ae1899d9a8894b5eebecd76f63428b6ea',1,'Model']]],
+  ['get_5ffield_5finstrument_4',['get_field_instrument',['../class_model.html#afc2221e1846c595b39112a7dc18d5bf5',1,'Model']]],
+  ['get_5ffield_5fsample_5',['get_field_sample',['../class_model.html#a46f1464c4fba49666fbebf4f37ac25ee',1,'Model']]],
+  ['getcreationcondition_6',['GetCreationCondition',['../class_window.html#af3600bd76ffc530db6a93ca6eab3ca01',1,'Window']]],
+  ['getdijk_7',['GetDIJK',['../class_model.html#a05007aa5f23fa0543154e5d1821fb636',1,'Model']]],
+  ['getf_8',['GetF',['../class_model.html#a87755afe60ae9575203fc73b8a4c0263',1,'Model']]],
+  ['getkk_9',['GetKK',['../class_model.html#aa2ef6017761c2e00d2238b836263eb33',1,'Model']]],
+  ['getoffset_10',['GetOffset',['../class_window.html#ab9dc84bac40c574fbd5cad0ddc961e9c',1,'Window']]],
+  ['getpointy_11',['GetPointY',['../class_instrument.html#a8e00e34b9fcf17863ed677779c6d3eb1',1,'Instrument']]],
+  ['getprpoint_12',['GetPrPoint',['../class_instrument.html#a61e4ebdcf79a980005787b3d88b85112',1,'Instrument']]],
+  ['gets_13',['GetS',['../class_model.html#a391bb7297922b5e297aa949e8954b7eb',1,'Model']]],
+  ['gettextboxsize_14',['GetTextBoxSize',['../class_text_label.html#a3304f15417a0ed8a5816d25074b4552d',1,'TextLabel']]],
+  ['getvely_15',['GetVelY',['../class_instrument.html#a0938756ba403b1227e6a285a8aebff55',1,'Instrument']]]
+];

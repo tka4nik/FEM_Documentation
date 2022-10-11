@@ -1,0 +1,84 @@
+\hypertarget{class_f_t_library}{}\doxysection{FTLibrary Class Reference}
+\label{class_f_t_library}\index{FTLibrary@{FTLibrary}}
+
+
+{\ttfamily \#include $<$FTLibrary.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct_f_t___library_rec__}{FT\+\_\+\+Library}} $\ast$const \mbox{\hyperlink{class_f_t_library_a6c72ef91b489d61ebe8f13c5d5fc15d5}{Get\+Library}} () const
+\item 
+FT\+\_\+\+Error \mbox{\hyperlink{class_f_t_library_a8849e7e737055737bd4cec56fc4cb1ea}{Error}} () const
+\item 
+\mbox{\hyperlink{class_f_t_library_a8d1ee3dc3c4916b5b428e934dc46e9d7}{$\sim$\+FTLibrary}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{class_f_t_library}{FTLibrary}} \& \mbox{\hyperlink{class_f_t_library_ab57f88d6eddafcaf2ae1a518e8455ebd}{Instance}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_library}{FTLibrary}} class is the global accessor for the Freetype library.
+
+This class encapsulates the Freetype Library. This is a singleton class and ensures that only one FT\+\_\+\+Library is in existence at any one time. All constructors are private therefore clients cannot create or instantiate this class themselves and must access it\textquotesingle{}s methods via the static {\ttfamily \mbox{\hyperlink{class_f_t_library_ab57f88d6eddafcaf2ae1a518e8455ebd}{FTLibrary\+::\+Instance()}}} function.
+
+Just because this class returns a valid {\ttfamily \mbox{\hyperlink{class_f_t_library}{FTLibrary}}} object doesn\textquotesingle{}t mean that the Freetype Library has been successfully initialised. Clients should check for errors. You can initialse the library AND check for errors using the following code... {\ttfamily err = \mbox{\hyperlink{class_f_t_library_ab57f88d6eddafcaf2ae1a518e8455ebd}{FTLibrary\+::\+Instance()}}.Error();}
+
+\begin{DoxySeeAlso}{See also}
+\char`\"{}\+Freetype 2 Documentation\char`\"{} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_library_a8d1ee3dc3c4916b5b428e934dc46e9d7}\label{class_f_t_library_a8d1ee3dc3c4916b5b428e934dc46e9d7}} 
+\index{FTLibrary@{FTLibrary}!````~FTLibrary@{$\sim$FTLibrary}}
+\index{````~FTLibrary@{$\sim$FTLibrary}!FTLibrary@{FTLibrary}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTLibrary()}{~FTLibrary()}}
+{\footnotesize\ttfamily FTLibrary\+::$\sim$\+FTLibrary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor
+
+Disposes of the Freetype library 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_library_a8849e7e737055737bd4cec56fc4cb1ea}\label{class_f_t_library_a8849e7e737055737bd4cec56fc4cb1ea}} 
+\index{FTLibrary@{FTLibrary}!Error@{Error}}
+\index{Error@{Error}!FTLibrary@{FTLibrary}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily FT\+\_\+\+Error FTLibrary\+::\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Queries the library for errors.
+
+\begin{DoxyReturn}{Returns}
+The current error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_library_a6c72ef91b489d61ebe8f13c5d5fc15d5}\label{class_f_t_library_a6c72ef91b489d61ebe8f13c5d5fc15d5}} 
+\index{FTLibrary@{FTLibrary}!GetLibrary@{GetLibrary}}
+\index{GetLibrary@{GetLibrary}!FTLibrary@{FTLibrary}}
+\doxysubsubsection{\texorpdfstring{GetLibrary()}{GetLibrary()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_f_t___library_rec__}{FT\+\_\+\+Library}} $\ast$const FTLibrary\+::\+Get\+Library (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets a pointer to the native Freetype library.
+
+\begin{DoxyReturn}{Returns}
+A handle to a Free\+Type library instance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_library_ab57f88d6eddafcaf2ae1a518e8455ebd}\label{class_f_t_library_ab57f88d6eddafcaf2ae1a518e8455ebd}} 
+\index{FTLibrary@{FTLibrary}!Instance@{Instance}}
+\index{Instance@{Instance}!FTLibrary@{FTLibrary}}
+\doxysubsubsection{\texorpdfstring{Instance()}{Instance()}}
+{\footnotesize\ttfamily static const \mbox{\hyperlink{class_f_t_library}{FTLibrary}} \& FTLibrary\+::\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Global acces point to the single \mbox{\hyperlink{class_f_t_library}{FTLibrary}} object.
+
+\begin{DoxyReturn}{Returns}
+The global {\ttfamily \mbox{\hyperlink{class_f_t_library}{FTLibrary}}} object. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTLibrary.\+h\end{DoxyCompactItemize}

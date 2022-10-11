@@ -1,0 +1,571 @@
+\hypertarget{freetype_2include_2freetype_2ftglyph_8h_source}{}\doxysection{ftglyph.\+h}
+\label{freetype_2include_2freetype_2ftglyph_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftglyph.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftglyph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftglyph.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType convenience functions to handle glyphs (specification).     */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{20   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{21   \textcolor{comment}{/* This file contains the definition of several convenience functions    */}}
+\DoxyCodeLine{22   \textcolor{comment}{/* that can be used by client applications to easily retrieve glyph      */}}
+\DoxyCodeLine{23   \textcolor{comment}{/* bitmaps and outlines from a given face.                               */}}
+\DoxyCodeLine{24   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{25   \textcolor{comment}{/* These functions should be optional if you are writing a font server   */}}
+\DoxyCodeLine{26   \textcolor{comment}{/* or text layout engine on top of FreeType.  However, they are pretty   */}}
+\DoxyCodeLine{27   \textcolor{comment}{/* handy for many other simple uses of the library.                      */}}
+\DoxyCodeLine{28   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{29 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifndef \_\_FTGLYPH\_H\_\_}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define \_\_FTGLYPH\_H\_\_}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*    glyph\_management                                                   */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{54   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*    Glyph Management                                                   */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{57   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    Generic interface to manage individual glyph data.                 */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{60   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*    This section contains definitions used to manage glyph data        */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    through generic FT\_Glyph objects.  Each of them can contain a      */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*    bitmap, a vector outline, or even images in other formats.         */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   \textcolor{comment}{/* forward declaration to a private type */}}
+\DoxyCodeLine{69   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___glyph___class__}{FT\_Glyph\_Class\_}}  FT\_Glyph\_Class;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{73   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{74   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*    FT\_Glyph                                                           */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{77   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*    Handle to an object used to model generic glyph images.  It is a   */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*    pointer to the @FT\_GlyphRec structure and can contain a glyph      */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*    bitmap or pointer.                                                 */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{82   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*    Glyph objects are not owned by the library.  You must thus release */}}
+\DoxyCodeLine{84   \textcolor{comment}{/*    them manually (through @FT\_Done\_Glyph) \_before\_ calling            */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*    @FT\_Done\_FreeType.                                                 */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{87   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_GlyphRec\_}}*  \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}};}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{91   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{92   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*    FT\_GlyphRec                                                        */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{95   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*    The root glyph structure contains a given glyph image plus its     */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*    advance width in 16.16 fixed float format.                         */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{99   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*    library :: A handle to the FreeType library object.                */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*    clazz   :: A pointer to the glyph's class.  Private.               */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*    format  :: The format of the glyph's image.                        */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*    advance :: A 16.16 vector that gives the glyph's advance width.    */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{108   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_GlyphRec\_}}}
+\DoxyCodeLine{109   \{}
+\DoxyCodeLine{110     \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}             library;}
+\DoxyCodeLine{111     \textcolor{keyword}{const} FT\_Glyph\_Class*  clazz;}
+\DoxyCodeLine{112     FT\_Glyph\_Format        format;}
+\DoxyCodeLine{113     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}              advance;}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115   \} \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_GlyphRec}};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*    FT\_BitmapGlyph                                                     */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{123   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*    A handle to an object used to model a bitmap glyph image.  This is */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*    a sub-\/class of @FT\_Glyph, and a pointer to @FT\_BitmapGlyphRec.     */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{127   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___bitmap_glyph_rec__}{FT\_BitmapGlyphRec\_}}*  \mbox{\hyperlink{struct_f_t___bitmap_glyph_rec__}{FT\_BitmapGlyph}};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{131   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{132   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*    FT\_BitmapGlyphRec                                                  */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{135   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*    A structure used for bitmap glyph images.  This really is a        */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*    `sub-\/class' of `FT\_GlyphRec'.                                      */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{139   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    root   :: The root FT\_Glyph fields.                                */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*    left   :: The left-\/side bearing, i.e., the horizontal distance     */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*              from the current pen position to the left border of the  */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*              glyph bitmap.                                            */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*    top    :: The top-\/side bearing, i.e., the vertical distance from   */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*              the current pen position to the top border of the glyph  */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*              bitmap.  This distance is positive for upwards-\/y!        */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*    bitmap :: A descriptor for the bitmap.                             */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{152   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*    You can typecast FT\_Glyph to FT\_BitmapGlyph if you have            */}}
+\DoxyCodeLine{154   \textcolor{comment}{/*    glyph-\/>format == FT\_GLYPH\_FORMAT\_BITMAP.  This lets you access     */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*    the bitmap's contents easily.                                      */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*    The corresponding pixel buffer is always owned by the BitmapGlyph  */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*    and is thus created and destroyed with it.                         */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{160   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___bitmap_glyph_rec__}{FT\_BitmapGlyphRec\_}}}
+\DoxyCodeLine{161   \{}
+\DoxyCodeLine{162     \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_GlyphRec}}  root;}
+\DoxyCodeLine{163     FT\_Int       left;}
+\DoxyCodeLine{164     FT\_Int       top;}
+\DoxyCodeLine{165     \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}    bitmap;}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167   \} \mbox{\hyperlink{struct_f_t___bitmap_glyph_rec__}{FT\_BitmapGlyphRec}};}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/* <Type>                                                                */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*    FT\_OutlineGlyph                                                    */}}
+\DoxyCodeLine{174   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{175   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*    A handle to an object used to model an outline glyph image.  This  */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*    is a sub-\/class of @FT\_Glyph, and a pointer to @FT\_OutlineGlyphRec. */}}
+\DoxyCodeLine{178   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{179   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___outline_glyph_rec__}{FT\_OutlineGlyphRec\_}}*  \mbox{\hyperlink{struct_f_t___outline_glyph_rec__}{FT\_OutlineGlyph}};}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*    FT\_OutlineGlyphRec                                                 */}}
+\DoxyCodeLine{186   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{187   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*    A structure used for outline (vectorial) glyph images.  This       */}}
+\DoxyCodeLine{189   \textcolor{comment}{/*    really is a `sub-\/class' of `FT\_GlyphRec'.                          */}}
+\DoxyCodeLine{190   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{191   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{192   \textcolor{comment}{/*    root    :: The root FT\_Glyph fields.                               */}}
+\DoxyCodeLine{193   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*    outline :: A descriptor for the outline.                           */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{196   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*    You can typecast FT\_Glyph to FT\_OutlineGlyph if you have           */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*    glyph-\/>format == FT\_GLYPH\_FORMAT\_OUTLINE.  This lets you access    */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*    the outline's content easily.                                      */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*    As the outline is extracted from a glyph slot, its coordinates are */}}
+\DoxyCodeLine{202   \textcolor{comment}{/*    expressed normally in 26.6 pixels, unless the flag                 */}}
+\DoxyCodeLine{203   \textcolor{comment}{/*    FT\_LOAD\_NO\_SCALE was used in FT\_Load\_Glyph() or FT\_Load\_Char().    */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{205   \textcolor{comment}{/*    The outline's tables are always owned by the object and are        */}}
+\DoxyCodeLine{206   \textcolor{comment}{/*    destroyed with it.                                                 */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{208   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___outline_glyph_rec__}{FT\_OutlineGlyphRec\_}}}
+\DoxyCodeLine{209   \{}
+\DoxyCodeLine{210     \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_GlyphRec}}  root;}
+\DoxyCodeLine{211     \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}   outline;}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213   \} \mbox{\hyperlink{struct_f_t___outline_glyph_rec__}{FT\_OutlineGlyphRec}};}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{217   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{218   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    FT\_Get\_Glyph                                                       */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{221   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{222   \textcolor{comment}{/*    A function used to extract a glyph image from a slot.              */}}
+\DoxyCodeLine{223   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{224   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{225   \textcolor{comment}{/*    slot   :: A handle to the source glyph slot.                       */}}
+\DoxyCodeLine{226   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{227   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{228   \textcolor{comment}{/*    aglyph :: A handle to the glyph object.                            */}}
+\DoxyCodeLine{229   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{230   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{231   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{232   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{233   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{234   FT\_Get\_Glyph( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  slot,}
+\DoxyCodeLine{235                 \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}     *aglyph );}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{239   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{240   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{241   \textcolor{comment}{/*    FT\_Glyph\_Copy                                                      */}}
+\DoxyCodeLine{242   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{243   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{244   \textcolor{comment}{/*    A function used to copy a glyph image.  Note that the created      */}}
+\DoxyCodeLine{245   \textcolor{comment}{/*    @FT\_Glyph object must be released with @FT\_Done\_Glyph.             */}}
+\DoxyCodeLine{246   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{247   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{248   \textcolor{comment}{/*    source :: A handle to the source glyph object.                     */}}
+\DoxyCodeLine{249   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{250   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*    target :: A handle to the target glyph object.  0 in case of       */}}
+\DoxyCodeLine{252   \textcolor{comment}{/*              error.                                                   */}}
+\DoxyCodeLine{253   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{254   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{255   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{256   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{257   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{258   FT\_Glyph\_Copy( \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}   source,}
+\DoxyCodeLine{259                  \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}  *target );}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{263   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{264   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{265   \textcolor{comment}{/*    FT\_Glyph\_Transform                                                 */}}
+\DoxyCodeLine{266   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{267   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{268   \textcolor{comment}{/*    Transforms a glyph image if its format is scalable.                */}}
+\DoxyCodeLine{269   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{270   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{271   \textcolor{comment}{/*    glyph  :: A handle to the target glyph object.                     */}}
+\DoxyCodeLine{272   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{273   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*    matrix :: A pointer to a 2x2 matrix to apply.                      */}}
+\DoxyCodeLine{275   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{276   \textcolor{comment}{/*    delta  :: A pointer to a 2d vector to apply.  Coordinates are      */}}
+\DoxyCodeLine{277   \textcolor{comment}{/*              expressed in 1/64th of a pixel.                          */}}
+\DoxyCodeLine{278   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{279   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{280   \textcolor{comment}{/*    FreeType error code (the glyph format is not scalable if it is     */}}
+\DoxyCodeLine{281   \textcolor{comment}{/*    not zero).                                                         */}}
+\DoxyCodeLine{282   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{283   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{284   \textcolor{comment}{/*    The 2x2 transformation matrix is also applied to the glyph's       */}}
+\DoxyCodeLine{285   \textcolor{comment}{/*    advance vector.                                                    */}}
+\DoxyCodeLine{286   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{287   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{288   FT\_Glyph\_Transform( \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}    glyph,}
+\DoxyCodeLine{289                       \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}*  matrix,}
+\DoxyCodeLine{290                       \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*  delta );}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{294   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{295   \textcolor{comment}{/* <Enum>                                                                */}}
+\DoxyCodeLine{296   \textcolor{comment}{/*    FT\_Glyph\_BBox\_Mode                                                 */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{298   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{299   \textcolor{comment}{/*    The mode how the values of @FT\_Glyph\_Get\_CBox are returned.        */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{301   \textcolor{comment}{/* <Values>                                                              */}}
+\DoxyCodeLine{302   \textcolor{comment}{/*    FT\_GLYPH\_BBOX\_UNSCALED ::                                          */}}
+\DoxyCodeLine{303   \textcolor{comment}{/*      Return unscaled font units.                                      */}}
+\DoxyCodeLine{304   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*    FT\_GLYPH\_BBOX\_SUBPIXELS ::                                         */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*      Return unfitted 26.6 coordinates.                                */}}
+\DoxyCodeLine{307   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{308   \textcolor{comment}{/*    FT\_GLYPH\_BBOX\_GRIDFIT ::                                           */}}
+\DoxyCodeLine{309   \textcolor{comment}{/*      Return grid-\/fitted 26.6 coordinates.                             */}}
+\DoxyCodeLine{310   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{311   \textcolor{comment}{/*    FT\_GLYPH\_BBOX\_TRUNCATE ::                                          */}}
+\DoxyCodeLine{312   \textcolor{comment}{/*      Return coordinates in integer pixels.                            */}}
+\DoxyCodeLine{313   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{314   \textcolor{comment}{/*    FT\_GLYPH\_BBOX\_PIXELS ::                                            */}}
+\DoxyCodeLine{315   \textcolor{comment}{/*      Return grid-\/fitted pixel coordinates.                            */}}
+\DoxyCodeLine{316   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{317   \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  FT\_Glyph\_BBox\_Mode\_}
+\DoxyCodeLine{318   \{}
+\DoxyCodeLine{319     FT\_GLYPH\_BBOX\_UNSCALED  = 0,}
+\DoxyCodeLine{320     FT\_GLYPH\_BBOX\_SUBPIXELS = 0,}
+\DoxyCodeLine{321     FT\_GLYPH\_BBOX\_GRIDFIT   = 1,}
+\DoxyCodeLine{322     FT\_GLYPH\_BBOX\_TRUNCATE  = 2,}
+\DoxyCodeLine{323     FT\_GLYPH\_BBOX\_PIXELS    = 3}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325   \} FT\_Glyph\_BBox\_Mode;}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{329   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{330   \textcolor{comment}{/* <Enum>                                                                */}}
+\DoxyCodeLine{331   \textcolor{comment}{/*    ft\_glyph\_bbox\_xxx                                                  */}}
+\DoxyCodeLine{332   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{333   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{334   \textcolor{comment}{/*    These constants are deprecated.  Use the corresponding             */}}
+\DoxyCodeLine{335   \textcolor{comment}{/*    @FT\_Glyph\_BBox\_Mode values instead.                                */}}
+\DoxyCodeLine{336   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{337   \textcolor{comment}{/* <Values>                                                              */}}
+\DoxyCodeLine{338   \textcolor{comment}{/*   ft\_glyph\_bbox\_unscaled  :: see @FT\_GLYPH\_BBOX\_UNSCALED              */}}
+\DoxyCodeLine{339   \textcolor{comment}{/*   ft\_glyph\_bbox\_subpixels :: see @FT\_GLYPH\_BBOX\_SUBPIXELS             */}}
+\DoxyCodeLine{340   \textcolor{comment}{/*   ft\_glyph\_bbox\_gridfit   :: see @FT\_GLYPH\_BBOX\_GRIDFIT               */}}
+\DoxyCodeLine{341   \textcolor{comment}{/*   ft\_glyph\_bbox\_truncate  :: see @FT\_GLYPH\_BBOX\_TRUNCATE              */}}
+\DoxyCodeLine{342   \textcolor{comment}{/*   ft\_glyph\_bbox\_pixels    :: see @FT\_GLYPH\_BBOX\_PIXELS                */}}
+\DoxyCodeLine{343   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{344 \textcolor{preprocessor}{\#define ft\_glyph\_bbox\_unscaled   FT\_GLYPH\_BBOX\_UNSCALED}}
+\DoxyCodeLine{345 \textcolor{preprocessor}{\#define ft\_glyph\_bbox\_subpixels  FT\_GLYPH\_BBOX\_SUBPIXELS}}
+\DoxyCodeLine{346 \textcolor{preprocessor}{\#define ft\_glyph\_bbox\_gridfit    FT\_GLYPH\_BBOX\_GRIDFIT}}
+\DoxyCodeLine{347 \textcolor{preprocessor}{\#define ft\_glyph\_bbox\_truncate   FT\_GLYPH\_BBOX\_TRUNCATE}}
+\DoxyCodeLine{348 \textcolor{preprocessor}{\#define ft\_glyph\_bbox\_pixels     FT\_GLYPH\_BBOX\_PIXELS}}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{352   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{353   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{354   \textcolor{comment}{/*    FT\_Glyph\_Get\_CBox                                                  */}}
+\DoxyCodeLine{355   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{356   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{357   \textcolor{comment}{/*    Returns a glyph's `control box'.  The control box encloses all the */}}
+\DoxyCodeLine{358   \textcolor{comment}{/*    outline's points, including Bezier control points.  Though it      */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*    coincides with the exact bounding box for most glyphs, it can be   */}}
+\DoxyCodeLine{360   \textcolor{comment}{/*    slightly larger in some situations (like when rotating an outline  */}}
+\DoxyCodeLine{361   \textcolor{comment}{/*    which contains Bezier outside arcs).                               */}}
+\DoxyCodeLine{362   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{363   \textcolor{comment}{/*    Computing the control box is very fast, while getting the bounding */}}
+\DoxyCodeLine{364   \textcolor{comment}{/*    box can take much more time as it needs to walk over all segments  */}}
+\DoxyCodeLine{365   \textcolor{comment}{/*    and arcs in the outline.  To get the latter, you can use the       */}}
+\DoxyCodeLine{366   \textcolor{comment}{/*    `ftbbox' component which is dedicated to this single task.         */}}
+\DoxyCodeLine{367   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{368   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{369   \textcolor{comment}{/*    glyph :: A handle to the source glyph object.                      */}}
+\DoxyCodeLine{370   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{371   \textcolor{comment}{/*    mode  :: The mode which indicates how to interpret the returned    */}}
+\DoxyCodeLine{372   \textcolor{comment}{/*             bounding box values.                                      */}}
+\DoxyCodeLine{373   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{374   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{375   \textcolor{comment}{/*    acbox :: The glyph coordinate bounding box.  Coordinates are       */}}
+\DoxyCodeLine{376   \textcolor{comment}{/*             expressed in 1/64th of pixels if it is grid-\/fitted.       */}}
+\DoxyCodeLine{377   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{378   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{379   \textcolor{comment}{/*    Coordinates are relative to the glyph origin, using the Y-\/upwards  */}}
+\DoxyCodeLine{380   \textcolor{comment}{/*    convention.                                                        */}}
+\DoxyCodeLine{381   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{382   \textcolor{comment}{/*    If the glyph has been loaded with FT\_LOAD\_NO\_SCALE, `bbox\_mode'    */}}
+\DoxyCodeLine{383   \textcolor{comment}{/*    must be set to `FT\_GLYPH\_BBOX\_UNSCALED' to get unscaled font       */}}
+\DoxyCodeLine{384   \textcolor{comment}{/*    units in 26.6 pixel format.  The value `FT\_GLYPH\_BBOX\_SUBPIXELS'   */}}
+\DoxyCodeLine{385   \textcolor{comment}{/*    is another name for this constant.                                 */}}
+\DoxyCodeLine{386   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{387   \textcolor{comment}{/*    Note that the maximum coordinates are exclusive, which means that  */}}
+\DoxyCodeLine{388   \textcolor{comment}{/*    one can compute the width and height of the glyph image (be it in  */}}
+\DoxyCodeLine{389   \textcolor{comment}{/*    integer or 26.6 pixels) as:                                        */}}
+\DoxyCodeLine{390   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{391   \textcolor{comment}{/*      width  = bbox.xMax -\/ bbox.xMin;                                  */}}
+\DoxyCodeLine{392   \textcolor{comment}{/*      height = bbox.yMax -\/ bbox.yMin;                                  */}}
+\DoxyCodeLine{393   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{394   \textcolor{comment}{/*    Note also that for 26.6 coordinates, if `bbox\_mode' is set to      */}}
+\DoxyCodeLine{395   \textcolor{comment}{/*    `FT\_GLYPH\_BBOX\_GRIDFIT', the coordinates will also be grid-\/fitted, */}}
+\DoxyCodeLine{396   \textcolor{comment}{/*    which corresponds to:                                              */}}
+\DoxyCodeLine{397   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{398   \textcolor{comment}{/*      bbox.xMin = FLOOR(bbox.xMin);                                    */}}
+\DoxyCodeLine{399   \textcolor{comment}{/*      bbox.yMin = FLOOR(bbox.yMin);                                    */}}
+\DoxyCodeLine{400   \textcolor{comment}{/*      bbox.xMax = CEILING(bbox.xMax);                                  */}}
+\DoxyCodeLine{401   \textcolor{comment}{/*      bbox.yMax = CEILING(bbox.yMax);                                  */}}
+\DoxyCodeLine{402   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{403   \textcolor{comment}{/*    To get the bbox in pixel coordinates, set `bbox\_mode' to           */}}
+\DoxyCodeLine{404   \textcolor{comment}{/*    `FT\_GLYPH\_BBOX\_TRUNCATE'.                                          */}}
+\DoxyCodeLine{405   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{406   \textcolor{comment}{/*    To get the bbox in grid-\/fitted pixel coordinates, set `bbox\_mode'  */}}
+\DoxyCodeLine{407   \textcolor{comment}{/*    to `FT\_GLYPH\_BBOX\_PIXELS'.                                         */}}
+\DoxyCodeLine{408   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{409   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{410   FT\_Glyph\_Get\_CBox( \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}  glyph,}
+\DoxyCodeLine{411                      FT\_UInt   bbox\_mode,}
+\DoxyCodeLine{412                      \mbox{\hyperlink{struct_f_t___b_box__}{FT\_BBox}}  *acbox );}
+\DoxyCodeLine{413 }
+\DoxyCodeLine{414 }
+\DoxyCodeLine{415 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{416   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{417   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{418   \textcolor{comment}{/*    FT\_Glyph\_To\_Bitmap                                                 */}}
+\DoxyCodeLine{419   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{420   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{421   \textcolor{comment}{/*    Converts a given glyph object to a bitmap glyph object.            */}}
+\DoxyCodeLine{422   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{423   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{424   \textcolor{comment}{/*    the\_glyph   :: A pointer to a handle to the target glyph.          */}}
+\DoxyCodeLine{425   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{426   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{427   \textcolor{comment}{/*    render\_mode :: An enumeration that describe how the data is        */}}
+\DoxyCodeLine{428   \textcolor{comment}{/*                   rendered.                                           */}}
+\DoxyCodeLine{429   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{430   \textcolor{comment}{/*    origin      :: A pointer to a vector used to translate the glyph   */}}
+\DoxyCodeLine{431   \textcolor{comment}{/*                   image before rendering.  Can be 0 (if no            */}}
+\DoxyCodeLine{432   \textcolor{comment}{/*                   translation).  The origin is expressed in           */}}
+\DoxyCodeLine{433   \textcolor{comment}{/*                   26.6 pixels.                                        */}}
+\DoxyCodeLine{434   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{435   \textcolor{comment}{/*    destroy     :: A boolean that indicates that the original glyph    */}}
+\DoxyCodeLine{436   \textcolor{comment}{/*                   image should be destroyed by this function.  It is  */}}
+\DoxyCodeLine{437   \textcolor{comment}{/*                   never destroyed in case of error.                   */}}
+\DoxyCodeLine{438   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{439   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{440   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{441   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{442   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{443   \textcolor{comment}{/*    The glyph image is translated with the `origin' vector before      */}}
+\DoxyCodeLine{444   \textcolor{comment}{/*    rendering.                                                         */}}
+\DoxyCodeLine{445   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{446   \textcolor{comment}{/*    The first parameter is a pointer to a FT\_Glyph handle, that will   */}}
+\DoxyCodeLine{447   \textcolor{comment}{/*    be replaced by this function.  Typically, you would use (omitting  */}}
+\DoxyCodeLine{448   \textcolor{comment}{/*    error handling):                                                   */}}
+\DoxyCodeLine{449   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{450   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{451   \textcolor{comment}{/*      \{                                                                */}}
+\DoxyCodeLine{452   \textcolor{comment}{/*        FT\_Glyph        glyph;                                         */}}
+\DoxyCodeLine{453   \textcolor{comment}{/*        FT\_BitmapGlyph  glyph\_bitmap;                                  */}}
+\DoxyCodeLine{454   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{455   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{456   \textcolor{comment}{/*        // load glyph                                                  */}}
+\DoxyCodeLine{457   \textcolor{comment}{/*        error = FT\_Load\_Char( face, glyph\_index, FT\_LOAD\_DEFAUT );     */}}
+\DoxyCodeLine{458   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{459   \textcolor{comment}{/*        // extract glyph image                                         */}}
+\DoxyCodeLine{460   \textcolor{comment}{/*        error = FT\_Get\_Glyph( face-\/>glyph, \&glyph );                   */}}
+\DoxyCodeLine{461   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{462   \textcolor{comment}{/*        // convert to a bitmap (default render mode + destroy old)     */}}
+\DoxyCodeLine{463   \textcolor{comment}{/*        if ( glyph-\/>format != FT\_GLYPH\_FORMAT\_BITMAP )                 */}}
+\DoxyCodeLine{464   \textcolor{comment}{/*        \{                                                              */}}
+\DoxyCodeLine{465   \textcolor{comment}{/*          error = FT\_Glyph\_To\_Bitmap( \&glyph, FT\_RENDER\_MODE\_DEFAULT,  */}}
+\DoxyCodeLine{466   \textcolor{comment}{/*                                      0, 1 );                          */}}
+\DoxyCodeLine{467   \textcolor{comment}{/*          if ( error ) // glyph unchanged                              */}}
+\DoxyCodeLine{468   \textcolor{comment}{/*            ...                                                        */}}
+\DoxyCodeLine{469   \textcolor{comment}{/*        \}                                                              */}}
+\DoxyCodeLine{470   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{471   \textcolor{comment}{/*        // access bitmap content by typecasting                        */}}
+\DoxyCodeLine{472   \textcolor{comment}{/*        glyph\_bitmap = (FT\_BitmapGlyph)glyph;                          */}}
+\DoxyCodeLine{473   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{474   \textcolor{comment}{/*        // do funny stuff with it, like blitting/drawing               */}}
+\DoxyCodeLine{475   \textcolor{comment}{/*        ...                                                            */}}
+\DoxyCodeLine{476   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{477   \textcolor{comment}{/*        // discard glyph image (bitmap or not)                         */}}
+\DoxyCodeLine{478   \textcolor{comment}{/*        FT\_Done\_Glyph( glyph );                                        */}}
+\DoxyCodeLine{479   \textcolor{comment}{/*      \}                                                                */}}
+\DoxyCodeLine{480   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{481   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{482   \textcolor{comment}{/*    This function does nothing if the glyph format isn't scalable.     */}}
+\DoxyCodeLine{483   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{484   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{485   FT\_Glyph\_To\_Bitmap( \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}*       the\_glyph,}
+\DoxyCodeLine{486                       FT\_Render\_Mode  render\_mode,}
+\DoxyCodeLine{487                       \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*      origin,}
+\DoxyCodeLine{488                       FT\_Bool         destroy );}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{490 }
+\DoxyCodeLine{491 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{492   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{493   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{494   \textcolor{comment}{/*    FT\_Done\_Glyph                                                      */}}
+\DoxyCodeLine{495   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{496   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{497   \textcolor{comment}{/*    Destroys a given glyph.                                            */}}
+\DoxyCodeLine{498   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{499   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{500   \textcolor{comment}{/*    glyph :: A handle to the target glyph object.                      */}}
+\DoxyCodeLine{501   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{502   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{503   FT\_Done\_Glyph( \mbox{\hyperlink{struct_f_t___glyph_rec__}{FT\_Glyph}}  glyph );}
+\DoxyCodeLine{504 }
+\DoxyCodeLine{505 }
+\DoxyCodeLine{506   \textcolor{comment}{/* other helpful functions */}}
+\DoxyCodeLine{507 }
+\DoxyCodeLine{508 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{509   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{510   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{511   \textcolor{comment}{/*    computations                                                       */}}
+\DoxyCodeLine{512   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{513 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{514 }
+\DoxyCodeLine{515 }
+\DoxyCodeLine{516 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{517   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{518   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{519   \textcolor{comment}{/*    FT\_Matrix\_Multiply                                                 */}}
+\DoxyCodeLine{520   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{521   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{522   \textcolor{comment}{/*    Performs the matrix operation `b = a*b'.                           */}}
+\DoxyCodeLine{523   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{524   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{525   \textcolor{comment}{/*    a :: A pointer to matrix `a'.                                      */}}
+\DoxyCodeLine{526   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{527   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{528   \textcolor{comment}{/*    b :: A pointer to matrix `b'.                                      */}}
+\DoxyCodeLine{529   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{530   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{531   \textcolor{comment}{/*    The result is undefined if either `a' or `b' is zero.              */}}
+\DoxyCodeLine{532   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{533   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{534   FT\_Matrix\_Multiply( \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}*  a,}
+\DoxyCodeLine{535                       \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}*  b );}
+\DoxyCodeLine{536 }
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{539   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{540   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{541   \textcolor{comment}{/*    FT\_Matrix\_Invert                                                   */}}
+\DoxyCodeLine{542   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{543   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{544   \textcolor{comment}{/*    Inverts a 2x2 matrix.  Returns an error if it can't be inverted.   */}}
+\DoxyCodeLine{545   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{546   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{547   \textcolor{comment}{/*    matrix :: A pointer to the target matrix.  Remains untouched in    */}}
+\DoxyCodeLine{548   \textcolor{comment}{/*              case of error.                                           */}}
+\DoxyCodeLine{549   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{550   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{551   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{552   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{553   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{554   FT\_Matrix\_Invert( \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}*  matrix );}
+\DoxyCodeLine{555 }
+\DoxyCodeLine{556 }
+\DoxyCodeLine{557   \textcolor{comment}{/* */}}
+\DoxyCodeLine{558 }
+\DoxyCodeLine{559 }
+\DoxyCodeLine{560 FT\_END\_HEADER}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTGLYPH\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{563 }
+\DoxyCodeLine{564 }
+\DoxyCodeLine{565 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

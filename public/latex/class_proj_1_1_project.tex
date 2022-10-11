@@ -1,0 +1,121 @@
+\hypertarget{class_proj_1_1_project}{}\doxysection{Proj\+::Project Class Reference}
+\label{class_proj_1_1_project}\index{Proj::Project@{Proj::Project}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a620c8f9cbcccf737bf3cf7a3a3a00435}\label{class_proj_1_1_project_a620c8f9cbcccf737bf3cf7a3a3a00435}} 
+{\bfseries Project} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_sample}{Sample}} $>$ \&\&ptr\+\_\+sample=nullptr, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_instrument}{Instrument}} $>$ \&\&ptr\+\_\+instrument=nullptr, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_proj_1_1_material}{Material}} $>$ \&\&ptr\+\_\+material=nullptr, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_process_controller}{Process\+Controller}} $>$ \&\&ptr\+\_\+process\+\_\+controller=nullptr, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_save_results}{Save\+Results}} $>$ \&\&ptr\+\_\+save\+\_\+results=nullptr)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a89a093ec4e9b42337db59a1fa7abeb9a}\label{class_proj_1_1_project_a89a093ec4e9b42337db59a1fa7abeb9a}} 
+void {\bfseries set\+\_\+sample} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_sample}{Sample}} $>$ \&\&ptr\+\_\+sample\+\_\+file)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_afd2bdc4f7e5df7b57b82ef1176b935cd}\label{class_proj_1_1_project_afd2bdc4f7e5df7b57b82ef1176b935cd}} 
+void {\bfseries set\+\_\+instrument} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_instrument}{Instrument}} $>$ \&\&ptr\+\_\+instrument\+\_\+file)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_af4bf603a02268abbcbcb1f57e886c090}\label{class_proj_1_1_project_af4bf603a02268abbcbcb1f57e886c090}} 
+void {\bfseries set\+\_\+material} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_proj_1_1_material}{Material}} $>$ \&\&ptr\+\_\+material)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a711b523ec544585059d2b82508040be4}\label{class_proj_1_1_project_a711b523ec544585059d2b82508040be4}} 
+void {\bfseries set\+\_\+process\+\_\+controller} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_process_controller}{Process\+Controller}} $>$ \&\&ptr\+\_\+process\+\_\+controller)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a5db9584bd5543eb8c20e82b5f1578165}\label{class_proj_1_1_project_a5db9584bd5543eb8c20e82b5f1578165}} 
+void {\bfseries set\+\_\+controllers} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_instrument_controller}{Instrument\+Controller}} $>$ \&\&ptr\+\_\+instrument\+\_\+controller=nullptr, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_step_controller}{Step\+Controller}} $>$ \&\&ptr\+\_\+step\+\_\+controller=nullptr, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_remeshing_controller}{Remeshing\+Controller}} $>$ \&\&ptr\+\_\+remeshing\+\_\+controller=nullptr)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a428c6e99f0f8dc6b1e9e2745a0e357ce}\label{class_proj_1_1_project_a428c6e99f0f8dc6b1e9e2745a0e357ce}} 
+void {\bfseries set\+\_\+checkers} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_stop_condition}{Stop\+Condition}} $>$ \&\&ptr\+\_\+stop\+\_\+condition=nullptr, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_remeshing_condition}{Remeshing\+Condition}} $>$ \&\&ptr\+\_\+remeshing\+\_\+condition=nullptr)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_ad967c2428b68ab998d089cb2d8d84530}\label{class_proj_1_1_project_ad967c2428b68ab998d089cb2d8d84530}} 
+void {\bfseries set\+\_\+results\+\_\+file} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_save_results}{Save\+Results}} $>$ \&\&ptr\+\_\+save\+\_\+results)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a6182715539875e1fa339ee574cf97bed}\label{class_proj_1_1_project_a6182715539875e1fa339ee574cf97bed}} 
+bool {\bfseries is\+\_\+ready} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a5c04c01fbe1295f3247cb3fb71259ef7}\label{class_proj_1_1_project_a5c04c01fbe1295f3247cb3fb71259ef7}} 
+double {\bfseries offset} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_aed3c6e3800677f5bb75a00732f232fef}\label{class_proj_1_1_project_aed3c6e3800677f5bb75a00732f232fef}} 
+bool {\bfseries is\+\_\+remesh\+\_\+time} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a32747c0ea00aa0e6163a8097f0f3efec}\label{class_proj_1_1_project_a32747c0ea00aa0e6163a8097f0f3efec}} 
+bool {\bfseries is\+\_\+stop\+\_\+time} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_ae5d98bee15b072e80f454ca9f67be3a2}\label{class_proj_1_1_project_ae5d98bee15b072e80f454ca9f67be3a2}} 
+bool {\bfseries is\+\_\+save\+\_\+time} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_aa0ef1a86ce618a8c96e5991ac6c61a15}\label{class_proj_1_1_project_aa0ef1a86ce618a8c96e5991ac6c61a15}} 
+void {\bfseries save\+\_\+line} (const char $\ast$line)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a1be2bb35487e930c15010e3b3f3be890}\label{class_proj_1_1_project_a1be2bb35487e930c15010e3b3f3be890}} 
+void {\bfseries save\+\_\+project} (const std\+::string \&file\+\_\+name)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_ad49c0faa75474d448e86969d4e3f7290}\label{class_proj_1_1_project_ad49c0faa75474d448e86969d4e3f7290}} 
+void {\bfseries load\+\_\+project} (const std\+::string \&file\+\_\+name)
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_ad5e2e8bd59723683b693fbe65edd96aa}\label{class_proj_1_1_project_ad5e2e8bd59723683b693fbe65edd96aa}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_proj_1_1_project}{Project}} $>$ {\bfseries clone} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_ade6cd8b28e982d2ffd39aad58d46c7a4}\label{class_proj_1_1_project_ade6cd8b28e982d2ffd39aad58d46c7a4}} 
+\mbox{\hyperlink{class_proj_1_1_sample}{Sample}} \& {\bfseries get\+\_\+sample} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a7ba8677371064674f0864f23af6743c2}\label{class_proj_1_1_project_a7ba8677371064674f0864f23af6743c2}} 
+const \mbox{\hyperlink{class_proj_1_1_sample}{Sample}} \& {\bfseries get\+\_\+sample} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_add9d0a6c13e0fc182ecfae3dfc289df7}\label{class_proj_1_1_project_add9d0a6c13e0fc182ecfae3dfc289df7}} 
+\mbox{\hyperlink{class_proj_1_1_instrument}{Instrument}} \& {\bfseries get\+\_\+instrument} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a0fa50a980f7ce70c5100350f120b5345}\label{class_proj_1_1_project_a0fa50a980f7ce70c5100350f120b5345}} 
+const \mbox{\hyperlink{class_proj_1_1_instrument}{Instrument}} \& {\bfseries get\+\_\+instrument} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a24fcb3bf5e71709a3c1167f890276d2d}\label{class_proj_1_1_project_a24fcb3bf5e71709a3c1167f890276d2d}} 
+\mbox{\hyperlink{struct_proj_1_1_material}{Material}} \& {\bfseries get\+\_\+material} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_ac6c0e6969539fb96c9aa14be3e64dffd}\label{class_proj_1_1_project_ac6c0e6969539fb96c9aa14be3e64dffd}} 
+const \mbox{\hyperlink{struct_proj_1_1_material}{Material}} \& {\bfseries get\+\_\+material} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a49c18c96b58adcfca21285ab4652071f}\label{class_proj_1_1_project_a49c18c96b58adcfca21285ab4652071f}} 
+\mbox{\hyperlink{class_proj_1_1_save_results}{Save\+Results}} \& {\bfseries get\+\_\+save\+\_\+results} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_ad0bb1e3d8a05201b0e6548f852f287b1}\label{class_proj_1_1_project_ad0bb1e3d8a05201b0e6548f852f287b1}} 
+const \mbox{\hyperlink{class_proj_1_1_save_results}{Save\+Results}} \& {\bfseries get\+\_\+save\+\_\+results} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a32b09c4a4d5761196da666b35c5078e7}\label{class_proj_1_1_project_a32b09c4a4d5761196da666b35c5078e7}} 
+\mbox{\hyperlink{class_proj_1_1_process_controller}{Process\+Controller}} \& {\bfseries get\+\_\+process\+\_\+controller} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_aa59d6a8a8421fc39c36a92167364e7e6}\label{class_proj_1_1_project_aa59d6a8a8421fc39c36a92167364e7e6}} 
+const \mbox{\hyperlink{class_proj_1_1_process_controller}{Process\+Controller}} \& {\bfseries get\+\_\+process\+\_\+controller} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a17e391364e7e30b483a929feae92407b}\label{class_proj_1_1_project_a17e391364e7e30b483a929feae92407b}} 
+\mbox{\hyperlink{class_proj_1_1_instrument_controller}{Instrument\+Controller}} \& {\bfseries get\+\_\+instrument\+\_\+controller} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a7530da949fe70c74bbe58b59fbf05db0}\label{class_proj_1_1_project_a7530da949fe70c74bbe58b59fbf05db0}} 
+const \mbox{\hyperlink{class_proj_1_1_instrument_controller}{Instrument\+Controller}} \& {\bfseries get\+\_\+instrument\+\_\+controller} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a0c624e6916288a1d6121e380241e45ff}\label{class_proj_1_1_project_a0c624e6916288a1d6121e380241e45ff}} 
+\mbox{\hyperlink{class_proj_1_1_step_controller}{Step\+Controller}} \& {\bfseries get\+\_\+step\+\_\+controller} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a3bd0617aab5964d39b1610fc3b1cc7c6}\label{class_proj_1_1_project_a3bd0617aab5964d39b1610fc3b1cc7c6}} 
+const \mbox{\hyperlink{class_proj_1_1_step_controller}{Step\+Controller}} \& {\bfseries get\+\_\+stept\+\_\+controller} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a921762366fb18c48102d508e7bcd418f}\label{class_proj_1_1_project_a921762366fb18c48102d508e7bcd418f}} 
+\mbox{\hyperlink{class_proj_1_1_remeshing_controller}{Remeshing\+Controller}} \& {\bfseries get\+\_\+remeshing\+\_\+controller} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_aa091836ea43a8d6cc1c038e4bfe3abef}\label{class_proj_1_1_project_aa091836ea43a8d6cc1c038e4bfe3abef}} 
+const \mbox{\hyperlink{class_proj_1_1_remeshing_controller}{Remeshing\+Controller}} \& {\bfseries get\+\_\+remeshing\+\_\+controller} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_ac1e8bc2203dcb7e68e42dde82649784f}\label{class_proj_1_1_project_ac1e8bc2203dcb7e68e42dde82649784f}} 
+\mbox{\hyperlink{class_proj_1_1_stop_condition}{Stop\+Condition}} \& {\bfseries get\+\_\+stop\+\_\+condition} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a903d6e86ffec8d24d8e891e01a8b2e1c}\label{class_proj_1_1_project_a903d6e86ffec8d24d8e891e01a8b2e1c}} 
+const \mbox{\hyperlink{class_proj_1_1_stop_condition}{Stop\+Condition}} \& {\bfseries get\+\_\+stop\+\_\+condition} () const
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a2d47d1eeb3fd450864f2e9e2a64ff006}\label{class_proj_1_1_project_a2d47d1eeb3fd450864f2e9e2a64ff006}} 
+\mbox{\hyperlink{class_proj_1_1_remeshing_condition}{Remeshing\+Condition}} \& {\bfseries get\+\_\+remeshing\+\_\+condition} ()
+\item 
+\mbox{\Hypertarget{class_proj_1_1_project_a2124cf818c6c404c5b2934e0e9b042ff}\label{class_proj_1_1_project_a2124cf818c6c404c5b2934e0e9b042ff}} 
+const \mbox{\hyperlink{class_proj_1_1_remeshing_condition}{Remeshing\+Condition}} \& {\bfseries get\+\_\+remeshing\+\_\+condition} () const
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+Project/Project\+File.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,23 @@
+\hypertarget{831__finite__element__modeling_2_f_e_m_2source_2_task_8h_source}{}\doxysection{Task.\+h}
+\label{831__finite__element__modeling_2_f_e_m_2source_2_task_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/FEM/source/Task.h@{C:/Projects/FEM/831\_finite\_element\_modeling/FEM/source/Task.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{keyword}{class }\mbox{\hyperlink{class_step_task}{StepTask}}\{}
+\DoxyCodeLine{3 \textcolor{keyword}{public}:}
+\DoxyCodeLine{4     \mbox{\hyperlink{class_step_task}{StepTask}}(\textcolor{keywordtype}{double} time, \textcolor{keywordtype}{double} offset) :m\_time(time), m\_offset(offset) \{\};}
+\DoxyCodeLine{5     \mbox{\hyperlink{class_step_task}{StepTask}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{6     \textcolor{keywordtype}{double} get\_time()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_time; \};}
+\DoxyCodeLine{7     \textcolor{keywordtype}{double} get\_offset()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_offset; \};}
+\DoxyCodeLine{8     \textcolor{keywordtype}{void} set(\textcolor{keywordtype}{double} time, \textcolor{keywordtype}{double} offset) \{}
+\DoxyCodeLine{9         m\_time = time;}
+\DoxyCodeLine{10         m\_offset = offset;}
+\DoxyCodeLine{11     \}}
+\DoxyCodeLine{12     \textcolor{keywordtype}{bool} validation()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_time > std::numeric\_limits<double>::epsilon(); \}}
+\DoxyCodeLine{13 \textcolor{keyword}{private}:}
+\DoxyCodeLine{14     \textcolor{keywordtype}{double} m\_time; \textcolor{comment}{// длительность этого шага}}
+\DoxyCodeLine{15     \textcolor{keywordtype}{double} m\_offset; \textcolor{comment}{// смещение инструмента на этом шаге по оси Y}}
+\DoxyCodeLine{16 \};}
+\DoxyCodeLine{17 }
+
+\end{DoxyCode}

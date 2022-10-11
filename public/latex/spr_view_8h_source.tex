@@ -1,0 +1,121 @@
+\hypertarget{spr_view_8h_source}{}\doxysection{spr\+View.\+h}
+\label{spr_view_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/sprView.h@{C:/Projects/FEM/prototype-\/prismatic/source/sprView.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// sprView.h : interface of the CSprView class}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#if !defined(AFX\_SPRVIEW\_H\_\_0CC2D6ED\_372E\_4CC4\_AA72\_2BA1E7DEB8F7\_\_INCLUDED\_)}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define AFX\_SPRVIEW\_H\_\_0CC2D6ED\_372E\_4CC4\_AA72\_2BA1E7DEB8F7\_\_INCLUDED\_}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}SprDoc.h"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_spr_view}{CSprView}} : \textcolor{keyword}{public} CView}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16 \textcolor{keyword}{protected}: \textcolor{comment}{// create from serialization only}}
+\DoxyCodeLine{17     \mbox{\hyperlink{class_c_spr_view}{CSprView}}();}
+\DoxyCodeLine{18     DECLARE\_DYNCREATE(\mbox{\hyperlink{class_c_spr_view}{CSprView}})}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{comment}{// Attributes}}
+\DoxyCodeLine{21 \textcolor{keyword}{public}:}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_c_spr_doc}{CSprDoc}}* GetDocument();}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{comment}{// Operations}}
+\DoxyCodeLine{25 \textcolor{keyword}{public}:}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{// Overrides}}
+\DoxyCodeLine{28     \textcolor{comment}{// ClassWizard generated virtual function overrides}}
+\DoxyCodeLine{29     \textcolor{comment}{//\{\{AFX\_VIRTUAL(CSprView)}}
+\DoxyCodeLine{30     \textcolor{keyword}{public}:}
+\DoxyCodeLine{31     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnDraw(CDC* pDC);  \textcolor{comment}{// overridden to draw this view}}
+\DoxyCodeLine{32     \textcolor{keyword}{virtual} BOOL PreCreateWindow(CREATESTRUCT\& cs);}
+\DoxyCodeLine{33     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{34     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);}
+\DoxyCodeLine{35     \textcolor{comment}{//\}\}AFX\_VIRTUAL}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{38 \textcolor{keyword}{public}:}
+\DoxyCodeLine{39     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_c_spr_view}{\string~CSprView}}();}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#ifdef \_DEBUG}}
+\DoxyCodeLine{43     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} AssertValid() \textcolor{keyword}{const};}
+\DoxyCodeLine{44     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Dump(CDumpContext\& dc) \textcolor{keyword}{const};}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{//class members}}
+\DoxyCodeLine{48 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{49     CDC     *m\_pDC;}
+\DoxyCodeLine{50     HDC     m\_hdc;}
+\DoxyCodeLine{51     HGLRC   m\_hrc;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{bool}    m\_bNextStep;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keywordtype}{double} m\_dMinX;}
+\DoxyCodeLine{56     \textcolor{keywordtype}{double} m\_dMinY;}
+\DoxyCodeLine{57     \textcolor{keywordtype}{double} m\_dMaxX;}
+\DoxyCodeLine{58     \textcolor{keywordtype}{double} m\_dMaxY;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     \textcolor{keywordtype}{double} m\_dWidth;}
+\DoxyCodeLine{61     \textcolor{keywordtype}{double} m\_dHeight;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{double} m\_dCX;}
+\DoxyCodeLine{64     \textcolor{keywordtype}{double} m\_dCY;}
+\DoxyCodeLine{65     \textcolor{keywordtype}{double} m\_dKff;}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{keywordtype}{int} m\_nCursor;}
+\DoxyCodeLine{68     \textcolor{keywordtype}{int} m\_ArroMode;}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{bool}   m\_bLCatch;}
+\DoxyCodeLine{71     CPoint  m\_OldMouse;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{74 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{75     \textcolor{comment}{//\{\{AFX\_MSG(CSprView)}}
+\DoxyCodeLine{76     afx\_msg \textcolor{keywordtype}{int} OnCreate(LPCREATESTRUCT lpCreateStruct);}
+\DoxyCodeLine{77     afx\_msg \textcolor{keywordtype}{void} OnDestroy();}
+\DoxyCodeLine{78     afx\_msg \textcolor{keywordtype}{void} OnSize(UINT nType, \textcolor{keywordtype}{int} cx, \textcolor{keywordtype}{int} cy);}
+\DoxyCodeLine{79     afx\_msg BOOL OnEraseBkgnd(CDC* pDC);}
+\DoxyCodeLine{80     afx\_msg \textcolor{keywordtype}{void} OnZoomScreen();}
+\DoxyCodeLine{81     afx\_msg \textcolor{keywordtype}{void} OnLButtonDown(UINT nFlags, CPoint point);}
+\DoxyCodeLine{82     afx\_msg \textcolor{keywordtype}{void} OnMouseMove(UINT nFlags, CPoint point);}
+\DoxyCodeLine{83     afx\_msg \textcolor{keywordtype}{void} OnLButtonUp(UINT nFlags, CPoint point);}
+\DoxyCodeLine{84     afx\_msg \textcolor{keywordtype}{void} OnStart();}
+\DoxyCodeLine{85     afx\_msg \textcolor{keywordtype}{void} OnStep();}
+\DoxyCodeLine{86     afx\_msg \textcolor{keywordtype}{void} OnStop();}
+\DoxyCodeLine{87     afx\_msg \textcolor{keywordtype}{void} OnUpdateStart(CCmdUI* pCmdUI);}
+\DoxyCodeLine{88     afx\_msg \textcolor{keywordtype}{void} OnUpdateStep(CCmdUI* pCmdUI);}
+\DoxyCodeLine{89     afx\_msg \textcolor{keywordtype}{void} OnUpdateStop(CCmdUI* pCmdUI);}
+\DoxyCodeLine{90     \textcolor{comment}{//\}\}AFX\_MSG}}
+\DoxyCodeLine{91     afx\_msg \textcolor{keywordtype}{void} OnTool(UINT nID);}
+\DoxyCodeLine{92     afx\_msg \textcolor{keywordtype}{void} OnUpdateTool(CCmdUI* pCmdUI);}
+\DoxyCodeLine{93     afx\_msg LRESULT OnSWScroll(WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{94     afx\_msg LRESULT OnCalculate(WPARAM wParam, LPARAM lParam);}
+\DoxyCodeLine{95     }
+\DoxyCodeLine{96     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{99     \textcolor{keywordtype}{void} RecalcKff();}
+\DoxyCodeLine{100     \textcolor{keywordtype}{void} OnArrowMove(\textcolor{keywordtype}{double} kff, \textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y);}
+\DoxyCodeLine{101     \textcolor{keywordtype}{void} SetProjection();}
+\DoxyCodeLine{102     \textcolor{keywordtype}{void} DrawScene();}
+\DoxyCodeLine{103     BOOL CreateGLContext(HDC hdc);}
+\DoxyCodeLine{104     BOOL SetPixelFormat(HDC hdc);}
+\DoxyCodeLine{105 \};}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#ifndef \_DEBUG  }\textcolor{comment}{// debug version in sprView.cpp}}
+\DoxyCodeLine{108 \textcolor{keyword}{inline} \mbox{\hyperlink{class_c_spr_doc}{CSprDoc}}* CSprView::GetDocument()}
+\DoxyCodeLine{109    \{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{class_c_spr_doc}{CSprDoc}}*)m\_pDocument; \}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{//\{\{AFX\_INSERT\_LOCATION\}\}}}
+\DoxyCodeLine{115 \textcolor{comment}{// Microsoft Visual C++ will insert additional declarations immediately before the previous line.}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_SPRVIEW\_H\_\_0CC2D6ED\_372E\_4CC4\_AA72\_2BA1E7DEB8F7\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

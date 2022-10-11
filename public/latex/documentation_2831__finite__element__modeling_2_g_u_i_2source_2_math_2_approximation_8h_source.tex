@@ -1,0 +1,67 @@
+\hypertarget{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_math_2_approximation_8h_source}{}\doxysection{Approximation.\+h}
+\label{documentation_2831__finite__element__modeling_2_g_u_i_2source_2_math_2_approximation_8h_source}\index{831\_finite\_element\_modeling/GUI/source/Math/Approximation.h@{831\_finite\_element\_modeling/GUI/source/Math/Approximation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{keyword}{namespace }Math \{}
+\DoxyCodeLine{5     \textcolor{keyword}{class }Matrix \{}
+\DoxyCodeLine{6     \textcolor{keyword}{public}:}
+\DoxyCodeLine{7         Matrix(std::vector<double> matrix, \textcolor{keywordtype}{size\_t} m, \textcolor{keywordtype}{size\_t} n);}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9         Matrix Transpose() \textcolor{keyword}{const};}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11         \textcolor{keywordtype}{double} Det() \textcolor{keyword}{const};}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13         \textcolor{keywordtype}{double} Norm() \textcolor{keyword}{const};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15         Matrix Minor(\textcolor{keywordtype}{size\_t} row, \textcolor{keywordtype}{size\_t} col) \textcolor{keyword}{const};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17         Matrix Inverse() \textcolor{keyword}{const};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19         \textcolor{keyword}{friend} Matrix operator*(\textcolor{keyword}{const} Matrix\& m1, \textcolor{keyword}{const} Matrix\& m2);}
+\DoxyCodeLine{20         \textcolor{keyword}{friend} Matrix operator+(\textcolor{keyword}{const} Matrix\& m1, \textcolor{keyword}{const} Matrix\& m2);}
+\DoxyCodeLine{21         \textcolor{keyword}{friend} Matrix operator-\/(\textcolor{keyword}{const} Matrix\& m1, \textcolor{keyword}{const} Matrix\& m2);}
+\DoxyCodeLine{22         \textcolor{comment}{//friend std::ostream\& operator<<(std::ostream\& out, const Matrix\& m);}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24         std::vector<double> get\_matrix()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_matrix; \}}
+\DoxyCodeLine{25         \textcolor{keywordtype}{size\_t} get\_m()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_m; \}}
+\DoxyCodeLine{26         \textcolor{keywordtype}{size\_t} get\_n()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_n; \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keyword}{private}:}
+\DoxyCodeLine{29         std::vector<double> m\_matrix;}
+\DoxyCodeLine{30         \textcolor{keywordtype}{size\_t} m\_m;}
+\DoxyCodeLine{31         \textcolor{keywordtype}{size\_t} m\_n;}
+\DoxyCodeLine{32     \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{keyword}{class }MatrixLeastSquares \{}
+\DoxyCodeLine{35     \textcolor{keyword}{public}:}
+\DoxyCodeLine{36         MatrixLeastSquares();}
+\DoxyCodeLine{37         MatrixLeastSquares(\textcolor{keyword}{const} std::vector<double>\& x\_array, \textcolor{keyword}{const} std::vector<double>\& y\_array);}
+\DoxyCodeLine{38         std::vector<double> get\_found\_values() \textcolor{keyword}{const};}
+\DoxyCodeLine{39         \textcolor{keywordtype}{double} get\_difference() \textcolor{keyword}{const};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{42         \textcolor{keywordtype}{double} x\_difference(\textcolor{keywordtype}{double} k, \textcolor{keywordtype}{double} b, \textcolor{keyword}{const} std::vector<double>\& x\_array, \textcolor{keyword}{const} std::vector<double>\& y\_array);}
+\DoxyCodeLine{43         \textcolor{keywordtype}{double} y\_difference(\textcolor{keywordtype}{double} k, \textcolor{keywordtype}{double} b, \textcolor{keyword}{const} std::vector<double>\& x\_array, \textcolor{keyword}{const} std::vector<double>\& y\_array);}
+\DoxyCodeLine{44         \textcolor{keywordtype}{double} sqrt\_difference(\textcolor{keywordtype}{double} k, \textcolor{keywordtype}{double} b, \textcolor{keyword}{const} std::vector<double>\& x\_array, \textcolor{keyword}{const} std::vector<double>\& y\_array);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46         std::vector<double> m\_found\_values;}
+\DoxyCodeLine{47         \textcolor{keywordtype}{double} m\_sqrt\_difference;}
+\DoxyCodeLine{48     \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{keyword}{class }LinearLeastSquares : \textcolor{keyword}{public} MatrixLeastSquares \{}
+\DoxyCodeLine{51     \textcolor{keyword}{public}:}
+\DoxyCodeLine{52         LinearLeastSquares(\textcolor{keyword}{const} std::vector<double>\& x\_array, \textcolor{keyword}{const} std::vector<double>\& y\_array);}
+\DoxyCodeLine{53         \textcolor{keywordtype}{double} get\_k() \textcolor{keyword}{const};}
+\DoxyCodeLine{54         \textcolor{keywordtype}{double} get\_b() \textcolor{keyword}{const};}
+\DoxyCodeLine{55     \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     Matrix operator*(\textcolor{keyword}{const} Matrix\& m1, \textcolor{keyword}{const} Matrix\& m2);}
+\DoxyCodeLine{58     Matrix operator+(\textcolor{keyword}{const} Matrix\& m1, \textcolor{keyword}{const} Matrix\& m2);}
+\DoxyCodeLine{59     Matrix operator-\/(\textcolor{keyword}{const} Matrix\& m1, \textcolor{keyword}{const} Matrix\& m2);}
+\DoxyCodeLine{60 \}}
+\DoxyCodeLine{61 }
+
+\end{DoxyCode}

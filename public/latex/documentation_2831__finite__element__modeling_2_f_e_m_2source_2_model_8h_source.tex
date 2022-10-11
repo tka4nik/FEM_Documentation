@@ -1,0 +1,170 @@
+\hypertarget{documentation_2831__finite__element__modeling_2_f_e_m_2source_2_model_8h_source}{}\doxysection{Model.\+h}
+\label{documentation_2831__finite__element__modeling_2_f_e_m_2source_2_model_8h_source}\index{831\_finite\_element\_modeling/FEM/source/Model.h@{831\_finite\_element\_modeling/FEM/source/Model.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}Sample.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}Instrument.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}Material.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}Task.h"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{13 \textcolor{keyword}{enum class} Error \{ \textcolor{comment}{//}}
+\DoxyCodeLine{14     NO\_ERRORS = 0,              }
+\DoxyCodeLine{15     NO\_INIT\_DATA = 1,                   }
+\DoxyCodeLine{16     BAD\_INIT\_DATA = 2,              }
+\DoxyCodeLine{17     NO\_TASK = 3,                }
+\DoxyCodeLine{18     BAD\_TASK = 4,               }
+\DoxyCodeLine{19     \textcolor{comment}{// NO\_MESH                  // нужно ли такое? возможно понадобится, если заходим в set уметь задавать только контур без построения сетки?}}
+\DoxyCodeLine{20     BAD\_MESH = 5,               }
+\DoxyCodeLine{21     FORBIDDEN\_OPERATION = 6,    }
+\DoxyCodeLine{22     BAD\_FEM = 7,                }
+\DoxyCodeLine{23 \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{class_p_a_r_a_m_e_t_r_s__33}{PARAMETRS\_33}} \{}
+\DoxyCodeLine{28 \textcolor{keyword}{public}:}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_p_a_r_a_m_e_t_r_s__33}{PARAMETRS\_33}}(\textcolor{keywordtype}{double} KK\_, \textcolor{keywordtype}{double} mu\_, \textcolor{keywordtype}{double} sm\_, \textcolor{keywordtype}{double} xi\_, \textcolor{keywordtype}{double} yi\_, \textcolor{keywordtype}{double} zi\_, \textcolor{keywordtype}{double} xj\_, \textcolor{keywordtype}{double} yj\_, \textcolor{keywordtype}{double} zj\_, \textcolor{keywordtype}{double} xm\_, \textcolor{keywordtype}{double} ym\_, \textcolor{keywordtype}{double} zm\_, \textcolor{keywordtype}{double} ai\_, \textcolor{keywordtype}{double} bi\_, \textcolor{keywordtype}{double} ci\_, \textcolor{keywordtype}{double} aj\_, \textcolor{keywordtype}{double} bj\_, \textcolor{keywordtype}{double} cj\_, \textcolor{keywordtype}{double} am\_, \textcolor{keywordtype}{double} bm\_, \textcolor{keywordtype}{double} cm\_, \textcolor{keywordtype}{double} a1\_, \textcolor{keywordtype}{double} b1\_, \textcolor{keywordtype}{double} c1\_, \textcolor{keywordtype}{double} a2\_, \textcolor{keywordtype}{double} b2\_, \textcolor{keywordtype}{double} c2\_)}
+\DoxyCodeLine{30     \{}
+\DoxyCodeLine{31         xi = xi\_; yi = yi\_; zi = zi\_;}
+\DoxyCodeLine{32         xj = xj\_; yj = yj\_; zj = zj\_;}
+\DoxyCodeLine{33         xm = xm\_; ym = ym\_; zm = zm\_;}
+\DoxyCodeLine{34         ai = ai\_; bi = bi\_; ci = ci\_;}
+\DoxyCodeLine{35         aj = aj\_; bj = bj\_; cj = cj\_;}
+\DoxyCodeLine{36         am = am\_; bm = bm\_; cm = cm\_;}
+\DoxyCodeLine{37         KK = KK\_;}
+\DoxyCodeLine{38         mu = mu\_;}
+\DoxyCodeLine{39         sm = sm\_;}
+\DoxyCodeLine{40         a1 = a1\_; b1 = b1\_; c1 = c1\_;}
+\DoxyCodeLine{41         a2 = a2\_; b2 = b2\_; c2 = c2\_;}
+\DoxyCodeLine{42     \}}
+\DoxyCodeLine{43 \textcolor{keyword}{public}:}
+\DoxyCodeLine{44     \textcolor{keywordtype}{double} xi, yi, zi, xj, yj, zj, xm, ym, zm;}
+\DoxyCodeLine{45     \textcolor{keywordtype}{double} ai, bi, ci, aj, bj, cj, am, bm, cm;}
+\DoxyCodeLine{46     \textcolor{keywordtype}{double} DET2, KK, mu, sm;}
+\DoxyCodeLine{47     \textcolor{keywordtype}{double} a1, b1, c1, a2, b2, c2;}
+\DoxyCodeLine{48 \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{class }\mbox{\hyperlink{class_model}{Model}} \{}
+\DoxyCodeLine{51 \textcolor{keyword}{public}:}
+\DoxyCodeLine{52     \mbox{\hyperlink{class_model}{Model}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_model}{Model}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{53     \mbox{\hyperlink{class_model}{Model}}\& operator = (\textcolor{keyword}{const} \mbox{\hyperlink{class_model}{Model}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{54     \textcolor{keyword}{static} \mbox{\hyperlink{class_model}{Model}}\& Instance() \{ \textcolor{comment}{// В каждом потоке находится своя единственная сущность}}
+\DoxyCodeLine{55         \textcolor{keyword}{thread\_local} \mbox{\hyperlink{class_model}{Model}} instance;}
+\DoxyCodeLine{56         \textcolor{keywordflow}{return} instance;}
+\DoxyCodeLine{57     \}}
+\DoxyCodeLine{61     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_model_aa1e457d6313bdbb8a1a77c54d4721254}{set\_init\_data}}(std::ifstream\& sample\_geom, std::ifstream\& instrument\_geom); \textcolor{comment}{// Установить модель}}
+\DoxyCodeLine{65 \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_model_aef250ac1663bbe33306347e68e749e29}{set\_init\_data}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* sample, \textcolor{keywordtype}{size\_t} sample\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* instrument, \textcolor{keywordtype}{size\_t} instrument\_size);}
+\DoxyCodeLine{72     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_model_ae39d97578351a1b15de28847e6877386}{validation}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_sample}{Sample}}\& sample, \textcolor{keyword}{const} \mbox{\hyperlink{class_instrument}{Instrument}}\& instrument); \textcolor{comment}{// проверяет корректность сочетания sample и instrument}}
+\DoxyCodeLine{73     }
+\DoxyCodeLine{74     \textcolor{keywordtype}{void} preset(\textcolor{keywordtype}{double});}
+\DoxyCodeLine{75                                                                          }
+\DoxyCodeLine{81     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_model_ac46eba535f7df9746d9317070d7db380}{run}}(\textcolor{keywordtype}{bool} (*call\_back\_on\_step)()); \textcolor{comment}{// Выполнить полностью моделирование}}
+\DoxyCodeLine{86 \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_model_af367316585b7415e30b07003e1556c36}{compute\_step\_FEM}}(); \textcolor{comment}{// Раньше называлось FEM\_roll}}
+\DoxyCodeLine{93 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{class_model_ad2b039160b81c004e1ff3702c2d20c9c}{CalcFem}}(\textcolor{keywordtype}{bool} bAdhesion);}
+\DoxyCodeLine{98     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_model_aeef061036def86fd14ae3e1bf59b9db4}{remesh}}(\textcolor{keywordtype}{double} mesh\_edge\_length\_param); \textcolor{comment}{// Перестроить сетку}}
+\DoxyCodeLine{103 \textcolor{comment}{}    Error \mbox{\hyperlink{class_model_ae1899d9a8894b5eebecd76f63428b6ea}{get\_error}}() const noexcept \{ \textcolor{keywordflow}{return} m\_error; \}}
+\DoxyCodeLine{107     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_model_a3b4c9535265e9232c90d15964d32eda6}{set\_task}}(\textcolor{keywordtype}{double} offset, \textcolor{keywordtype}{double} dtime);}
+\DoxyCodeLine{111     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_ab67fb711da8451a0fd1e2d51b7440480}{set\_material}}(\textcolor{keywordtype}{double} m\_m, \textcolor{keywordtype}{double} m\_K);}
+\DoxyCodeLine{115     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_model_ad9233e8a27afd638bd52c94254702f3e}{get\_data}}() const noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Возвращает все поля модели в формате JSON"{}}; \}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{127     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a46f1464c4fba49666fbebf4f37ac25ee}{get\_field\_sample}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keywordtype}{void}*\& ptr\_field, \textcolor{keywordtype}{size\_t}\& size);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{135     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_afc2221e1846c595b39112a7dc18d5bf5}{get\_field\_instrument}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keywordtype}{void}*\& ptr\_field, \textcolor{keywordtype}{size\_t}\& size);}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137     \textcolor{comment}{/*}}
+\DoxyCodeLine{138 \textcolor{comment}{    Вспомогательные функции из прототипа}}
+\DoxyCodeLine{139 \textcolor{comment}{    */}}
+\DoxyCodeLine{140     \textcolor{keywordtype}{void} InitTouchCheck();}
+\DoxyCodeLine{144     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_model_a391bb7297922b5e297aa949e8954b7eb}{GetS}}(\textcolor{keywordtype}{int} e, \textcolor{keywordtype}{double} dT);}
+\DoxyCodeLine{149     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_aac8cab3caa5f6a155b3a7e54b4c3cf2a}{ReLoad}}(\textcolor{keywordtype}{int} nStep);}
+\DoxyCodeLine{153     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_model_a87755afe60ae9575203fc73b8a4c0263}{GetF}}(\textcolor{keywordtype}{double} t, \textcolor{keywordtype}{int} n);}
+\DoxyCodeLine{157     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_model_af43baf42c66f9eeb17a9df710212822e}{PtoF}}(\textcolor{keywordtype}{double} P, \textcolor{keywordtype}{double} dStrain);}
+\DoxyCodeLine{161     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_ad297ec88155f3c7d549315b9b8b7bb9d}{InitArrays}}();}
+\DoxyCodeLine{166     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a3cbc0fb70fa96697c2e8c0fab0454a1e}{InitISL}}();}
+\DoxyCodeLine{170     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a69f117d62448925eea86af55a8848c5c}{InitT8}}();}
+\DoxyCodeLine{175     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a648af8ed0abd73deb0c58afd2364421d}{CheckMu0}}(\textcolor{keywordtype}{double} MaxMu);}
+\DoxyCodeLine{179     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a2a23bd13d603492b54fa8c1843e50a03}{SetdT}}(\textcolor{keywordtype}{double} dT);}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{186     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_model_a0e858e81e5f6f82794a67d9dd2d9d6cc}{IsCrossStamp}}();}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{192     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a78bd4c4d42adda153c4d92cc24f39fc8}{FreePoint}}(\textcolor{keywordtype}{int} cnt);}
+\DoxyCodeLine{196     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_model_aa2ef6017761c2e00d2238b836263eb33}{GetKK}}(\textcolor{keywordtype}{int} e);}
+\DoxyCodeLine{207     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_model_aa06576f804a65bbceb529d55ed3a3a28}{Effective}}(\textcolor{keywordtype}{double} ex, \textcolor{keywordtype}{double} ey, \textcolor{keywordtype}{double} exy, \textcolor{keywordtype}{double} ez, \textcolor{keywordtype}{double} exz = 0, \textcolor{keywordtype}{double} eyz = 0);}
+\DoxyCodeLine{211     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_model_a2ef3821ae07f1dcbc82f01860909dab9}{Tlevan}}(\textcolor{keywordtype}{double} sn, \textcolor{keywordtype}{double} sint, \textcolor{keywordtype}{double} tkf);}
+\DoxyCodeLine{215     \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{class_model_a05007aa5f23fa0543154e5d1821fb636}{GetDIJK}}(\textcolor{keywordtype}{int} nFr);}
+\DoxyCodeLine{219     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_aedabd56147a1910598c4717612a35833}{Struz\_p}}(\textcolor{keywordtype}{bool} bExp, \textcolor{keywordtype}{bool} bAdhesion);}
+\DoxyCodeLine{221     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a69f2727cebfcbea2345d0f0cff51b8bc}{F\_forma}}(\textcolor{keywordtype}{int} e, \textcolor{keywordtype}{int} ijk[], \textcolor{keywordtype}{double} a[], \textcolor{keywordtype}{double} b[], \textcolor{keywordtype}{double} c[], \textcolor{keywordtype}{double}* xc, \textcolor{keywordtype}{double}* yc, \textcolor{keywordtype}{double}* sm);}
+\DoxyCodeLine{225     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a12ab055225dff7f5f9f0de8f28676796}{CalcFields}}(\textcolor{keywordtype}{int} nMode);}
+\DoxyCodeLine{229     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_ab7cebeb7601f0c0d381af404e084fa9a}{Avar\_Multi}}(\textcolor{keywordtype}{double}* Field, \textcolor{keywordtype}{int} N);}
+\DoxyCodeLine{235     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_model_ac14ac34bc9a7cc490cbe1c2f8f2dea48}{trapeze}}(\textcolor{keywordtype}{int} glubina, \mbox{\hyperlink{class_p_a_r_a_m_e_t_r_s__33}{PARAMETRS\_33}} par12);}
+\DoxyCodeLine{239     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_af16dca28f6450f0825f6343b6cb1fe39}{SetAdhesion}}(\textcolor{keywordtype}{int} cnt);}
+\DoxyCodeLine{243     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_aaa247be197a0abc3539b284d69bf6818}{SetSliding}}(\textcolor{keywordtype}{int} cnt, \textcolor{keywordtype}{bool} bFriktion);}
+\DoxyCodeLine{247     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_model_a9e8d9eba0cbd9448ff45dee06a79005b}{FrSym}}(\textcolor{keywordtype}{int} p);}
+\DoxyCodeLine{251     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a76a24605fc85ff1c5f3db6cca9e54fd8}{Friction}}(\textcolor{keywordtype}{bool} bAdhesion = \textcolor{keyword}{false});}
+\DoxyCodeLine{255     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a86308bb7d69fb49c7572a3711582d9ff}{Matr\_p}}();}
+\DoxyCodeLine{259     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a64029485bb48e7de893a4cad8886a2b6}{Tesbor}}();}
+\DoxyCodeLine{263     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a33a8a38aff5137fd6f4c5d9db9a06834}{Gauss}}(\textcolor{keywordtype}{int} nxy3, \textcolor{keywordtype}{int} isl);}
+\DoxyCodeLine{267     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_a47125900d168ac873a56c007afafbf87}{Restore}}();}
+\DoxyCodeLine{271     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_model_ad8b4b099b873beb00a26accaf05ea18a}{CalcMu}}();}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273     \textcolor{comment}{//size\_t get\_step() const noexcept \{ return m\_step; \}}}
+\DoxyCodeLine{274     \textcolor{comment}{//double get\_time() const noexcept \{ return m\_time; \}}}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276 \textcolor{keyword}{private}:}
+\DoxyCodeLine{280     \mbox{\hyperlink{class_model}{Model}}() :m\_hlib(LoadLibrary(L\textcolor{stringliteral}{"{}mesh2d.dll"{}})) \{ \textcolor{keywordflow}{if} (!m\_hlib) \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Can't open mesh library!"{}}); \}}
+\DoxyCodeLine{281     \mbox{\hyperlink{class_model}{\string~Model}}() \{ FreeLibrary(m\_hlib); \}}
+\DoxyCodeLine{282     \textcolor{comment}{// mesh2d.dll переделаем под статическую библиотеку}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284 }
+\DoxyCodeLine{288     \mbox{\hyperlink{class_sample}{Sample}} m\_sample;}
+\DoxyCodeLine{292     \mbox{\hyperlink{class_instrument}{Instrument}} m\_instrument;}
+\DoxyCodeLine{293     \mbox{\hyperlink{class_c_material}{CMaterial}} m\_Material; }
+\DoxyCodeLine{294     \mbox{\hyperlink{class_step_task}{StepTask}} m\_task;  }
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296     Error m\_error = Error::NO\_ERRORS; }
+\DoxyCodeLine{300     \textcolor{keyword}{enum class} State \{}
+\DoxyCodeLine{301         WAIT\_INIT\_DATA,     }
+\DoxyCodeLine{302         WAIT\_TASK,      }
+\DoxyCodeLine{303         READY\_TO\_RUN,   }
+\DoxyCodeLine{304         RUNNING,        }
+\DoxyCodeLine{305     \} m\_state = State::WAIT\_INIT\_DATA; }
+\DoxyCodeLine{306     }
+\DoxyCodeLine{307     \textcolor{keywordtype}{int} m\_isl = 0;      }
+\DoxyCodeLine{308     \textcolor{keywordtype}{double} m\_dK = 1000000;  }
+\DoxyCodeLine{309     \textcolor{keywordtype}{double} m\_Kmu = 2.1 / 3;    }
+\DoxyCodeLine{310     \textcolor{keywordtype}{double} m\_MaxEum0 = 1, m\_MaxEum = 1; }
+\DoxyCodeLine{311     \textcolor{keywordtype}{double} m\_MinEum0 = 0.01, m\_MinEum = 0.01;    }
+\DoxyCodeLine{312     \textcolor{keywordtype}{double} m\_mesh\_edge\_length\_param;}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314     \textcolor{keywordtype}{int}* m\_T8 = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{315     \textcolor{keywordtype}{int} m\_it8Sym;}
+\DoxyCodeLine{316     \textcolor{keywordtype}{int} m\_it8Max;}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318     \textcolor{keywordtype}{double}** m\_Akg = \textcolor{keyword}{nullptr};   }
+\DoxyCodeLine{319     \textcolor{keywordtype}{double}* m\_Pr = \textcolor{keyword}{nullptr};     }
+\DoxyCodeLine{320     \textcolor{keywordtype}{double}* m\_C = \textcolor{keyword}{nullptr};      }
+\DoxyCodeLine{321     \textcolor{keywordtype}{double}* m\_B11 = \textcolor{keyword}{nullptr};    }
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323     HINSTANCE m\_hlib = \textcolor{keyword}{nullptr}; }
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325     \textcolor{keywordtype}{double}* m\_Stl = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{326     \textcolor{keywordtype}{double}* m\_Snn = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{327     \textcolor{keywordtype}{double}* m\_Stt = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{328     \textcolor{keywordtype}{double}* m\_Len = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330     \textcolor{keywordtype}{double} g\_S\_drv[6] = \{ 4982.803988, 3952.299204, 3321.483335, 2426.793002, 1723.751361, 2298.812698 \};}
+\DoxyCodeLine{331     \textcolor{keywordtype}{double} g\_S\_drx[6] = \{ 4524.683204, 1468.436589, 1792.87821, 1248.95046, 1315.567677, 1620.853435 \};}
+\DoxyCodeLine{332     \textcolor{keywordtype}{double} g\_Omega[6] = \{ 7.900610952, 8.719950332, 3.421980296, 3.135272469, 0.069482769, 0.524431965 \};}
+\DoxyCodeLine{333     \textcolor{keywordtype}{double} g\_n[6] = \{ 0.670762411, 0.722704335, 0.401686076, 0.33249679, 0.321391416, 0.398237056 \};}
+\DoxyCodeLine{334     \textcolor{keywordtype}{double} g\_a[6] = \{ 9.905225855, 0.299812474, 0.897619515, 0.876504745, 2.2205E-\/07, 0.004726492 \};}
+\DoxyCodeLine{335     \textcolor{keywordtype}{double} g\_m[6] = \{ 2.330124159, 2.007615694, 1.73675939, 1.394659805, 3.655680923, 2.065382459 \};}
+\DoxyCodeLine{336     \textcolor{keywordtype}{double} g\_t\_0[6] = \{ 0.099841197, 0.102504414, 0.080019997, 0.086430559, 0.614679433, 0.793214797 \};}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338     \textcolor{keywordtype}{int} nNorma = 0;}
+\DoxyCodeLine{339     \textcolor{keywordtype}{int} nMaxIt = 10;}
+\DoxyCodeLine{340 \};}
+
+\end{DoxyCode}

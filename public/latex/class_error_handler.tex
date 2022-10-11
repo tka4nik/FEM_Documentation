@@ -1,0 +1,53 @@
+\hypertarget{class_error_handler}{}\doxysection{Error\+Handler Class Reference}
+\label{class_error_handler}\index{ErrorHandler@{ErrorHandler}}
+
+
+Класс для обработки ошибок. Унаследуйтесь от этого класса, чтобы иметь возможность выводить ошибки в консоль.  
+
+
+
+
+{\ttfamily \#include $<$Error\+Handler.\+h$>$}
+
+Inheritance diagram for Error\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_error_handler}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_error_handler_a7a7bb0421e3108422ccc8e88d0da9e7c}\label{class_error_handler_a7a7bb0421e3108422ccc8e88d0da9e7c}} 
+void {\bfseries Add\+Error} (const std\+::string \&error)
+\item 
+\mbox{\Hypertarget{class_error_handler_a5b6f967c0df41216dd8f6111c6ef63cf}\label{class_error_handler_a5b6f967c0df41216dd8f6111c6ef63cf}} 
+void {\bfseries Add\+Warning} (const std\+::string \&warning)
+\item 
+\mbox{\Hypertarget{class_error_handler_a49da3406dbf3f0e1c297bde309319e70}\label{class_error_handler_a49da3406dbf3f0e1c297bde309319e70}} 
+size\+\_\+t {\bfseries Get\+Errors\+Num} () const
+\item 
+\mbox{\Hypertarget{class_error_handler_a29fcd5d9f99376b142f0ff6cc8f09af6}\label{class_error_handler_a29fcd5d9f99376b142f0ff6cc8f09af6}} 
+size\+\_\+t {\bfseries Get\+Warnings\+Num} () const
+\item 
+\mbox{\Hypertarget{class_error_handler_ab795e78dcd8cc1af73b40d02c485f4dd}\label{class_error_handler_ab795e78dcd8cc1af73b40d02c485f4dd}} 
+std\+::string {\bfseries Fetch\+Error} ()
+\item 
+\mbox{\Hypertarget{class_error_handler_a5be7b0d6e7b8e7ce9be23e727ae7faca}\label{class_error_handler_a5be7b0d6e7b8e7ce9be23e727ae7faca}} 
+std\+::string {\bfseries Fetch\+Warning} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_error_handler_a19ba055b95e7f8880ace7b0c688a8342}\label{class_error_handler_a19ba055b95e7f8880ace7b0c688a8342}} 
+void {\bfseries Fetch\+To\+Higher\+Level} (\mbox{\hyperlink{class_error_handler}{Error\+Handler}} \&dst, \mbox{\hyperlink{class_error_handler}{Error\+Handler}} \&source)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс для обработки ошибок. Унаследуйтесь от этого класса, чтобы иметь возможность выводить ошибки в консоль. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Error\+Handler.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Error\+Handler.\+cpp\end{DoxyCompactItemize}

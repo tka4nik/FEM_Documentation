@@ -1,0 +1,54 @@
+\hypertarget{_f_t_charmap_8h_source}{}\doxysection{FTCharmap.\+h}
+\label{_f_t_charmap_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTCharmap.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTCharmap.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTCharmap\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTCharmap\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTCharToGlyphIndexMap.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 }
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{class_f_t_face}{FTFace}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_charmap}{FTCharmap}}}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31     \textcolor{keyword}{public}:}
+\DoxyCodeLine{35         \mbox{\hyperlink{class_f_t_charmap_a9d19837becbc83acf7f56a5980b2b644}{FTCharmap}}( \mbox{\hyperlink{class_f_t_face}{FTFace}}* face);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{40         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_charmap_a10219ed15c325704ee5f3e8efae88adb}{\string~FTCharmap}}();}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{47         FT\_Encoding \mbox{\hyperlink{class_f_t_charmap_a78a87d30a8fca85e2bc2c8d42f7a3c60}{Encoding}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} ftEncoding;\}}
+\DoxyCodeLine{48         }
+\DoxyCodeLine{71         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_charmap_a4d182b0faeb7198b4f583b84eaf4cd55}{CharMap}}( FT\_Encoding encoding);}
+\DoxyCodeLine{72         }
+\DoxyCodeLine{81         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_charmap_a6084cc8ab267b9974980e14f17227f25}{GlyphListIndex}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} characterCode);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{90         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_f_t_charmap_ab77d9f06a9109608b1734010acecaefd}{FontIndex}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} characterCode);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{100         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_f_t_charmap_a2794fe973cffe6a9f5d07359bb346650}{InsertIndex}}( \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} characterCode, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} containerIndex);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{107         FT\_Error \mbox{\hyperlink{class_f_t_charmap_a24eaac5475ace400ff50aa070226a013}{Error}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} err;\}}
+\DoxyCodeLine{108         }
+\DoxyCodeLine{109     \textcolor{keyword}{private}:}
+\DoxyCodeLine{113         FT\_Encoding ftEncoding;}
+\DoxyCodeLine{114         }
+\DoxyCodeLine{118         \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}} ftFace;}
+\DoxyCodeLine{119         }
+\DoxyCodeLine{125         \textcolor{keyword}{typedef} \mbox{\hyperlink{class_f_t_char_to_glyph_index_map}{FTCharToGlyphIndexMap}} CharacterMap;}
+\DoxyCodeLine{126         CharacterMap charMap;}
+\DoxyCodeLine{127         }
+\DoxyCodeLine{131         FT\_Error err;}
+\DoxyCodeLine{132         }
+\DoxyCodeLine{133 \};}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTCharmap\_\_}}
+
+\end{DoxyCode}

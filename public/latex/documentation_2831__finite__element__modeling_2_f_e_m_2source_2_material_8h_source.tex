@@ -1,0 +1,22 @@
+\hypertarget{documentation_2831__finite__element__modeling_2_f_e_m_2source_2_material_8h_source}{}\doxysection{Material.\+h}
+\label{documentation_2831__finite__element__modeling_2_f_e_m_2source_2_material_8h_source}\index{831\_finite\_element\_modeling/FEM/source/Material.h@{831\_finite\_element\_modeling/FEM/source/Material.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}RealPoint.h"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_material}{CMaterial}}}
+\DoxyCodeLine{6 \{}
+\DoxyCodeLine{7 \textcolor{keyword}{public}:}
+\DoxyCodeLine{8     \mbox{\hyperlink{class_c_material}{CMaterial}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{9     \mbox{\hyperlink{class_c_material}{CMaterial}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_material}{CMaterial}}\& Src) = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{10     \textcolor{keywordtype}{void} set\_K(\textcolor{keywordtype}{double} k) \{ m\_A = k; \};}
+\DoxyCodeLine{11     \textcolor{keywordtype}{void} set\_m(\textcolor{keywordtype}{double} m) \{ m\_m = m; \};}
+\DoxyCodeLine{12     \textcolor{keywordtype}{double} Si(\textcolor{keywordtype}{double} e, \textcolor{keywordtype}{double} v, \textcolor{keywordtype}{double} T, \textcolor{keywordtype}{double} Xd = -\/1, \textcolor{keywordtype}{double} X0 = 0);}
+\DoxyCodeLine{13     \textcolor{keywordtype}{double} Mu(\textcolor{keywordtype}{double} e, \textcolor{keywordtype}{double} v, \textcolor{keywordtype}{double} T, \textcolor{keywordtype}{double} Xd = -\/1, \textcolor{keywordtype}{double} X0 = 0) \{ \textcolor{keywordflow}{return} Si(e, v, T, Xd, X0) / (3 * v); \}}
+\DoxyCodeLine{14 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{15     \textcolor{keywordtype}{double} m\_A, m\_m;}
+\DoxyCodeLine{16 \};}
+
+\end{DoxyCode}

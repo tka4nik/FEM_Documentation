@@ -1,0 +1,36 @@
+\hypertarget{831__finite__element__modeling_2_g_u_i_2source_2_reverse_analysis_2_iteration_controllers_8h_source}{}\doxysection{Iteration\+Controllers.\+h}
+\label{831__finite__element__modeling_2_g_u_i_2source_2_reverse_analysis_2_iteration_controllers_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/IterationControllers.h@{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/IterationControllers.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{namespace }Iter \{}
+\DoxyCodeLine{7     \textcolor{keyword}{class }\mbox{\hyperlink{class_iter_1_1_iteration_controller}{IterationController}} \{}
+\DoxyCodeLine{8     \textcolor{keyword}{public}:}
+\DoxyCodeLine{9         \textcolor{keyword}{virtual} std::string get\_iteration\_folder(\textcolor{keywordtype}{size\_t} iter\_num) = 0;}
+\DoxyCodeLine{10         \textcolor{keyword}{virtual} std::unique\_ptr<IterationController> clone() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{11     \};}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13     \textcolor{keyword}{class }\mbox{\hyperlink{class_iter_1_1_controller_iteration_folders}{ControllerIterationFolders}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_iter_1_1_iteration_controller}{IterationController}} \{}
+\DoxyCodeLine{14     \textcolor{keyword}{public}:}
+\DoxyCodeLine{15         \mbox{\hyperlink{class_iter_1_1_controller_iteration_folders}{ControllerIterationFolders}}(std::string folder\_name, std::string iteration\_name\_base)}
+\DoxyCodeLine{16             : m\_folder\_name(folder\_name), m\_iteration\_name\_base(iteration\_name\_base) \{\};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18         std::string get\_iteration\_folder(\textcolor{keywordtype}{size\_t} iter\_num)\textcolor{keyword}{ override }\{}
+\DoxyCodeLine{19             \textcolor{keywordflow}{return} m\_folder\_name + \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'} + m\_iteration\_name\_base + std::to\_string(iter\_num);}
+\DoxyCodeLine{20         \}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22         std::unique\_ptr<IterationController> clone()\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{23             \textcolor{keywordflow}{return} std::make\_unique<ControllerIterationFolders>(*\textcolor{keyword}{this});}
+\DoxyCodeLine{24         \}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keyword}{private}:}
+\DoxyCodeLine{27         std::string m\_folder\_name;}
+\DoxyCodeLine{28         std::string m\_iteration\_name\_base;}
+\DoxyCodeLine{29     \};}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}

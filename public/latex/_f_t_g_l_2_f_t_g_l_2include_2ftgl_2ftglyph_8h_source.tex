@@ -1,0 +1,49 @@
+\hypertarget{_f_t_g_l_2_f_t_g_l_2include_2ftgl_2ftglyph_8h_source}{}\doxysection{FTGlyph.\+h}
+\label{_f_t_g_l_2_f_t_g_l_2include_2ftgl_2ftglyph_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGlyph.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTGlyph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTGlyph\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTGlyph\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}FTBBox.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTPoint.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{25 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27     \textcolor{keyword}{public}:}
+\DoxyCodeLine{36         \mbox{\hyperlink{class_f_t_glyph_a42e51f657865e0f575a0f9ec4481e0b6}{FTGlyph}}( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}} glyph, \textcolor{keywordtype}{bool} useDisplayList = \textcolor{keyword}{true});}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{41         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_glyph_ad93a5124ddd9fe408e07f5054ab92452}{\string~FTGlyph}}();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{49         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& \mbox{\hyperlink{class_f_t_glyph_a8dcae3f32fe8a4f56b71a48ebaa95bc4}{Render}}( \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& pen) = 0;}
+\DoxyCodeLine{50         }
+\DoxyCodeLine{56         \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& \mbox{\hyperlink{class_f_t_glyph_a238281b645fa5eaacb0c09f78eb5984f}{Advance}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} advance;\}}
+\DoxyCodeLine{57         }
+\DoxyCodeLine{63         \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_b_box}{FTBBox}}\& \mbox{\hyperlink{class_f_t_glyph_a675dc57a9adf90ffe311b6c70d84ce64}{BBox}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} bBox;\}}
+\DoxyCodeLine{64         }
+\DoxyCodeLine{70         FT\_Error \mbox{\hyperlink{class_f_t_glyph_a6a9077a7ae0633c298401fd450d8555b}{Error}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} err;\}}
+\DoxyCodeLine{71         }
+\DoxyCodeLine{72     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{76         \mbox{\hyperlink{class_f_t_point}{FTPoint}} \mbox{\hyperlink{class_f_t_glyph_abe1adfd1ce4b168fed309910844d47a8}{advance}};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{81         \mbox{\hyperlink{class_f_t_b_box}{FTBBox}} \mbox{\hyperlink{class_f_t_glyph_a9f4a78d18398e5af3a4251e7e8935d15}{bBox}};}
+\DoxyCodeLine{82         }
+\DoxyCodeLine{88         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_f_t_glyph_aa4c23964322ff71bde93c4ea1594923e}{useDisplayList}};}
+\DoxyCodeLine{89         }
+\DoxyCodeLine{93         FT\_Error \mbox{\hyperlink{class_f_t_glyph_a975294cdaaac794fac7090461f2bc1ff}{err}};}
+\DoxyCodeLine{94         }
+\DoxyCodeLine{95     \textcolor{keyword}{private}:}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \};}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTGlyph\_\_}}
+\DoxyCodeLine{101 }
+
+\end{DoxyCode}

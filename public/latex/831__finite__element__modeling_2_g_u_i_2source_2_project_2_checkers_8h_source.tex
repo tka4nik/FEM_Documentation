@@ -1,0 +1,52 @@
+\hypertarget{831__finite__element__modeling_2_g_u_i_2source_2_project_2_checkers_8h_source}{}\doxysection{Checkers.\+h}
+\label{831__finite__element__modeling_2_g_u_i_2source_2_project_2_checkers_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/Project/Checkers.h@{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/Project/Checkers.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }Proj \{}
+\DoxyCodeLine{6     \textcolor{keyword}{class }\mbox{\hyperlink{class_proj_1_1_stop_condition}{StopCondition}}}
+\DoxyCodeLine{7     \{}
+\DoxyCodeLine{8     \textcolor{keyword}{public}:}
+\DoxyCodeLine{9         \mbox{\hyperlink{class_proj_1_1_stop_condition}{StopCondition}}(\textcolor{keywordtype}{double} stop\_time = 0) : m\_stop\_time(stop\_time) \{\};}
+\DoxyCodeLine{10         \textcolor{keywordtype}{bool} is\_stop\_time(\textcolor{keywordtype}{double} stop\_time) \{ \textcolor{keywordflow}{return} stop\_time >= m\_stop\_time; \}}
+\DoxyCodeLine{11         std::unique\_ptr<StopCondition> clone()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{12             \textcolor{keywordflow}{return} std::make\_unique<StopCondition>(*\textcolor{keyword}{this});}
+\DoxyCodeLine{13         \}}
+\DoxyCodeLine{14     \textcolor{keyword}{private}:}
+\DoxyCodeLine{15         \textcolor{keywordtype}{double} m\_stop\_time;}
+\DoxyCodeLine{16     \};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     \textcolor{keyword}{class }\mbox{\hyperlink{class_proj_1_1_remeshing_condition}{RemeshingCondition}}}
+\DoxyCodeLine{19     \{}
+\DoxyCodeLine{20     \textcolor{keyword}{public}:}
+\DoxyCodeLine{21         \mbox{\hyperlink{class_proj_1_1_remeshing_condition}{RemeshingCondition}}(\textcolor{keywordtype}{size\_t} inerval\_remesh = 0) : m\_interval\_remesh(inerval\_remesh) \{\};}
+\DoxyCodeLine{22         \textcolor{keywordtype}{bool} is\_remesh\_step(\textcolor{keywordtype}{size\_t} step) \{ \textcolor{keywordflow}{return} step \% m\_interval\_remesh == 0; \};}
+\DoxyCodeLine{23         std::unique\_ptr<RemeshingCondition> clone()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{24             \textcolor{keywordflow}{return} std::make\_unique<RemeshingCondition>(*\textcolor{keyword}{this});}
+\DoxyCodeLine{25         \}}
+\DoxyCodeLine{26     \textcolor{keyword}{private}:}
+\DoxyCodeLine{27         \textcolor{keywordtype}{size\_t} m\_interval\_remesh; \textcolor{comment}{//do it once of the interval}}
+\DoxyCodeLine{28     \};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{keyword}{class }\mbox{\hyperlink{class_proj_1_1_save_results}{SaveResults}} \{}
+\DoxyCodeLine{31     \textcolor{keyword}{public}:}
+\DoxyCodeLine{32         \mbox{\hyperlink{class_proj_1_1_save_results}{SaveResults}}(std::string line, \textcolor{keyword}{const} std::string file\_name = \textcolor{stringliteral}{"{}"{}}, \textcolor{keywordtype}{size\_t} interval\_save = 0) : m\_file\_name(file\_name), m\_interval\_save(interval\_save) \{}
+\DoxyCodeLine{33             save\_line(m\_file\_name);}
+\DoxyCodeLine{34         \}}
+\DoxyCodeLine{35         \textcolor{keywordtype}{bool} is\_save\_step(\textcolor{keywordtype}{size\_t} step) \{ \textcolor{keywordflow}{return} step \% m\_interval\_save == 0; \}}
+\DoxyCodeLine{36         std::string get\_file\_name() \{ \textcolor{keywordflow}{return} m\_file\_name; \}}
+\DoxyCodeLine{37         \textcolor{keywordtype}{void} save\_line(\textcolor{keyword}{const} std::string line) \{\}; \textcolor{comment}{//TODO}}
+\DoxyCodeLine{38         std::unique\_ptr<SaveResults> clone()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{39             \textcolor{keywordflow}{return} std::make\_unique<SaveResults>(*\textcolor{keyword}{this});}
+\DoxyCodeLine{40         \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{keyword}{private}:}
+\DoxyCodeLine{43         std::string m\_file\_name;}
+\DoxyCodeLine{44         \textcolor{keywordtype}{size\_t} m\_interval\_save;}
+\DoxyCodeLine{45     \};}
+\DoxyCodeLine{46 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,71 @@
+\hypertarget{svpfr_8h_source}{}\doxysection{svpfr.\+h}
+\label{svpfr_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svpfr.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svpfr.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  svpfr.h                                                                */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Internal PFR service functions (specification).                      */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003 by                                                      */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_SVPFR\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_SVPFR\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include FT\_INTERNAL\_SERVICE\_H}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define FT\_SERVICE\_ID\_PFR\_METRICS  "{}pfr-\/metrics"{}}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{32   (*FT\_PFR\_GetMetricsFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}    face,}
+\DoxyCodeLine{33                             FT\_UInt   *aoutline,}
+\DoxyCodeLine{34                             FT\_UInt   *ametrics,}
+\DoxyCodeLine{35                             FT\_Fixed  *ax\_scale,}
+\DoxyCodeLine{36                             FT\_Fixed  *ay\_scale );}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{39   (*FT\_PFR\_GetKerningFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}     face,}
+\DoxyCodeLine{40                             FT\_UInt     left,}
+\DoxyCodeLine{41                             FT\_UInt     right,}
+\DoxyCodeLine{42                             \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}  *avector );}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{45   (*FT\_PFR\_GetAdvanceFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}   face,}
+\DoxyCodeLine{46                             FT\_UInt   gindex,}
+\DoxyCodeLine{47                             FT\_Pos   *aadvance );}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50   FT\_DEFINE\_SERVICE( PfrMetrics )}
+\DoxyCodeLine{51   \{}
+\DoxyCodeLine{52     FT\_PFR\_GetMetricsFunc  get\_metrics;}
+\DoxyCodeLine{53     FT\_PFR\_GetKerningFunc  get\_kerning;}
+\DoxyCodeLine{54     FT\_PFR\_GetAdvanceFunc  get\_advance;}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   \};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58  \textcolor{comment}{/* */}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 FT\_END\_HEADER}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_SVPFR\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

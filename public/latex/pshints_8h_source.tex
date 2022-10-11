@@ -1,0 +1,632 @@
+\hypertarget{pshints_8h_source}{}\doxysection{pshints.\+h}
+\label{pshints_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/pshints.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/pshints.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  pshints.h                                                              */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Interface to Postscript-\/specific (Type 1 and Type 2) hints           */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*    recorders (specification only).  These are used to support native    */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*    T1/T2 hints in the "{}type1"{}, "{}cid"{} and "{}cff"{} font drivers.            */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*  Copyright 2001, 2002, 2003 by                                          */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{17 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{18 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifndef \_\_PSHINTS\_H\_\_}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define \_\_PSHINTS\_H\_\_}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include FT\_TYPE1\_TABLES\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{34 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{35 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{36 \textcolor{comment}{  /*****               INTERNAL REPRESENTATION OF GLOBALS              *****/}}
+\DoxyCodeLine{37 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{38 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{39 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }PSH\_GlobalsRec\_*  PSH\_Globals;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{44   (*PSH\_Globals\_NewFunc)( FT\_Memory     memory,}
+\DoxyCodeLine{45                           \mbox{\hyperlink{struct_p_s___private_rec__}{T1\_Private}}*   private\_dict,}
+\DoxyCodeLine{46                           PSH\_Globals*  aglobals );}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{49   (*PSH\_Globals\_SetScaleFunc)( PSH\_Globals  globals,}
+\DoxyCodeLine{50                                FT\_Fixed     x\_scale,}
+\DoxyCodeLine{51                                FT\_Fixed     y\_scale,}
+\DoxyCodeLine{52                                FT\_Fixed     x\_delta,}
+\DoxyCodeLine{53                                FT\_Fixed     y\_delta );}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{56   (*PSH\_Globals\_DestroyFunc)( PSH\_Globals  globals );}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_p_s_h___globals___funcs_rec__}{PSH\_Globals\_FuncsRec\_}}}
+\DoxyCodeLine{60   \{}
+\DoxyCodeLine{61     PSH\_Globals\_NewFunc       create;}
+\DoxyCodeLine{62     PSH\_Globals\_SetScaleFunc  set\_scale;}
+\DoxyCodeLine{63     PSH\_Globals\_DestroyFunc   destroy;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65   \} \mbox{\hyperlink{struct_p_s_h___globals___funcs_rec__}{PSH\_Globals\_FuncsRec}}, *\mbox{\hyperlink{struct_p_s_h___globals___funcs_rec__}{PSH\_Globals\_Funcs}};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{69 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{70 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{71 \textcolor{comment}{  /*****                  PUBLIC TYPE 1 HINTS RECORDER                 *****/}}
+\DoxyCodeLine{72 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{73 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{74 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{77   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{78   \textcolor{comment}{/* @type:                                                                */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*    T1\_Hints                                                           */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{81   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*    This is a handle to an opaque structure used to record glyph hints */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*    from a Type 1 character glyph character string.                    */}}
+\DoxyCodeLine{84   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*    The methods used to operate on this object are defined by the      */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*    @T1\_Hints\_FuncsRec structure.  Recording glyph hints is normally   */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*    achieved through the following scheme:                             */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*    -\/ Open a new hint recording session by calling the "{}open"{} method.  */}}
+\DoxyCodeLine{90   \textcolor{comment}{/*      This will rewind the recorder and prepare it for new input.      */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*    -\/ For each hint found in the glyph charstring, call the            */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*      corresponding method ("{}stem"{}, "{}stem3"{}, or "{}reset"{}).  Note that   */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*      these functions do not return an error code.                     */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{96   \textcolor{comment}{/*    -\/ Close the recording session by calling the "{}close"{} method.  It   */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*      will return an error code if the hints were invalid or something */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*      strange happened (e.g. memory shortage).                         */}}
+\DoxyCodeLine{99   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*    The hints accumulated in the object can later be used by the       */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*    PostScript hinter.                                                 */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{103   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }T1\_HintsRec\_*  T1\_Hints;}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{107   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{108   \textcolor{comment}{/* @type:                                                                */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*    T1\_Hints\_Funcs                                                     */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{111   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*    A pointer to the @T1\_Hints\_FuncsRec structure that defines the     */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*    API of a given @T1\_Hints object.                                   */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{115   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t1___hints___funcs_rec__}{T1\_Hints\_FuncsRec\_}}*  \mbox{\hyperlink{struct_t1___hints___funcs_rec__}{T1\_Hints\_Funcs}};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*    T1\_Hints\_OpenFunc                                                  */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{123   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*    A method of the @T1\_Hints class used to prepare it for a new       */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*    Type 1 hints recording session.                                    */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{127   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*    hints :: A handle to the Type 1 hints recorder.                    */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{130   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*    You should always call the @T1\_Hints\_CloseFunc method in order to  */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*    close an opened recording session.                                 */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{134   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{135   (*T1\_Hints\_OpenFunc)( T1\_Hints  hints );}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{139   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{140   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*    T1\_Hints\_SetStemFunc                                               */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{143   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*    A method of the @T1\_Hints class used to record a new horizontal or */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*    vertical stem.  This corresponds to the Type 1 "{}hstem"{} and "{}vstem"{} */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*    operators.                                                         */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{148   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*    hints     :: A handle to the Type 1 hints recorder.                */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*    dimension :: 0 for horizontal stems (hstem), 1 for vertical ones   */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*                 (vstem).                                              */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{154   \textcolor{comment}{/*    coords    :: Array of 2 integers, used as (position,length) stem   */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                 descriptor.                                           */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{157   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*    Use vertical coordinates (y) for horizontal stems (dim=0).  Use    */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*    horizontal coordinates (x) for vertical stems (dim=1).             */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*    "{}coords[0]"{} is the absolute stem position (lowest coordinate);     */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*    "{}coords[1]"{} is the length.                                         */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*    The length can be negative, in which case it must be either -\/20 or */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*    -\/21.  It will be interpreted as a "{}ghost"{} stem, according to       */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*    Type 1 specification.                                              */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{168   \textcolor{comment}{/*    If the length is -\/21 (corresponding to a bottom ghost stem), then  */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*    the real stem position is "{}coords[0]+coords[1]"{}.                   */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{171   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{172   (*T1\_Hints\_SetStemFunc)( T1\_Hints  hints,}
+\DoxyCodeLine{173                            FT\_UInt   dimension,}
+\DoxyCodeLine{174                            FT\_Long*  coords );}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{178   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{179   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*    T1\_Hints\_SetStem3Func                                              */}}
+\DoxyCodeLine{181   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{182   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*    A method of the @T1\_Hints class used to record three               */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*    counter-\/controlled horizontal or vertical stems at once.           */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{186   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*    hints     :: A handle to the Type 1 hints recorder.                */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{189   \textcolor{comment}{/*    dimension :: 0 for horizontal stems, 1 for vertical ones.          */}}
+\DoxyCodeLine{190   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{191   \textcolor{comment}{/*    coords    :: An array of 6 integers, holding 3 (position,length)   */}}
+\DoxyCodeLine{192   \textcolor{comment}{/*                 pairs for the counter-\/controlled stems.               */}}
+\DoxyCodeLine{193   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{194   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*    Use vertical coordinates (y) for horizontal stems (dim=0).  Use    */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*    horizontal coordinates (x) for vertical stems (dim=1).             */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*    The lengths cannot be negative (ghost stems are never              */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*    counter-\/controlled).                                               */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{201   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{202   (*T1\_Hints\_SetStem3Func)( T1\_Hints  hints,}
+\DoxyCodeLine{203                             FT\_UInt   dimension,}
+\DoxyCodeLine{204                             FT\_Long*  coords );}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{208   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{209   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{210   \textcolor{comment}{/*    T1\_Hints\_ResetFunc                                                 */}}
+\DoxyCodeLine{211   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{212   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{213   \textcolor{comment}{/*    A method of the @T1\_Hints class used to reset the stems hints in a */}}
+\DoxyCodeLine{214   \textcolor{comment}{/*    recording session.                                                 */}}
+\DoxyCodeLine{215   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{216   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{217   \textcolor{comment}{/*    hints     :: A handle to the Type 1 hints recorder.                */}}
+\DoxyCodeLine{218   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*    end\_point :: The index of the last point in the input glyph in     */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*                 which the previously defined hints apply.             */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{222   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{223   (*T1\_Hints\_ResetFunc)( T1\_Hints  hints,}
+\DoxyCodeLine{224                          FT\_UInt   end\_point );}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{228   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{229   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{230   \textcolor{comment}{/*    T1\_Hints\_CloseFunc                                                 */}}
+\DoxyCodeLine{231   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{232   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{233   \textcolor{comment}{/*    A method of the @T1\_Hints class used to close a hint recording     */}}
+\DoxyCodeLine{234   \textcolor{comment}{/*    session.                                                           */}}
+\DoxyCodeLine{235   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{236   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{237   \textcolor{comment}{/*    hints     :: A handle to the Type 1 hints recorder.                */}}
+\DoxyCodeLine{238   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{239   \textcolor{comment}{/*    end\_point :: The index of the last point in the input glyph.       */}}
+\DoxyCodeLine{240   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{241   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{242   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{243   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{244   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{245   \textcolor{comment}{/*    The error code will be set to indicate that an error occured       */}}
+\DoxyCodeLine{246   \textcolor{comment}{/*    during the recording session.                                      */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{248   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{249   (*T1\_Hints\_CloseFunc)( T1\_Hints  hints,}
+\DoxyCodeLine{250                          FT\_UInt   end\_point );}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{254   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{255   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{256   \textcolor{comment}{/*    T1\_Hints\_ApplyFunc                                                 */}}
+\DoxyCodeLine{257   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{258   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{259   \textcolor{comment}{/*    A method of the @T1\_Hints class used to apply hints to the         */}}
+\DoxyCodeLine{260   \textcolor{comment}{/*    corresponding glyph outline.  Must be called once all hints have   */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*    been recorded.                                                     */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{263   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{264   \textcolor{comment}{/*   hints     :: A handle to the Type 1 hints recorder.                 */}}
+\DoxyCodeLine{265   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{266   \textcolor{comment}{/*   outline   :: A pointer to the target outline descriptor.            */}}
+\DoxyCodeLine{267   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{268   \textcolor{comment}{/*   globals   :: The hinter globals for this font.                      */}}
+\DoxyCodeLine{269   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{270   \textcolor{comment}{/*   hint\_mode :: Hinting information.                                   */}}
+\DoxyCodeLine{271   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{272   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{273   \textcolor{comment}{/*   FreeType error code.  0 means success.                              */}}
+\DoxyCodeLine{274   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{275   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{276   \textcolor{comment}{/*    On input, all points within the outline are in font coordinates.   */}}
+\DoxyCodeLine{277   \textcolor{comment}{/*    On output, they are in 1/64th of pixels.                           */}}
+\DoxyCodeLine{278   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{279   \textcolor{comment}{/*    The scaling transformation is taken from the "{}globals"{} object      */}}
+\DoxyCodeLine{280   \textcolor{comment}{/*    which must correspond to the same font as the glyph.               */}}
+\DoxyCodeLine{281   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{282   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{283   (*T1\_Hints\_ApplyFunc)( T1\_Hints        hints,}
+\DoxyCodeLine{284                          \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*     outline,}
+\DoxyCodeLine{285                          PSH\_Globals     globals,}
+\DoxyCodeLine{286                          FT\_Render\_Mode  hint\_mode );}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{290   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{291   \textcolor{comment}{/* @struct:                                                              */}}
+\DoxyCodeLine{292   \textcolor{comment}{/*    T1\_Hints\_FuncsRec                                                  */}}
+\DoxyCodeLine{293   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{294   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{295   \textcolor{comment}{/*    The structure used to provide the API to @T1\_Hints objects.        */}}
+\DoxyCodeLine{296   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{297   \textcolor{comment}{/* @fields:                                                              */}}
+\DoxyCodeLine{298   \textcolor{comment}{/*    hints :: A handle to the T1 Hints recorder.                        */}}
+\DoxyCodeLine{299   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*    open  :: The function to open a recording session.                 */}}
+\DoxyCodeLine{301   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{302   \textcolor{comment}{/*    close :: The function to close a recording session.                */}}
+\DoxyCodeLine{303   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{304   \textcolor{comment}{/*    stem  :: The function to set a simple stem.                        */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*    stem3 :: The function to set counter-\/controlled stems.             */}}
+\DoxyCodeLine{307   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{308   \textcolor{comment}{/*    reset :: The function to reset stem hints.                         */}}
+\DoxyCodeLine{309   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{310   \textcolor{comment}{/*    apply :: The function to apply the hints to the corresponding      */}}
+\DoxyCodeLine{311   \textcolor{comment}{/*             glyph outline.                                            */}}
+\DoxyCodeLine{312   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{313   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t1___hints___funcs_rec__}{T1\_Hints\_FuncsRec\_}}}
+\DoxyCodeLine{314   \{}
+\DoxyCodeLine{315     T1\_Hints               hints;}
+\DoxyCodeLine{316     T1\_Hints\_OpenFunc      open;}
+\DoxyCodeLine{317     T1\_Hints\_CloseFunc     close;}
+\DoxyCodeLine{318     T1\_Hints\_SetStemFunc   stem;}
+\DoxyCodeLine{319     T1\_Hints\_SetStem3Func  stem3;}
+\DoxyCodeLine{320     T1\_Hints\_ResetFunc     reset;}
+\DoxyCodeLine{321     T1\_Hints\_ApplyFunc     apply;}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323   \} \mbox{\hyperlink{struct_t1___hints___funcs_rec__}{T1\_Hints\_FuncsRec}};}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{327 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{328 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{329 \textcolor{comment}{  /*****                  PUBLIC TYPE 2 HINTS RECORDER                 *****/}}
+\DoxyCodeLine{330 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{331 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{332 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{335   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{336   \textcolor{comment}{/* @type:                                                                */}}
+\DoxyCodeLine{337   \textcolor{comment}{/*    T2\_Hints                                                           */}}
+\DoxyCodeLine{338   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{339   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{340   \textcolor{comment}{/*    This is a handle to an opaque structure used to record glyph hints */}}
+\DoxyCodeLine{341   \textcolor{comment}{/*    from a Type 2 character glyph character string.                    */}}
+\DoxyCodeLine{342   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{343   \textcolor{comment}{/*    The methods used to operate on this object are defined by the      */}}
+\DoxyCodeLine{344   \textcolor{comment}{/*    @T2\_Hints\_FuncsRec structure.  Recording glyph hints is normally   */}}
+\DoxyCodeLine{345   \textcolor{comment}{/*    achieved through the following scheme:                             */}}
+\DoxyCodeLine{346   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{347   \textcolor{comment}{/*    -\/ Open a new hint recording session by calling the "{}open"{} method.  */}}
+\DoxyCodeLine{348   \textcolor{comment}{/*      This will rewind the recorder and prepare it for new input.      */}}
+\DoxyCodeLine{349   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{350   \textcolor{comment}{/*    -\/ For each hint found in the glyph charstring, call the            */}}
+\DoxyCodeLine{351   \textcolor{comment}{/*      corresponding method ("{}stems"{}, "{}hintmask"{}, "{}counters"{}).  Note    */}}
+\DoxyCodeLine{352   \textcolor{comment}{/*      that these functions do not return an error code.                */}}
+\DoxyCodeLine{353   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{354   \textcolor{comment}{/*    -\/ Close the recording session by calling the "{}close"{} method.  It   */}}
+\DoxyCodeLine{355   \textcolor{comment}{/*      will return an error code if the hints were invalid or something */}}
+\DoxyCodeLine{356   \textcolor{comment}{/*      strange happened (e.g. memory shortage).                         */}}
+\DoxyCodeLine{357   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{358   \textcolor{comment}{/*    The hints accumulated in the object can later be used by the       */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*    Postscript hinter.                                                 */}}
+\DoxyCodeLine{360   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{361   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }T2\_HintsRec\_*  T2\_Hints;}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363 }
+\DoxyCodeLine{364 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{365   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{366   \textcolor{comment}{/* @type:                                                                */}}
+\DoxyCodeLine{367   \textcolor{comment}{/*    T2\_Hints\_Funcs                                                     */}}
+\DoxyCodeLine{368   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{369   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{370   \textcolor{comment}{/*    A pointer to the @T2\_Hints\_FuncsRec structure that defines the API */}}
+\DoxyCodeLine{371   \textcolor{comment}{/*    of a given @T2\_Hints object.                                       */}}
+\DoxyCodeLine{372   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{373   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_t2___hints___funcs_rec__}{T2\_Hints\_FuncsRec\_}}*  \mbox{\hyperlink{struct_t2___hints___funcs_rec__}{T2\_Hints\_Funcs}};}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{377   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{378   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{379   \textcolor{comment}{/*    T2\_Hints\_OpenFunc                                                  */}}
+\DoxyCodeLine{380   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{381   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{382   \textcolor{comment}{/*    A method of the @T2\_Hints class used to prepare it for a new       */}}
+\DoxyCodeLine{383   \textcolor{comment}{/*    Type 2 hints recording session.                                    */}}
+\DoxyCodeLine{384   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{385   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{386   \textcolor{comment}{/*    hints :: A handle to the Type 2 hints recorder.                    */}}
+\DoxyCodeLine{387   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{388   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{389   \textcolor{comment}{/*    You should always call the @T2\_Hints\_CloseFunc method in order to  */}}
+\DoxyCodeLine{390   \textcolor{comment}{/*    close an opened recording session.                                 */}}
+\DoxyCodeLine{391   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{392   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{393   (*T2\_Hints\_OpenFunc)( T2\_Hints  hints );}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{397   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{398   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{399   \textcolor{comment}{/*    T2\_Hints\_StemsFunc                                                 */}}
+\DoxyCodeLine{400   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{401   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{402   \textcolor{comment}{/*    A method of the @T2\_Hints class used to set the table of stems in  */}}
+\DoxyCodeLine{403   \textcolor{comment}{/*    either the vertical or horizontal dimension.  Equivalent to the    */}}
+\DoxyCodeLine{404   \textcolor{comment}{/*    "{}hstem"{}, "{}vstem"{}, "{}hstemhm"{}, and "{}vstemhm"{} Type 2 operators.       */}}
+\DoxyCodeLine{405   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{406   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{407   \textcolor{comment}{/*    hints     :: A handle to the Type 2 hints recorder.                */}}
+\DoxyCodeLine{408   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{409   \textcolor{comment}{/*    dimension :: 0 for horizontal stems (hstem), 1 for vertical ones   */}}
+\DoxyCodeLine{410   \textcolor{comment}{/*                 (vstem).                                              */}}
+\DoxyCodeLine{411   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{412   \textcolor{comment}{/*    count     :: The number of stems.                                  */}}
+\DoxyCodeLine{413   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{414   \textcolor{comment}{/*    coords    :: An array of "{}count"{} (position,length) pairs.          */}}
+\DoxyCodeLine{415   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{416   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{417   \textcolor{comment}{/*    Use vertical coordinates (y) for horizontal stems (dim=0).  Use    */}}
+\DoxyCodeLine{418   \textcolor{comment}{/*    horizontal coordinates (x) for vertical stems (dim=1).             */}}
+\DoxyCodeLine{419   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{420   \textcolor{comment}{/*    There are "{}2*count"{} elements in the "{}coords"{} aray.  Each even      */}}
+\DoxyCodeLine{421   \textcolor{comment}{/*    element is an absolute position in font units, each odd element is */}}
+\DoxyCodeLine{422   \textcolor{comment}{/*    a length in font units.                                            */}}
+\DoxyCodeLine{423   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{424   \textcolor{comment}{/*    A length can be negative, in which case it must be either -\/20 or   */}}
+\DoxyCodeLine{425   \textcolor{comment}{/*    -\/21.  It will be interpreted as a "{}ghost"{} stem, according to the   */}}
+\DoxyCodeLine{426   \textcolor{comment}{/*    Type 1 specification.                                              */}}
+\DoxyCodeLine{427   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{428   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{429   (*T2\_Hints\_StemsFunc)( T2\_Hints   hints,}
+\DoxyCodeLine{430                          FT\_UInt    dimension,}
+\DoxyCodeLine{431                          FT\_UInt    count,}
+\DoxyCodeLine{432                          FT\_Fixed*  coordinates );}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434 }
+\DoxyCodeLine{435 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{436   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{437   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{438   \textcolor{comment}{/*    T2\_Hints\_MaskFunc                                                  */}}
+\DoxyCodeLine{439   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{440   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{441   \textcolor{comment}{/*    A method of the @T2\_Hints class used to set a given hintmask       */}}
+\DoxyCodeLine{442   \textcolor{comment}{/*    (this corresponds to the "{}hintmask"{} Type 2 operator).              */}}
+\DoxyCodeLine{443   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{444   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{445   \textcolor{comment}{/*    hints     :: A handle to the Type 2 hints recorder.                */}}
+\DoxyCodeLine{446   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{447   \textcolor{comment}{/*    end\_point :: The glyph index of the last point to which the        */}}
+\DoxyCodeLine{448   \textcolor{comment}{/*                 previously defined/activated hints apply.             */}}
+\DoxyCodeLine{449   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{450   \textcolor{comment}{/*    bit\_count :: The number of bits in the hint mask.                  */}}
+\DoxyCodeLine{451   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{452   \textcolor{comment}{/*    bytes     :: An array of bytes modelling the hint mask.            */}}
+\DoxyCodeLine{453   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{454   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{455   \textcolor{comment}{/*    If the hintmask starts the charstring (before any glyph point      */}}
+\DoxyCodeLine{456   \textcolor{comment}{/*    definition), the value of "{}end\_point"{} should be 0.                 */}}
+\DoxyCodeLine{457   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{458   \textcolor{comment}{/*    "{}bit\_count"{} is the number of meaningful bits in the "{}bytes"{} array; */}}
+\DoxyCodeLine{459   \textcolor{comment}{/*    it must be equal to the total number of hints defined so far       */}}
+\DoxyCodeLine{460   \textcolor{comment}{/*    (i.e. horizontal+verticals).                                       */}}
+\DoxyCodeLine{461   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{462   \textcolor{comment}{/*    The "{}bytes"{} array can come directly from the Type 2 charstring and */}}
+\DoxyCodeLine{463   \textcolor{comment}{/*    respects the same format.                                          */}}
+\DoxyCodeLine{464   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{465   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{466   (*T2\_Hints\_MaskFunc)( T2\_Hints        hints,}
+\DoxyCodeLine{467                         FT\_UInt         end\_point,}
+\DoxyCodeLine{468                         FT\_UInt         bit\_count,}
+\DoxyCodeLine{469                         \textcolor{keyword}{const} FT\_Byte*  bytes );}
+\DoxyCodeLine{470 }
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{473   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{474   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{475   \textcolor{comment}{/*    T2\_Hints\_CounterFunc                                               */}}
+\DoxyCodeLine{476   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{477   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{478   \textcolor{comment}{/*    A method of the @T2\_Hints class used to set a given counter mask   */}}
+\DoxyCodeLine{479   \textcolor{comment}{/*    (this corresponds to the "{}hintmask"{} Type 2 operator).              */}}
+\DoxyCodeLine{480   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{481   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{482   \textcolor{comment}{/*    hints     :: A handle to the Type 2 hints recorder.                */}}
+\DoxyCodeLine{483   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{484   \textcolor{comment}{/*    end\_point :: A glyph index of the last point to which the          */}}
+\DoxyCodeLine{485   \textcolor{comment}{/*                 previously defined/active hints apply.                */}}
+\DoxyCodeLine{486   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{487   \textcolor{comment}{/*    bit\_count :: The number of bits in the hint mask.                  */}}
+\DoxyCodeLine{488   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{489   \textcolor{comment}{/*    bytes     :: An array of bytes modelling the hint mask.            */}}
+\DoxyCodeLine{490   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{491   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{492   \textcolor{comment}{/*    If the hintmask starts the charstring (before any glyph point      */}}
+\DoxyCodeLine{493   \textcolor{comment}{/*    definition), the value of "{}end\_point"{} should be 0.                 */}}
+\DoxyCodeLine{494   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{495   \textcolor{comment}{/*    "{}bit\_count"{} is the number of meaningful bits in the "{}bytes"{} array; */}}
+\DoxyCodeLine{496   \textcolor{comment}{/*    it must be equal to the total number of hints defined so far       */}}
+\DoxyCodeLine{497   \textcolor{comment}{/*    (i.e. horizontal+verticals).                                       */}}
+\DoxyCodeLine{498   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{499   \textcolor{comment}{/*    The "{}bytes"{} array can come directly from the Type 2 charstring and */}}
+\DoxyCodeLine{500   \textcolor{comment}{/*    respects the same format.                                          */}}
+\DoxyCodeLine{501   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{502   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{503   (*T2\_Hints\_CounterFunc)( T2\_Hints        hints,}
+\DoxyCodeLine{504                            FT\_UInt         bit\_count,}
+\DoxyCodeLine{505                            \textcolor{keyword}{const} FT\_Byte*  bytes );}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{507 }
+\DoxyCodeLine{508 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{509   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{510   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{511   \textcolor{comment}{/*    T2\_Hints\_CloseFunc                                                 */}}
+\DoxyCodeLine{512   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{513   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{514   \textcolor{comment}{/*    A method of the @T2\_Hints class used to close a hint recording     */}}
+\DoxyCodeLine{515   \textcolor{comment}{/*    session.                                                           */}}
+\DoxyCodeLine{516   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{517   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{518   \textcolor{comment}{/*    hints     :: A handle to the Type 2 hints recorder.                */}}
+\DoxyCodeLine{519   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{520   \textcolor{comment}{/*    end\_point :: The index of the last point in the input glyph.       */}}
+\DoxyCodeLine{521   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{522   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{523   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{524   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{525   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{526   \textcolor{comment}{/*    The error code will be set to indicate that an error occured       */}}
+\DoxyCodeLine{527   \textcolor{comment}{/*    during the recording session.                                      */}}
+\DoxyCodeLine{528   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{529   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{530   (*T2\_Hints\_CloseFunc)( T2\_Hints  hints,}
+\DoxyCodeLine{531                          FT\_UInt   end\_point );}
+\DoxyCodeLine{532 }
+\DoxyCodeLine{533 }
+\DoxyCodeLine{534 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{535   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{536   \textcolor{comment}{/* @functype:                                                            */}}
+\DoxyCodeLine{537   \textcolor{comment}{/*    T2\_Hints\_ApplyFunc                                                 */}}
+\DoxyCodeLine{538   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{539   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{540   \textcolor{comment}{/*    A method of the @T2\_Hints class used to apply hints to the         */}}
+\DoxyCodeLine{541   \textcolor{comment}{/*    corresponding glyph outline.  Must be called after the "{}close"{}     */}}
+\DoxyCodeLine{542   \textcolor{comment}{/*    method.                                                            */}}
+\DoxyCodeLine{543   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{544   \textcolor{comment}{/* @input:                                                               */}}
+\DoxyCodeLine{545   \textcolor{comment}{/*    hints     :: A handle to the Type 2 hints recorder.                */}}
+\DoxyCodeLine{546   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{547   \textcolor{comment}{/*    outline   :: A pointer to the target outline descriptor.           */}}
+\DoxyCodeLine{548   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{549   \textcolor{comment}{/*    globals   :: The hinter globals for this font.                     */}}
+\DoxyCodeLine{550   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{551   \textcolor{comment}{/*    hint\_mode :: Hinting information.                                  */}}
+\DoxyCodeLine{552   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{553   \textcolor{comment}{/* @return:                                                              */}}
+\DoxyCodeLine{554   \textcolor{comment}{/*   FreeType error code.  0 means success.                              */}}
+\DoxyCodeLine{555   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{556   \textcolor{comment}{/* @note:                                                                */}}
+\DoxyCodeLine{557   \textcolor{comment}{/*    On input, all points within the outline are in font coordinates.   */}}
+\DoxyCodeLine{558   \textcolor{comment}{/*    On output, they are in 1/64th of pixels.                           */}}
+\DoxyCodeLine{559   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{560   \textcolor{comment}{/*    The scaling transformation is taken from the "{}globals"{} object      */}}
+\DoxyCodeLine{561   \textcolor{comment}{/*    which must correspond to the same font than the glyph.             */}}
+\DoxyCodeLine{562   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{563   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{564   (*T2\_Hints\_ApplyFunc)( T2\_Hints        hints,}
+\DoxyCodeLine{565                          \mbox{\hyperlink{struct_f_t___outline__}{FT\_Outline}}*     outline,}
+\DoxyCodeLine{566                          PSH\_Globals     globals,}
+\DoxyCodeLine{567                          FT\_Render\_Mode  hint\_mode );}
+\DoxyCodeLine{568 }
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{571   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{572   \textcolor{comment}{/* @struct:                                                              */}}
+\DoxyCodeLine{573   \textcolor{comment}{/*    T2\_Hints\_FuncsRec                                                  */}}
+\DoxyCodeLine{574   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{575   \textcolor{comment}{/* @description:                                                         */}}
+\DoxyCodeLine{576   \textcolor{comment}{/*    The structure used to provide the API to @T2\_Hints objects.        */}}
+\DoxyCodeLine{577   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{578   \textcolor{comment}{/* @fields:                                                              */}}
+\DoxyCodeLine{579   \textcolor{comment}{/*    hints    :: A handle to the T2 hints recorder object.              */}}
+\DoxyCodeLine{580   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{581   \textcolor{comment}{/*    open     :: The function to open a recording session.              */}}
+\DoxyCodeLine{582   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{583   \textcolor{comment}{/*    close    :: The function to close a recording session.             */}}
+\DoxyCodeLine{584   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{585   \textcolor{comment}{/*    stems    :: The function to set the dimension's stems table.       */}}
+\DoxyCodeLine{586   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{587   \textcolor{comment}{/*    hintmask :: The function to set hint masks.                        */}}
+\DoxyCodeLine{588   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{589   \textcolor{comment}{/*    counter  :: The function to set counter masks.                     */}}
+\DoxyCodeLine{590   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{591   \textcolor{comment}{/*    apply    :: The function to apply the hints on the corresponding   */}}
+\DoxyCodeLine{592   \textcolor{comment}{/*                glyph outline.                                         */}}
+\DoxyCodeLine{593   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{594   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_t2___hints___funcs_rec__}{T2\_Hints\_FuncsRec\_}}}
+\DoxyCodeLine{595   \{}
+\DoxyCodeLine{596     T2\_Hints              hints;}
+\DoxyCodeLine{597     T2\_Hints\_OpenFunc     open;}
+\DoxyCodeLine{598     T2\_Hints\_CloseFunc    close;}
+\DoxyCodeLine{599     T2\_Hints\_StemsFunc    stems;}
+\DoxyCodeLine{600     T2\_Hints\_MaskFunc     hintmask;}
+\DoxyCodeLine{601     T2\_Hints\_CounterFunc  counter;}
+\DoxyCodeLine{602     T2\_Hints\_ApplyFunc    apply;}
+\DoxyCodeLine{603 }
+\DoxyCodeLine{604   \} \mbox{\hyperlink{struct_t2___hints___funcs_rec__}{T2\_Hints\_FuncsRec}};}
+\DoxyCodeLine{605 }
+\DoxyCodeLine{606 }
+\DoxyCodeLine{607   \textcolor{comment}{/* */}}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{609 }
+\DoxyCodeLine{610   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_p_s_hinter___interface__}{PSHinter\_Interface\_}}}
+\DoxyCodeLine{611   \{}
+\DoxyCodeLine{612     \mbox{\hyperlink{struct_p_s_h___globals___funcs_rec__}{PSH\_Globals\_Funcs}}  (*get\_globals\_funcs)( \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}  module );}
+\DoxyCodeLine{613     \mbox{\hyperlink{struct_t1___hints___funcs_rec__}{T1\_Hints\_Funcs}}     (*get\_t1\_funcs)     ( \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}  module );}
+\DoxyCodeLine{614     \mbox{\hyperlink{struct_t2___hints___funcs_rec__}{T2\_Hints\_Funcs}}     (*get\_t2\_funcs)     ( \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}  module );}
+\DoxyCodeLine{615 }
+\DoxyCodeLine{616   \} \mbox{\hyperlink{struct_p_s_hinter___interface__}{PSHinter\_Interface}};}
+\DoxyCodeLine{617 }
+\DoxyCodeLine{618   \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_p_s_hinter___interface__}{PSHinter\_Interface}}*  \mbox{\hyperlink{struct_p_s_hinter___interface__}{PSHinter\_Service}};}
+\DoxyCodeLine{619 }
+\DoxyCodeLine{620 }
+\DoxyCodeLine{621 FT\_END\_HEADER}
+\DoxyCodeLine{622 }
+\DoxyCodeLine{623 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_PSHINTS\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{624 }
+\DoxyCodeLine{625 }
+\DoxyCodeLine{626 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

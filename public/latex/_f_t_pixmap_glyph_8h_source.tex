@@ -1,0 +1,42 @@
+\hypertarget{_f_t_pixmap_glyph_8h_source}{}\doxysection{FTPixmap\+Glyph.\+h}
+\label{_f_t_pixmap_glyph_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTPixmapGlyph.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTPixmapGlyph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTPixmapGlyph\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTPixmapGlyph\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}FTGlyph.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{19 \textcolor{keyword}{class  }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_pixmap_glyph}{FTPixmapGlyph}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21     \textcolor{keyword}{public}:}
+\DoxyCodeLine{27         \mbox{\hyperlink{class_f_t_pixmap_glyph_a3f3978f9c2a8fda401d0ce9ccc2ebb7d}{FTPixmapGlyph}}( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}} glyph);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32         \textcolor{keyword}{virtual} \mbox{\hyperlink{class_f_t_pixmap_glyph_a4ff9f3d8e748fae9c9c1e704a0fbced5}{\string~FTPixmapGlyph}}();}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{40         \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& \mbox{\hyperlink{class_f_t_pixmap_glyph_a4717d130b7689cdfd554cb3b78b372a6}{Render}}( \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_point}{FTPoint}}\& pen);}
+\DoxyCodeLine{41         }
+\DoxyCodeLine{42         \textcolor{comment}{// attributes}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keyword}{private}:}
+\DoxyCodeLine{48         \textcolor{keywordtype}{int} destWidth;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{53         \textcolor{keywordtype}{int} destHeight;}
+\DoxyCodeLine{54         }
+\DoxyCodeLine{58         \mbox{\hyperlink{class_f_t_point}{FTPoint}} pos;}
+\DoxyCodeLine{59         }
+\DoxyCodeLine{63         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* data;}
+\DoxyCodeLine{64         }
+\DoxyCodeLine{65 \};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTPixmapGlyph\_\_}}
+
+\end{DoxyCode}

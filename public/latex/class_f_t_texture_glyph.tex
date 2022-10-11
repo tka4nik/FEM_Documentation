@@ -1,0 +1,101 @@
+\hypertarget{class_f_t_texture_glyph}{}\doxysection{FTTexture\+Glyph Class Reference}
+\label{class_f_t_texture_glyph}\index{FTTextureGlyph@{FTTextureGlyph}}
+
+
+{\ttfamily \#include $<$FTTexture\+Glyph.\+h$>$}
+
+Inheritance diagram for FTTexture\+Glyph\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_t_texture_glyph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_texture_glyph_a59ada18c60ab788066fc14b3475dea32}{FTTexture\+Glyph}} (\mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\+\_\+\+Glyph\+Slot}} glyph, int id, int x\+Offset, int y\+Offset, GLsizei width, GLsizei height)
+\item 
+virtual \mbox{\hyperlink{class_f_t_texture_glyph_ab0467ed99fc200ba43f2b0fb30f99eb9}{$\sim$\+FTTexture\+Glyph}} ()
+\item 
+virtual const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& \mbox{\hyperlink{class_f_t_texture_glyph_a59294788e2e1f94c88bb5ea3b7d5bc61}{Render}} (const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&pen)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_f_t_texture_glyph_a21dbc7bdb83017e66045b2f5bce42e17}{Reset\+Active\+Texture}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_texture_glyph}{FTTexture\+Glyph}} is a specialisation of \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} for creating texture glyphs.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_f_t_glyph_container}{FTGlyph\+Container}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_texture_glyph_a59ada18c60ab788066fc14b3475dea32}\label{class_f_t_texture_glyph_a59ada18c60ab788066fc14b3475dea32}} 
+\index{FTTextureGlyph@{FTTextureGlyph}!FTTextureGlyph@{FTTextureGlyph}}
+\index{FTTextureGlyph@{FTTextureGlyph}!FTTextureGlyph@{FTTextureGlyph}}
+\doxysubsubsection{\texorpdfstring{FTTextureGlyph()}{FTTextureGlyph()}}
+{\footnotesize\ttfamily FTTexture\+Glyph\+::\+FTTexture\+Glyph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\+\_\+\+Glyph\+Slot}}}]{glyph,  }\item[{int}]{id,  }\item[{int}]{x\+Offset,  }\item[{int}]{y\+Offset,  }\item[{GLsizei}]{width,  }\item[{GLsizei}]{height }\end{DoxyParamCaption})}
+
+Constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em glyph} & The Freetype glyph to be processed \\
+\hline
+{\em id} & The id of the texture that this glyph will be drawn in \\
+\hline
+{\em x\+Offset} & The x offset into the parent texture to draw this glyph \\
+\hline
+{\em y\+Offset} & The y offset into the parent texture to draw this glyph \\
+\hline
+{\em width} & The width of the parent texture \\
+\hline
+{\em height} & The height (number of rows) of the parent texture \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_texture_glyph_ab0467ed99fc200ba43f2b0fb30f99eb9}\label{class_f_t_texture_glyph_ab0467ed99fc200ba43f2b0fb30f99eb9}} 
+\index{FTTextureGlyph@{FTTextureGlyph}!````~FTTextureGlyph@{$\sim$FTTextureGlyph}}
+\index{````~FTTextureGlyph@{$\sim$FTTextureGlyph}!FTTextureGlyph@{FTTextureGlyph}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTTextureGlyph()}{~FTTextureGlyph()}}
+{\footnotesize\ttfamily virtual FTTexture\+Glyph\+::$\sim$\+FTTexture\+Glyph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_texture_glyph_a59294788e2e1f94c88bb5ea3b7d5bc61}\label{class_f_t_texture_glyph_a59294788e2e1f94c88bb5ea3b7d5bc61}} 
+\index{FTTextureGlyph@{FTTextureGlyph}!Render@{Render}}
+\index{Render@{Render}!FTTextureGlyph@{FTTextureGlyph}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \& FTTexture\+Glyph\+::\+Render (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_f_t_point}{FTPoint}} \&}]{pen }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Renders this glyph at the current pen position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pen} & The current pen position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The advance distance for this glyph. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_f_t_glyph_a8dcae3f32fe8a4f56b71a48ebaa95bc4}{FTGlyph}}.
+
+\mbox{\Hypertarget{class_f_t_texture_glyph_a21dbc7bdb83017e66045b2f5bce42e17}\label{class_f_t_texture_glyph_a21dbc7bdb83017e66045b2f5bce42e17}} 
+\index{FTTextureGlyph@{FTTextureGlyph}!ResetActiveTexture@{ResetActiveTexture}}
+\index{ResetActiveTexture@{ResetActiveTexture}!FTTextureGlyph@{FTTextureGlyph}}
+\doxysubsubsection{\texorpdfstring{ResetActiveTexture()}{ResetActiveTexture()}}
+{\footnotesize\ttfamily static void FTTexture\+Glyph\+::\+Reset\+Active\+Texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Reset the currently active texture to zero to get into a known state before drawing a string. This is to get round possible threading issues. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTTexture\+Glyph.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,104 @@
+\hypertarget{_f_t_g_l_2_f_t_g_l_2include_2ftgl_2ftbbox_8h_source}{}\doxysection{FTBBox.\+h}
+\label{_f_t_g_l_2_f_t_g_l_2include_2ftgl_2ftbbox_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTBBox.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTBBox.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTBBox\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTBBox\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{6 \textcolor{comment}{//\#include FT\_GLYPH\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include FT\_OUTLINE\_H}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}FTPoint.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_b_box}{FTBBox}}}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18     \textcolor{keyword}{public}:}
+\DoxyCodeLine{22         \mbox{\hyperlink{class_f_t_b_box_a1779a36f0f573c6215de9a1bcee61f15}{FTBBox}}()}
+\DoxyCodeLine{23         :   lowerX(0.0f),}
+\DoxyCodeLine{24             lowerY(0.0f),}
+\DoxyCodeLine{25             lowerZ(0.0f),}
+\DoxyCodeLine{26             upperX(0.0f),}
+\DoxyCodeLine{27             upperY(0.0f),}
+\DoxyCodeLine{28             upperZ(0.0f)}
+\DoxyCodeLine{29         \{\}}
+\DoxyCodeLine{30         }
+\DoxyCodeLine{34         \mbox{\hyperlink{class_f_t_b_box_a13345139067cc08b799bf7082895bda0}{FTBBox}}( \textcolor{keywordtype}{float} lx, \textcolor{keywordtype}{float} ly, \textcolor{keywordtype}{float} lz, \textcolor{keywordtype}{float} ux, \textcolor{keywordtype}{float} uy, \textcolor{keywordtype}{float} uz)}
+\DoxyCodeLine{35         :   lowerX(lx),}
+\DoxyCodeLine{36             lowerY(ly),}
+\DoxyCodeLine{37             lowerZ(lz),}
+\DoxyCodeLine{38             upperX(ux),}
+\DoxyCodeLine{39             upperY(uy),}
+\DoxyCodeLine{40             upperZ(uz)}
+\DoxyCodeLine{41         \{\}}
+\DoxyCodeLine{42         }
+\DoxyCodeLine{49         \mbox{\hyperlink{class_f_t_b_box_a08a2bdc33037650e5f2d430c127e7d14}{FTBBox}}( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}} glyph)}
+\DoxyCodeLine{50         :   lowerX(0.0f),}
+\DoxyCodeLine{51             lowerY(0.0f),}
+\DoxyCodeLine{52             lowerZ(0.0f),}
+\DoxyCodeLine{53             upperX(0.0f),}
+\DoxyCodeLine{54             upperY(0.0f),}
+\DoxyCodeLine{55             upperZ(0.0f)}
+\DoxyCodeLine{56         \{}
+\DoxyCodeLine{57             \mbox{\hyperlink{struct_f_t___b_box__}{FT\_BBox}} bbox;}
+\DoxyCodeLine{58             FT\_Outline\_Get\_CBox( \&(glyph-\/>outline), \&bbox);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60             lowerX = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}( bbox.xMin) / 64.0f;}
+\DoxyCodeLine{61             lowerY = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}( bbox.yMin) / 64.0f;}
+\DoxyCodeLine{62             lowerZ = 0.0f;}
+\DoxyCodeLine{63             upperX = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}( bbox.xMax) / 64.0f;}
+\DoxyCodeLine{64             upperY = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}( bbox.yMax) / 64.0f;}
+\DoxyCodeLine{65             upperZ = 0.0f;}
+\DoxyCodeLine{66             }
+\DoxyCodeLine{67         \}       }
+\DoxyCodeLine{68 }
+\DoxyCodeLine{72         \mbox{\hyperlink{class_f_t_b_box_a377c940076f798b35450636d2cc58095}{\string~FTBBox}}()}
+\DoxyCodeLine{73         \{\}}
+\DoxyCodeLine{74         }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{81         \mbox{\hyperlink{class_f_t_b_box}{FTBBox}}\& \mbox{\hyperlink{class_f_t_b_box_ad8d3c74c60141b1b3b2a5731157717dc}{Move}}( \mbox{\hyperlink{class_f_t_point}{FTPoint}} distance)}
+\DoxyCodeLine{82         \{}
+\DoxyCodeLine{83             lowerX += distance.X();}
+\DoxyCodeLine{84             lowerY += distance.Y();}
+\DoxyCodeLine{85             lowerZ += distance.Z();}
+\DoxyCodeLine{86             upperX += distance.X();}
+\DoxyCodeLine{87             upperY += distance.Y();}
+\DoxyCodeLine{88             upperZ += distance.Z();}
+\DoxyCodeLine{89             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{90         \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92         \mbox{\hyperlink{class_f_t_b_box}{FTBBox}}\& operator += ( \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_b_box}{FTBBox}}\& bbox) }
+\DoxyCodeLine{93         \{}
+\DoxyCodeLine{94             lowerX = bbox.\mbox{\hyperlink{class_f_t_b_box_aa8e91f22f5ecd53e7e1ab8cad0f94f36}{lowerX}} < lowerX? bbox.\mbox{\hyperlink{class_f_t_b_box_aa8e91f22f5ecd53e7e1ab8cad0f94f36}{lowerX}}: lowerX; }
+\DoxyCodeLine{95             lowerY = bbox.lowerY < lowerY? bbox.lowerY: lowerY;}
+\DoxyCodeLine{96             lowerZ = bbox.lowerZ < lowerZ? bbox.lowerZ: lowerZ; }
+\DoxyCodeLine{97             upperX = bbox.upperX > upperX? bbox.upperX: upperX; }
+\DoxyCodeLine{98             upperY = bbox.upperY > upperY? bbox.upperY: upperY; }
+\DoxyCodeLine{99             upperZ = bbox.upperZ > upperZ? bbox.upperZ: upperZ; }
+\DoxyCodeLine{100             }
+\DoxyCodeLine{101             \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{102         \}}
+\DoxyCodeLine{103         }
+\DoxyCodeLine{104         \textcolor{keywordtype}{void} SetDepth( \textcolor{keywordtype}{float} depth)}
+\DoxyCodeLine{105         \{}
+\DoxyCodeLine{106             upperZ = lowerZ + depth;}
+\DoxyCodeLine{107         \}}
+\DoxyCodeLine{108         }
+\DoxyCodeLine{109         }
+\DoxyCodeLine{113         \textcolor{comment}{// Make these ftPoints \& private}}
+\DoxyCodeLine{114         \textcolor{keywordtype}{float} \mbox{\hyperlink{class_f_t_b_box_aa8e91f22f5ecd53e7e1ab8cad0f94f36}{lowerX}}, lowerY, lowerZ, upperX, upperY, upperZ;}
+\DoxyCodeLine{115     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{116     }
+\DoxyCodeLine{117     }
+\DoxyCodeLine{118     \textcolor{keyword}{private}:}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \};}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTBBox\_\_}}
+\DoxyCodeLine{124 }
+
+\end{DoxyCode}

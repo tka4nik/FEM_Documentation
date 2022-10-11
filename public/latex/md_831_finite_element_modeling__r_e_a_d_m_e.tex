@@ -1,0 +1,25 @@
+(Тут будет описание проекта)
+
+Примеры команд\+:
+
+1) Запуск моделирования
+
+set geom/geom5.\+bin geom/profile5.\+bin run render\+\_\+mode grid
+
+geom5.\+bin и profile5.\+bin соотвествуют Geometry/0-\/\+Mesh/5.\+0.\+spr из прототипа. В файле sample\+\_\+text.\+g геометрия корректна, но файлы инструмента для неё был утерян.
+
+2) Запуск анимации из файла результатов.
+
+show\+\_\+complete\+\_\+simulation res/steps\+\_\+res.\+res pause continue
+
+3) Настройка градиента в соотвествии с прототипом (gradient 9 colors)
+
+render\+\_\+mode smooth false render\+\_\+mode gradient 9 3 120
+
+4) Настройка градиента в соотвествии с прототипом (gradient 5 colors)
+
+render\+\_\+mode smooth false render\+\_\+mode gradient 5 2 120
+
+5) Обратный анализ
+
+reverse\+\_\+analysis d pause target 2 pause 

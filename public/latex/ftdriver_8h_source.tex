@@ -1,0 +1,212 @@
+\hypertarget{ftdriver_8h_source}{}\doxysection{ftdriver.\+h}
+\label{ftdriver_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftdriver.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftdriver.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftdriver.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType font driver interface (specification).                      */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTDRIVER\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTDRIVER\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_MODULE\_H}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{31   (*FT\_Face\_InitFunc)( FT\_Stream      stream,}
+\DoxyCodeLine{32                        \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}        face,}
+\DoxyCodeLine{33                        FT\_Int         typeface\_index,}
+\DoxyCodeLine{34                        FT\_Int         num\_params,}
+\DoxyCodeLine{35                        \mbox{\hyperlink{struct_f_t___parameter__}{FT\_Parameter}}*  parameters );}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{38   (*FT\_Face\_DoneFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}  face );}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{42   (*FT\_Size\_InitFunc)( \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}}  size );}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{45   (*FT\_Size\_DoneFunc)( \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}}  size );}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{49   (*FT\_Slot\_InitFunc)( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  slot );}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{52   (*FT\_Slot\_DoneFunc)( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  slot );}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{56   (*FT\_Size\_ResetPointsFunc)( \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}}     size,}
+\DoxyCodeLine{57                               FT\_F26Dot6  char\_width,}
+\DoxyCodeLine{58                               FT\_F26Dot6  char\_height,}
+\DoxyCodeLine{59                               FT\_UInt     horz\_resolution,}
+\DoxyCodeLine{60                               FT\_UInt     vert\_resolution );}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{63   (*FT\_Size\_ResetPixelsFunc)( \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}}  size,}
+\DoxyCodeLine{64                               FT\_UInt  pixel\_width,}
+\DoxyCodeLine{65                               FT\_UInt  pixel\_height );}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{68   (*FT\_Slot\_LoadFunc)( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  slot,}
+\DoxyCodeLine{69                        \mbox{\hyperlink{struct_f_t___size_rec__}{FT\_Size}}       size,}
+\DoxyCodeLine{70                        FT\_UInt       glyph\_index,}
+\DoxyCodeLine{71                        FT\_Int32      load\_flags );}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74   \textcolor{keyword}{typedef} FT\_UInt}
+\DoxyCodeLine{75   (*FT\_CharMap\_CharIndexFunc)( \mbox{\hyperlink{struct_f_t___char_map_rec__}{FT\_CharMap}}  charmap,}
+\DoxyCodeLine{76                                FT\_Long     charcode );}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78   \textcolor{keyword}{typedef} FT\_Long}
+\DoxyCodeLine{79   (*FT\_CharMap\_CharNextFunc)( \mbox{\hyperlink{struct_f_t___char_map_rec__}{FT\_CharMap}}  charmap,}
+\DoxyCodeLine{80                               FT\_Long     charcode );}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{83   (*FT\_Face\_GetKerningFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}     face,}
+\DoxyCodeLine{84                              FT\_UInt     left\_glyph,}
+\DoxyCodeLine{85                              FT\_UInt     right\_glyph,}
+\DoxyCodeLine{86                              \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}*  kerning );}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{90   (*FT\_Face\_AttachFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}    face,}
+\DoxyCodeLine{91                          FT\_Stream  stream );}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{95   (*FT\_Face\_GetAdvancesFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}     face,}
+\DoxyCodeLine{96                               FT\_UInt     first,}
+\DoxyCodeLine{97                               FT\_UInt     count,}
+\DoxyCodeLine{98                               FT\_Bool     vertical,}
+\DoxyCodeLine{99                               FT\_UShort*  advances );}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{104   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*    FT\_Driver\_ClassRec                                                 */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{107   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*    The font driver class.  This structure mostly contains pointers to */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*    driver methods.                                                    */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{111   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*    root             :: The parent module.                             */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*    face\_object\_size :: The size of a face object in bytes.            */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*    size\_object\_size :: The size of a size object in bytes.            */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*    slot\_object\_size :: The size of a glyph object in bytes.           */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    init\_face        :: The format-\/specific face constructor.          */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*    done\_face        :: The format-\/specific face destructor.           */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*    init\_size        :: The format-\/specific size constructor.          */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*    done\_size        :: The format-\/specific size destructor.           */}}
+\DoxyCodeLine{127   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*    init\_slot        :: The format-\/specific slot constructor.          */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*    done\_slot        :: The format-\/specific slot destructor.           */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*    set\_char\_sizes   :: A handle to a function used to set the new     */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*                        character size in points + resolution.  Can be */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*                        set to 0 to indicate default behaviour.        */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*    set\_pixel\_sizes  :: A handle to a function used to set the new     */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*                        character size in pixels.  Can be set to 0 to  */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*                        indicate default behaviour.                    */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    load\_glyph       :: A function handle to load a given glyph image  */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*                        in a slot.  This field is mandatory!           */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*    get\_char\_index   :: A function handle to return the glyph index of */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*                        a given character for a given charmap.  This   */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*                        field is mandatory!                            */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*    get\_kerning      :: A function handle to return the unscaled       */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*                        kerning for a given pair of glyphs.  Can be    */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                        set to 0 if the format doesn't support         */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                        kerning.                                       */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*    attach\_file      :: This function handle is used to read           */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*                        additional data for a face from another        */}}
+\DoxyCodeLine{154   \textcolor{comment}{/*                        file/stream.  For example, this can be used to */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                        add data from AFM or PFM files on a Type 1     */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*                        face, or a CIDMap on a CID-\/keyed face.         */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*    get\_advances     :: A function handle used to return advance       */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*                        widths of 'count' glyphs (in font units),      */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*                        starting at `first'.  The `vertical' flag must */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*                        be set to get vertical advance heights.  The   */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*                        `advances' buffer is caller-\/allocated.         */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*                        Currently not implemented.  The idea of this   */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*                        function is to be able to perform              */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*                        device-\/independent text layout without loading */}}
+\DoxyCodeLine{166   \textcolor{comment}{/*                        a single glyph image.                          */}}
+\DoxyCodeLine{167   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{168   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*    Most function pointers, with the exception of `load\_glyph' and     */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*    `get\_char\_index' can be set to 0 to indicate a default behaviour.  */}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___driver___class_rec__}{FT\_Driver\_ClassRec\_}}}
+\DoxyCodeLine{173   \{}
+\DoxyCodeLine{174     \mbox{\hyperlink{struct_f_t___module___class__}{FT\_Module\_Class}}           root;}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176     FT\_Long                   face\_object\_size;}
+\DoxyCodeLine{177     FT\_Long                   size\_object\_size;}
+\DoxyCodeLine{178     FT\_Long                   slot\_object\_size;}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     FT\_Face\_InitFunc          init\_face;}
+\DoxyCodeLine{181     FT\_Face\_DoneFunc          done\_face;}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183     FT\_Size\_InitFunc          init\_size;}
+\DoxyCodeLine{184     FT\_Size\_DoneFunc          done\_size;}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186     FT\_Slot\_InitFunc          init\_slot;}
+\DoxyCodeLine{187     FT\_Slot\_DoneFunc          done\_slot;}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     FT\_Size\_ResetPointsFunc   set\_char\_sizes;}
+\DoxyCodeLine{190     FT\_Size\_ResetPixelsFunc   set\_pixel\_sizes;}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     FT\_Slot\_LoadFunc          load\_glyph;}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194     FT\_Face\_GetKerningFunc    get\_kerning;}
+\DoxyCodeLine{195     FT\_Face\_AttachFunc        attach\_file;}
+\DoxyCodeLine{196     FT\_Face\_GetAdvancesFunc   get\_advances;}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198   \} \mbox{\hyperlink{struct_f_t___driver___class_rec__}{FT\_Driver\_ClassRec}}, *\mbox{\hyperlink{struct_f_t___driver___class_rec__}{FT\_Driver\_Class}};}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201 FT\_END\_HEADER}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTDRIVER\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

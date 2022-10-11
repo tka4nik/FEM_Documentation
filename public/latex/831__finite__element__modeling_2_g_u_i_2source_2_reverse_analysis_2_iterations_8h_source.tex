@@ -1,0 +1,97 @@
+\hypertarget{831__finite__element__modeling_2_g_u_i_2source_2_reverse_analysis_2_iterations_8h_source}{}\doxysection{Iterations.\+h}
+\label{831__finite__element__modeling_2_g_u_i_2source_2_reverse_analysis_2_iterations_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/Iterations.h@{C:/Projects/FEM/831\_finite\_element\_modeling/GUI/source/ReverseAnalysis/Iterations.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}IterationControllers.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}IterationCheckers.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}CoefK.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}../Project/ProjectFile.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }Iter \{}
+\DoxyCodeLine{8     \textcolor{keyword}{class }\mbox{\hyperlink{class_iter_1_1_iteration}{Iteration}} \{}
+\DoxyCodeLine{9     \textcolor{keyword}{public}:}
+\DoxyCodeLine{10         \mbox{\hyperlink{class_iter_1_1_iteration}{Iteration}}(\mbox{\hyperlink{class_exp_1_1_experiment_container}{Exp::ExperimentContainer}}\&\& experiments);}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12         \mbox{\hyperlink{class_iter_1_1_iteration}{Iteration}}(\mbox{\hyperlink{class_exp_1_1_experiment_container}{Exp::ExperimentContainer}}\&\& experiments, \textcolor{keyword}{const} \mbox{\hyperlink{class_iter_1_1_iteration}{Iteration}}\& iteration\_init, \textcolor{keyword}{const} \mbox{\hyperlink{class_iter_1_1_iteration}{Iteration}}\& iteration\_last);}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14         \textcolor{comment}{/*}}
+\DoxyCodeLine{15 \textcolor{comment}{        void set\_k\_cor(std::vector<Experiment> exps\_init, double alpha) \{}}
+\DoxyCodeLine{16 \textcolor{comment}{            //std::vector<ExpSR> exps\_init = iterations\_all[0].get\_exps();}}
+\DoxyCodeLine{17 \textcolor{comment}{            for (size\_t i = 0; i < m\_experiments.size(); ++i) \{}}
+\DoxyCodeLine{18 \textcolor{comment}{                std::vector<double> strain\_this = m\_experiments[i]["{}Strain"{}];}}
+\DoxyCodeLine{19 \textcolor{comment}{                std::vector<double> stress\_this = m\_experiments[i]["{}Stress"{}];}}
+\DoxyCodeLine{20 \textcolor{comment}{                std::vector<double> stress\_init = exps\_init[i].get\_values\_interp(strain\_this, "{}Stress"{});}}
+\DoxyCodeLine{21 \textcolor{comment}{                std::vector<double> k\_coef\_exp;}}
+\DoxyCodeLine{22 \textcolor{comment}{                for (size\_t j = 0; j < strain\_this.size(); ++j) \{}}
+\DoxyCodeLine{23 \textcolor{comment}{                    k\_coef\_exp.push\_back(alpha * (stress\_init[i] / stress\_this[i]) + (1 -\/ alpha));}}
+\DoxyCodeLine{24 \textcolor{comment}{                \}}}
+\DoxyCodeLine{25 \textcolor{comment}{                m\_k\_coef.push\_back(CoefK(k\_coef\_exp, strain\_this, m\_experiments[i].get\_strain\_rate\_first()));}}
+\DoxyCodeLine{26 \textcolor{comment}{            \}}}
+\DoxyCodeLine{27 \textcolor{comment}{        \}}}
+\DoxyCodeLine{28 \textcolor{comment}{        */}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30         std::vector<Proj::Project> get\_projects(\textcolor{keyword}{const} std::vector<std::shared\_ptr<Proj::ProcessController>>\& process\_controllers, }
+\DoxyCodeLine{31             \textcolor{keyword}{const} std::string\& file\_dir) \textcolor{keyword}{const};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{keyword}{private}:}
+\DoxyCodeLine{34         \textcolor{comment}{//double get\_iteration\_max\_time();}}
+\DoxyCodeLine{35         \textcolor{comment}{//double get\_iteration\_max\_field(const std::string\& field\_name) const;}}
+\DoxyCodeLine{36         \textcolor{keywordtype}{bool} synchronize(\textcolor{keyword}{const} \mbox{\hyperlink{class_exp_1_1_experiment_container}{Exp::ExperimentContainer}}\& experiments);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38         \mbox{\hyperlink{class_exp_1_1_experiment_container}{Exp::ExperimentContainer}} m\_experiments; \textcolor{comment}{//на основе этих экспериментов строится выходной материал}}
+\DoxyCodeLine{39         std::unique\_ptr<Proj::Material> m\_ptr\_material;}
+\DoxyCodeLine{40     \};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{keyword}{class }\mbox{\hyperlink{class_iter_1_1_iteration_container}{IterationContainer}} \{}
+\DoxyCodeLine{43     \textcolor{keyword}{public}:}
+\DoxyCodeLine{44         \mbox{\hyperlink{class_iter_1_1_iteration_container}{IterationContainer}}(std::unique\_ptr<IterationController>\&\& ptr\_controller = \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{45             std::unique\_ptr<StopCondition>\&\& ptr\_condition = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47         \mbox{\hyperlink{class_iter_1_1_iteration}{Iteration}}\& operator[] (\textcolor{keywordtype}{size\_t} i) \{}
+\DoxyCodeLine{48             \textcolor{keywordflow}{if} (i > m\_container.size()) \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Index out of range"{}});}
+\DoxyCodeLine{49             \textcolor{keywordflow}{return} m\_container[i];}
+\DoxyCodeLine{50         \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52         \textcolor{keyword}{const} \mbox{\hyperlink{class_iter_1_1_iteration}{Iteration}}\& operator[] (\textcolor{keywordtype}{size\_t} i)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{53             \textcolor{keywordflow}{if} (i > m\_container.size()) \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Index out of range"{}});}
+\DoxyCodeLine{54             \textcolor{keywordflow}{return} m\_container[i];}
+\DoxyCodeLine{55         \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57         \textcolor{keywordtype}{void} set\_controller(std::unique\_ptr<IterationController>\&\& ptr\_controller = \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{58             m\_ptr\_controller = std::move(ptr\_controller);}
+\DoxyCodeLine{59         \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61         \textcolor{keywordtype}{void} set\_checker(std::unique\_ptr<StopCondition>\&\& ptr\_checker = \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{62             m\_ptr\_condition = std::move(ptr\_checker);}
+\DoxyCodeLine{63         \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65         \textcolor{keywordtype}{bool} is\_ready()\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{66             \textcolor{keywordflow}{return} ((!m\_ptr\_condition) \&\& (!m\_ptr\_controller) \&\& (m\_container.size() > 0));}
+\DoxyCodeLine{67         \};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69         \textcolor{keywordtype}{void} set\_init(\mbox{\hyperlink{class_exp_1_1_experiment_container}{Exp::ExperimentContainer}}\&\& exps\_const);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71         \textcolor{keywordtype}{void} push\_back(\mbox{\hyperlink{class_exp_1_1_experiment_container}{Exp::ExperimentContainer}}\&\& exps\_const) \{}
+\DoxyCodeLine{72             m\_container.push\_back(\mbox{\hyperlink{class_iter_1_1_iteration}{Iteration}}(std::move(exps\_const), m\_container[0], m\_container[m\_container.size() -\/ 1]));}
+\DoxyCodeLine{73         \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75         std::vector<Proj::Project> get\_projects(\textcolor{keywordtype}{size\_t} iter\_num) \textcolor{keyword}{const};}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77         \textcolor{keywordtype}{bool} is\_stop\_iter\_num(\textcolor{keywordtype}{size\_t} iter\_num) \{ \textcolor{keywordflow}{return} m\_ptr\_condition-\/>is\_stop\_iter\_num(iter\_num); \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79         std::string get\_iteration\_dir\_name(\textcolor{keywordtype}{size\_t} iter\_num)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{80             \textcolor{keywordflow}{return} m\_ptr\_controller-\/>get\_iteration\_folder(iter\_num);}
+\DoxyCodeLine{81         \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{keyword}{private}:}
+\DoxyCodeLine{84         std::vector<Iteration> m\_container;}
+\DoxyCodeLine{85         std::unique\_ptr<IterationController> m\_ptr\_controller;}
+\DoxyCodeLine{86         std::unique\_ptr<StopCondition> m\_ptr\_condition;}
+\DoxyCodeLine{87         \mbox{\hyperlink{class_proj_1_1_sample}{Proj::Sample}}* m\_ptr\_sample;}
+\DoxyCodeLine{88         \mbox{\hyperlink{class_proj_1_1_instrument}{Proj::Instrument}}* m\_ptr\_instrument;}
+\DoxyCodeLine{89         std::vector<std::shared\_ptr<Proj::ProcessController>> m\_process\_controllers;}
+\DoxyCodeLine{90     \};}
+\DoxyCodeLine{91 \}}
+
+\end{DoxyCode}

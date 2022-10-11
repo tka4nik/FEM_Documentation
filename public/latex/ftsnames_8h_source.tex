@@ -1,0 +1,173 @@
+\hypertarget{ftsnames_8h_source}{}\doxysection{ftsnames.\+h}
+\label{ftsnames_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftsnames.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftsnames.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftsnames.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Simple interface to access SFNT name tables (which are used          */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*    to hold font names, copyright info, notices, etc.) (specification).  */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*    This is \_not\_ used to retrieve glyph names!                          */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003 by                                     */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{17 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{18 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{19 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifndef \_\_FT\_SFNT\_NAMES\_H\_\_}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define \_\_FT\_SFNT\_NAMES\_H\_\_}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    sfnt\_names                                                         */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*    SFNT Names                                                         */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{47   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*    Access the names embedded in TrueType and OpenType files.          */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{50   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*    The TrueType and OpenType specification allow the inclusion of     */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*    a special `names table' in font files.  This table contains        */}}
+\DoxyCodeLine{53   \textcolor{comment}{/*    textual (and internationalized) information regarding the font,    */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*    like family name, copyright, version, etc.                         */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{56   \textcolor{comment}{/*    The definitions below are used to access them if available.        */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*    Note that this has nothing to do with glyph names!                 */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{60 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*    FT\_SfntName                                                        */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{68   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*    A structure used to model an SFNT `name' table entry.              */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{71   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*    platform\_id :: The platform ID for `string'.                       */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*    encoding\_id :: The encoding ID for `string'.                       */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*    language\_id :: The language ID for `string'.                       */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*    name\_id     :: An identifier for `string'.                         */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*    string      :: The `name' string.  Note that its format differs    */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*                   depending on the (platform,encoding) pair. It can   */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*                   be a Pascal String, a UTF-\/16 one, etc..             */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{84   \textcolor{comment}{/*                   Generally speaking, the string is not               */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*                   zero-\/terminated. Please refer to the TrueType       */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*                   specification for details..                         */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*    string\_len  :: The length of `string' in bytes.                    */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{90   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*    Possible values for `platform\_id', `encoding\_id', `language\_id',   */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*    and `name\_id' are given in the file `ttnameid.h'.  For details     */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*    please refer to the TrueType or OpenType specification.            */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{95   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___sfnt_name__}{FT\_SfntName\_}}}
+\DoxyCodeLine{96   \{}
+\DoxyCodeLine{97     FT\_UShort  platform\_id;}
+\DoxyCodeLine{98     FT\_UShort  encoding\_id;}
+\DoxyCodeLine{99     FT\_UShort  language\_id;}
+\DoxyCodeLine{100     FT\_UShort  name\_id;}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102     FT\_Byte*   string;      \textcolor{comment}{/* this string is *not* null-\/terminated! */}}
+\DoxyCodeLine{103     FT\_UInt    string\_len;  \textcolor{comment}{/* in bytes */}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105   \} FT\_SfntName;}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{109   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{110   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*    FT\_Get\_Sfnt\_Name\_Count                                             */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{113   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*    Retrieves the number of name strings in the SFNT `name' table.     */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*    face :: A handle to the source face.                               */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{119   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    The number of strings in the `name' table.                         */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{122   FT\_EXPORT( FT\_UInt )}
+\DoxyCodeLine{123   FT\_Get\_Sfnt\_Name\_Count( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}  face );}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{127   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{128   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{129   \textcolor{comment}{/*    FT\_Get\_Sfnt\_Name                                                   */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{131   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*    Retrieves a string of the SFNT `name' table for a given index.     */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{134   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*    face  :: A handle to the source face.                              */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*    idx   :: The index of the `name' string.                           */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{139   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    aname :: The indexed FT\_SfntName structure.                        */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{142   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{145   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*    The `string' array returned in the `aname' structure is not        */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*    null-\/terminated.                                                   */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*    Use FT\_Get\_Sfnt\_Name\_Count() to get the total number of available  */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*    `name' table entries, then do a loop until you get the right       */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*    platform, encoding, and name ID.                                   */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{153   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{154   FT\_Get\_Sfnt\_Name( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}       face,}
+\DoxyCodeLine{155                     FT\_UInt       idx,}
+\DoxyCodeLine{156                     FT\_SfntName  *aname );}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159   \textcolor{comment}{/* */}}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 FT\_END\_HEADER}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FT\_SFNT\_NAMES\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

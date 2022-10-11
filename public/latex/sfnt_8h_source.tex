@@ -1,0 +1,583 @@
+\hypertarget{sfnt_8h_source}{}\doxysection{sfnt.\+h}
+\label{sfnt_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/sfnt.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/sfnt.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  sfnt.h                                                                 */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    High-\/level `sfnt' driver interface (specification).                  */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003, 2004, 2005 by                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_SFNT\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_SFNT\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_INTERNAL\_DRIVER\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_INTERNAL\_TRUETYPE\_TYPES\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{32   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{33   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{34   \textcolor{comment}{/*    TT\_Init\_Face\_Func                                                  */}}
+\DoxyCodeLine{35   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{36   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{37   \textcolor{comment}{/*    First part of the SFNT face object initialization.  This will find */}}
+\DoxyCodeLine{38   \textcolor{comment}{/*    the face in a SFNT file or collection, and load its format tag in  */}}
+\DoxyCodeLine{39   \textcolor{comment}{/*    face-\/>format\_tag.                                                  */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{41   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*    stream     :: The input stream.                                    */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*    face       :: A handle to the target face object.                  */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    face\_index :: The index of the TrueType font, if we are opening a  */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                  collection.                                          */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    num\_params :: The number of additional parameters.                 */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*    params     :: Optional additional parameters.                      */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{53   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{54   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{55   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{56   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    The stream cursor must be at the font file's origin.               */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    This function recognizes fonts embedded in a `TrueType             */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*    collection'.                                                       */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    Once the format tag has been validated by the font driver, it      */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*    should then call the TT\_Load\_Face\_Func() callback to read the rest */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*    of the SFNT tables in the object.                                  */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{66   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{67   (*TT\_Init\_Face\_Func)( FT\_Stream      stream,}
+\DoxyCodeLine{68                         \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}        face,}
+\DoxyCodeLine{69                         FT\_Int         face\_index,}
+\DoxyCodeLine{70                         FT\_Int         num\_params,}
+\DoxyCodeLine{71                         \mbox{\hyperlink{struct_f_t___parameter__}{FT\_Parameter}}*  params );}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{75   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{76   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*    TT\_Load\_Face\_Func                                                  */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{79   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*    Second part of the SFNT face object initialization.  This will     */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*    load the common SFNT tables (head, OS/2, maxp, metrics, etc.) in   */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*    the face object.                                                   */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{84   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*    stream     :: The input stream.                                    */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*    face       :: A handle to the target face object.                  */}}
+\DoxyCodeLine{88   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{89   \textcolor{comment}{/*    face\_index :: The index of the TrueType font, if we are opening a  */}}
+\DoxyCodeLine{90   \textcolor{comment}{/*                  collection.                                          */}}
+\DoxyCodeLine{91   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{92   \textcolor{comment}{/*    num\_params :: The number of additional parameters.                 */}}
+\DoxyCodeLine{93   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{94   \textcolor{comment}{/*    params     :: Optional additional parameters.                      */}}
+\DoxyCodeLine{95   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{96   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{99   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*    This function must be called after TT\_Init\_Face\_Func().            */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{102   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{103   (*TT\_Load\_Face\_Func)( FT\_Stream      stream,}
+\DoxyCodeLine{104                         \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}        face,}
+\DoxyCodeLine{105                         FT\_Int         face\_index,}
+\DoxyCodeLine{106                         FT\_Int         num\_params,}
+\DoxyCodeLine{107                         \mbox{\hyperlink{struct_f_t___parameter__}{FT\_Parameter}}*  params );}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{111   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{112   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*    TT\_Done\_Face\_Func                                                  */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{115   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{116   \textcolor{comment}{/*    A callback used to delete the common SFNT data from a face.        */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{118   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{119   \textcolor{comment}{/*    face :: A handle to the target face object.                        */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{121   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*    This function does NOT destroy the face object.                    */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{124   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{125   (*TT\_Done\_Face\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}  face );}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{129   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{130   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*    TT\_Load\_SFNT\_HeaderRec\_Func                                        */}}
+\DoxyCodeLine{132   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{133   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*    Loads the header of a SFNT font file.  Supports collections.       */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{136   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*    face       :: A handle to the target face object.                  */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*    stream     :: The input stream.                                    */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*    face\_index :: The index of the TrueType font, if we are opening a  */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                  collection.                                          */}}
+\DoxyCodeLine{143   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{144   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*    sfnt       :: The SFNT header.                                     */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{147   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{150   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{151   \textcolor{comment}{/*    The stream cursor must be at the font file's origin.               */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*    This function recognizes fonts embedded in a `TrueType             */}}
+\DoxyCodeLine{154   \textcolor{comment}{/*    collection'.                                                       */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*    This function checks that the header is valid by looking at the    */}}
+\DoxyCodeLine{157   \textcolor{comment}{/*    values of `search\_range', `entry\_selector', and `range\_shift'.     */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{159   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{160   (*TT\_Load\_SFNT\_HeaderRec\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}      face,}
+\DoxyCodeLine{161                                   FT\_Stream    stream,}
+\DoxyCodeLine{162                                   FT\_Long      face\_index,}
+\DoxyCodeLine{163                                   \mbox{\hyperlink{struct_s_f_n_t___header_rec__}{SFNT\_Header}}  sfnt );}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{167   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{168   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{169   \textcolor{comment}{/*    TT\_Load\_Directory\_Func                                             */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{171   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{172   \textcolor{comment}{/*    Loads the table directory into a face object.                      */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{174   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{175   \textcolor{comment}{/*    face      :: A handle to the target face object.                   */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*    stream    :: The input stream.                                     */}}
+\DoxyCodeLine{178   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*    sfnt      :: The SFNT header.                                      */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{181   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*    The stream cursor must be on the first byte after the 4-\/byte font  */}}
+\DoxyCodeLine{186   \textcolor{comment}{/*    format tag.  This is the case just after a call to                 */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*    TT\_Load\_Format\_Tag().                                              */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{189   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{190   (*TT\_Load\_Directory\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}      face,}
+\DoxyCodeLine{191                              FT\_Stream    stream,}
+\DoxyCodeLine{192                              \mbox{\hyperlink{struct_s_f_n_t___header_rec__}{SFNT\_Header}}  sfnt );}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{196   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{197   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*    TT\_Load\_Any\_Func                                                   */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{200   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*    Loads any font table into client memory.                           */}}
+\DoxyCodeLine{202   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{203   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*    face   :: The face object to look for.                             */}}
+\DoxyCodeLine{205   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{206   \textcolor{comment}{/*    tag    :: The tag of table to load.  Use the value 0 if you want   */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*              to access the whole font file, else set this parameter   */}}
+\DoxyCodeLine{208   \textcolor{comment}{/*              to a valid TrueType table tag that you can forge with    */}}
+\DoxyCodeLine{209   \textcolor{comment}{/*              the MAKE\_TT\_TAG macro.                                   */}}
+\DoxyCodeLine{210   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{211   \textcolor{comment}{/*    offset :: The starting offset in the table (or the file if         */}}
+\DoxyCodeLine{212   \textcolor{comment}{/*              tag == 0).                                               */}}
+\DoxyCodeLine{213   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{214   \textcolor{comment}{/*    length :: The address of the decision variable:                    */}}
+\DoxyCodeLine{215   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{216   \textcolor{comment}{/*                If length == NULL:                                     */}}
+\DoxyCodeLine{217   \textcolor{comment}{/*                  Loads the whole table.  Returns an error if          */}}
+\DoxyCodeLine{218   \textcolor{comment}{/*                  `offset' == 0!                                       */}}
+\DoxyCodeLine{219   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{220   \textcolor{comment}{/*                If *length == 0:                                       */}}
+\DoxyCodeLine{221   \textcolor{comment}{/*                  Exits immediately; returning the length of the given */}}
+\DoxyCodeLine{222   \textcolor{comment}{/*                  table or of the font file, depending on the value of */}}
+\DoxyCodeLine{223   \textcolor{comment}{/*                  `tag'.                                               */}}
+\DoxyCodeLine{224   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{225   \textcolor{comment}{/*                If *length != 0:                                       */}}
+\DoxyCodeLine{226   \textcolor{comment}{/*                  Loads the next `length' bytes of table or font,      */}}
+\DoxyCodeLine{227   \textcolor{comment}{/*                  starting at offset `offset' (in table or font too).  */}}
+\DoxyCodeLine{228   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{229   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{230   \textcolor{comment}{/*    buffer :: The address of target buffer.                            */}}
+\DoxyCodeLine{231   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{232   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{233   \textcolor{comment}{/*    TrueType error code.  0 means success.                             */}}
+\DoxyCodeLine{234   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{235   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{236   (*TT\_Load\_Any\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}    face,}
+\DoxyCodeLine{237                        FT\_ULong   tag,}
+\DoxyCodeLine{238                        FT\_Long    offset,}
+\DoxyCodeLine{239                        FT\_Byte   *buffer,}
+\DoxyCodeLine{240                        FT\_ULong*  length );}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{244   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{245   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{246   \textcolor{comment}{/*    TT\_Find\_SBit\_Image\_Func                                            */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{248   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{249   \textcolor{comment}{/*    Checks whether an embedded bitmap (an `sbit') exists for a given   */}}
+\DoxyCodeLine{250   \textcolor{comment}{/*    glyph, at a given strike.                                          */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{252   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{253   \textcolor{comment}{/*    face          :: The target face object.                           */}}
+\DoxyCodeLine{254   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{255   \textcolor{comment}{/*    glyph\_index   :: The glyph index.                                  */}}
+\DoxyCodeLine{256   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{257   \textcolor{comment}{/*    strike\_index  :: The current strike index.                         */}}
+\DoxyCodeLine{258   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{259   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{260   \textcolor{comment}{/*    arange        :: The SBit range containing the glyph index.        */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*    astrike       :: The SBit strike containing the glyph index.       */}}
+\DoxyCodeLine{263   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{264   \textcolor{comment}{/*    aglyph\_offset :: The offset of the glyph data in `EBDT' table.     */}}
+\DoxyCodeLine{265   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{266   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{267   \textcolor{comment}{/*    FreeType error code.  0 means success.  Returns                    */}}
+\DoxyCodeLine{268   \textcolor{comment}{/*    SFNT\_Err\_Invalid\_Argument if no sbit exists for the requested      */}}
+\DoxyCodeLine{269   \textcolor{comment}{/*    glyph.                                                             */}}
+\DoxyCodeLine{270   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{271   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{272   (*TT\_Find\_SBit\_Image\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}          face,}
+\DoxyCodeLine{273                               FT\_UInt          glyph\_index,}
+\DoxyCodeLine{274                               FT\_ULong         strike\_index,}
+\DoxyCodeLine{275                               \mbox{\hyperlink{struct_t_t___s_bit___range_rec}{TT\_SBit\_Range}}   *arange,}
+\DoxyCodeLine{276                               \mbox{\hyperlink{struct_t_t___s_bit___strike_rec__}{TT\_SBit\_Strike}}  *astrike,}
+\DoxyCodeLine{277                               FT\_ULong        *aglyph\_offset );}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{281   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{282   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{283   \textcolor{comment}{/*    TT\_Load\_SBit\_Metrics\_Func                                          */}}
+\DoxyCodeLine{284   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{285   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{286   \textcolor{comment}{/*    Gets the big metrics for a given embedded bitmap.                  */}}
+\DoxyCodeLine{287   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{288   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{289   \textcolor{comment}{/*    stream      :: The input stream.                                   */}}
+\DoxyCodeLine{290   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{291   \textcolor{comment}{/*    range       :: The SBit range containing the glyph.                */}}
+\DoxyCodeLine{292   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{293   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{294   \textcolor{comment}{/*    big\_metrics :: A big SBit metrics structure for the glyph.         */}}
+\DoxyCodeLine{295   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{296   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{298   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{299   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*    The stream cursor must be positioned at the glyph's offset within  */}}
+\DoxyCodeLine{301   \textcolor{comment}{/*    the `EBDT' table before the call.                                  */}}
+\DoxyCodeLine{302   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{303   \textcolor{comment}{/*    If the image format uses variable metrics, the stream cursor is    */}}
+\DoxyCodeLine{304   \textcolor{comment}{/*    positioned just after the metrics header in the `EBDT' table on    */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*    function exit.                                                     */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{307   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{308   (*TT\_Load\_SBit\_Metrics\_Func)( FT\_Stream        stream,}
+\DoxyCodeLine{309                                 \mbox{\hyperlink{struct_t_t___s_bit___range_rec}{TT\_SBit\_Range}}    range,}
+\DoxyCodeLine{310                                 \mbox{\hyperlink{struct_t_t___s_bit___metrics_rec__}{TT\_SBit\_Metrics}}  metrics );}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{314   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{315   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{316   \textcolor{comment}{/*    TT\_Load\_SBit\_Image\_Func                                            */}}
+\DoxyCodeLine{317   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{318   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{319   \textcolor{comment}{/*    Loads a given glyph sbit image from the font resource.  This also  */}}
+\DoxyCodeLine{320   \textcolor{comment}{/*    returns its metrics.                                               */}}
+\DoxyCodeLine{321   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{322   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{323   \textcolor{comment}{/*    face ::                                                            */}}
+\DoxyCodeLine{324   \textcolor{comment}{/*      The target face object.                                          */}}
+\DoxyCodeLine{325   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{326   \textcolor{comment}{/*    strike\_index ::                                                    */}}
+\DoxyCodeLine{327   \textcolor{comment}{/*      The strike index.                                                */}}
+\DoxyCodeLine{328   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{329   \textcolor{comment}{/*    glyph\_index ::                                                     */}}
+\DoxyCodeLine{330   \textcolor{comment}{/*      The current glyph index.                                         */}}
+\DoxyCodeLine{331   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{332   \textcolor{comment}{/*    load\_flags ::                                                      */}}
+\DoxyCodeLine{333   \textcolor{comment}{/*      The current load flags.                                          */}}
+\DoxyCodeLine{334   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{335   \textcolor{comment}{/*    stream ::                                                          */}}
+\DoxyCodeLine{336   \textcolor{comment}{/*      The input stream.                                                */}}
+\DoxyCodeLine{337   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{338   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{339   \textcolor{comment}{/*    amap ::                                                            */}}
+\DoxyCodeLine{340   \textcolor{comment}{/*      The target pixmap.                                               */}}
+\DoxyCodeLine{341   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{342   \textcolor{comment}{/*    ametrics ::                                                        */}}
+\DoxyCodeLine{343   \textcolor{comment}{/*      A big sbit metrics structure for the glyph image.                */}}
+\DoxyCodeLine{344   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{345   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{346   \textcolor{comment}{/*    FreeType error code.  0 means success.  Returns an error if no     */}}
+\DoxyCodeLine{347   \textcolor{comment}{/*    glyph sbit exists for the index.                                   */}}
+\DoxyCodeLine{348   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{349   \textcolor{comment}{/*  <Note>                                                               */}}
+\DoxyCodeLine{350   \textcolor{comment}{/*    The `map.buffer' field is always freed before the glyph is loaded. */}}
+\DoxyCodeLine{351   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{352   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{353   (*TT\_Load\_SBit\_Image\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}              face,}
+\DoxyCodeLine{354                               FT\_ULong             strike\_index,}
+\DoxyCodeLine{355                               FT\_UInt              glyph\_index,}
+\DoxyCodeLine{356                               FT\_UInt              load\_flags,}
+\DoxyCodeLine{357                               FT\_Stream            stream,}
+\DoxyCodeLine{358                               \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}           *amap,}
+\DoxyCodeLine{359                               \mbox{\hyperlink{struct_t_t___s_bit___metrics_rec__}{TT\_SBit\_MetricsRec}}  *ametrics );}
+\DoxyCodeLine{360 }
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{363   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{364   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{365   \textcolor{comment}{/*    TT\_Set\_SBit\_Strike\_Func                                            */}}
+\DoxyCodeLine{366   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{367   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{368   \textcolor{comment}{/*    Selects an sbit strike for given horizontal and vertical ppem      */}}
+\DoxyCodeLine{369   \textcolor{comment}{/*    values.                                                            */}}
+\DoxyCodeLine{370   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{371   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{372   \textcolor{comment}{/*    face          :: The target face object.                           */}}
+\DoxyCodeLine{373   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{374   \textcolor{comment}{/*    x\_ppem        :: The horizontal resolution in points per EM.       */}}
+\DoxyCodeLine{375   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{376   \textcolor{comment}{/*    y\_ppem        :: The vertical resolution in points per EM.         */}}
+\DoxyCodeLine{377   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{378   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{379   \textcolor{comment}{/*    astrike\_index :: The index of the sbit strike.                     */}}
+\DoxyCodeLine{380   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{381   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{382   \textcolor{comment}{/*    FreeType error code.  0 means success.  Returns an error if no     */}}
+\DoxyCodeLine{383   \textcolor{comment}{/*    sbit strike exists for the selected ppem values.                   */}}
+\DoxyCodeLine{384   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{385   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{386   (*TT\_Set\_SBit\_Strike\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}    face,}
+\DoxyCodeLine{387                               FT\_UInt    x\_ppem,}
+\DoxyCodeLine{388                               FT\_UInt    y\_ppem,}
+\DoxyCodeLine{389                               FT\_ULong  *astrike\_index );}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{393   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{394   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{395   \textcolor{comment}{/*    TT\_Get\_PS\_Name\_Func                                                */}}
+\DoxyCodeLine{396   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{397   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{398   \textcolor{comment}{/*    Gets the PostScript glyph name of a glyph.                         */}}
+\DoxyCodeLine{399   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{400   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{401   \textcolor{comment}{/*    idx  :: The glyph index.                                           */}}
+\DoxyCodeLine{402   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{403   \textcolor{comment}{/*    PSname :: The address of a string pointer.  Will be NULL in case   */}}
+\DoxyCodeLine{404   \textcolor{comment}{/*              of error, otherwise it is a pointer to the glyph name.   */}}
+\DoxyCodeLine{405   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{406   \textcolor{comment}{/*              You must not modify the returned string!                 */}}
+\DoxyCodeLine{407   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{408   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{409   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{410   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{411   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{412   (*TT\_Get\_PS\_Name\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}      face,}
+\DoxyCodeLine{413                           FT\_UInt      idx,}
+\DoxyCodeLine{414                           FT\_String**  PSname );}
+\DoxyCodeLine{415 }
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{418   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{419   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{420   \textcolor{comment}{/*    TT\_Load\_Metrics\_Func                                               */}}
+\DoxyCodeLine{421   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{422   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{423   \textcolor{comment}{/*    Loads the horizontal or vertical header in a face object.          */}}
+\DoxyCodeLine{424   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{425   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{426   \textcolor{comment}{/*    face     :: A handle to the target face object.                    */}}
+\DoxyCodeLine{427   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{428   \textcolor{comment}{/*    stream   :: The input stream.                                      */}}
+\DoxyCodeLine{429   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{430   \textcolor{comment}{/*    vertical :: A boolean flag.  If set, load vertical metrics.        */}}
+\DoxyCodeLine{431   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{432   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{433   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{434   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{435   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{436   (*TT\_Load\_Metrics\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}    face,}
+\DoxyCodeLine{437                            FT\_Stream  stream,}
+\DoxyCodeLine{438                            FT\_Bool    vertical );}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 }
+\DoxyCodeLine{441 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{442   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{443   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{444   \textcolor{comment}{/*    TT\_Load\_Table\_Func                                                 */}}
+\DoxyCodeLine{445   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{446   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{447   \textcolor{comment}{/*    Loads a given TrueType table.                                      */}}
+\DoxyCodeLine{448   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{449   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{450   \textcolor{comment}{/*    face   :: A handle to the target face object.                      */}}
+\DoxyCodeLine{451   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{452   \textcolor{comment}{/*    stream :: The input stream.                                        */}}
+\DoxyCodeLine{453   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{454   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{455   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{456   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{457   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{458   \textcolor{comment}{/*    The function will use `face-\/>goto\_table' to seek the stream to     */}}
+\DoxyCodeLine{459   \textcolor{comment}{/*    the start of the table.                                            */}}
+\DoxyCodeLine{460   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{461   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{462   (*TT\_Load\_Table\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}    face,}
+\DoxyCodeLine{463                          FT\_Stream  stream );}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{465 }
+\DoxyCodeLine{466 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{467   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{468   \textcolor{comment}{/* <FuncType>                                                            */}}
+\DoxyCodeLine{469   \textcolor{comment}{/*    TT\_Free\_Table\_Func                                                 */}}
+\DoxyCodeLine{470   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{471   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{472   \textcolor{comment}{/*    Frees a given TrueType table.                                      */}}
+\DoxyCodeLine{473   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{474   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{475   \textcolor{comment}{/*    face :: A handle to the target face object.                        */}}
+\DoxyCodeLine{476   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{477   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{478   (*TT\_Free\_Table\_Func)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}  face );}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480 }
+\DoxyCodeLine{481   \textcolor{comment}{/*}}
+\DoxyCodeLine{482 \textcolor{comment}{   * @functype:}}
+\DoxyCodeLine{483 \textcolor{comment}{   *    TT\_Face\_GetKerningFunc}}
+\DoxyCodeLine{484 \textcolor{comment}{   *}}
+\DoxyCodeLine{485 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{486 \textcolor{comment}{   *    Return the horizontal kerning value between two glyphs.}}
+\DoxyCodeLine{487 \textcolor{comment}{   *}}
+\DoxyCodeLine{488 \textcolor{comment}{   * @input:}}
+\DoxyCodeLine{489 \textcolor{comment}{   *    face        :: A handle to the source face object.}}
+\DoxyCodeLine{490 \textcolor{comment}{   *    left\_glyph  :: The left glyph index.}}
+\DoxyCodeLine{491 \textcolor{comment}{   *    right\_glyph :: The right glyph index.}}
+\DoxyCodeLine{492 \textcolor{comment}{   *}}
+\DoxyCodeLine{493 \textcolor{comment}{   * @return:}}
+\DoxyCodeLine{494 \textcolor{comment}{   *    The kerning value in font units.}}
+\DoxyCodeLine{495 \textcolor{comment}{   */}}
+\DoxyCodeLine{496   \textcolor{keyword}{typedef} FT\_Int}
+\DoxyCodeLine{497   (*TT\_Face\_GetKerningFunc)( \mbox{\hyperlink{struct_t_t___face_rec__}{TT\_Face}}  face,}
+\DoxyCodeLine{498                              FT\_UInt  left\_glyph,}
+\DoxyCodeLine{499                              FT\_UInt  right\_glyph );}
+\DoxyCodeLine{500 }
+\DoxyCodeLine{501 }
+\DoxyCodeLine{502 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{503   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{504   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{505   \textcolor{comment}{/*    SFNT\_Interface                                                     */}}
+\DoxyCodeLine{506   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{507   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{508   \textcolor{comment}{/*    This structure holds pointers to the functions used to load and    */}}
+\DoxyCodeLine{509   \textcolor{comment}{/*    free the basic tables that are required in a `sfnt' font file.     */}}
+\DoxyCodeLine{510   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{511   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{512   \textcolor{comment}{/*    Check the various xxx\_Func() descriptions for details.             */}}
+\DoxyCodeLine{513   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{514   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_s_f_n_t___interface__}{SFNT\_Interface\_}}}
+\DoxyCodeLine{515   \{}
+\DoxyCodeLine{516     TT\_Loader\_GotoTableFunc      goto\_table;}
+\DoxyCodeLine{517 }
+\DoxyCodeLine{518     TT\_Init\_Face\_Func            init\_face;}
+\DoxyCodeLine{519     TT\_Load\_Face\_Func            load\_face;}
+\DoxyCodeLine{520     TT\_Done\_Face\_Func            done\_face;}
+\DoxyCodeLine{521     FT\_Module\_Requester          get\_interface;}
+\DoxyCodeLine{522 }
+\DoxyCodeLine{523     TT\_Load\_Any\_Func             load\_any;}
+\DoxyCodeLine{524     TT\_Load\_SFNT\_HeaderRec\_Func  load\_sfnt\_header;}
+\DoxyCodeLine{525     TT\_Load\_Directory\_Func       load\_directory;}
+\DoxyCodeLine{526 }
+\DoxyCodeLine{527     \textcolor{comment}{/* these functions are called by `load\_face' but they can also  */}}
+\DoxyCodeLine{528     \textcolor{comment}{/* be called from external modules, if there is a need to do so */}}
+\DoxyCodeLine{529     TT\_Load\_Table\_Func           load\_header;}
+\DoxyCodeLine{530     TT\_Load\_Metrics\_Func         load\_metrics;}
+\DoxyCodeLine{531     TT\_Load\_Table\_Func           load\_charmaps;}
+\DoxyCodeLine{532     TT\_Load\_Table\_Func           load\_max\_profile;}
+\DoxyCodeLine{533     TT\_Load\_Table\_Func           load\_os2;}
+\DoxyCodeLine{534     TT\_Load\_Table\_Func           load\_psnames;}
+\DoxyCodeLine{535 }
+\DoxyCodeLine{536     TT\_Load\_Table\_Func           load\_names;}
+\DoxyCodeLine{537     TT\_Free\_Table\_Func           free\_names;}
+\DoxyCodeLine{538 }
+\DoxyCodeLine{539     \textcolor{comment}{/* optional tables */}}
+\DoxyCodeLine{540     TT\_Load\_Table\_Func           load\_hdmx;}
+\DoxyCodeLine{541     TT\_Free\_Table\_Func           free\_hdmx;}
+\DoxyCodeLine{542 }
+\DoxyCodeLine{543     TT\_Load\_Table\_Func           load\_kerning;}
+\DoxyCodeLine{544     TT\_Load\_Table\_Func           load\_gasp;}
+\DoxyCodeLine{545     TT\_Load\_Table\_Func           load\_pclt;}
+\DoxyCodeLine{546 }
+\DoxyCodeLine{547     \textcolor{comment}{/* see `ttload.h' */}}
+\DoxyCodeLine{548     TT\_Load\_Table\_Func           load\_bitmap\_header;}
+\DoxyCodeLine{549 }
+\DoxyCodeLine{550     \textcolor{comment}{/* see `ttsbit.h' */}}
+\DoxyCodeLine{551     TT\_Set\_SBit\_Strike\_Func      set\_sbit\_strike;}
+\DoxyCodeLine{552     TT\_Load\_Table\_Func           load\_sbits;}
+\DoxyCodeLine{553     TT\_Find\_SBit\_Image\_Func      find\_sbit\_image;}
+\DoxyCodeLine{554     TT\_Load\_SBit\_Metrics\_Func    load\_sbit\_metrics;}
+\DoxyCodeLine{555     TT\_Load\_SBit\_Image\_Func      load\_sbit\_image;}
+\DoxyCodeLine{556     TT\_Free\_Table\_Func           free\_sbits;}
+\DoxyCodeLine{557 }
+\DoxyCodeLine{558     \textcolor{comment}{/* see `ttkern.h' */}}
+\DoxyCodeLine{559     TT\_Face\_GetKerningFunc       get\_kerning;}
+\DoxyCodeLine{560     }
+\DoxyCodeLine{561     \textcolor{comment}{/* see `ttpost.h' */}}
+\DoxyCodeLine{562     TT\_Get\_PS\_Name\_Func          get\_psname;}
+\DoxyCodeLine{563     TT\_Free\_Table\_Func           free\_psnames;}
+\DoxyCodeLine{564 }
+\DoxyCodeLine{565   \} \mbox{\hyperlink{struct_s_f_n_t___interface__}{SFNT\_Interface}};}
+\DoxyCodeLine{566 }
+\DoxyCodeLine{567 }
+\DoxyCodeLine{568   \textcolor{comment}{/* transitional */}}
+\DoxyCodeLine{569   \textcolor{keyword}{typedef} \mbox{\hyperlink{struct_s_f_n_t___interface__}{SFNT\_Interface}}*   \mbox{\hyperlink{struct_s_f_n_t___interface__}{SFNT\_Service}};}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571 }
+\DoxyCodeLine{572 FT\_END\_HEADER}
+\DoxyCodeLine{573 }
+\DoxyCodeLine{574 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_SFNT\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{575 }
+\DoxyCodeLine{576 }
+\DoxyCodeLine{577 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

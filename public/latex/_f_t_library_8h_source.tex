@@ -1,0 +1,42 @@
+\hypertarget{_f_t_library_8h_source}{}\doxysection{FTLibrary.\+h}
+\label{_f_t_library_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTLibrary.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/FTGL/FTGL/include/ftgl/FTLibrary.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef     \_\_FTLibrary\_\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define     \_\_FTLibrary\_\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{6 \textcolor{comment}{//\#include FT\_CACHE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}FTGL.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 }
+\DoxyCodeLine{29 \textcolor{keyword}{class }FTGL\_EXPORT \mbox{\hyperlink{class_f_t_library}{FTLibrary}}}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31     \textcolor{keyword}{public}:}
+\DoxyCodeLine{37         \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_library}{FTLibrary}}\& \mbox{\hyperlink{class_f_t_library_ab57f88d6eddafcaf2ae1a518e8455ebd}{Instance}}();}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{44         \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}* \textcolor{keyword}{const} \mbox{\hyperlink{class_f_t_library_a6c72ef91b489d61ebe8f13c5d5fc15d5}{GetLibrary}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} library;\}}
+\DoxyCodeLine{45         }
+\DoxyCodeLine{51         FT\_Error \mbox{\hyperlink{class_f_t_library_a8849e7e737055737bd4cec56fc4cb1ea}{Error}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} err;\}}
+\DoxyCodeLine{52         }
+\DoxyCodeLine{58         \mbox{\hyperlink{class_f_t_library_a8d1ee3dc3c4916b5b428e934dc46e9d7}{\string~FTLibrary}}();}
+\DoxyCodeLine{59         }
+\DoxyCodeLine{60     \textcolor{keyword}{private}:}
+\DoxyCodeLine{67         \mbox{\hyperlink{class_f_t_library}{FTLibrary}}();}
+\DoxyCodeLine{68         \mbox{\hyperlink{class_f_t_library}{FTLibrary}}( \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}\&)\{\}}
+\DoxyCodeLine{69         \mbox{\hyperlink{class_f_t_library}{FTLibrary}}\& operator=( \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}\&) \{ \textcolor{keywordflow}{return} *\textcolor{keyword}{this}; \}}
+\DoxyCodeLine{70         }
+\DoxyCodeLine{82         \textcolor{keywordtype}{bool} Initialise();}
+\DoxyCodeLine{83         }
+\DoxyCodeLine{87         \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}* library;}
+\DoxyCodeLine{88 \textcolor{comment}{//      FTC\_Manager* manager;}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{93         FT\_Error err;}
+\DoxyCodeLine{94         }
+\DoxyCodeLine{95 \};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{//  \_\_FTLibrary\_\_}}
+
+\end{DoxyCode}

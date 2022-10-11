@@ -1,0 +1,755 @@
+\hypertarget{ftobjs_8h_source}{}\doxysection{ftobjs.\+h}
+\label{ftobjs_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftobjs.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/ftobjs.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftobjs.h                                                               */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType private base classes (specification).                   */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2002, 2003, 2004, 2005 by                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{20   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{21   \textcolor{comment}{/*  This file contains the definition of all internal FreeType classes.  */}}
+\DoxyCodeLine{22   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{23 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef \_\_FTOBJS\_H\_\_}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define \_\_FTOBJS\_H\_\_}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include FT\_RENDER\_H}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include FT\_SIZES\_H}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include FT\_INTERNAL\_MEMORY\_H}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include FT\_INTERNAL\_GLYPH\_LOADER\_H}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include FT\_INTERNAL\_DRIVER\_H}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include FT\_INTERNAL\_AUTOHINT\_H}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include FT\_INTERNAL\_SERVICE\_H}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#ifdef FT\_CONFIG\_OPTION\_INCREMENTAL}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include FT\_INCREMENTAL\_H}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48   \textcolor{comment}{/* Some generic definitions.                                             */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#ifndef TRUE}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define TRUE  1}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#ifndef FALSE}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define FALSE  0}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#ifndef NULL}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#define NULL  (void*)0}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65   \textcolor{comment}{/* The min and max functions missing in C.  As usual, be careful not to  */}}
+\DoxyCodeLine{66   \textcolor{comment}{/* write things like FT\_MIN( a++, b++ ) to avoid side effects.           */}}
+\DoxyCodeLine{67   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#define FT\_MIN( a, b )  ( (a) < (b) ? (a) : (b) )}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define FT\_MAX( a, b )  ( (a) > (b) ? (a) : (b) )}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define FT\_ABS( a )     ( (a) < 0 ? -\/(a) : (a) )}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#define FT\_PAD\_FLOOR( x, n )  ( (x) \& \string~((n)-\/1) )}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define FT\_PAD\_ROUND( x, n )  FT\_PAD\_FLOOR( (x) + ((n)/2), n )}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define FT\_PAD\_CEIL( x, n )   FT\_PAD\_FLOOR( (x) + ((n)-\/1), n )}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define FT\_PIX\_FLOOR( x )     ( (x) \& \string~63 )}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define FT\_PIX\_ROUND( x )     FT\_PIX\_FLOOR( (x) + 32 )}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define FT\_PIX\_CEIL( x )      FT\_PIX\_FLOOR( (x) + 63 )}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83   \textcolor{comment}{/*}}
+\DoxyCodeLine{84 \textcolor{comment}{   *  Return the highest power of 2 that is <= value; this correspond to}}
+\DoxyCodeLine{85 \textcolor{comment}{   *  the highest bit in a given 32-\/bit value.}}
+\DoxyCodeLine{86 \textcolor{comment}{   */}}
+\DoxyCodeLine{87   FT\_BASE( FT\_UInt32 )}
+\DoxyCodeLine{88   ft\_highpow2( FT\_UInt32  value );}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{92 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{93 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{94 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{95 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{96 \textcolor{comment}{  /****                       C H A R M A P S                           ****/}}
+\DoxyCodeLine{97 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{98 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{99 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{100 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{101 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103   \textcolor{comment}{/* handle to internal charmap object */}}
+\DoxyCodeLine{104   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMapRec\_}}*              \mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMap}};}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106   \textcolor{comment}{/* handle to charmap class structure */}}
+\DoxyCodeLine{107   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_ClassRec\_}}*  \mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_Class}};}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109   \textcolor{comment}{/* internal charmap object structure */}}
+\DoxyCodeLine{110   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMapRec\_}}}
+\DoxyCodeLine{111   \{}
+\DoxyCodeLine{112     \mbox{\hyperlink{struct_f_t___char_map_rec__}{FT\_CharMapRec}}  charmap;}
+\DoxyCodeLine{113     \mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_Class}}  clazz;}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115   \} \mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMapRec}};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117   \textcolor{comment}{/* typecase any pointer to a charmap handle */}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define FT\_CMAP( x )              ((FT\_CMap)( x ))}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120   \textcolor{comment}{/* obvious macros */}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define FT\_CMAP\_PLATFORM\_ID( x )  FT\_CMAP( x )-\/>charmap.platform\_id}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#define FT\_CMAP\_ENCODING\_ID( x )  FT\_CMAP( x )-\/>charmap.encoding\_id}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define FT\_CMAP\_ENCODING( x )     FT\_CMAP( x )-\/>charmap.encoding}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#define FT\_CMAP\_FACE( x )         FT\_CMAP( x )-\/>charmap.face}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127   \textcolor{comment}{/* class method definitions */}}
+\DoxyCodeLine{128   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{129   (*FT\_CMap\_InitFunc)( \mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMap}}     cmap,}
+\DoxyCodeLine{130                        FT\_Pointer  init\_data );}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{133   (*FT\_CMap\_DoneFunc)( \mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMap}}  cmap );}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135   \textcolor{keyword}{typedef} FT\_UInt}
+\DoxyCodeLine{136   (*FT\_CMap\_CharIndexFunc)( \mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMap}}    cmap,}
+\DoxyCodeLine{137                             FT\_UInt32  char\_code );}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139   \textcolor{keyword}{typedef} FT\_UInt}
+\DoxyCodeLine{140   (*FT\_CMap\_CharNextFunc)( \mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMap}}     cmap,}
+\DoxyCodeLine{141                            FT\_UInt32  *achar\_code );}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_ClassRec\_}}}
+\DoxyCodeLine{145   \{}
+\DoxyCodeLine{146     FT\_ULong               size;}
+\DoxyCodeLine{147     FT\_CMap\_InitFunc       init;}
+\DoxyCodeLine{148     FT\_CMap\_DoneFunc       done;}
+\DoxyCodeLine{149     FT\_CMap\_CharIndexFunc  char\_index;}
+\DoxyCodeLine{150     FT\_CMap\_CharNextFunc   char\_next;}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152   \} \mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_ClassRec}};}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155   \textcolor{comment}{/* create a new charmap and add it to charmap-\/>face */}}
+\DoxyCodeLine{156   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{157   FT\_CMap\_New( \mbox{\hyperlink{struct_f_t___c_map___class_rec__}{FT\_CMap\_Class}}  clazz,}
+\DoxyCodeLine{158                FT\_Pointer     init\_data,}
+\DoxyCodeLine{159                \mbox{\hyperlink{struct_f_t___char_map_rec__}{FT\_CharMap}}     charmap,}
+\DoxyCodeLine{160                \mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMap}}       *acmap );}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162   \textcolor{comment}{/* destroy a charmap and remove it from face's list */}}
+\DoxyCodeLine{163   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{164   FT\_CMap\_Done( \mbox{\hyperlink{struct_f_t___c_map_rec__}{FT\_CMap}}  cmap );}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{168   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{169   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{170   \textcolor{comment}{/*    FT\_Face\_InternalRec                                                */}}
+\DoxyCodeLine{171   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{172   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{173   \textcolor{comment}{/*    This structure contains the internal fields of each FT\_Face        */}}
+\DoxyCodeLine{174   \textcolor{comment}{/*    object.  These fields may change between different releases of     */}}
+\DoxyCodeLine{175   \textcolor{comment}{/*    FreeType.                                                          */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{177   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{178   \textcolor{comment}{/*    max\_points ::                                                      */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*      The maximal number of points used to store the vectorial outline */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*      of any glyph in this face.  If this value cannot be known in     */}}
+\DoxyCodeLine{181   \textcolor{comment}{/*      advance, or if the face isn't scalable, this should be set to 0. */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*      Only relevant for scalable formats.                              */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*    max\_contours ::                                                    */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*      The maximal number of contours used to store the vectorial       */}}
+\DoxyCodeLine{186   \textcolor{comment}{/*      outline of any glyph in this face.  If this value cannot be      */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*      known in advance, or if the face isn't scalable, this should be  */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*      set to 0.  Only relevant for scalable formats.                   */}}
+\DoxyCodeLine{189   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{190   \textcolor{comment}{/*    transform\_matrix ::                                                */}}
+\DoxyCodeLine{191   \textcolor{comment}{/*      A 2x2 matrix of 16.16 coefficients used to transform glyph       */}}
+\DoxyCodeLine{192   \textcolor{comment}{/*      outlines after they are loaded from the font.  Only used by the  */}}
+\DoxyCodeLine{193   \textcolor{comment}{/*      convenience functions.                                           */}}
+\DoxyCodeLine{194   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{195   \textcolor{comment}{/*    transform\_delta ::                                                 */}}
+\DoxyCodeLine{196   \textcolor{comment}{/*      A translation vector used to transform glyph outlines after they */}}
+\DoxyCodeLine{197   \textcolor{comment}{/*      are loaded from the font.  Only used by the convenience          */}}
+\DoxyCodeLine{198   \textcolor{comment}{/*      functions.                                                       */}}
+\DoxyCodeLine{199   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{200   \textcolor{comment}{/*    transform\_flags ::                                                 */}}
+\DoxyCodeLine{201   \textcolor{comment}{/*      Some flags used to classify the transform.  Only used by the     */}}
+\DoxyCodeLine{202   \textcolor{comment}{/*      convenience functions.                                           */}}
+\DoxyCodeLine{203   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{204   \textcolor{comment}{/*    services ::                                                        */}}
+\DoxyCodeLine{205   \textcolor{comment}{/*      A cache for frequently used services.  It should be only         */}}
+\DoxyCodeLine{206   \textcolor{comment}{/*      accessed with the macro `FT\_FACE\_LOOKUP\_SERVICE'.                */}}
+\DoxyCodeLine{207   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{208   \textcolor{comment}{/*    incremental\_interface ::                                           */}}
+\DoxyCodeLine{209   \textcolor{comment}{/*      If non-\/null, the interface through which glyph data and metrics  */}}
+\DoxyCodeLine{210   \textcolor{comment}{/*      are loaded incrementally for faces that do not provide all of    */}}
+\DoxyCodeLine{211   \textcolor{comment}{/*      this data when first opened.  This field exists only if          */}}
+\DoxyCodeLine{212   \textcolor{comment}{/*      @FT\_CONFIG\_OPTION\_INCREMENTAL is defined.                        */}}
+\DoxyCodeLine{213   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{214   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___face___internal_rec__}{FT\_Face\_InternalRec\_}}}
+\DoxyCodeLine{215   \{}
+\DoxyCodeLine{216     FT\_UShort           max\_points;}
+\DoxyCodeLine{217     FT\_Short            max\_contours;}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219     \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}           transform\_matrix;}
+\DoxyCodeLine{220     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}           transform\_delta;}
+\DoxyCodeLine{221     FT\_Int              transform\_flags;}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223     \mbox{\hyperlink{struct_f_t___service_cache_rec__}{FT\_ServiceCacheRec}}  services;}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 \textcolor{preprocessor}{\#ifdef FT\_CONFIG\_OPTION\_INCREMENTAL}}
+\DoxyCodeLine{226     \mbox{\hyperlink{struct_f_t___incremental___interface_rec__}{FT\_Incremental\_InterfaceRec}}*  incremental\_interface;}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229   \} \mbox{\hyperlink{struct_f_t___face___internal_rec__}{FT\_Face\_InternalRec}};}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{233   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{234   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{235   \textcolor{comment}{/*    FT\_Slot\_InternalRec                                                */}}
+\DoxyCodeLine{236   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{237   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{238   \textcolor{comment}{/*    This structure contains the internal fields of each FT\_GlyphSlot   */}}
+\DoxyCodeLine{239   \textcolor{comment}{/*    object.  These fields may change between different releases of     */}}
+\DoxyCodeLine{240   \textcolor{comment}{/*    FreeType.                                                          */}}
+\DoxyCodeLine{241   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{242   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{243   \textcolor{comment}{/*    loader            :: The glyph loader object used to load outlines */}}
+\DoxyCodeLine{244   \textcolor{comment}{/*                         into the glyph slot.                          */}}
+\DoxyCodeLine{245   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{246   \textcolor{comment}{/*    flags             :: Possible values are zero or                   */}}
+\DoxyCodeLine{247   \textcolor{comment}{/*                         FT\_GLYPH\_OWN\_BITMAP.  The latter indicates    */}}
+\DoxyCodeLine{248   \textcolor{comment}{/*                         that the FT\_GlyphSlot structure owns the      */}}
+\DoxyCodeLine{249   \textcolor{comment}{/*                         bitmap buffer.                                */}}
+\DoxyCodeLine{250   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{251   \textcolor{comment}{/*    glyph\_transformed :: Boolean.  Set to TRUE when the loaded glyph   */}}
+\DoxyCodeLine{252   \textcolor{comment}{/*                         must be transformed through a specific        */}}
+\DoxyCodeLine{253   \textcolor{comment}{/*                         font transformation.  This is \_not\_ the same  */}}
+\DoxyCodeLine{254   \textcolor{comment}{/*                         as the face transform set through             */}}
+\DoxyCodeLine{255   \textcolor{comment}{/*                         FT\_Set\_Transform().                           */}}
+\DoxyCodeLine{256   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{257   \textcolor{comment}{/*    glyph\_matrix      :: The 2x2 matrix corresponding to the glyph     */}}
+\DoxyCodeLine{258   \textcolor{comment}{/*                         transformation, if necessary.                 */}}
+\DoxyCodeLine{259   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{260   \textcolor{comment}{/*    glyph\_delta       :: The 2d translation vector corresponding to    */}}
+\DoxyCodeLine{261   \textcolor{comment}{/*                         the glyph transformation, if necessary.       */}}
+\DoxyCodeLine{262   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{263   \textcolor{comment}{/*    glyph\_hints       :: Format-\/specific glyph hints management.       */}}
+\DoxyCodeLine{264   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266 \textcolor{preprocessor}{\#define FT\_GLYPH\_OWN\_BITMAP  0x1}}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___slot___internal_rec__}{FT\_Slot\_InternalRec\_}}}
+\DoxyCodeLine{269   \{}
+\DoxyCodeLine{270     FT\_GlyphLoader  loader;}
+\DoxyCodeLine{271     FT\_UInt         flags;}
+\DoxyCodeLine{272     FT\_Bool         glyph\_transformed;}
+\DoxyCodeLine{273     \mbox{\hyperlink{struct_f_t___matrix__}{FT\_Matrix}}       glyph\_matrix;}
+\DoxyCodeLine{274     \mbox{\hyperlink{struct_f_t___vector__}{FT\_Vector}}       glyph\_delta;}
+\DoxyCodeLine{275     \textcolor{keywordtype}{void}*           glyph\_hints;}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277   \} \mbox{\hyperlink{struct_f_t___slot___internal_rec__}{FT\_GlyphSlot\_InternalRec}};}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{281 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{282 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{283 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{284 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{285 \textcolor{comment}{  /****                         M O D U L E S                           ****/}}
+\DoxyCodeLine{286 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{287 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{288 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{289 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{290 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{294   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{295   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{296   \textcolor{comment}{/*    FT\_ModuleRec                                                       */}}
+\DoxyCodeLine{297   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{298   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{299   \textcolor{comment}{/*    A module object instance.                                          */}}
+\DoxyCodeLine{300   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{301   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{302   \textcolor{comment}{/*    clazz   :: A pointer to the module's class.                        */}}
+\DoxyCodeLine{303   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{304   \textcolor{comment}{/*    library :: A handle to the parent library object.                  */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*    memory  :: A handle to the memory manager.                         */}}
+\DoxyCodeLine{307   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{308   \textcolor{comment}{/*    generic :: A generic structure for user-\/level extensibility (?).   */}}
+\DoxyCodeLine{309   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{310   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___module_rec__}{FT\_ModuleRec\_}}}
+\DoxyCodeLine{311   \{}
+\DoxyCodeLine{312     \mbox{\hyperlink{struct_f_t___module___class__}{FT\_Module\_Class}}*  clazz;}
+\DoxyCodeLine{313     \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}        library;}
+\DoxyCodeLine{314     FT\_Memory         memory;}
+\DoxyCodeLine{315     \mbox{\hyperlink{struct_f_t___generic__}{FT\_Generic}}        \textcolor{keyword}{generic};}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317   \} \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_ModuleRec}};}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320   \textcolor{comment}{/* typecast an object to a FT\_Module */}}
+\DoxyCodeLine{321 \textcolor{preprocessor}{\#define FT\_MODULE( x )          ((FT\_Module)( x ))}}
+\DoxyCodeLine{322 \textcolor{preprocessor}{\#define FT\_MODULE\_CLASS( x )    FT\_MODULE( x )-\/>clazz}}
+\DoxyCodeLine{323 \textcolor{preprocessor}{\#define FT\_MODULE\_LIBRARY( x )  FT\_MODULE( x )-\/>library}}
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#define FT\_MODULE\_MEMORY( x )   FT\_MODULE( x )-\/>memory}}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \textcolor{preprocessor}{\#define FT\_MODULE\_IS\_DRIVER( x )  ( FT\_MODULE\_CLASS( x )-\/>module\_flags \& \(\backslash\)}}
+\DoxyCodeLine{328 \textcolor{preprocessor}{                                    FT\_MODULE\_FONT\_DRIVER )}}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330 \textcolor{preprocessor}{\#define FT\_MODULE\_IS\_RENDERER( x )  ( FT\_MODULE\_CLASS( x )-\/>module\_flags \& \(\backslash\)}}
+\DoxyCodeLine{331 \textcolor{preprocessor}{                                      FT\_MODULE\_RENDERER )}}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333 \textcolor{preprocessor}{\#define FT\_MODULE\_IS\_HINTER( x )  ( FT\_MODULE\_CLASS( x )-\/>module\_flags \& \(\backslash\)}}
+\DoxyCodeLine{334 \textcolor{preprocessor}{                                    FT\_MODULE\_HINTER )}}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{336 \textcolor{preprocessor}{\#define FT\_MODULE\_IS\_STYLER( x )  ( FT\_MODULE\_CLASS( x )-\/>module\_flags \& \(\backslash\)}}
+\DoxyCodeLine{337 \textcolor{preprocessor}{                                    FT\_MODULE\_STYLER )}}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339 \textcolor{preprocessor}{\#define FT\_DRIVER\_IS\_SCALABLE( x )  ( FT\_MODULE\_CLASS( x )-\/>module\_flags \& \(\backslash\)}}
+\DoxyCodeLine{340 \textcolor{preprocessor}{                                      FT\_MODULE\_DRIVER\_SCALABLE )}}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342 \textcolor{preprocessor}{\#define FT\_DRIVER\_USES\_OUTLINES( x )  !( FT\_MODULE\_CLASS( x )-\/>module\_flags \& \(\backslash\)}}
+\DoxyCodeLine{343 \textcolor{preprocessor}{                                         FT\_MODULE\_DRIVER\_NO\_OUTLINES )}}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345 \textcolor{preprocessor}{\#define FT\_DRIVER\_HAS\_HINTER( x )  ( FT\_MODULE\_CLASS( x )-\/>module\_flags \& \(\backslash\)}}
+\DoxyCodeLine{346 \textcolor{preprocessor}{                                     FT\_MODULE\_DRIVER\_HAS\_HINTER )}}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{350   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{351   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{352   \textcolor{comment}{/*    FT\_Get\_Module\_Interface                                            */}}
+\DoxyCodeLine{353   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{354   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{355   \textcolor{comment}{/*    Finds a module and returns its specific interface as a typeless    */}}
+\DoxyCodeLine{356   \textcolor{comment}{/*    pointer.                                                           */}}
+\DoxyCodeLine{357   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{358   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{359   \textcolor{comment}{/*    library     :: A handle to the library object.                     */}}
+\DoxyCodeLine{360   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{361   \textcolor{comment}{/*    module\_name :: The module's name (as an ASCII string).             */}}
+\DoxyCodeLine{362   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{363   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{364   \textcolor{comment}{/*    A module-\/specific interface if available, 0 otherwise.             */}}
+\DoxyCodeLine{365   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{366   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{367   \textcolor{comment}{/*    You should better be familiar with FreeType internals to know      */}}
+\DoxyCodeLine{368   \textcolor{comment}{/*    which module to look for, and what its interface is :-\/)            */}}
+\DoxyCodeLine{369   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{370   FT\_BASE( \textcolor{keyword}{const} \textcolor{keywordtype}{void}* )}
+\DoxyCodeLine{371   FT\_Get\_Module\_Interface( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}   library,}
+\DoxyCodeLine{372                            \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  mod\_name );}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{374   FT\_BASE( FT\_Pointer )}
+\DoxyCodeLine{375   ft\_module\_get\_service( \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}    module,}
+\DoxyCodeLine{376                          \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  service\_id );}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{378  \textcolor{comment}{/* */}}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380 }
+\DoxyCodeLine{381 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{382 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{383 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{384 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{385 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{386 \textcolor{comment}{  /****               FACE, SIZE \& GLYPH SLOT OBJECTS                   ****/}}
+\DoxyCodeLine{387 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{388 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{389 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{390 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{391 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{392 }
+\DoxyCodeLine{393   \textcolor{comment}{/* a few macros used to perform easy typecasts with minimal brain damage */}}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395 \textcolor{preprocessor}{\#define FT\_FACE( x )          ((FT\_Face)(x))}}
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#define FT\_SIZE( x )          ((FT\_Size)(x))}}
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#define FT\_SLOT( x )          ((FT\_GlyphSlot)(x))}}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399 \textcolor{preprocessor}{\#define FT\_FACE\_DRIVER( x )   FT\_FACE( x )-\/>driver}}
+\DoxyCodeLine{400 \textcolor{preprocessor}{\#define FT\_FACE\_LIBRARY( x )  FT\_FACE\_DRIVER( x )-\/>root.library}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#define FT\_FACE\_MEMORY( x )   FT\_FACE( x )-\/>memory}}
+\DoxyCodeLine{402 \textcolor{preprocessor}{\#define FT\_FACE\_STREAM( x )   FT\_FACE( x )-\/>stream}}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404 \textcolor{preprocessor}{\#define FT\_SIZE\_FACE( x )     FT\_SIZE( x )-\/>face}}
+\DoxyCodeLine{405 \textcolor{preprocessor}{\#define FT\_SLOT\_FACE( x )     FT\_SLOT( x )-\/>face}}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407 \textcolor{preprocessor}{\#define FT\_FACE\_SLOT( x )     FT\_FACE( x )-\/>glyph}}
+\DoxyCodeLine{408 \textcolor{preprocessor}{\#define FT\_FACE\_SIZE( x )     FT\_FACE( x )-\/>size}}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{412   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{413   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{414   \textcolor{comment}{/*    FT\_New\_GlyphSlot                                                   */}}
+\DoxyCodeLine{415   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{416   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{417   \textcolor{comment}{/*    It is sometimes useful to have more than one glyph slot for a      */}}
+\DoxyCodeLine{418   \textcolor{comment}{/*    given face object.  This function is used to create additional     */}}
+\DoxyCodeLine{419   \textcolor{comment}{/*    slots.  All of them are automatically discarded when the face is   */}}
+\DoxyCodeLine{420   \textcolor{comment}{/*    destroyed.                                                         */}}
+\DoxyCodeLine{421   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{422   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{423   \textcolor{comment}{/*    face  :: A handle to a parent face object.                         */}}
+\DoxyCodeLine{424   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{425   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{426   \textcolor{comment}{/*    aslot :: A handle to a new glyph slot object.                      */}}
+\DoxyCodeLine{427   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{428   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{429   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{430   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{431   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{432   FT\_New\_GlyphSlot( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}        face,}
+\DoxyCodeLine{433                     \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  *aslot );}
+\DoxyCodeLine{434 }
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{437   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{438   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{439   \textcolor{comment}{/*    FT\_Done\_GlyphSlot                                                  */}}
+\DoxyCodeLine{440   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{441   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{442   \textcolor{comment}{/*    Destroys a given glyph slot.  Remember however that all slots are  */}}
+\DoxyCodeLine{443   \textcolor{comment}{/*    automatically destroyed with its parent.  Using this function is   */}}
+\DoxyCodeLine{444   \textcolor{comment}{/*    not always mandatory.                                              */}}
+\DoxyCodeLine{445   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{446   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{447   \textcolor{comment}{/*    slot :: A handle to a target glyph slot.                           */}}
+\DoxyCodeLine{448   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{449   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{450   FT\_Done\_GlyphSlot( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  slot );}
+\DoxyCodeLine{451 }
+\DoxyCodeLine{452  \textcolor{comment}{/* */}}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{454  \textcolor{comment}{/*}}
+\DoxyCodeLine{455 \textcolor{comment}{  * Free the bitmap of a given glyphslot when needed}}
+\DoxyCodeLine{456 \textcolor{comment}{  * (i.e., only when it was allocated with ft\_glyphslot\_alloc\_bitmap).}}
+\DoxyCodeLine{457 \textcolor{comment}{  */}}
+\DoxyCodeLine{458   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{459   ft\_glyphslot\_free\_bitmap( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  slot );}
+\DoxyCodeLine{460 }
+\DoxyCodeLine{461 }
+\DoxyCodeLine{462  \textcolor{comment}{/*}}
+\DoxyCodeLine{463 \textcolor{comment}{  * Allocate a new bitmap buffer in a glyph slot.}}
+\DoxyCodeLine{464 \textcolor{comment}{  */}}
+\DoxyCodeLine{465   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{466   ft\_glyphslot\_alloc\_bitmap( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  slot,}
+\DoxyCodeLine{467                              FT\_ULong      size );}
+\DoxyCodeLine{468 }
+\DoxyCodeLine{469 }
+\DoxyCodeLine{470  \textcolor{comment}{/*}}
+\DoxyCodeLine{471 \textcolor{comment}{  * Set the bitmap buffer in a glyph slot to a given pointer.}}
+\DoxyCodeLine{472 \textcolor{comment}{  * The buffer will not be freed by a later call to ft\_glyphslot\_free\_bitmap.}}
+\DoxyCodeLine{473 \textcolor{comment}{  */}}
+\DoxyCodeLine{474   FT\_BASE( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{475   ft\_glyphslot\_set\_bitmap( \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}  slot,}
+\DoxyCodeLine{476                            FT\_Byte*      buffer );}
+\DoxyCodeLine{477 }
+\DoxyCodeLine{478 }
+\DoxyCodeLine{479 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{480 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{481 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{482 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{483 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{484 \textcolor{comment}{  /****                        R E N D E R E R S                        ****/}}
+\DoxyCodeLine{485 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{486 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{487 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{488 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{489 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{490 }
+\DoxyCodeLine{491 }
+\DoxyCodeLine{492 \textcolor{preprocessor}{\#define FT\_RENDERER( x )      ((FT\_Renderer)( x ))}}
+\DoxyCodeLine{493 \textcolor{preprocessor}{\#define FT\_GLYPH( x )         ((FT\_Glyph)( x ))}}
+\DoxyCodeLine{494 \textcolor{preprocessor}{\#define FT\_BITMAP\_GLYPH( x )  ((FT\_BitmapGlyph)( x ))}}
+\DoxyCodeLine{495 \textcolor{preprocessor}{\#define FT\_OUTLINE\_GLYPH( x ) ((FT\_OutlineGlyph)( x ))}}
+\DoxyCodeLine{496 }
+\DoxyCodeLine{497 }
+\DoxyCodeLine{498   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___renderer_rec__}{FT\_RendererRec\_}}}
+\DoxyCodeLine{499   \{}
+\DoxyCodeLine{500     \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_ModuleRec}}            root;}
+\DoxyCodeLine{501     \mbox{\hyperlink{struct_f_t___renderer___class__}{FT\_Renderer\_Class}}*      clazz;}
+\DoxyCodeLine{502     FT\_Glyph\_Format         glyph\_format;}
+\DoxyCodeLine{503     FT\_Glyph\_Class          glyph\_class;}
+\DoxyCodeLine{504 }
+\DoxyCodeLine{505     FT\_Raster               raster;}
+\DoxyCodeLine{506     FT\_Raster\_Render\_Func   raster\_render;}
+\DoxyCodeLine{507     FT\_Renderer\_RenderFunc  render;}
+\DoxyCodeLine{508 }
+\DoxyCodeLine{509   \} \mbox{\hyperlink{struct_f_t___renderer_rec__}{FT\_RendererRec}};}
+\DoxyCodeLine{510 }
+\DoxyCodeLine{511 }
+\DoxyCodeLine{512 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{513 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{514 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{515 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{516 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{517 \textcolor{comment}{  /****                    F O N T   D R I V E R S                      ****/}}
+\DoxyCodeLine{518 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{519 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{520 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{521 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{522 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{523 }
+\DoxyCodeLine{524 }
+\DoxyCodeLine{525   \textcolor{comment}{/* typecast a module into a driver easily */}}
+\DoxyCodeLine{526 \textcolor{preprocessor}{\#define FT\_DRIVER( x )        ((FT\_Driver)(x))}}
+\DoxyCodeLine{527 }
+\DoxyCodeLine{528   \textcolor{comment}{/* typecast a module as a driver, and get its driver class */}}
+\DoxyCodeLine{529 \textcolor{preprocessor}{\#define FT\_DRIVER\_CLASS( x )  FT\_DRIVER( x )-\/>clazz}}
+\DoxyCodeLine{530 }
+\DoxyCodeLine{531 }
+\DoxyCodeLine{532 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{533   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{534   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{535   \textcolor{comment}{/*    FT\_DriverRec                                                       */}}
+\DoxyCodeLine{536   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{537   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{538   \textcolor{comment}{/*    The root font driver class.  A font driver is responsible for      */}}
+\DoxyCodeLine{539   \textcolor{comment}{/*    managing and loading font files of a given format.                 */}}
+\DoxyCodeLine{540   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{541   \textcolor{comment}{/*  <Fields>                                                             */}}
+\DoxyCodeLine{542   \textcolor{comment}{/*     root         :: Contains the fields of the root module class.     */}}
+\DoxyCodeLine{543   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{544   \textcolor{comment}{/*     clazz        :: A pointer to the font driver's class.  Note that  */}}
+\DoxyCodeLine{545   \textcolor{comment}{/*                     this is NOT root.clazz.  `class' wasn't used      */}}
+\DoxyCodeLine{546   \textcolor{comment}{/*                     as it is a reserved word in C++.                  */}}
+\DoxyCodeLine{547   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{548   \textcolor{comment}{/*     faces\_list   :: The list of faces currently opened by this        */}}
+\DoxyCodeLine{549   \textcolor{comment}{/*                     driver.                                           */}}
+\DoxyCodeLine{550   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{551   \textcolor{comment}{/*     extensions   :: A typeless pointer to the driver's extensions     */}}
+\DoxyCodeLine{552   \textcolor{comment}{/*                     registry, if they are supported through the       */}}
+\DoxyCodeLine{553   \textcolor{comment}{/*                     configuration macro FT\_CONFIG\_OPTION\_EXTENSIONS.  */}}
+\DoxyCodeLine{554   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{555   \textcolor{comment}{/*     glyph\_loader :: The glyph loader for all faces managed by this    */}}
+\DoxyCodeLine{556   \textcolor{comment}{/*                     driver.  This object isn't defined for unscalable */}}
+\DoxyCodeLine{557   \textcolor{comment}{/*                     formats.                                          */}}
+\DoxyCodeLine{558   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{559   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___driver_rec__}{FT\_DriverRec\_}}}
+\DoxyCodeLine{560   \{}
+\DoxyCodeLine{561     \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_ModuleRec}}     root;}
+\DoxyCodeLine{562     \mbox{\hyperlink{struct_f_t___driver___class_rec__}{FT\_Driver\_Class}}  clazz;}
+\DoxyCodeLine{563 }
+\DoxyCodeLine{564     \mbox{\hyperlink{struct_f_t___list_rec__}{FT\_ListRec}}       faces\_list;}
+\DoxyCodeLine{565     \textcolor{keywordtype}{void}*            extensions;}
+\DoxyCodeLine{566 }
+\DoxyCodeLine{567     FT\_GlyphLoader   glyph\_loader;}
+\DoxyCodeLine{568 }
+\DoxyCodeLine{569   \} \mbox{\hyperlink{struct_f_t___driver_rec__}{FT\_DriverRec}};}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571 }
+\DoxyCodeLine{572 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{573 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{574 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{575 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{576 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{577 \textcolor{comment}{  /****                       L I B R A R I E S                         ****/}}
+\DoxyCodeLine{578 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{579 \textcolor{comment}{  /****                                                                 ****/}}
+\DoxyCodeLine{580 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{581 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{582 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{583 }
+\DoxyCodeLine{584 }
+\DoxyCodeLine{585 \textcolor{comment}{/* this hook is used by the TrueType debugger. It must be set to an alternate}}
+\DoxyCodeLine{586 \textcolor{comment}{ * truetype bytecode interpreter function}}
+\DoxyCodeLine{587 \textcolor{comment}{ */}}
+\DoxyCodeLine{588 \textcolor{preprocessor}{\#define FT\_DEBUG\_HOOK\_TRUETYPE            0}}
+\DoxyCodeLine{589 }
+\DoxyCodeLine{590 }
+\DoxyCodeLine{591 \textcolor{comment}{/* set this debug hook to a non-\/null pointer to force unpatented hinting}}
+\DoxyCodeLine{592 \textcolor{comment}{ * for all faces when both TT\_CONFIG\_OPTION\_BYTECODE\_INTERPRETER and}}
+\DoxyCodeLine{593 \textcolor{comment}{ * TT\_CONFIG\_OPTION\_UNPATENTED\_HINTING are defined. this is only used}}
+\DoxyCodeLine{594 \textcolor{comment}{ * during debugging}}
+\DoxyCodeLine{595 \textcolor{comment}{ */}}
+\DoxyCodeLine{596 \textcolor{preprocessor}{\#define FT\_DEBUG\_HOOK\_UNPATENTED\_HINTING  1}}
+\DoxyCodeLine{597 }
+\DoxyCodeLine{598 }
+\DoxyCodeLine{599 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{600   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{601   \textcolor{comment}{/* <Struct>                                                              */}}
+\DoxyCodeLine{602   \textcolor{comment}{/*    FT\_LibraryRec                                                      */}}
+\DoxyCodeLine{603   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{604   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{605   \textcolor{comment}{/*    The FreeType library class.  This is the root of all FreeType      */}}
+\DoxyCodeLine{606   \textcolor{comment}{/*    data.  Use FT\_New\_Library() to create a library object, and        */}}
+\DoxyCodeLine{607   \textcolor{comment}{/*    FT\_Done\_Library() to discard it and all child objects.             */}}
+\DoxyCodeLine{608   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{609   \textcolor{comment}{/* <Fields>                                                              */}}
+\DoxyCodeLine{610   \textcolor{comment}{/*    memory           :: The library's memory object.  Manages memory   */}}
+\DoxyCodeLine{611   \textcolor{comment}{/*                        allocation.                                    */}}
+\DoxyCodeLine{612   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{613   \textcolor{comment}{/*    generic          :: Client data variable.  Used to extend the      */}}
+\DoxyCodeLine{614   \textcolor{comment}{/*                        Library class by higher levels and clients.    */}}
+\DoxyCodeLine{615   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{616   \textcolor{comment}{/*    version\_major    :: The major version number of the library.       */}}
+\DoxyCodeLine{617   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{618   \textcolor{comment}{/*    version\_minor    :: The minor version number of the library.       */}}
+\DoxyCodeLine{619   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{620   \textcolor{comment}{/*    version\_patch    :: The current patch level of the library.        */}}
+\DoxyCodeLine{621   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{622   \textcolor{comment}{/*    num\_modules      :: The number of modules currently registered     */}}
+\DoxyCodeLine{623   \textcolor{comment}{/*                        within this library.  This is set to 0 for new */}}
+\DoxyCodeLine{624   \textcolor{comment}{/*                        libraries.  New modules are added through the  */}}
+\DoxyCodeLine{625   \textcolor{comment}{/*                        FT\_Add\_Module() API function.                  */}}
+\DoxyCodeLine{626   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{627   \textcolor{comment}{/*    modules          :: A table used to store handles to the currently */}}
+\DoxyCodeLine{628   \textcolor{comment}{/*                        registered modules. Note that each font driver */}}
+\DoxyCodeLine{629   \textcolor{comment}{/*                        contains a list of its opened faces.           */}}
+\DoxyCodeLine{630   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{631   \textcolor{comment}{/*    renderers        :: The list of renderers currently registered     */}}
+\DoxyCodeLine{632   \textcolor{comment}{/*                        within the library.                            */}}
+\DoxyCodeLine{633   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{634   \textcolor{comment}{/*    cur\_renderer     :: The current outline renderer.  This is a       */}}
+\DoxyCodeLine{635   \textcolor{comment}{/*                        shortcut used to avoid parsing the list on     */}}
+\DoxyCodeLine{636   \textcolor{comment}{/*                        each call to FT\_Outline\_Render().  It is a     */}}
+\DoxyCodeLine{637   \textcolor{comment}{/*                        handle to the current renderer for the         */}}
+\DoxyCodeLine{638   \textcolor{comment}{/*                        FT\_GLYPH\_FORMAT\_OUTLINE format.                */}}
+\DoxyCodeLine{639   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{640   \textcolor{comment}{/*    auto\_hinter      :: XXX                                            */}}
+\DoxyCodeLine{641   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{642   \textcolor{comment}{/*    raster\_pool      :: The raster object's render pool.  This can     */}}
+\DoxyCodeLine{643   \textcolor{comment}{/*                        ideally be changed dynamically at run-\/time.    */}}
+\DoxyCodeLine{644   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{645   \textcolor{comment}{/*    raster\_pool\_size :: The size of the render pool in bytes.          */}}
+\DoxyCodeLine{646   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{647   \textcolor{comment}{/*    debug\_hooks      :: XXX                                            */}}
+\DoxyCodeLine{648   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{649   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t___library_rec__}{FT\_LibraryRec\_}}}
+\DoxyCodeLine{650   \{}
+\DoxyCodeLine{651     FT\_Memory          memory;           \textcolor{comment}{/* library's memory manager */}}
+\DoxyCodeLine{652 }
+\DoxyCodeLine{653     \mbox{\hyperlink{struct_f_t___generic__}{FT\_Generic}}         \textcolor{keyword}{generic};}
+\DoxyCodeLine{654 }
+\DoxyCodeLine{655     FT\_Int             version\_major;}
+\DoxyCodeLine{656     FT\_Int             version\_minor;}
+\DoxyCodeLine{657     FT\_Int             version\_patch;}
+\DoxyCodeLine{658 }
+\DoxyCodeLine{659     FT\_UInt            num\_modules;}
+\DoxyCodeLine{660     \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}          modules[FT\_MAX\_MODULES];  \textcolor{comment}{/* module objects  */}}
+\DoxyCodeLine{661 }
+\DoxyCodeLine{662     \mbox{\hyperlink{struct_f_t___list_rec__}{FT\_ListRec}}         renderers;        \textcolor{comment}{/* list of renderers        */}}
+\DoxyCodeLine{663     \mbox{\hyperlink{struct_f_t___renderer_rec__}{FT\_Renderer}}        cur\_renderer;     \textcolor{comment}{/* current outline renderer */}}
+\DoxyCodeLine{664     \mbox{\hyperlink{struct_f_t___module_rec__}{FT\_Module}}          auto\_hinter;}
+\DoxyCodeLine{665 }
+\DoxyCodeLine{666     FT\_Byte*           raster\_pool;      \textcolor{comment}{/* scan-\/line conversion */}}
+\DoxyCodeLine{667                                          \textcolor{comment}{/* render pool          */}}
+\DoxyCodeLine{668     FT\_ULong           raster\_pool\_size; \textcolor{comment}{/* size of render pool in bytes */}}
+\DoxyCodeLine{669 }
+\DoxyCodeLine{670     FT\_DebugHook\_Func  debug\_hooks[4];}
+\DoxyCodeLine{671 }
+\DoxyCodeLine{672   \} \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_LibraryRec}};}
+\DoxyCodeLine{673 }
+\DoxyCodeLine{674 }
+\DoxyCodeLine{675   FT\_BASE( \mbox{\hyperlink{struct_f_t___renderer_rec__}{FT\_Renderer}} )}
+\DoxyCodeLine{676   FT\_Lookup\_Renderer( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}       library,}
+\DoxyCodeLine{677                       FT\_Glyph\_Format  format,}
+\DoxyCodeLine{678                       \mbox{\hyperlink{struct_f_t___list_node_rec__}{FT\_ListNode}}*     node );}
+\DoxyCodeLine{679 }
+\DoxyCodeLine{680   FT\_BASE( FT\_Error )}
+\DoxyCodeLine{681   FT\_Render\_Glyph\_Internal( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}      library,}
+\DoxyCodeLine{682                             \mbox{\hyperlink{struct_f_t___glyph_slot_rec__}{FT\_GlyphSlot}}    slot,}
+\DoxyCodeLine{683                             FT\_Render\_Mode  render\_mode );}
+\DoxyCodeLine{684 }
+\DoxyCodeLine{685   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char}*}
+\DoxyCodeLine{686   (*FT\_Face\_GetPostscriptNameFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}  face );}
+\DoxyCodeLine{687 }
+\DoxyCodeLine{688   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{689   (*FT\_Face\_GetGlyphNameFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}     face,}
+\DoxyCodeLine{690                                FT\_UInt     glyph\_index,}
+\DoxyCodeLine{691                                FT\_Pointer  buffer,}
+\DoxyCodeLine{692                                FT\_UInt     buffer\_max );}
+\DoxyCodeLine{693 }
+\DoxyCodeLine{694   \textcolor{keyword}{typedef} FT\_UInt}
+\DoxyCodeLine{695   (*FT\_Face\_GetGlyphNameIndexFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}     face,}
+\DoxyCodeLine{696                                     FT\_String*  glyph\_name );}
+\DoxyCodeLine{697 }
+\DoxyCodeLine{698 }
+\DoxyCodeLine{699 \textcolor{preprocessor}{\#ifndef FT\_CONFIG\_OPTION\_NO\_DEFAULT\_SYSTEM}}
+\DoxyCodeLine{700 }
+\DoxyCodeLine{701 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{702   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{703   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{704   \textcolor{comment}{/*    FT\_New\_Memory                                                      */}}
+\DoxyCodeLine{705   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{706   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{707   \textcolor{comment}{/*    Creates a new memory object.                                       */}}
+\DoxyCodeLine{708   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{709   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{710   \textcolor{comment}{/*    A pointer to the new memory object.  0 in case of error.           */}}
+\DoxyCodeLine{711   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{712   FT\_EXPORT( FT\_Memory )}
+\DoxyCodeLine{713   FT\_New\_Memory( \textcolor{keywordtype}{void} );}
+\DoxyCodeLine{714 }
+\DoxyCodeLine{715 }
+\DoxyCodeLine{716 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{717   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{718   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{719   \textcolor{comment}{/*    FT\_Done\_Memory                                                     */}}
+\DoxyCodeLine{720   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{721   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{722   \textcolor{comment}{/*    Discards memory manager.                                           */}}
+\DoxyCodeLine{723   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{724   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{725   \textcolor{comment}{/*    memory :: A handle to the memory manager.                          */}}
+\DoxyCodeLine{726   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{727   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{728   FT\_Done\_Memory( FT\_Memory  memory );}
+\DoxyCodeLine{729 }
+\DoxyCodeLine{730 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FT\_CONFIG\_OPTION\_NO\_DEFAULT\_SYSTEM */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{731 }
+\DoxyCodeLine{732 }
+\DoxyCodeLine{733   \textcolor{comment}{/* Define default raster's interface.  The default raster is located in  */}}
+\DoxyCodeLine{734   \textcolor{comment}{/* `src/base/ftraster.c'.                                                */}}
+\DoxyCodeLine{735   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{736   \textcolor{comment}{/* Client applications can register new rasters through the              */}}
+\DoxyCodeLine{737   \textcolor{comment}{/* FT\_Set\_Raster() API.                                                  */}}
+\DoxyCodeLine{738 }
+\DoxyCodeLine{739 \textcolor{preprocessor}{\#ifndef FT\_NO\_DEFAULT\_RASTER}}
+\DoxyCodeLine{740   FT\_EXPORT\_VAR( \mbox{\hyperlink{struct_f_t___raster___funcs__}{FT\_Raster\_Funcs}} )  ft\_default\_raster;}
+\DoxyCodeLine{741 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{742 }
+\DoxyCodeLine{743 }
+\DoxyCodeLine{744 FT\_END\_HEADER}
+\DoxyCodeLine{745 }
+\DoxyCodeLine{746 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTOBJS\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{747 }
+\DoxyCodeLine{748 }
+\DoxyCodeLine{749 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

@@ -1,0 +1,325 @@
+\hypertarget{ftccache_8h_source}{}\doxysection{ftccache.\+h}
+\label{ftccache_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftccache.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftccache.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftccache.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType internal cache interface (specification).                   */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2000-\/2001, 2002, 2003, 2004, 2005 by                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTCCACHE\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTCCACHE\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include FT\_CACHE\_INTERNAL\_MRU\_H}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   \textcolor{comment}{/* handle to cache object */}}
+\DoxyCodeLine{28   \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___cache_rec__}{FTC\_CacheRec\_}}*  FTC\_Cache;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{comment}{/* handle to cache class */}}
+\DoxyCodeLine{31   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_f_t_c___cache_class_rec__}{FTC\_CacheClassRec\_}}*  \mbox{\hyperlink{struct_f_t_c___cache_class_rec__}{FTC\_CacheClass}};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{35 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{36 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{37 \textcolor{comment}{  /*****                   CACHE NODE DEFINITIONS                      *****/}}
+\DoxyCodeLine{38 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{39 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{40 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{43   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{44   \textcolor{comment}{/* Each cache controls one or more cache nodes.  Each node is part of    */}}
+\DoxyCodeLine{45   \textcolor{comment}{/* the global\_lru list of the manager.  Its `data' field however is used */}}
+\DoxyCodeLine{46   \textcolor{comment}{/* as a reference count for now.                                         */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48   \textcolor{comment}{/* A node can be anything, depending on the type of information held by  */}}
+\DoxyCodeLine{49   \textcolor{comment}{/* the cache.  It can be an individual glyph image, a set of bitmaps     */}}
+\DoxyCodeLine{50   \textcolor{comment}{/* glyphs for a given size, some metrics, etc.                           */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{52 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54   \textcolor{comment}{/* structure size should be 20 bytes on 32-\/bits machines */}}
+\DoxyCodeLine{55   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_NodeRec\_}}}
+\DoxyCodeLine{56   \{}
+\DoxyCodeLine{57     \mbox{\hyperlink{struct_f_t_c___mru_node_rec__}{FTC\_MruNodeRec}}  mru;          \textcolor{comment}{/* circular mru list pointer           */}}
+\DoxyCodeLine{58     \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}        link;         \textcolor{comment}{/* used for hashing                    */}}
+\DoxyCodeLine{59     FT\_UInt32       hash;         \textcolor{comment}{/* used for hashing too                */}}
+\DoxyCodeLine{60     FT\_UShort       cache\_index;  \textcolor{comment}{/* index of cache the node belongs to  */}}
+\DoxyCodeLine{61     FT\_Short        ref\_count;    \textcolor{comment}{/* reference count for this node       */}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63   \} \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_NodeRec}};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define FTC\_NODE( x )    ( (FTC\_Node)(x) )}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define FTC\_NODE\_P( x )  ( (FTC\_Node*)(x) )}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define FTC\_NODE\_\_NEXT(x)  FTC\_NODE( (x)-\/>mru.next )}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define FTC\_NODE\_\_PREV(x)  FTC\_NODE( (x)-\/>mru.prev )}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{74   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{75   \textcolor{comment}{/* These functions are exported so that they can be called from          */}}
+\DoxyCodeLine{76   \textcolor{comment}{/* user-\/provided cache classes; otherwise, they are really part of the   */}}
+\DoxyCodeLine{77   \textcolor{comment}{/* cache sub-\/system internals.                                           */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \textcolor{comment}{/* reserved for manager's use */}}
+\DoxyCodeLine{81   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{82   ftc\_node\_destroy( \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}     node,}
+\DoxyCodeLine{83                     \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager );}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{87 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{88 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{89 \textcolor{comment}{  /*****                       CACHE DEFINITIONS                       *****/}}
+\DoxyCodeLine{90 \textcolor{comment}{  /*****                                                               *****/}}
+\DoxyCodeLine{91 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{92 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94   \textcolor{comment}{/* initialize a new cache node */}}
+\DoxyCodeLine{95   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{96   (*FTC\_Node\_NewFunc)( \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}    *pnode,}
+\DoxyCodeLine{97                        FT\_Pointer   query,}
+\DoxyCodeLine{98                        FTC\_Cache    cache );}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100   \textcolor{keyword}{typedef} FT\_ULong}
+\DoxyCodeLine{101   (*FTC\_Node\_WeightFunc)( \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}   node,}
+\DoxyCodeLine{102                           FTC\_Cache  cache );}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104   \textcolor{comment}{/* compare a node to a given key pair */}}
+\DoxyCodeLine{105   \textcolor{keyword}{typedef} FT\_Bool}
+\DoxyCodeLine{106   (*FTC\_Node\_CompareFunc)( \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}    node,}
+\DoxyCodeLine{107                            FT\_Pointer  key,}
+\DoxyCodeLine{108                            FTC\_Cache   cache );}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{112   (*FTC\_Node\_FreeFunc)( \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}   node,}
+\DoxyCodeLine{113                         FTC\_Cache  cache );}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{116   (*FTC\_Cache\_InitFunc)( FTC\_Cache  cache );}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118   \textcolor{keyword}{typedef} void}
+\DoxyCodeLine{119   (*FTC\_Cache\_DoneFunc)( FTC\_Cache  cache );}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___cache_class_rec__}{FTC\_CacheClassRec\_}}}
+\DoxyCodeLine{123   \{}
+\DoxyCodeLine{124     FTC\_Node\_NewFunc      node\_new;}
+\DoxyCodeLine{125     FTC\_Node\_WeightFunc   node\_weight;}
+\DoxyCodeLine{126     FTC\_Node\_CompareFunc  node\_compare;}
+\DoxyCodeLine{127     FTC\_Node\_CompareFunc  node\_remove\_faceid;}
+\DoxyCodeLine{128     FTC\_Node\_FreeFunc     node\_free;}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130     FT\_UInt               cache\_size;}
+\DoxyCodeLine{131     FTC\_Cache\_InitFunc    cache\_init;}
+\DoxyCodeLine{132     FTC\_Cache\_DoneFunc    cache\_done;}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134   \} \mbox{\hyperlink{struct_f_t_c___cache_class_rec__}{FTC\_CacheClassRec}};}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137   \textcolor{comment}{/* each cache really implements a dynamic hash table to manage its nodes */}}
+\DoxyCodeLine{138   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___cache_rec__}{FTC\_CacheRec\_}}}
+\DoxyCodeLine{139   \{}
+\DoxyCodeLine{140     FT\_UFast           p;}
+\DoxyCodeLine{141     FT\_UFast           mask;}
+\DoxyCodeLine{142     FT\_Long            slack;}
+\DoxyCodeLine{143     \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}*          buckets;}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145     \mbox{\hyperlink{struct_f_t_c___cache_class_rec__}{FTC\_CacheClassRec}}  clazz;       \textcolor{comment}{/* local copy, for speed  */}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147     \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}        manager;}
+\DoxyCodeLine{148     FT\_Memory          memory;}
+\DoxyCodeLine{149     FT\_UInt            index;       \textcolor{comment}{/* in manager's table     */}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151     \mbox{\hyperlink{struct_f_t_c___cache_class_rec__}{FTC\_CacheClass}}     org\_class;   \textcolor{comment}{/* original class pointer */}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153   \} \mbox{\hyperlink{struct_f_t_c___cache_rec__}{FTC\_CacheRec}};}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define FTC\_CACHE( x )    ( (FTC\_Cache)(x) )}}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define FTC\_CACHE\_P( x )  ( (FTC\_Cache*)(x) )}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160   \textcolor{comment}{/* default cache initialize */}}
+\DoxyCodeLine{161   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{162   FTC\_Cache\_Init( FTC\_Cache  cache );}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164   \textcolor{comment}{/* default cache finalizer */}}
+\DoxyCodeLine{165   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{166   FTC\_Cache\_Done( FTC\_Cache  cache );}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168   \textcolor{comment}{/* Call this function to lookup the cache.  If no corresponding}}
+\DoxyCodeLine{169 \textcolor{comment}{   * node is found, a new one is automatically created.  This function}}
+\DoxyCodeLine{170 \textcolor{comment}{   * is capable of flushing the cache adequately to make room for the}}
+\DoxyCodeLine{171 \textcolor{comment}{   * new cache object.}}
+\DoxyCodeLine{172 \textcolor{comment}{   */}}
+\DoxyCodeLine{173   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{174   FTC\_Cache\_Lookup( FTC\_Cache   cache,}
+\DoxyCodeLine{175                     FT\_UInt32   hash,}
+\DoxyCodeLine{176                     FT\_Pointer  query,}
+\DoxyCodeLine{177                     \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}   *anode );}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{180   FTC\_Cache\_NewNode( FTC\_Cache   cache,}
+\DoxyCodeLine{181                      FT\_UInt32   hash,}
+\DoxyCodeLine{182                      FT\_Pointer  query,}
+\DoxyCodeLine{183                      \mbox{\hyperlink{struct_f_t_c___node_rec__}{FTC\_Node}}   *anode );}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185   \textcolor{comment}{/* Remove all nodes that relate to a given face\_id.  This is useful}}
+\DoxyCodeLine{186 \textcolor{comment}{   * when un-\/installing fonts.  Note that if a cache node relates to}}
+\DoxyCodeLine{187 \textcolor{comment}{   * the face\_id, but is locked (i.e., has 'ref\_count > 0'), the node}}
+\DoxyCodeLine{188 \textcolor{comment}{   * will \_not\_ be destroyed, but its internal face\_id reference will}}
+\DoxyCodeLine{189 \textcolor{comment}{   * be modified.}}
+\DoxyCodeLine{190 \textcolor{comment}{   *}}
+\DoxyCodeLine{191 \textcolor{comment}{   * The final result will be that the node will never come back}}
+\DoxyCodeLine{192 \textcolor{comment}{   * in further lookup requests, and will be flushed on demand from}}
+\DoxyCodeLine{193 \textcolor{comment}{   * the cache normally when its reference count reaches 0.}}
+\DoxyCodeLine{194 \textcolor{comment}{   */}}
+\DoxyCodeLine{195   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{196   FTC\_Cache\_RemoveFaceID( FTC\_Cache   cache,}
+\DoxyCodeLine{197                           FTC\_FaceID  face\_id );}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#ifdef FTC\_INLINE}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#define FTC\_CACHE\_LOOKUP\_CMP( cache, nodecmp, hash, query, node, error ) \(\backslash\)}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                                         \(\backslash\)}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{    FTC\_Node             *\_bucket, *\_pnode, \_node;                       \(\backslash\)}}
+\DoxyCodeLine{205 \textcolor{preprocessor}{    FTC\_Cache             \_cache   = FTC\_CACHE(cache);                   \(\backslash\)}}
+\DoxyCodeLine{206 \textcolor{preprocessor}{    FT\_UInt32             \_hash    = (FT\_UInt32)(hash);                  \(\backslash\)}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{    FTC\_Node\_CompareFunc  \_nodcomp = (FTC\_Node\_CompareFunc)(nodecmp);    \(\backslash\)}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{    FT\_UInt               \_idx;                                          \(\backslash\)}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{    error = 0;                                                           \(\backslash\)}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{    node  = NULL;                                                        \(\backslash\)}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{    \_idx  = \_hash \& \_cache-\/>mask;                                        \(\backslash\)}}
+\DoxyCodeLine{214 \textcolor{preprocessor}{    if ( \_idx < \_cache-\/>p )                                              \(\backslash\)}}
+\DoxyCodeLine{215 \textcolor{preprocessor}{      \_idx = \_hash \& ( \_cache-\/>mask*2 + 1 );                             \(\backslash\)}}
+\DoxyCodeLine{216 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{217 \textcolor{preprocessor}{    \_bucket = \_pnode = \_cache-\/>buckets + \_idx;                           \(\backslash\)}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{    for (;;)                                                             \(\backslash\)}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{    \{                                                                    \(\backslash\)}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{      \_node = *\_pnode;                                                   \(\backslash\)}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{      if ( \_node == NULL )                                               \(\backslash\)}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{        goto \_NewNode;                                                   \(\backslash\)}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{      if ( \_node-\/>hash == \_hash \&\& \_nodcomp( \_node, query, \_cache ) )    \(\backslash\)}}
+\DoxyCodeLine{225 \textcolor{preprocessor}{        break;                                                           \(\backslash\)}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{      \_pnode = \&\_node-\/>link;                                             \(\backslash\)}}
+\DoxyCodeLine{228 \textcolor{preprocessor}{    \}                                                                    \(\backslash\)}}
+\DoxyCodeLine{229 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{230 \textcolor{preprocessor}{    if ( \_node != *\_bucket )                                             \(\backslash\)}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{    \{                                                                    \(\backslash\)}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{      *\_pnode     = \_node-\/>link;                                         \(\backslash\)}}
+\DoxyCodeLine{233 \textcolor{preprocessor}{      \_node-\/>link = *\_bucket;                                            \(\backslash\)}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{      *\_bucket    = \_node;                                               \(\backslash\)}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{    \}                                                                    \(\backslash\)}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{    \{                                                                    \(\backslash\)}}
+\DoxyCodeLine{238 \textcolor{preprocessor}{      FTC\_Manager  \_manager = \_cache-\/>manager;                           \(\backslash\)}}
+\DoxyCodeLine{239 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{240 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{      if ( \_node != \_manager-\/>nodes\_list )                               \(\backslash\)}}
+\DoxyCodeLine{242 \textcolor{preprocessor}{        FTC\_MruNode\_Up( (FTC\_MruNode*)\&\_manager-\/>nodes\_list,             \(\backslash\)}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{                        (FTC\_MruNode)\_node );                            \(\backslash\)}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{    \}                                                                    \(\backslash\)}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{    goto \_Ok;                                                            \(\backslash\)}}
+\DoxyCodeLine{246 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{  \_NewNode:                                                              \(\backslash\)}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{    error = FTC\_Cache\_NewNode( \_cache, \_hash, query, \&\_node );           \(\backslash\)}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{250 \textcolor{preprocessor}{  \_Ok:                                                                   \(\backslash\)}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{    \_pnode = (FTC\_Node*)(void*)\&(node);                                  \(\backslash\)}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{    *\_pnode = \_node;                                                     \(\backslash\)}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{255 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* !FTC\_INLINE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#define FTC\_CACHE\_LOOKUP\_CMP( cache, nodecmp, hash, query, node, error ) \(\backslash\)}}
+\DoxyCodeLine{258 \textcolor{preprocessor}{  FT\_BEGIN\_STMNT                                                         \(\backslash\)}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{    error = FTC\_Cache\_Lookup( FTC\_CACHE( cache ), hash, query,           \(\backslash\)}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{                              (FTC\_Node*)\&(node) );                      \(\backslash\)}}
+\DoxyCodeLine{261 \textcolor{preprocessor}{  FT\_END\_STMNT}}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !FTC\_INLINE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266   \textcolor{comment}{/*}}
+\DoxyCodeLine{267 \textcolor{comment}{   * This macro, together with FTC\_CACHE\_TRYLOOP\_END, defines a retry}}
+\DoxyCodeLine{268 \textcolor{comment}{   * loop to flush the cache repeatedly in case of memory overflows.}}
+\DoxyCodeLine{269 \textcolor{comment}{   *}}
+\DoxyCodeLine{270 \textcolor{comment}{   * It is used when creating a new cache node, or within a lookup}}
+\DoxyCodeLine{271 \textcolor{comment}{   * that needs to allocate data (e.g., the sbit cache lookup).}}
+\DoxyCodeLine{272 \textcolor{comment}{   * }}
+\DoxyCodeLine{273 \textcolor{comment}{   * Example:}}
+\DoxyCodeLine{274 \textcolor{comment}{   *}}
+\DoxyCodeLine{275 \textcolor{comment}{   *   \{}}
+\DoxyCodeLine{276 \textcolor{comment}{   *     FTC\_CACHE\_TRYLOOP( cache )}}
+\DoxyCodeLine{277 \textcolor{comment}{   *       error = load\_data( ... );}}
+\DoxyCodeLine{278 \textcolor{comment}{   *     FTC\_CACHE\_TRYLOOP\_END()}}
+\DoxyCodeLine{279 \textcolor{comment}{   *   \}}}
+\DoxyCodeLine{280 \textcolor{comment}{   *}}
+\DoxyCodeLine{281 \textcolor{comment}{   */}}
+\DoxyCodeLine{282 \textcolor{preprocessor}{\#define FTC\_CACHE\_TRYLOOP( cache )                           \(\backslash\)}}
+\DoxyCodeLine{283 \textcolor{preprocessor}{  \{                                                          \(\backslash\)}}
+\DoxyCodeLine{284 \textcolor{preprocessor}{    FTC\_Manager  \_try\_manager = FTC\_CACHE( cache )-\/>manager; \(\backslash\)}}
+\DoxyCodeLine{285 \textcolor{preprocessor}{    FT\_UInt      \_try\_count   = 4;                           \(\backslash\)}}
+\DoxyCodeLine{286 \textcolor{preprocessor}{                                                             \(\backslash\)}}
+\DoxyCodeLine{287 \textcolor{preprocessor}{                                                             \(\backslash\)}}
+\DoxyCodeLine{288 \textcolor{preprocessor}{    for (;;)                                                 \(\backslash\)}}
+\DoxyCodeLine{289 \textcolor{preprocessor}{    \{                                                        \(\backslash\)}}
+\DoxyCodeLine{290 \textcolor{preprocessor}{      FT\_UInt  \_try\_done;}}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define FTC\_CACHE\_TRYLOOP\_END()                                   \(\backslash\)}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{      if ( !error || error != FT\_Err\_Out\_Of\_Memory )              \(\backslash\)}}
+\DoxyCodeLine{295 \textcolor{preprocessor}{        break;                                                    \(\backslash\)}}
+\DoxyCodeLine{296 \textcolor{preprocessor}{                                                                  \(\backslash\)}}
+\DoxyCodeLine{297 \textcolor{preprocessor}{      \_try\_done = FTC\_Manager\_FlushN( \_try\_manager, \_try\_count ); \(\backslash\)}}
+\DoxyCodeLine{298 \textcolor{preprocessor}{      if ( \_try\_done == 0 )                                       \(\backslash\)}}
+\DoxyCodeLine{299 \textcolor{preprocessor}{        break;                                                    \(\backslash\)}}
+\DoxyCodeLine{300 \textcolor{preprocessor}{                                                                  \(\backslash\)}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{      if ( \_try\_done == \_try\_count )                              \(\backslash\)}}
+\DoxyCodeLine{302 \textcolor{preprocessor}{      \{                                                           \(\backslash\)}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{        \_try\_count *= 2;                                          \(\backslash\)}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{        if ( \_try\_count < \_try\_done              ||               \(\backslash\)}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{            \_try\_count > \_try\_manager-\/>num\_nodes )                \(\backslash\)}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{          \_try\_count = \_try\_manager-\/>num\_nodes;                   \(\backslash\)}}
+\DoxyCodeLine{307 \textcolor{preprocessor}{      \}                                                           \(\backslash\)}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{    \}                                                             \(\backslash\)}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{  \}}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311  \textcolor{comment}{/* */}}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 FT\_END\_HEADER}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCCACHE\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

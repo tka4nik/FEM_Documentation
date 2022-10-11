@@ -1,0 +1,95 @@
+\hypertarget{class_c_view_wrapper}{}\doxysection{CView\+Wrapper Class Reference}
+\label{class_c_view_wrapper}\index{CViewWrapper@{CViewWrapper}}
+Inheritance diagram for CView\+Wrapper\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_c_view_wrapper}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a53e3dcd579f06e6c4ae530d8dd457b76}\label{class_c_view_wrapper_a53e3dcd579f06e6c4ae530d8dd457b76}} 
+BOOL {\bfseries Create\+Client\+Pane} (CRuntime\+Class $\ast$p\+View\+Class, CCreate\+Context $\ast$p\+Context)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a3302de575b86886a58aef4f666eb760e}\label{class_c_view_wrapper_a3302de575b86886a58aef4f666eb760e}} 
+virtual void {\bfseries On\+Draw} (CDC $\ast$p\+DC)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_af3a4120e92b094f6e006dc9b7bef13a1}\label{class_c_view_wrapper_af3a4120e92b094f6e006dc9b7bef13a1}} 
+void {\bfseries Show\+Tb} (int n\+Num, bool b\+Visible=true)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a3f844483b1485a1c796fda6742ff5948}\label{class_c_view_wrapper_a3f844483b1485a1c796fda6742ff5948}} 
+BOOL {\bfseries Is\+Tb\+Visible} (int n\+Num)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a3d734136bc797f331ef086654a0dcd8a}\label{class_c_view_wrapper_a3d734136bc797f331ef086654a0dcd8a}} 
+CWnd $\ast$ {\bfseries m\+\_\+p\+View}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a87c97e7bb11b0fca96efbc12d1e173a2}\label{class_c_view_wrapper_a87c97e7bb11b0fca96efbc12d1e173a2}} 
+virtual void {\bfseries On\+Update} (CView $\ast$p\+Sender, LPARAM l\+Hint, CObject $\ast$p\+Hint)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a3f7a5fb28355cf511ba5027c7141658a}\label{class_c_view_wrapper_a3f7a5fb28355cf511ba5027c7141658a}} 
+virtual void {\bfseries On\+Activate\+View} (BOOL b\+Activate, CView $\ast$p\+Activate\+View, CView $\ast$p\+Deactive\+View)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_aa72db4106652c114bce4598ad210d024}\label{class_c_view_wrapper_aa72db4106652c114bce4598ad210d024}} 
+int {\bfseries Add\+Wrapper} (int n\+Condition)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a0db8c5bafc18bd5f753d6c71fe887c38}\label{class_c_view_wrapper_a0db8c5bafc18bd5f753d6c71fe887c38}} 
+void {\bfseries Recalc\+Layout} ()
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_ac4adf3419c29abc16f33f45f9339373f}\label{class_c_view_wrapper_ac4adf3419c29abc16f33f45f9339373f}} 
+afx\+\_\+msg void {\bfseries On\+Size} (UINT n\+Type, int cx, int cy)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_afcbd1112b34c047837bad04bfad3c58c}\label{class_c_view_wrapper_afcbd1112b34c047837bad04bfad3c58c}} 
+afx\+\_\+msg BOOL {\bfseries On\+Erase\+Bkgnd} (CDC $\ast$p\+DC)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a845a718622b9a92fdb8bcdb7c6211e10}\label{class_c_view_wrapper_a845a718622b9a92fdb8bcdb7c6211e10}} 
+afx\+\_\+msg int {\bfseries On\+Create} (LPCREATESTRUCT lp\+Create\+Struct)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a8e872d16d3a41160b09433d8fa67eced}\label{class_c_view_wrapper_a8e872d16d3a41160b09433d8fa67eced}} 
+afx\+\_\+msg void {\bfseries On\+Destroy} ()
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_aae3bfc756d75f10df4740d4266a6626a}\label{class_c_view_wrapper_aae3bfc756d75f10df4740d4266a6626a}} 
+afx\+\_\+msg LRESULT {\bfseries On\+Tb\+Popup} (WPARAM w\+Param, LPARAM l\+Param)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a6d3869da0a912a5967e734f8c7fafec3}\label{class_c_view_wrapper_a6d3869da0a912a5967e734f8c7fafec3}} 
+afx\+\_\+msg LRESULT {\bfseries On\+Tb\+Child} (WPARAM w\+Param, LPARAM l\+Param)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_afe0a871420e79209f42f9a7d5bb02e15}\label{class_c_view_wrapper_afe0a871420e79209f42f9a7d5bb02e15}} 
+afx\+\_\+msg LRESULT {\bfseries On\+Tb\+Recalc} (WPARAM w\+Param, LPARAM l\+Param)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_aee3459a3af067f83936344e901fe4c22}\label{class_c_view_wrapper_aee3459a3af067f83936344e901fe4c22}} 
+afx\+\_\+msg LRESULT {\bfseries On\+Tb\+Destroy} (WPARAM w\+Param, LPARAM l\+Param)
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a06b01484902f49dedce576adf108051d}\label{class_c_view_wrapper_a06b01484902f49dedce576adf108051d}} 
+afx\+\_\+msg LRESULT {\bfseries On\+Tb\+Focus} (WPARAM w\+Param, LPARAM l\+Param)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_aee64f33665007018d4b68513a72e6062}\label{class_c_view_wrapper_aee64f33665007018d4b68513a72e6062}} 
+\mbox{\hyperlink{class_c_scale_wnd}{CScale\+Wnd}} $\ast$ {\bfseries m\+\_\+p\+Scale\+Wnd}
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_ac2a88e2de6705ba542c6f0c1771729a4}\label{class_c_view_wrapper_ac2a88e2de6705ba542c6f0c1771729a4}} 
+CBrush {\bfseries m\+\_\+br\+Empty\+Pane}
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a0a59772971c0b53f29ff70da3f9698b6}\label{class_c_view_wrapper_a0a59772971c0b53f29ff70da3f9698b6}} 
+int {\bfseries m\+\_\+n\+LeftW}
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a15339a8fbb3311e52314eff6a57db84e}\label{class_c_view_wrapper_a15339a8fbb3311e52314eff6a57db84e}} 
+int {\bfseries m\+\_\+n\+RightW}
+\item 
+\mbox{\Hypertarget{class_c_view_wrapper_a54a40b501cc9cda61e0e1b77c4fdacfa}\label{class_c_view_wrapper_a54a40b501cc9cda61e0e1b77c4fdacfa}} 
+CTyped\+Ptr\+Array$<$ CPtr\+Array, \mbox{\hyperlink{class_c_tool_box_wrapper}{CTool\+Box\+Wrapper}} $\ast$ $>$ {\bfseries m\+\_\+\+Tool\+Boxes}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/prototype-\/prismatic/source/View\+Wrapper.\+h\item 
+C\+:/\+Projects/\+FEM/prototype-\/prismatic/source/View\+Wrapper.\+cpp\end{DoxyCompactItemize}

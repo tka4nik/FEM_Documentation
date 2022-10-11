@@ -1,0 +1,65 @@
+\hypertarget{_dlg_roller_8h_source}{}\doxysection{Dlg\+Roller.\+h}
+\label{_dlg_roller_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/DlgRoller.h@{C:/Projects/FEM/prototype-\/prismatic/source/DlgRoller.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#if !defined(AFX\_DLGROLLER\_H\_\_B650B95A\_50F9\_42D5\_BCA9\_66CD9840B9FC\_\_INCLUDED\_)}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AFX\_DLGROLLER\_H\_\_B650B95A\_50F9\_42D5\_BCA9\_66CD9840B9FC\_\_INCLUDED\_}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#if \_MSC\_VER > 1000}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_MSC\_VER > 1000}}
+\DoxyCodeLine{7 \textcolor{comment}{// DlgRoller.h : header file}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}SprDoc.h"{}}}
+\DoxyCodeLine{12 \textcolor{comment}{// CDlgRoller dialog}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_dlg_roller}{CDlgRoller}} : \textcolor{keyword}{public} CDialog}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16 \textcolor{comment}{// Construction}}
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_c_dlg_roller}{CDlgRoller}}(CWnd* pParent = NULL);   \textcolor{comment}{// standard constructor}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{comment}{// Dialog Data}}
+\DoxyCodeLine{21     \textcolor{comment}{//\{\{AFX\_DATA(CDlgRoller)}}
+\DoxyCodeLine{22     \textcolor{keyword}{enum} \{ IDD = IDD\_ROLLER \};}
+\DoxyCodeLine{23     BOOL    m\_bXSymmetric;}
+\DoxyCodeLine{24     CString m\_strW;}
+\DoxyCodeLine{25     CString m\_strR;}
+\DoxyCodeLine{26     \textcolor{comment}{//\}\}AFX\_DATA}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30     \mbox{\hyperlink{class_c_spr_doc}{CSprDoc}}  *m\_pDoc;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{keyword}{public}:}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} UpdateData(BOOL bSAV = \textcolor{keyword}{true});}
+\DoxyCodeLine{34     \textcolor{keyword}{virtual} BOOL Create(CWnd* pParentWnd);}
+\DoxyCodeLine{35 \textcolor{comment}{// Overrides}}
+\DoxyCodeLine{36     \textcolor{comment}{// ClassWizard generated virtual function overrides}}
+\DoxyCodeLine{37     \textcolor{comment}{//\{\{AFX\_VIRTUAL(CDlgRoller)}}
+\DoxyCodeLine{38     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{39     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} DoDataExchange(CDataExchange* pDX);    \textcolor{comment}{// DDX/DDV support}}
+\DoxyCodeLine{40     \textcolor{comment}{//\}\}AFX\_VIRTUAL}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{43 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{46     \textcolor{comment}{//\{\{AFX\_MSG(CDlgRoller)}}
+\DoxyCodeLine{47     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnOK();}
+\DoxyCodeLine{48     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnCancel();}
+\DoxyCodeLine{49     afx\_msg \textcolor{keywordtype}{void} OnKillfocusRollerE1();}
+\DoxyCodeLine{50     afx\_msg \textcolor{keywordtype}{void} OnKillfocusRollerE2();}
+\DoxyCodeLine{51     \textcolor{comment}{//\}\}AFX\_MSG}}
+\DoxyCodeLine{52     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{53 \textcolor{keyword}{public}:}
+\DoxyCodeLine{54     afx\_msg \textcolor{keywordtype}{void} OnStnClickedRollerS1();}
+\DoxyCodeLine{55 \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{comment}{//\{\{AFX\_INSERT\_LOCATION\}\}}}
+\DoxyCodeLine{58 \textcolor{comment}{// Microsoft Visual C++ will insert additional declarations immediately before the previous line.}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// !defined(AFX\_DLGROLLER\_H\_\_B650B95A\_50F9\_42D5\_BCA9\_66CD9840B9FC\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

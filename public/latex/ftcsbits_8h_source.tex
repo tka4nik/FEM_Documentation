@@ -1,0 +1,102 @@
+\hypertarget{ftcsbits_8h_source}{}\doxysection{ftcsbits.\+h}
+\label{ftcsbits_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftcsbits.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/cache/ftcsbits.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftcsbits.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    A small-\/bitmap cache (specification).                                */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2000-\/2001, 2002, 2003 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_FTCSBITS\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_FTCSBITS\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include FT\_CACHE\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_CACHE\_INTERNAL\_GLYPH\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define FTC\_SBIT\_ITEMS\_PER\_NODE  16}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___s_node_rec__}{FTC\_SNodeRec\_}}}
+\DoxyCodeLine{33   \{}
+\DoxyCodeLine{34     \mbox{\hyperlink{struct_f_t_c___g_node_rec__}{FTC\_GNodeRec}}  gnode;}
+\DoxyCodeLine{35     FT\_UInt       count;}
+\DoxyCodeLine{36     \mbox{\hyperlink{struct_f_t_c___s_bit_rec__}{FTC\_SBitRec}}   sbits[FTC\_SBIT\_ITEMS\_PER\_NODE];}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38   \} \mbox{\hyperlink{struct_f_t_c___s_node_rec__}{FTC\_SNodeRec}}, *\mbox{\hyperlink{struct_f_t_c___s_node_rec__}{FTC\_SNode}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define FTC\_SNODE( x )         ( (FTC\_SNode)( x ) )}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define FTC\_SNODE\_GINDEX( x )  FTC\_GNODE( x )-\/>gindex}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define FTC\_SNODE\_FAMILY( x )  FTC\_GNODE( x )-\/>family}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45   \textcolor{keyword}{typedef} FT\_UInt}
+\DoxyCodeLine{46   (*FTC\_SFamily\_GetCountFunc)( FTC\_Family   family,}
+\DoxyCodeLine{47                                \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager );}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49   \textcolor{keyword}{typedef} FT\_Error}
+\DoxyCodeLine{50   (*FTC\_SFamily\_LoadGlyphFunc)( FTC\_Family   family,}
+\DoxyCodeLine{51                                 FT\_UInt      gindex,}
+\DoxyCodeLine{52                                 \mbox{\hyperlink{struct_f_t_c___manager_rec__}{FTC\_Manager}}  manager,}
+\DoxyCodeLine{53                                 \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}     *aface );}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \textcolor{keyword}{typedef} \textcolor{keyword}{struct  }\mbox{\hyperlink{struct_f_t_c___s_family_class_rec__}{FTC\_SFamilyClassRec\_}}}
+\DoxyCodeLine{56   \{}
+\DoxyCodeLine{57     \mbox{\hyperlink{struct_f_t_c___mru_list_class_rec__}{FTC\_MruListClassRec}}        clazz;}
+\DoxyCodeLine{58     FTC\_SFamily\_GetCountFunc   family\_get\_count;}
+\DoxyCodeLine{59     FTC\_SFamily\_LoadGlyphFunc  family\_load\_glyph;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61   \} \mbox{\hyperlink{struct_f_t_c___s_family_class_rec__}{FTC\_SFamilyClassRec}};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t_c___s_family_class_rec__}{FTC\_SFamilyClassRec}}*  \mbox{\hyperlink{struct_f_t_c___s_family_class_rec__}{FTC\_SFamilyClass}};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define FTC\_SFAMILY\_CLASS( x )  ((FTC\_SFamilyClass)(x))}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define FTC\_CACHE\_\_SFAMILY\_CLASS( x )  \(\backslash\)}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{          FTC\_SFAMILY\_CLASS( FTC\_CACHE\_\_GCACHE\_CLASS( x )-\/>family\_class )}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{72   FTC\_SNode\_Free( \mbox{\hyperlink{struct_f_t_c___s_node_rec__}{FTC\_SNode}}  snode,}
+\DoxyCodeLine{73                   FTC\_Cache  cache );}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{76   FTC\_SNode\_New( \mbox{\hyperlink{struct_f_t_c___s_node_rec__}{FTC\_SNode}}   *psnode,}
+\DoxyCodeLine{77                  \mbox{\hyperlink{struct_f_t_c___g_query_rec__}{FTC\_GQuery}}   gquery,}
+\DoxyCodeLine{78                  FTC\_Cache    cache );}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   FT\_EXPORT( FT\_ULong )}
+\DoxyCodeLine{81   FTC\_SNode\_Weight( \mbox{\hyperlink{struct_f_t_c___s_node_rec__}{FTC\_SNode}}  inode );}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84   FT\_EXPORT( FT\_Bool )}
+\DoxyCodeLine{85   FTC\_SNode\_Compare( \mbox{\hyperlink{struct_f_t_c___s_node_rec__}{FTC\_SNode}}   snode,}
+\DoxyCodeLine{86                      \mbox{\hyperlink{struct_f_t_c___g_query_rec__}{FTC\_GQuery}}  gquery,}
+\DoxyCodeLine{87                      FTC\_Cache   cache );}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \textcolor{comment}{/* */}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 FT\_END\_HEADER}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTCSBITS\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

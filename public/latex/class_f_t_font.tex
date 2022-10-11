@@ -1,0 +1,484 @@
+\hypertarget{class_f_t_font}{}\doxysection{FTFont Class Reference}
+\label{class_f_t_font}\index{FTFont@{FTFont}}
+
+
+{\ttfamily \#include $<$FTFont.\+h$>$}
+
+Inheritance diagram for FTFont\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.530055cm]{class_f_t_font}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_font_ad27860812dc1baa7e619faed09fc43e3}{FTFont}} (const char $\ast$font\+File\+Path)
+\item 
+\mbox{\hyperlink{class_f_t_font_a8911254ec56e3b9c36891459b98beaf2}{FTFont}} (const unsigned char $\ast$p\+Buffer\+Bytes, size\+\_\+t buffer\+Size\+In\+Bytes)
+\item 
+virtual \mbox{\hyperlink{class_f_t_font_a9df9b873c582024867ff6b9dfff0face}{$\sim$\+FTFont}} ()
+\item 
+bool \mbox{\hyperlink{class_f_t_font_a6e3b1c6da5d63670efb92479f7bc892a}{Attach}} (const char $\ast$font\+File\+Path)
+\item 
+bool \mbox{\hyperlink{class_f_t_font_a066221513c767585a0128e94a1a404d2}{Attach}} (const unsigned char $\ast$p\+Buffer\+Bytes, size\+\_\+t buffer\+Size\+In\+Bytes)
+\item 
+bool \mbox{\hyperlink{class_f_t_font_a72206a5ed619709c397fba2a7b0987ed}{Char\+Map}} (FT\+\_\+\+Encoding encoding)
+\item 
+unsigned int \mbox{\hyperlink{class_f_t_font_a4932e65132d2e2200fe3d10b352a8dba}{Char\+Map\+Count}} ()
+\item 
+FT\+\_\+\+Encoding $\ast$ \mbox{\hyperlink{class_f_t_font_add15c511617de7ab8f52cec1fe543809}{Char\+Map\+List}} ()
+\item 
+virtual bool \mbox{\hyperlink{class_f_t_font_aae95510a733d6755bbbaf92d67796ff9}{Face\+Size}} (const unsigned int size, const unsigned int res=72)
+\item 
+unsigned int \mbox{\hyperlink{class_f_t_font_aa6d19186887bba8a4286b4a8396e783e}{Face\+Size}} () const
+\item 
+virtual void \mbox{\hyperlink{class_f_t_font_a7fc7825ca4089e12a679f788e0cb9d2c}{Depth}} (float depth)
+\item 
+void \mbox{\hyperlink{class_f_t_font_ac329128a66175e29ac4f9920726e1740}{Use\+Display\+List}} (bool use\+List)
+\item 
+float \mbox{\hyperlink{class_f_t_font_ac8be0dbfd7cc89d251d1feb0527a0531}{Ascender}} () const
+\item 
+float \mbox{\hyperlink{class_f_t_font_a397ad7a506fe84901fbf6dda468e25f9}{Descender}} () const
+\item 
+float \mbox{\hyperlink{class_f_t_font_a29b6558932641eff0c8187fe18592c92}{Line\+Height}} () const
+\item 
+void \mbox{\hyperlink{class_f_t_font_a45078d6f0b74334030558d10cfeab4b9}{BBox}} (const char $\ast$string, float \&llx, float \&lly, float \&llz, float \&urx, float \&ury, float \&urz)
+\item 
+void \mbox{\hyperlink{class_f_t_font_af495e078c9f8bad2b6fb0b5d04416fe7}{BBox}} (const wchar\+\_\+t $\ast$string, float \&llx, float \&lly, float \&llz, float \&urx, float \&ury, float \&urz)
+\item 
+float \mbox{\hyperlink{class_f_t_font_ac9ea5e0f3e720dfcb8c4b15e08111a4c}{Advance}} (const wchar\+\_\+t $\ast$string)
+\item 
+float \mbox{\hyperlink{class_f_t_font_a002da25744348d44b8d87b3b88ab5efa}{Advance}} (const char $\ast$string)
+\item 
+virtual void \mbox{\hyperlink{class_f_t_font_a93f5c144d5a0603508ff3d6c28aaf6ad}{Render}} (const char $\ast$string)
+\item 
+virtual void \mbox{\hyperlink{class_f_t_font_af69d1b663afded110d91312831e3a2e3}{Render}} (const wchar\+\_\+t $\ast$string)
+\item 
+FT\+\_\+\+Error \mbox{\hyperlink{class_f_t_font_a581a621491803549419b0cb3e9ef917b}{Error}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} $\ast$ \mbox{\hyperlink{class_f_t_font_a7a803a726808d612c804a430c93d2652}{Make\+Glyph}} (unsigned int g)=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_t_face}{FTFace}} \mbox{\hyperlink{class_f_t_font_aec048c2cebf62ae063feb45ade60868b}{face}}
+\item 
+\mbox{\hyperlink{class_f_t_size}{FTSize}} \mbox{\hyperlink{class_f_t_font_ad781a66dd9274c6554a5dbd089789108}{char\+Size}}
+\item 
+bool \mbox{\hyperlink{class_f_t_font_a1f2b064e4a9f9259f317fae4f22f4400}{use\+Display\+Lists}}
+\item 
+FT\+\_\+\+Error \mbox{\hyperlink{class_f_t_font_adf26fb4a4538fd3e957b526482c701a3}{err}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_f_t_font}{FTFont}} is the public interface for the FTGL library.
+
+Specific font classes are derived from this class. It uses the helper classes \mbox{\hyperlink{class_f_t_face}{FTFace}} and \mbox{\hyperlink{class_f_t_size}{FTSize}} to access the Freetype library. This class is abstract and deriving classes must implement the protected {\ttfamily Make\+Glyph} function to create glyphs of the appropriate type.
+
+It is good practice after using these functions to test the error code returned. {\ttfamily FT\+\_\+\+Error Error()}. Check the freetype file \mbox{\hyperlink{fterrdef_8h_source}{fterrdef.\+h}} for error definitions.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_f_t_face}{FTFace}} 
+
+\mbox{\hyperlink{class_f_t_size}{FTSize}} 
+
+\mbox{\hyperlink{class_f_t_glyph_container}{FTGlyph\+Container}} 
+
+\mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_f_t_font_ad27860812dc1baa7e619faed09fc43e3}\label{class_f_t_font_ad27860812dc1baa7e619faed09fc43e3}} 
+\index{FTFont@{FTFont}!FTFont@{FTFont}}
+\index{FTFont@{FTFont}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{FTFont()}{FTFont()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FTFont\+::\+FTFont (\begin{DoxyParamCaption}\item[{const char $\ast$}]{font\+File\+Path }\end{DoxyParamCaption})}
+
+Open and read a font file. Sets Error flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+File\+Path} & font file path. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_font_a8911254ec56e3b9c36891459b98beaf2}\label{class_f_t_font_a8911254ec56e3b9c36891459b98beaf2}} 
+\index{FTFont@{FTFont}!FTFont@{FTFont}}
+\index{FTFont@{FTFont}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{FTFont()}{FTFont()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily FTFont\+::\+FTFont (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{p\+Buffer\+Bytes,  }\item[{size\+\_\+t}]{buffer\+Size\+In\+Bytes }\end{DoxyParamCaption})}
+
+Open and read a font from a buffer in memory. Sets Error flag. The buffer is owned by the client and is NOT copied by FTGL. The pointer must be valid while using FTGL.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Buffer\+Bytes} & the in-\/memory buffer \\
+\hline
+{\em buffer\+Size\+In\+Bytes} & the length of the buffer in bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_font_a9df9b873c582024867ff6b9dfff0face}\label{class_f_t_font_a9df9b873c582024867ff6b9dfff0face}} 
+\index{FTFont@{FTFont}!````~FTFont@{$\sim$FTFont}}
+\index{````~FTFont@{$\sim$FTFont}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{$\sim$FTFont()}{~FTFont()}}
+{\footnotesize\ttfamily virtual FTFont\+::$\sim$\+FTFont (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_f_t_font_a002da25744348d44b8d87b3b88ab5efa}\label{class_f_t_font_a002da25744348d44b8d87b3b88ab5efa}} 
+\index{FTFont@{FTFont}!Advance@{Advance}}
+\index{Advance@{Advance}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Advance()}{Advance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float FTFont\+::\+Advance (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string }\end{DoxyParamCaption})}
+
+Get the advance width for a string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & a char string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+advance width 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_ac9ea5e0f3e720dfcb8c4b15e08111a4c}\label{class_f_t_font_ac9ea5e0f3e720dfcb8c4b15e08111a4c}} 
+\index{FTFont@{FTFont}!Advance@{Advance}}
+\index{Advance@{Advance}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Advance()}{Advance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily float FTFont\+::\+Advance (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{string }\end{DoxyParamCaption})}
+
+Get the advance width for a string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & a wchar\+\_\+t string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+advance width 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_ac8be0dbfd7cc89d251d1feb0527a0531}\label{class_f_t_font_ac8be0dbfd7cc89d251d1feb0527a0531}} 
+\index{FTFont@{FTFont}!Ascender@{Ascender}}
+\index{Ascender@{Ascender}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Ascender()}{Ascender()}}
+{\footnotesize\ttfamily float FTFont\+::\+Ascender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the global ascender height for the face.
+
+\begin{DoxyReturn}{Returns}
+Ascender height 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_a6e3b1c6da5d63670efb92479f7bc892a}\label{class_f_t_font_a6e3b1c6da5d63670efb92479f7bc892a}} 
+\index{FTFont@{FTFont}!Attach@{Attach}}
+\index{Attach@{Attach}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Attach()}{Attach()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool FTFont\+::\+Attach (\begin{DoxyParamCaption}\item[{const char $\ast$}]{font\+File\+Path }\end{DoxyParamCaption})}
+
+Attach auxilliary file to font e.\+g font metrics.
+
+Note\+: not all font formats implement this function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+File\+Path} & auxilliary font file path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if file has been attached successfully. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_a066221513c767585a0128e94a1a404d2}\label{class_f_t_font_a066221513c767585a0128e94a1a404d2}} 
+\index{FTFont@{FTFont}!Attach@{Attach}}
+\index{Attach@{Attach}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Attach()}{Attach()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool FTFont\+::\+Attach (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{p\+Buffer\+Bytes,  }\item[{size\+\_\+t}]{buffer\+Size\+In\+Bytes }\end{DoxyParamCaption})}
+
+Attach auxilliary data to font e.\+g font metrics, from memory
+
+Note\+: not all font formats implement this function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Buffer\+Bytes} & the in-\/memory buffer \\
+\hline
+{\em buffer\+Size\+In\+Bytes} & the length of the buffer in bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if file has been attached successfully. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_a45078d6f0b74334030558d10cfeab4b9}\label{class_f_t_font_a45078d6f0b74334030558d10cfeab4b9}} 
+\index{FTFont@{FTFont}!BBox@{BBox}}
+\index{BBox@{BBox}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{BBox()}{BBox()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void FTFont\+::\+BBox (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string,  }\item[{float \&}]{llx,  }\item[{float \&}]{lly,  }\item[{float \&}]{llz,  }\item[{float \&}]{urx,  }\item[{float \&}]{ury,  }\item[{float \&}]{urz }\end{DoxyParamCaption})}
+
+Get the bounding box for a string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & a char string \\
+\hline
+{\em llx} & lower left near x coord \\
+\hline
+{\em lly} & lower left near y coord \\
+\hline
+{\em llz} & lower left near z coord \\
+\hline
+{\em urx} & upper right far x coord \\
+\hline
+{\em ury} & upper right far y coord \\
+\hline
+{\em urz} & upper right far z coord \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_font_af495e078c9f8bad2b6fb0b5d04416fe7}\label{class_f_t_font_af495e078c9f8bad2b6fb0b5d04416fe7}} 
+\index{FTFont@{FTFont}!BBox@{BBox}}
+\index{BBox@{BBox}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{BBox()}{BBox()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FTFont\+::\+BBox (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{string,  }\item[{float \&}]{llx,  }\item[{float \&}]{lly,  }\item[{float \&}]{llz,  }\item[{float \&}]{urx,  }\item[{float \&}]{ury,  }\item[{float \&}]{urz }\end{DoxyParamCaption})}
+
+Get the bounding box for a string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & a wchar\+\_\+t string \\
+\hline
+{\em llx} & lower left near x coord \\
+\hline
+{\em lly} & lower left near y coord \\
+\hline
+{\em llz} & lower left near z coord \\
+\hline
+{\em urx} & upper right far x coord \\
+\hline
+{\em ury} & upper right far y coord \\
+\hline
+{\em urz} & upper right far z coord \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_f_t_font_a72206a5ed619709c397fba2a7b0987ed}\label{class_f_t_font_a72206a5ed619709c397fba2a7b0987ed}} 
+\index{FTFont@{FTFont}!CharMap@{CharMap}}
+\index{CharMap@{CharMap}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{CharMap()}{CharMap()}}
+{\footnotesize\ttfamily bool FTFont\+::\+Char\+Map (\begin{DoxyParamCaption}\item[{FT\+\_\+\+Encoding}]{encoding }\end{DoxyParamCaption})}
+
+Set the character map for the face.
+
+
+\begin{DoxyParams}{Parameters}
+{\em encoding} & Freetype enumerate for char map code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if charmap was valid and set correctly 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_a4932e65132d2e2200fe3d10b352a8dba}\label{class_f_t_font_a4932e65132d2e2200fe3d10b352a8dba}} 
+\index{FTFont@{FTFont}!CharMapCount@{CharMapCount}}
+\index{CharMapCount@{CharMapCount}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{CharMapCount()}{CharMapCount()}}
+{\footnotesize\ttfamily unsigned int FTFont\+::\+Char\+Map\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get the number of character maps in this face.
+
+\begin{DoxyReturn}{Returns}
+character map count. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_add15c511617de7ab8f52cec1fe543809}\label{class_f_t_font_add15c511617de7ab8f52cec1fe543809}} 
+\index{FTFont@{FTFont}!CharMapList@{CharMapList}}
+\index{CharMapList@{CharMapList}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{CharMapList()}{CharMapList()}}
+{\footnotesize\ttfamily FT\+\_\+\+Encoding $\ast$ FTFont\+::\+Char\+Map\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get a list of character maps in this face.
+
+\begin{DoxyReturn}{Returns}
+pointer to the first encoding. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_a7fc7825ca4089e12a679f788e0cb9d2c}\label{class_f_t_font_a7fc7825ca4089e12a679f788e0cb9d2c}} 
+\index{FTFont@{FTFont}!Depth@{Depth}}
+\index{Depth@{Depth}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Depth()}{Depth()}}
+{\footnotesize\ttfamily virtual void FTFont\+::\+Depth (\begin{DoxyParamCaption}\item[{float}]{depth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Set the extrusion distance for the font. Only implemented by \mbox{\hyperlink{class_f_t_g_l_extrd_font}{FTGLExtrd\+Font}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em depth} & The extrusion distance. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_f_t_g_l_extrd_font_aa45bae6acbc1d9ec034e80930372f000}{FTGLExtrd\+Font}}.
+
+\mbox{\Hypertarget{class_f_t_font_a397ad7a506fe84901fbf6dda468e25f9}\label{class_f_t_font_a397ad7a506fe84901fbf6dda468e25f9}} 
+\index{FTFont@{FTFont}!Descender@{Descender}}
+\index{Descender@{Descender}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Descender()}{Descender()}}
+{\footnotesize\ttfamily float FTFont\+::\+Descender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the global descender height for the face.
+
+\begin{DoxyReturn}{Returns}
+Descender height 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_a581a621491803549419b0cb3e9ef917b}\label{class_f_t_font_a581a621491803549419b0cb3e9ef917b}} 
+\index{FTFont@{FTFont}!Error@{Error}}
+\index{Error@{Error}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily FT\+\_\+\+Error FTFont\+::\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Queries the Font for errors.
+
+\begin{DoxyReturn}{Returns}
+The current error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_aa6d19186887bba8a4286b4a8396e783e}\label{class_f_t_font_aa6d19186887bba8a4286b4a8396e783e}} 
+\index{FTFont@{FTFont}!FaceSize@{FaceSize}}
+\index{FaceSize@{FaceSize}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{FaceSize()}{FaceSize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily unsigned int FTFont\+::\+Face\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the current face size in points.
+
+\begin{DoxyReturn}{Returns}
+face size 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_aae95510a733d6755bbbaf92d67796ff9}\label{class_f_t_font_aae95510a733d6755bbbaf92d67796ff9}} 
+\index{FTFont@{FTFont}!FaceSize@{FaceSize}}
+\index{FaceSize@{FaceSize}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{FaceSize()}{FaceSize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool FTFont\+::\+Face\+Size (\begin{DoxyParamCaption}\item[{const unsigned int}]{size,  }\item[{const unsigned int}]{res = {\ttfamily 72} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Set the char size for the current face.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & the face size in points (1/72 inch) \\
+\hline
+{\em res} & the resolution of the target device. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if size was set correctly 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_f_t_g_l_texture_font_acf14d05d13c68cd82b85bd7472cd4331}{FTGLTexture\+Font}}.
+
+\mbox{\Hypertarget{class_f_t_font_a29b6558932641eff0c8187fe18592c92}\label{class_f_t_font_a29b6558932641eff0c8187fe18592c92}} 
+\index{FTFont@{FTFont}!LineHeight@{LineHeight}}
+\index{LineHeight@{LineHeight}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{LineHeight()}{LineHeight()}}
+{\footnotesize\ttfamily float FTFont\+::\+Line\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the line spacing for the font.
+
+\begin{DoxyReturn}{Returns}
+Line height 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_a7a803a726808d612c804a430c93d2652}\label{class_f_t_font_a7a803a726808d612c804a430c93d2652}} 
+\index{FTFont@{FTFont}!MakeGlyph@{MakeGlyph}}
+\index{MakeGlyph@{MakeGlyph}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{MakeGlyph()}{MakeGlyph()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}} $\ast$ FTFont\+::\+Make\+Glyph (\begin{DoxyParamCaption}\item[{unsigned int}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+Construct a glyph of the correct type.
+
+Clients must overide the function and return their specialised \mbox{\hyperlink{class_f_t_glyph}{FTGlyph}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & The glyph index NOT the char code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An FT$\ast$$\ast$$\ast$$\ast$\+Glyph or {\ttfamily null} on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_f_t_font_a93f5c144d5a0603508ff3d6c28aaf6ad}\label{class_f_t_font_a93f5c144d5a0603508ff3d6c28aaf6ad}} 
+\index{FTFont@{FTFont}!Render@{Render}}
+\index{Render@{Render}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual void FTFont\+::\+Render (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Render a string of characters
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & \textquotesingle{}C\textquotesingle{} style string to be output. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_f_t_g_l_bitmap_font_ab88fa94fedf167268cd3cbb38329b589}{FTGLBitmap\+Font}}, \mbox{\hyperlink{class_f_t_g_l_outline_font_a7f85d2219922d26032f27bda2e85f631}{FTGLOutline\+Font}}, \mbox{\hyperlink{class_f_t_g_l_pixmap_font_a98e190048751cc536daf182b9217d465}{FTGLPixmap\+Font}}, and \mbox{\hyperlink{class_f_t_g_l_texture_font_a54162dba80ce7fa7a9b4d944ccb6b436}{FTGLTexture\+Font}}.
+
+\mbox{\Hypertarget{class_f_t_font_af69d1b663afded110d91312831e3a2e3}\label{class_f_t_font_af69d1b663afded110d91312831e3a2e3}} 
+\index{FTFont@{FTFont}!Render@{Render}}
+\index{Render@{Render}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual void FTFont\+::\+Render (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Render a string of characters
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & wchar\+\_\+t string to be output. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_f_t_g_l_bitmap_font_adc6b4ebef06edfa05d3e6b38934d4b01}{FTGLBitmap\+Font}}, \mbox{\hyperlink{class_f_t_g_l_outline_font_aa47744c894c89a5581cc6367106b2494}{FTGLOutline\+Font}}, \mbox{\hyperlink{class_f_t_g_l_pixmap_font_a647df06903133e7cdcef1ef3e4cc587b}{FTGLPixmap\+Font}}, and \mbox{\hyperlink{class_f_t_g_l_texture_font_a71509ad87ad63824d0ad23a19ca9bdb7}{FTGLTexture\+Font}}.
+
+\mbox{\Hypertarget{class_f_t_font_ac329128a66175e29ac4f9920726e1740}\label{class_f_t_font_ac329128a66175e29ac4f9920726e1740}} 
+\index{FTFont@{FTFont}!UseDisplayList@{UseDisplayList}}
+\index{UseDisplayList@{UseDisplayList}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{UseDisplayList()}{UseDisplayList()}}
+{\footnotesize\ttfamily void FTFont\+::\+Use\+Display\+List (\begin{DoxyParamCaption}\item[{bool}]{use\+List }\end{DoxyParamCaption})}
+
+Enable or disable the use of Display Lists inside FTGL
+
+
+\begin{DoxyParams}{Parameters}
+{\em use\+List} & {\ttfamily true} turns ON display lists. {\ttfamily false} turns OFF display lists. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_f_t_font_ad781a66dd9274c6554a5dbd089789108}\label{class_f_t_font_ad781a66dd9274c6554a5dbd089789108}} 
+\index{FTFont@{FTFont}!charSize@{charSize}}
+\index{charSize@{charSize}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{charSize}{charSize}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_size}{FTSize}} FTFont\+::char\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+Current size object \mbox{\Hypertarget{class_f_t_font_adf26fb4a4538fd3e957b526482c701a3}\label{class_f_t_font_adf26fb4a4538fd3e957b526482c701a3}} 
+\index{FTFont@{FTFont}!err@{err}}
+\index{err@{err}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{err}{err}}
+{\footnotesize\ttfamily FT\+\_\+\+Error FTFont\+::err\hspace{0.3cm}{\ttfamily [protected]}}
+
+Current error code. Zero means no error. \mbox{\Hypertarget{class_f_t_font_aec048c2cebf62ae063feb45ade60868b}\label{class_f_t_font_aec048c2cebf62ae063feb45ade60868b}} 
+\index{FTFont@{FTFont}!face@{face}}
+\index{face@{face}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{face}{face}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_f_t_face}{FTFace}} FTFont\+::face\hspace{0.3cm}{\ttfamily [protected]}}
+
+Current face object \mbox{\Hypertarget{class_f_t_font_a1f2b064e4a9f9259f317fae4f22f4400}\label{class_f_t_font_a1f2b064e4a9f9259f317fae4f22f4400}} 
+\index{FTFont@{FTFont}!useDisplayLists@{useDisplayLists}}
+\index{useDisplayLists@{useDisplayLists}!FTFont@{FTFont}}
+\doxysubsubsection{\texorpdfstring{useDisplayLists}{useDisplayLists}}
+{\footnotesize\ttfamily bool FTFont\+::use\+Display\+Lists\hspace{0.3cm}{\ttfamily [protected]}}
+
+Flag to enable or disable the use of Display Lists inside FTGL {\ttfamily true} turns ON display lists. {\ttfamily false} turns OFF display lists. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Projects/\+FEM/831\+\_\+finite\+\_\+element\+\_\+modeling/dependencies/\+FTGL/\+FTGL/include/ftgl/FTFont.\+h\end{DoxyCompactItemize}

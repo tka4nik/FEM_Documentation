@@ -1,0 +1,90 @@
+\hypertarget{_layer_8h_source}{}\doxysection{Layer.\+h}
+\label{_layer_8h_source}\index{C:/Projects/FEM/prototype-\/prismatic/source/Layer.h@{C:/Projects/FEM/prototype-\/prismatic/source/Layer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Field.h"{}}}
+\DoxyCodeLine{5 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_fem}{CFem}};}
+\DoxyCodeLine{6 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_billet}{CBillet}};}
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_layer}{CLayer}}\{}
+\DoxyCodeLine{9 \textcolor{keyword}{public}:}
+\DoxyCodeLine{10     \mbox{\hyperlink{class_c_layer}{CLayer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{11     \mbox{\hyperlink{class_c_layer}{\string~CLayer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{public}:}
+\DoxyCodeLine{14     \textcolor{keywordtype}{void} Init0();}
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} FreeAll();}
+\DoxyCodeLine{16     \textcolor{keywordtype}{void} SetCurrField(\textcolor{keywordtype}{int} nCurField, \textcolor{keywordtype}{bool} bRecalc = \textcolor{keyword}{true});}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} Load(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_fem}{CFem}} *pFem);}
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} Load(CFile \& file);}
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} Copy(\textcolor{keyword}{const} \mbox{\hyperlink{class_c_layer}{CLayer}} \&Src);}
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} Save(CFile \& file);}
+\DoxyCodeLine{21     \textcolor{keywordtype}{void} glDrawMesh(\textcolor{keywordtype}{double} minX, \textcolor{keywordtype}{double} maxX, \textcolor{keywordtype}{double} minY, \textcolor{keywordtype}{double} maxY, \mbox{\hyperlink{class_c_field}{CField}} *pFieldTmpl, BOOL bSmooth);}
+\DoxyCodeLine{22     \textcolor{keywordtype}{double} X(\textcolor{keywordtype}{int} e, \textcolor{keywordtype}{int} p)\{}
+\DoxyCodeLine{23         ASSERT(p>=0 \&\& p<3);}
+\DoxyCodeLine{24         ASSERT(e>=0 \&\& e <m\_nMEl);}
+\DoxyCodeLine{25         \textcolor{keywordflow}{return} m\_MeshX[m\_IJK[e][p]];}
+\DoxyCodeLine{26     \}}
+\DoxyCodeLine{27     \textcolor{keywordtype}{double} Y(\textcolor{keywordtype}{int} e, \textcolor{keywordtype}{int} p)\{}
+\DoxyCodeLine{28         ASSERT(p>=0 \&\& p<3);}
+\DoxyCodeLine{29         ASSERT(e>=0 \&\& e <m\_nMEl);}
+\DoxyCodeLine{30         \textcolor{keywordflow}{return} m\_MeshY[m\_IJK[e][p]];}
+\DoxyCodeLine{31     \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keyword}{public}:}
+\DoxyCodeLine{34     \textcolor{keywordtype}{int} m\_nMP;}
+\DoxyCodeLine{35     \textcolor{keywordtype}{int} m\_nPFrNum;}
+\DoxyCodeLine{36     \textcolor{keywordtype}{int} m\_nEFrNum;}
+\DoxyCodeLine{37     \textcolor{keywordtype}{int} m\_nCntNum;}
+\DoxyCodeLine{38     \textcolor{keywordtype}{int} m\_nMEl;}
+\DoxyCodeLine{39     \textcolor{keywordtype}{int} m\_nCurField;}
+\DoxyCodeLine{40     \textcolor{keywordtype}{double} m\_dMinFieldVal;}
+\DoxyCodeLine{41     \textcolor{keywordtype}{double} m\_dMaxFieldVal;}
+\DoxyCodeLine{42     \textcolor{keywordtype}{double} m\_dMinFieldValS;}
+\DoxyCodeLine{43     \textcolor{keywordtype}{double} m\_dMaxFieldValS;}
+\DoxyCodeLine{44     BOOL m\_bFi;}
+\DoxyCodeLine{45     \textcolor{keywordtype}{int} m\_nStep;}
+\DoxyCodeLine{46     \textcolor{comment}{//double m\_Ezz;}}
+\DoxyCodeLine{47     \textcolor{comment}{//double m\_Dzz;}}
+\DoxyCodeLine{48     \textcolor{keywordtype}{double} m\_dK0;}
+\DoxyCodeLine{49     \textcolor{keywordtype}{double} m\_dK;}
+\DoxyCodeLine{50     \textcolor{keywordtype}{double} m\_dOmega;}
+\DoxyCodeLine{51     \textcolor{keywordtype}{double} m\_dZ;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     int (*m\_IJK)[3];}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keywordtype}{int} *m\_EFr;     \textcolor{comment}{//размерность m\_nMEl/ номера граничныех элеметов}}
+\DoxyCodeLine{56     \textcolor{keywordtype}{int} *m\_PFr;         \textcolor{comment}{//размерность m\_nPFrNum/  номера граничных узлов}}
+\DoxyCodeLine{57     \textcolor{keywordtype}{double} *m\_Sqm;  \textcolor{comment}{//ploschadi elementov(m\_nMel);}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{keywordtype}{int}  *m\_PFrCnt;     \textcolor{comment}{//размерность m\_nPFrNum/ если узел контактный, его номер в массивах m\_PCnt,m\_RCnt,m\_RCntFlags, иначе -\/1}}
+\DoxyCodeLine{60     \textcolor{keywordtype}{int}  *m\_PCnt;       \textcolor{comment}{//размерность m\_nPFrNum/ номера контактных узлов}}
+\DoxyCodeLine{61     \textcolor{keywordtype}{int}  *m\_RCnt;       \textcolor{comment}{//размерность m\_nPFrNum/ номера линии штампа для контактных узлов}}
+\DoxyCodeLine{62     \textcolor{keywordtype}{char} *m\_RCntFlags;  \textcolor{comment}{//размерность m\_nPFrNum/ флаги контактных узлов}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64     \textcolor{keywordtype}{double} *m\_MeshX;}
+\DoxyCodeLine{65     \textcolor{keywordtype}{double} *m\_MeshY;}
+\DoxyCodeLine{66     \textcolor{keywordtype}{double} *m\_MeshZ; \textcolor{comment}{// БЫЛО 11 ПОЛЕЙ: новая строчка }}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68     \textcolor{comment}{//\{\{sili na kontactnoj poverchnosty(m\_nCnt!!!)}}
+\DoxyCodeLine{69     \textcolor{keywordtype}{double} *m\_Stl;}
+\DoxyCodeLine{70     \textcolor{keywordtype}{double} *m\_Snn;}
+\DoxyCodeLine{71     \textcolor{keywordtype}{double} *m\_Stt;}
+\DoxyCodeLine{72     \textcolor{keywordtype}{double} *m\_Len;}
+\DoxyCodeLine{73     \textcolor{comment}{//\}\}sili na kontactnoj poverchnosty}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keywordtype}{double} *m\_Term;}
+\DoxyCodeLine{76     \textcolor{keywordtype}{double} *m\_Fi;}
+\DoxyCodeLine{77     \textcolor{comment}{//\{\{polya(m\_nMEl)}}
+\DoxyCodeLine{78     \textcolor{keywordtype}{double} **m\_Fields;}
+\DoxyCodeLine{79     \textcolor{comment}{//\}\}polya}}
+\DoxyCodeLine{80     \textcolor{keywordtype}{double} *m\_CurrField; \textcolor{comment}{// tekuschee pole(m\_nMP)}}
+\DoxyCodeLine{81 \textcolor{keyword}{public}:}
+\DoxyCodeLine{82     \textcolor{keywordtype}{void} Import(CFile \&File);}
+\DoxyCodeLine{83     \textcolor{keywordtype}{void} Export(CFile \&File, \textcolor{keywordtype}{bool} bTurn);}
+\DoxyCodeLine{84 \textcolor{keyword}{public}:}
+\DoxyCodeLine{85     \textcolor{keywordtype}{void} ReMeshPrep(\mbox{\hyperlink{class_c_billet}{CBillet}} * pBillet);}
+\DoxyCodeLine{86 \};}
+
+\end{DoxyCode}

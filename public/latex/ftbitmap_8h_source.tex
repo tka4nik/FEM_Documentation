@@ -1,0 +1,212 @@
+\hypertarget{ftbitmap_8h_source}{}\doxysection{ftbitmap.\+h}
+\label{ftbitmap_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftbitmap.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftbitmap.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftbitmap.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    FreeType utility functions for converting 1bpp, 2bpp, 4bpp, and 8bpp */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*    bitmaps into 8bpp format (specification).                            */}  }
+\DoxyCodeLine{7 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Copyright 2004, 2005 by                                                */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{16 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{17 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef \_\_FTBITMAP\_H\_\_}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define \_\_FTBITMAP\_H\_\_}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include FT\_FREETYPE\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef FREETYPE\_H}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}freetype.h of FreeType 1 has been loaded!"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#error "{}Please fix the directory search order for header files"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#error "{}so that freetype.h of FreeType 2 is found first."{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{38   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{39   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{40   \textcolor{comment}{/*    bitmap\_handling                                                    */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{43   \textcolor{comment}{/*    Bitmap Handling                                                    */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{45   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{46   \textcolor{comment}{/*    Handling FT\_Bitmap objects.                                        */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{48   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{49   \textcolor{comment}{/*    This section contains functions for converting FT\_Bitmap objects.  */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{51 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{55   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{56   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{57   \textcolor{comment}{/*    FT\_Bitmap\_New                                                      */}}
+\DoxyCodeLine{58   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{59   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*    Initialize a pointer to an FT\_Bitmap structure.                    */}}
+\DoxyCodeLine{61   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{62   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*    abitmap :: A pointer to the bitmap structure.                      */}}
+\DoxyCodeLine{64   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{65   FT\_EXPORT( \textcolor{keywordtype}{void} )}
+\DoxyCodeLine{66   FT\_Bitmap\_New( \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}  *abitmap );}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{70   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{71   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*    FT\_Bitmap\_Copy                                                     */}}
+\DoxyCodeLine{73   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{74   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*    Copies an bitmap into another one.                                 */}}
+\DoxyCodeLine{76   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{77   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*    library :: A handle to a library object.                           */}}
+\DoxyCodeLine{79   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*    source  :: A handle to the source bitmap.                          */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{82   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*    target  :: A handle to the target bitmap.                          */}}
+\DoxyCodeLine{84   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{85   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{88   FT\_EXPORT\_DEF( FT\_Error )}
+\DoxyCodeLine{89   FT\_Bitmap\_Copy( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}        library,}
+\DoxyCodeLine{90                   \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}  *source,}
+\DoxyCodeLine{91                   \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}        *target);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{95   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{96   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{97   \textcolor{comment}{/*    FT\_Bitmap\_Embolden                                                 */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{99   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{100   \textcolor{comment}{/*    Embolden a bitmap.  The new bitmap will be about `xStrength'       */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*    pixels wider and `yStrength' pixels higher.  The left and bottom   */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*    borders are kept unchanged.                                        */}}
+\DoxyCodeLine{103   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{104   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*    library   :: A handle to a library object.                         */}}
+\DoxyCodeLine{106   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*    xStrength :: How strong the glyph is emboldened horizontally.      */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*                 Expressed in 26.6 pixel format.                       */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*    yStrength :: How strong the glyph is emboldened vertically.        */}}
+\DoxyCodeLine{111   \textcolor{comment}{/*                 Expressed in 26.6 pixel format.                       */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{113   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{114   \textcolor{comment}{/*    bitmap    :: A handle to the target bitmap.                        */}}
+\DoxyCodeLine{115   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{116   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{117   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{118   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{119   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{120   \textcolor{comment}{/*    The current implementation restricts `xStrength' to be less than   */}}
+\DoxyCodeLine{121   \textcolor{comment}{/*    or equal to 8 if bitmap is of pixel\_mode @FT\_PIXEL\_MODE\_MONO.      */}}
+\DoxyCodeLine{122   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*    Don't embolden the bitmap owned by a @FT\_GlyphSlot directly!  Call */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*    @FT\_Bitmap\_Copy to get a copy and work on the copy instead.        */}}
+\DoxyCodeLine{125   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{126   FT\_EXPORT\_DEF( FT\_Error )}
+\DoxyCodeLine{127   FT\_Bitmap\_Embolden( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library,}
+\DoxyCodeLine{128                       \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}*  bitmap,}
+\DoxyCodeLine{129                       FT\_Pos      xStrength,}
+\DoxyCodeLine{130                       FT\_Pos      yStrength );}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{134   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{135   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*    FT\_Bitmap\_Convert                                                  */}}
+\DoxyCodeLine{137   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{138   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*    Convert a bitmap object with depth 1bpp, 2bpp, 4bpp, or 8bpp to a  */}}
+\DoxyCodeLine{140   \textcolor{comment}{/*    bitmap object with depth 8bpp, making the number of used bytes per */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*    line (a.k.a. the `pitch') a multiple of `alignment'.               */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{143   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*    library   :: A handle to a library object.                         */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*    source    :: The source bitmap.                                    */}}
+\DoxyCodeLine{147   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{148   \textcolor{comment}{/*    alignment :: The pitch of the bitmap is a multiple of this         */}}
+\DoxyCodeLine{149   \textcolor{comment}{/*                 parameter.  Common values are 1, 2, or 4.             */}}
+\DoxyCodeLine{150   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{151   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{152   \textcolor{comment}{/*    target    :: The target bitmap.                                    */}}
+\DoxyCodeLine{153   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{154   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{155   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{156   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{157   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{158   \textcolor{comment}{/*    It is possible to call @FT\_Bitmap\_Convert multiple times without   */}}
+\DoxyCodeLine{159   \textcolor{comment}{/*    calling @FT\_Bitmap\_Done (the memory is simply reallocated).        */}}
+\DoxyCodeLine{160   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{161   \textcolor{comment}{/*    Use @FT\_Bitmap\_Done to finally remove the bitmap object.           */}}
+\DoxyCodeLine{162   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{163   \textcolor{comment}{/*    The `library' argument is taken to have access to FreeType's       */}}
+\DoxyCodeLine{164   \textcolor{comment}{/*    memory handling functions.                                         */}}
+\DoxyCodeLine{165   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{166   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{167   FT\_Bitmap\_Convert( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}        library,}
+\DoxyCodeLine{168                      \textcolor{keyword}{const} \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}  *source,}
+\DoxyCodeLine{169                      \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}        *target,}
+\DoxyCodeLine{170                      FT\_Int            alignment );}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{174   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{175   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{176   \textcolor{comment}{/*    FT\_Bitmap\_Done                                                     */}}
+\DoxyCodeLine{177   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{178   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{179   \textcolor{comment}{/*    Destroy a bitmap object created with @FT\_Bitmap\_New.               */}}
+\DoxyCodeLine{180   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{181   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{182   \textcolor{comment}{/*    library :: A handle to a library object.                           */}}
+\DoxyCodeLine{183   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{184   \textcolor{comment}{/*    bitmap  :: The bitmap object to be freed.                          */}}
+\DoxyCodeLine{185   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{186   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{187   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{188   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{189   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{190   \textcolor{comment}{/*    The `library' argument is taken to have access to FreeType's       */}}
+\DoxyCodeLine{191   \textcolor{comment}{/*    memory handling functions.                                         */}}
+\DoxyCodeLine{192   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{193   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{194   FT\_Bitmap\_Done( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library,}
+\DoxyCodeLine{195                   \mbox{\hyperlink{struct_f_t___bitmap__}{FT\_Bitmap}}  *bitmap );}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198   \textcolor{comment}{/* */}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201 FT\_END\_HEADER}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTBITMAP\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

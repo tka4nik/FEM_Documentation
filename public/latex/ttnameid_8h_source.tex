@@ -1,0 +1,1125 @@
+\hypertarget{ttnameid_8h_source}{}\doxysection{ttnameid.\+h}
+\label{ttnameid_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ttnameid.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ttnameid.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ttnameid.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    TrueType name ID definitions (specification only).                   */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2002, 2003, 2004 by                                     */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_TTNAMEID\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_TTNAMEID\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{30   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{31   \textcolor{comment}{/* Possible values for the `platform' identifier code in the name        */}}
+\DoxyCodeLine{32   \textcolor{comment}{/* records of the TTF `name' table.                                      */}}
+\DoxyCodeLine{33   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{34 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{  /***********************************************************************}}
+\DoxyCodeLine{38 \textcolor{comment}{   *}}
+\DoxyCodeLine{39 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{40 \textcolor{comment}{   *   TT\_PLATFORM\_XXX}}
+\DoxyCodeLine{41 \textcolor{comment}{   *}}
+\DoxyCodeLine{42 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{43 \textcolor{comment}{   *   A list of valid values for the `platform\_id' identifier code in}}
+\DoxyCodeLine{44 \textcolor{comment}{   *   @FT\_CharMapRec and @FT\_SfntName structures.}}
+\DoxyCodeLine{45 \textcolor{comment}{   *}}
+\DoxyCodeLine{46 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{47 \textcolor{comment}{   *   TT\_PLATFORM\_APPLE\_UNICODE ::}}
+\DoxyCodeLine{48 \textcolor{comment}{   *     Used by Apple to indicate a Unicode character map and/or name entry.}}
+\DoxyCodeLine{49 \textcolor{comment}{   *     See @TT\_APPLE\_ID\_XXX for corresponding `encoding\_id' values.  Note}}
+\DoxyCodeLine{50 \textcolor{comment}{   *     that name entries in this format are coded as big-\/endian UCS-\/2}}
+\DoxyCodeLine{51 \textcolor{comment}{   *     character codes \_only\_.}}
+\DoxyCodeLine{52 \textcolor{comment}{   *}}
+\DoxyCodeLine{53 \textcolor{comment}{   *   TT\_PLATFORM\_MACINTOSH ::}}
+\DoxyCodeLine{54 \textcolor{comment}{   *     Used by Apple to indicate a MacOS-\/specific charmap and/or name entry.}}
+\DoxyCodeLine{55 \textcolor{comment}{   *     See @TT\_MAC\_ID\_XXX for corresponding `encoding\_id' values.  Note that}}
+\DoxyCodeLine{56 \textcolor{comment}{   *     most TrueType fonts contain an Apple roman charmap to be usable on}}
+\DoxyCodeLine{57 \textcolor{comment}{   *     MacOS systems (even if they contain a Microsoft charmap as well).}}
+\DoxyCodeLine{58 \textcolor{comment}{   *}}
+\DoxyCodeLine{59 \textcolor{comment}{   *   TT\_PLATFORM\_ISO ::}}
+\DoxyCodeLine{60 \textcolor{comment}{   *     This value was used to specify Unicode charmaps.  It is however}}
+\DoxyCodeLine{61 \textcolor{comment}{   *     now deprecated.  See @TT\_ISO\_ID\_XXX for a list of corresponding}}
+\DoxyCodeLine{62 \textcolor{comment}{   *     `encoding\_id' values.}}
+\DoxyCodeLine{63 \textcolor{comment}{   *}}
+\DoxyCodeLine{64 \textcolor{comment}{   *   TT\_PLATFORM\_MICROSOFT ::}}
+\DoxyCodeLine{65 \textcolor{comment}{   *     Used by Microsoft to indicate Windows-\/specific charmaps.  See}}
+\DoxyCodeLine{66 \textcolor{comment}{   *     @TT\_MS\_ID\_XXX for a list of corresponding `encoding\_id' values.}}
+\DoxyCodeLine{67 \textcolor{comment}{   *     Note that most fonts contain a Unicode charmap using}}
+\DoxyCodeLine{68 \textcolor{comment}{   *     (@TT\_PLATFORM\_MICROSOFT, @TT\_MS\_ID\_UNICODE\_CS).}}
+\DoxyCodeLine{69 \textcolor{comment}{   *}}
+\DoxyCodeLine{70 \textcolor{comment}{   *   TT\_PLATFORM\_CUSTOM ::}}
+\DoxyCodeLine{71 \textcolor{comment}{   *     Used to indicate application-\/specific charmaps.}}
+\DoxyCodeLine{72 \textcolor{comment}{   *}}
+\DoxyCodeLine{73 \textcolor{comment}{   *   TT\_PLATFORM\_ADOBE ::}}
+\DoxyCodeLine{74 \textcolor{comment}{   *     This value isn't part of any font format specification, but is used}}
+\DoxyCodeLine{75 \textcolor{comment}{   *     by FreeType to report Adobe-\/specific charmaps in an @FT\_CharMapRec}}
+\DoxyCodeLine{76 \textcolor{comment}{   *     structure.  See @TT\_ADOBE\_ID\_XXX.}}
+\DoxyCodeLine{77 \textcolor{comment}{   */}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#define TT\_PLATFORM\_APPLE\_UNICODE  0}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define TT\_PLATFORM\_MACINTOSH      1}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define TT\_PLATFORM\_ISO            2 }\textcolor{comment}{/* deprecated */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define TT\_PLATFORM\_MICROSOFT      3}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define TT\_PLATFORM\_CUSTOM         4}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#define TT\_PLATFORM\_ADOBE          7 }\textcolor{comment}{/* artificial */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{comment}{  /***********************************************************************}}
+\DoxyCodeLine{88 \textcolor{comment}{   *}}
+\DoxyCodeLine{89 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{90 \textcolor{comment}{   *   TT\_APPLE\_ID\_XXX}}
+\DoxyCodeLine{91 \textcolor{comment}{   *}}
+\DoxyCodeLine{92 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{93 \textcolor{comment}{   *   A list of valid values for the `encoding\_id' for}}
+\DoxyCodeLine{94 \textcolor{comment}{   *   @TT\_PLATFORM\_APPLE\_UNICODE charmaps and name entries.}}
+\DoxyCodeLine{95 \textcolor{comment}{   *}}
+\DoxyCodeLine{96 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{97 \textcolor{comment}{   *   TT\_APPLE\_ID\_DEFAULT ::}}
+\DoxyCodeLine{98 \textcolor{comment}{   *     Unicode version 1.0.}}
+\DoxyCodeLine{99 \textcolor{comment}{   *   TT\_APPLE\_ID\_UNICODE\_1\_1 ::}}
+\DoxyCodeLine{100 \textcolor{comment}{   *     Unicode 1.1; specifies Hangul characters starting at U+34xx.}}
+\DoxyCodeLine{101 \textcolor{comment}{   *   TT\_APPLE\_ID\_ISO\_10646 ::}}
+\DoxyCodeLine{102 \textcolor{comment}{   *     Deprecated (identical to preceding.)}}
+\DoxyCodeLine{103 \textcolor{comment}{   *   TT\_APPLE\_ID\_UNICODE\_2\_0 ::}}
+\DoxyCodeLine{104 \textcolor{comment}{   *     Unicode 2.0 and beyond (UTF-\/16 BMP only.)}}
+\DoxyCodeLine{105 \textcolor{comment}{   *   TT\_APPLE\_ID\_UNICODE\_32 ::}}
+\DoxyCodeLine{106 \textcolor{comment}{   *     Unicode 3.1 and beyond, using UTF-\/32}}
+\DoxyCodeLine{107 \textcolor{comment}{   */}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define TT\_APPLE\_ID\_DEFAULT      0 }\textcolor{comment}{/* Unicode 1.0 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define TT\_APPLE\_ID\_UNICODE\_1\_1  1 }\textcolor{comment}{/* specify Hangul at U+34xx */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define TT\_APPLE\_ID\_ISO\_10646    2 }\textcolor{comment}{/* deprecated */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#define TT\_APPLE\_ID\_UNICODE\_2\_0  3 }\textcolor{comment}{/* or later */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define TT\_APPLE\_ID\_UNICODE\_32   4 }\textcolor{comment}{/* 2.0 or later, full repertoire */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \textcolor{comment}{  /***********************************************************************}}
+\DoxyCodeLine{117 \textcolor{comment}{   *}}
+\DoxyCodeLine{118 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{119 \textcolor{comment}{   *   TT\_MAC\_ID\_XXX}}
+\DoxyCodeLine{120 \textcolor{comment}{   *}}
+\DoxyCodeLine{121 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{122 \textcolor{comment}{   *   A list of valid values for the `encoding\_id' for}}
+\DoxyCodeLine{123 \textcolor{comment}{   *   @TT\_PLATFORM\_MACINTOSH charmaps and name entries.}}
+\DoxyCodeLine{124 \textcolor{comment}{   *}}
+\DoxyCodeLine{125 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{126 \textcolor{comment}{   *   TT\_MAC\_ID\_ROMAN ::}}
+\DoxyCodeLine{127 \textcolor{comment}{   *   TT\_MAC\_ID\_JAPANESE ::}}
+\DoxyCodeLine{128 \textcolor{comment}{   *   TT\_MAC\_ID\_TRADITIONAL\_CHINESE ::}}
+\DoxyCodeLine{129 \textcolor{comment}{   *   TT\_MAC\_ID\_KOREAN ::}}
+\DoxyCodeLine{130 \textcolor{comment}{   *   TT\_MAC\_ID\_ARABIC ::}}
+\DoxyCodeLine{131 \textcolor{comment}{   *   TT\_MAC\_ID\_HEBREW ::}}
+\DoxyCodeLine{132 \textcolor{comment}{   *   TT\_MAC\_ID\_GREEK ::}}
+\DoxyCodeLine{133 \textcolor{comment}{   *   TT\_MAC\_ID\_RUSSIAN ::}}
+\DoxyCodeLine{134 \textcolor{comment}{   *   TT\_MAC\_ID\_RSYMBOL ::}}
+\DoxyCodeLine{135 \textcolor{comment}{   *   TT\_MAC\_ID\_DEVANAGARI ::}}
+\DoxyCodeLine{136 \textcolor{comment}{   *   TT\_MAC\_ID\_GURMUKHI ::}}
+\DoxyCodeLine{137 \textcolor{comment}{   *   TT\_MAC\_ID\_GUJARATI ::}}
+\DoxyCodeLine{138 \textcolor{comment}{   *   TT\_MAC\_ID\_ORIYA ::}}
+\DoxyCodeLine{139 \textcolor{comment}{   *   TT\_MAC\_ID\_BENGALI ::}}
+\DoxyCodeLine{140 \textcolor{comment}{   *   TT\_MAC\_ID\_TAMIL ::}}
+\DoxyCodeLine{141 \textcolor{comment}{   *   TT\_MAC\_ID\_TELUGU ::}}
+\DoxyCodeLine{142 \textcolor{comment}{   *   TT\_MAC\_ID\_KANNADA ::}}
+\DoxyCodeLine{143 \textcolor{comment}{   *   TT\_MAC\_ID\_MALAYALAM ::}}
+\DoxyCodeLine{144 \textcolor{comment}{   *   TT\_MAC\_ID\_SINHALESE ::}}
+\DoxyCodeLine{145 \textcolor{comment}{   *   TT\_MAC\_ID\_BURMESE ::}}
+\DoxyCodeLine{146 \textcolor{comment}{   *   TT\_MAC\_ID\_KHMER ::}}
+\DoxyCodeLine{147 \textcolor{comment}{   *   TT\_MAC\_ID\_THAI ::}}
+\DoxyCodeLine{148 \textcolor{comment}{   *   TT\_MAC\_ID\_LAOTIAN ::}}
+\DoxyCodeLine{149 \textcolor{comment}{   *   TT\_MAC\_ID\_GEORGIAN ::}}
+\DoxyCodeLine{150 \textcolor{comment}{   *   TT\_MAC\_ID\_ARMENIAN ::}}
+\DoxyCodeLine{151 \textcolor{comment}{   *   TT\_MAC\_ID\_MALDIVIAN ::}}
+\DoxyCodeLine{152 \textcolor{comment}{   *   TT\_MAC\_ID\_SIMPLIFIED\_CHINESE ::}}
+\DoxyCodeLine{153 \textcolor{comment}{   *   TT\_MAC\_ID\_TIBETAN ::}}
+\DoxyCodeLine{154 \textcolor{comment}{   *   TT\_MAC\_ID\_MONGOLIAN ::}}
+\DoxyCodeLine{155 \textcolor{comment}{   *   TT\_MAC\_ID\_GEEZ ::}}
+\DoxyCodeLine{156 \textcolor{comment}{   *   TT\_MAC\_ID\_SLAVIC ::}}
+\DoxyCodeLine{157 \textcolor{comment}{   *   TT\_MAC\_ID\_VIETNAMESE ::}}
+\DoxyCodeLine{158 \textcolor{comment}{   *   TT\_MAC\_ID\_SINDHI ::}}
+\DoxyCodeLine{159 \textcolor{comment}{   *   TT\_MAC\_ID\_UNINTERP ::}}
+\DoxyCodeLine{160 \textcolor{comment}{   */}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_ROMAN                 0}}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_JAPANESE              1}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_TRADITIONAL\_CHINESE   2}}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_KOREAN                3}}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_ARABIC                4}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_HEBREW                5}}
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_GREEK                 6}}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_RUSSIAN               7}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_RSYMBOL               8}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_DEVANAGARI            9}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_GURMUKHI             10}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_GUJARATI             11}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_ORIYA                12}}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_BENGALI              13}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_TAMIL                14}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_TELUGU               15}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_KANNADA              16}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_MALAYALAM            17}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_SINHALESE            18}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_BURMESE              19}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_KHMER                20}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_THAI                 21}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_LAOTIAN              22}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_GEORGIAN             23}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_ARMENIAN             24}}
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_MALDIVIAN            25}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_SIMPLIFIED\_CHINESE   25}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_TIBETAN              26}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_MONGOLIAN            27}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_GEEZ                 28}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_SLAVIC               29}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_VIETNAMESE           30}}
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_SINDHI               31}}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#define TT\_MAC\_ID\_UNINTERP             32}}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{comment}{  /***********************************************************************}}
+\DoxyCodeLine{199 \textcolor{comment}{   *}}
+\DoxyCodeLine{200 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{201 \textcolor{comment}{   *   TT\_ISO\_ID\_XXX}}
+\DoxyCodeLine{202 \textcolor{comment}{   *}}
+\DoxyCodeLine{203 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{204 \textcolor{comment}{   *   A list of valid values for the `encoding\_id' for}}
+\DoxyCodeLine{205 \textcolor{comment}{   *   @TT\_PLATFORM\_ISO charmaps and name entries.}}
+\DoxyCodeLine{206 \textcolor{comment}{   *}}
+\DoxyCodeLine{207 \textcolor{comment}{   *   Their use is now deprecated.}}
+\DoxyCodeLine{208 \textcolor{comment}{   *}}
+\DoxyCodeLine{209 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{210 \textcolor{comment}{   *   TT\_ISO\_ID\_7BIT\_ASCII ::}}
+\DoxyCodeLine{211 \textcolor{comment}{   *     ASCII.}}
+\DoxyCodeLine{212 \textcolor{comment}{   *   TT\_ISO\_ID\_10646 ::}}
+\DoxyCodeLine{213 \textcolor{comment}{   *     ISO/10646.}}
+\DoxyCodeLine{214 \textcolor{comment}{   *   TT\_ISO\_ID\_8859\_1 ::}}
+\DoxyCodeLine{215 \textcolor{comment}{   *     Also known as Latin-\/1.}}
+\DoxyCodeLine{216 \textcolor{comment}{   */}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#define TT\_ISO\_ID\_7BIT\_ASCII  0}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#define TT\_ISO\_ID\_10646       1}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#define TT\_ISO\_ID\_8859\_1      2}}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223 \textcolor{comment}{  /***********************************************************************}}
+\DoxyCodeLine{224 \textcolor{comment}{   *}}
+\DoxyCodeLine{225 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{226 \textcolor{comment}{   *   TT\_MS\_ID\_XXX}}
+\DoxyCodeLine{227 \textcolor{comment}{   *}}
+\DoxyCodeLine{228 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{229 \textcolor{comment}{   *   A list of valid values for the `encoding\_id' for}}
+\DoxyCodeLine{230 \textcolor{comment}{   *   @TT\_PLATFORM\_MICROSOFT charmaps and name entries.}}
+\DoxyCodeLine{231 \textcolor{comment}{   *}}
+\DoxyCodeLine{232 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{233 \textcolor{comment}{   *   TT\_MS\_ID\_SYMBOL\_CS ::}}
+\DoxyCodeLine{234 \textcolor{comment}{   *     Corresponds to Microsoft symbol encoding. See}}
+\DoxyCodeLine{235 \textcolor{comment}{   *     @FT\_ENCODING\_MS\_SYMBOL.}}
+\DoxyCodeLine{236 \textcolor{comment}{   *}}
+\DoxyCodeLine{237 \textcolor{comment}{   *   TT\_MS\_ID\_UNICODE\_CS ::}}
+\DoxyCodeLine{238 \textcolor{comment}{   *     Corresponds to a Microsoft WGL4 charmap, matching Unicode.  See}}
+\DoxyCodeLine{239 \textcolor{comment}{   *     @FT\_ENCODING\_UNICODE.}}
+\DoxyCodeLine{240 \textcolor{comment}{   *}}
+\DoxyCodeLine{241 \textcolor{comment}{   *   TT\_MS\_ID\_SJIS ::}}
+\DoxyCodeLine{242 \textcolor{comment}{   *     Corresponds to SJIS Japanese encoding.  See @FT\_ENCODING\_SJIS.}}
+\DoxyCodeLine{243 \textcolor{comment}{   *}}
+\DoxyCodeLine{244 \textcolor{comment}{   *   TT\_MS\_ID\_GB2312 ::}}
+\DoxyCodeLine{245 \textcolor{comment}{   *     Corresponds to Simplified Chinese as used in Mainland China.  See}}
+\DoxyCodeLine{246 \textcolor{comment}{   *     @FT\_ENCODING\_GB2312.}}
+\DoxyCodeLine{247 \textcolor{comment}{   *}}
+\DoxyCodeLine{248 \textcolor{comment}{   *   TT\_MS\_ID\_BIG\_5 ::}}
+\DoxyCodeLine{249 \textcolor{comment}{   *     Corresponds to Traditional Chinese as used in Taiwan and Hong Kong.}}
+\DoxyCodeLine{250 \textcolor{comment}{   *     See @FT\_ENCODING\_BIG5.}}
+\DoxyCodeLine{251 \textcolor{comment}{   *}}
+\DoxyCodeLine{252 \textcolor{comment}{   *   TT\_MS\_ID\_WANSUNG ::}}
+\DoxyCodeLine{253 \textcolor{comment}{   *     Corresponds to Korean Wansung encoding.  See @FT\_ENCODING\_WANSUNG.}}
+\DoxyCodeLine{254 \textcolor{comment}{   *}}
+\DoxyCodeLine{255 \textcolor{comment}{   *   TT\_MS\_ID\_JOHAB ::}}
+\DoxyCodeLine{256 \textcolor{comment}{   *     Corresponds to Johab encoding.  See @FT\_ENCODING\_JOHAB.}}
+\DoxyCodeLine{257 \textcolor{comment}{   *}}
+\DoxyCodeLine{258 \textcolor{comment}{   *   TT\_MS\_ID\_UCS\_4 ::}}
+\DoxyCodeLine{259 \textcolor{comment}{   *     Corresponds to UCS-\/4 or UTF-\/32 charmaps.  This has been added to}}
+\DoxyCodeLine{260 \textcolor{comment}{   *     the OpenType specification version 1.4 (mid-\/2001.)}}
+\DoxyCodeLine{261 \textcolor{comment}{   */}}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 \textcolor{preprocessor}{\#define TT\_MS\_ID\_SYMBOL\_CS    0}}
+\DoxyCodeLine{264 \textcolor{preprocessor}{\#define TT\_MS\_ID\_UNICODE\_CS   1}}
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#define TT\_MS\_ID\_SJIS         2}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{\#define TT\_MS\_ID\_GB2312       3}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{\#define TT\_MS\_ID\_BIG\_5        4}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{\#define TT\_MS\_ID\_WANSUNG      5}}
+\DoxyCodeLine{269 \textcolor{preprocessor}{\#define TT\_MS\_ID\_JOHAB        6}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{\#define TT\_MS\_ID\_UCS\_4       10}}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273 \textcolor{comment}{  /***********************************************************************}}
+\DoxyCodeLine{274 \textcolor{comment}{   *}}
+\DoxyCodeLine{275 \textcolor{comment}{   * @enum:}}
+\DoxyCodeLine{276 \textcolor{comment}{   *   TT\_ADOBE\_ID\_XXX}}
+\DoxyCodeLine{277 \textcolor{comment}{   *}}
+\DoxyCodeLine{278 \textcolor{comment}{   * @description:}}
+\DoxyCodeLine{279 \textcolor{comment}{   *   A list of valid values for the `encoding\_id' for}}
+\DoxyCodeLine{280 \textcolor{comment}{   *   @TT\_PLATFORM\_ADOBE charmaps.  This is a FreeType-\/specific extension!}}
+\DoxyCodeLine{281 \textcolor{comment}{   *}}
+\DoxyCodeLine{282 \textcolor{comment}{   * @values:}}
+\DoxyCodeLine{283 \textcolor{comment}{   *   TT\_ADOBE\_ID\_STANDARD ::}}
+\DoxyCodeLine{284 \textcolor{comment}{   *     Adobe standard encoding.}}
+\DoxyCodeLine{285 \textcolor{comment}{   *   TT\_ADOBE\_ID\_EXPERT ::}}
+\DoxyCodeLine{286 \textcolor{comment}{   *     Adobe expert encoding.}}
+\DoxyCodeLine{287 \textcolor{comment}{   *   TT\_ADOBE\_ID\_CUSTOM ::}}
+\DoxyCodeLine{288 \textcolor{comment}{   *     Adobe custom encoding.}}
+\DoxyCodeLine{289 \textcolor{comment}{   */}}
+\DoxyCodeLine{290 }
+\DoxyCodeLine{291 \textcolor{preprocessor}{\#define TT\_ADOBE\_ID\_STANDARD  0}}
+\DoxyCodeLine{292 \textcolor{preprocessor}{\#define TT\_ADOBE\_ID\_EXPERT    1}}
+\DoxyCodeLine{293 \textcolor{preprocessor}{\#define TT\_ADOBE\_ID\_CUSTOM    2}}
+\DoxyCodeLine{294 \textcolor{preprocessor}{\#define TT\_ADOBE\_ID\_LATIN\_1   3}}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{298   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{299   \textcolor{comment}{/* Possible values of the language identifier field in the name records  */}}
+\DoxyCodeLine{300   \textcolor{comment}{/* of the TTF `name' table if the `platform' identifier code is          */}}
+\DoxyCodeLine{301   \textcolor{comment}{/* TT\_PLATFORM\_MACINTOSH.                                                */}}
+\DoxyCodeLine{302   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{303   \textcolor{comment}{/* The canonical source for the Apple assigned Language ID's is at       */}}
+\DoxyCodeLine{304   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{305   \textcolor{comment}{/*   http://fonts.apple.com/TTRefMan/RM06/Chap6name.html                 */}}
+\DoxyCodeLine{306   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{307 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ENGLISH                       0}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_FRENCH                        1}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_GERMAN                        2}}
+\DoxyCodeLine{310 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ITALIAN                       3}}
+\DoxyCodeLine{311 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_DUTCH                         4}}
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SWEDISH                       5}}
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SPANISH                       6}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_DANISH                        7}}
+\DoxyCodeLine{315 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_PORTUGUESE                    8}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_NORWEGIAN                     9}}
+\DoxyCodeLine{317 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_HEBREW                       10}}
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_JAPANESE                     11}}
+\DoxyCodeLine{319 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ARABIC                       12}}
+\DoxyCodeLine{320 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_FINNISH                      13}}
+\DoxyCodeLine{321 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_GREEK                        14}}
+\DoxyCodeLine{322 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ICELANDIC                    15}}
+\DoxyCodeLine{323 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MALTESE                      16}}
+\DoxyCodeLine{324 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TURKISH                      17}}
+\DoxyCodeLine{325 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_CROATIAN                     18}}
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_CHINESE\_TRADITIONAL          19}}
+\DoxyCodeLine{327 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_URDU                         20}}
+\DoxyCodeLine{328 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_HINDI                        21}}
+\DoxyCodeLine{329 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_THAI                         22}}
+\DoxyCodeLine{330 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_KOREAN                       23}}
+\DoxyCodeLine{331 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_LITHUANIAN                   24}}
+\DoxyCodeLine{332 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_POLISH                       25}}
+\DoxyCodeLine{333 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_HUNGARIAN                    26}}
+\DoxyCodeLine{334 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ESTONIAN                     27}}
+\DoxyCodeLine{335 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_LETTISH                      28}}
+\DoxyCodeLine{336 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SAAMISK                      29}}
+\DoxyCodeLine{337 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_FAEROESE                     30}}
+\DoxyCodeLine{338 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_FARSI                        31}}
+\DoxyCodeLine{339 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_RUSSIAN                      32}}
+\DoxyCodeLine{340 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_CHINESE\_SIMPLIFIED           33}}
+\DoxyCodeLine{341 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_FLEMISH                      34}}
+\DoxyCodeLine{342 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_IRISH                        35}}
+\DoxyCodeLine{343 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ALBANIAN                     36}}
+\DoxyCodeLine{344 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ROMANIAN                     37}}
+\DoxyCodeLine{345 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_CZECH                        38}}
+\DoxyCodeLine{346 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SLOVAK                       39}}
+\DoxyCodeLine{347 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SLOVENIAN                    40}}
+\DoxyCodeLine{348 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_YIDDISH                      41}}
+\DoxyCodeLine{349 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SERBIAN                      42}}
+\DoxyCodeLine{350 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MACEDONIAN                   43}}
+\DoxyCodeLine{351 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_BULGARIAN                    44}}
+\DoxyCodeLine{352 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_UKRAINIAN                    45}}
+\DoxyCodeLine{353 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_BYELORUSSIAN                 46}}
+\DoxyCodeLine{354 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_UZBEK                        47}}
+\DoxyCodeLine{355 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_KAZAKH                       48}}
+\DoxyCodeLine{356 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_AZERBAIJANI                  49}}
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_AZERBAIJANI\_CYRILLIC\_SCRIPT  49}}
+\DoxyCodeLine{358 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_AZERBAIJANI\_ARABIC\_SCRIPT    50}}
+\DoxyCodeLine{359 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ARMENIAN                     51}}
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_GEORGIAN                     52}}
+\DoxyCodeLine{361 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MOLDAVIAN                    53}}
+\DoxyCodeLine{362 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_KIRGHIZ                      54}}
+\DoxyCodeLine{363 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TAJIKI                       55}}
+\DoxyCodeLine{364 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TURKMEN                      56}}
+\DoxyCodeLine{365 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MONGOLIAN                    57}}
+\DoxyCodeLine{366 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MONGOLIAN\_MONGOLIAN\_SCRIPT   57}}
+\DoxyCodeLine{367 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MONGOLIAN\_CYRILLIC\_SCRIPT    58}}
+\DoxyCodeLine{368 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_PASHTO                       59}}
+\DoxyCodeLine{369 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_KURDISH                      60}}
+\DoxyCodeLine{370 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_KASHMIRI                     61}}
+\DoxyCodeLine{371 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SINDHI                       62}}
+\DoxyCodeLine{372 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TIBETAN                      63}}
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_NEPALI                       64}}
+\DoxyCodeLine{374 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SANSKRIT                     65}}
+\DoxyCodeLine{375 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MARATHI                      66}}
+\DoxyCodeLine{376 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_BENGALI                      67}}
+\DoxyCodeLine{377 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ASSAMESE                     68}}
+\DoxyCodeLine{378 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_GUJARATI                     69}}
+\DoxyCodeLine{379 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_PUNJABI                      70}}
+\DoxyCodeLine{380 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ORIYA                        71}}
+\DoxyCodeLine{381 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MALAYALAM                    72}}
+\DoxyCodeLine{382 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_KANNADA                      73}}
+\DoxyCodeLine{383 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TAMIL                        74}}
+\DoxyCodeLine{384 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TELUGU                       75}}
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SINHALESE                    76}}
+\DoxyCodeLine{386 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_BURMESE                      77}}
+\DoxyCodeLine{387 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_KHMER                        78}}
+\DoxyCodeLine{388 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_LAO                          79}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_VIETNAMESE                   80}}
+\DoxyCodeLine{390 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_INDONESIAN                   81}}
+\DoxyCodeLine{391 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TAGALOG                      82}}
+\DoxyCodeLine{392 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MALAY\_ROMAN\_SCRIPT           83}}
+\DoxyCodeLine{393 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MALAY\_ARABIC\_SCRIPT          84}}
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_AMHARIC                      85}}
+\DoxyCodeLine{395 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TIGRINYA                     86}}
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_GALLA                        87}}
+\DoxyCodeLine{397 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SOMALI                       88}}
+\DoxyCodeLine{398 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SWAHILI                      89}}
+\DoxyCodeLine{399 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_RUANDA                       90}}
+\DoxyCodeLine{400 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_RUNDI                        91}}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_CHEWA                        92}}
+\DoxyCodeLine{402 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MALAGASY                     93}}
+\DoxyCodeLine{403 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_ESPERANTO                    94}}
+\DoxyCodeLine{404 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_WELSH                       128}}
+\DoxyCodeLine{405 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_BASQUE                      129}}
+\DoxyCodeLine{406 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_CATALAN                     130}}
+\DoxyCodeLine{407 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_LATIN                       131}}
+\DoxyCodeLine{408 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_QUECHUA                     132}}
+\DoxyCodeLine{409 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_GUARANI                     133}}
+\DoxyCodeLine{410 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_AYMARA                      134}}
+\DoxyCodeLine{411 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TATAR                       135}}
+\DoxyCodeLine{412 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_UIGHUR                      136}}
+\DoxyCodeLine{413 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_DZONGKHA                    137}}
+\DoxyCodeLine{414 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_JAVANESE                    138}}
+\DoxyCodeLine{415 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SUNDANESE                   139}}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417 }
+\DoxyCodeLine{418 \textcolor{preprocessor}{\#if 0  }\textcolor{comment}{/* these seem to be errors that have been dropped */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{420 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SCOTTISH\_GAELIC             140}}
+\DoxyCodeLine{421 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_IRISH\_GAELIC                141}}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425 }
+\DoxyCodeLine{426   \textcolor{comment}{/* The following codes are new as of 2000-\/03-\/10 */}}
+\DoxyCodeLine{427 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_GALICIAN                    140}}
+\DoxyCodeLine{428 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_AFRIKAANS                   141}}
+\DoxyCodeLine{429 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_BRETON                      142}}
+\DoxyCodeLine{430 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_INUKTITUT                   143}}
+\DoxyCodeLine{431 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_SCOTTISH\_GAELIC             144}}
+\DoxyCodeLine{432 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_MANX\_GAELIC                 145}}
+\DoxyCodeLine{433 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_IRISH\_GAELIC                146}}
+\DoxyCodeLine{434 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_TONGAN                      147}}
+\DoxyCodeLine{435 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_GREEK\_POLYTONIC             148}}
+\DoxyCodeLine{436 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_GREELANDIC                  149}}
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#define TT\_MAC\_LANGID\_AZERBAIJANI\_ROMAN\_SCRIPT    150}}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{441   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{442   \textcolor{comment}{/* Possible values of the language identifier field in the name records  */}}
+\DoxyCodeLine{443   \textcolor{comment}{/* of the TTF `name' table if the `platform' identifier code is          */}}
+\DoxyCodeLine{444   \textcolor{comment}{/* TT\_PLATFORM\_MICROSOFT.                                                */}}
+\DoxyCodeLine{445   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{446   \textcolor{comment}{/* The canonical source for the MS assigned LCID's (seems to) be at      */}}
+\DoxyCodeLine{447   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{448   \textcolor{comment}{/*   http://www.microsoft.com/globaldev/reference/lcid-\/all.mspx          */}}
+\DoxyCodeLine{449   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{450   \textcolor{comment}{/* It used to be at various places, among them                           */}}
+\DoxyCodeLine{451   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{452   \textcolor{comment}{/*   http://www.microsoft.com/typography/OTSPEC/lcid-\/cp.txt              */}}
+\DoxyCodeLine{453   \textcolor{comment}{/*   http://www.microsoft.com/globaldev/reference/loclanghome.asp        */}}
+\DoxyCodeLine{454   \textcolor{comment}{/*   http://support.microsoft.com/support/kb/articles/Q224/8/04.ASP      */}}
+\DoxyCodeLine{455   \textcolor{comment}{/*   http://msdn.microsoft.com/library/en-\/us/passport25/                 */}}
+\DoxyCodeLine{456   \textcolor{comment}{/*           NET\_Passport\_VBScript\_Documentation/Single\_Sign\_In/         */}}
+\DoxyCodeLine{457   \textcolor{comment}{/*           Advanced\_Single\_Sign\_In/Localization\_and\_LCIDs.asp          */}}
+\DoxyCodeLine{458   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{459   \textcolor{comment}{/* Hopefully, it seems now that the Globaldev site prevails...           */}}
+\DoxyCodeLine{460   \textcolor{comment}{/*                                   (updated by Antoine, 2004-\/02-\/17)    */}}
+\DoxyCodeLine{461 }
+\DoxyCodeLine{462 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_GENERAL                    0x0001}}
+\DoxyCodeLine{463 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_SAUDI\_ARABIA               0x0401}}
+\DoxyCodeLine{464 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_IRAQ                       0x0801}}
+\DoxyCodeLine{465 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_EGYPT                      0x0c01}}
+\DoxyCodeLine{466 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_LIBYA                      0x1001}}
+\DoxyCodeLine{467 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_ALGERIA                    0x1401}}
+\DoxyCodeLine{468 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_MOROCCO                    0x1801}}
+\DoxyCodeLine{469 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_TUNISIA                    0x1c01}}
+\DoxyCodeLine{470 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_OMAN                       0x2001}}
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_YEMEN                      0x2401}}
+\DoxyCodeLine{472 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_SYRIA                      0x2801}}
+\DoxyCodeLine{473 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_JORDAN                     0x2c01}}
+\DoxyCodeLine{474 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_LEBANON                    0x3001}}
+\DoxyCodeLine{475 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_KUWAIT                     0x3401}}
+\DoxyCodeLine{476 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_UAE                        0x3801}}
+\DoxyCodeLine{477 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_BAHRAIN                    0x3c01}}
+\DoxyCodeLine{478 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARABIC\_QATAR                      0x4001}}
+\DoxyCodeLine{479 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_BULGARIAN\_BULGARIA                0x0402}}
+\DoxyCodeLine{480 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CATALAN\_SPAIN                     0x0403}}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CHINESE\_GENERAL                   0x0004}}
+\DoxyCodeLine{482 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CHINESE\_TAIWAN                    0x0404}}
+\DoxyCodeLine{483 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CHINESE\_PRC                       0x0804}}
+\DoxyCodeLine{484 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CHINESE\_HONG\_KONG                 0x0c04}}
+\DoxyCodeLine{485 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CHINESE\_SINGAPORE                 0x1004}}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487 \textcolor{preprocessor}{\#if 1  }\textcolor{comment}{/* this looks like the correct value */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{488 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CHINESE\_MACAU                     0x1404}}
+\DoxyCodeLine{489 \textcolor{preprocessor}{\#else  }\textcolor{comment}{/* but beware, Microsoft may change its mind...}}
+\DoxyCodeLine{490 \textcolor{comment}{          the most recent Word reference has the following: */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{491 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CHINESE\_MACAU  TT\_MS\_LANGID\_CHINESE\_HONG\_KONG}}
+\DoxyCodeLine{492 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{493 }
+\DoxyCodeLine{494 \textcolor{preprocessor}{\#if 0  }\textcolor{comment}{/* used only with .NET "{}cultures"{}; commented out */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{495 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CHINESE\_TRADITIONAL               0x7C04}}
+\DoxyCodeLine{496 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{497 }
+\DoxyCodeLine{498 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CZECH\_CZECH\_REPUBLIC              0x0405}}
+\DoxyCodeLine{499 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_DANISH\_DENMARK                    0x0406}}
+\DoxyCodeLine{500 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GERMAN\_GERMANY                    0x0407}}
+\DoxyCodeLine{501 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GERMAN\_SWITZERLAND                0x0807}}
+\DoxyCodeLine{502 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GERMAN\_AUSTRIA                    0x0c07}}
+\DoxyCodeLine{503 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GERMAN\_LUXEMBOURG                 0x1007}}
+\DoxyCodeLine{504 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GERMAN\_LIECHTENSTEI               0x1407}}
+\DoxyCodeLine{505 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GREEK\_GREECE                      0x0408}}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{507   \textcolor{comment}{/* don't ask what this one means... It is commented out currently. */}}
+\DoxyCodeLine{508 \textcolor{preprocessor}{\#if 0}}
+\DoxyCodeLine{509 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GREEK\_GREECE2                     0x2008}}
+\DoxyCodeLine{510 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{511 }
+\DoxyCodeLine{512 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_GENERAL                   0x0009}}
+\DoxyCodeLine{513 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_UNITED\_STATES             0x0409}}
+\DoxyCodeLine{514 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_UNITED\_KINGDOM            0x0809}}
+\DoxyCodeLine{515 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_AUSTRALIA                 0x0c09}}
+\DoxyCodeLine{516 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_CANADA                    0x1009}}
+\DoxyCodeLine{517 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_NEW\_ZEALAND               0x1409}}
+\DoxyCodeLine{518 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_IRELAND                   0x1809}}
+\DoxyCodeLine{519 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_SOUTH\_AFRICA              0x1c09}}
+\DoxyCodeLine{520 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_JAMAICA                   0x2009}}
+\DoxyCodeLine{521 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_CARIBBEAN                 0x2409}}
+\DoxyCodeLine{522 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_BELIZE                    0x2809}}
+\DoxyCodeLine{523 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_TRINIDAD                  0x2c09}}
+\DoxyCodeLine{524 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_ZIMBABWE                  0x3009}}
+\DoxyCodeLine{525 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_PHILIPPINES               0x3409}}
+\DoxyCodeLine{526 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_INDONESIA                 0x3809}}
+\DoxyCodeLine{527 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_HONG\_KONG                 0x3c09}}
+\DoxyCodeLine{528 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_INDIA                     0x4009}}
+\DoxyCodeLine{529 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_MALAYSIA                  0x4409}}
+\DoxyCodeLine{530 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ENGLISH\_SINGAPORE                 0x4809}}
+\DoxyCodeLine{531 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_SPAIN\_TRADITIONAL\_SORT    0x040a}}
+\DoxyCodeLine{532 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_MEXICO                    0x080a}}
+\DoxyCodeLine{533 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_SPAIN\_INTERNATIONAL\_SORT  0x0c0a}}
+\DoxyCodeLine{534 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_GUATEMALA                 0x100a}}
+\DoxyCodeLine{535 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_COSTA\_RICA                0x140a}}
+\DoxyCodeLine{536 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_PANAMA                    0x180a}}
+\DoxyCodeLine{537 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_DOMINICAN\_REPUBLIC        0x1c0a}}
+\DoxyCodeLine{538 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_VENEZUELA                 0x200a}}
+\DoxyCodeLine{539 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_COLOMBIA                  0x240a}}
+\DoxyCodeLine{540 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_PERU                      0x280a}}
+\DoxyCodeLine{541 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_ARGENTINA                 0x2c0a}}
+\DoxyCodeLine{542 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_ECUADOR                   0x300a}}
+\DoxyCodeLine{543 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_CHILE                     0x340a}}
+\DoxyCodeLine{544 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_URUGUAY                   0x380a}}
+\DoxyCodeLine{545 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_PARAGUAY                  0x3c0a}}
+\DoxyCodeLine{546 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_BOLIVIA                   0x400a}}
+\DoxyCodeLine{547 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_EL\_SALVADOR               0x440a}}
+\DoxyCodeLine{548 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_HONDURAS                  0x480a}}
+\DoxyCodeLine{549 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_NICARAGUA                 0x4c0a}}
+\DoxyCodeLine{550 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_PUERTO\_RICO               0x500a}}
+\DoxyCodeLine{551 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_UNITED\_STATES             0x540a}}
+\DoxyCodeLine{552   \textcolor{comment}{/* The following ID blatantly violate MS specs by using a */}}
+\DoxyCodeLine{553   \textcolor{comment}{/* sublanguage > 0x1F.                                    */}}
+\DoxyCodeLine{554 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SPANISH\_LATIN\_AMERICA             0xE40aU}}
+\DoxyCodeLine{555 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FINNISH\_FINLAND                   0x040b}}
+\DoxyCodeLine{556 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_FRANCE                     0x040c}}
+\DoxyCodeLine{557 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_BELGIUM                    0x080c}}
+\DoxyCodeLine{558 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_CANADA                     0x0c0c}}
+\DoxyCodeLine{559 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_SWITZERLAND                0x100c}}
+\DoxyCodeLine{560 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_LUXEMBOURG                 0x140c}}
+\DoxyCodeLine{561 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_MONACO                     0x180c}}
+\DoxyCodeLine{562 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_WEST\_INDIES                0x1c0c}}
+\DoxyCodeLine{563 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_REUNION                    0x200c}}
+\DoxyCodeLine{564 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_CONGO                      0x240c}}
+\DoxyCodeLine{565   \textcolor{comment}{/* which was formerly: */}}
+\DoxyCodeLine{566 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_ZAIRE  TT\_MS\_LANGID\_FRENCH\_CONGO}}
+\DoxyCodeLine{567 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_SENEGAL                    0x280c}}
+\DoxyCodeLine{568 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_CAMEROON                   0x2c0c}}
+\DoxyCodeLine{569 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_COTE\_D\_IVOIRE              0x300c}}
+\DoxyCodeLine{570 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_MALI                       0x340c}}
+\DoxyCodeLine{571 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_MOROCCO                    0x380c}}
+\DoxyCodeLine{572 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_HAITI                      0x3c0c}}
+\DoxyCodeLine{573   \textcolor{comment}{/* and another violation of the spec (see 0xE40aU) */}}
+\DoxyCodeLine{574 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRENCH\_NORTH\_AFRICA               0xE40cU}}
+\DoxyCodeLine{575 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_HEBREW\_ISRAEL                     0x040d}}
+\DoxyCodeLine{576 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_HUNGARIAN\_HUNGARY                 0x040e}}
+\DoxyCodeLine{577 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ICELANDIC\_ICELAND                 0x040f}}
+\DoxyCodeLine{578 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ITALIAN\_ITALY                     0x0410}}
+\DoxyCodeLine{579 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ITALIAN\_SWITZERLAND               0x0810}}
+\DoxyCodeLine{580 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_JAPANESE\_JAPAN                    0x0411}}
+\DoxyCodeLine{581 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KOREAN\_EXTENDED\_WANSUNG\_KOREA     0x0412}}
+\DoxyCodeLine{582 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KOREAN\_JOHAB\_KOREA                0x0812}}
+\DoxyCodeLine{583 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_DUTCH\_NETHERLANDS                 0x0413}}
+\DoxyCodeLine{584 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_DUTCH\_BELGIUM                     0x0813}}
+\DoxyCodeLine{585 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_NORWEGIAN\_NORWAY\_BOKMAL           0x0414}}
+\DoxyCodeLine{586 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_NORWEGIAN\_NORWAY\_NYNORSK          0x0814}}
+\DoxyCodeLine{587 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_POLISH\_POLAND                     0x0415}}
+\DoxyCodeLine{588 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_PORTUGUESE\_BRAZIL                 0x0416}}
+\DoxyCodeLine{589 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_PORTUGUESE\_PORTUGAL               0x0816}}
+\DoxyCodeLine{590 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_RHAETO\_ROMANIC\_SWITZERLAND        0x0417}}
+\DoxyCodeLine{591 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ROMANIAN\_ROMANIA                  0x0418}}
+\DoxyCodeLine{592 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MOLDAVIAN\_MOLDAVIA                0x0818}}
+\DoxyCodeLine{593 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_RUSSIAN\_RUSSIA                    0x0419}}
+\DoxyCodeLine{594 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_RUSSIAN\_MOLDAVIA                  0x0819}}
+\DoxyCodeLine{595 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CROATIAN\_CROATIA                  0x041a}}
+\DoxyCodeLine{596 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SERBIAN\_SERBIA\_LATIN              0x081a}}
+\DoxyCodeLine{597 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SERBIAN\_SERBIA\_CYRILLIC           0x0c1a}}
+\DoxyCodeLine{598 }
+\DoxyCodeLine{599 \textcolor{preprocessor}{\#if 0  }\textcolor{comment}{/* this used to be this value, but it looks like we were wrong */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{600 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_BOSNIAN\_BOSNIA\_HERZEGOVINA        0x101a}}
+\DoxyCodeLine{601 \textcolor{preprocessor}{\#else  }\textcolor{comment}{/* current sources say */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{602 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CROATIAN\_BOSNIA\_HERZEGOVINA       0x101a}}
+\DoxyCodeLine{603 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_BOSNIAN\_BOSNIA\_HERZEGOVINA        0x141a}}
+\DoxyCodeLine{604        \textcolor{comment}{/* and XPsp2 Platform SDK added (2004-\/07-\/26) */}}
+\DoxyCodeLine{605        \textcolor{comment}{/* Names are shortened to be signifiant within 40 chars. */}}
+\DoxyCodeLine{606 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SERBIAN\_BOSNIA\_HERZ\_LATIN         0x181a}}
+\DoxyCodeLine{607 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SERBIAN\_BOSNIA\_HERZ\_CYRILLIC      0x181a}}
+\DoxyCodeLine{608 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{609 }
+\DoxyCodeLine{610 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SLOVAK\_SLOVAKIA                   0x041b}}
+\DoxyCodeLine{611 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ALBANIAN\_ALBANIA                  0x041c}}
+\DoxyCodeLine{612 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SWEDISH\_SWEDEN                    0x041d}}
+\DoxyCodeLine{613 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SWEDISH\_FINLAND                   0x081d}}
+\DoxyCodeLine{614 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_THAI\_THAILAND                     0x041e}}
+\DoxyCodeLine{615 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TURKISH\_TURKEY                    0x041f}}
+\DoxyCodeLine{616 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_URDU\_PAKISTAN                     0x0420}}
+\DoxyCodeLine{617 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_URDU\_INDIA                        0x0820}}
+\DoxyCodeLine{618 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_INDONESIAN\_INDONESIA              0x0421}}
+\DoxyCodeLine{619 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_UKRAINIAN\_UKRAINE                 0x0422}}
+\DoxyCodeLine{620 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_BELARUSIAN\_BELARUS                0x0423}}
+\DoxyCodeLine{621 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SLOVENE\_SLOVENIA                  0x0424}}
+\DoxyCodeLine{622 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ESTONIAN\_ESTONIA                  0x0425}}
+\DoxyCodeLine{623 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_LATVIAN\_LATVIA                    0x0426}}
+\DoxyCodeLine{624 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_LITHUANIAN\_LITHUANIA              0x0427}}
+\DoxyCodeLine{625 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CLASSIC\_LITHUANIAN\_LITHUANIA      0x0827}}
+\DoxyCodeLine{626 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TAJIK\_TAJIKISTAN                  0x0428}}
+\DoxyCodeLine{627 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FARSI\_IRAN                        0x0429}}
+\DoxyCodeLine{628 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_VIETNAMESE\_VIET\_NAM               0x042a}}
+\DoxyCodeLine{629 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ARMENIAN\_ARMENIA                  0x042b}}
+\DoxyCodeLine{630 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_AZERI\_AZERBAIJAN\_LATIN            0x042c}}
+\DoxyCodeLine{631 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_AZERI\_AZERBAIJAN\_CYRILLIC         0x082c}}
+\DoxyCodeLine{632 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_BASQUE\_SPAIN                      0x042d}}
+\DoxyCodeLine{633 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SORBIAN\_GERMANY                   0x042e}}
+\DoxyCodeLine{634 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MACEDONIAN\_MACEDONIA              0x042f}}
+\DoxyCodeLine{635 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SUTU\_SOUTH\_AFRICA                 0x0430}}
+\DoxyCodeLine{636 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TSONGA\_SOUTH\_AFRICA               0x0431}}
+\DoxyCodeLine{637 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TSWANA\_SOUTH\_AFRICA               0x0432}}
+\DoxyCodeLine{638 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_VENDA\_SOUTH\_AFRICA                0x0433}}
+\DoxyCodeLine{639 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_XHOSA\_SOUTH\_AFRICA                0x0434}}
+\DoxyCodeLine{640 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ZULU\_SOUTH\_AFRICA                 0x0435}}
+\DoxyCodeLine{641 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_AFRIKAANS\_SOUTH\_AFRICA            0x0436}}
+\DoxyCodeLine{642 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GEORGIAN\_GEORGIA                  0x0437}}
+\DoxyCodeLine{643 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FAEROESE\_FAEROE\_ISLANDS           0x0438}}
+\DoxyCodeLine{644 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_HINDI\_INDIA                       0x0439}}
+\DoxyCodeLine{645 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MALTESE\_MALTA                     0x043a}}
+\DoxyCodeLine{646   \textcolor{comment}{/* Added by XPsp2 Platform SDK (2004-\/07-\/26) */}}
+\DoxyCodeLine{647 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAMI\_NORTHERN\_NORWAY              0x043b}}
+\DoxyCodeLine{648 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAMI\_NORTHERN\_SWEDEN              0x083b}}
+\DoxyCodeLine{649 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAMI\_NORTHERN\_FINLAND             0x0C3b}}
+\DoxyCodeLine{650 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAMI\_LULE\_NORWAY                  0x103b}}
+\DoxyCodeLine{651 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAMI\_LULE\_SWEDEN                  0x143b}}
+\DoxyCodeLine{652 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAMI\_SOUTHERN\_NORWAY              0x183b}}
+\DoxyCodeLine{653 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAMI\_SOUTHERN\_SWEDEN              0x1C3b}}
+\DoxyCodeLine{654 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAMI\_SKOLT\_FINLAND                0x203b}}
+\DoxyCodeLine{655 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAMI\_INARI\_FINLAND                0x243b}}
+\DoxyCodeLine{656   \textcolor{comment}{/* ... and we also keep our old identifier... */}}
+\DoxyCodeLine{657 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SAAMI\_LAPONIA                     0x043b}}
+\DoxyCodeLine{658 }
+\DoxyCodeLine{659 \textcolor{preprocessor}{\#if 0 }\textcolor{comment}{/* this seems to be a previous invertion */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{660 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_IRISH\_GAELIC\_IRELAND              0x043c}}
+\DoxyCodeLine{661 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SCOTTISH\_GAELIC\_UNITED\_KINGDOM    0x083c}}
+\DoxyCodeLine{662 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{663 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SCOTTISH\_GAELIC\_UNITED\_KINGDOM    0x083c}}
+\DoxyCodeLine{664 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_IRISH\_GAELIC\_IRELAND              0x043c}}
+\DoxyCodeLine{665 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{666 }
+\DoxyCodeLine{667 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_YIDDISH\_GERMANY                   0x043d}}
+\DoxyCodeLine{668 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MALAY\_MALAYSIA                    0x043e}}
+\DoxyCodeLine{669 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MALAY\_BRUNEI\_DARUSSALAM           0x083e}}
+\DoxyCodeLine{670 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KAZAK\_KAZAKSTAN                   0x043f}}
+\DoxyCodeLine{671 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KIRGHIZ\_KIRGHIZSTAN }\textcolor{comment}{/* Cyrillic*/}\textcolor{preprocessor}{ 0x0440}}
+\DoxyCodeLine{672   \textcolor{comment}{/* alias declared in Windows 2000 */}}
+\DoxyCodeLine{673 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KIRGHIZ\_KIRGHIZ\_REPUBLIC \(\backslash\)}}
+\DoxyCodeLine{674 \textcolor{preprocessor}{          TT\_MS\_LANGID\_KIRGHIZ\_KIRGHIZSTAN}}
+\DoxyCodeLine{675 }
+\DoxyCodeLine{676 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SWAHILI\_KENYA                     0x0441}}
+\DoxyCodeLine{677 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TURKMEN\_TURKMENISTAN              0x0442}}
+\DoxyCodeLine{678 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_UZBEK\_UZBEKISTAN\_LATIN            0x0443}}
+\DoxyCodeLine{679 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_UZBEK\_UZBEKISTAN\_CYRILLIC         0x0843}}
+\DoxyCodeLine{680 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TATAR\_TATARSTAN                   0x0444}}
+\DoxyCodeLine{681 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_BENGALI\_INDIA                     0x0445}}
+\DoxyCodeLine{682 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_BENGALI\_BANGLADESH                0x0845}}
+\DoxyCodeLine{683 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_PUNJABI\_INDIA                     0x0446}}
+\DoxyCodeLine{684 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_PUNJABI\_ARABIC\_PAKISTAN           0x0846}}
+\DoxyCodeLine{685 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GUJARATI\_INDIA                    0x0447}}
+\DoxyCodeLine{686 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ORIYA\_INDIA                       0x0448}}
+\DoxyCodeLine{687 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TAMIL\_INDIA                       0x0449}}
+\DoxyCodeLine{688 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TELUGU\_INDIA                      0x044a}}
+\DoxyCodeLine{689 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KANNADA\_INDIA                     0x044b}}
+\DoxyCodeLine{690 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MALAYALAM\_INDIA                   0x044c}}
+\DoxyCodeLine{691 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_ASSAMESE\_INDIA                    0x044d}}
+\DoxyCodeLine{692 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MARATHI\_INDIA                     0x044e}}
+\DoxyCodeLine{693 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SANSKRIT\_INDIA                    0x044f}}
+\DoxyCodeLine{694 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MONGOLIAN\_MONGOLIA }\textcolor{comment}{/* Cyrillic */}\textcolor{preprocessor}{ 0x0450}}
+\DoxyCodeLine{695 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MONGOLIAN\_MONGOLIA\_MONGOLIAN      0x0850}}
+\DoxyCodeLine{696 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TIBETAN\_CHINA                     0x0451}}
+\DoxyCodeLine{697 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_DZONGHKA\_BHUTAN                   0x0851}}
+\DoxyCodeLine{698 }
+\DoxyCodeLine{699 \textcolor{preprocessor}{\#if 0}}
+\DoxyCodeLine{700   \textcolor{comment}{/* the following used to be defined */}}
+\DoxyCodeLine{701 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TIBETAN\_BHUTAN                    0x0451}}
+\DoxyCodeLine{702   \textcolor{comment}{/* ... but it was changed; */}}
+\DoxyCodeLine{703 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{704   \textcolor{comment}{/* So we will continue to \#define it, but with the correct value */}}
+\DoxyCodeLine{705 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TIBETAN\_BHUTAN   TT\_MS\_LANGID\_DZONGHKA\_BHUTAN}}
+\DoxyCodeLine{706 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{707 }
+\DoxyCodeLine{708 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_WELSH\_WALES                       0x0452}}
+\DoxyCodeLine{709 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KHMER\_CAMBODIA                    0x0453}}
+\DoxyCodeLine{710 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_LAO\_LAOS                          0x0454}}
+\DoxyCodeLine{711 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_BURMESE\_MYANMAR                   0x0455}}
+\DoxyCodeLine{712 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GALICIAN\_SPAIN                    0x0456}}
+\DoxyCodeLine{713 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KONKANI\_INDIA                     0x0457}}
+\DoxyCodeLine{714 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MANIPURI\_INDIA  }\textcolor{comment}{/* Bengali */}\textcolor{preprocessor}{     0x0458}}
+\DoxyCodeLine{715 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SINDHI\_INDIA }\textcolor{comment}{/* Arabic */}\textcolor{preprocessor}{         0x0459}}
+\DoxyCodeLine{716 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SINDHI\_PAKISTAN                   0x0859}}
+\DoxyCodeLine{717   \textcolor{comment}{/* Missing a LCID for Sindhi in Devanagari script */}}
+\DoxyCodeLine{718 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SYRIAC\_SYRIA                      0x045a}}
+\DoxyCodeLine{719 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SINHALESE\_SRI\_LANKA               0x045b}}
+\DoxyCodeLine{720 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_CHEROKEE\_UNITED\_STATES            0x045c}}
+\DoxyCodeLine{721 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_INUKTITUT\_CANADA                  0x045d}}
+\DoxyCodeLine{722 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_AMHARIC\_ETHIOPIA                  0x045e}}
+\DoxyCodeLine{723 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TAMAZIGHT\_MOROCCO }\textcolor{comment}{/* Arabic */}\textcolor{preprocessor}{    0x045f}}
+\DoxyCodeLine{724 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TAMAZIGHT\_MOROCCO\_LATIN           0x085f}}
+\DoxyCodeLine{725   \textcolor{comment}{/* Missing a LCID for Tifinagh script */}}
+\DoxyCodeLine{726 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KASHMIRI\_PAKISTAN }\textcolor{comment}{/* Arabic */}\textcolor{preprocessor}{    0x0460}}
+\DoxyCodeLine{727   \textcolor{comment}{/* Spelled this way by XPsp2 Platform SDK (2004-\/07-\/26) */}}
+\DoxyCodeLine{728   \textcolor{comment}{/* script is yet unclear... might be Arabic, Nagari or Sharada */}}
+\DoxyCodeLine{729 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KASHMIRI\_SASIA                    0x0860}}
+\DoxyCodeLine{730   \textcolor{comment}{/* ... and aliased (by MS) for compatibility reasons. */}}
+\DoxyCodeLine{731 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KASHMIRI\_INDIA TT\_MS\_LANGID\_KASHMIRI\_SASIA}}
+\DoxyCodeLine{732 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_NEPALI\_NEPAL                      0x0461}}
+\DoxyCodeLine{733 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_NEPALI\_INDIA                      0x0861}}
+\DoxyCodeLine{734 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FRISIAN\_NETHERLANDS               0x0462}}
+\DoxyCodeLine{735 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_PASHTO\_AFGHANISTAN                0x0463}}
+\DoxyCodeLine{736 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FILIPINO\_PHILIPPINES              0x0464}}
+\DoxyCodeLine{737 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_DHIVEHI\_MALDIVES                  0x0465}}
+\DoxyCodeLine{738   \textcolor{comment}{/* alias declared in Windows 2000 */}}
+\DoxyCodeLine{739 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_DIVEHI\_MALDIVES  TT\_MS\_LANGID\_DHIVEHI\_MALDIVES}}
+\DoxyCodeLine{740 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_EDO\_NIGERIA                       0x0466}}
+\DoxyCodeLine{741 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_FULFULDE\_NIGERIA                  0x0467}}
+\DoxyCodeLine{742 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_HAUSA\_NIGERIA                     0x0468}}
+\DoxyCodeLine{743 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_IBIBIO\_NIGERIA                    0x0469}}
+\DoxyCodeLine{744 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_YORUBA\_NIGERIA                    0x046a}}
+\DoxyCodeLine{745 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_QUECHUA\_BOLIVIA                   0x046b}}
+\DoxyCodeLine{746 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_QUECHUA\_ECUADOR                   0x086b}}
+\DoxyCodeLine{747 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_QUECHUA\_PERU                      0x0c6b}}
+\DoxyCodeLine{748 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SEPEDI\_SOUTH\_AFRICA               0x046c}}
+\DoxyCodeLine{749   \textcolor{comment}{/* Also spelled by XPsp2 Platform SDK (2004-\/07-\/26) */}}
+\DoxyCodeLine{750 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SOTHO\_SOUTHERN\_SOUTH\_AFRICA \(\backslash\)}}
+\DoxyCodeLine{751 \textcolor{preprocessor}{          TT\_MS\_LANGID\_SEPEDI\_SOUTH\_AFRICA}}
+\DoxyCodeLine{752   \textcolor{comment}{/* language codes 0x046d, 0x046e and 0x046f are (still) unknown. */}}
+\DoxyCodeLine{753 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_IGBO\_NIGERIA                      0x0470}}
+\DoxyCodeLine{754 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_KANURI\_NIGERIA                    0x0471}}
+\DoxyCodeLine{755 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_OROMO\_ETHIOPIA                    0x0472}}
+\DoxyCodeLine{756 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TIGRIGNA\_ETHIOPIA                 0x0473}}
+\DoxyCodeLine{757 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TIGRIGNA\_ERYTHREA                 0x0873}}
+\DoxyCodeLine{758   \textcolor{comment}{/* also spelled in the `Passport SDK' list as: */}}
+\DoxyCodeLine{759 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_TIGRIGNA\_ERYTREA  TT\_MS\_LANGID\_TIGRIGNA\_ERYTHREA}}
+\DoxyCodeLine{760 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_GUARANI\_PARAGUAY                  0x0474}}
+\DoxyCodeLine{761 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_HAWAIIAN\_UNITED\_STATES            0x0475}}
+\DoxyCodeLine{762 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_LATIN                             0x0476}}
+\DoxyCodeLine{763 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_SOMALI\_SOMALIA                    0x0477}}
+\DoxyCodeLine{764   \textcolor{comment}{/* Note: Yi does not have a (proper) ISO 639-\/2 code, since it is mostly */}}
+\DoxyCodeLine{765   \textcolor{comment}{/*       not written (but OTOH the peculiar writing system is worth     */}}
+\DoxyCodeLine{766   \textcolor{comment}{/*       studying).                                                     */}}
+\DoxyCodeLine{767 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_YI\_CHINA                          0x0478}}
+\DoxyCodeLine{768 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_PAPIAMENTU\_NETHERLANDS\_ANTILLES   0x0479}}
+\DoxyCodeLine{769   \textcolor{comment}{/* language codes from 0x047a to 0x047f are (still) unknown. */}}
+\DoxyCodeLine{770 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_UIGHUR\_CHINA                      0x0480}}
+\DoxyCodeLine{771 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_MAORI\_NEW\_ZEALAND                 0x0481}}
+\DoxyCodeLine{772 }
+\DoxyCodeLine{773 \textcolor{preprocessor}{\#if 0  }\textcolor{comment}{/* not deemed useful for fonts */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{774 \textcolor{preprocessor}{\#define TT\_MS\_LANGID\_HUMAN\_INTERFACE\_DEVICE            0x04ff}}
+\DoxyCodeLine{775 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{776 }
+\DoxyCodeLine{777 }
+\DoxyCodeLine{778 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{779   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{780   \textcolor{comment}{/* Possible values of the `name' identifier field in the name records of */}}
+\DoxyCodeLine{781   \textcolor{comment}{/* the TTF `name' table.  These values are platform independent.         */}}
+\DoxyCodeLine{782   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{783 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_COPYRIGHT            0}}
+\DoxyCodeLine{784 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_FONT\_FAMILY          1}}
+\DoxyCodeLine{785 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_FONT\_SUBFAMILY       2}}
+\DoxyCodeLine{786 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_UNIQUE\_ID            3}}
+\DoxyCodeLine{787 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_FULL\_NAME            4}}
+\DoxyCodeLine{788 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_VERSION\_STRING       5}}
+\DoxyCodeLine{789 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_PS\_NAME              6}}
+\DoxyCodeLine{790 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_TRADEMARK            7}}
+\DoxyCodeLine{791 }
+\DoxyCodeLine{792   \textcolor{comment}{/* the following values are from the OpenType spec */}}
+\DoxyCodeLine{793 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_MANUFACTURER         8}}
+\DoxyCodeLine{794 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_DESIGNER             9}}
+\DoxyCodeLine{795 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_DESCRIPTION          10}}
+\DoxyCodeLine{796 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_VENDOR\_URL           11}}
+\DoxyCodeLine{797 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_DESIGNER\_URL         12}}
+\DoxyCodeLine{798 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_LICENSE              13}}
+\DoxyCodeLine{799 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_LICENSE\_URL          14}}
+\DoxyCodeLine{800   \textcolor{comment}{/* number 15 is reserved */}}
+\DoxyCodeLine{801 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_PREFERRED\_FAMILY     16}}
+\DoxyCodeLine{802 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_PREFERRED\_SUBFAMILY  17}}
+\DoxyCodeLine{803 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_MAC\_FULL\_NAME        18}}
+\DoxyCodeLine{804 }
+\DoxyCodeLine{805   \textcolor{comment}{/* The following code is new as of 2000-\/01-\/21 */}}
+\DoxyCodeLine{806 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_SAMPLE\_TEXT          19}}
+\DoxyCodeLine{807 }
+\DoxyCodeLine{808   \textcolor{comment}{/* This is new in OpenType 1.3 */}}
+\DoxyCodeLine{809 \textcolor{preprocessor}{\#define TT\_NAME\_ID\_CID\_FINDFONT\_NAME    20}}
+\DoxyCodeLine{810 }
+\DoxyCodeLine{811 }
+\DoxyCodeLine{812 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{813   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{814   \textcolor{comment}{/* Bit mask values for the Unicode Ranges from the TTF `OS2 ' table.     */}}
+\DoxyCodeLine{815   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{816   \textcolor{comment}{/* Updated 02-\/Jul-\/2000.                                                  */}}
+\DoxyCodeLine{817   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{818 }
+\DoxyCodeLine{819   \textcolor{comment}{/* General Scripts Area */}}
+\DoxyCodeLine{820 }
+\DoxyCodeLine{821   \textcolor{comment}{/* Bit  0   Basic Latin */}}
+\DoxyCodeLine{822 \textcolor{preprocessor}{\#define TT\_UCR\_BASIC\_LATIN                     (1L <<  0) }\textcolor{comment}{/* U+0020-\/U+007E */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{823   \textcolor{comment}{/* Bit  1   C1 Controls and Latin-\/1 Supplement */}}
+\DoxyCodeLine{824 \textcolor{preprocessor}{\#define TT\_UCR\_LATIN1\_SUPPLEMENT               (1L <<  1) }\textcolor{comment}{/* U+0080-\/U+00FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{825   \textcolor{comment}{/* Bit  2   Latin Extended-\/A */}}
+\DoxyCodeLine{826 \textcolor{preprocessor}{\#define TT\_UCR\_LATIN\_EXTENDED\_A                (1L <<  2) }\textcolor{comment}{/* U+0100-\/U+017F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{827   \textcolor{comment}{/* Bit  3   Latin Extended-\/B */}}
+\DoxyCodeLine{828 \textcolor{preprocessor}{\#define TT\_UCR\_LATIN\_EXTENDED\_B                (1L <<  3) }\textcolor{comment}{/* U+0180-\/U+024F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{829   \textcolor{comment}{/* Bit  4   IPA Extensions */}}
+\DoxyCodeLine{830 \textcolor{preprocessor}{\#define TT\_UCR\_IPA\_EXTENSIONS                  (1L <<  4) }\textcolor{comment}{/* U+0250-\/U+02AF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{831   \textcolor{comment}{/* Bit  5   Spacing Modifier Letters */}}
+\DoxyCodeLine{832 \textcolor{preprocessor}{\#define TT\_UCR\_SPACING\_MODIFIER                (1L <<  5) }\textcolor{comment}{/* U+02B0-\/U+02FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{833   \textcolor{comment}{/* Bit  6   Combining Diacritical Marks */}}
+\DoxyCodeLine{834 \textcolor{preprocessor}{\#define TT\_UCR\_COMBINING\_DIACRITICS            (1L <<  6) }\textcolor{comment}{/* U+0300-\/U+036F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{835   \textcolor{comment}{/* Bit  7   Greek and Coptic */}}
+\DoxyCodeLine{836 \textcolor{preprocessor}{\#define TT\_UCR\_GREEK                           (1L <<  7) }\textcolor{comment}{/* U+0370-\/U+03FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{837   \textcolor{comment}{/* Bit  8 is reserved (was: Greek Symbols and Coptic) */}}
+\DoxyCodeLine{838   \textcolor{comment}{/* Bit  9   Cyrillic               + */}}
+\DoxyCodeLine{839   \textcolor{comment}{/*          Cyrillic Supplementary   */}}
+\DoxyCodeLine{840 \textcolor{preprocessor}{\#define TT\_UCR\_CYRILLIC                        (1L <<  9) }\textcolor{comment}{/* U+0400-\/U+04FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{841                                                           \textcolor{comment}{/* U+0500-\/U+052F */}}
+\DoxyCodeLine{842   \textcolor{comment}{/* Bit 10   Armenian */}}
+\DoxyCodeLine{843 \textcolor{preprocessor}{\#define TT\_UCR\_ARMENIAN                        (1L << 10) }\textcolor{comment}{/* U+0530-\/U+058F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{844   \textcolor{comment}{/* Bit 11   Hebrew */}}
+\DoxyCodeLine{845 \textcolor{preprocessor}{\#define TT\_UCR\_HEBREW                          (1L << 11) }\textcolor{comment}{/* U+0590-\/U+05FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{846   \textcolor{comment}{/* Bit 12 is reserved (was: Hebrew Extended) */}}
+\DoxyCodeLine{847   \textcolor{comment}{/* Bit 13   Arabic */}}
+\DoxyCodeLine{848 \textcolor{preprocessor}{\#define TT\_UCR\_ARABIC                          (1L << 13) }\textcolor{comment}{/* U+0600-\/U+06FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{849   \textcolor{comment}{/* Bit 14 is reserved (was: Arabic Extended) */}}
+\DoxyCodeLine{850   \textcolor{comment}{/* Bit 15   Devanagari */}}
+\DoxyCodeLine{851 \textcolor{preprocessor}{\#define TT\_UCR\_DEVANAGARI                      (1L << 15) }\textcolor{comment}{/* U+0900-\/U+097F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{852   \textcolor{comment}{/* Bit 16   Bengali */}}
+\DoxyCodeLine{853 \textcolor{preprocessor}{\#define TT\_UCR\_BENGALI                         (1L << 16) }\textcolor{comment}{/* U+0980-\/U+09FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{854   \textcolor{comment}{/* Bit 17   Gurmukhi */}}
+\DoxyCodeLine{855 \textcolor{preprocessor}{\#define TT\_UCR\_GURMUKHI                        (1L << 17) }\textcolor{comment}{/* U+0A00-\/U+0A7F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{856   \textcolor{comment}{/* Bit 18   Gujarati */}}
+\DoxyCodeLine{857 \textcolor{preprocessor}{\#define TT\_UCR\_GUJARATI                        (1L << 18) }\textcolor{comment}{/* U+0A80-\/U+0AFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{858   \textcolor{comment}{/* Bit 19   Oriya */}}
+\DoxyCodeLine{859 \textcolor{preprocessor}{\#define TT\_UCR\_ORIYA                           (1L << 19) }\textcolor{comment}{/* U+0B00-\/U+0B7F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{860   \textcolor{comment}{/* Bit 20   Tamil */}}
+\DoxyCodeLine{861 \textcolor{preprocessor}{\#define TT\_UCR\_TAMIL                           (1L << 20) }\textcolor{comment}{/* U+0B80-\/U+0BFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{862   \textcolor{comment}{/* Bit 21   Telugu */}}
+\DoxyCodeLine{863 \textcolor{preprocessor}{\#define TT\_UCR\_TELUGU                          (1L << 21) }\textcolor{comment}{/* U+0C00-\/U+0C7F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{864   \textcolor{comment}{/* Bit 22   Kannada */}}
+\DoxyCodeLine{865 \textcolor{preprocessor}{\#define TT\_UCR\_KANNADA                         (1L << 22) }\textcolor{comment}{/* U+0C80-\/U+0CFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{866   \textcolor{comment}{/* Bit 23   Malayalam */}}
+\DoxyCodeLine{867 \textcolor{preprocessor}{\#define TT\_UCR\_MALAYALAM                       (1L << 23) }\textcolor{comment}{/* U+0D00-\/U+0D7F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{868   \textcolor{comment}{/* Bit 24   Thai */}}
+\DoxyCodeLine{869 \textcolor{preprocessor}{\#define TT\_UCR\_THAI                            (1L << 24) }\textcolor{comment}{/* U+0E00-\/U+0E7F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{870   \textcolor{comment}{/* Bit 25   Lao */}}
+\DoxyCodeLine{871 \textcolor{preprocessor}{\#define TT\_UCR\_LAO                             (1L << 25) }\textcolor{comment}{/* U+0E80-\/U+0EFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{872   \textcolor{comment}{/* Bit 26   Georgian */}}
+\DoxyCodeLine{873 \textcolor{preprocessor}{\#define TT\_UCR\_GEORGIAN                        (1L << 26) }\textcolor{comment}{/* U+10A0-\/U+10FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{874   \textcolor{comment}{/* Bit 27 is reserved (was Georgian Extended) */}}
+\DoxyCodeLine{875   \textcolor{comment}{/* Bit 28   Hangul Jamo */}}
+\DoxyCodeLine{876 \textcolor{preprocessor}{\#define TT\_UCR\_HANGUL\_JAMO                     (1L << 28) }\textcolor{comment}{/* U+1100-\/U+11FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{877   \textcolor{comment}{/* Bit 29   Latin Extended Additional */}}
+\DoxyCodeLine{878 \textcolor{preprocessor}{\#define TT\_UCR\_LATIN\_EXTENDED\_ADDITIONAL       (1L << 29) }\textcolor{comment}{/* U+1E00-\/U+1EFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{879   \textcolor{comment}{/* Bit 30   Greek Extended */}}
+\DoxyCodeLine{880 \textcolor{preprocessor}{\#define TT\_UCR\_GREEK\_EXTENDED                  (1L << 30) }\textcolor{comment}{/* U+1F00-\/U+1FFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{881 }
+\DoxyCodeLine{882   \textcolor{comment}{/* Symbols Area */}}
+\DoxyCodeLine{883 }
+\DoxyCodeLine{884   \textcolor{comment}{/* Bit 31   General Punctuation */}}
+\DoxyCodeLine{885 \textcolor{preprocessor}{\#define TT\_UCR\_GENERAL\_PUNCTUATION             (1L << 31) }\textcolor{comment}{/* U+2000-\/U+206F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{886   \textcolor{comment}{/* Bit 32   Superscripts And Subscripts */}}
+\DoxyCodeLine{887 \textcolor{preprocessor}{\#define TT\_UCR\_SUPERSCRIPTS\_SUBSCRIPTS         (1L <<  0) }\textcolor{comment}{/* U+2070-\/U+209F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{888   \textcolor{comment}{/* Bit 33   Currency Symbols */}}
+\DoxyCodeLine{889 \textcolor{preprocessor}{\#define TT\_UCR\_CURRENCY\_SYMBOLS                (1L <<  1) }\textcolor{comment}{/* U+20A0-\/U+20CF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{890   \textcolor{comment}{/* Bit 34   Combining Diacritical Marks For Symbols */}}
+\DoxyCodeLine{891 \textcolor{preprocessor}{\#define TT\_UCR\_COMBINING\_DIACRITICS\_SYMB       (1L <<  2) }\textcolor{comment}{/* U+20D0-\/U+20FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{892   \textcolor{comment}{/* Bit 35   Letterlike Symbols */}}
+\DoxyCodeLine{893 \textcolor{preprocessor}{\#define TT\_UCR\_LETTERLIKE\_SYMBOLS              (1L <<  3) }\textcolor{comment}{/* U+2100-\/U+214F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{894   \textcolor{comment}{/* Bit 36   Number Forms */}}
+\DoxyCodeLine{895 \textcolor{preprocessor}{\#define TT\_UCR\_NUMBER\_FORMS                    (1L <<  4) }\textcolor{comment}{/* U+2150-\/U+218F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{896   \textcolor{comment}{/* Bit 37   Arrows                + */}}
+\DoxyCodeLine{897   \textcolor{comment}{/*          Supplemental Arrows-\/A + */}}
+\DoxyCodeLine{898   \textcolor{comment}{/*          Supplemental Arrows-\/B   */}}
+\DoxyCodeLine{899 \textcolor{preprocessor}{\#define TT\_UCR\_ARROWS                          (1L <<  5) }\textcolor{comment}{/* U+2190-\/U+21FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{900                                                           \textcolor{comment}{/* U+27F0-\/U+27FF */}}
+\DoxyCodeLine{901                                                           \textcolor{comment}{/* U+2900-\/U+297F */}}
+\DoxyCodeLine{902   \textcolor{comment}{/* Bit 38   Mathematical Operators               + */}}
+\DoxyCodeLine{903   \textcolor{comment}{/*          Supplemental Mathematical Operators  + */}}
+\DoxyCodeLine{904   \textcolor{comment}{/*          Miscellaneous Mathematical Symbols-\/A + */}}
+\DoxyCodeLine{905   \textcolor{comment}{/*          Miscellaneous Mathematical Symbols-\/B   */}}
+\DoxyCodeLine{906 \textcolor{preprocessor}{\#define TT\_UCR\_MATHEMATICAL\_OPERATORS          (1L <<  6) }\textcolor{comment}{/* U+2200-\/U+22FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{907                                                           \textcolor{comment}{/* U+2A00-\/U+2AFF */}}
+\DoxyCodeLine{908                                                           \textcolor{comment}{/* U+27C0-\/U+27EF */}}
+\DoxyCodeLine{909                                                           \textcolor{comment}{/* U+2980-\/U+29FF */}}
+\DoxyCodeLine{910   \textcolor{comment}{/* Bit 39 Miscellaneous Technical */}}
+\DoxyCodeLine{911 \textcolor{preprocessor}{\#define TT\_UCR\_MISCELLANEOUS\_TECHNICAL         (1L <<  7) }\textcolor{comment}{/* U+2300-\/U+23FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{912   \textcolor{comment}{/* Bit 40   Control Pictures */}}
+\DoxyCodeLine{913 \textcolor{preprocessor}{\#define TT\_UCR\_CONTROL\_PICTURES                (1L <<  8) }\textcolor{comment}{/* U+2400-\/U+243F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{914   \textcolor{comment}{/* Bit 41   Optical Character Recognition */}}
+\DoxyCodeLine{915 \textcolor{preprocessor}{\#define TT\_UCR\_OCR                             (1L <<  9) }\textcolor{comment}{/* U+2440-\/U+245F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{916   \textcolor{comment}{/* Bit 42   Enclosed Alphanumerics */}}
+\DoxyCodeLine{917 \textcolor{preprocessor}{\#define TT\_UCR\_ENCLOSED\_ALPHANUMERICS          (1L << 10) }\textcolor{comment}{/* U+2460-\/U+24FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{918   \textcolor{comment}{/* Bit 43   Box Drawing */}}
+\DoxyCodeLine{919 \textcolor{preprocessor}{\#define TT\_UCR\_BOX\_DRAWING                     (1L << 11) }\textcolor{comment}{/* U+2500-\/U+257F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{920   \textcolor{comment}{/* Bit 44   Block Elements */}}
+\DoxyCodeLine{921 \textcolor{preprocessor}{\#define TT\_UCR\_BLOCK\_ELEMENTS                  (1L << 12) }\textcolor{comment}{/* U+2580-\/U+259F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{922   \textcolor{comment}{/* Bit 45   Geometric Shapes */}}
+\DoxyCodeLine{923 \textcolor{preprocessor}{\#define TT\_UCR\_GEOMETRIC\_SHAPES                (1L << 13) }\textcolor{comment}{/* U+25A0-\/U+25FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{924   \textcolor{comment}{/* Bit 46   Miscellaneous Symbols */}}
+\DoxyCodeLine{925 \textcolor{preprocessor}{\#define TT\_UCR\_MISCELLANEOUS\_SYMBOLS           (1L << 14) }\textcolor{comment}{/* U+2600-\/U+26FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{926   \textcolor{comment}{/* Bit 47   Dingbats */}}
+\DoxyCodeLine{927 \textcolor{preprocessor}{\#define TT\_UCR\_DINGBATS                        (1L << 15) }\textcolor{comment}{/* U+2700-\/U+27BF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{928 }
+\DoxyCodeLine{929   \textcolor{comment}{/* CJK Phonetics and Symbols Area */}}
+\DoxyCodeLine{930 }
+\DoxyCodeLine{931   \textcolor{comment}{/* Bit 48   CJK Symbols and Punctuation */}}
+\DoxyCodeLine{932 \textcolor{preprocessor}{\#define TT\_UCR\_CJK\_SYMBOLS                     (1L << 16) }\textcolor{comment}{/* U+3000-\/U+303F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{933   \textcolor{comment}{/* Bit 49   Hiragana */}}
+\DoxyCodeLine{934 \textcolor{preprocessor}{\#define TT\_UCR\_HIRAGANA                        (1L << 17) }\textcolor{comment}{/* U+3040-\/U+309F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{935   \textcolor{comment}{/* Bit 50   Katakana                     + */}}
+\DoxyCodeLine{936   \textcolor{comment}{/*          Katakana Phonetic Extensions   */}}
+\DoxyCodeLine{937 \textcolor{preprocessor}{\#define TT\_UCR\_KATAKANA                        (1L << 18) }\textcolor{comment}{/* U+30A0-\/U+30FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{938                                                           \textcolor{comment}{/* U+31F0-\/U+31FF */}}
+\DoxyCodeLine{939   \textcolor{comment}{/* Bit 51   Bopomofo          + */}}
+\DoxyCodeLine{940   \textcolor{comment}{/*          Bopomofo Extended   */}}
+\DoxyCodeLine{941 \textcolor{preprocessor}{\#define TT\_UCR\_BOPOMOFO                        (1L << 19) }\textcolor{comment}{/* U+3100-\/U+312F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{942                                                           \textcolor{comment}{/* U+31A0-\/U+31BF */}}
+\DoxyCodeLine{943   \textcolor{comment}{/* Bit 52   Hangul Compatibility Jamo */}}
+\DoxyCodeLine{944 \textcolor{preprocessor}{\#define TT\_UCR\_HANGUL\_COMPATIBILITY\_JAMO       (1L << 20) }\textcolor{comment}{/* U+3130-\/U+318F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{945   \textcolor{comment}{/* Bit 53   Kanbun */}}
+\DoxyCodeLine{946 \textcolor{preprocessor}{\#define TT\_UCR\_CJK\_MISC                        (1L << 21) }\textcolor{comment}{/* U+3190-\/U+319F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{947 \textcolor{preprocessor}{\#define TT\_UCR\_KANBUN  TT\_UCR\_CJK\_MISC}}
+\DoxyCodeLine{948   \textcolor{comment}{/* Bit 54   Enclosed CJK Letters and Months */}}
+\DoxyCodeLine{949 \textcolor{preprocessor}{\#define TT\_UCR\_ENCLOSED\_CJK\_LETTERS\_MONTHS     (1L << 22) }\textcolor{comment}{/* U+3200-\/U+32FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{950   \textcolor{comment}{/* Bit 55   CJK Compatibility */}}
+\DoxyCodeLine{951 \textcolor{preprocessor}{\#define TT\_UCR\_CJK\_COMPATIBILITY               (1L << 23) }\textcolor{comment}{/* U+3300-\/U+33FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{952 }
+\DoxyCodeLine{953   \textcolor{comment}{/* Hangul Syllables Area */}}
+\DoxyCodeLine{954 }
+\DoxyCodeLine{955   \textcolor{comment}{/* Bit 56   Hangul */}}
+\DoxyCodeLine{956 \textcolor{preprocessor}{\#define TT\_UCR\_HANGUL                          (1L << 24) }\textcolor{comment}{/* U+AC00-\/U+D7A3 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{957 }
+\DoxyCodeLine{958   \textcolor{comment}{/* Surrogates Area */}}
+\DoxyCodeLine{959 }
+\DoxyCodeLine{960   \textcolor{comment}{/* Bit 57   High Surrogates             + */}}
+\DoxyCodeLine{961   \textcolor{comment}{/*          High Private Use Surrogates + */}}
+\DoxyCodeLine{962   \textcolor{comment}{/*          Low Surrogates                */}}
+\DoxyCodeLine{963 \textcolor{preprocessor}{\#define TT\_UCR\_SURROGATES                      (1L << 25) }\textcolor{comment}{/* U+D800-\/U+DB7F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{964                                                           \textcolor{comment}{/* U+DB80-\/U+DBFF */}}
+\DoxyCodeLine{965                                                           \textcolor{comment}{/* U+DC00-\/U+DFFF */}}
+\DoxyCodeLine{966   \textcolor{comment}{/* According to OpenType specs v.1.3+, setting bit 57 implies that there */}}
+\DoxyCodeLine{967   \textcolor{comment}{/* is at least one codepoint beyond the Basic Multilingual Plane that is */}}
+\DoxyCodeLine{968   \textcolor{comment}{/* supported by this font.  So it really means:            >= U+10000    */}}
+\DoxyCodeLine{969 }
+\DoxyCodeLine{970   \textcolor{comment}{/* Bit 58 is reserved for Unicode SubRanges */}}
+\DoxyCodeLine{971 }
+\DoxyCodeLine{972   \textcolor{comment}{/* CJK Ideographs Area */}}
+\DoxyCodeLine{973 }
+\DoxyCodeLine{974   \textcolor{comment}{/* Bit 59   CJK Unified Ideographs             + */}}
+\DoxyCodeLine{975   \textcolor{comment}{/*          CJK Radicals Supplement            + */}}
+\DoxyCodeLine{976   \textcolor{comment}{/*          Kangxi Radicals                    + */}}
+\DoxyCodeLine{977   \textcolor{comment}{/*          Ideographic Description Characters + */}}
+\DoxyCodeLine{978   \textcolor{comment}{/*          CJK Unified Ideographs Extension A   */}}
+\DoxyCodeLine{979   \textcolor{comment}{/*          CJK Unified Ideographs Extension A + */}}
+\DoxyCodeLine{980   \textcolor{comment}{/*          CJK Unified Ideographs Extension B + */}}
+\DoxyCodeLine{981   \textcolor{comment}{/*          Kanbun                               */}}
+\DoxyCodeLine{982 \textcolor{preprocessor}{\#define TT\_UCR\_CJK\_UNIFIED\_IDEOGRAPHS          (1L << 27) }\textcolor{comment}{/* U+4E00-\/U+9FFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{983                                                           \textcolor{comment}{/* U+2E80-\/U+2EFF */}}
+\DoxyCodeLine{984                                                           \textcolor{comment}{/* U+2F00-\/U+2FDF */}}
+\DoxyCodeLine{985                                                           \textcolor{comment}{/* U+2FF0-\/U+2FFF */}}
+\DoxyCodeLine{986                                                           \textcolor{comment}{/* U+3400-\/U+4DB5 */}}
+\DoxyCodeLine{987                                                           \textcolor{comment}{/*U+20000-\/U+2A6DF*/}}
+\DoxyCodeLine{988                                                           \textcolor{comment}{/* U+3190-\/U+319F */}}
+\DoxyCodeLine{989 }
+\DoxyCodeLine{990   \textcolor{comment}{/* Private Use Area */}}
+\DoxyCodeLine{991 }
+\DoxyCodeLine{992   \textcolor{comment}{/* Bit 60   Private Use */}}
+\DoxyCodeLine{993 \textcolor{preprocessor}{\#define TT\_UCR\_PRIVATE\_USE                     (1L << 28) }\textcolor{comment}{/* U+E000-\/U+F8FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{994 }
+\DoxyCodeLine{995   \textcolor{comment}{/* Compatibility Area and Specials */}}
+\DoxyCodeLine{996 }
+\DoxyCodeLine{997   \textcolor{comment}{/* Bit 61   CJK Compatibility Ideographs            + */}}
+\DoxyCodeLine{998   \textcolor{comment}{/*          CJK Compatibility Ideographs Supplement   */}}
+\DoxyCodeLine{999 \textcolor{preprocessor}{\#define TT\_UCR\_CJK\_COMPATIBILITY\_IDEOGRAPHS    (1L << 29) }\textcolor{comment}{/* U+F900-\/U+FAFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1000                                                           \textcolor{comment}{/*U+2F800-\/U+2FA1F*/}}
+\DoxyCodeLine{1001   \textcolor{comment}{/* Bit 62   Alphabetic Presentation Forms */}}
+\DoxyCodeLine{1002 \textcolor{preprocessor}{\#define TT\_UCR\_ALPHABETIC\_PRESENTATION\_FORMS   (1L << 30) }\textcolor{comment}{/* U+FB00-\/U+FB4F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1003   \textcolor{comment}{/* Bit 63   Arabic Presentation Forms-\/A */}}
+\DoxyCodeLine{1004 \textcolor{preprocessor}{\#define TT\_UCR\_ARABIC\_PRESENTATIONS\_A          (1L << 31) }\textcolor{comment}{/* U+FB50-\/U+FDFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1005   \textcolor{comment}{/* Bit 64   Combining Half Marks */}}
+\DoxyCodeLine{1006 \textcolor{preprocessor}{\#define TT\_UCR\_COMBINING\_HALF\_MARKS            (1L <<  0) }\textcolor{comment}{/* U+FE20-\/U+FE2F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1007   \textcolor{comment}{/* Bit 65   CJK Compatibility Forms */}}
+\DoxyCodeLine{1008 \textcolor{preprocessor}{\#define TT\_UCR\_CJK\_COMPATIBILITY\_FORMS         (1L <<  1) }\textcolor{comment}{/* U+FE30-\/U+FE4F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1009   \textcolor{comment}{/* Bit 66   Small Form Variants */}}
+\DoxyCodeLine{1010 \textcolor{preprocessor}{\#define TT\_UCR\_SMALL\_FORM\_VARIANTS             (1L <<  2) }\textcolor{comment}{/* U+FE50-\/U+FE6F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1011   \textcolor{comment}{/* Bit 67   Arabic Presentation Forms-\/B */}}
+\DoxyCodeLine{1012 \textcolor{preprocessor}{\#define TT\_UCR\_ARABIC\_PRESENTATIONS\_B          (1L <<  3) }\textcolor{comment}{/* U+FE70-\/U+FEFE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1013   \textcolor{comment}{/* Bit 68   Halfwidth and Fullwidth Forms */}}
+\DoxyCodeLine{1014 \textcolor{preprocessor}{\#define TT\_UCR\_HALFWIDTH\_FULLWIDTH\_FORMS       (1L <<  4) }\textcolor{comment}{/* U+FF00-\/U+FFEF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1015   \textcolor{comment}{/* Bit 69   Specials */}}
+\DoxyCodeLine{1016 \textcolor{preprocessor}{\#define TT\_UCR\_SPECIALS                        (1L <<  5) }\textcolor{comment}{/* U+FFF0-\/U+FFFD */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1017   \textcolor{comment}{/* Bit 70   Tibetan */}}
+\DoxyCodeLine{1018 \textcolor{preprocessor}{\#define TT\_UCR\_TIBETAN                         (1L <<  6) }\textcolor{comment}{/* U+0F00-\/U+0FFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1019   \textcolor{comment}{/* Bit 71   Syriac */}}
+\DoxyCodeLine{1020 \textcolor{preprocessor}{\#define TT\_UCR\_SYRIAC                          (1L <<  7) }\textcolor{comment}{/* U+0700-\/U+074F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1021   \textcolor{comment}{/* Bit 72   Thaana */}}
+\DoxyCodeLine{1022 \textcolor{preprocessor}{\#define TT\_UCR\_THAANA                          (1L <<  8) }\textcolor{comment}{/* U+0780-\/U+07BF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1023   \textcolor{comment}{/* Bit 73   Sinhala */}}
+\DoxyCodeLine{1024 \textcolor{preprocessor}{\#define TT\_UCR\_SINHALA                         (1L <<  9) }\textcolor{comment}{/* U+0D80-\/U+0DFF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1025   \textcolor{comment}{/* Bit 74   Myanmar */}}
+\DoxyCodeLine{1026 \textcolor{preprocessor}{\#define TT\_UCR\_MYANMAR                         (1L << 10) }\textcolor{comment}{/* U+1000-\/U+109F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1027   \textcolor{comment}{/* Bit 75   Ethiopic */}}
+\DoxyCodeLine{1028 \textcolor{preprocessor}{\#define TT\_UCR\_ETHIOPIC                        (1L << 11) }\textcolor{comment}{/* U+1200-\/U+137F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1029   \textcolor{comment}{/* Bit 76   Cherokee */}}
+\DoxyCodeLine{1030 \textcolor{preprocessor}{\#define TT\_UCR\_CHEROKEE                        (1L << 12) }\textcolor{comment}{/* U+13A0-\/U+13FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1031   \textcolor{comment}{/* Bit 77   Unified Canadian Aboriginal Syllabics */}}
+\DoxyCodeLine{1032 \textcolor{preprocessor}{\#define TT\_UCR\_CANADIAN\_ABORIGINAL\_SYLLABICS   (1L << 13) }\textcolor{comment}{/* U+1400-\/U+167F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1033   \textcolor{comment}{/* Bit 78   Ogham */}}
+\DoxyCodeLine{1034 \textcolor{preprocessor}{\#define TT\_UCR\_OGHAM                           (1L << 14) }\textcolor{comment}{/* U+1680-\/U+169F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1035   \textcolor{comment}{/* Bit 79   Runic */}}
+\DoxyCodeLine{1036 \textcolor{preprocessor}{\#define TT\_UCR\_RUNIC                           (1L << 15) }\textcolor{comment}{/* U+16A0-\/U+16FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1037   \textcolor{comment}{/* Bit 80   Khmer */}}
+\DoxyCodeLine{1038 \textcolor{preprocessor}{\#define TT\_UCR\_KHMER                           (1L << 16) }\textcolor{comment}{/* U+1780-\/U+17FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1039   \textcolor{comment}{/* Bit 81   Mongolian */}}
+\DoxyCodeLine{1040 \textcolor{preprocessor}{\#define TT\_UCR\_MONGOLIAN                       (1L << 17) }\textcolor{comment}{/* U+1800-\/U+18AF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1041   \textcolor{comment}{/* Bit 82   Braille Patterns */}}
+\DoxyCodeLine{1042 \textcolor{preprocessor}{\#define TT\_UCR\_BRAILLE                         (1L << 18) }\textcolor{comment}{/* U+2800-\/U+28FF */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1043   \textcolor{comment}{/* Bit 83   Yi Syllables + */}}
+\DoxyCodeLine{1044   \textcolor{comment}{/*          Yi Radicals    */}}
+\DoxyCodeLine{1045 \textcolor{preprocessor}{\#define TT\_UCR\_YI                              (1L << 19) }\textcolor{comment}{/* U+A000-\/U+A48F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1046                                                           \textcolor{comment}{/* U+A490-\/U+A4CF */}}
+\DoxyCodeLine{1047   \textcolor{comment}{/* Bit 84   Tagalog  + */}}
+\DoxyCodeLine{1048   \textcolor{comment}{/*          Hanunoo  + */}}
+\DoxyCodeLine{1049   \textcolor{comment}{/*          Buhid    + */}}
+\DoxyCodeLine{1050   \textcolor{comment}{/*          Tagbanwa   */}}
+\DoxyCodeLine{1051 \textcolor{preprocessor}{\#define TT\_UCR\_PHILIPPINE                      (1L << 20) }\textcolor{comment}{/* U+1700-\/U+171F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1052                                                           \textcolor{comment}{/* U+1720-\/U+173F */}}
+\DoxyCodeLine{1053                                                           \textcolor{comment}{/* U+1740-\/U+175F */}}
+\DoxyCodeLine{1054                                                           \textcolor{comment}{/* U+1760-\/U+177F */}}
+\DoxyCodeLine{1055   \textcolor{comment}{/* Bit 85   Old Italic */}}
+\DoxyCodeLine{1056 \textcolor{preprocessor}{\#define TT\_UCR\_OLD\_ITALIC                      (1L << 21) }\textcolor{comment}{/*U+10300-\/U+1032F*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1057   \textcolor{comment}{/* Bit 86   Gothic */}}
+\DoxyCodeLine{1058 \textcolor{preprocessor}{\#define TT\_UCR\_GOTHIC                          (1L << 22) }\textcolor{comment}{/*U+10330-\/U+1034F*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1059   \textcolor{comment}{/* Bit 87   Deseret */}}
+\DoxyCodeLine{1060 \textcolor{preprocessor}{\#define TT\_UCR\_DESERET                         (1L << 23) }\textcolor{comment}{/*U+10400-\/U+1044F*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1061   \textcolor{comment}{/* Bit 88   Byzantine Musical Symbols + */}}
+\DoxyCodeLine{1062   \textcolor{comment}{/*          Musical Symbols             */}}
+\DoxyCodeLine{1063 \textcolor{preprocessor}{\#define TT\_UCR\_MUSICAL\_SYMBOLS                 (1L << 24) }\textcolor{comment}{/*U+1D000-\/U+1D0FF*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1064                                                           \textcolor{comment}{/*U+1D100-\/U+1D1FF*/}}
+\DoxyCodeLine{1065   \textcolor{comment}{/* Bit 89   Mathematical Alphanumeric Symbols */}}
+\DoxyCodeLine{1066 \textcolor{preprocessor}{\#define TT\_UCR\_MATH\_ALPHANUMERIC\_SYMBOLS       (1L << 25) }\textcolor{comment}{/*U+1D400-\/U+1D7FF*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1067   \textcolor{comment}{/* Bit 90   Private Use (plane 15) + */}}
+\DoxyCodeLine{1068   \textcolor{comment}{/*          Private Use (plane 16)   */}}
+\DoxyCodeLine{1069 \textcolor{preprocessor}{\#define TT\_UCR\_PRIVATE\_USE\_SUPPLEMENTARY       (1L << 26) }\textcolor{comment}{/*U+F0000-\/U+FFFFD*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1070                                                         \textcolor{comment}{/*U+100000-\/U+10FFFD*/}}
+\DoxyCodeLine{1071   \textcolor{comment}{/* Bit 91   Variation Selectors */}}
+\DoxyCodeLine{1072 \textcolor{preprocessor}{\#define TT\_UCR\_VARIATION\_SELECTORS             (1L << 27) }\textcolor{comment}{/* U+FE00-\/U+FE0F */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1073   \textcolor{comment}{/* Bit 92   Tags */}}
+\DoxyCodeLine{1074 \textcolor{preprocessor}{\#define TT\_UCR\_TAGS                            (1L << 28) }\textcolor{comment}{/*U+E0000-\/U+E007F*/}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1075 }
+\DoxyCodeLine{1076 }
+\DoxyCodeLine{1077 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{1078   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{1079   \textcolor{comment}{/* Some compilers have a very limited length of identifiers.             */}}
+\DoxyCodeLine{1080   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{1081 \textcolor{preprocessor}{\#if defined( \_\_TURBOC\_\_ ) \&\& \_\_TURBOC\_\_ < 0x0410 || defined( \_\_PACIFIC\_\_ )}}
+\DoxyCodeLine{1082 \textcolor{preprocessor}{\#define HAVE\_LIMIT\_ON\_IDENTS}}
+\DoxyCodeLine{1083 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1084 }
+\DoxyCodeLine{1085 }
+\DoxyCodeLine{1086 \textcolor{preprocessor}{\#ifndef HAVE\_LIMIT\_ON\_IDENTS}}
+\DoxyCodeLine{1087 }
+\DoxyCodeLine{1088 }
+\DoxyCodeLine{1089 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{1090   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{1091   \textcolor{comment}{/* Here some alias \#defines in order to be clearer.                      */}}
+\DoxyCodeLine{1092   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{1093   \textcolor{comment}{/* These are not always \#defined to stay within the 31 character limit   */}}
+\DoxyCodeLine{1094   \textcolor{comment}{/* which some compilers have.                                            */}}
+\DoxyCodeLine{1095   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{1096   \textcolor{comment}{/* Credits go to Dave Hoo <dhoo@flash.net> for pointing out that modern  */}}
+\DoxyCodeLine{1097   \textcolor{comment}{/* Borland compilers (read: from BC++ 3.1 on) can increase this limit.   */}}
+\DoxyCodeLine{1098   \textcolor{comment}{/* If you get a warning with such a compiler, use the -\/i40 switch.       */}}
+\DoxyCodeLine{1099   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{1100 \textcolor{preprocessor}{\#define TT\_UCR\_ARABIC\_PRESENTATION\_FORMS\_A      \(\backslash\)}}
+\DoxyCodeLine{1101 \textcolor{preprocessor}{         TT\_UCR\_ARABIC\_PRESENTATIONS\_A}}
+\DoxyCodeLine{1102 \textcolor{preprocessor}{\#define TT\_UCR\_ARABIC\_PRESENTATION\_FORMS\_B      \(\backslash\)}}
+\DoxyCodeLine{1103 \textcolor{preprocessor}{         TT\_UCR\_ARABIC\_PRESENTATIONS\_B}}
+\DoxyCodeLine{1104 }
+\DoxyCodeLine{1105 \textcolor{preprocessor}{\#define TT\_UCR\_COMBINING\_DIACRITICAL\_MARKS      \(\backslash\)}}
+\DoxyCodeLine{1106 \textcolor{preprocessor}{         TT\_UCR\_COMBINING\_DIACRITICS}}
+\DoxyCodeLine{1107 \textcolor{preprocessor}{\#define TT\_UCR\_COMBINING\_DIACRITICAL\_MARKS\_SYMB \(\backslash\)}}
+\DoxyCodeLine{1108 \textcolor{preprocessor}{         TT\_UCR\_COMBINING\_DIACRITICS\_SYMB}}
+\DoxyCodeLine{1109 }
+\DoxyCodeLine{1110 }
+\DoxyCodeLine{1111 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !HAVE\_LIMIT\_ON\_IDENTS */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1112 }
+\DoxyCodeLine{1113 }
+\DoxyCodeLine{1114 FT\_END\_HEADER}
+\DoxyCodeLine{1115 }
+\DoxyCodeLine{1116 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_TTNAMEID\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1117 }
+\DoxyCodeLine{1118 }
+\DoxyCodeLine{1119 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

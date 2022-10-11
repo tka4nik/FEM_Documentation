@@ -1,0 +1,105 @@
+\hypertarget{class_g_u_i}{}\doxysection{GUI Class Reference}
+\label{class_g_u_i}\index{GUI@{GUI}}
+
+
+\texorpdfstring{$<$}{<}  
+
+
+
+
+{\ttfamily \#include $<$GUI.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_g_u_i_1_1_thread_res}{Thread\+Res}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_g_u_i_a0b8d80c1dc4e62859e0f0b80d6175205}\label{class_g_u_i_a0b8d80c1dc4e62859e0f0b80d6175205}} 
+{\bfseries GUI} (const \mbox{\hyperlink{class_g_u_i}{GUI}} \&)=delete
+\item 
+\mbox{\Hypertarget{class_g_u_i_a47024380c0ade5d230264ea8accb8a94}\label{class_g_u_i_a47024380c0ade5d230264ea8accb8a94}} 
+\mbox{\hyperlink{class_g_u_i}{GUI}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_g_u_i}{GUI}} \&)=delete
+\item 
+\mbox{\Hypertarget{class_g_u_i_a485d213ed770f145225eccf23b6932a2}\label{class_g_u_i_a485d213ed770f145225eccf23b6932a2}} 
+void {\bfseries Launch} ()
+\item 
+\mbox{\Hypertarget{class_g_u_i_afd211e1e1d5213a1717c5e0e01f70f3b}\label{class_g_u_i_afd211e1e1d5213a1717c5e0e01f70f3b}} 
+void {\bfseries Set} (const std\+::vector$<$ std\+::string $>$ \&data)
+\begin{DoxyCompactList}\small\item\em задать параметры моделирования \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_g_u_i_afb998e349f069608c644f4ed5badcbeb}\label{class_g_u_i_afb998e349f069608c644f4ed5badcbeb}} 
+void {\bfseries Target} (const std\+::vector$<$ std\+::string $>$ \&data)
+\begin{DoxyCompactList}\small\item\em нацелиться на нужный поток \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_g_u_i_af508fe9bc133913431e426846ab7f4d7}\label{class_g_u_i_af508fe9bc133913431e426846ab7f4d7}} 
+void {\bfseries Current\+Threads} ()
+\begin{DoxyCompactList}\small\item\em информация о запущенных потоках \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_g_u_i_af0cdf043de82c810f7f48c483215df29}\label{class_g_u_i_af0cdf043de82c810f7f48c483215df29}} 
+void {\bfseries multi\+\_\+thread\+\_\+invoke} (std\+::vector$<$ \mbox{\hyperlink{class_proj_1_1_project}{Project}} $>$ \&\&projects)
+\begin{DoxyCompactList}\small\item\em запустить моделирование нескольких проектов, каждое в своем потоке \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_g_u_i_a456bc44cff80cf2de04b82261431e75d}\label{class_g_u_i_a456bc44cff80cf2de04b82261431e75d}} 
+void {\bfseries set\+\_\+and\+\_\+run} (\mbox{\hyperlink{class_proj_1_1_project}{Project}} \&project)
+\begin{DoxyCompactList}\small\item\em задать стартовые параметры и запустить моделирование /$\ast$$\ast$/ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_g_u_i_af9be5fd6513a4f9b2784e74205327411}{Reverse\+Analysis}} (const std\+::vector$<$ std\+::string $>$ \&data)
+\begin{DoxyCompactList}\small\item\em обратный анализ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_g_u_i_aea77556e7addd857aab9182939d1c971}\label{class_g_u_i_aea77556e7addd857aab9182939d1c971}} 
+void {\bfseries Run} ()
+\item 
+\mbox{\Hypertarget{class_g_u_i_ae1f4a14d0f75f6030a35b343bf735cdf}\label{class_g_u_i_ae1f4a14d0f75f6030a35b343bf735cdf}} 
+void {\bfseries Show\+Completed\+Simulation} (const std\+::vector$<$ std\+::string $>$ \&data)
+\item 
+\mbox{\Hypertarget{class_g_u_i_a4af650434a77f0e5239c976f1ff79e74}\label{class_g_u_i_a4af650434a77f0e5239c976f1ff79e74}} 
+void {\bfseries Pause} ()
+\item 
+\mbox{\Hypertarget{class_g_u_i_a9cbcfa0ccebfe6f7558411b475084ddb}\label{class_g_u_i_a9cbcfa0ccebfe6f7558411b475084ddb}} 
+void {\bfseries Continue} ()
+\item 
+\mbox{\Hypertarget{class_g_u_i_a168cfcbf26466fc70a90478bcab6dbf4}\label{class_g_u_i_a168cfcbf26466fc70a90478bcab6dbf4}} 
+void {\bfseries Next} ()
+\item 
+\mbox{\Hypertarget{class_g_u_i_a9501331684efad974ed7889d0e1cf4bd}\label{class_g_u_i_a9501331684efad974ed7889d0e1cf4bd}} 
+void {\bfseries Stop} ()
+\item 
+\mbox{\Hypertarget{class_g_u_i_a7884bd2a5bbb151f36a53611a3f0a382}\label{class_g_u_i_a7884bd2a5bbb151f36a53611a3f0a382}} 
+void {\bfseries Render\+Mode} (const std\+::vector$<$ std\+::string $>$ \&data)
+\item 
+\mbox{\Hypertarget{class_g_u_i_a8790507d8e45c3829b55e8ae04e3b0cb}\label{class_g_u_i_a8790507d8e45c3829b55e8ae04e3b0cb}} 
+bool {\bfseries On\+Step} ()
+\item 
+\mbox{\Hypertarget{class_g_u_i_a95d104c61f5e204e281b2b8c88930fab}\label{class_g_u_i_a95d104c61f5e204e281b2b8c88930fab}} 
+bool {\bfseries Prepare\+Data} (const char $\ast$)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_g_u_i_a753e578116ac09b0e70b93f934068d85}\label{class_g_u_i_a753e578116ac09b0e70b93f934068d85}} 
+static \mbox{\hyperlink{class_g_u_i}{GUI}} $\ast$ {\bfseries Instance} ()
+\item 
+\mbox{\Hypertarget{class_g_u_i_ac5776d6121437dfd601f8b470bf708db}\label{class_g_u_i_ac5776d6121437dfd601f8b470bf708db}} 
+static \mbox{\hyperlink{class_g_u_i}{GUI}} $\ast$ {\bfseries Instance} (int \&argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\texorpdfstring{$<$}{<} 
+
+графический интерфейс пользователя 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_g_u_i_af9be5fd6513a4f9b2784e74205327411}\label{class_g_u_i_af9be5fd6513a4f9b2784e74205327411}} 
+\index{GUI@{GUI}!ReverseAnalysis@{ReverseAnalysis}}
+\index{ReverseAnalysis@{ReverseAnalysis}!GUI@{GUI}}
+\doxysubsubsection{\texorpdfstring{ReverseAnalysis()}{ReverseAnalysis()}}
+{\footnotesize\ttfamily void GUI\+::\+Reverse\+Analysis (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{data }\end{DoxyParamCaption})}
+
+
+
+обратный анализ 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/GUI.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/GUI.\+cpp\end{DoxyCompactItemize}

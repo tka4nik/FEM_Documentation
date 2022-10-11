@@ -1,0 +1,57 @@
+\hypertarget{class_exp_1_1_experiment}{}\doxysection{Exp\+::Experiment Class Reference}
+\label{class_exp_1_1_experiment}\index{Exp::Experiment@{Exp::Experiment}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_ae779899ea3226ef495b0bbcee0b81a75}\label{class_exp_1_1_experiment_ae779899ea3226ef495b0bbcee0b81a75}} 
+using {\bfseries dataframe\+\_\+t} = std\+::map$<$ std\+::string, std\+::vector$<$ double $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_a566da109386f23a72cc72c88961e6f4c}\label{class_exp_1_1_experiment_a566da109386f23a72cc72c88961e6f4c}} 
+{\bfseries Experiment} (const \mbox{\hyperlink{class_exp_1_1_experiment}{Experiment}} \&experiment, const \mbox{\hyperlink{class_iter_1_1_coef_k}{Iter\+::\+CoefK}} \&coef\+\_\+k)
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_a668d00cf9efd1240246b7c03687c6ead}\label{class_exp_1_1_experiment_a668d00cf9efd1240246b7c03687c6ead}} 
+{\bfseries Experiment} (const std\+::string \&file\+\_\+name)
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_ab504b93ae3a81c5886ec0c41806558bc}\label{class_exp_1_1_experiment_ab504b93ae3a81c5886ec0c41806558bc}} 
+std\+::vector$<$ double $>$ \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (const std\+::string \&field\+\_\+name)
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_ac1e18047a0b4becb9e6a9f7ea4f33536}\label{class_exp_1_1_experiment_ac1e18047a0b4becb9e6a9f7ea4f33536}} 
+const std\+::vector$<$ double $>$ \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (const std\+::string \&field\+\_\+name) const
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_af4e5a2723402406788da9d2b19514abc}\label{class_exp_1_1_experiment_af4e5a2723402406788da9d2b19514abc}} 
+size\+\_\+t {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_a57373c9caf7e39eb8086852c8c17e798}\label{class_exp_1_1_experiment_a57373c9caf7e39eb8086852c8c17e798}} 
+std\+::vector$<$ double $>$ {\bfseries get\+\_\+values\+\_\+interp} (const std\+::vector$<$ double $>$ \&strain\+\_\+steps, const std\+::string \&field\+\_\+name) const
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_aa23edb1f6ce59e0e963a584a26e4419e}\label{class_exp_1_1_experiment_aa23edb1f6ce59e0e963a584a26e4419e}} 
+void {\bfseries calculate\+\_\+strain\+\_\+rate\+\_\+changes} (const std\+::string \&field\+\_\+name=\char`\"{}Strain\+\_\+rate\char`\"{}, size\+\_\+t drop\+\_\+start=1, size\+\_\+t drop\+\_\+end=0, size\+\_\+t step=1, double proportion=0.\+000001)
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_ac9974a13efb302f9d1382f59a864e90d}\label{class_exp_1_1_experiment_ac9974a13efb302f9d1382f59a864e90d}} 
+bool {\bfseries has\+\_\+jumps} () const
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_a17028ba2975feb3bcb5664705db79ef1}\label{class_exp_1_1_experiment_a17028ba2975feb3bcb5664705db79ef1}} 
+void {\bfseries cut\+\_\+values} (const std\+::string \&field\+\_\+name, constraints cons, double value)
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_aa080bf8c8842cf83b1d88a083eac0403}\label{class_exp_1_1_experiment_aa080bf8c8842cf83b1d88a083eac0403}} 
+void {\bfseries shift\+\_\+values} (const std\+::string \&field\+\_\+name, double value)
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_ab6d83588c6e9c1f281a3f850dfe82c66}\label{class_exp_1_1_experiment_ab6d83588c6e9c1f281a3f850dfe82c66}} 
+void {\bfseries clear\+\_\+trash} (const std\+::string \&field\+\_\+name=\char`\"{}Stress\char`\"{}, size\+\_\+t drop\+\_\+start=1, size\+\_\+t drop\+\_\+end=0, double proportion=0.\+01, size\+\_\+t repeat=1)
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_a6e2a056b39ee3bb633a2f05fe43ec25c}\label{class_exp_1_1_experiment_a6e2a056b39ee3bb633a2f05fe43ec25c}} 
+double {\bfseries get\+\_\+strain\+\_\+rate\+\_\+first} () const
+\item 
+\mbox{\Hypertarget{class_exp_1_1_experiment_a6d0e3d1a189ccacd1681189dfcab42de}\label{class_exp_1_1_experiment_a6d0e3d1a189ccacd1681189dfcab42de}} 
+std\+::string {\bfseries get\+\_\+name} () const
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+Reverse\+Analysis/Experiment.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+Reverse\+Analysis/Experiment.\+cpp\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+Reverse\+Analysis/Table\+Reader.\+cpp\end{DoxyCompactItemize}

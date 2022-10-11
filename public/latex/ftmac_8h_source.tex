@@ -1,0 +1,168 @@
+\hypertarget{ftmac_8h_source}{}\doxysection{ftmac.\+h}
+\label{ftmac_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftmac.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/ftmac.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  ftmac.h                                                                */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    Additional Mac-\/specific API.                                         */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 1996-\/2001, 2004 by                                           */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  Just van Rossum, David Turner, Robert Wilhelm, and Werner Lemberg.     */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{20 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{21 \textcolor{comment}{/* NOTE: Include this file after <freetype/freetype.h> and after the       */}}
+\DoxyCodeLine{22 \textcolor{comment}{/*       Mac-\/specific <Types.h> header (or any other Mac header that       */}}
+\DoxyCodeLine{23 \textcolor{comment}{/*       includes <Types.h>); we use Handle type.                          */}}
+\DoxyCodeLine{24 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{25 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#ifndef \_\_FTMAC\_H\_\_}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define \_\_FTMAC\_H\_\_}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <ft2build.h>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{39   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{40   \textcolor{comment}{/* <Section>                                                             */}}
+\DoxyCodeLine{41   \textcolor{comment}{/*    mac\_specific                                                       */}}
+\DoxyCodeLine{42   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{43   \textcolor{comment}{/* <Title>                                                               */}}
+\DoxyCodeLine{44   \textcolor{comment}{/*    Mac Specific Interface                                             */}}
+\DoxyCodeLine{45   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{46   \textcolor{comment}{/* <Abstract>                                                            */}}
+\DoxyCodeLine{47   \textcolor{comment}{/*    Only available on the Macintosh.                                   */}}
+\DoxyCodeLine{48   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{49   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{50   \textcolor{comment}{/*    The following definitions are only available if FreeType is        */}}
+\DoxyCodeLine{51   \textcolor{comment}{/*    compiled on a Macintosh.                                           */}}
+\DoxyCodeLine{52   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{53 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{57   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{58   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{59   \textcolor{comment}{/*    FT\_New\_Face\_From\_FOND                                              */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{61   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{62   \textcolor{comment}{/*    Creates a new face object from an FOND resource.                   */}}
+\DoxyCodeLine{63   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{64   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{65   \textcolor{comment}{/*    library    :: A handle to the library resource.                    */}}
+\DoxyCodeLine{66   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{67   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{68   \textcolor{comment}{/*    fond       :: An FOND resource.                                    */}}
+\DoxyCodeLine{69   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{70   \textcolor{comment}{/*    face\_index :: Only supported for the -\/1 `sanity check' special     */}}
+\DoxyCodeLine{71   \textcolor{comment}{/*                  case.                                                */}}
+\DoxyCodeLine{72   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{73   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{74   \textcolor{comment}{/*    aface      :: A handle to a new face object.                       */}}
+\DoxyCodeLine{75   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{76   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{77   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{78   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{79   \textcolor{comment}{/* <Notes>                                                               */}}
+\DoxyCodeLine{80   \textcolor{comment}{/*    This function can be used to create FT\_Face abjects from fonts     */}}
+\DoxyCodeLine{81   \textcolor{comment}{/*    that are installed in the system like so:                          */}}
+\DoxyCodeLine{82   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{83   \textcolor{comment}{/*    \{                                                                  */}}
+\DoxyCodeLine{84   \textcolor{comment}{/*      fond = GetResource( 'FOND', fontName );                          */}}
+\DoxyCodeLine{85   \textcolor{comment}{/*      error = FT\_New\_Face\_From\_FOND( library, fond, 0, \&face );        */}}
+\DoxyCodeLine{86   \textcolor{comment}{/*    \}                                                                  */}}
+\DoxyCodeLine{87   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{88   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{89   FT\_New\_Face\_From\_FOND( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}  library,}
+\DoxyCodeLine{90                          Handle      fond,}
+\DoxyCodeLine{91                          FT\_Long     face\_index,}
+\DoxyCodeLine{92                          \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}    *aface );}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{96   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{97   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{98   \textcolor{comment}{/*    FT\_GetFile\_From\_Mac\_Name                                           */}}
+\DoxyCodeLine{99   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{100   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{101   \textcolor{comment}{/*    Returns an FSSpec for the disk file containing the named font.     */}}
+\DoxyCodeLine{102   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{103   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{104   \textcolor{comment}{/*    fontName   :: Mac OS name of the font (eg. Times New Roman Bold).  */}}
+\DoxyCodeLine{105   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{106   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{107   \textcolor{comment}{/*    pathSpec   :: FSSpec to the file.  For passing to @FT\_New\_Face.    */}}
+\DoxyCodeLine{108   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{109   \textcolor{comment}{/*    face\_index :: Index of the face.  For passing to @FT\_New\_Face.     */}}
+\DoxyCodeLine{110   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{111   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{112   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{113   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{114   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{115   FT\_GetFile\_From\_Mac\_Name( \textcolor{keyword}{const} \textcolor{keywordtype}{char}*  fontName, }
+\DoxyCodeLine{116                             FSSpec*      pathSpec,}
+\DoxyCodeLine{117                             FT\_Long*     face\_index );}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{comment}{  /*************************************************************************/}}
+\DoxyCodeLine{121   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{122   \textcolor{comment}{/* <Function>                                                            */}}
+\DoxyCodeLine{123   \textcolor{comment}{/*    FT\_New\_Face\_From\_FSSpec                                            */}}
+\DoxyCodeLine{124   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{125   \textcolor{comment}{/* <Description>                                                         */}}
+\DoxyCodeLine{126   \textcolor{comment}{/*    Creates a new face object from a given resource and typeface index */}}
+\DoxyCodeLine{127   \textcolor{comment}{/*    using an FSSpec to the font file.                                  */}}
+\DoxyCodeLine{128   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{129   \textcolor{comment}{/* <InOut>                                                               */}}
+\DoxyCodeLine{130   \textcolor{comment}{/*    library    :: A handle to the library resource.                    */}}
+\DoxyCodeLine{131   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{132   \textcolor{comment}{/* <Input>                                                               */}}
+\DoxyCodeLine{133   \textcolor{comment}{/*    spec       :: FSSpec to the font file.                             */}}
+\DoxyCodeLine{134   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{135   \textcolor{comment}{/*    face\_index :: The index of the face within the resource.  The      */}}
+\DoxyCodeLine{136   \textcolor{comment}{/*                  first face has index 0.                              */}}
+\DoxyCodeLine{137   \textcolor{comment}{/* <Output>                                                              */}}
+\DoxyCodeLine{138   \textcolor{comment}{/*    aface      :: A handle to a new face object.                       */}}
+\DoxyCodeLine{139   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{140   \textcolor{comment}{/* <Return>                                                              */}}
+\DoxyCodeLine{141   \textcolor{comment}{/*    FreeType error code.  0 means success.                             */}}
+\DoxyCodeLine{142   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{143   \textcolor{comment}{/* <Note>                                                                */}}
+\DoxyCodeLine{144   \textcolor{comment}{/*    @FT\_New\_Face\_From\_FSSpec is identical to @FT\_New\_Face except       */}}
+\DoxyCodeLine{145   \textcolor{comment}{/*    it accepts an FSSpec instead of a path.                            */}}
+\DoxyCodeLine{146   \textcolor{comment}{/*                                                                       */}}
+\DoxyCodeLine{147   FT\_EXPORT( FT\_Error )}
+\DoxyCodeLine{148   FT\_New\_Face\_From\_FSSpec( \mbox{\hyperlink{struct_f_t___library_rec__}{FT\_Library}}     library,}
+\DoxyCodeLine{149                            \textcolor{keyword}{const} FSSpec  *spec,}
+\DoxyCodeLine{150                            FT\_Long        face\_index,}
+\DoxyCodeLine{151                            \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}       *aface );}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153   \textcolor{comment}{/* */}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 FT\_END\_HEADER}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_FTMAC\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

@@ -1,0 +1,64 @@
+\hypertarget{svpostnm_8h_source}{}\doxysection{svpostnm.\+h}
+\label{svpostnm_8h_source}\index{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svpostnm.h@{C:/Projects/FEM/831\_finite\_element\_modeling/dependencies/freetype/include/freetype/internal/svpostnm.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{2 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{3 \textcolor{comment}{/*  svpostnm.h                                                             */}}
+\DoxyCodeLine{4 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{5 \textcolor{comment}{/*    The FreeType PostScript name services (specification).               */}}
+\DoxyCodeLine{6 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{7 \textcolor{comment}{/*  Copyright 2003 by                                                      */}}
+\DoxyCodeLine{8 \textcolor{comment}{/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */}}
+\DoxyCodeLine{9 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{10 \textcolor{comment}{/*  This file is part of the FreeType project, and may only be used,       */}}
+\DoxyCodeLine{11 \textcolor{comment}{/*  modified, and distributed under the terms of the FreeType project      */}}
+\DoxyCodeLine{12 \textcolor{comment}{/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */}}
+\DoxyCodeLine{13 \textcolor{comment}{/*  this file you indicate that you have read the license and              */}}
+\DoxyCodeLine{14 \textcolor{comment}{/*  understand and accept it fully.                                        */}}
+\DoxyCodeLine{15 \textcolor{comment}{/*                                                                         */}}
+\DoxyCodeLine{16 \textcolor{comment}{/***************************************************************************/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef \_\_SVPOSTNM\_H\_\_}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define \_\_SVPOSTNM\_H\_\_}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include FT\_INTERNAL\_SERVICE\_H}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 FT\_BEGIN\_HEADER}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   \textcolor{comment}{/*}}
+\DoxyCodeLine{28 \textcolor{comment}{   *  A trivial service used to retrieve the PostScript name of a given}}
+\DoxyCodeLine{29 \textcolor{comment}{   *  font when available.  The `get\_name' field should never be NULL.}}
+\DoxyCodeLine{30 \textcolor{comment}{   *}}
+\DoxyCodeLine{31 \textcolor{comment}{   *  The correponding function can return NULL to indicate that the}}
+\DoxyCodeLine{32 \textcolor{comment}{   *  PostScript name is not available.}}
+\DoxyCodeLine{33 \textcolor{comment}{   *}}
+\DoxyCodeLine{34 \textcolor{comment}{   *  The name is owned by the face and will be destroyed with it.}}
+\DoxyCodeLine{35 \textcolor{comment}{   */}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define FT\_SERVICE\_ID\_POSTSCRIPT\_FONT\_NAME  "{}postscript-\/font-\/name"{}}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char}*}
+\DoxyCodeLine{41   (*FT\_PsName\_GetFunc)( \mbox{\hyperlink{struct_f_t___face_rec__}{FT\_Face}}  face );}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   FT\_DEFINE\_SERVICE( PsFontName )}
+\DoxyCodeLine{45   \{}
+\DoxyCodeLine{46     FT\_PsName\_GetFunc  get\_ps\_font\_name;}
+\DoxyCodeLine{47   \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49   \textcolor{comment}{/* */}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 FT\_END\_HEADER}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_SVPOSTNM\_H\_\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{comment}{/* END */}}
+
+\end{DoxyCode}

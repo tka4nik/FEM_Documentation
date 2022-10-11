@@ -1,0 +1,233 @@
+\hypertarget{class_console}{}\doxysection{Console Class Reference}
+\label{class_console}\index{Console@{Console}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_console_1_1_command}{Command}}
+\begin{DoxyCompactList}\small\item\em Класс команды \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_console_aaba509e6bbf763e613c9233e3649db91}\label{class_console_aaba509e6bbf763e613c9233e3649db91}} 
+enum class {\bfseries Command\+Type} \{ {\bfseries immediate}
+, {\bfseries deferred}
+ \}
+\item 
+\mbox{\Hypertarget{class_console_a7ffd78342833100121e594d8718cc211}\label{class_console_a7ffd78342833100121e594d8718cc211}} 
+enum class {\bfseries Dlg\+Answer} \{ {\bfseries Yes}
+, {\bfseries No}
+, {\bfseries Undefined}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_console_a39d7cb8024e7e20d4624e7ca0a367dc7}\label{class_console_a39d7cb8024e7e20d4624e7ca0a367dc7}} 
+{\bfseries Console} (const \mbox{\hyperlink{class_console}{Console}} \&)=delete
+\item 
+\mbox{\Hypertarget{class_console_ae1804ebbdfa26ad1f9ea799ddb5e243c}\label{class_console_ae1804ebbdfa26ad1f9ea799ddb5e243c}} 
+\mbox{\hyperlink{class_console}{Console}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_console}{Console}} \&)=delete
+\item 
+void \mbox{\hyperlink{class_console_aa888891efac952b86c20d33fc860e028}{Add\+Command}} (std\+::string console\+\_\+name, \mbox{\hyperlink{class_console_1_1_command}{Command}} command)
+\begin{DoxyCompactList}\small\item\em Добавляет команду в консоль \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_console_a28789050eae23a13a2652f2660808934}{Add\+Tag}} (int id, std\+::string description)
+\begin{DoxyCompactList}\small\item\em Добавление тега для комадны help. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_console_a0de96c1775644145cc9e88a038b5b439}{Input}} ()
+\begin{DoxyCompactList}\small\item\em Функция ввода. Будет постоянно читать поток input\+\_\+stream, до тех пор, пока не будет введена команда exit. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... Args$>$ }\\void \mbox{\hyperlink{class_console_a475fa2f09bcde87346d13c2828d9ce0e}{Write\+In\+Logs}} (Args \&\&...args)
+\begin{DoxyCompactList}\small\item\em Одновременно выводит информацию в m\+\_\+output\+\_\+log(log) и m\+\_\+message\+\_\+log(cout). Можно использовать для вывода предупреждений или просто важных сообщений для пользователя. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_console_ab04e72ca62ca9f6ed2047baffa406ab6}\label{class_console_ab04e72ca62ca9f6ed2047baffa406ab6}} 
+{\footnotesize template$<$typename... Args$>$ }\\void {\bfseries Write\+In\+Output} (Args \&\&...args)
+\begin{DoxyCompactList}\small\item\em Выводит информацию в m\+\_\+output\+\_\+log(log). Работает по аналогии с Write\+In\+Logs. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_console_ad614052ed6053f8b395a0cab9fe81aea}\label{class_console_ad614052ed6053f8b395a0cab9fe81aea}} 
+{\footnotesize template$<$typename... Args$>$ }\\void {\bfseries Write\+In\+Message\+Log} (Args \&\&...args)
+\begin{DoxyCompactList}\small\item\em Выводит информацию в m\+\_\+message\+\_\+log(cout). Работает по аналогии с Write\+In\+Logs. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... Args$>$ }\\void \mbox{\hyperlink{class_console_a1cdfcdd54933908d065118f39e4a39db}{Report\+Error}} (int log, Args \&\&...args)
+\begin{DoxyCompactList}\small\item\em может выводить информацию в m\+\_\+output\+\_\+log(log) и m\+\_\+message\+\_\+log(cout). Можно использовать для вывода ошибок. Выводит сообщения цветом ERROR\+\_\+\+COLOR (красный) \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename... Args$>$ }\\void \mbox{\hyperlink{class_console_a2fc48b33669993ad4da7a2fafc6b7699}{Report\+Warning}} (int log, Args \&\&...args)
+\begin{DoxyCompactList}\small\item\em может выводить информацию в m\+\_\+output\+\_\+log(log) и m\+\_\+message\+\_\+log(cout). Можно использовать для вывода предупреждений. Выводит сообщения цветом WARNING\+\_\+\+COLOR \end{DoxyCompactList}\item 
+Dlg\+Answer \mbox{\hyperlink{class_console_aa7891703d22bdc9106709549f4fba86a}{Dlg\+Question}} (const std\+::string \&question, const std\+::string \&answ\+\_\+yes, const std\+::string \&answ\+\_\+no, bool loop=false)
+\begin{DoxyCompactList}\small\item\em Задает вопрос пользователю с двумя вариантами ответа. Можно использовать при возникновении некритических ошибок. Например, в случае неудачи тесселяции или триангуляции, можно спросить пользователя, продолжать ли моделирование. Dlg\+Question может быть вызвана в любом потоке, в котором есть доступ в \mbox{\hyperlink{class_console}{Console}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_console_a82f3c863a83ba0b844cb2f8e15ab7449}{Help}} (const std\+::vector$<$ std\+::string $>$ \&args)
+\begin{DoxyCompactList}\small\item\em Выполняет команду help. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_console_a8bce84b1adceeddcc76aaf2457cede6c}\label{class_console_a8bce84b1adceeddcc76aaf2457cede6c}} 
+void {\bfseries Set\+Exit\+Call\+Back} (const std\+::function$<$ void()$>$ \&callback)
+\item 
+\mbox{\Hypertarget{class_console_a107fa97b8107d26e20ac3c1adcce24d6}\label{class_console_a107fa97b8107d26e20ac3c1adcce24d6}} 
+std\+::thread\+::id {\bfseries Get\+Queue\+ID} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_console}{Console}} $\ast$ \mbox{\hyperlink{class_console_af9a59d6075dd4c848ff84c7bf9a0efca}{Instance}} (std\+::istream \&input\+\_\+stream, std\+::ostream \&output\+\_\+log, std\+::ostream \&message\+\_\+log)
+\begin{DoxyCompactList}\small\item\em Создает singleton \mbox{\hyperlink{class_console}{Console}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_console_a280bd39249c6b807c443d0c8d1dcea0f}\label{class_console_a280bd39249c6b807c443d0c8d1dcea0f}} 
+static \mbox{\hyperlink{class_console}{Console}} $\ast$ {\bfseries Instance} ()
+\begin{DoxyCompactList}\small\item\em Возвращает уже созданный singleton \mbox{\hyperlink{class_console}{Console}} или nullptr, если singleton еще не создан. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_console_aa888891efac952b86c20d33fc860e028}\label{class_console_aa888891efac952b86c20d33fc860e028}} 
+\index{Console@{Console}!AddCommand@{AddCommand}}
+\index{AddCommand@{AddCommand}!Console@{Console}}
+\doxysubsubsection{\texorpdfstring{AddCommand()}{AddCommand()}}
+{\footnotesize\ttfamily void Console\+::\+Add\+Command (\begin{DoxyParamCaption}\item[{std\+::string}]{console\+\_\+name,  }\item[{\mbox{\hyperlink{class_console_1_1_command}{Command}}}]{command }\end{DoxyParamCaption})}
+
+
+
+Добавляет команду в консоль 
+
+
+\begin{DoxyParams}{Parameters}
+{\em console\+\_\+name} & имя команды, которое должен вводить пользователь для вызова. \\
+\hline
+{\em command} & структура команды (см. класс \mbox{\hyperlink{class_console_1_1_command}{Command}} ниже). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_console_a28789050eae23a13a2652f2660808934}\label{class_console_a28789050eae23a13a2652f2660808934}} 
+\index{Console@{Console}!AddTag@{AddTag}}
+\index{AddTag@{AddTag}!Console@{Console}}
+\doxysubsubsection{\texorpdfstring{AddTag()}{AddTag()}}
+{\footnotesize\ttfamily void Console\+::\+Add\+Tag (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{std\+::string}]{description }\end{DoxyParamCaption})}
+
+
+
+Добавление тега для комадны help. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & -\/ индетификатор. Каждой команде присваивается любой из добавленных id или id по умолчанию (Other\+Tag = -\/1). При вызове команды help все команды сортируются по id (Команды с id по умолчанию выводятся последними)\\
+\hline
+{\em description} & -\/ описание id, которое отображается в help.\\
+\hline
+\end{DoxyParams}
+с помощью этого механизма в команде help можно объединять команды в группы и выводить каждую группу отдельно. \mbox{\Hypertarget{class_console_aa7891703d22bdc9106709549f4fba86a}\label{class_console_aa7891703d22bdc9106709549f4fba86a}} 
+\index{Console@{Console}!DlgQuestion@{DlgQuestion}}
+\index{DlgQuestion@{DlgQuestion}!Console@{Console}}
+\doxysubsubsection{\texorpdfstring{DlgQuestion()}{DlgQuestion()}}
+{\footnotesize\ttfamily Console\+::\+Dlg\+Answer Console\+::\+Dlg\+Question (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{question,  }\item[{const std\+::string \&}]{answ\+\_\+yes,  }\item[{const std\+::string \&}]{answ\+\_\+no,  }\item[{bool}]{loop = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Задает вопрос пользователю с двумя вариантами ответа. Можно использовать при возникновении некритических ошибок. Например, в случае неудачи тесселяции или триангуляции, можно спросить пользователя, продолжать ли моделирование. Dlg\+Question может быть вызвана в любом потоке, в котором есть доступ в \mbox{\hyperlink{class_console}{Console}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em question} & -\/ вопрос, который нужно вывести на экран \\
+\hline
+{\em answ\+\_\+yes} & -\/ утвердительный вариант ответа \\
+\hline
+{\em answ\+\_\+no} & -\/ отрицательный вариант ответа \\
+\hline
+{\em loop} & -\/ нужно ли переспрашивать пользователя, если его ответ не совпал ни с answ\+\_\+yes, ни с answ\+\_\+no, или сразу вернуть Dlg\+Answer\+::\+Undefined \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+вернет Dlg\+Answer\+::\+Yes, если пользователь ввел строку, совпадающую с утвердительным вариантом ответа, и Dlg\+Answer\+::\+No -\/ в случае отрицательного. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_console_a82f3c863a83ba0b844cb2f8e15ab7449}\label{class_console_a82f3c863a83ba0b844cb2f8e15ab7449}} 
+\index{Console@{Console}!Help@{Help}}
+\index{Help@{Help}!Console@{Console}}
+\doxysubsubsection{\texorpdfstring{Help()}{Help()}}
+{\footnotesize\ttfamily void Console\+::\+Help (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{args }\end{DoxyParamCaption})}
+
+
+
+Выполняет команду help. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & 
+\begin{DoxyEnumerate}
+\item args -\/ пустой. Выводится отсортированный по тегам список сигнатур команд.
+\item args = \{details\} Выводится отсортированный по тегам список сигнатур команд с их подробным описанием
+\item args = \{$<$имя\+\_\+команды$>$\} Выводится информация о сигнатуре команды $<$имя\+\_\+команды$>$
+\item args = \{$<$имя\+\_\+команды$>$, details\} Выводится информация о сигнатуре команды $<$имя\+\_\+команды$>$ и ее подробное описание
+\item args = \{notation\} -\/ выводится информация о нотации, в которой записаны сигнатуры команд 
+\end{DoxyEnumerate}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_console_a0de96c1775644145cc9e88a038b5b439}\label{class_console_a0de96c1775644145cc9e88a038b5b439}} 
+\index{Console@{Console}!Input@{Input}}
+\index{Input@{Input}!Console@{Console}}
+\doxysubsubsection{\texorpdfstring{Input()}{Input()}}
+{\footnotesize\ttfamily void Console\+::\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Функция ввода. Будет постоянно читать поток input\+\_\+stream, до тех пор, пока не будет введена команда exit. 
+
+Вызов этой функции требует отдельный поток выполнения. В данной программе главный поток выполняет input. \mbox{\Hypertarget{class_console_af9a59d6075dd4c848ff84c7bf9a0efca}\label{class_console_af9a59d6075dd4c848ff84c7bf9a0efca}} 
+\index{Console@{Console}!Instance@{Instance}}
+\index{Instance@{Instance}!Console@{Console}}
+\doxysubsubsection{\texorpdfstring{Instance()}{Instance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_console}{Console}} $\ast$ Console\+::\+Instance (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{input\+\_\+stream,  }\item[{std\+::ostream \&}]{output\+\_\+log,  }\item[{std\+::ostream \&}]{message\+\_\+log }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Создает singleton \mbox{\hyperlink{class_console}{Console}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+stream} & -\/ поток ввода \\
+\hline
+{\em output\+\_\+log} & -\/ поток для вывода отладочной информации \\
+\hline
+{\em message\+\_\+log} & -\/ поток для вывода сообщений для пользователя \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Здесь input\+\_\+stream = cin, output\+\_\+log = log, message\+\_\+log = cout (см. GUI\+::\+GUI(int\& argc, char$\ast$$\ast$ argv)) \mbox{\Hypertarget{class_console_a1cdfcdd54933908d065118f39e4a39db}\label{class_console_a1cdfcdd54933908d065118f39e4a39db}} 
+\index{Console@{Console}!ReportError@{ReportError}}
+\index{ReportError@{ReportError}!Console@{Console}}
+\doxysubsubsection{\texorpdfstring{ReportError()}{ReportError()}}
+{\footnotesize\ttfamily template$<$typename... Args$>$ \\
+void Console\+::\+Report\+Error (\begin{DoxyParamCaption}\item[{int}]{log,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+может выводить информацию в m\+\_\+output\+\_\+log(log) и m\+\_\+message\+\_\+log(cout). Можно использовать для вывода ошибок. Выводит сообщения цветом ERROR\+\_\+\+COLOR (красный) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log} & -\/ указывает в какой именно лог нужно вывести сообщение. Используйте MSGLOG для вывода в m\+\_\+message\+\_\+log и OUTPUT для вывода в m\+\_\+output\+\_\+log. Для вывода в оба лога передайте MSGLOG $\vert$ OUTPUT.\\
+\hline
+\end{DoxyParams}
+Пример использования\+: Report\+Error(MSGLOG $\vert$ OUTPUT, \char`\"{}a = \char`\"{}, 1, \char`\"{}\textbackslash{}n b = \char`\"{}, 2.\+f, EndL); (EndL определен как \textquotesingle{}~\newline
+\textquotesingle{} см. выше) \mbox{\Hypertarget{class_console_a2fc48b33669993ad4da7a2fafc6b7699}\label{class_console_a2fc48b33669993ad4da7a2fafc6b7699}} 
+\index{Console@{Console}!ReportWarning@{ReportWarning}}
+\index{ReportWarning@{ReportWarning}!Console@{Console}}
+\doxysubsubsection{\texorpdfstring{ReportWarning()}{ReportWarning()}}
+{\footnotesize\ttfamily template$<$typename... Args$>$ \\
+void Console\+::\+Report\+Warning (\begin{DoxyParamCaption}\item[{int}]{log,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+может выводить информацию в m\+\_\+output\+\_\+log(log) и m\+\_\+message\+\_\+log(cout). Можно использовать для вывода предупреждений. Выводит сообщения цветом WARNING\+\_\+\+COLOR 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log} & -\/ указывает в какой именно лог нужно вывести сообщение. Используйте MSGLOG для вывода в m\+\_\+message\+\_\+log и OUTPUT для вывода в m\+\_\+output\+\_\+log. Для вывода в оба лога передайте MSGLOG $\vert$ OUTPUT.\\
+\hline
+\end{DoxyParams}
+Пример использования\+: Report\+Warning(MSGLOG $\vert$ OUTPUT, \char`\"{}a = \char`\"{}, 1, \char`\"{}\textbackslash{}n b = \char`\"{}, 2.\+f, EndL); (EndL определен как \textquotesingle{}~\newline
+\textquotesingle{} см. выше) \mbox{\Hypertarget{class_console_a475fa2f09bcde87346d13c2828d9ce0e}\label{class_console_a475fa2f09bcde87346d13c2828d9ce0e}} 
+\index{Console@{Console}!WriteInLogs@{WriteInLogs}}
+\index{WriteInLogs@{WriteInLogs}!Console@{Console}}
+\doxysubsubsection{\texorpdfstring{WriteInLogs()}{WriteInLogs()}}
+{\footnotesize\ttfamily template$<$typename... Args$>$ \\
+void Console\+::\+Write\+In\+Logs (\begin{DoxyParamCaption}\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Одновременно выводит информацию в m\+\_\+output\+\_\+log(log) и m\+\_\+message\+\_\+log(cout). Можно использовать для вывода предупреждений или просто важных сообщений для пользователя. 
+
+Пример использования\+: Write\+In\+Logs(\char`\"{}a = \char`\"{}, 1, \char`\"{}\textbackslash{}n b = \char`\"{}, 2.\+f, EndL); (EndL определен как \textquotesingle{}~\newline
+\textquotesingle{} см. выше) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Console.\+h\item 
+831\+\_\+finite\+\_\+element\+\_\+modeling/\+GUI/source/\+GUI/Console.\+cpp\end{DoxyCompactItemize}
